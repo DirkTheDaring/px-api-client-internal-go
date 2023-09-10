@@ -18,7 +18,7 @@ build:
 	@echo "Building $(BINARY_NAME)..."
 	@mkdir -p $(BUILD_DIR)
 	#$(GO) build -o $(BUILD_DIR)/$(BINARY_NAME) $(SRC_DIR)
-	cd $(SRC_DIR) && $(GO) build -o ../$(BUILD_DIR)/$(BINARY_NAME) .
+	$(GO) build -o $(BUILD_DIR)/$(BINARY_NAME) .
 
 # Run tests
 test:
@@ -28,9 +28,9 @@ test:
 release:
 	@echo "Building release $(BINARY_NAME)..."
 	@mkdir -p $(RELEASE_DIR)
-	cd $(SRC_DIR) && GOARCH=amd64 GOOS=linux   $(GO) build -o ../$(RELEASE_DIR)/$(BINARY_NAME)_$(VERSION)_linux_amd64 .
-	cd $(SRC_DIR) && GOARCH=amd64 GOOS=darwin  $(GO) build -o ../$(RELEASE_DIR)/$(BINARY_NAME)_$(VERSION)_darwin_amd64 .
-	cd $(SRC_DIR) && GOARCH=amd64 GOOS=windows $(GO) build -o ../$(RELEASE_DIR)/$(BINARY_NAME)_$(VERSION)_windows_amd64.exe .
+	GOARCH=amd64 GOOS=linux   $(GO) build -o $(RELEASE_DIR)/$(BINARY_NAME)_$(VERSION)_linux_amd64 .
+	GOARCH=amd64 GOOS=darwin  $(GO) build -o $(RELEASE_DIR)/$(BINARY_NAME)_$(VERSION)_darwin_amd64 .
+	GOARCH=amd64 GOOS=windows $(GO) build -o $(RELEASE_DIR)/$(BINARY_NAME)_$(VERSION)_windows_amd64.exe .
 
 # Publish the release on GitHub
 publish: release
