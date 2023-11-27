@@ -185,8 +185,7 @@ type CreateVMRequest struct {
 	Lock *string `json:"lock,omitempty"`
 	// Specifies the QEMU machine type.
 	Machine *string `json:"machine,omitempty"`
-	// Amount of RAM for the VM in MiB. This is the maximum available memory when you use the balloon device.
-	Memory *int64 `json:"memory,omitempty"`
+	Memory *GetVMConfig200ResponseDataMemory `json:"memory,omitempty"`
 	// Set maximum tolerated downtime (in seconds) for migrations.
 	MigrateDowntime *float32 `json:"migrate_downtime,omitempty"`
 	// Set maximum speed (in MB/s) for migrations. Value 0 is no limit.
@@ -3701,9 +3700,9 @@ func (o *CreateVMRequest) SetMachine(v string) {
 }
 
 // GetMemory returns the Memory field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetMemory() int64 {
+func (o *CreateVMRequest) GetMemory() GetVMConfig200ResponseDataMemory {
 	if o == nil || IsNil(o.Memory) {
-		var ret int64
+		var ret GetVMConfig200ResponseDataMemory
 		return ret
 	}
 	return *o.Memory
@@ -3711,7 +3710,7 @@ func (o *CreateVMRequest) GetMemory() int64 {
 
 // GetMemoryOk returns a tuple with the Memory field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetMemoryOk() (*int64, bool) {
+func (o *CreateVMRequest) GetMemoryOk() (*GetVMConfig200ResponseDataMemory, bool) {
 	if o == nil || IsNil(o.Memory) {
 		return nil, false
 	}
@@ -3727,8 +3726,8 @@ func (o *CreateVMRequest) HasMemory() bool {
 	return false
 }
 
-// SetMemory gets a reference to the given int64 and assigns it to the Memory field.
-func (o *CreateVMRequest) SetMemory(v int64) {
+// SetMemory gets a reference to the given GetVMConfig200ResponseDataMemory and assigns it to the Memory field.
+func (o *CreateVMRequest) SetMemory(v GetVMConfig200ResponseDataMemory) {
 	o.Memory = &v
 }
 

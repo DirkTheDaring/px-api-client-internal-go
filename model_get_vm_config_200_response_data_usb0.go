@@ -25,7 +25,7 @@ type GetVMConfig200ResponseDataUsb0 struct {
 	// The ID of a cluster wide mapping. Either this or the default-key 'host' must be set.
 	Mapping *string `json:"mapping,omitempty"`
 	// Specifies whether if given host option is a USB3 device or port. For modern guests (machine version >= 7.1 and ostype l26 and windows > 7), this flag is irrelevant (all devices are plugged into a xhci controller).
-	Usb3 *int32 `json:"usb3,omitempty"`
+	Usb3 *bool `json:"usb3,omitempty"`
 }
 
 // NewGetVMConfig200ResponseDataUsb0 instantiates a new GetVMConfig200ResponseDataUsb0 object
@@ -110,9 +110,9 @@ func (o *GetVMConfig200ResponseDataUsb0) SetMapping(v string) {
 }
 
 // GetUsb3 returns the Usb3 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseDataUsb0) GetUsb3() int32 {
+func (o *GetVMConfig200ResponseDataUsb0) GetUsb3() bool {
 	if o == nil || IsNil(o.Usb3) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Usb3
@@ -120,7 +120,7 @@ func (o *GetVMConfig200ResponseDataUsb0) GetUsb3() int32 {
 
 // GetUsb3Ok returns a tuple with the Usb3 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseDataUsb0) GetUsb3Ok() (*int32, bool) {
+func (o *GetVMConfig200ResponseDataUsb0) GetUsb3Ok() (*bool, bool) {
 	if o == nil || IsNil(o.Usb3) {
 		return nil, false
 	}
@@ -136,8 +136,8 @@ func (o *GetVMConfig200ResponseDataUsb0) HasUsb3() bool {
 	return false
 }
 
-// SetUsb3 gets a reference to the given int32 and assigns it to the Usb3 field.
-func (o *GetVMConfig200ResponseDataUsb0) SetUsb3(v int32) {
+// SetUsb3 gets a reference to the given bool and assigns it to the Usb3 field.
+func (o *GetVMConfig200ResponseDataUsb0) SetUsb3(v bool) {
 	o.Usb3 = &v
 }
 

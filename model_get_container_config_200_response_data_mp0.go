@@ -21,21 +21,21 @@ var _ MappedNullable = &GetContainerConfig200ResponseDataMp0{}
 // GetContainerConfig200ResponseDataMp0 struct for GetContainerConfig200ResponseDataMp0
 type GetContainerConfig200ResponseDataMp0 struct {
 	// Explicitly enable or disable ACL support.
-	Acl *int32 `json:"acl,omitempty"`
+	Acl *bool `json:"acl,omitempty"`
 	// Whether to include the mount point in backups.
-	Backup *int32 `json:"backup,omitempty"`
+	Backup *bool `json:"backup,omitempty"`
 	// Extra mount options for rootfs/mps.
 	Mountoptions *string `json:"mountoptions,omitempty"`
 	// Path to the mount point as seen from inside the container (must not contain symlinks).
 	Mp *string `json:"mp,omitempty"`
 	// Enable user quotas inside the container (not supported with zfs subvolumes)
-	Quota *int32 `json:"quota,omitempty"`
+	Quota *bool `json:"quota,omitempty"`
 	// Will include this volume to a storage replica job.
-	Replicate *int32 `json:"replicate,omitempty"`
+	Replicate *bool `json:"replicate,omitempty"`
 	// Read-only mount point
-	Ro *int32 `json:"ro,omitempty"`
+	Ro *bool `json:"ro,omitempty"`
 	// Mark this non-volume mount point as available on multiple nodes (see 'nodes')
-	Shared *int32 `json:"shared,omitempty"`
+	Shared *bool `json:"shared,omitempty"`
 	// Volume size (read only value).
 	Size *string `json:"size,omitempty"`
 	// Volume, device or directory to mount into the container.
@@ -60,9 +60,9 @@ func NewGetContainerConfig200ResponseDataMp0WithDefaults() *GetContainerConfig20
 }
 
 // GetAcl returns the Acl field value if set, zero value otherwise.
-func (o *GetContainerConfig200ResponseDataMp0) GetAcl() int32 {
+func (o *GetContainerConfig200ResponseDataMp0) GetAcl() bool {
 	if o == nil || IsNil(o.Acl) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Acl
@@ -70,7 +70,7 @@ func (o *GetContainerConfig200ResponseDataMp0) GetAcl() int32 {
 
 // GetAclOk returns a tuple with the Acl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetContainerConfig200ResponseDataMp0) GetAclOk() (*int32, bool) {
+func (o *GetContainerConfig200ResponseDataMp0) GetAclOk() (*bool, bool) {
 	if o == nil || IsNil(o.Acl) {
 		return nil, false
 	}
@@ -86,15 +86,15 @@ func (o *GetContainerConfig200ResponseDataMp0) HasAcl() bool {
 	return false
 }
 
-// SetAcl gets a reference to the given int32 and assigns it to the Acl field.
-func (o *GetContainerConfig200ResponseDataMp0) SetAcl(v int32) {
+// SetAcl gets a reference to the given bool and assigns it to the Acl field.
+func (o *GetContainerConfig200ResponseDataMp0) SetAcl(v bool) {
 	o.Acl = &v
 }
 
 // GetBackup returns the Backup field value if set, zero value otherwise.
-func (o *GetContainerConfig200ResponseDataMp0) GetBackup() int32 {
+func (o *GetContainerConfig200ResponseDataMp0) GetBackup() bool {
 	if o == nil || IsNil(o.Backup) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Backup
@@ -102,7 +102,7 @@ func (o *GetContainerConfig200ResponseDataMp0) GetBackup() int32 {
 
 // GetBackupOk returns a tuple with the Backup field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetContainerConfig200ResponseDataMp0) GetBackupOk() (*int32, bool) {
+func (o *GetContainerConfig200ResponseDataMp0) GetBackupOk() (*bool, bool) {
 	if o == nil || IsNil(o.Backup) {
 		return nil, false
 	}
@@ -118,8 +118,8 @@ func (o *GetContainerConfig200ResponseDataMp0) HasBackup() bool {
 	return false
 }
 
-// SetBackup gets a reference to the given int32 and assigns it to the Backup field.
-func (o *GetContainerConfig200ResponseDataMp0) SetBackup(v int32) {
+// SetBackup gets a reference to the given bool and assigns it to the Backup field.
+func (o *GetContainerConfig200ResponseDataMp0) SetBackup(v bool) {
 	o.Backup = &v
 }
 
@@ -188,9 +188,9 @@ func (o *GetContainerConfig200ResponseDataMp0) SetMp(v string) {
 }
 
 // GetQuota returns the Quota field value if set, zero value otherwise.
-func (o *GetContainerConfig200ResponseDataMp0) GetQuota() int32 {
+func (o *GetContainerConfig200ResponseDataMp0) GetQuota() bool {
 	if o == nil || IsNil(o.Quota) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Quota
@@ -198,7 +198,7 @@ func (o *GetContainerConfig200ResponseDataMp0) GetQuota() int32 {
 
 // GetQuotaOk returns a tuple with the Quota field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetContainerConfig200ResponseDataMp0) GetQuotaOk() (*int32, bool) {
+func (o *GetContainerConfig200ResponseDataMp0) GetQuotaOk() (*bool, bool) {
 	if o == nil || IsNil(o.Quota) {
 		return nil, false
 	}
@@ -214,15 +214,15 @@ func (o *GetContainerConfig200ResponseDataMp0) HasQuota() bool {
 	return false
 }
 
-// SetQuota gets a reference to the given int32 and assigns it to the Quota field.
-func (o *GetContainerConfig200ResponseDataMp0) SetQuota(v int32) {
+// SetQuota gets a reference to the given bool and assigns it to the Quota field.
+func (o *GetContainerConfig200ResponseDataMp0) SetQuota(v bool) {
 	o.Quota = &v
 }
 
 // GetReplicate returns the Replicate field value if set, zero value otherwise.
-func (o *GetContainerConfig200ResponseDataMp0) GetReplicate() int32 {
+func (o *GetContainerConfig200ResponseDataMp0) GetReplicate() bool {
 	if o == nil || IsNil(o.Replicate) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Replicate
@@ -230,7 +230,7 @@ func (o *GetContainerConfig200ResponseDataMp0) GetReplicate() int32 {
 
 // GetReplicateOk returns a tuple with the Replicate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetContainerConfig200ResponseDataMp0) GetReplicateOk() (*int32, bool) {
+func (o *GetContainerConfig200ResponseDataMp0) GetReplicateOk() (*bool, bool) {
 	if o == nil || IsNil(o.Replicate) {
 		return nil, false
 	}
@@ -246,15 +246,15 @@ func (o *GetContainerConfig200ResponseDataMp0) HasReplicate() bool {
 	return false
 }
 
-// SetReplicate gets a reference to the given int32 and assigns it to the Replicate field.
-func (o *GetContainerConfig200ResponseDataMp0) SetReplicate(v int32) {
+// SetReplicate gets a reference to the given bool and assigns it to the Replicate field.
+func (o *GetContainerConfig200ResponseDataMp0) SetReplicate(v bool) {
 	o.Replicate = &v
 }
 
 // GetRo returns the Ro field value if set, zero value otherwise.
-func (o *GetContainerConfig200ResponseDataMp0) GetRo() int32 {
+func (o *GetContainerConfig200ResponseDataMp0) GetRo() bool {
 	if o == nil || IsNil(o.Ro) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Ro
@@ -262,7 +262,7 @@ func (o *GetContainerConfig200ResponseDataMp0) GetRo() int32 {
 
 // GetRoOk returns a tuple with the Ro field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetContainerConfig200ResponseDataMp0) GetRoOk() (*int32, bool) {
+func (o *GetContainerConfig200ResponseDataMp0) GetRoOk() (*bool, bool) {
 	if o == nil || IsNil(o.Ro) {
 		return nil, false
 	}
@@ -278,15 +278,15 @@ func (o *GetContainerConfig200ResponseDataMp0) HasRo() bool {
 	return false
 }
 
-// SetRo gets a reference to the given int32 and assigns it to the Ro field.
-func (o *GetContainerConfig200ResponseDataMp0) SetRo(v int32) {
+// SetRo gets a reference to the given bool and assigns it to the Ro field.
+func (o *GetContainerConfig200ResponseDataMp0) SetRo(v bool) {
 	o.Ro = &v
 }
 
 // GetShared returns the Shared field value if set, zero value otherwise.
-func (o *GetContainerConfig200ResponseDataMp0) GetShared() int32 {
+func (o *GetContainerConfig200ResponseDataMp0) GetShared() bool {
 	if o == nil || IsNil(o.Shared) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Shared
@@ -294,7 +294,7 @@ func (o *GetContainerConfig200ResponseDataMp0) GetShared() int32 {
 
 // GetSharedOk returns a tuple with the Shared field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetContainerConfig200ResponseDataMp0) GetSharedOk() (*int32, bool) {
+func (o *GetContainerConfig200ResponseDataMp0) GetSharedOk() (*bool, bool) {
 	if o == nil || IsNil(o.Shared) {
 		return nil, false
 	}
@@ -310,8 +310,8 @@ func (o *GetContainerConfig200ResponseDataMp0) HasShared() bool {
 	return false
 }
 
-// SetShared gets a reference to the given int32 and assigns it to the Shared field.
-func (o *GetContainerConfig200ResponseDataMp0) SetShared(v int32) {
+// SetShared gets a reference to the given bool and assigns it to the Shared field.
+func (o *GetContainerConfig200ResponseDataMp0) SetShared(v bool) {
 	o.Shared = &v
 }
 

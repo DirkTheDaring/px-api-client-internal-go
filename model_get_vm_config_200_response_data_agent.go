@@ -21,11 +21,11 @@ var _ MappedNullable = &GetVMConfig200ResponseDataAgent{}
 // GetVMConfig200ResponseDataAgent struct for GetVMConfig200ResponseDataAgent
 type GetVMConfig200ResponseDataAgent struct {
 	// Enable/disable communication with a QEMU Guest Agent (QGA) running in the VM.
-	Enabled *int32 `json:"enabled,omitempty"`
+	Enabled *bool `json:"enabled,omitempty"`
 	// Freeze/thaw guest filesystems on backup for consistency.
-	FreezeFsOnBackup *int32 `json:"freeze-fs-on-backup,omitempty"`
+	FreezeFsOnBackup *bool `json:"freeze-fs-on-backup,omitempty"`
 	// Run fstrim after moving a disk or migrating the VM.
-	FstrimClonedDisks *int32 `json:"fstrim_cloned_disks,omitempty"`
+	FstrimClonedDisks *bool `json:"fstrim_cloned_disks,omitempty"`
 	// Select the agent type
 	Type *string `json:"type,omitempty"`
 }
@@ -48,9 +48,9 @@ func NewGetVMConfig200ResponseDataAgentWithDefaults() *GetVMConfig200ResponseDat
 }
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseDataAgent) GetEnabled() int32 {
+func (o *GetVMConfig200ResponseDataAgent) GetEnabled() bool {
 	if o == nil || IsNil(o.Enabled) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Enabled
@@ -58,7 +58,7 @@ func (o *GetVMConfig200ResponseDataAgent) GetEnabled() int32 {
 
 // GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseDataAgent) GetEnabledOk() (*int32, bool) {
+func (o *GetVMConfig200ResponseDataAgent) GetEnabledOk() (*bool, bool) {
 	if o == nil || IsNil(o.Enabled) {
 		return nil, false
 	}
@@ -74,15 +74,15 @@ func (o *GetVMConfig200ResponseDataAgent) HasEnabled() bool {
 	return false
 }
 
-// SetEnabled gets a reference to the given int32 and assigns it to the Enabled field.
-func (o *GetVMConfig200ResponseDataAgent) SetEnabled(v int32) {
+// SetEnabled gets a reference to the given bool and assigns it to the Enabled field.
+func (o *GetVMConfig200ResponseDataAgent) SetEnabled(v bool) {
 	o.Enabled = &v
 }
 
 // GetFreezeFsOnBackup returns the FreezeFsOnBackup field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseDataAgent) GetFreezeFsOnBackup() int32 {
+func (o *GetVMConfig200ResponseDataAgent) GetFreezeFsOnBackup() bool {
 	if o == nil || IsNil(o.FreezeFsOnBackup) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.FreezeFsOnBackup
@@ -90,7 +90,7 @@ func (o *GetVMConfig200ResponseDataAgent) GetFreezeFsOnBackup() int32 {
 
 // GetFreezeFsOnBackupOk returns a tuple with the FreezeFsOnBackup field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseDataAgent) GetFreezeFsOnBackupOk() (*int32, bool) {
+func (o *GetVMConfig200ResponseDataAgent) GetFreezeFsOnBackupOk() (*bool, bool) {
 	if o == nil || IsNil(o.FreezeFsOnBackup) {
 		return nil, false
 	}
@@ -106,15 +106,15 @@ func (o *GetVMConfig200ResponseDataAgent) HasFreezeFsOnBackup() bool {
 	return false
 }
 
-// SetFreezeFsOnBackup gets a reference to the given int32 and assigns it to the FreezeFsOnBackup field.
-func (o *GetVMConfig200ResponseDataAgent) SetFreezeFsOnBackup(v int32) {
+// SetFreezeFsOnBackup gets a reference to the given bool and assigns it to the FreezeFsOnBackup field.
+func (o *GetVMConfig200ResponseDataAgent) SetFreezeFsOnBackup(v bool) {
 	o.FreezeFsOnBackup = &v
 }
 
 // GetFstrimClonedDisks returns the FstrimClonedDisks field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseDataAgent) GetFstrimClonedDisks() int32 {
+func (o *GetVMConfig200ResponseDataAgent) GetFstrimClonedDisks() bool {
 	if o == nil || IsNil(o.FstrimClonedDisks) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.FstrimClonedDisks
@@ -122,7 +122,7 @@ func (o *GetVMConfig200ResponseDataAgent) GetFstrimClonedDisks() int32 {
 
 // GetFstrimClonedDisksOk returns a tuple with the FstrimClonedDisks field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseDataAgent) GetFstrimClonedDisksOk() (*int32, bool) {
+func (o *GetVMConfig200ResponseDataAgent) GetFstrimClonedDisksOk() (*bool, bool) {
 	if o == nil || IsNil(o.FstrimClonedDisks) {
 		return nil, false
 	}
@@ -138,8 +138,8 @@ func (o *GetVMConfig200ResponseDataAgent) HasFstrimClonedDisks() bool {
 	return false
 }
 
-// SetFstrimClonedDisks gets a reference to the given int32 and assigns it to the FstrimClonedDisks field.
-func (o *GetVMConfig200ResponseDataAgent) SetFstrimClonedDisks(v int32) {
+// SetFstrimClonedDisks gets a reference to the given bool and assigns it to the FstrimClonedDisks field.
+func (o *GetVMConfig200ResponseDataAgent) SetFstrimClonedDisks(v bool) {
 	o.FstrimClonedDisks = &v
 }
 

@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Aio** | Pointer to **string** | AIO type to use. | [optional] 
-**Backup** | Pointer to **int32** | Whether the drive should be included when making backups. | [optional] 
+**Backup** | Pointer to **bool** | Whether the drive should be included when making backups. | [optional] 
 **Bps** | Pointer to **int64** | Maximum r/w speed in bytes per second. | [optional] 
 **BpsMaxLength** | Pointer to **int64** | Maximum length of I/O bursts in seconds. | [optional] 
 **BpsRd** | Pointer to **int64** | Maximum read speed in bytes per second. | [optional] 
@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **BpsWrMaxLength** | Pointer to **int64** | Maximum length of write I/O bursts in seconds. | [optional] 
 **Cache** | Pointer to **string** | The drive&#39;s cache mode | [optional] 
 **Cyls** | Pointer to **int64** | Force the drive&#39;s physical geometry to have a specific cylinder count. | [optional] 
-**DetectZeroes** | Pointer to **int32** | Controls whether to detect and try to optimize writes of zeroes. | [optional] 
+**DetectZeroes** | Pointer to **bool** | Controls whether to detect and try to optimize writes of zeroes. | [optional] 
 **Discard** | Pointer to **string** | Controls whether to pass discard/trim requests to the underlying storage. | [optional] 
 **File** | Pointer to **string** | The drive&#39;s backing volume. | [optional] 
 **Format** | Pointer to **string** | The drive&#39;s backing file&#39;s data format. | [optional] 
@@ -33,7 +33,7 @@ Name | Type | Description | Notes
 **IopsWrLength** | Pointer to **string** |  | [optional] 
 **IopsWrMax** | Pointer to **int64** | Maximum unthrottled write I/O pool in operations per second. | [optional] 
 **IopsWrMaxLength** | Pointer to **int64** | Maximum length of write I/O bursts in seconds. | [optional] 
-**Iothread** | Pointer to **int32** | Whether to use iothreads for this drive | [optional] 
+**Iothread** | Pointer to **bool** | Whether to use iothreads for this drive | [optional] 
 **Mbps** | Pointer to **float32** | Maximum r/w speed in megabytes per second. | [optional] 
 **MbpsMax** | Pointer to **float32** | Maximum unthrottled r/w pool in megabytes per second. | [optional] 
 **MbpsRd** | Pointer to **float32** | Maximum read speed in megabytes per second. | [optional] 
@@ -42,16 +42,16 @@ Name | Type | Description | Notes
 **MbpsWrMax** | Pointer to **float32** | Maximum unthrottled write pool in megabytes per second. | [optional] 
 **Media** | Pointer to **string** | The drive&#39;s media type. | [optional] 
 **Queues** | Pointer to **int64** | Number of queues. | [optional] 
-**Replicate** | Pointer to **int32** | Whether the drive should considered for replication jobs. | [optional] 
+**Replicate** | Pointer to **bool** | Whether the drive should considered for replication jobs. | [optional] 
 **Rerror** | Pointer to **string** | Read error action. | [optional] 
-**Ro** | Pointer to **int32** | Whether the drive is read-only. | [optional] 
-**Scsiblock** | Pointer to **int32** | whether to use scsi-block for full passthrough of host block device  WARNING: can lead to I/O errors in combination with low memory or high memory fragmentation on host | [optional] 
+**Ro** | Pointer to **bool** | Whether the drive is read-only. | [optional] 
+**Scsiblock** | Pointer to **bool** | whether to use scsi-block for full passthrough of host block device  WARNING: can lead to I/O errors in combination with low memory or high memory fragmentation on host | [optional] 
 **Secs** | Pointer to **int64** | Force the drive&#39;s physical geometry to have a specific sector count. | [optional] 
 **Serial** | Pointer to **string** | The drive&#39;s reported serial number, url-encoded, up to 20 bytes long. | [optional] 
-**Shared** | Pointer to **int32** | Mark this locally-managed volume as available on all nodes | [optional] 
+**Shared** | Pointer to **bool** | Mark this locally-managed volume as available on all nodes | [optional] 
 **Size** | Pointer to **string** | Disk size. This is purely informational and has no effect. | [optional] 
-**Snapshot** | Pointer to **int32** | Controls qemu&#39;s snapshot mode feature. If activated, changes made to the disk are temporary and will be discarded when the VM is shutdown. | [optional] 
-**Ssd** | Pointer to **int32** | Whether to expose this drive as an SSD, rather than a rotational hard disk. | [optional] 
+**Snapshot** | Pointer to **bool** | Controls qemu&#39;s snapshot mode feature. If activated, changes made to the disk are temporary and will be discarded when the VM is shutdown. | [optional] 
+**Ssd** | Pointer to **bool** | Whether to expose this drive as an SSD, rather than a rotational hard disk. | [optional] 
 **Trans** | Pointer to **string** | Force disk geometry bios translation mode. | [optional] 
 **Volume** | Pointer to **string** |  | [optional] 
 **Werror** | Pointer to **string** | Write error action. | [optional] 
@@ -103,20 +103,20 @@ HasAio returns a boolean if a field has been set.
 
 ### GetBackup
 
-`func (o *CreateVMRequestScsi0) GetBackup() int32`
+`func (o *CreateVMRequestScsi0) GetBackup() bool`
 
 GetBackup returns the Backup field if non-nil, zero value otherwise.
 
 ### GetBackupOk
 
-`func (o *CreateVMRequestScsi0) GetBackupOk() (*int32, bool)`
+`func (o *CreateVMRequestScsi0) GetBackupOk() (*bool, bool)`
 
 GetBackupOk returns a tuple with the Backup field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetBackup
 
-`func (o *CreateVMRequestScsi0) SetBackup(v int32)`
+`func (o *CreateVMRequestScsi0) SetBackup(v bool)`
 
 SetBackup sets Backup field to given value.
 
@@ -378,20 +378,20 @@ HasCyls returns a boolean if a field has been set.
 
 ### GetDetectZeroes
 
-`func (o *CreateVMRequestScsi0) GetDetectZeroes() int32`
+`func (o *CreateVMRequestScsi0) GetDetectZeroes() bool`
 
 GetDetectZeroes returns the DetectZeroes field if non-nil, zero value otherwise.
 
 ### GetDetectZeroesOk
 
-`func (o *CreateVMRequestScsi0) GetDetectZeroesOk() (*int32, bool)`
+`func (o *CreateVMRequestScsi0) GetDetectZeroesOk() (*bool, bool)`
 
 GetDetectZeroesOk returns a tuple with the DetectZeroes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDetectZeroes
 
-`func (o *CreateVMRequestScsi0) SetDetectZeroes(v int32)`
+`func (o *CreateVMRequestScsi0) SetDetectZeroes(v bool)`
 
 SetDetectZeroes sets DetectZeroes field to given value.
 
@@ -803,20 +803,20 @@ HasIopsWrMaxLength returns a boolean if a field has been set.
 
 ### GetIothread
 
-`func (o *CreateVMRequestScsi0) GetIothread() int32`
+`func (o *CreateVMRequestScsi0) GetIothread() bool`
 
 GetIothread returns the Iothread field if non-nil, zero value otherwise.
 
 ### GetIothreadOk
 
-`func (o *CreateVMRequestScsi0) GetIothreadOk() (*int32, bool)`
+`func (o *CreateVMRequestScsi0) GetIothreadOk() (*bool, bool)`
 
 GetIothreadOk returns a tuple with the Iothread field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIothread
 
-`func (o *CreateVMRequestScsi0) SetIothread(v int32)`
+`func (o *CreateVMRequestScsi0) SetIothread(v bool)`
 
 SetIothread sets Iothread field to given value.
 
@@ -1028,20 +1028,20 @@ HasQueues returns a boolean if a field has been set.
 
 ### GetReplicate
 
-`func (o *CreateVMRequestScsi0) GetReplicate() int32`
+`func (o *CreateVMRequestScsi0) GetReplicate() bool`
 
 GetReplicate returns the Replicate field if non-nil, zero value otherwise.
 
 ### GetReplicateOk
 
-`func (o *CreateVMRequestScsi0) GetReplicateOk() (*int32, bool)`
+`func (o *CreateVMRequestScsi0) GetReplicateOk() (*bool, bool)`
 
 GetReplicateOk returns a tuple with the Replicate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetReplicate
 
-`func (o *CreateVMRequestScsi0) SetReplicate(v int32)`
+`func (o *CreateVMRequestScsi0) SetReplicate(v bool)`
 
 SetReplicate sets Replicate field to given value.
 
@@ -1078,20 +1078,20 @@ HasRerror returns a boolean if a field has been set.
 
 ### GetRo
 
-`func (o *CreateVMRequestScsi0) GetRo() int32`
+`func (o *CreateVMRequestScsi0) GetRo() bool`
 
 GetRo returns the Ro field if non-nil, zero value otherwise.
 
 ### GetRoOk
 
-`func (o *CreateVMRequestScsi0) GetRoOk() (*int32, bool)`
+`func (o *CreateVMRequestScsi0) GetRoOk() (*bool, bool)`
 
 GetRoOk returns a tuple with the Ro field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRo
 
-`func (o *CreateVMRequestScsi0) SetRo(v int32)`
+`func (o *CreateVMRequestScsi0) SetRo(v bool)`
 
 SetRo sets Ro field to given value.
 
@@ -1103,20 +1103,20 @@ HasRo returns a boolean if a field has been set.
 
 ### GetScsiblock
 
-`func (o *CreateVMRequestScsi0) GetScsiblock() int32`
+`func (o *CreateVMRequestScsi0) GetScsiblock() bool`
 
 GetScsiblock returns the Scsiblock field if non-nil, zero value otherwise.
 
 ### GetScsiblockOk
 
-`func (o *CreateVMRequestScsi0) GetScsiblockOk() (*int32, bool)`
+`func (o *CreateVMRequestScsi0) GetScsiblockOk() (*bool, bool)`
 
 GetScsiblockOk returns a tuple with the Scsiblock field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetScsiblock
 
-`func (o *CreateVMRequestScsi0) SetScsiblock(v int32)`
+`func (o *CreateVMRequestScsi0) SetScsiblock(v bool)`
 
 SetScsiblock sets Scsiblock field to given value.
 
@@ -1178,20 +1178,20 @@ HasSerial returns a boolean if a field has been set.
 
 ### GetShared
 
-`func (o *CreateVMRequestScsi0) GetShared() int32`
+`func (o *CreateVMRequestScsi0) GetShared() bool`
 
 GetShared returns the Shared field if non-nil, zero value otherwise.
 
 ### GetSharedOk
 
-`func (o *CreateVMRequestScsi0) GetSharedOk() (*int32, bool)`
+`func (o *CreateVMRequestScsi0) GetSharedOk() (*bool, bool)`
 
 GetSharedOk returns a tuple with the Shared field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetShared
 
-`func (o *CreateVMRequestScsi0) SetShared(v int32)`
+`func (o *CreateVMRequestScsi0) SetShared(v bool)`
 
 SetShared sets Shared field to given value.
 
@@ -1228,20 +1228,20 @@ HasSize returns a boolean if a field has been set.
 
 ### GetSnapshot
 
-`func (o *CreateVMRequestScsi0) GetSnapshot() int32`
+`func (o *CreateVMRequestScsi0) GetSnapshot() bool`
 
 GetSnapshot returns the Snapshot field if non-nil, zero value otherwise.
 
 ### GetSnapshotOk
 
-`func (o *CreateVMRequestScsi0) GetSnapshotOk() (*int32, bool)`
+`func (o *CreateVMRequestScsi0) GetSnapshotOk() (*bool, bool)`
 
 GetSnapshotOk returns a tuple with the Snapshot field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSnapshot
 
-`func (o *CreateVMRequestScsi0) SetSnapshot(v int32)`
+`func (o *CreateVMRequestScsi0) SetSnapshot(v bool)`
 
 SetSnapshot sets Snapshot field to given value.
 
@@ -1253,20 +1253,20 @@ HasSnapshot returns a boolean if a field has been set.
 
 ### GetSsd
 
-`func (o *CreateVMRequestScsi0) GetSsd() int32`
+`func (o *CreateVMRequestScsi0) GetSsd() bool`
 
 GetSsd returns the Ssd field if non-nil, zero value otherwise.
 
 ### GetSsdOk
 
-`func (o *CreateVMRequestScsi0) GetSsdOk() (*int32, bool)`
+`func (o *CreateVMRequestScsi0) GetSsdOk() (*bool, bool)`
 
 GetSsdOk returns a tuple with the Ssd field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSsd
 
-`func (o *CreateVMRequestScsi0) SetSsd(v int32)`
+`func (o *CreateVMRequestScsi0) SetSsd(v bool)`
 
 SetSsd sets Ssd field to given value.
 

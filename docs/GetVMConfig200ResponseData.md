@@ -103,7 +103,7 @@ Name | Type | Description | Notes
 **Localtime** | Pointer to **int32** | Set the real time clock (RTC) to local time. This is enabled by default if the &#x60;ostype&#x60; indicates a Microsoft Windows OS. | [optional] 
 **Lock** | Pointer to **string** | Lock/unlock the VM. | [optional] 
 **Machine** | Pointer to **string** | Specifies the QEMU machine type. | [optional] 
-**Memory** | Pointer to **int64** | Amount of RAM for the VM in MiB. This is the maximum available memory when you use the balloon device. | [optional] 
+**Memory** | Pointer to [**GetVMConfig200ResponseDataMemory**](GetVMConfig200ResponseDataMemory.md) |  | [optional] 
 **MigrateDowntime** | Pointer to **float32** | Set maximum tolerated downtime (in seconds) for migrations. | [optional] 
 **MigrateSpeed** | Pointer to **int64** | Set maximum speed (in MB/s) for migrations. Value 0 is no limit. | [optional] 
 **Name** | Pointer to **string** | Set a name for the VM. Only used on the configuration web interface. | [optional] 
@@ -2787,20 +2787,20 @@ HasMachine returns a boolean if a field has been set.
 
 ### GetMemory
 
-`func (o *GetVMConfig200ResponseData) GetMemory() int64`
+`func (o *GetVMConfig200ResponseData) GetMemory() GetVMConfig200ResponseDataMemory`
 
 GetMemory returns the Memory field if non-nil, zero value otherwise.
 
 ### GetMemoryOk
 
-`func (o *GetVMConfig200ResponseData) GetMemoryOk() (*int64, bool)`
+`func (o *GetVMConfig200ResponseData) GetMemoryOk() (*GetVMConfig200ResponseDataMemory, bool)`
 
 GetMemoryOk returns a tuple with the Memory field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMemory
 
-`func (o *GetVMConfig200ResponseData) SetMemory(v int64)`
+`func (o *GetVMConfig200ResponseData) SetMemory(v GetVMConfig200ResponseDataMemory)`
 
 SetMemory sets Memory field to given value.
 

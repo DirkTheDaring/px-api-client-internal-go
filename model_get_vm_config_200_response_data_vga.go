@@ -20,6 +20,8 @@ var _ MappedNullable = &GetVMConfig200ResponseDataVga{}
 
 // GetVMConfig200ResponseDataVga struct for GetVMConfig200ResponseDataVga
 type GetVMConfig200ResponseDataVga struct {
+	// Enable a specific clipboard. If not set, depending on the display type the SPICE one will be added.
+	Clipboard *string `json:"clipboard,omitempty"`
 	// Sets the VGA memory (in MiB). Has no effect with serial display.
 	Memory *int64 `json:"memory,omitempty"`
 	// Select the VGA type.
@@ -41,6 +43,38 @@ func NewGetVMConfig200ResponseDataVga() *GetVMConfig200ResponseDataVga {
 func NewGetVMConfig200ResponseDataVgaWithDefaults() *GetVMConfig200ResponseDataVga {
 	this := GetVMConfig200ResponseDataVga{}
 	return &this
+}
+
+// GetClipboard returns the Clipboard field value if set, zero value otherwise.
+func (o *GetVMConfig200ResponseDataVga) GetClipboard() string {
+	if o == nil || IsNil(o.Clipboard) {
+		var ret string
+		return ret
+	}
+	return *o.Clipboard
+}
+
+// GetClipboardOk returns a tuple with the Clipboard field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetVMConfig200ResponseDataVga) GetClipboardOk() (*string, bool) {
+	if o == nil || IsNil(o.Clipboard) {
+		return nil, false
+	}
+	return o.Clipboard, true
+}
+
+// HasClipboard returns a boolean if a field has been set.
+func (o *GetVMConfig200ResponseDataVga) HasClipboard() bool {
+	if o != nil && !IsNil(o.Clipboard) {
+		return true
+	}
+
+	return false
+}
+
+// SetClipboard gets a reference to the given string and assigns it to the Clipboard field.
+func (o *GetVMConfig200ResponseDataVga) SetClipboard(v string) {
+	o.Clipboard = &v
 }
 
 // GetMemory returns the Memory field value if set, zero value otherwise.
@@ -117,6 +151,9 @@ func (o GetVMConfig200ResponseDataVga) MarshalJSON() ([]byte, error) {
 
 func (o GetVMConfig200ResponseDataVga) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Clipboard) {
+		toSerialize["clipboard"] = o.Clipboard
+	}
 	if !IsNil(o.Memory) {
 		toSerialize["memory"] = o.Memory
 	}

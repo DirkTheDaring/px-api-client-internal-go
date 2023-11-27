@@ -21,7 +21,7 @@ var _ MappedNullable = &GetVMConfig200ResponseDataSpiceEnhancements{}
 // GetVMConfig200ResponseDataSpiceEnhancements struct for GetVMConfig200ResponseDataSpiceEnhancements
 type GetVMConfig200ResponseDataSpiceEnhancements struct {
 	// Enable folder sharing via SPICE. Needs Spice-WebDAV daemon installed in the VM.
-	Foldersharing *int32 `json:"foldersharing,omitempty"`
+	Foldersharing *bool `json:"foldersharing,omitempty"`
 	// Enable video streaming. Uses compression for detected video streams.
 	Videostreaming *string `json:"videostreaming,omitempty"`
 }
@@ -44,9 +44,9 @@ func NewGetVMConfig200ResponseDataSpiceEnhancementsWithDefaults() *GetVMConfig20
 }
 
 // GetFoldersharing returns the Foldersharing field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseDataSpiceEnhancements) GetFoldersharing() int32 {
+func (o *GetVMConfig200ResponseDataSpiceEnhancements) GetFoldersharing() bool {
 	if o == nil || IsNil(o.Foldersharing) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Foldersharing
@@ -54,7 +54,7 @@ func (o *GetVMConfig200ResponseDataSpiceEnhancements) GetFoldersharing() int32 {
 
 // GetFoldersharingOk returns a tuple with the Foldersharing field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseDataSpiceEnhancements) GetFoldersharingOk() (*int32, bool) {
+func (o *GetVMConfig200ResponseDataSpiceEnhancements) GetFoldersharingOk() (*bool, bool) {
 	if o == nil || IsNil(o.Foldersharing) {
 		return nil, false
 	}
@@ -70,8 +70,8 @@ func (o *GetVMConfig200ResponseDataSpiceEnhancements) HasFoldersharing() bool {
 	return false
 }
 
-// SetFoldersharing gets a reference to the given int32 and assigns it to the Foldersharing field.
-func (o *GetVMConfig200ResponseDataSpiceEnhancements) SetFoldersharing(v int32) {
+// SetFoldersharing gets a reference to the given bool and assigns it to the Foldersharing field.
+func (o *GetVMConfig200ResponseDataSpiceEnhancements) SetFoldersharing(v bool) {
 	o.Foldersharing = &v
 }
 

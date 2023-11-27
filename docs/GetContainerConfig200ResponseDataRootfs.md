@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Acl** | Pointer to **int32** | Explicitly enable or disable ACL support. | [optional] 
+**Acl** | Pointer to **bool** | Explicitly enable or disable ACL support. | [optional] 
 **Mountoptions** | Pointer to **string** | Extra mount options for rootfs/mps. | [optional] 
-**Quota** | Pointer to **int32** | Enable user quotas inside the container (not supported with zfs subvolumes) | [optional] 
-**Replicate** | Pointer to **int32** | Will include this volume to a storage replica job. | [optional] 
-**Ro** | Pointer to **int32** | Read-only mount point | [optional] 
-**Shared** | Pointer to **int32** | Mark this non-volume mount point as available on multiple nodes (see &#39;nodes&#39;) | [optional] 
+**Quota** | Pointer to **bool** | Enable user quotas inside the container (not supported with zfs subvolumes) | [optional] 
+**Replicate** | Pointer to **bool** | Will include this volume to a storage replica job. | [optional] 
+**Ro** | Pointer to **bool** | Read-only mount point | [optional] 
+**Shared** | Pointer to **bool** | Mark this non-volume mount point as available on multiple nodes (see &#39;nodes&#39;) | [optional] 
 **Size** | Pointer to **string** | Volume size (read only value). | [optional] 
 **Volume** | Pointer to **string** | Volume, device or directory to mount into the container. | [optional] 
 
@@ -34,20 +34,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetAcl
 
-`func (o *GetContainerConfig200ResponseDataRootfs) GetAcl() int32`
+`func (o *GetContainerConfig200ResponseDataRootfs) GetAcl() bool`
 
 GetAcl returns the Acl field if non-nil, zero value otherwise.
 
 ### GetAclOk
 
-`func (o *GetContainerConfig200ResponseDataRootfs) GetAclOk() (*int32, bool)`
+`func (o *GetContainerConfig200ResponseDataRootfs) GetAclOk() (*bool, bool)`
 
 GetAclOk returns a tuple with the Acl field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAcl
 
-`func (o *GetContainerConfig200ResponseDataRootfs) SetAcl(v int32)`
+`func (o *GetContainerConfig200ResponseDataRootfs) SetAcl(v bool)`
 
 SetAcl sets Acl field to given value.
 
@@ -84,20 +84,20 @@ HasMountoptions returns a boolean if a field has been set.
 
 ### GetQuota
 
-`func (o *GetContainerConfig200ResponseDataRootfs) GetQuota() int32`
+`func (o *GetContainerConfig200ResponseDataRootfs) GetQuota() bool`
 
 GetQuota returns the Quota field if non-nil, zero value otherwise.
 
 ### GetQuotaOk
 
-`func (o *GetContainerConfig200ResponseDataRootfs) GetQuotaOk() (*int32, bool)`
+`func (o *GetContainerConfig200ResponseDataRootfs) GetQuotaOk() (*bool, bool)`
 
 GetQuotaOk returns a tuple with the Quota field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetQuota
 
-`func (o *GetContainerConfig200ResponseDataRootfs) SetQuota(v int32)`
+`func (o *GetContainerConfig200ResponseDataRootfs) SetQuota(v bool)`
 
 SetQuota sets Quota field to given value.
 
@@ -109,20 +109,20 @@ HasQuota returns a boolean if a field has been set.
 
 ### GetReplicate
 
-`func (o *GetContainerConfig200ResponseDataRootfs) GetReplicate() int32`
+`func (o *GetContainerConfig200ResponseDataRootfs) GetReplicate() bool`
 
 GetReplicate returns the Replicate field if non-nil, zero value otherwise.
 
 ### GetReplicateOk
 
-`func (o *GetContainerConfig200ResponseDataRootfs) GetReplicateOk() (*int32, bool)`
+`func (o *GetContainerConfig200ResponseDataRootfs) GetReplicateOk() (*bool, bool)`
 
 GetReplicateOk returns a tuple with the Replicate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetReplicate
 
-`func (o *GetContainerConfig200ResponseDataRootfs) SetReplicate(v int32)`
+`func (o *GetContainerConfig200ResponseDataRootfs) SetReplicate(v bool)`
 
 SetReplicate sets Replicate field to given value.
 
@@ -134,20 +134,20 @@ HasReplicate returns a boolean if a field has been set.
 
 ### GetRo
 
-`func (o *GetContainerConfig200ResponseDataRootfs) GetRo() int32`
+`func (o *GetContainerConfig200ResponseDataRootfs) GetRo() bool`
 
 GetRo returns the Ro field if non-nil, zero value otherwise.
 
 ### GetRoOk
 
-`func (o *GetContainerConfig200ResponseDataRootfs) GetRoOk() (*int32, bool)`
+`func (o *GetContainerConfig200ResponseDataRootfs) GetRoOk() (*bool, bool)`
 
 GetRoOk returns a tuple with the Ro field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRo
 
-`func (o *GetContainerConfig200ResponseDataRootfs) SetRo(v int32)`
+`func (o *GetContainerConfig200ResponseDataRootfs) SetRo(v bool)`
 
 SetRo sets Ro field to given value.
 
@@ -159,20 +159,20 @@ HasRo returns a boolean if a field has been set.
 
 ### GetShared
 
-`func (o *GetContainerConfig200ResponseDataRootfs) GetShared() int32`
+`func (o *GetContainerConfig200ResponseDataRootfs) GetShared() bool`
 
 GetShared returns the Shared field if non-nil, zero value otherwise.
 
 ### GetSharedOk
 
-`func (o *GetContainerConfig200ResponseDataRootfs) GetSharedOk() (*int32, bool)`
+`func (o *GetContainerConfig200ResponseDataRootfs) GetSharedOk() (*bool, bool)`
 
 GetSharedOk returns a tuple with the Shared field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetShared
 
-`func (o *GetContainerConfig200ResponseDataRootfs) SetShared(v int32)`
+`func (o *GetContainerConfig200ResponseDataRootfs) SetShared(v bool)`
 
 SetShared sets Shared field to given value.
 

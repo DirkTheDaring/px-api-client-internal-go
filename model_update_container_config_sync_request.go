@@ -38,6 +38,36 @@ type UpdateContainerConfigSyncRequest struct {
 	Delete *string `json:"delete,omitempty"`
 	// Description for the Container. Shown in the web-interface CT's summary. This is saved as comment inside the configuration file.
 	Description *string `json:"description,omitempty"`
+	Dev0 *GetContainerConfig200ResponseDataDev0 `json:"dev0,omitempty"`
+	Dev1 *GetContainerConfig200ResponseDataDev0 `json:"dev1,omitempty"`
+	Dev2 *GetContainerConfig200ResponseDataDev0 `json:"dev2,omitempty"`
+	Dev3 *GetContainerConfig200ResponseDataDev0 `json:"dev3,omitempty"`
+	Dev4 *GetContainerConfig200ResponseDataDev0 `json:"dev4,omitempty"`
+	Dev5 *GetContainerConfig200ResponseDataDev0 `json:"dev5,omitempty"`
+	Dev6 *GetContainerConfig200ResponseDataDev0 `json:"dev6,omitempty"`
+	Dev7 *GetContainerConfig200ResponseDataDev0 `json:"dev7,omitempty"`
+	Dev8 *GetContainerConfig200ResponseDataDev0 `json:"dev8,omitempty"`
+	Dev9 *GetContainerConfig200ResponseDataDev0 `json:"dev9,omitempty"`
+	Dev10 *GetContainerConfig200ResponseDataDev0 `json:"dev10,omitempty"`
+	Dev11 *GetContainerConfig200ResponseDataDev0 `json:"dev11,omitempty"`
+	Dev12 *GetContainerConfig200ResponseDataDev0 `json:"dev12,omitempty"`
+	Dev13 *GetContainerConfig200ResponseDataDev0 `json:"dev13,omitempty"`
+	Dev14 *GetContainerConfig200ResponseDataDev0 `json:"dev14,omitempty"`
+	Dev15 *GetContainerConfig200ResponseDataDev0 `json:"dev15,omitempty"`
+	Dev16 *GetContainerConfig200ResponseDataDev0 `json:"dev16,omitempty"`
+	Dev17 *GetContainerConfig200ResponseDataDev0 `json:"dev17,omitempty"`
+	Dev18 *GetContainerConfig200ResponseDataDev0 `json:"dev18,omitempty"`
+	Dev19 *GetContainerConfig200ResponseDataDev0 `json:"dev19,omitempty"`
+	Dev20 *GetContainerConfig200ResponseDataDev0 `json:"dev20,omitempty"`
+	Dev21 *GetContainerConfig200ResponseDataDev0 `json:"dev21,omitempty"`
+	Dev22 *GetContainerConfig200ResponseDataDev0 `json:"dev22,omitempty"`
+	Dev23 *GetContainerConfig200ResponseDataDev0 `json:"dev23,omitempty"`
+	Dev24 *GetContainerConfig200ResponseDataDev0 `json:"dev24,omitempty"`
+	Dev25 *GetContainerConfig200ResponseDataDev0 `json:"dev25,omitempty"`
+	Dev26 *GetContainerConfig200ResponseDataDev0 `json:"dev26,omitempty"`
+	Dev27 *GetContainerConfig200ResponseDataDev0 `json:"dev27,omitempty"`
+	Dev28 *GetContainerConfig200ResponseDataDev0 `json:"dev28,omitempty"`
+	Dev29 *GetContainerConfig200ResponseDataDev0 `json:"dev29,omitempty"`
 	// Prevent changes if current configuration file has different SHA1 digest. This can be used to prevent concurrent modifications.
 	Digest *string `json:"digest,omitempty"`
 	Features *GetContainerConfig200ResponseDataFeatures `json:"features,omitempty"`
@@ -699,6 +729,966 @@ func (o *UpdateContainerConfigSyncRequest) HasDescription() bool {
 // SetDescription gets a reference to the given string and assigns it to the Description field.
 func (o *UpdateContainerConfigSyncRequest) SetDescription(v string) {
 	o.Description = &v
+}
+
+// GetDev0 returns the Dev0 field value if set, zero value otherwise.
+func (o *UpdateContainerConfigSyncRequest) GetDev0() GetContainerConfig200ResponseDataDev0 {
+	if o == nil || IsNil(o.Dev0) {
+		var ret GetContainerConfig200ResponseDataDev0
+		return ret
+	}
+	return *o.Dev0
+}
+
+// GetDev0Ok returns a tuple with the Dev0 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateContainerConfigSyncRequest) GetDev0Ok() (*GetContainerConfig200ResponseDataDev0, bool) {
+	if o == nil || IsNil(o.Dev0) {
+		return nil, false
+	}
+	return o.Dev0, true
+}
+
+// HasDev0 returns a boolean if a field has been set.
+func (o *UpdateContainerConfigSyncRequest) HasDev0() bool {
+	if o != nil && !IsNil(o.Dev0) {
+		return true
+	}
+
+	return false
+}
+
+// SetDev0 gets a reference to the given GetContainerConfig200ResponseDataDev0 and assigns it to the Dev0 field.
+func (o *UpdateContainerConfigSyncRequest) SetDev0(v GetContainerConfig200ResponseDataDev0) {
+	o.Dev0 = &v
+}
+
+// GetDev1 returns the Dev1 field value if set, zero value otherwise.
+func (o *UpdateContainerConfigSyncRequest) GetDev1() GetContainerConfig200ResponseDataDev0 {
+	if o == nil || IsNil(o.Dev1) {
+		var ret GetContainerConfig200ResponseDataDev0
+		return ret
+	}
+	return *o.Dev1
+}
+
+// GetDev1Ok returns a tuple with the Dev1 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateContainerConfigSyncRequest) GetDev1Ok() (*GetContainerConfig200ResponseDataDev0, bool) {
+	if o == nil || IsNil(o.Dev1) {
+		return nil, false
+	}
+	return o.Dev1, true
+}
+
+// HasDev1 returns a boolean if a field has been set.
+func (o *UpdateContainerConfigSyncRequest) HasDev1() bool {
+	if o != nil && !IsNil(o.Dev1) {
+		return true
+	}
+
+	return false
+}
+
+// SetDev1 gets a reference to the given GetContainerConfig200ResponseDataDev0 and assigns it to the Dev1 field.
+func (o *UpdateContainerConfigSyncRequest) SetDev1(v GetContainerConfig200ResponseDataDev0) {
+	o.Dev1 = &v
+}
+
+// GetDev2 returns the Dev2 field value if set, zero value otherwise.
+func (o *UpdateContainerConfigSyncRequest) GetDev2() GetContainerConfig200ResponseDataDev0 {
+	if o == nil || IsNil(o.Dev2) {
+		var ret GetContainerConfig200ResponseDataDev0
+		return ret
+	}
+	return *o.Dev2
+}
+
+// GetDev2Ok returns a tuple with the Dev2 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateContainerConfigSyncRequest) GetDev2Ok() (*GetContainerConfig200ResponseDataDev0, bool) {
+	if o == nil || IsNil(o.Dev2) {
+		return nil, false
+	}
+	return o.Dev2, true
+}
+
+// HasDev2 returns a boolean if a field has been set.
+func (o *UpdateContainerConfigSyncRequest) HasDev2() bool {
+	if o != nil && !IsNil(o.Dev2) {
+		return true
+	}
+
+	return false
+}
+
+// SetDev2 gets a reference to the given GetContainerConfig200ResponseDataDev0 and assigns it to the Dev2 field.
+func (o *UpdateContainerConfigSyncRequest) SetDev2(v GetContainerConfig200ResponseDataDev0) {
+	o.Dev2 = &v
+}
+
+// GetDev3 returns the Dev3 field value if set, zero value otherwise.
+func (o *UpdateContainerConfigSyncRequest) GetDev3() GetContainerConfig200ResponseDataDev0 {
+	if o == nil || IsNil(o.Dev3) {
+		var ret GetContainerConfig200ResponseDataDev0
+		return ret
+	}
+	return *o.Dev3
+}
+
+// GetDev3Ok returns a tuple with the Dev3 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateContainerConfigSyncRequest) GetDev3Ok() (*GetContainerConfig200ResponseDataDev0, bool) {
+	if o == nil || IsNil(o.Dev3) {
+		return nil, false
+	}
+	return o.Dev3, true
+}
+
+// HasDev3 returns a boolean if a field has been set.
+func (o *UpdateContainerConfigSyncRequest) HasDev3() bool {
+	if o != nil && !IsNil(o.Dev3) {
+		return true
+	}
+
+	return false
+}
+
+// SetDev3 gets a reference to the given GetContainerConfig200ResponseDataDev0 and assigns it to the Dev3 field.
+func (o *UpdateContainerConfigSyncRequest) SetDev3(v GetContainerConfig200ResponseDataDev0) {
+	o.Dev3 = &v
+}
+
+// GetDev4 returns the Dev4 field value if set, zero value otherwise.
+func (o *UpdateContainerConfigSyncRequest) GetDev4() GetContainerConfig200ResponseDataDev0 {
+	if o == nil || IsNil(o.Dev4) {
+		var ret GetContainerConfig200ResponseDataDev0
+		return ret
+	}
+	return *o.Dev4
+}
+
+// GetDev4Ok returns a tuple with the Dev4 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateContainerConfigSyncRequest) GetDev4Ok() (*GetContainerConfig200ResponseDataDev0, bool) {
+	if o == nil || IsNil(o.Dev4) {
+		return nil, false
+	}
+	return o.Dev4, true
+}
+
+// HasDev4 returns a boolean if a field has been set.
+func (o *UpdateContainerConfigSyncRequest) HasDev4() bool {
+	if o != nil && !IsNil(o.Dev4) {
+		return true
+	}
+
+	return false
+}
+
+// SetDev4 gets a reference to the given GetContainerConfig200ResponseDataDev0 and assigns it to the Dev4 field.
+func (o *UpdateContainerConfigSyncRequest) SetDev4(v GetContainerConfig200ResponseDataDev0) {
+	o.Dev4 = &v
+}
+
+// GetDev5 returns the Dev5 field value if set, zero value otherwise.
+func (o *UpdateContainerConfigSyncRequest) GetDev5() GetContainerConfig200ResponseDataDev0 {
+	if o == nil || IsNil(o.Dev5) {
+		var ret GetContainerConfig200ResponseDataDev0
+		return ret
+	}
+	return *o.Dev5
+}
+
+// GetDev5Ok returns a tuple with the Dev5 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateContainerConfigSyncRequest) GetDev5Ok() (*GetContainerConfig200ResponseDataDev0, bool) {
+	if o == nil || IsNil(o.Dev5) {
+		return nil, false
+	}
+	return o.Dev5, true
+}
+
+// HasDev5 returns a boolean if a field has been set.
+func (o *UpdateContainerConfigSyncRequest) HasDev5() bool {
+	if o != nil && !IsNil(o.Dev5) {
+		return true
+	}
+
+	return false
+}
+
+// SetDev5 gets a reference to the given GetContainerConfig200ResponseDataDev0 and assigns it to the Dev5 field.
+func (o *UpdateContainerConfigSyncRequest) SetDev5(v GetContainerConfig200ResponseDataDev0) {
+	o.Dev5 = &v
+}
+
+// GetDev6 returns the Dev6 field value if set, zero value otherwise.
+func (o *UpdateContainerConfigSyncRequest) GetDev6() GetContainerConfig200ResponseDataDev0 {
+	if o == nil || IsNil(o.Dev6) {
+		var ret GetContainerConfig200ResponseDataDev0
+		return ret
+	}
+	return *o.Dev6
+}
+
+// GetDev6Ok returns a tuple with the Dev6 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateContainerConfigSyncRequest) GetDev6Ok() (*GetContainerConfig200ResponseDataDev0, bool) {
+	if o == nil || IsNil(o.Dev6) {
+		return nil, false
+	}
+	return o.Dev6, true
+}
+
+// HasDev6 returns a boolean if a field has been set.
+func (o *UpdateContainerConfigSyncRequest) HasDev6() bool {
+	if o != nil && !IsNil(o.Dev6) {
+		return true
+	}
+
+	return false
+}
+
+// SetDev6 gets a reference to the given GetContainerConfig200ResponseDataDev0 and assigns it to the Dev6 field.
+func (o *UpdateContainerConfigSyncRequest) SetDev6(v GetContainerConfig200ResponseDataDev0) {
+	o.Dev6 = &v
+}
+
+// GetDev7 returns the Dev7 field value if set, zero value otherwise.
+func (o *UpdateContainerConfigSyncRequest) GetDev7() GetContainerConfig200ResponseDataDev0 {
+	if o == nil || IsNil(o.Dev7) {
+		var ret GetContainerConfig200ResponseDataDev0
+		return ret
+	}
+	return *o.Dev7
+}
+
+// GetDev7Ok returns a tuple with the Dev7 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateContainerConfigSyncRequest) GetDev7Ok() (*GetContainerConfig200ResponseDataDev0, bool) {
+	if o == nil || IsNil(o.Dev7) {
+		return nil, false
+	}
+	return o.Dev7, true
+}
+
+// HasDev7 returns a boolean if a field has been set.
+func (o *UpdateContainerConfigSyncRequest) HasDev7() bool {
+	if o != nil && !IsNil(o.Dev7) {
+		return true
+	}
+
+	return false
+}
+
+// SetDev7 gets a reference to the given GetContainerConfig200ResponseDataDev0 and assigns it to the Dev7 field.
+func (o *UpdateContainerConfigSyncRequest) SetDev7(v GetContainerConfig200ResponseDataDev0) {
+	o.Dev7 = &v
+}
+
+// GetDev8 returns the Dev8 field value if set, zero value otherwise.
+func (o *UpdateContainerConfigSyncRequest) GetDev8() GetContainerConfig200ResponseDataDev0 {
+	if o == nil || IsNil(o.Dev8) {
+		var ret GetContainerConfig200ResponseDataDev0
+		return ret
+	}
+	return *o.Dev8
+}
+
+// GetDev8Ok returns a tuple with the Dev8 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateContainerConfigSyncRequest) GetDev8Ok() (*GetContainerConfig200ResponseDataDev0, bool) {
+	if o == nil || IsNil(o.Dev8) {
+		return nil, false
+	}
+	return o.Dev8, true
+}
+
+// HasDev8 returns a boolean if a field has been set.
+func (o *UpdateContainerConfigSyncRequest) HasDev8() bool {
+	if o != nil && !IsNil(o.Dev8) {
+		return true
+	}
+
+	return false
+}
+
+// SetDev8 gets a reference to the given GetContainerConfig200ResponseDataDev0 and assigns it to the Dev8 field.
+func (o *UpdateContainerConfigSyncRequest) SetDev8(v GetContainerConfig200ResponseDataDev0) {
+	o.Dev8 = &v
+}
+
+// GetDev9 returns the Dev9 field value if set, zero value otherwise.
+func (o *UpdateContainerConfigSyncRequest) GetDev9() GetContainerConfig200ResponseDataDev0 {
+	if o == nil || IsNil(o.Dev9) {
+		var ret GetContainerConfig200ResponseDataDev0
+		return ret
+	}
+	return *o.Dev9
+}
+
+// GetDev9Ok returns a tuple with the Dev9 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateContainerConfigSyncRequest) GetDev9Ok() (*GetContainerConfig200ResponseDataDev0, bool) {
+	if o == nil || IsNil(o.Dev9) {
+		return nil, false
+	}
+	return o.Dev9, true
+}
+
+// HasDev9 returns a boolean if a field has been set.
+func (o *UpdateContainerConfigSyncRequest) HasDev9() bool {
+	if o != nil && !IsNil(o.Dev9) {
+		return true
+	}
+
+	return false
+}
+
+// SetDev9 gets a reference to the given GetContainerConfig200ResponseDataDev0 and assigns it to the Dev9 field.
+func (o *UpdateContainerConfigSyncRequest) SetDev9(v GetContainerConfig200ResponseDataDev0) {
+	o.Dev9 = &v
+}
+
+// GetDev10 returns the Dev10 field value if set, zero value otherwise.
+func (o *UpdateContainerConfigSyncRequest) GetDev10() GetContainerConfig200ResponseDataDev0 {
+	if o == nil || IsNil(o.Dev10) {
+		var ret GetContainerConfig200ResponseDataDev0
+		return ret
+	}
+	return *o.Dev10
+}
+
+// GetDev10Ok returns a tuple with the Dev10 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateContainerConfigSyncRequest) GetDev10Ok() (*GetContainerConfig200ResponseDataDev0, bool) {
+	if o == nil || IsNil(o.Dev10) {
+		return nil, false
+	}
+	return o.Dev10, true
+}
+
+// HasDev10 returns a boolean if a field has been set.
+func (o *UpdateContainerConfigSyncRequest) HasDev10() bool {
+	if o != nil && !IsNil(o.Dev10) {
+		return true
+	}
+
+	return false
+}
+
+// SetDev10 gets a reference to the given GetContainerConfig200ResponseDataDev0 and assigns it to the Dev10 field.
+func (o *UpdateContainerConfigSyncRequest) SetDev10(v GetContainerConfig200ResponseDataDev0) {
+	o.Dev10 = &v
+}
+
+// GetDev11 returns the Dev11 field value if set, zero value otherwise.
+func (o *UpdateContainerConfigSyncRequest) GetDev11() GetContainerConfig200ResponseDataDev0 {
+	if o == nil || IsNil(o.Dev11) {
+		var ret GetContainerConfig200ResponseDataDev0
+		return ret
+	}
+	return *o.Dev11
+}
+
+// GetDev11Ok returns a tuple with the Dev11 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateContainerConfigSyncRequest) GetDev11Ok() (*GetContainerConfig200ResponseDataDev0, bool) {
+	if o == nil || IsNil(o.Dev11) {
+		return nil, false
+	}
+	return o.Dev11, true
+}
+
+// HasDev11 returns a boolean if a field has been set.
+func (o *UpdateContainerConfigSyncRequest) HasDev11() bool {
+	if o != nil && !IsNil(o.Dev11) {
+		return true
+	}
+
+	return false
+}
+
+// SetDev11 gets a reference to the given GetContainerConfig200ResponseDataDev0 and assigns it to the Dev11 field.
+func (o *UpdateContainerConfigSyncRequest) SetDev11(v GetContainerConfig200ResponseDataDev0) {
+	o.Dev11 = &v
+}
+
+// GetDev12 returns the Dev12 field value if set, zero value otherwise.
+func (o *UpdateContainerConfigSyncRequest) GetDev12() GetContainerConfig200ResponseDataDev0 {
+	if o == nil || IsNil(o.Dev12) {
+		var ret GetContainerConfig200ResponseDataDev0
+		return ret
+	}
+	return *o.Dev12
+}
+
+// GetDev12Ok returns a tuple with the Dev12 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateContainerConfigSyncRequest) GetDev12Ok() (*GetContainerConfig200ResponseDataDev0, bool) {
+	if o == nil || IsNil(o.Dev12) {
+		return nil, false
+	}
+	return o.Dev12, true
+}
+
+// HasDev12 returns a boolean if a field has been set.
+func (o *UpdateContainerConfigSyncRequest) HasDev12() bool {
+	if o != nil && !IsNil(o.Dev12) {
+		return true
+	}
+
+	return false
+}
+
+// SetDev12 gets a reference to the given GetContainerConfig200ResponseDataDev0 and assigns it to the Dev12 field.
+func (o *UpdateContainerConfigSyncRequest) SetDev12(v GetContainerConfig200ResponseDataDev0) {
+	o.Dev12 = &v
+}
+
+// GetDev13 returns the Dev13 field value if set, zero value otherwise.
+func (o *UpdateContainerConfigSyncRequest) GetDev13() GetContainerConfig200ResponseDataDev0 {
+	if o == nil || IsNil(o.Dev13) {
+		var ret GetContainerConfig200ResponseDataDev0
+		return ret
+	}
+	return *o.Dev13
+}
+
+// GetDev13Ok returns a tuple with the Dev13 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateContainerConfigSyncRequest) GetDev13Ok() (*GetContainerConfig200ResponseDataDev0, bool) {
+	if o == nil || IsNil(o.Dev13) {
+		return nil, false
+	}
+	return o.Dev13, true
+}
+
+// HasDev13 returns a boolean if a field has been set.
+func (o *UpdateContainerConfigSyncRequest) HasDev13() bool {
+	if o != nil && !IsNil(o.Dev13) {
+		return true
+	}
+
+	return false
+}
+
+// SetDev13 gets a reference to the given GetContainerConfig200ResponseDataDev0 and assigns it to the Dev13 field.
+func (o *UpdateContainerConfigSyncRequest) SetDev13(v GetContainerConfig200ResponseDataDev0) {
+	o.Dev13 = &v
+}
+
+// GetDev14 returns the Dev14 field value if set, zero value otherwise.
+func (o *UpdateContainerConfigSyncRequest) GetDev14() GetContainerConfig200ResponseDataDev0 {
+	if o == nil || IsNil(o.Dev14) {
+		var ret GetContainerConfig200ResponseDataDev0
+		return ret
+	}
+	return *o.Dev14
+}
+
+// GetDev14Ok returns a tuple with the Dev14 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateContainerConfigSyncRequest) GetDev14Ok() (*GetContainerConfig200ResponseDataDev0, bool) {
+	if o == nil || IsNil(o.Dev14) {
+		return nil, false
+	}
+	return o.Dev14, true
+}
+
+// HasDev14 returns a boolean if a field has been set.
+func (o *UpdateContainerConfigSyncRequest) HasDev14() bool {
+	if o != nil && !IsNil(o.Dev14) {
+		return true
+	}
+
+	return false
+}
+
+// SetDev14 gets a reference to the given GetContainerConfig200ResponseDataDev0 and assigns it to the Dev14 field.
+func (o *UpdateContainerConfigSyncRequest) SetDev14(v GetContainerConfig200ResponseDataDev0) {
+	o.Dev14 = &v
+}
+
+// GetDev15 returns the Dev15 field value if set, zero value otherwise.
+func (o *UpdateContainerConfigSyncRequest) GetDev15() GetContainerConfig200ResponseDataDev0 {
+	if o == nil || IsNil(o.Dev15) {
+		var ret GetContainerConfig200ResponseDataDev0
+		return ret
+	}
+	return *o.Dev15
+}
+
+// GetDev15Ok returns a tuple with the Dev15 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateContainerConfigSyncRequest) GetDev15Ok() (*GetContainerConfig200ResponseDataDev0, bool) {
+	if o == nil || IsNil(o.Dev15) {
+		return nil, false
+	}
+	return o.Dev15, true
+}
+
+// HasDev15 returns a boolean if a field has been set.
+func (o *UpdateContainerConfigSyncRequest) HasDev15() bool {
+	if o != nil && !IsNil(o.Dev15) {
+		return true
+	}
+
+	return false
+}
+
+// SetDev15 gets a reference to the given GetContainerConfig200ResponseDataDev0 and assigns it to the Dev15 field.
+func (o *UpdateContainerConfigSyncRequest) SetDev15(v GetContainerConfig200ResponseDataDev0) {
+	o.Dev15 = &v
+}
+
+// GetDev16 returns the Dev16 field value if set, zero value otherwise.
+func (o *UpdateContainerConfigSyncRequest) GetDev16() GetContainerConfig200ResponseDataDev0 {
+	if o == nil || IsNil(o.Dev16) {
+		var ret GetContainerConfig200ResponseDataDev0
+		return ret
+	}
+	return *o.Dev16
+}
+
+// GetDev16Ok returns a tuple with the Dev16 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateContainerConfigSyncRequest) GetDev16Ok() (*GetContainerConfig200ResponseDataDev0, bool) {
+	if o == nil || IsNil(o.Dev16) {
+		return nil, false
+	}
+	return o.Dev16, true
+}
+
+// HasDev16 returns a boolean if a field has been set.
+func (o *UpdateContainerConfigSyncRequest) HasDev16() bool {
+	if o != nil && !IsNil(o.Dev16) {
+		return true
+	}
+
+	return false
+}
+
+// SetDev16 gets a reference to the given GetContainerConfig200ResponseDataDev0 and assigns it to the Dev16 field.
+func (o *UpdateContainerConfigSyncRequest) SetDev16(v GetContainerConfig200ResponseDataDev0) {
+	o.Dev16 = &v
+}
+
+// GetDev17 returns the Dev17 field value if set, zero value otherwise.
+func (o *UpdateContainerConfigSyncRequest) GetDev17() GetContainerConfig200ResponseDataDev0 {
+	if o == nil || IsNil(o.Dev17) {
+		var ret GetContainerConfig200ResponseDataDev0
+		return ret
+	}
+	return *o.Dev17
+}
+
+// GetDev17Ok returns a tuple with the Dev17 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateContainerConfigSyncRequest) GetDev17Ok() (*GetContainerConfig200ResponseDataDev0, bool) {
+	if o == nil || IsNil(o.Dev17) {
+		return nil, false
+	}
+	return o.Dev17, true
+}
+
+// HasDev17 returns a boolean if a field has been set.
+func (o *UpdateContainerConfigSyncRequest) HasDev17() bool {
+	if o != nil && !IsNil(o.Dev17) {
+		return true
+	}
+
+	return false
+}
+
+// SetDev17 gets a reference to the given GetContainerConfig200ResponseDataDev0 and assigns it to the Dev17 field.
+func (o *UpdateContainerConfigSyncRequest) SetDev17(v GetContainerConfig200ResponseDataDev0) {
+	o.Dev17 = &v
+}
+
+// GetDev18 returns the Dev18 field value if set, zero value otherwise.
+func (o *UpdateContainerConfigSyncRequest) GetDev18() GetContainerConfig200ResponseDataDev0 {
+	if o == nil || IsNil(o.Dev18) {
+		var ret GetContainerConfig200ResponseDataDev0
+		return ret
+	}
+	return *o.Dev18
+}
+
+// GetDev18Ok returns a tuple with the Dev18 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateContainerConfigSyncRequest) GetDev18Ok() (*GetContainerConfig200ResponseDataDev0, bool) {
+	if o == nil || IsNil(o.Dev18) {
+		return nil, false
+	}
+	return o.Dev18, true
+}
+
+// HasDev18 returns a boolean if a field has been set.
+func (o *UpdateContainerConfigSyncRequest) HasDev18() bool {
+	if o != nil && !IsNil(o.Dev18) {
+		return true
+	}
+
+	return false
+}
+
+// SetDev18 gets a reference to the given GetContainerConfig200ResponseDataDev0 and assigns it to the Dev18 field.
+func (o *UpdateContainerConfigSyncRequest) SetDev18(v GetContainerConfig200ResponseDataDev0) {
+	o.Dev18 = &v
+}
+
+// GetDev19 returns the Dev19 field value if set, zero value otherwise.
+func (o *UpdateContainerConfigSyncRequest) GetDev19() GetContainerConfig200ResponseDataDev0 {
+	if o == nil || IsNil(o.Dev19) {
+		var ret GetContainerConfig200ResponseDataDev0
+		return ret
+	}
+	return *o.Dev19
+}
+
+// GetDev19Ok returns a tuple with the Dev19 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateContainerConfigSyncRequest) GetDev19Ok() (*GetContainerConfig200ResponseDataDev0, bool) {
+	if o == nil || IsNil(o.Dev19) {
+		return nil, false
+	}
+	return o.Dev19, true
+}
+
+// HasDev19 returns a boolean if a field has been set.
+func (o *UpdateContainerConfigSyncRequest) HasDev19() bool {
+	if o != nil && !IsNil(o.Dev19) {
+		return true
+	}
+
+	return false
+}
+
+// SetDev19 gets a reference to the given GetContainerConfig200ResponseDataDev0 and assigns it to the Dev19 field.
+func (o *UpdateContainerConfigSyncRequest) SetDev19(v GetContainerConfig200ResponseDataDev0) {
+	o.Dev19 = &v
+}
+
+// GetDev20 returns the Dev20 field value if set, zero value otherwise.
+func (o *UpdateContainerConfigSyncRequest) GetDev20() GetContainerConfig200ResponseDataDev0 {
+	if o == nil || IsNil(o.Dev20) {
+		var ret GetContainerConfig200ResponseDataDev0
+		return ret
+	}
+	return *o.Dev20
+}
+
+// GetDev20Ok returns a tuple with the Dev20 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateContainerConfigSyncRequest) GetDev20Ok() (*GetContainerConfig200ResponseDataDev0, bool) {
+	if o == nil || IsNil(o.Dev20) {
+		return nil, false
+	}
+	return o.Dev20, true
+}
+
+// HasDev20 returns a boolean if a field has been set.
+func (o *UpdateContainerConfigSyncRequest) HasDev20() bool {
+	if o != nil && !IsNil(o.Dev20) {
+		return true
+	}
+
+	return false
+}
+
+// SetDev20 gets a reference to the given GetContainerConfig200ResponseDataDev0 and assigns it to the Dev20 field.
+func (o *UpdateContainerConfigSyncRequest) SetDev20(v GetContainerConfig200ResponseDataDev0) {
+	o.Dev20 = &v
+}
+
+// GetDev21 returns the Dev21 field value if set, zero value otherwise.
+func (o *UpdateContainerConfigSyncRequest) GetDev21() GetContainerConfig200ResponseDataDev0 {
+	if o == nil || IsNil(o.Dev21) {
+		var ret GetContainerConfig200ResponseDataDev0
+		return ret
+	}
+	return *o.Dev21
+}
+
+// GetDev21Ok returns a tuple with the Dev21 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateContainerConfigSyncRequest) GetDev21Ok() (*GetContainerConfig200ResponseDataDev0, bool) {
+	if o == nil || IsNil(o.Dev21) {
+		return nil, false
+	}
+	return o.Dev21, true
+}
+
+// HasDev21 returns a boolean if a field has been set.
+func (o *UpdateContainerConfigSyncRequest) HasDev21() bool {
+	if o != nil && !IsNil(o.Dev21) {
+		return true
+	}
+
+	return false
+}
+
+// SetDev21 gets a reference to the given GetContainerConfig200ResponseDataDev0 and assigns it to the Dev21 field.
+func (o *UpdateContainerConfigSyncRequest) SetDev21(v GetContainerConfig200ResponseDataDev0) {
+	o.Dev21 = &v
+}
+
+// GetDev22 returns the Dev22 field value if set, zero value otherwise.
+func (o *UpdateContainerConfigSyncRequest) GetDev22() GetContainerConfig200ResponseDataDev0 {
+	if o == nil || IsNil(o.Dev22) {
+		var ret GetContainerConfig200ResponseDataDev0
+		return ret
+	}
+	return *o.Dev22
+}
+
+// GetDev22Ok returns a tuple with the Dev22 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateContainerConfigSyncRequest) GetDev22Ok() (*GetContainerConfig200ResponseDataDev0, bool) {
+	if o == nil || IsNil(o.Dev22) {
+		return nil, false
+	}
+	return o.Dev22, true
+}
+
+// HasDev22 returns a boolean if a field has been set.
+func (o *UpdateContainerConfigSyncRequest) HasDev22() bool {
+	if o != nil && !IsNil(o.Dev22) {
+		return true
+	}
+
+	return false
+}
+
+// SetDev22 gets a reference to the given GetContainerConfig200ResponseDataDev0 and assigns it to the Dev22 field.
+func (o *UpdateContainerConfigSyncRequest) SetDev22(v GetContainerConfig200ResponseDataDev0) {
+	o.Dev22 = &v
+}
+
+// GetDev23 returns the Dev23 field value if set, zero value otherwise.
+func (o *UpdateContainerConfigSyncRequest) GetDev23() GetContainerConfig200ResponseDataDev0 {
+	if o == nil || IsNil(o.Dev23) {
+		var ret GetContainerConfig200ResponseDataDev0
+		return ret
+	}
+	return *o.Dev23
+}
+
+// GetDev23Ok returns a tuple with the Dev23 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateContainerConfigSyncRequest) GetDev23Ok() (*GetContainerConfig200ResponseDataDev0, bool) {
+	if o == nil || IsNil(o.Dev23) {
+		return nil, false
+	}
+	return o.Dev23, true
+}
+
+// HasDev23 returns a boolean if a field has been set.
+func (o *UpdateContainerConfigSyncRequest) HasDev23() bool {
+	if o != nil && !IsNil(o.Dev23) {
+		return true
+	}
+
+	return false
+}
+
+// SetDev23 gets a reference to the given GetContainerConfig200ResponseDataDev0 and assigns it to the Dev23 field.
+func (o *UpdateContainerConfigSyncRequest) SetDev23(v GetContainerConfig200ResponseDataDev0) {
+	o.Dev23 = &v
+}
+
+// GetDev24 returns the Dev24 field value if set, zero value otherwise.
+func (o *UpdateContainerConfigSyncRequest) GetDev24() GetContainerConfig200ResponseDataDev0 {
+	if o == nil || IsNil(o.Dev24) {
+		var ret GetContainerConfig200ResponseDataDev0
+		return ret
+	}
+	return *o.Dev24
+}
+
+// GetDev24Ok returns a tuple with the Dev24 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateContainerConfigSyncRequest) GetDev24Ok() (*GetContainerConfig200ResponseDataDev0, bool) {
+	if o == nil || IsNil(o.Dev24) {
+		return nil, false
+	}
+	return o.Dev24, true
+}
+
+// HasDev24 returns a boolean if a field has been set.
+func (o *UpdateContainerConfigSyncRequest) HasDev24() bool {
+	if o != nil && !IsNil(o.Dev24) {
+		return true
+	}
+
+	return false
+}
+
+// SetDev24 gets a reference to the given GetContainerConfig200ResponseDataDev0 and assigns it to the Dev24 field.
+func (o *UpdateContainerConfigSyncRequest) SetDev24(v GetContainerConfig200ResponseDataDev0) {
+	o.Dev24 = &v
+}
+
+// GetDev25 returns the Dev25 field value if set, zero value otherwise.
+func (o *UpdateContainerConfigSyncRequest) GetDev25() GetContainerConfig200ResponseDataDev0 {
+	if o == nil || IsNil(o.Dev25) {
+		var ret GetContainerConfig200ResponseDataDev0
+		return ret
+	}
+	return *o.Dev25
+}
+
+// GetDev25Ok returns a tuple with the Dev25 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateContainerConfigSyncRequest) GetDev25Ok() (*GetContainerConfig200ResponseDataDev0, bool) {
+	if o == nil || IsNil(o.Dev25) {
+		return nil, false
+	}
+	return o.Dev25, true
+}
+
+// HasDev25 returns a boolean if a field has been set.
+func (o *UpdateContainerConfigSyncRequest) HasDev25() bool {
+	if o != nil && !IsNil(o.Dev25) {
+		return true
+	}
+
+	return false
+}
+
+// SetDev25 gets a reference to the given GetContainerConfig200ResponseDataDev0 and assigns it to the Dev25 field.
+func (o *UpdateContainerConfigSyncRequest) SetDev25(v GetContainerConfig200ResponseDataDev0) {
+	o.Dev25 = &v
+}
+
+// GetDev26 returns the Dev26 field value if set, zero value otherwise.
+func (o *UpdateContainerConfigSyncRequest) GetDev26() GetContainerConfig200ResponseDataDev0 {
+	if o == nil || IsNil(o.Dev26) {
+		var ret GetContainerConfig200ResponseDataDev0
+		return ret
+	}
+	return *o.Dev26
+}
+
+// GetDev26Ok returns a tuple with the Dev26 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateContainerConfigSyncRequest) GetDev26Ok() (*GetContainerConfig200ResponseDataDev0, bool) {
+	if o == nil || IsNil(o.Dev26) {
+		return nil, false
+	}
+	return o.Dev26, true
+}
+
+// HasDev26 returns a boolean if a field has been set.
+func (o *UpdateContainerConfigSyncRequest) HasDev26() bool {
+	if o != nil && !IsNil(o.Dev26) {
+		return true
+	}
+
+	return false
+}
+
+// SetDev26 gets a reference to the given GetContainerConfig200ResponseDataDev0 and assigns it to the Dev26 field.
+func (o *UpdateContainerConfigSyncRequest) SetDev26(v GetContainerConfig200ResponseDataDev0) {
+	o.Dev26 = &v
+}
+
+// GetDev27 returns the Dev27 field value if set, zero value otherwise.
+func (o *UpdateContainerConfigSyncRequest) GetDev27() GetContainerConfig200ResponseDataDev0 {
+	if o == nil || IsNil(o.Dev27) {
+		var ret GetContainerConfig200ResponseDataDev0
+		return ret
+	}
+	return *o.Dev27
+}
+
+// GetDev27Ok returns a tuple with the Dev27 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateContainerConfigSyncRequest) GetDev27Ok() (*GetContainerConfig200ResponseDataDev0, bool) {
+	if o == nil || IsNil(o.Dev27) {
+		return nil, false
+	}
+	return o.Dev27, true
+}
+
+// HasDev27 returns a boolean if a field has been set.
+func (o *UpdateContainerConfigSyncRequest) HasDev27() bool {
+	if o != nil && !IsNil(o.Dev27) {
+		return true
+	}
+
+	return false
+}
+
+// SetDev27 gets a reference to the given GetContainerConfig200ResponseDataDev0 and assigns it to the Dev27 field.
+func (o *UpdateContainerConfigSyncRequest) SetDev27(v GetContainerConfig200ResponseDataDev0) {
+	o.Dev27 = &v
+}
+
+// GetDev28 returns the Dev28 field value if set, zero value otherwise.
+func (o *UpdateContainerConfigSyncRequest) GetDev28() GetContainerConfig200ResponseDataDev0 {
+	if o == nil || IsNil(o.Dev28) {
+		var ret GetContainerConfig200ResponseDataDev0
+		return ret
+	}
+	return *o.Dev28
+}
+
+// GetDev28Ok returns a tuple with the Dev28 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateContainerConfigSyncRequest) GetDev28Ok() (*GetContainerConfig200ResponseDataDev0, bool) {
+	if o == nil || IsNil(o.Dev28) {
+		return nil, false
+	}
+	return o.Dev28, true
+}
+
+// HasDev28 returns a boolean if a field has been set.
+func (o *UpdateContainerConfigSyncRequest) HasDev28() bool {
+	if o != nil && !IsNil(o.Dev28) {
+		return true
+	}
+
+	return false
+}
+
+// SetDev28 gets a reference to the given GetContainerConfig200ResponseDataDev0 and assigns it to the Dev28 field.
+func (o *UpdateContainerConfigSyncRequest) SetDev28(v GetContainerConfig200ResponseDataDev0) {
+	o.Dev28 = &v
+}
+
+// GetDev29 returns the Dev29 field value if set, zero value otherwise.
+func (o *UpdateContainerConfigSyncRequest) GetDev29() GetContainerConfig200ResponseDataDev0 {
+	if o == nil || IsNil(o.Dev29) {
+		var ret GetContainerConfig200ResponseDataDev0
+		return ret
+	}
+	return *o.Dev29
+}
+
+// GetDev29Ok returns a tuple with the Dev29 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateContainerConfigSyncRequest) GetDev29Ok() (*GetContainerConfig200ResponseDataDev0, bool) {
+	if o == nil || IsNil(o.Dev29) {
+		return nil, false
+	}
+	return o.Dev29, true
+}
+
+// HasDev29 returns a boolean if a field has been set.
+func (o *UpdateContainerConfigSyncRequest) HasDev29() bool {
+	if o != nil && !IsNil(o.Dev29) {
+		return true
+	}
+
+	return false
+}
+
+// SetDev29 gets a reference to the given GetContainerConfig200ResponseDataDev0 and assigns it to the Dev29 field.
+func (o *UpdateContainerConfigSyncRequest) SetDev29(v GetContainerConfig200ResponseDataDev0) {
+	o.Dev29 = &v
 }
 
 // GetDigest returns the Digest field value if set, zero value otherwise.
@@ -11553,6 +12543,96 @@ func (o UpdateContainerConfigSyncRequest) ToMap() (map[string]interface{}, error
 	}
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
+	}
+	if !IsNil(o.Dev0) {
+		toSerialize["dev0"] = o.Dev0
+	}
+	if !IsNil(o.Dev1) {
+		toSerialize["dev1"] = o.Dev1
+	}
+	if !IsNil(o.Dev2) {
+		toSerialize["dev2"] = o.Dev2
+	}
+	if !IsNil(o.Dev3) {
+		toSerialize["dev3"] = o.Dev3
+	}
+	if !IsNil(o.Dev4) {
+		toSerialize["dev4"] = o.Dev4
+	}
+	if !IsNil(o.Dev5) {
+		toSerialize["dev5"] = o.Dev5
+	}
+	if !IsNil(o.Dev6) {
+		toSerialize["dev6"] = o.Dev6
+	}
+	if !IsNil(o.Dev7) {
+		toSerialize["dev7"] = o.Dev7
+	}
+	if !IsNil(o.Dev8) {
+		toSerialize["dev8"] = o.Dev8
+	}
+	if !IsNil(o.Dev9) {
+		toSerialize["dev9"] = o.Dev9
+	}
+	if !IsNil(o.Dev10) {
+		toSerialize["dev10"] = o.Dev10
+	}
+	if !IsNil(o.Dev11) {
+		toSerialize["dev11"] = o.Dev11
+	}
+	if !IsNil(o.Dev12) {
+		toSerialize["dev12"] = o.Dev12
+	}
+	if !IsNil(o.Dev13) {
+		toSerialize["dev13"] = o.Dev13
+	}
+	if !IsNil(o.Dev14) {
+		toSerialize["dev14"] = o.Dev14
+	}
+	if !IsNil(o.Dev15) {
+		toSerialize["dev15"] = o.Dev15
+	}
+	if !IsNil(o.Dev16) {
+		toSerialize["dev16"] = o.Dev16
+	}
+	if !IsNil(o.Dev17) {
+		toSerialize["dev17"] = o.Dev17
+	}
+	if !IsNil(o.Dev18) {
+		toSerialize["dev18"] = o.Dev18
+	}
+	if !IsNil(o.Dev19) {
+		toSerialize["dev19"] = o.Dev19
+	}
+	if !IsNil(o.Dev20) {
+		toSerialize["dev20"] = o.Dev20
+	}
+	if !IsNil(o.Dev21) {
+		toSerialize["dev21"] = o.Dev21
+	}
+	if !IsNil(o.Dev22) {
+		toSerialize["dev22"] = o.Dev22
+	}
+	if !IsNil(o.Dev23) {
+		toSerialize["dev23"] = o.Dev23
+	}
+	if !IsNil(o.Dev24) {
+		toSerialize["dev24"] = o.Dev24
+	}
+	if !IsNil(o.Dev25) {
+		toSerialize["dev25"] = o.Dev25
+	}
+	if !IsNil(o.Dev26) {
+		toSerialize["dev26"] = o.Dev26
+	}
+	if !IsNil(o.Dev27) {
+		toSerialize["dev27"] = o.Dev27
+	}
+	if !IsNil(o.Dev28) {
+		toSerialize["dev28"] = o.Dev28
+	}
+	if !IsNil(o.Dev29) {
+		toSerialize["dev29"] = o.Dev29
 	}
 	if !IsNil(o.Digest) {
 		toSerialize["digest"] = o.Digest

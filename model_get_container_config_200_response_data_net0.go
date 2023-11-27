@@ -23,7 +23,7 @@ type GetContainerConfig200ResponseDataNet0 struct {
 	// Bridge to attach the network device to.
 	Bridge *string `json:"bridge,omitempty"`
 	// Controls whether this interface's firewall rules should be used.
-	Firewall *int32 `json:"firewall,omitempty"`
+	Firewall *bool `json:"firewall,omitempty"`
 	// Default gateway for IPv4 traffic.
 	Gw *string `json:"gw,omitempty"`
 	// Default gateway for IPv6 traffic.
@@ -35,7 +35,7 @@ type GetContainerConfig200ResponseDataNet0 struct {
 	// IPv6 address in CIDR format.
 	Ip6 *string `json:"ip6,omitempty"`
 	// Whether this interface should be disconnected (like pulling the plug).
-	LinkDown *int32 `json:"link_down,omitempty"`
+	LinkDown *bool `json:"link_down,omitempty"`
 	// Maximum transfer unit of the interface. (lxc.network.mtu)
 	Mtu *int64 `json:"mtu,omitempty"`
 	// Name of the network device as seen from inside the container. (lxc.network.name)
@@ -100,9 +100,9 @@ func (o *GetContainerConfig200ResponseDataNet0) SetBridge(v string) {
 }
 
 // GetFirewall returns the Firewall field value if set, zero value otherwise.
-func (o *GetContainerConfig200ResponseDataNet0) GetFirewall() int32 {
+func (o *GetContainerConfig200ResponseDataNet0) GetFirewall() bool {
 	if o == nil || IsNil(o.Firewall) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Firewall
@@ -110,7 +110,7 @@ func (o *GetContainerConfig200ResponseDataNet0) GetFirewall() int32 {
 
 // GetFirewallOk returns a tuple with the Firewall field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetContainerConfig200ResponseDataNet0) GetFirewallOk() (*int32, bool) {
+func (o *GetContainerConfig200ResponseDataNet0) GetFirewallOk() (*bool, bool) {
 	if o == nil || IsNil(o.Firewall) {
 		return nil, false
 	}
@@ -126,8 +126,8 @@ func (o *GetContainerConfig200ResponseDataNet0) HasFirewall() bool {
 	return false
 }
 
-// SetFirewall gets a reference to the given int32 and assigns it to the Firewall field.
-func (o *GetContainerConfig200ResponseDataNet0) SetFirewall(v int32) {
+// SetFirewall gets a reference to the given bool and assigns it to the Firewall field.
+func (o *GetContainerConfig200ResponseDataNet0) SetFirewall(v bool) {
 	o.Firewall = &v
 }
 
@@ -292,9 +292,9 @@ func (o *GetContainerConfig200ResponseDataNet0) SetIp6(v string) {
 }
 
 // GetLinkDown returns the LinkDown field value if set, zero value otherwise.
-func (o *GetContainerConfig200ResponseDataNet0) GetLinkDown() int32 {
+func (o *GetContainerConfig200ResponseDataNet0) GetLinkDown() bool {
 	if o == nil || IsNil(o.LinkDown) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.LinkDown
@@ -302,7 +302,7 @@ func (o *GetContainerConfig200ResponseDataNet0) GetLinkDown() int32 {
 
 // GetLinkDownOk returns a tuple with the LinkDown field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetContainerConfig200ResponseDataNet0) GetLinkDownOk() (*int32, bool) {
+func (o *GetContainerConfig200ResponseDataNet0) GetLinkDownOk() (*bool, bool) {
 	if o == nil || IsNil(o.LinkDown) {
 		return nil, false
 	}
@@ -318,8 +318,8 @@ func (o *GetContainerConfig200ResponseDataNet0) HasLinkDown() bool {
 	return false
 }
 
-// SetLinkDown gets a reference to the given int32 and assigns it to the LinkDown field.
-func (o *GetContainerConfig200ResponseDataNet0) SetLinkDown(v int32) {
+// SetLinkDown gets a reference to the given bool and assigns it to the LinkDown field.
+func (o *GetContainerConfig200ResponseDataNet0) SetLinkDown(v bool) {
 	o.LinkDown = &v
 }
 

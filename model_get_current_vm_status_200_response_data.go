@@ -22,6 +22,8 @@ var _ MappedNullable = &GetCurrentVMStatus200ResponseData{}
 type GetCurrentVMStatus200ResponseData struct {
 	// QEMU Guest Agent is enabled in config.
 	Agent *int32 `json:"agent,omitempty"`
+	// Enable a specific clipboard. If not set, depending on the display type the SPICE one will be added.
+	Clipboard *string `json:"clipboard,omitempty"`
 	// Maximum usable CPUs.
 	Cpus *float32 `json:"cpus,omitempty"`
 	// HA manager service status.
@@ -101,6 +103,38 @@ func (o *GetCurrentVMStatus200ResponseData) HasAgent() bool {
 // SetAgent gets a reference to the given int32 and assigns it to the Agent field.
 func (o *GetCurrentVMStatus200ResponseData) SetAgent(v int32) {
 	o.Agent = &v
+}
+
+// GetClipboard returns the Clipboard field value if set, zero value otherwise.
+func (o *GetCurrentVMStatus200ResponseData) GetClipboard() string {
+	if o == nil || IsNil(o.Clipboard) {
+		var ret string
+		return ret
+	}
+	return *o.Clipboard
+}
+
+// GetClipboardOk returns a tuple with the Clipboard field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetCurrentVMStatus200ResponseData) GetClipboardOk() (*string, bool) {
+	if o == nil || IsNil(o.Clipboard) {
+		return nil, false
+	}
+	return o.Clipboard, true
+}
+
+// HasClipboard returns a boolean if a field has been set.
+func (o *GetCurrentVMStatus200ResponseData) HasClipboard() bool {
+	if o != nil && !IsNil(o.Clipboard) {
+		return true
+	}
+
+	return false
+}
+
+// SetClipboard gets a reference to the given string and assigns it to the Clipboard field.
+func (o *GetCurrentVMStatus200ResponseData) SetClipboard(v string) {
+	o.Clipboard = &v
 }
 
 // GetCpus returns the Cpus field value if set, zero value otherwise.
@@ -595,6 +629,9 @@ func (o GetCurrentVMStatus200ResponseData) ToMap() (map[string]interface{}, erro
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Agent) {
 		toSerialize["agent"] = o.Agent
+	}
+	if !IsNil(o.Clipboard) {
+		toSerialize["clipboard"] = o.Clipboard
 	}
 	if !IsNil(o.Cpus) {
 		toSerialize["cpus"] = o.Cpus

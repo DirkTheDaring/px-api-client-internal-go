@@ -21,17 +21,17 @@ var _ MappedNullable = &GetContainerConfig200ResponseDataFeatures{}
 // GetContainerConfig200ResponseDataFeatures struct for GetContainerConfig200ResponseDataFeatures
 type GetContainerConfig200ResponseDataFeatures struct {
 	// Mount /sys in unprivileged containers as `rw` instead of `mixed`. This can break networking under newer (>= v245) systemd-network use.
-	ForceRwSys *int32 `json:"force_rw_sys,omitempty"`
+	ForceRwSys *bool `json:"force_rw_sys,omitempty"`
 	// Allow using 'fuse' file systems in a container. Note that interactions between fuse and the freezer cgroup can potentially cause I/O deadlocks.
-	Fuse *int32 `json:"fuse,omitempty"`
+	Fuse *bool `json:"fuse,omitempty"`
 	// For unprivileged containers only: Allow the use of the keyctl() system call. This is required to use docker inside a container. By default unprivileged containers will see this system call as non-existent. This is mostly a workaround for systemd-networkd, as it will treat it as a fatal error when some keyctl() operations are denied by the kernel due to lacking permissions. Essentially, you can choose between running systemd-networkd or docker.
-	Keyctl *int32 `json:"keyctl,omitempty"`
+	Keyctl *bool `json:"keyctl,omitempty"`
 	// Allow unprivileged containers to use mknod() to add certain device nodes. This requires a kernel with seccomp trap to user space support (5.3 or newer). This is experimental.
-	Mknod *int32 `json:"mknod,omitempty"`
+	Mknod *bool `json:"mknod,omitempty"`
 	// Allow mounting file systems of specific types. This should be a list of file system types as used with the mount command. Note that this can have negative effects on the container's security. With access to a loop device, mounting a file can circumvent the mknod permission of the devices cgroup, mounting an NFS file system can block the host's I/O completely and prevent it from rebooting, etc.
 	Mount *string `json:"mount,omitempty"`
 	// Allow nesting. Best used with unprivileged containers with additional id mapping. Note that this will expose procfs and sysfs contents of the host to the guest.
-	Nesting *int32 `json:"nesting,omitempty"`
+	Nesting *bool `json:"nesting,omitempty"`
 }
 
 // NewGetContainerConfig200ResponseDataFeatures instantiates a new GetContainerConfig200ResponseDataFeatures object
@@ -52,9 +52,9 @@ func NewGetContainerConfig200ResponseDataFeaturesWithDefaults() *GetContainerCon
 }
 
 // GetForceRwSys returns the ForceRwSys field value if set, zero value otherwise.
-func (o *GetContainerConfig200ResponseDataFeatures) GetForceRwSys() int32 {
+func (o *GetContainerConfig200ResponseDataFeatures) GetForceRwSys() bool {
 	if o == nil || IsNil(o.ForceRwSys) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.ForceRwSys
@@ -62,7 +62,7 @@ func (o *GetContainerConfig200ResponseDataFeatures) GetForceRwSys() int32 {
 
 // GetForceRwSysOk returns a tuple with the ForceRwSys field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetContainerConfig200ResponseDataFeatures) GetForceRwSysOk() (*int32, bool) {
+func (o *GetContainerConfig200ResponseDataFeatures) GetForceRwSysOk() (*bool, bool) {
 	if o == nil || IsNil(o.ForceRwSys) {
 		return nil, false
 	}
@@ -78,15 +78,15 @@ func (o *GetContainerConfig200ResponseDataFeatures) HasForceRwSys() bool {
 	return false
 }
 
-// SetForceRwSys gets a reference to the given int32 and assigns it to the ForceRwSys field.
-func (o *GetContainerConfig200ResponseDataFeatures) SetForceRwSys(v int32) {
+// SetForceRwSys gets a reference to the given bool and assigns it to the ForceRwSys field.
+func (o *GetContainerConfig200ResponseDataFeatures) SetForceRwSys(v bool) {
 	o.ForceRwSys = &v
 }
 
 // GetFuse returns the Fuse field value if set, zero value otherwise.
-func (o *GetContainerConfig200ResponseDataFeatures) GetFuse() int32 {
+func (o *GetContainerConfig200ResponseDataFeatures) GetFuse() bool {
 	if o == nil || IsNil(o.Fuse) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Fuse
@@ -94,7 +94,7 @@ func (o *GetContainerConfig200ResponseDataFeatures) GetFuse() int32 {
 
 // GetFuseOk returns a tuple with the Fuse field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetContainerConfig200ResponseDataFeatures) GetFuseOk() (*int32, bool) {
+func (o *GetContainerConfig200ResponseDataFeatures) GetFuseOk() (*bool, bool) {
 	if o == nil || IsNil(o.Fuse) {
 		return nil, false
 	}
@@ -110,15 +110,15 @@ func (o *GetContainerConfig200ResponseDataFeatures) HasFuse() bool {
 	return false
 }
 
-// SetFuse gets a reference to the given int32 and assigns it to the Fuse field.
-func (o *GetContainerConfig200ResponseDataFeatures) SetFuse(v int32) {
+// SetFuse gets a reference to the given bool and assigns it to the Fuse field.
+func (o *GetContainerConfig200ResponseDataFeatures) SetFuse(v bool) {
 	o.Fuse = &v
 }
 
 // GetKeyctl returns the Keyctl field value if set, zero value otherwise.
-func (o *GetContainerConfig200ResponseDataFeatures) GetKeyctl() int32 {
+func (o *GetContainerConfig200ResponseDataFeatures) GetKeyctl() bool {
 	if o == nil || IsNil(o.Keyctl) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Keyctl
@@ -126,7 +126,7 @@ func (o *GetContainerConfig200ResponseDataFeatures) GetKeyctl() int32 {
 
 // GetKeyctlOk returns a tuple with the Keyctl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetContainerConfig200ResponseDataFeatures) GetKeyctlOk() (*int32, bool) {
+func (o *GetContainerConfig200ResponseDataFeatures) GetKeyctlOk() (*bool, bool) {
 	if o == nil || IsNil(o.Keyctl) {
 		return nil, false
 	}
@@ -142,15 +142,15 @@ func (o *GetContainerConfig200ResponseDataFeatures) HasKeyctl() bool {
 	return false
 }
 
-// SetKeyctl gets a reference to the given int32 and assigns it to the Keyctl field.
-func (o *GetContainerConfig200ResponseDataFeatures) SetKeyctl(v int32) {
+// SetKeyctl gets a reference to the given bool and assigns it to the Keyctl field.
+func (o *GetContainerConfig200ResponseDataFeatures) SetKeyctl(v bool) {
 	o.Keyctl = &v
 }
 
 // GetMknod returns the Mknod field value if set, zero value otherwise.
-func (o *GetContainerConfig200ResponseDataFeatures) GetMknod() int32 {
+func (o *GetContainerConfig200ResponseDataFeatures) GetMknod() bool {
 	if o == nil || IsNil(o.Mknod) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Mknod
@@ -158,7 +158,7 @@ func (o *GetContainerConfig200ResponseDataFeatures) GetMknod() int32 {
 
 // GetMknodOk returns a tuple with the Mknod field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetContainerConfig200ResponseDataFeatures) GetMknodOk() (*int32, bool) {
+func (o *GetContainerConfig200ResponseDataFeatures) GetMknodOk() (*bool, bool) {
 	if o == nil || IsNil(o.Mknod) {
 		return nil, false
 	}
@@ -174,8 +174,8 @@ func (o *GetContainerConfig200ResponseDataFeatures) HasMknod() bool {
 	return false
 }
 
-// SetMknod gets a reference to the given int32 and assigns it to the Mknod field.
-func (o *GetContainerConfig200ResponseDataFeatures) SetMknod(v int32) {
+// SetMknod gets a reference to the given bool and assigns it to the Mknod field.
+func (o *GetContainerConfig200ResponseDataFeatures) SetMknod(v bool) {
 	o.Mknod = &v
 }
 
@@ -212,9 +212,9 @@ func (o *GetContainerConfig200ResponseDataFeatures) SetMount(v string) {
 }
 
 // GetNesting returns the Nesting field value if set, zero value otherwise.
-func (o *GetContainerConfig200ResponseDataFeatures) GetNesting() int32 {
+func (o *GetContainerConfig200ResponseDataFeatures) GetNesting() bool {
 	if o == nil || IsNil(o.Nesting) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Nesting
@@ -222,7 +222,7 @@ func (o *GetContainerConfig200ResponseDataFeatures) GetNesting() int32 {
 
 // GetNestingOk returns a tuple with the Nesting field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetContainerConfig200ResponseDataFeatures) GetNestingOk() (*int32, bool) {
+func (o *GetContainerConfig200ResponseDataFeatures) GetNestingOk() (*bool, bool) {
 	if o == nil || IsNil(o.Nesting) {
 		return nil, false
 	}
@@ -238,8 +238,8 @@ func (o *GetContainerConfig200ResponseDataFeatures) HasNesting() bool {
 	return false
 }
 
-// SetNesting gets a reference to the given int32 and assigns it to the Nesting field.
-func (o *GetContainerConfig200ResponseDataFeatures) SetNesting(v int32) {
+// SetNesting gets a reference to the given bool and assigns it to the Nesting field.
+func (o *GetContainerConfig200ResponseDataFeatures) SetNesting(v bool) {
 	o.Nesting = &v
 }
 

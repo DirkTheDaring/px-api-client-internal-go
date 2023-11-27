@@ -13,6 +13,36 @@ Name | Type | Description | Notes
 **Cpuunits** | Pointer to **int64** | CPU weight for a container, will be clamped to [1, 10000] in cgroup v2. | [optional] 
 **Debug** | Pointer to **int32** | Try to be more verbose. For now this only enables debug log-level on start. | [optional] 
 **Description** | Pointer to **string** | Description for the Container. Shown in the web-interface CT&#39;s summary. This is saved as comment inside the configuration file. | [optional] 
+**Dev0** | Pointer to [**GetContainerConfig200ResponseDataDev0**](GetContainerConfig200ResponseDataDev0.md) |  | [optional] 
+**Dev1** | Pointer to [**GetContainerConfig200ResponseDataDev0**](GetContainerConfig200ResponseDataDev0.md) |  | [optional] 
+**Dev2** | Pointer to [**GetContainerConfig200ResponseDataDev0**](GetContainerConfig200ResponseDataDev0.md) |  | [optional] 
+**Dev3** | Pointer to [**GetContainerConfig200ResponseDataDev0**](GetContainerConfig200ResponseDataDev0.md) |  | [optional] 
+**Dev4** | Pointer to [**GetContainerConfig200ResponseDataDev0**](GetContainerConfig200ResponseDataDev0.md) |  | [optional] 
+**Dev5** | Pointer to [**GetContainerConfig200ResponseDataDev0**](GetContainerConfig200ResponseDataDev0.md) |  | [optional] 
+**Dev6** | Pointer to [**GetContainerConfig200ResponseDataDev0**](GetContainerConfig200ResponseDataDev0.md) |  | [optional] 
+**Dev7** | Pointer to [**GetContainerConfig200ResponseDataDev0**](GetContainerConfig200ResponseDataDev0.md) |  | [optional] 
+**Dev8** | Pointer to [**GetContainerConfig200ResponseDataDev0**](GetContainerConfig200ResponseDataDev0.md) |  | [optional] 
+**Dev9** | Pointer to [**GetContainerConfig200ResponseDataDev0**](GetContainerConfig200ResponseDataDev0.md) |  | [optional] 
+**Dev10** | Pointer to [**GetContainerConfig200ResponseDataDev0**](GetContainerConfig200ResponseDataDev0.md) |  | [optional] 
+**Dev11** | Pointer to [**GetContainerConfig200ResponseDataDev0**](GetContainerConfig200ResponseDataDev0.md) |  | [optional] 
+**Dev12** | Pointer to [**GetContainerConfig200ResponseDataDev0**](GetContainerConfig200ResponseDataDev0.md) |  | [optional] 
+**Dev13** | Pointer to [**GetContainerConfig200ResponseDataDev0**](GetContainerConfig200ResponseDataDev0.md) |  | [optional] 
+**Dev14** | Pointer to [**GetContainerConfig200ResponseDataDev0**](GetContainerConfig200ResponseDataDev0.md) |  | [optional] 
+**Dev15** | Pointer to [**GetContainerConfig200ResponseDataDev0**](GetContainerConfig200ResponseDataDev0.md) |  | [optional] 
+**Dev16** | Pointer to [**GetContainerConfig200ResponseDataDev0**](GetContainerConfig200ResponseDataDev0.md) |  | [optional] 
+**Dev17** | Pointer to [**GetContainerConfig200ResponseDataDev0**](GetContainerConfig200ResponseDataDev0.md) |  | [optional] 
+**Dev18** | Pointer to [**GetContainerConfig200ResponseDataDev0**](GetContainerConfig200ResponseDataDev0.md) |  | [optional] 
+**Dev19** | Pointer to [**GetContainerConfig200ResponseDataDev0**](GetContainerConfig200ResponseDataDev0.md) |  | [optional] 
+**Dev20** | Pointer to [**GetContainerConfig200ResponseDataDev0**](GetContainerConfig200ResponseDataDev0.md) |  | [optional] 
+**Dev21** | Pointer to [**GetContainerConfig200ResponseDataDev0**](GetContainerConfig200ResponseDataDev0.md) |  | [optional] 
+**Dev22** | Pointer to [**GetContainerConfig200ResponseDataDev0**](GetContainerConfig200ResponseDataDev0.md) |  | [optional] 
+**Dev23** | Pointer to [**GetContainerConfig200ResponseDataDev0**](GetContainerConfig200ResponseDataDev0.md) |  | [optional] 
+**Dev24** | Pointer to [**GetContainerConfig200ResponseDataDev0**](GetContainerConfig200ResponseDataDev0.md) |  | [optional] 
+**Dev25** | Pointer to [**GetContainerConfig200ResponseDataDev0**](GetContainerConfig200ResponseDataDev0.md) |  | [optional] 
+**Dev26** | Pointer to [**GetContainerConfig200ResponseDataDev0**](GetContainerConfig200ResponseDataDev0.md) |  | [optional] 
+**Dev27** | Pointer to [**GetContainerConfig200ResponseDataDev0**](GetContainerConfig200ResponseDataDev0.md) |  | [optional] 
+**Dev28** | Pointer to [**GetContainerConfig200ResponseDataDev0**](GetContainerConfig200ResponseDataDev0.md) |  | [optional] 
+**Dev29** | Pointer to [**GetContainerConfig200ResponseDataDev0**](GetContainerConfig200ResponseDataDev0.md) |  | [optional] 
 **Features** | Pointer to [**GetContainerConfig200ResponseDataFeatures**](GetContainerConfig200ResponseDataFeatures.md) |  | [optional] 
 **Force** | Pointer to **int32** | Allow to overwrite existing container. | [optional] 
 **Hookscript** | Pointer to **string** | Script that will be exectued during various steps in the containers lifetime. | [optional] 
@@ -604,6 +634,756 @@ SetDescription sets Description field to given value.
 `func (o *CreateContainerRequest) HasDescription() bool`
 
 HasDescription returns a boolean if a field has been set.
+
+### GetDev0
+
+`func (o *CreateContainerRequest) GetDev0() GetContainerConfig200ResponseDataDev0`
+
+GetDev0 returns the Dev0 field if non-nil, zero value otherwise.
+
+### GetDev0Ok
+
+`func (o *CreateContainerRequest) GetDev0Ok() (*GetContainerConfig200ResponseDataDev0, bool)`
+
+GetDev0Ok returns a tuple with the Dev0 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDev0
+
+`func (o *CreateContainerRequest) SetDev0(v GetContainerConfig200ResponseDataDev0)`
+
+SetDev0 sets Dev0 field to given value.
+
+### HasDev0
+
+`func (o *CreateContainerRequest) HasDev0() bool`
+
+HasDev0 returns a boolean if a field has been set.
+
+### GetDev1
+
+`func (o *CreateContainerRequest) GetDev1() GetContainerConfig200ResponseDataDev0`
+
+GetDev1 returns the Dev1 field if non-nil, zero value otherwise.
+
+### GetDev1Ok
+
+`func (o *CreateContainerRequest) GetDev1Ok() (*GetContainerConfig200ResponseDataDev0, bool)`
+
+GetDev1Ok returns a tuple with the Dev1 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDev1
+
+`func (o *CreateContainerRequest) SetDev1(v GetContainerConfig200ResponseDataDev0)`
+
+SetDev1 sets Dev1 field to given value.
+
+### HasDev1
+
+`func (o *CreateContainerRequest) HasDev1() bool`
+
+HasDev1 returns a boolean if a field has been set.
+
+### GetDev2
+
+`func (o *CreateContainerRequest) GetDev2() GetContainerConfig200ResponseDataDev0`
+
+GetDev2 returns the Dev2 field if non-nil, zero value otherwise.
+
+### GetDev2Ok
+
+`func (o *CreateContainerRequest) GetDev2Ok() (*GetContainerConfig200ResponseDataDev0, bool)`
+
+GetDev2Ok returns a tuple with the Dev2 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDev2
+
+`func (o *CreateContainerRequest) SetDev2(v GetContainerConfig200ResponseDataDev0)`
+
+SetDev2 sets Dev2 field to given value.
+
+### HasDev2
+
+`func (o *CreateContainerRequest) HasDev2() bool`
+
+HasDev2 returns a boolean if a field has been set.
+
+### GetDev3
+
+`func (o *CreateContainerRequest) GetDev3() GetContainerConfig200ResponseDataDev0`
+
+GetDev3 returns the Dev3 field if non-nil, zero value otherwise.
+
+### GetDev3Ok
+
+`func (o *CreateContainerRequest) GetDev3Ok() (*GetContainerConfig200ResponseDataDev0, bool)`
+
+GetDev3Ok returns a tuple with the Dev3 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDev3
+
+`func (o *CreateContainerRequest) SetDev3(v GetContainerConfig200ResponseDataDev0)`
+
+SetDev3 sets Dev3 field to given value.
+
+### HasDev3
+
+`func (o *CreateContainerRequest) HasDev3() bool`
+
+HasDev3 returns a boolean if a field has been set.
+
+### GetDev4
+
+`func (o *CreateContainerRequest) GetDev4() GetContainerConfig200ResponseDataDev0`
+
+GetDev4 returns the Dev4 field if non-nil, zero value otherwise.
+
+### GetDev4Ok
+
+`func (o *CreateContainerRequest) GetDev4Ok() (*GetContainerConfig200ResponseDataDev0, bool)`
+
+GetDev4Ok returns a tuple with the Dev4 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDev4
+
+`func (o *CreateContainerRequest) SetDev4(v GetContainerConfig200ResponseDataDev0)`
+
+SetDev4 sets Dev4 field to given value.
+
+### HasDev4
+
+`func (o *CreateContainerRequest) HasDev4() bool`
+
+HasDev4 returns a boolean if a field has been set.
+
+### GetDev5
+
+`func (o *CreateContainerRequest) GetDev5() GetContainerConfig200ResponseDataDev0`
+
+GetDev5 returns the Dev5 field if non-nil, zero value otherwise.
+
+### GetDev5Ok
+
+`func (o *CreateContainerRequest) GetDev5Ok() (*GetContainerConfig200ResponseDataDev0, bool)`
+
+GetDev5Ok returns a tuple with the Dev5 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDev5
+
+`func (o *CreateContainerRequest) SetDev5(v GetContainerConfig200ResponseDataDev0)`
+
+SetDev5 sets Dev5 field to given value.
+
+### HasDev5
+
+`func (o *CreateContainerRequest) HasDev5() bool`
+
+HasDev5 returns a boolean if a field has been set.
+
+### GetDev6
+
+`func (o *CreateContainerRequest) GetDev6() GetContainerConfig200ResponseDataDev0`
+
+GetDev6 returns the Dev6 field if non-nil, zero value otherwise.
+
+### GetDev6Ok
+
+`func (o *CreateContainerRequest) GetDev6Ok() (*GetContainerConfig200ResponseDataDev0, bool)`
+
+GetDev6Ok returns a tuple with the Dev6 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDev6
+
+`func (o *CreateContainerRequest) SetDev6(v GetContainerConfig200ResponseDataDev0)`
+
+SetDev6 sets Dev6 field to given value.
+
+### HasDev6
+
+`func (o *CreateContainerRequest) HasDev6() bool`
+
+HasDev6 returns a boolean if a field has been set.
+
+### GetDev7
+
+`func (o *CreateContainerRequest) GetDev7() GetContainerConfig200ResponseDataDev0`
+
+GetDev7 returns the Dev7 field if non-nil, zero value otherwise.
+
+### GetDev7Ok
+
+`func (o *CreateContainerRequest) GetDev7Ok() (*GetContainerConfig200ResponseDataDev0, bool)`
+
+GetDev7Ok returns a tuple with the Dev7 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDev7
+
+`func (o *CreateContainerRequest) SetDev7(v GetContainerConfig200ResponseDataDev0)`
+
+SetDev7 sets Dev7 field to given value.
+
+### HasDev7
+
+`func (o *CreateContainerRequest) HasDev7() bool`
+
+HasDev7 returns a boolean if a field has been set.
+
+### GetDev8
+
+`func (o *CreateContainerRequest) GetDev8() GetContainerConfig200ResponseDataDev0`
+
+GetDev8 returns the Dev8 field if non-nil, zero value otherwise.
+
+### GetDev8Ok
+
+`func (o *CreateContainerRequest) GetDev8Ok() (*GetContainerConfig200ResponseDataDev0, bool)`
+
+GetDev8Ok returns a tuple with the Dev8 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDev8
+
+`func (o *CreateContainerRequest) SetDev8(v GetContainerConfig200ResponseDataDev0)`
+
+SetDev8 sets Dev8 field to given value.
+
+### HasDev8
+
+`func (o *CreateContainerRequest) HasDev8() bool`
+
+HasDev8 returns a boolean if a field has been set.
+
+### GetDev9
+
+`func (o *CreateContainerRequest) GetDev9() GetContainerConfig200ResponseDataDev0`
+
+GetDev9 returns the Dev9 field if non-nil, zero value otherwise.
+
+### GetDev9Ok
+
+`func (o *CreateContainerRequest) GetDev9Ok() (*GetContainerConfig200ResponseDataDev0, bool)`
+
+GetDev9Ok returns a tuple with the Dev9 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDev9
+
+`func (o *CreateContainerRequest) SetDev9(v GetContainerConfig200ResponseDataDev0)`
+
+SetDev9 sets Dev9 field to given value.
+
+### HasDev9
+
+`func (o *CreateContainerRequest) HasDev9() bool`
+
+HasDev9 returns a boolean if a field has been set.
+
+### GetDev10
+
+`func (o *CreateContainerRequest) GetDev10() GetContainerConfig200ResponseDataDev0`
+
+GetDev10 returns the Dev10 field if non-nil, zero value otherwise.
+
+### GetDev10Ok
+
+`func (o *CreateContainerRequest) GetDev10Ok() (*GetContainerConfig200ResponseDataDev0, bool)`
+
+GetDev10Ok returns a tuple with the Dev10 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDev10
+
+`func (o *CreateContainerRequest) SetDev10(v GetContainerConfig200ResponseDataDev0)`
+
+SetDev10 sets Dev10 field to given value.
+
+### HasDev10
+
+`func (o *CreateContainerRequest) HasDev10() bool`
+
+HasDev10 returns a boolean if a field has been set.
+
+### GetDev11
+
+`func (o *CreateContainerRequest) GetDev11() GetContainerConfig200ResponseDataDev0`
+
+GetDev11 returns the Dev11 field if non-nil, zero value otherwise.
+
+### GetDev11Ok
+
+`func (o *CreateContainerRequest) GetDev11Ok() (*GetContainerConfig200ResponseDataDev0, bool)`
+
+GetDev11Ok returns a tuple with the Dev11 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDev11
+
+`func (o *CreateContainerRequest) SetDev11(v GetContainerConfig200ResponseDataDev0)`
+
+SetDev11 sets Dev11 field to given value.
+
+### HasDev11
+
+`func (o *CreateContainerRequest) HasDev11() bool`
+
+HasDev11 returns a boolean if a field has been set.
+
+### GetDev12
+
+`func (o *CreateContainerRequest) GetDev12() GetContainerConfig200ResponseDataDev0`
+
+GetDev12 returns the Dev12 field if non-nil, zero value otherwise.
+
+### GetDev12Ok
+
+`func (o *CreateContainerRequest) GetDev12Ok() (*GetContainerConfig200ResponseDataDev0, bool)`
+
+GetDev12Ok returns a tuple with the Dev12 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDev12
+
+`func (o *CreateContainerRequest) SetDev12(v GetContainerConfig200ResponseDataDev0)`
+
+SetDev12 sets Dev12 field to given value.
+
+### HasDev12
+
+`func (o *CreateContainerRequest) HasDev12() bool`
+
+HasDev12 returns a boolean if a field has been set.
+
+### GetDev13
+
+`func (o *CreateContainerRequest) GetDev13() GetContainerConfig200ResponseDataDev0`
+
+GetDev13 returns the Dev13 field if non-nil, zero value otherwise.
+
+### GetDev13Ok
+
+`func (o *CreateContainerRequest) GetDev13Ok() (*GetContainerConfig200ResponseDataDev0, bool)`
+
+GetDev13Ok returns a tuple with the Dev13 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDev13
+
+`func (o *CreateContainerRequest) SetDev13(v GetContainerConfig200ResponseDataDev0)`
+
+SetDev13 sets Dev13 field to given value.
+
+### HasDev13
+
+`func (o *CreateContainerRequest) HasDev13() bool`
+
+HasDev13 returns a boolean if a field has been set.
+
+### GetDev14
+
+`func (o *CreateContainerRequest) GetDev14() GetContainerConfig200ResponseDataDev0`
+
+GetDev14 returns the Dev14 field if non-nil, zero value otherwise.
+
+### GetDev14Ok
+
+`func (o *CreateContainerRequest) GetDev14Ok() (*GetContainerConfig200ResponseDataDev0, bool)`
+
+GetDev14Ok returns a tuple with the Dev14 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDev14
+
+`func (o *CreateContainerRequest) SetDev14(v GetContainerConfig200ResponseDataDev0)`
+
+SetDev14 sets Dev14 field to given value.
+
+### HasDev14
+
+`func (o *CreateContainerRequest) HasDev14() bool`
+
+HasDev14 returns a boolean if a field has been set.
+
+### GetDev15
+
+`func (o *CreateContainerRequest) GetDev15() GetContainerConfig200ResponseDataDev0`
+
+GetDev15 returns the Dev15 field if non-nil, zero value otherwise.
+
+### GetDev15Ok
+
+`func (o *CreateContainerRequest) GetDev15Ok() (*GetContainerConfig200ResponseDataDev0, bool)`
+
+GetDev15Ok returns a tuple with the Dev15 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDev15
+
+`func (o *CreateContainerRequest) SetDev15(v GetContainerConfig200ResponseDataDev0)`
+
+SetDev15 sets Dev15 field to given value.
+
+### HasDev15
+
+`func (o *CreateContainerRequest) HasDev15() bool`
+
+HasDev15 returns a boolean if a field has been set.
+
+### GetDev16
+
+`func (o *CreateContainerRequest) GetDev16() GetContainerConfig200ResponseDataDev0`
+
+GetDev16 returns the Dev16 field if non-nil, zero value otherwise.
+
+### GetDev16Ok
+
+`func (o *CreateContainerRequest) GetDev16Ok() (*GetContainerConfig200ResponseDataDev0, bool)`
+
+GetDev16Ok returns a tuple with the Dev16 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDev16
+
+`func (o *CreateContainerRequest) SetDev16(v GetContainerConfig200ResponseDataDev0)`
+
+SetDev16 sets Dev16 field to given value.
+
+### HasDev16
+
+`func (o *CreateContainerRequest) HasDev16() bool`
+
+HasDev16 returns a boolean if a field has been set.
+
+### GetDev17
+
+`func (o *CreateContainerRequest) GetDev17() GetContainerConfig200ResponseDataDev0`
+
+GetDev17 returns the Dev17 field if non-nil, zero value otherwise.
+
+### GetDev17Ok
+
+`func (o *CreateContainerRequest) GetDev17Ok() (*GetContainerConfig200ResponseDataDev0, bool)`
+
+GetDev17Ok returns a tuple with the Dev17 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDev17
+
+`func (o *CreateContainerRequest) SetDev17(v GetContainerConfig200ResponseDataDev0)`
+
+SetDev17 sets Dev17 field to given value.
+
+### HasDev17
+
+`func (o *CreateContainerRequest) HasDev17() bool`
+
+HasDev17 returns a boolean if a field has been set.
+
+### GetDev18
+
+`func (o *CreateContainerRequest) GetDev18() GetContainerConfig200ResponseDataDev0`
+
+GetDev18 returns the Dev18 field if non-nil, zero value otherwise.
+
+### GetDev18Ok
+
+`func (o *CreateContainerRequest) GetDev18Ok() (*GetContainerConfig200ResponseDataDev0, bool)`
+
+GetDev18Ok returns a tuple with the Dev18 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDev18
+
+`func (o *CreateContainerRequest) SetDev18(v GetContainerConfig200ResponseDataDev0)`
+
+SetDev18 sets Dev18 field to given value.
+
+### HasDev18
+
+`func (o *CreateContainerRequest) HasDev18() bool`
+
+HasDev18 returns a boolean if a field has been set.
+
+### GetDev19
+
+`func (o *CreateContainerRequest) GetDev19() GetContainerConfig200ResponseDataDev0`
+
+GetDev19 returns the Dev19 field if non-nil, zero value otherwise.
+
+### GetDev19Ok
+
+`func (o *CreateContainerRequest) GetDev19Ok() (*GetContainerConfig200ResponseDataDev0, bool)`
+
+GetDev19Ok returns a tuple with the Dev19 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDev19
+
+`func (o *CreateContainerRequest) SetDev19(v GetContainerConfig200ResponseDataDev0)`
+
+SetDev19 sets Dev19 field to given value.
+
+### HasDev19
+
+`func (o *CreateContainerRequest) HasDev19() bool`
+
+HasDev19 returns a boolean if a field has been set.
+
+### GetDev20
+
+`func (o *CreateContainerRequest) GetDev20() GetContainerConfig200ResponseDataDev0`
+
+GetDev20 returns the Dev20 field if non-nil, zero value otherwise.
+
+### GetDev20Ok
+
+`func (o *CreateContainerRequest) GetDev20Ok() (*GetContainerConfig200ResponseDataDev0, bool)`
+
+GetDev20Ok returns a tuple with the Dev20 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDev20
+
+`func (o *CreateContainerRequest) SetDev20(v GetContainerConfig200ResponseDataDev0)`
+
+SetDev20 sets Dev20 field to given value.
+
+### HasDev20
+
+`func (o *CreateContainerRequest) HasDev20() bool`
+
+HasDev20 returns a boolean if a field has been set.
+
+### GetDev21
+
+`func (o *CreateContainerRequest) GetDev21() GetContainerConfig200ResponseDataDev0`
+
+GetDev21 returns the Dev21 field if non-nil, zero value otherwise.
+
+### GetDev21Ok
+
+`func (o *CreateContainerRequest) GetDev21Ok() (*GetContainerConfig200ResponseDataDev0, bool)`
+
+GetDev21Ok returns a tuple with the Dev21 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDev21
+
+`func (o *CreateContainerRequest) SetDev21(v GetContainerConfig200ResponseDataDev0)`
+
+SetDev21 sets Dev21 field to given value.
+
+### HasDev21
+
+`func (o *CreateContainerRequest) HasDev21() bool`
+
+HasDev21 returns a boolean if a field has been set.
+
+### GetDev22
+
+`func (o *CreateContainerRequest) GetDev22() GetContainerConfig200ResponseDataDev0`
+
+GetDev22 returns the Dev22 field if non-nil, zero value otherwise.
+
+### GetDev22Ok
+
+`func (o *CreateContainerRequest) GetDev22Ok() (*GetContainerConfig200ResponseDataDev0, bool)`
+
+GetDev22Ok returns a tuple with the Dev22 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDev22
+
+`func (o *CreateContainerRequest) SetDev22(v GetContainerConfig200ResponseDataDev0)`
+
+SetDev22 sets Dev22 field to given value.
+
+### HasDev22
+
+`func (o *CreateContainerRequest) HasDev22() bool`
+
+HasDev22 returns a boolean if a field has been set.
+
+### GetDev23
+
+`func (o *CreateContainerRequest) GetDev23() GetContainerConfig200ResponseDataDev0`
+
+GetDev23 returns the Dev23 field if non-nil, zero value otherwise.
+
+### GetDev23Ok
+
+`func (o *CreateContainerRequest) GetDev23Ok() (*GetContainerConfig200ResponseDataDev0, bool)`
+
+GetDev23Ok returns a tuple with the Dev23 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDev23
+
+`func (o *CreateContainerRequest) SetDev23(v GetContainerConfig200ResponseDataDev0)`
+
+SetDev23 sets Dev23 field to given value.
+
+### HasDev23
+
+`func (o *CreateContainerRequest) HasDev23() bool`
+
+HasDev23 returns a boolean if a field has been set.
+
+### GetDev24
+
+`func (o *CreateContainerRequest) GetDev24() GetContainerConfig200ResponseDataDev0`
+
+GetDev24 returns the Dev24 field if non-nil, zero value otherwise.
+
+### GetDev24Ok
+
+`func (o *CreateContainerRequest) GetDev24Ok() (*GetContainerConfig200ResponseDataDev0, bool)`
+
+GetDev24Ok returns a tuple with the Dev24 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDev24
+
+`func (o *CreateContainerRequest) SetDev24(v GetContainerConfig200ResponseDataDev0)`
+
+SetDev24 sets Dev24 field to given value.
+
+### HasDev24
+
+`func (o *CreateContainerRequest) HasDev24() bool`
+
+HasDev24 returns a boolean if a field has been set.
+
+### GetDev25
+
+`func (o *CreateContainerRequest) GetDev25() GetContainerConfig200ResponseDataDev0`
+
+GetDev25 returns the Dev25 field if non-nil, zero value otherwise.
+
+### GetDev25Ok
+
+`func (o *CreateContainerRequest) GetDev25Ok() (*GetContainerConfig200ResponseDataDev0, bool)`
+
+GetDev25Ok returns a tuple with the Dev25 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDev25
+
+`func (o *CreateContainerRequest) SetDev25(v GetContainerConfig200ResponseDataDev0)`
+
+SetDev25 sets Dev25 field to given value.
+
+### HasDev25
+
+`func (o *CreateContainerRequest) HasDev25() bool`
+
+HasDev25 returns a boolean if a field has been set.
+
+### GetDev26
+
+`func (o *CreateContainerRequest) GetDev26() GetContainerConfig200ResponseDataDev0`
+
+GetDev26 returns the Dev26 field if non-nil, zero value otherwise.
+
+### GetDev26Ok
+
+`func (o *CreateContainerRequest) GetDev26Ok() (*GetContainerConfig200ResponseDataDev0, bool)`
+
+GetDev26Ok returns a tuple with the Dev26 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDev26
+
+`func (o *CreateContainerRequest) SetDev26(v GetContainerConfig200ResponseDataDev0)`
+
+SetDev26 sets Dev26 field to given value.
+
+### HasDev26
+
+`func (o *CreateContainerRequest) HasDev26() bool`
+
+HasDev26 returns a boolean if a field has been set.
+
+### GetDev27
+
+`func (o *CreateContainerRequest) GetDev27() GetContainerConfig200ResponseDataDev0`
+
+GetDev27 returns the Dev27 field if non-nil, zero value otherwise.
+
+### GetDev27Ok
+
+`func (o *CreateContainerRequest) GetDev27Ok() (*GetContainerConfig200ResponseDataDev0, bool)`
+
+GetDev27Ok returns a tuple with the Dev27 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDev27
+
+`func (o *CreateContainerRequest) SetDev27(v GetContainerConfig200ResponseDataDev0)`
+
+SetDev27 sets Dev27 field to given value.
+
+### HasDev27
+
+`func (o *CreateContainerRequest) HasDev27() bool`
+
+HasDev27 returns a boolean if a field has been set.
+
+### GetDev28
+
+`func (o *CreateContainerRequest) GetDev28() GetContainerConfig200ResponseDataDev0`
+
+GetDev28 returns the Dev28 field if non-nil, zero value otherwise.
+
+### GetDev28Ok
+
+`func (o *CreateContainerRequest) GetDev28Ok() (*GetContainerConfig200ResponseDataDev0, bool)`
+
+GetDev28Ok returns a tuple with the Dev28 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDev28
+
+`func (o *CreateContainerRequest) SetDev28(v GetContainerConfig200ResponseDataDev0)`
+
+SetDev28 sets Dev28 field to given value.
+
+### HasDev28
+
+`func (o *CreateContainerRequest) HasDev28() bool`
+
+HasDev28 returns a boolean if a field has been set.
+
+### GetDev29
+
+`func (o *CreateContainerRequest) GetDev29() GetContainerConfig200ResponseDataDev0`
+
+GetDev29 returns the Dev29 field if non-nil, zero value otherwise.
+
+### GetDev29Ok
+
+`func (o *CreateContainerRequest) GetDev29Ok() (*GetContainerConfig200ResponseDataDev0, bool)`
+
+GetDev29Ok returns a tuple with the Dev29 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDev29
+
+`func (o *CreateContainerRequest) SetDev29(v GetContainerConfig200ResponseDataDev0)`
+
+SetDev29 sets Dev29 field to given value.
+
+### HasDev29
+
+`func (o *CreateContainerRequest) HasDev29() bool`
+
+HasDev29 returns a boolean if a field has been set.
 
 ### GetFeatures
 

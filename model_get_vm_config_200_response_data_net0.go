@@ -28,12 +28,12 @@ type GetVMConfig200ResponseDataNet0 struct {
 	E100082545em *string `json:"e1000-82545em,omitempty"`
 	E1000e *string `json:"e1000e,omitempty"`
 	// Whether this interface should be protected by the firewall.
-	Firewall *int32 `json:"firewall,omitempty"`
+	Firewall *bool `json:"firewall,omitempty"`
 	I82551 *string `json:"i82551,omitempty"`
 	I82557b *string `json:"i82557b,omitempty"`
 	I82559er *string `json:"i82559er,omitempty"`
 	// Whether this interface should be disconnected (like pulling the plug).
-	LinkDown *int32 `json:"link_down,omitempty"`
+	LinkDown *bool `json:"link_down,omitempty"`
 	// MAC address. That address must be unique withing your network. This is automatically generated if not specified.
 	Macaddr *string `json:"macaddr,omitempty"`
 	// Network Card Model. The 'virtio' model provides the best performance with very low CPU overhead. If your guest does not support this driver, it is usually best to use 'e1000'.
@@ -266,9 +266,9 @@ func (o *GetVMConfig200ResponseDataNet0) SetE1000e(v string) {
 }
 
 // GetFirewall returns the Firewall field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseDataNet0) GetFirewall() int32 {
+func (o *GetVMConfig200ResponseDataNet0) GetFirewall() bool {
 	if o == nil || IsNil(o.Firewall) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Firewall
@@ -276,7 +276,7 @@ func (o *GetVMConfig200ResponseDataNet0) GetFirewall() int32 {
 
 // GetFirewallOk returns a tuple with the Firewall field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseDataNet0) GetFirewallOk() (*int32, bool) {
+func (o *GetVMConfig200ResponseDataNet0) GetFirewallOk() (*bool, bool) {
 	if o == nil || IsNil(o.Firewall) {
 		return nil, false
 	}
@@ -292,8 +292,8 @@ func (o *GetVMConfig200ResponseDataNet0) HasFirewall() bool {
 	return false
 }
 
-// SetFirewall gets a reference to the given int32 and assigns it to the Firewall field.
-func (o *GetVMConfig200ResponseDataNet0) SetFirewall(v int32) {
+// SetFirewall gets a reference to the given bool and assigns it to the Firewall field.
+func (o *GetVMConfig200ResponseDataNet0) SetFirewall(v bool) {
 	o.Firewall = &v
 }
 
@@ -394,9 +394,9 @@ func (o *GetVMConfig200ResponseDataNet0) SetI82559er(v string) {
 }
 
 // GetLinkDown returns the LinkDown field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseDataNet0) GetLinkDown() int32 {
+func (o *GetVMConfig200ResponseDataNet0) GetLinkDown() bool {
 	if o == nil || IsNil(o.LinkDown) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.LinkDown
@@ -404,7 +404,7 @@ func (o *GetVMConfig200ResponseDataNet0) GetLinkDown() int32 {
 
 // GetLinkDownOk returns a tuple with the LinkDown field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseDataNet0) GetLinkDownOk() (*int32, bool) {
+func (o *GetVMConfig200ResponseDataNet0) GetLinkDownOk() (*bool, bool) {
 	if o == nil || IsNil(o.LinkDown) {
 		return nil, false
 	}
@@ -420,8 +420,8 @@ func (o *GetVMConfig200ResponseDataNet0) HasLinkDown() bool {
 	return false
 }
 
-// SetLinkDown gets a reference to the given int32 and assigns it to the LinkDown field.
-func (o *GetVMConfig200ResponseDataNet0) SetLinkDown(v int32) {
+// SetLinkDown gets a reference to the given bool and assigns it to the LinkDown field.
+func (o *GetVMConfig200ResponseDataNet0) SetLinkDown(v bool) {
 	o.LinkDown = &v
 }
 

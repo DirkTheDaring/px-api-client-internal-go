@@ -23,7 +23,7 @@ type CreateVMRequestScsi0 struct {
 	// AIO type to use.
 	Aio *string `json:"aio,omitempty"`
 	// Whether the drive should be included when making backups.
-	Backup *int32 `json:"backup,omitempty"`
+	Backup *bool `json:"backup,omitempty"`
 	// Maximum r/w speed in bytes per second.
 	Bps *int64 `json:"bps,omitempty"`
 	// Maximum length of I/O bursts in seconds.
@@ -43,7 +43,7 @@ type CreateVMRequestScsi0 struct {
 	// Force the drive's physical geometry to have a specific cylinder count.
 	Cyls *int64 `json:"cyls,omitempty"`
 	// Controls whether to detect and try to optimize writes of zeroes.
-	DetectZeroes *int32 `json:"detect_zeroes,omitempty"`
+	DetectZeroes *bool `json:"detect_zeroes,omitempty"`
 	// Controls whether to pass discard/trim requests to the underlying storage.
 	Discard *string `json:"discard,omitempty"`
 	// The drive's backing volume.
@@ -75,7 +75,7 @@ type CreateVMRequestScsi0 struct {
 	// Maximum length of write I/O bursts in seconds.
 	IopsWrMaxLength *int64 `json:"iops_wr_max_length,omitempty"`
 	// Whether to use iothreads for this drive
-	Iothread *int32 `json:"iothread,omitempty"`
+	Iothread *bool `json:"iothread,omitempty"`
 	// Maximum r/w speed in megabytes per second.
 	Mbps *float32 `json:"mbps,omitempty"`
 	// Maximum unthrottled r/w pool in megabytes per second.
@@ -93,25 +93,25 @@ type CreateVMRequestScsi0 struct {
 	// Number of queues.
 	Queues *int64 `json:"queues,omitempty"`
 	// Whether the drive should considered for replication jobs.
-	Replicate *int32 `json:"replicate,omitempty"`
+	Replicate *bool `json:"replicate,omitempty"`
 	// Read error action.
 	Rerror *string `json:"rerror,omitempty"`
 	// Whether the drive is read-only.
-	Ro *int32 `json:"ro,omitempty"`
+	Ro *bool `json:"ro,omitempty"`
 	// whether to use scsi-block for full passthrough of host block device  WARNING: can lead to I/O errors in combination with low memory or high memory fragmentation on host
-	Scsiblock *int32 `json:"scsiblock,omitempty"`
+	Scsiblock *bool `json:"scsiblock,omitempty"`
 	// Force the drive's physical geometry to have a specific sector count.
 	Secs *int64 `json:"secs,omitempty"`
 	// The drive's reported serial number, url-encoded, up to 20 bytes long.
 	Serial *string `json:"serial,omitempty"`
 	// Mark this locally-managed volume as available on all nodes
-	Shared *int32 `json:"shared,omitempty"`
+	Shared *bool `json:"shared,omitempty"`
 	// Disk size. This is purely informational and has no effect.
 	Size *string `json:"size,omitempty"`
 	// Controls qemu's snapshot mode feature. If activated, changes made to the disk are temporary and will be discarded when the VM is shutdown.
-	Snapshot *int32 `json:"snapshot,omitempty"`
+	Snapshot *bool `json:"snapshot,omitempty"`
 	// Whether to expose this drive as an SSD, rather than a rotational hard disk.
-	Ssd *int32 `json:"ssd,omitempty"`
+	Ssd *bool `json:"ssd,omitempty"`
 	// Force disk geometry bios translation mode.
 	Trans *string `json:"trans,omitempty"`
 	Volume *string `json:"volume,omitempty"`
@@ -171,9 +171,9 @@ func (o *CreateVMRequestScsi0) SetAio(v string) {
 }
 
 // GetBackup returns the Backup field value if set, zero value otherwise.
-func (o *CreateVMRequestScsi0) GetBackup() int32 {
+func (o *CreateVMRequestScsi0) GetBackup() bool {
 	if o == nil || IsNil(o.Backup) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Backup
@@ -181,7 +181,7 @@ func (o *CreateVMRequestScsi0) GetBackup() int32 {
 
 // GetBackupOk returns a tuple with the Backup field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequestScsi0) GetBackupOk() (*int32, bool) {
+func (o *CreateVMRequestScsi0) GetBackupOk() (*bool, bool) {
 	if o == nil || IsNil(o.Backup) {
 		return nil, false
 	}
@@ -197,8 +197,8 @@ func (o *CreateVMRequestScsi0) HasBackup() bool {
 	return false
 }
 
-// SetBackup gets a reference to the given int32 and assigns it to the Backup field.
-func (o *CreateVMRequestScsi0) SetBackup(v int32) {
+// SetBackup gets a reference to the given bool and assigns it to the Backup field.
+func (o *CreateVMRequestScsi0) SetBackup(v bool) {
 	o.Backup = &v
 }
 
@@ -523,9 +523,9 @@ func (o *CreateVMRequestScsi0) SetCyls(v int64) {
 }
 
 // GetDetectZeroes returns the DetectZeroes field value if set, zero value otherwise.
-func (o *CreateVMRequestScsi0) GetDetectZeroes() int32 {
+func (o *CreateVMRequestScsi0) GetDetectZeroes() bool {
 	if o == nil || IsNil(o.DetectZeroes) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.DetectZeroes
@@ -533,7 +533,7 @@ func (o *CreateVMRequestScsi0) GetDetectZeroes() int32 {
 
 // GetDetectZeroesOk returns a tuple with the DetectZeroes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequestScsi0) GetDetectZeroesOk() (*int32, bool) {
+func (o *CreateVMRequestScsi0) GetDetectZeroesOk() (*bool, bool) {
 	if o == nil || IsNil(o.DetectZeroes) {
 		return nil, false
 	}
@@ -549,8 +549,8 @@ func (o *CreateVMRequestScsi0) HasDetectZeroes() bool {
 	return false
 }
 
-// SetDetectZeroes gets a reference to the given int32 and assigns it to the DetectZeroes field.
-func (o *CreateVMRequestScsi0) SetDetectZeroes(v int32) {
+// SetDetectZeroes gets a reference to the given bool and assigns it to the DetectZeroes field.
+func (o *CreateVMRequestScsi0) SetDetectZeroes(v bool) {
 	o.DetectZeroes = &v
 }
 
@@ -1067,9 +1067,9 @@ func (o *CreateVMRequestScsi0) SetIopsWrMaxLength(v int64) {
 }
 
 // GetIothread returns the Iothread field value if set, zero value otherwise.
-func (o *CreateVMRequestScsi0) GetIothread() int32 {
+func (o *CreateVMRequestScsi0) GetIothread() bool {
 	if o == nil || IsNil(o.Iothread) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Iothread
@@ -1077,7 +1077,7 @@ func (o *CreateVMRequestScsi0) GetIothread() int32 {
 
 // GetIothreadOk returns a tuple with the Iothread field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequestScsi0) GetIothreadOk() (*int32, bool) {
+func (o *CreateVMRequestScsi0) GetIothreadOk() (*bool, bool) {
 	if o == nil || IsNil(o.Iothread) {
 		return nil, false
 	}
@@ -1093,8 +1093,8 @@ func (o *CreateVMRequestScsi0) HasIothread() bool {
 	return false
 }
 
-// SetIothread gets a reference to the given int32 and assigns it to the Iothread field.
-func (o *CreateVMRequestScsi0) SetIothread(v int32) {
+// SetIothread gets a reference to the given bool and assigns it to the Iothread field.
+func (o *CreateVMRequestScsi0) SetIothread(v bool) {
 	o.Iothread = &v
 }
 
@@ -1355,9 +1355,9 @@ func (o *CreateVMRequestScsi0) SetQueues(v int64) {
 }
 
 // GetReplicate returns the Replicate field value if set, zero value otherwise.
-func (o *CreateVMRequestScsi0) GetReplicate() int32 {
+func (o *CreateVMRequestScsi0) GetReplicate() bool {
 	if o == nil || IsNil(o.Replicate) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Replicate
@@ -1365,7 +1365,7 @@ func (o *CreateVMRequestScsi0) GetReplicate() int32 {
 
 // GetReplicateOk returns a tuple with the Replicate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequestScsi0) GetReplicateOk() (*int32, bool) {
+func (o *CreateVMRequestScsi0) GetReplicateOk() (*bool, bool) {
 	if o == nil || IsNil(o.Replicate) {
 		return nil, false
 	}
@@ -1381,8 +1381,8 @@ func (o *CreateVMRequestScsi0) HasReplicate() bool {
 	return false
 }
 
-// SetReplicate gets a reference to the given int32 and assigns it to the Replicate field.
-func (o *CreateVMRequestScsi0) SetReplicate(v int32) {
+// SetReplicate gets a reference to the given bool and assigns it to the Replicate field.
+func (o *CreateVMRequestScsi0) SetReplicate(v bool) {
 	o.Replicate = &v
 }
 
@@ -1419,9 +1419,9 @@ func (o *CreateVMRequestScsi0) SetRerror(v string) {
 }
 
 // GetRo returns the Ro field value if set, zero value otherwise.
-func (o *CreateVMRequestScsi0) GetRo() int32 {
+func (o *CreateVMRequestScsi0) GetRo() bool {
 	if o == nil || IsNil(o.Ro) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Ro
@@ -1429,7 +1429,7 @@ func (o *CreateVMRequestScsi0) GetRo() int32 {
 
 // GetRoOk returns a tuple with the Ro field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequestScsi0) GetRoOk() (*int32, bool) {
+func (o *CreateVMRequestScsi0) GetRoOk() (*bool, bool) {
 	if o == nil || IsNil(o.Ro) {
 		return nil, false
 	}
@@ -1445,15 +1445,15 @@ func (o *CreateVMRequestScsi0) HasRo() bool {
 	return false
 }
 
-// SetRo gets a reference to the given int32 and assigns it to the Ro field.
-func (o *CreateVMRequestScsi0) SetRo(v int32) {
+// SetRo gets a reference to the given bool and assigns it to the Ro field.
+func (o *CreateVMRequestScsi0) SetRo(v bool) {
 	o.Ro = &v
 }
 
 // GetScsiblock returns the Scsiblock field value if set, zero value otherwise.
-func (o *CreateVMRequestScsi0) GetScsiblock() int32 {
+func (o *CreateVMRequestScsi0) GetScsiblock() bool {
 	if o == nil || IsNil(o.Scsiblock) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Scsiblock
@@ -1461,7 +1461,7 @@ func (o *CreateVMRequestScsi0) GetScsiblock() int32 {
 
 // GetScsiblockOk returns a tuple with the Scsiblock field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequestScsi0) GetScsiblockOk() (*int32, bool) {
+func (o *CreateVMRequestScsi0) GetScsiblockOk() (*bool, bool) {
 	if o == nil || IsNil(o.Scsiblock) {
 		return nil, false
 	}
@@ -1477,8 +1477,8 @@ func (o *CreateVMRequestScsi0) HasScsiblock() bool {
 	return false
 }
 
-// SetScsiblock gets a reference to the given int32 and assigns it to the Scsiblock field.
-func (o *CreateVMRequestScsi0) SetScsiblock(v int32) {
+// SetScsiblock gets a reference to the given bool and assigns it to the Scsiblock field.
+func (o *CreateVMRequestScsi0) SetScsiblock(v bool) {
 	o.Scsiblock = &v
 }
 
@@ -1547,9 +1547,9 @@ func (o *CreateVMRequestScsi0) SetSerial(v string) {
 }
 
 // GetShared returns the Shared field value if set, zero value otherwise.
-func (o *CreateVMRequestScsi0) GetShared() int32 {
+func (o *CreateVMRequestScsi0) GetShared() bool {
 	if o == nil || IsNil(o.Shared) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Shared
@@ -1557,7 +1557,7 @@ func (o *CreateVMRequestScsi0) GetShared() int32 {
 
 // GetSharedOk returns a tuple with the Shared field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequestScsi0) GetSharedOk() (*int32, bool) {
+func (o *CreateVMRequestScsi0) GetSharedOk() (*bool, bool) {
 	if o == nil || IsNil(o.Shared) {
 		return nil, false
 	}
@@ -1573,8 +1573,8 @@ func (o *CreateVMRequestScsi0) HasShared() bool {
 	return false
 }
 
-// SetShared gets a reference to the given int32 and assigns it to the Shared field.
-func (o *CreateVMRequestScsi0) SetShared(v int32) {
+// SetShared gets a reference to the given bool and assigns it to the Shared field.
+func (o *CreateVMRequestScsi0) SetShared(v bool) {
 	o.Shared = &v
 }
 
@@ -1611,9 +1611,9 @@ func (o *CreateVMRequestScsi0) SetSize(v string) {
 }
 
 // GetSnapshot returns the Snapshot field value if set, zero value otherwise.
-func (o *CreateVMRequestScsi0) GetSnapshot() int32 {
+func (o *CreateVMRequestScsi0) GetSnapshot() bool {
 	if o == nil || IsNil(o.Snapshot) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Snapshot
@@ -1621,7 +1621,7 @@ func (o *CreateVMRequestScsi0) GetSnapshot() int32 {
 
 // GetSnapshotOk returns a tuple with the Snapshot field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequestScsi0) GetSnapshotOk() (*int32, bool) {
+func (o *CreateVMRequestScsi0) GetSnapshotOk() (*bool, bool) {
 	if o == nil || IsNil(o.Snapshot) {
 		return nil, false
 	}
@@ -1637,15 +1637,15 @@ func (o *CreateVMRequestScsi0) HasSnapshot() bool {
 	return false
 }
 
-// SetSnapshot gets a reference to the given int32 and assigns it to the Snapshot field.
-func (o *CreateVMRequestScsi0) SetSnapshot(v int32) {
+// SetSnapshot gets a reference to the given bool and assigns it to the Snapshot field.
+func (o *CreateVMRequestScsi0) SetSnapshot(v bool) {
 	o.Snapshot = &v
 }
 
 // GetSsd returns the Ssd field value if set, zero value otherwise.
-func (o *CreateVMRequestScsi0) GetSsd() int32 {
+func (o *CreateVMRequestScsi0) GetSsd() bool {
 	if o == nil || IsNil(o.Ssd) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Ssd
@@ -1653,7 +1653,7 @@ func (o *CreateVMRequestScsi0) GetSsd() int32 {
 
 // GetSsdOk returns a tuple with the Ssd field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequestScsi0) GetSsdOk() (*int32, bool) {
+func (o *CreateVMRequestScsi0) GetSsdOk() (*bool, bool) {
 	if o == nil || IsNil(o.Ssd) {
 		return nil, false
 	}
@@ -1669,8 +1669,8 @@ func (o *CreateVMRequestScsi0) HasSsd() bool {
 	return false
 }
 
-// SetSsd gets a reference to the given int32 and assigns it to the Ssd field.
-func (o *CreateVMRequestScsi0) SetSsd(v int32) {
+// SetSsd gets a reference to the given bool and assigns it to the Ssd field.
+func (o *CreateVMRequestScsi0) SetSsd(v bool) {
 	o.Ssd = &v
 }
 

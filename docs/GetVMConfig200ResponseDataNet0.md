@@ -10,11 +10,11 @@ Name | Type | Description | Notes
 **E100082544gc** | Pointer to **string** |  | [optional] 
 **E100082545em** | Pointer to **string** |  | [optional] 
 **E1000e** | Pointer to **string** |  | [optional] 
-**Firewall** | Pointer to **int32** | Whether this interface should be protected by the firewall. | [optional] 
+**Firewall** | Pointer to **bool** | Whether this interface should be protected by the firewall. | [optional] 
 **I82551** | Pointer to **string** |  | [optional] 
 **I82557b** | Pointer to **string** |  | [optional] 
 **I82559er** | Pointer to **string** |  | [optional] 
-**LinkDown** | Pointer to **int32** | Whether this interface should be disconnected (like pulling the plug). | [optional] 
+**LinkDown** | Pointer to **bool** | Whether this interface should be disconnected (like pulling the plug). | [optional] 
 **Macaddr** | Pointer to **string** | MAC address. That address must be unique withing your network. This is automatically generated if not specified. | [optional] 
 **Model** | Pointer to **string** | Network Card Model. The &#39;virtio&#39; model provides the best performance with very low CPU overhead. If your guest does not support this driver, it is usually best to use &#39;e1000&#39;. | [optional] 
 **Mtu** | Pointer to **int64** | Force MTU, for VirtIO only. Set to &#39;1&#39; to use the bridge MTU | [optional] 
@@ -200,20 +200,20 @@ HasE1000e returns a boolean if a field has been set.
 
 ### GetFirewall
 
-`func (o *GetVMConfig200ResponseDataNet0) GetFirewall() int32`
+`func (o *GetVMConfig200ResponseDataNet0) GetFirewall() bool`
 
 GetFirewall returns the Firewall field if non-nil, zero value otherwise.
 
 ### GetFirewallOk
 
-`func (o *GetVMConfig200ResponseDataNet0) GetFirewallOk() (*int32, bool)`
+`func (o *GetVMConfig200ResponseDataNet0) GetFirewallOk() (*bool, bool)`
 
 GetFirewallOk returns a tuple with the Firewall field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFirewall
 
-`func (o *GetVMConfig200ResponseDataNet0) SetFirewall(v int32)`
+`func (o *GetVMConfig200ResponseDataNet0) SetFirewall(v bool)`
 
 SetFirewall sets Firewall field to given value.
 
@@ -300,20 +300,20 @@ HasI82559er returns a boolean if a field has been set.
 
 ### GetLinkDown
 
-`func (o *GetVMConfig200ResponseDataNet0) GetLinkDown() int32`
+`func (o *GetVMConfig200ResponseDataNet0) GetLinkDown() bool`
 
 GetLinkDown returns the LinkDown field if non-nil, zero value otherwise.
 
 ### GetLinkDownOk
 
-`func (o *GetVMConfig200ResponseDataNet0) GetLinkDownOk() (*int32, bool)`
+`func (o *GetVMConfig200ResponseDataNet0) GetLinkDownOk() (*bool, bool)`
 
 GetLinkDownOk returns a tuple with the LinkDown field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLinkDown
 
-`func (o *GetVMConfig200ResponseDataNet0) SetLinkDown(v int32)`
+`func (o *GetVMConfig200ResponseDataNet0) SetLinkDown(v bool)`
 
 SetLinkDown sets LinkDown field to given value.
 

@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ForceRwSys** | Pointer to **int32** | Mount /sys in unprivileged containers as &#x60;rw&#x60; instead of &#x60;mixed&#x60;. This can break networking under newer (&gt;&#x3D; v245) systemd-network use. | [optional] 
-**Fuse** | Pointer to **int32** | Allow using &#39;fuse&#39; file systems in a container. Note that interactions between fuse and the freezer cgroup can potentially cause I/O deadlocks. | [optional] 
-**Keyctl** | Pointer to **int32** | For unprivileged containers only: Allow the use of the keyctl() system call. This is required to use docker inside a container. By default unprivileged containers will see this system call as non-existent. This is mostly a workaround for systemd-networkd, as it will treat it as a fatal error when some keyctl() operations are denied by the kernel due to lacking permissions. Essentially, you can choose between running systemd-networkd or docker. | [optional] 
-**Mknod** | Pointer to **int32** | Allow unprivileged containers to use mknod() to add certain device nodes. This requires a kernel with seccomp trap to user space support (5.3 or newer). This is experimental. | [optional] 
+**ForceRwSys** | Pointer to **bool** | Mount /sys in unprivileged containers as &#x60;rw&#x60; instead of &#x60;mixed&#x60;. This can break networking under newer (&gt;&#x3D; v245) systemd-network use. | [optional] 
+**Fuse** | Pointer to **bool** | Allow using &#39;fuse&#39; file systems in a container. Note that interactions between fuse and the freezer cgroup can potentially cause I/O deadlocks. | [optional] 
+**Keyctl** | Pointer to **bool** | For unprivileged containers only: Allow the use of the keyctl() system call. This is required to use docker inside a container. By default unprivileged containers will see this system call as non-existent. This is mostly a workaround for systemd-networkd, as it will treat it as a fatal error when some keyctl() operations are denied by the kernel due to lacking permissions. Essentially, you can choose between running systemd-networkd or docker. | [optional] 
+**Mknod** | Pointer to **bool** | Allow unprivileged containers to use mknod() to add certain device nodes. This requires a kernel with seccomp trap to user space support (5.3 or newer). This is experimental. | [optional] 
 **Mount** | Pointer to **string** | Allow mounting file systems of specific types. This should be a list of file system types as used with the mount command. Note that this can have negative effects on the container&#39;s security. With access to a loop device, mounting a file can circumvent the mknod permission of the devices cgroup, mounting an NFS file system can block the host&#39;s I/O completely and prevent it from rebooting, etc. | [optional] 
-**Nesting** | Pointer to **int32** | Allow nesting. Best used with unprivileged containers with additional id mapping. Note that this will expose procfs and sysfs contents of the host to the guest. | [optional] 
+**Nesting** | Pointer to **bool** | Allow nesting. Best used with unprivileged containers with additional id mapping. Note that this will expose procfs and sysfs contents of the host to the guest. | [optional] 
 
 ## Methods
 
@@ -32,20 +32,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetForceRwSys
 
-`func (o *GetContainerConfig200ResponseDataFeatures) GetForceRwSys() int32`
+`func (o *GetContainerConfig200ResponseDataFeatures) GetForceRwSys() bool`
 
 GetForceRwSys returns the ForceRwSys field if non-nil, zero value otherwise.
 
 ### GetForceRwSysOk
 
-`func (o *GetContainerConfig200ResponseDataFeatures) GetForceRwSysOk() (*int32, bool)`
+`func (o *GetContainerConfig200ResponseDataFeatures) GetForceRwSysOk() (*bool, bool)`
 
 GetForceRwSysOk returns a tuple with the ForceRwSys field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetForceRwSys
 
-`func (o *GetContainerConfig200ResponseDataFeatures) SetForceRwSys(v int32)`
+`func (o *GetContainerConfig200ResponseDataFeatures) SetForceRwSys(v bool)`
 
 SetForceRwSys sets ForceRwSys field to given value.
 
@@ -57,20 +57,20 @@ HasForceRwSys returns a boolean if a field has been set.
 
 ### GetFuse
 
-`func (o *GetContainerConfig200ResponseDataFeatures) GetFuse() int32`
+`func (o *GetContainerConfig200ResponseDataFeatures) GetFuse() bool`
 
 GetFuse returns the Fuse field if non-nil, zero value otherwise.
 
 ### GetFuseOk
 
-`func (o *GetContainerConfig200ResponseDataFeatures) GetFuseOk() (*int32, bool)`
+`func (o *GetContainerConfig200ResponseDataFeatures) GetFuseOk() (*bool, bool)`
 
 GetFuseOk returns a tuple with the Fuse field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFuse
 
-`func (o *GetContainerConfig200ResponseDataFeatures) SetFuse(v int32)`
+`func (o *GetContainerConfig200ResponseDataFeatures) SetFuse(v bool)`
 
 SetFuse sets Fuse field to given value.
 
@@ -82,20 +82,20 @@ HasFuse returns a boolean if a field has been set.
 
 ### GetKeyctl
 
-`func (o *GetContainerConfig200ResponseDataFeatures) GetKeyctl() int32`
+`func (o *GetContainerConfig200ResponseDataFeatures) GetKeyctl() bool`
 
 GetKeyctl returns the Keyctl field if non-nil, zero value otherwise.
 
 ### GetKeyctlOk
 
-`func (o *GetContainerConfig200ResponseDataFeatures) GetKeyctlOk() (*int32, bool)`
+`func (o *GetContainerConfig200ResponseDataFeatures) GetKeyctlOk() (*bool, bool)`
 
 GetKeyctlOk returns a tuple with the Keyctl field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKeyctl
 
-`func (o *GetContainerConfig200ResponseDataFeatures) SetKeyctl(v int32)`
+`func (o *GetContainerConfig200ResponseDataFeatures) SetKeyctl(v bool)`
 
 SetKeyctl sets Keyctl field to given value.
 
@@ -107,20 +107,20 @@ HasKeyctl returns a boolean if a field has been set.
 
 ### GetMknod
 
-`func (o *GetContainerConfig200ResponseDataFeatures) GetMknod() int32`
+`func (o *GetContainerConfig200ResponseDataFeatures) GetMknod() bool`
 
 GetMknod returns the Mknod field if non-nil, zero value otherwise.
 
 ### GetMknodOk
 
-`func (o *GetContainerConfig200ResponseDataFeatures) GetMknodOk() (*int32, bool)`
+`func (o *GetContainerConfig200ResponseDataFeatures) GetMknodOk() (*bool, bool)`
 
 GetMknodOk returns a tuple with the Mknod field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMknod
 
-`func (o *GetContainerConfig200ResponseDataFeatures) SetMknod(v int32)`
+`func (o *GetContainerConfig200ResponseDataFeatures) SetMknod(v bool)`
 
 SetMknod sets Mknod field to given value.
 
@@ -157,20 +157,20 @@ HasMount returns a boolean if a field has been set.
 
 ### GetNesting
 
-`func (o *GetContainerConfig200ResponseDataFeatures) GetNesting() int32`
+`func (o *GetContainerConfig200ResponseDataFeatures) GetNesting() bool`
 
 GetNesting returns the Nesting field if non-nil, zero value otherwise.
 
 ### GetNestingOk
 
-`func (o *GetContainerConfig200ResponseDataFeatures) GetNestingOk() (*int32, bool)`
+`func (o *GetContainerConfig200ResponseDataFeatures) GetNestingOk() (*bool, bool)`
 
 GetNestingOk returns a tuple with the Nesting field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNesting
 
-`func (o *GetContainerConfig200ResponseDataFeatures) SetNesting(v int32)`
+`func (o *GetContainerConfig200ResponseDataFeatures) SetNesting(v bool)`
 
 SetNesting sets Nesting field to given value.
 

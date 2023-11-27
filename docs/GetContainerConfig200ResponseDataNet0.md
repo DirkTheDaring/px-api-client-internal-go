@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Bridge** | Pointer to **string** | Bridge to attach the network device to. | [optional] 
-**Firewall** | Pointer to **int32** | Controls whether this interface&#39;s firewall rules should be used. | [optional] 
+**Firewall** | Pointer to **bool** | Controls whether this interface&#39;s firewall rules should be used. | [optional] 
 **Gw** | Pointer to **string** | Default gateway for IPv4 traffic. | [optional] 
 **Gw6** | Pointer to **string** | Default gateway for IPv6 traffic. | [optional] 
 **Hwaddr** | Pointer to **string** | The interface MAC address. This is dynamically allocated by default, but you can set that statically if needed, for example to always have the same link-local IPv6 address. (lxc.network.hwaddr) | [optional] 
 **Ip** | Pointer to **string** | IPv4 address in CIDR format. | [optional] 
 **Ip6** | Pointer to **string** | IPv6 address in CIDR format. | [optional] 
-**LinkDown** | Pointer to **int32** | Whether this interface should be disconnected (like pulling the plug). | [optional] 
+**LinkDown** | Pointer to **bool** | Whether this interface should be disconnected (like pulling the plug). | [optional] 
 **Mtu** | Pointer to **int64** | Maximum transfer unit of the interface. (lxc.network.mtu) | [optional] 
 **Name** | Pointer to **string** | Name of the network device as seen from inside the container. (lxc.network.name) | [optional] 
 **Rate** | Pointer to **float32** | Apply rate limiting to the interface | [optional] 
@@ -65,20 +65,20 @@ HasBridge returns a boolean if a field has been set.
 
 ### GetFirewall
 
-`func (o *GetContainerConfig200ResponseDataNet0) GetFirewall() int32`
+`func (o *GetContainerConfig200ResponseDataNet0) GetFirewall() bool`
 
 GetFirewall returns the Firewall field if non-nil, zero value otherwise.
 
 ### GetFirewallOk
 
-`func (o *GetContainerConfig200ResponseDataNet0) GetFirewallOk() (*int32, bool)`
+`func (o *GetContainerConfig200ResponseDataNet0) GetFirewallOk() (*bool, bool)`
 
 GetFirewallOk returns a tuple with the Firewall field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFirewall
 
-`func (o *GetContainerConfig200ResponseDataNet0) SetFirewall(v int32)`
+`func (o *GetContainerConfig200ResponseDataNet0) SetFirewall(v bool)`
 
 SetFirewall sets Firewall field to given value.
 
@@ -215,20 +215,20 @@ HasIp6 returns a boolean if a field has been set.
 
 ### GetLinkDown
 
-`func (o *GetContainerConfig200ResponseDataNet0) GetLinkDown() int32`
+`func (o *GetContainerConfig200ResponseDataNet0) GetLinkDown() bool`
 
 GetLinkDown returns the LinkDown field if non-nil, zero value otherwise.
 
 ### GetLinkDownOk
 
-`func (o *GetContainerConfig200ResponseDataNet0) GetLinkDownOk() (*int32, bool)`
+`func (o *GetContainerConfig200ResponseDataNet0) GetLinkDownOk() (*bool, bool)`
 
 GetLinkDownOk returns a tuple with the LinkDown field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLinkDown
 
-`func (o *GetContainerConfig200ResponseDataNet0) SetLinkDown(v int32)`
+`func (o *GetContainerConfig200ResponseDataNet0) SetLinkDown(v bool)`
 
 SetLinkDown sets LinkDown field to given value.
 

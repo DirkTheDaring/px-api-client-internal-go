@@ -20,7 +20,7 @@ var _ MappedNullable = &CreateVMRequestEfidisk0{}
 
 // CreateVMRequestEfidisk0 struct for CreateVMRequestEfidisk0
 type CreateVMRequestEfidisk0 struct {
-	// Size and type of the OVMF EFI vars. '4m' is newer and recommended, and required for Secure Boot. For backwards compatibility, '2m' is used if not otherwise specified. Ignored for VMs with arch=aarc64 (ARM).
+	// Size and type of the OVMF EFI vars. '4m' is newer and recommended, and required for Secure Boot. For backwards compatibility, '2m' is used if not otherwise specified. Ignored for VMs with arch=aarch64 (ARM).
 	Efitype *string `json:"efitype,omitempty"`
 	// The drive's backing volume.
 	File *string `json:"file,omitempty"`
@@ -29,7 +29,7 @@ type CreateVMRequestEfidisk0 struct {
 	// Create a new disk, importing from this source (volume ID or absolute path). When an absolute path is specified, it's up to you to ensure that the source is not actively used by another process during the import!
 	ImportFrom *string `json:"import-from,omitempty"`
 	// Use am EFI vars template with distribution-specific and Microsoft Standard keys enrolled, if used with 'efitype=4m'. Note that this will enable Secure Boot by default, though it can still be turned off from within the VM.
-	PreEnrolledKeys *int32 `json:"pre-enrolled-keys,omitempty"`
+	PreEnrolledKeys *bool `json:"pre-enrolled-keys,omitempty"`
 	// Disk size. This is purely informational and has no effect.
 	Size *string `json:"size,omitempty"`
 	Volume *string `json:"volume,omitempty"`
@@ -181,9 +181,9 @@ func (o *CreateVMRequestEfidisk0) SetImportFrom(v string) {
 }
 
 // GetPreEnrolledKeys returns the PreEnrolledKeys field value if set, zero value otherwise.
-func (o *CreateVMRequestEfidisk0) GetPreEnrolledKeys() int32 {
+func (o *CreateVMRequestEfidisk0) GetPreEnrolledKeys() bool {
 	if o == nil || IsNil(o.PreEnrolledKeys) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.PreEnrolledKeys
@@ -191,7 +191,7 @@ func (o *CreateVMRequestEfidisk0) GetPreEnrolledKeys() int32 {
 
 // GetPreEnrolledKeysOk returns a tuple with the PreEnrolledKeys field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequestEfidisk0) GetPreEnrolledKeysOk() (*int32, bool) {
+func (o *CreateVMRequestEfidisk0) GetPreEnrolledKeysOk() (*bool, bool) {
 	if o == nil || IsNil(o.PreEnrolledKeys) {
 		return nil, false
 	}
@@ -207,8 +207,8 @@ func (o *CreateVMRequestEfidisk0) HasPreEnrolledKeys() bool {
 	return false
 }
 
-// SetPreEnrolledKeys gets a reference to the given int32 and assigns it to the PreEnrolledKeys field.
-func (o *CreateVMRequestEfidisk0) SetPreEnrolledKeys(v int32) {
+// SetPreEnrolledKeys gets a reference to the given bool and assigns it to the PreEnrolledKeys field.
+func (o *CreateVMRequestEfidisk0) SetPreEnrolledKeys(v bool) {
 	o.PreEnrolledKeys = &v
 }
 

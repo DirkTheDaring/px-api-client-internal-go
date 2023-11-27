@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Agent** | Pointer to **int32** | QEMU Guest Agent is enabled in config. | [optional] 
+**Clipboard** | Pointer to **string** | Enable a specific clipboard. If not set, depending on the display type the SPICE one will be added. | [optional] 
 **Cpus** | Pointer to **float32** | Maximum usable CPUs. | [optional] 
 **Ha** | Pointer to **map[string]interface{}** | HA manager service status. | [optional] 
 **Lock** | Pointer to **string** | The current config lock, if any. | [optional] 
@@ -64,6 +65,31 @@ SetAgent sets Agent field to given value.
 `func (o *GetCurrentVMStatus200ResponseData) HasAgent() bool`
 
 HasAgent returns a boolean if a field has been set.
+
+### GetClipboard
+
+`func (o *GetCurrentVMStatus200ResponseData) GetClipboard() string`
+
+GetClipboard returns the Clipboard field if non-nil, zero value otherwise.
+
+### GetClipboardOk
+
+`func (o *GetCurrentVMStatus200ResponseData) GetClipboardOk() (*string, bool)`
+
+GetClipboardOk returns a tuple with the Clipboard field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetClipboard
+
+`func (o *GetCurrentVMStatus200ResponseData) SetClipboard(v string)`
+
+SetClipboard sets Clipboard field to given value.
+
+### HasClipboard
+
+`func (o *GetCurrentVMStatus200ResponseData) HasClipboard() bool`
+
+HasClipboard returns a boolean if a field has been set.
 
 ### GetCpus
 

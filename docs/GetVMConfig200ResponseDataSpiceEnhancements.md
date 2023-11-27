@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Foldersharing** | Pointer to **int32** | Enable folder sharing via SPICE. Needs Spice-WebDAV daemon installed in the VM. | [optional] 
+**Foldersharing** | Pointer to **bool** | Enable folder sharing via SPICE. Needs Spice-WebDAV daemon installed in the VM. | [optional] 
 **Videostreaming** | Pointer to **string** | Enable video streaming. Uses compression for detected video streams. | [optional] 
 
 ## Methods
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetFoldersharing
 
-`func (o *GetVMConfig200ResponseDataSpiceEnhancements) GetFoldersharing() int32`
+`func (o *GetVMConfig200ResponseDataSpiceEnhancements) GetFoldersharing() bool`
 
 GetFoldersharing returns the Foldersharing field if non-nil, zero value otherwise.
 
 ### GetFoldersharingOk
 
-`func (o *GetVMConfig200ResponseDataSpiceEnhancements) GetFoldersharingOk() (*int32, bool)`
+`func (o *GetVMConfig200ResponseDataSpiceEnhancements) GetFoldersharingOk() (*bool, bool)`
 
 GetFoldersharingOk returns a tuple with the Foldersharing field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFoldersharing
 
-`func (o *GetVMConfig200ResponseDataSpiceEnhancements) SetFoldersharing(v int32)`
+`func (o *GetVMConfig200ResponseDataSpiceEnhancements) SetFoldersharing(v bool)`
 
 SetFoldersharing sets Foldersharing field to given value.
 
