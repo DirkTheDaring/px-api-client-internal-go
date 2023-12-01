@@ -211,6 +211,7 @@ Class | Method | HTTP request | Description
  - [GetVMConfig200ResponseDataIde0](docs/GetVMConfig200ResponseDataIde0.md)
  - [GetVMConfig200ResponseDataIpconfig0](docs/GetVMConfig200ResponseDataIpconfig0.md)
  - [GetVMConfig200ResponseDataIvshmem](docs/GetVMConfig200ResponseDataIvshmem.md)
+ - [GetVMConfig200ResponseDataMemory](docs/GetVMConfig200ResponseDataMemory.md)
  - [GetVMConfig200ResponseDataNet0](docs/GetVMConfig200ResponseDataNet0.md)
  - [GetVMConfig200ResponseDataNuma0](docs/GetVMConfig200ResponseDataNuma0.md)
  - [GetVMConfig200ResponseDataRng0](docs/GetVMConfig200ResponseDataRng0.md)
