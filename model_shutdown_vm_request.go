@@ -21,11 +21,11 @@ var _ MappedNullable = &ShutdownVMRequest{}
 // ShutdownVMRequest struct for ShutdownVMRequest
 type ShutdownVMRequest struct {
 	// Make sure the VM stops.
-	ForceStop *int32 `json:"forceStop,omitempty"`
+	ForceStop *bool `json:"forceStop,omitempty"`
 	// Do not deactivate storage volumes.
-	KeepActive *int32 `json:"keepActive,omitempty"`
+	KeepActive *bool `json:"keepActive,omitempty"`
 	// Ignore locks - only root is allowed to use this option.
-	Skiplock *int32 `json:"skiplock,omitempty"`
+	Skiplock *bool `json:"skiplock,omitempty"`
 	// Wait maximal timeout seconds.
 	Timeout *int64 `json:"timeout,omitempty"`
 }
@@ -48,9 +48,9 @@ func NewShutdownVMRequestWithDefaults() *ShutdownVMRequest {
 }
 
 // GetForceStop returns the ForceStop field value if set, zero value otherwise.
-func (o *ShutdownVMRequest) GetForceStop() int32 {
+func (o *ShutdownVMRequest) GetForceStop() bool {
 	if o == nil || IsNil(o.ForceStop) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.ForceStop
@@ -58,7 +58,7 @@ func (o *ShutdownVMRequest) GetForceStop() int32 {
 
 // GetForceStopOk returns a tuple with the ForceStop field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ShutdownVMRequest) GetForceStopOk() (*int32, bool) {
+func (o *ShutdownVMRequest) GetForceStopOk() (*bool, bool) {
 	if o == nil || IsNil(o.ForceStop) {
 		return nil, false
 	}
@@ -74,15 +74,15 @@ func (o *ShutdownVMRequest) HasForceStop() bool {
 	return false
 }
 
-// SetForceStop gets a reference to the given int32 and assigns it to the ForceStop field.
-func (o *ShutdownVMRequest) SetForceStop(v int32) {
+// SetForceStop gets a reference to the given bool and assigns it to the ForceStop field.
+func (o *ShutdownVMRequest) SetForceStop(v bool) {
 	o.ForceStop = &v
 }
 
 // GetKeepActive returns the KeepActive field value if set, zero value otherwise.
-func (o *ShutdownVMRequest) GetKeepActive() int32 {
+func (o *ShutdownVMRequest) GetKeepActive() bool {
 	if o == nil || IsNil(o.KeepActive) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.KeepActive
@@ -90,7 +90,7 @@ func (o *ShutdownVMRequest) GetKeepActive() int32 {
 
 // GetKeepActiveOk returns a tuple with the KeepActive field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ShutdownVMRequest) GetKeepActiveOk() (*int32, bool) {
+func (o *ShutdownVMRequest) GetKeepActiveOk() (*bool, bool) {
 	if o == nil || IsNil(o.KeepActive) {
 		return nil, false
 	}
@@ -106,15 +106,15 @@ func (o *ShutdownVMRequest) HasKeepActive() bool {
 	return false
 }
 
-// SetKeepActive gets a reference to the given int32 and assigns it to the KeepActive field.
-func (o *ShutdownVMRequest) SetKeepActive(v int32) {
+// SetKeepActive gets a reference to the given bool and assigns it to the KeepActive field.
+func (o *ShutdownVMRequest) SetKeepActive(v bool) {
 	o.KeepActive = &v
 }
 
 // GetSkiplock returns the Skiplock field value if set, zero value otherwise.
-func (o *ShutdownVMRequest) GetSkiplock() int32 {
+func (o *ShutdownVMRequest) GetSkiplock() bool {
 	if o == nil || IsNil(o.Skiplock) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Skiplock
@@ -122,7 +122,7 @@ func (o *ShutdownVMRequest) GetSkiplock() int32 {
 
 // GetSkiplockOk returns a tuple with the Skiplock field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ShutdownVMRequest) GetSkiplockOk() (*int32, bool) {
+func (o *ShutdownVMRequest) GetSkiplockOk() (*bool, bool) {
 	if o == nil || IsNil(o.Skiplock) {
 		return nil, false
 	}
@@ -138,8 +138,8 @@ func (o *ShutdownVMRequest) HasSkiplock() bool {
 	return false
 }
 
-// SetSkiplock gets a reference to the given int32 and assigns it to the Skiplock field.
-func (o *ShutdownVMRequest) SetSkiplock(v int32) {
+// SetSkiplock gets a reference to the given bool and assigns it to the Skiplock field.
+func (o *ShutdownVMRequest) SetSkiplock(v bool) {
 	o.Skiplock = &v
 }
 

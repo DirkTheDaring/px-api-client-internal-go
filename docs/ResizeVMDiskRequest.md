@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Digest** | Pointer to **string** | Prevent changes if current configuration file has different SHA1 digest. This can be used to prevent concurrent modifications. | [optional] 
 **Disk** | **string** | The disk you want to resize. | 
 **Size** | **string** | The new size. With the &#x60;+&#x60; sign the value is added to the actual size of the volume and without it, the value is taken as an absolute one. Shrinking disk size is not supported. | 
-**Skiplock** | Pointer to **int32** | Ignore locks - only root is allowed to use this option. | [optional] 
+**Skiplock** | Pointer to **bool** | Ignore locks - only root is allowed to use this option. | [optional] 
 
 ## Methods
 
@@ -95,20 +95,20 @@ SetSize sets Size field to given value.
 
 ### GetSkiplock
 
-`func (o *ResizeVMDiskRequest) GetSkiplock() int32`
+`func (o *ResizeVMDiskRequest) GetSkiplock() bool`
 
 GetSkiplock returns the Skiplock field if non-nil, zero value otherwise.
 
 ### GetSkiplockOk
 
-`func (o *ResizeVMDiskRequest) GetSkiplockOk() (*int32, bool)`
+`func (o *ResizeVMDiskRequest) GetSkiplockOk() (*bool, bool)`
 
 GetSkiplockOk returns a tuple with the Skiplock field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSkiplock
 
-`func (o *ResizeVMDiskRequest) SetSkiplock(v int32)`
+`func (o *ResizeVMDiskRequest) SetSkiplock(v bool)`
 
 SetSkiplock sets Skiplock field to given value.
 

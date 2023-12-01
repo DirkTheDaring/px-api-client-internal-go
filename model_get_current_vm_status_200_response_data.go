@@ -21,7 +21,7 @@ var _ MappedNullable = &GetCurrentVMStatus200ResponseData{}
 // GetCurrentVMStatus200ResponseData struct for GetCurrentVMStatus200ResponseData
 type GetCurrentVMStatus200ResponseData struct {
 	// QEMU Guest Agent is enabled in config.
-	Agent *int32 `json:"agent,omitempty"`
+	Agent *bool `json:"agent,omitempty"`
 	// Enable a specific clipboard. If not set, depending on the display type the SPICE one will be added.
 	Clipboard *string `json:"clipboard,omitempty"`
 	// Maximum usable CPUs.
@@ -45,7 +45,7 @@ type GetCurrentVMStatus200ResponseData struct {
 	// The currently running QEMU version (if running).
 	RunningQemu *string `json:"running-qemu,omitempty"`
 	// QEMU VGA configuration supports spice.
-	Spice *int32 `json:"spice,omitempty"`
+	Spice *bool `json:"spice,omitempty"`
 	// QEMU process status.
 	Status *string `json:"status,omitempty"`
 	// The current configured tags, if any
@@ -74,9 +74,9 @@ func NewGetCurrentVMStatus200ResponseDataWithDefaults() *GetCurrentVMStatus200Re
 }
 
 // GetAgent returns the Agent field value if set, zero value otherwise.
-func (o *GetCurrentVMStatus200ResponseData) GetAgent() int32 {
+func (o *GetCurrentVMStatus200ResponseData) GetAgent() bool {
 	if o == nil || IsNil(o.Agent) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Agent
@@ -84,7 +84,7 @@ func (o *GetCurrentVMStatus200ResponseData) GetAgent() int32 {
 
 // GetAgentOk returns a tuple with the Agent field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetCurrentVMStatus200ResponseData) GetAgentOk() (*int32, bool) {
+func (o *GetCurrentVMStatus200ResponseData) GetAgentOk() (*bool, bool) {
 	if o == nil || IsNil(o.Agent) {
 		return nil, false
 	}
@@ -100,8 +100,8 @@ func (o *GetCurrentVMStatus200ResponseData) HasAgent() bool {
 	return false
 }
 
-// SetAgent gets a reference to the given int32 and assigns it to the Agent field.
-func (o *GetCurrentVMStatus200ResponseData) SetAgent(v int32) {
+// SetAgent gets a reference to the given bool and assigns it to the Agent field.
+func (o *GetCurrentVMStatus200ResponseData) SetAgent(v bool) {
 	o.Agent = &v
 }
 
@@ -458,9 +458,9 @@ func (o *GetCurrentVMStatus200ResponseData) SetRunningQemu(v string) {
 }
 
 // GetSpice returns the Spice field value if set, zero value otherwise.
-func (o *GetCurrentVMStatus200ResponseData) GetSpice() int32 {
+func (o *GetCurrentVMStatus200ResponseData) GetSpice() bool {
 	if o == nil || IsNil(o.Spice) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Spice
@@ -468,7 +468,7 @@ func (o *GetCurrentVMStatus200ResponseData) GetSpice() int32 {
 
 // GetSpiceOk returns a tuple with the Spice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetCurrentVMStatus200ResponseData) GetSpiceOk() (*int32, bool) {
+func (o *GetCurrentVMStatus200ResponseData) GetSpiceOk() (*bool, bool) {
 	if o == nil || IsNil(o.Spice) {
 		return nil, false
 	}
@@ -484,8 +484,8 @@ func (o *GetCurrentVMStatus200ResponseData) HasSpice() bool {
 	return false
 }
 
-// SetSpice gets a reference to the given int32 and assigns it to the Spice field.
-func (o *GetCurrentVMStatus200ResponseData) SetSpice(v int32) {
+// SetSpice gets a reference to the given bool and assigns it to the Spice field.
+func (o *GetCurrentVMStatus200ResponseData) SetSpice(v bool) {
 	o.Spice = &v
 }
 

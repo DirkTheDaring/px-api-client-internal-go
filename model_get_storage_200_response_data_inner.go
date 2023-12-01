@@ -26,7 +26,7 @@ type GetStorage200ResponseDataInner struct {
 	Nodes *string `json:"nodes,omitempty"`
 	Path *string `json:"path,omitempty"`
 	PruneBackups *string `json:"prune-backups,omitempty"`
-	Shared *int32 `json:"shared,omitempty"`
+	Shared *bool `json:"shared,omitempty"`
 	Thinpool *string `json:"thinpool,omitempty"`
 	Type *string `json:"type,omitempty"`
 	Vgname *string `json:"vgname,omitempty"`
@@ -242,9 +242,9 @@ func (o *GetStorage200ResponseDataInner) SetPruneBackups(v string) {
 }
 
 // GetShared returns the Shared field value if set, zero value otherwise.
-func (o *GetStorage200ResponseDataInner) GetShared() int32 {
+func (o *GetStorage200ResponseDataInner) GetShared() bool {
 	if o == nil || IsNil(o.Shared) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Shared
@@ -252,7 +252,7 @@ func (o *GetStorage200ResponseDataInner) GetShared() int32 {
 
 // GetSharedOk returns a tuple with the Shared field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetStorage200ResponseDataInner) GetSharedOk() (*int32, bool) {
+func (o *GetStorage200ResponseDataInner) GetSharedOk() (*bool, bool) {
 	if o == nil || IsNil(o.Shared) {
 		return nil, false
 	}
@@ -268,8 +268,8 @@ func (o *GetStorage200ResponseDataInner) HasShared() bool {
 	return false
 }
 
-// SetShared gets a reference to the given int32 and assigns it to the Shared field.
-func (o *GetStorage200ResponseDataInner) SetShared(v int32) {
+// SetShared gets a reference to the given bool and assigns it to the Shared field.
+func (o *GetStorage200ResponseDataInner) SetShared(v bool) {
 	o.Shared = &v
 }
 

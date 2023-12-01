@@ -21,7 +21,7 @@ var _ MappedNullable = &RollbackVMSnapshotRequest{}
 // RollbackVMSnapshotRequest struct for RollbackVMSnapshotRequest
 type RollbackVMSnapshotRequest struct {
 	// Whether the VM should get started after rolling back successfully. (Note: VMs will be automatically started if the snapshot includes RAM.)
-	Start *int32 `json:"start,omitempty"`
+	Start *bool `json:"start,omitempty"`
 }
 
 // NewRollbackVMSnapshotRequest instantiates a new RollbackVMSnapshotRequest object
@@ -42,9 +42,9 @@ func NewRollbackVMSnapshotRequestWithDefaults() *RollbackVMSnapshotRequest {
 }
 
 // GetStart returns the Start field value if set, zero value otherwise.
-func (o *RollbackVMSnapshotRequest) GetStart() int32 {
+func (o *RollbackVMSnapshotRequest) GetStart() bool {
 	if o == nil || IsNil(o.Start) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Start
@@ -52,7 +52,7 @@ func (o *RollbackVMSnapshotRequest) GetStart() int32 {
 
 // GetStartOk returns a tuple with the Start field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RollbackVMSnapshotRequest) GetStartOk() (*int32, bool) {
+func (o *RollbackVMSnapshotRequest) GetStartOk() (*bool, bool) {
 	if o == nil || IsNil(o.Start) {
 		return nil, false
 	}
@@ -68,8 +68,8 @@ func (o *RollbackVMSnapshotRequest) HasStart() bool {
 	return false
 }
 
-// SetStart gets a reference to the given int32 and assigns it to the Start field.
-func (o *RollbackVMSnapshotRequest) SetStart(v int32) {
+// SetStart gets a reference to the given bool and assigns it to the Start field.
+func (o *RollbackVMSnapshotRequest) SetStart(v bool) {
 	o.Start = &v
 }
 

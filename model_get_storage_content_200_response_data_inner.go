@@ -31,7 +31,7 @@ type GetStorageContent200ResponseDataInner struct {
 	// Volume identifier of parent (for linked cloned).
 	Parent *string `json:"parent,omitempty"`
 	// Protection status. Currently only supported for backups.
-	Protected *int32 `json:"protected,omitempty"`
+	Protected *bool `json:"protected,omitempty"`
 	// Volume size in bytes.
 	Size *int64 `json:"size,omitempty"`
 	// Used space. Please note that most storage plugins do not report anything useful here.
@@ -221,9 +221,9 @@ func (o *GetStorageContent200ResponseDataInner) SetParent(v string) {
 }
 
 // GetProtected returns the Protected field value if set, zero value otherwise.
-func (o *GetStorageContent200ResponseDataInner) GetProtected() int32 {
+func (o *GetStorageContent200ResponseDataInner) GetProtected() bool {
 	if o == nil || IsNil(o.Protected) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Protected
@@ -231,7 +231,7 @@ func (o *GetStorageContent200ResponseDataInner) GetProtected() int32 {
 
 // GetProtectedOk returns a tuple with the Protected field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetStorageContent200ResponseDataInner) GetProtectedOk() (*int32, bool) {
+func (o *GetStorageContent200ResponseDataInner) GetProtectedOk() (*bool, bool) {
 	if o == nil || IsNil(o.Protected) {
 		return nil, false
 	}
@@ -247,8 +247,8 @@ func (o *GetStorageContent200ResponseDataInner) HasProtected() bool {
 	return false
 }
 
-// SetProtected gets a reference to the given int32 and assigns it to the Protected field.
-func (o *GetStorageContent200ResponseDataInner) SetProtected(v int32) {
+// SetProtected gets a reference to the given bool and assigns it to the Protected field.
+func (o *GetStorageContent200ResponseDataInner) SetProtected(v bool) {
 	o.Protected = &v
 }
 

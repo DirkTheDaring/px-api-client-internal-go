@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Active** | Pointer to **int32** | Set when storage is accessible. | [optional] 
+**Active** | Pointer to **bool** | Set when storage is accessible. | [optional] 
 **Avail** | Pointer to **int64** | Available storage space in bytes. | [optional] 
 **Content** | Pointer to **string** | Allowed storage content types. | [optional] 
-**Enabled** | Pointer to **int32** | Set when storage is enabled (not disabled). | [optional] 
-**Shared** | Pointer to **int32** | Shared flag from storage configuration. | [optional] 
+**Enabled** | Pointer to **bool** | Set when storage is enabled (not disabled). | [optional] 
+**Shared** | Pointer to **bool** | Shared flag from storage configuration. | [optional] 
 **Storage** | Pointer to **string** | The storage identifier. | [optional] 
 **Total** | Pointer to **int64** | Total storage space in bytes. | [optional] 
 **Type** | Pointer to **string** | Storage type. | [optional] 
@@ -36,20 +36,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetActive
 
-`func (o *GetStorages200ResponseDataInner) GetActive() int32`
+`func (o *GetStorages200ResponseDataInner) GetActive() bool`
 
 GetActive returns the Active field if non-nil, zero value otherwise.
 
 ### GetActiveOk
 
-`func (o *GetStorages200ResponseDataInner) GetActiveOk() (*int32, bool)`
+`func (o *GetStorages200ResponseDataInner) GetActiveOk() (*bool, bool)`
 
 GetActiveOk returns a tuple with the Active field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetActive
 
-`func (o *GetStorages200ResponseDataInner) SetActive(v int32)`
+`func (o *GetStorages200ResponseDataInner) SetActive(v bool)`
 
 SetActive sets Active field to given value.
 
@@ -111,20 +111,20 @@ HasContent returns a boolean if a field has been set.
 
 ### GetEnabled
 
-`func (o *GetStorages200ResponseDataInner) GetEnabled() int32`
+`func (o *GetStorages200ResponseDataInner) GetEnabled() bool`
 
 GetEnabled returns the Enabled field if non-nil, zero value otherwise.
 
 ### GetEnabledOk
 
-`func (o *GetStorages200ResponseDataInner) GetEnabledOk() (*int32, bool)`
+`func (o *GetStorages200ResponseDataInner) GetEnabledOk() (*bool, bool)`
 
 GetEnabledOk returns a tuple with the Enabled field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEnabled
 
-`func (o *GetStorages200ResponseDataInner) SetEnabled(v int32)`
+`func (o *GetStorages200ResponseDataInner) SetEnabled(v bool)`
 
 SetEnabled sets Enabled field to given value.
 
@@ -136,20 +136,20 @@ HasEnabled returns a boolean if a field has been set.
 
 ### GetShared
 
-`func (o *GetStorages200ResponseDataInner) GetShared() int32`
+`func (o *GetStorages200ResponseDataInner) GetShared() bool`
 
 GetShared returns the Shared field if non-nil, zero value otherwise.
 
 ### GetSharedOk
 
-`func (o *GetStorages200ResponseDataInner) GetSharedOk() (*int32, bool)`
+`func (o *GetStorages200ResponseDataInner) GetSharedOk() (*bool, bool)`
 
 GetSharedOk returns a tuple with the Shared field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetShared
 
-`func (o *GetStorages200ResponseDataInner) SetShared(v int32)`
+`func (o *GetStorages200ResponseDataInner) SetShared(v bool)`
 
 SetShared sets Shared field to given value.
 

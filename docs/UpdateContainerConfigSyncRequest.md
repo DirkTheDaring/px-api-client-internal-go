@@ -6,11 +6,11 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Arch** | Pointer to **string** | OS architecture type. | [optional] 
 **Cmode** | Pointer to **string** | Console mode. By default, the console command tries to open a connection to one of the available tty devices. By setting cmode to &#39;console&#39; it tries to attach to /dev/console instead. If you set cmode to &#39;shell&#39;, it simply invokes a shell inside the container (no login). | [optional] 
-**Console** | Pointer to **int32** | Attach a console device (/dev/console) to the container. | [optional] 
+**Console** | Pointer to **bool** | Attach a console device (/dev/console) to the container. | [optional] 
 **Cores** | Pointer to **int64** | The number of cores assigned to the container. A container can use all available cores by default. | [optional] 
 **Cpulimit** | Pointer to **float32** | Limit of CPU usage.  NOTE: If the computer has 2 CPUs, it has a total of &#39;2&#39; CPU time. Value &#39;0&#39; indicates no CPU limit. | [optional] 
 **Cpuunits** | Pointer to **int64** | CPU weight for a container, will be clamped to [1, 10000] in cgroup v2. | [optional] 
-**Debug** | Pointer to **int32** | Try to be more verbose. For now this only enables debug log-level on start. | [optional] 
+**Debug** | Pointer to **bool** | Try to be more verbose. For now this only enables debug log-level on start. | [optional] 
 **Delete** | Pointer to **string** | A list of settings you want to delete. | [optional] 
 **Description** | Pointer to **string** | Description for the Container. Shown in the web-interface CT&#39;s summary. This is saved as comment inside the configuration file. | [optional] 
 **Dev0** | Pointer to [**GetContainerConfig200ResponseDataDev0**](GetContainerConfig200ResponseDataDev0.md) |  | [optional] 
@@ -338,19 +338,19 @@ Name | Type | Description | Notes
 **Net29** | Pointer to [**GetContainerConfig200ResponseDataNet0**](GetContainerConfig200ResponseDataNet0.md) |  | [optional] 
 **Net30** | Pointer to [**GetContainerConfig200ResponseDataNet0**](GetContainerConfig200ResponseDataNet0.md) |  | [optional] 
 **Net31** | Pointer to [**GetContainerConfig200ResponseDataNet0**](GetContainerConfig200ResponseDataNet0.md) |  | [optional] 
-**Onboot** | Pointer to **int32** | Specifies whether a container will be started during system bootup. | [optional] 
+**Onboot** | Pointer to **bool** | Specifies whether a container will be started during system bootup. | [optional] 
 **Ostype** | Pointer to **string** | OS type. This is used to setup configuration inside the container, and corresponds to lxc setup scripts in /usr/share/lxc/config/&lt;ostype&gt;.common.conf. Value &#39;unmanaged&#39; can be used to skip and OS specific setup. | [optional] 
-**Protection** | Pointer to **int32** | Sets the protection flag of the container. This will prevent the CT or CT&#39;s disk remove/update operation. | [optional] 
+**Protection** | Pointer to **bool** | Sets the protection flag of the container. This will prevent the CT or CT&#39;s disk remove/update operation. | [optional] 
 **Revert** | Pointer to **string** | Revert a pending change. | [optional] 
 **Rootfs** | Pointer to [**GetContainerConfig200ResponseDataRootfs**](GetContainerConfig200ResponseDataRootfs.md) |  | [optional] 
 **Searchdomain** | Pointer to **string** | Sets DNS search domains for a container. Create will automatically use the setting from the host if you neither set searchdomain nor nameserver. | [optional] 
 **Startup** | Pointer to **string** | Startup and shutdown behavior. Order is a non-negative number defining the general startup order. Shutdown in done with reverse ordering. Additionally you can set the &#39;up&#39; or &#39;down&#39; delay in seconds, which specifies a delay to wait before the next VM is started or stopped. | [optional] 
 **Swap** | Pointer to **int64** | Amount of SWAP for the container in MB. | [optional] 
 **Tags** | Pointer to **string** | Tags of the Container. This is only meta information. | [optional] 
-**Template** | Pointer to **int32** | Enable/disable Template. | [optional] 
+**Template** | Pointer to **bool** | Enable/disable Template. | [optional] 
 **Timezone** | Pointer to **string** | Time zone to use in the container. If option isn&#39;t set, then nothing will be done. Can be set to &#39;host&#39; to match the host time zone, or an arbitrary time zone option from /usr/share/zoneinfo/zone.tab | [optional] 
 **Tty** | Pointer to **int64** | Specify the number of tty available to the container | [optional] 
-**Unprivileged** | Pointer to **int32** | Makes the container run as unprivileged user. (Should not be modified manually.) | [optional] 
+**Unprivileged** | Pointer to **bool** | Makes the container run as unprivileged user. (Should not be modified manually.) | [optional] 
 **Unused0** | Pointer to [**GetContainerConfig200ResponseDataUnused0**](GetContainerConfig200ResponseDataUnused0.md) |  | [optional] 
 **Unused1** | Pointer to [**GetContainerConfig200ResponseDataUnused0**](GetContainerConfig200ResponseDataUnused0.md) |  | [optional] 
 **Unused2** | Pointer to [**GetContainerConfig200ResponseDataUnused0**](GetContainerConfig200ResponseDataUnused0.md) |  | [optional] 
@@ -453,20 +453,20 @@ HasCmode returns a boolean if a field has been set.
 
 ### GetConsole
 
-`func (o *UpdateContainerConfigSyncRequest) GetConsole() int32`
+`func (o *UpdateContainerConfigSyncRequest) GetConsole() bool`
 
 GetConsole returns the Console field if non-nil, zero value otherwise.
 
 ### GetConsoleOk
 
-`func (o *UpdateContainerConfigSyncRequest) GetConsoleOk() (*int32, bool)`
+`func (o *UpdateContainerConfigSyncRequest) GetConsoleOk() (*bool, bool)`
 
 GetConsoleOk returns a tuple with the Console field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetConsole
 
-`func (o *UpdateContainerConfigSyncRequest) SetConsole(v int32)`
+`func (o *UpdateContainerConfigSyncRequest) SetConsole(v bool)`
 
 SetConsole sets Console field to given value.
 
@@ -553,20 +553,20 @@ HasCpuunits returns a boolean if a field has been set.
 
 ### GetDebug
 
-`func (o *UpdateContainerConfigSyncRequest) GetDebug() int32`
+`func (o *UpdateContainerConfigSyncRequest) GetDebug() bool`
 
 GetDebug returns the Debug field if non-nil, zero value otherwise.
 
 ### GetDebugOk
 
-`func (o *UpdateContainerConfigSyncRequest) GetDebugOk() (*int32, bool)`
+`func (o *UpdateContainerConfigSyncRequest) GetDebugOk() (*bool, bool)`
 
 GetDebugOk returns a tuple with the Debug field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDebug
 
-`func (o *UpdateContainerConfigSyncRequest) SetDebug(v int32)`
+`func (o *UpdateContainerConfigSyncRequest) SetDebug(v bool)`
 
 SetDebug sets Debug field to given value.
 
@@ -8753,20 +8753,20 @@ HasNet31 returns a boolean if a field has been set.
 
 ### GetOnboot
 
-`func (o *UpdateContainerConfigSyncRequest) GetOnboot() int32`
+`func (o *UpdateContainerConfigSyncRequest) GetOnboot() bool`
 
 GetOnboot returns the Onboot field if non-nil, zero value otherwise.
 
 ### GetOnbootOk
 
-`func (o *UpdateContainerConfigSyncRequest) GetOnbootOk() (*int32, bool)`
+`func (o *UpdateContainerConfigSyncRequest) GetOnbootOk() (*bool, bool)`
 
 GetOnbootOk returns a tuple with the Onboot field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOnboot
 
-`func (o *UpdateContainerConfigSyncRequest) SetOnboot(v int32)`
+`func (o *UpdateContainerConfigSyncRequest) SetOnboot(v bool)`
 
 SetOnboot sets Onboot field to given value.
 
@@ -8803,20 +8803,20 @@ HasOstype returns a boolean if a field has been set.
 
 ### GetProtection
 
-`func (o *UpdateContainerConfigSyncRequest) GetProtection() int32`
+`func (o *UpdateContainerConfigSyncRequest) GetProtection() bool`
 
 GetProtection returns the Protection field if non-nil, zero value otherwise.
 
 ### GetProtectionOk
 
-`func (o *UpdateContainerConfigSyncRequest) GetProtectionOk() (*int32, bool)`
+`func (o *UpdateContainerConfigSyncRequest) GetProtectionOk() (*bool, bool)`
 
 GetProtectionOk returns a tuple with the Protection field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProtection
 
-`func (o *UpdateContainerConfigSyncRequest) SetProtection(v int32)`
+`func (o *UpdateContainerConfigSyncRequest) SetProtection(v bool)`
 
 SetProtection sets Protection field to given value.
 
@@ -8978,20 +8978,20 @@ HasTags returns a boolean if a field has been set.
 
 ### GetTemplate
 
-`func (o *UpdateContainerConfigSyncRequest) GetTemplate() int32`
+`func (o *UpdateContainerConfigSyncRequest) GetTemplate() bool`
 
 GetTemplate returns the Template field if non-nil, zero value otherwise.
 
 ### GetTemplateOk
 
-`func (o *UpdateContainerConfigSyncRequest) GetTemplateOk() (*int32, bool)`
+`func (o *UpdateContainerConfigSyncRequest) GetTemplateOk() (*bool, bool)`
 
 GetTemplateOk returns a tuple with the Template field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTemplate
 
-`func (o *UpdateContainerConfigSyncRequest) SetTemplate(v int32)`
+`func (o *UpdateContainerConfigSyncRequest) SetTemplate(v bool)`
 
 SetTemplate sets Template field to given value.
 
@@ -9053,20 +9053,20 @@ HasTty returns a boolean if a field has been set.
 
 ### GetUnprivileged
 
-`func (o *UpdateContainerConfigSyncRequest) GetUnprivileged() int32`
+`func (o *UpdateContainerConfigSyncRequest) GetUnprivileged() bool`
 
 GetUnprivileged returns the Unprivileged field if non-nil, zero value otherwise.
 
 ### GetUnprivilegedOk
 
-`func (o *UpdateContainerConfigSyncRequest) GetUnprivilegedOk() (*int32, bool)`
+`func (o *UpdateContainerConfigSyncRequest) GetUnprivilegedOk() (*bool, bool)`
 
 GetUnprivilegedOk returns a tuple with the Unprivileged field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnprivileged
 
-`func (o *UpdateContainerConfigSyncRequest) SetUnprivileged(v int32)`
+`func (o *UpdateContainerConfigSyncRequest) SetUnprivileged(v bool)`
 
 SetUnprivileged sets Unprivileged field to given value.
 

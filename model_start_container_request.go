@@ -21,9 +21,9 @@ var _ MappedNullable = &StartContainerRequest{}
 // StartContainerRequest struct for StartContainerRequest
 type StartContainerRequest struct {
 	// If set, enables very verbose debug log-level on start.
-	Debug *int32 `json:"debug,omitempty"`
+	Debug *bool `json:"debug,omitempty"`
 	// Ignore locks - only root is allowed to use this option.
-	Skiplock *int32 `json:"skiplock,omitempty"`
+	Skiplock *bool `json:"skiplock,omitempty"`
 }
 
 // NewStartContainerRequest instantiates a new StartContainerRequest object
@@ -44,9 +44,9 @@ func NewStartContainerRequestWithDefaults() *StartContainerRequest {
 }
 
 // GetDebug returns the Debug field value if set, zero value otherwise.
-func (o *StartContainerRequest) GetDebug() int32 {
+func (o *StartContainerRequest) GetDebug() bool {
 	if o == nil || IsNil(o.Debug) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Debug
@@ -54,7 +54,7 @@ func (o *StartContainerRequest) GetDebug() int32 {
 
 // GetDebugOk returns a tuple with the Debug field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *StartContainerRequest) GetDebugOk() (*int32, bool) {
+func (o *StartContainerRequest) GetDebugOk() (*bool, bool) {
 	if o == nil || IsNil(o.Debug) {
 		return nil, false
 	}
@@ -70,15 +70,15 @@ func (o *StartContainerRequest) HasDebug() bool {
 	return false
 }
 
-// SetDebug gets a reference to the given int32 and assigns it to the Debug field.
-func (o *StartContainerRequest) SetDebug(v int32) {
+// SetDebug gets a reference to the given bool and assigns it to the Debug field.
+func (o *StartContainerRequest) SetDebug(v bool) {
 	o.Debug = &v
 }
 
 // GetSkiplock returns the Skiplock field value if set, zero value otherwise.
-func (o *StartContainerRequest) GetSkiplock() int32 {
+func (o *StartContainerRequest) GetSkiplock() bool {
 	if o == nil || IsNil(o.Skiplock) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Skiplock
@@ -86,7 +86,7 @@ func (o *StartContainerRequest) GetSkiplock() int32 {
 
 // GetSkiplockOk returns a tuple with the Skiplock field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *StartContainerRequest) GetSkiplockOk() (*int32, bool) {
+func (o *StartContainerRequest) GetSkiplockOk() (*bool, bool) {
 	if o == nil || IsNil(o.Skiplock) {
 		return nil, false
 	}
@@ -102,8 +102,8 @@ func (o *StartContainerRequest) HasSkiplock() bool {
 	return false
 }
 
-// SetSkiplock gets a reference to the given int32 and assigns it to the Skiplock field.
-func (o *StartContainerRequest) SetSkiplock(v int32) {
+// SetSkiplock gets a reference to the given bool and assigns it to the Skiplock field.
+func (o *StartContainerRequest) SetSkiplock(v bool) {
 	o.Skiplock = &v
 }
 

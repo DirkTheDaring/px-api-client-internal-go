@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Agent** | Pointer to **int32** | QEMU Guest Agent is enabled in config. | [optional] 
+**Agent** | Pointer to **bool** | QEMU Guest Agent is enabled in config. | [optional] 
 **Clipboard** | Pointer to **string** | Enable a specific clipboard. If not set, depending on the display type the SPICE one will be added. | [optional] 
 **Cpus** | Pointer to **float32** | Maximum usable CPUs. | [optional] 
 **Ha** | Pointer to **map[string]interface{}** | HA manager service status. | [optional] 
@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **Qmpstatus** | Pointer to **string** | VM run state from the &#39;query-status&#39; QMP monitor command. | [optional] 
 **RunningMachine** | Pointer to **string** | The currently running machine type (if running). | [optional] 
 **RunningQemu** | Pointer to **string** | The currently running QEMU version (if running). | [optional] 
-**Spice** | Pointer to **int32** | QEMU VGA configuration supports spice. | [optional] 
+**Spice** | Pointer to **bool** | QEMU VGA configuration supports spice. | [optional] 
 **Status** | Pointer to **string** | QEMU process status. | [optional] 
 **Tags** | Pointer to **string** | The current configured tags, if any | [optional] 
 **Uptime** | Pointer to **int64** | Uptime. | [optional] 
@@ -43,20 +43,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetAgent
 
-`func (o *GetCurrentVMStatus200ResponseData) GetAgent() int32`
+`func (o *GetCurrentVMStatus200ResponseData) GetAgent() bool`
 
 GetAgent returns the Agent field if non-nil, zero value otherwise.
 
 ### GetAgentOk
 
-`func (o *GetCurrentVMStatus200ResponseData) GetAgentOk() (*int32, bool)`
+`func (o *GetCurrentVMStatus200ResponseData) GetAgentOk() (*bool, bool)`
 
 GetAgentOk returns a tuple with the Agent field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAgent
 
-`func (o *GetCurrentVMStatus200ResponseData) SetAgent(v int32)`
+`func (o *GetCurrentVMStatus200ResponseData) SetAgent(v bool)`
 
 SetAgent sets Agent field to given value.
 
@@ -343,20 +343,20 @@ HasRunningQemu returns a boolean if a field has been set.
 
 ### GetSpice
 
-`func (o *GetCurrentVMStatus200ResponseData) GetSpice() int32`
+`func (o *GetCurrentVMStatus200ResponseData) GetSpice() bool`
 
 GetSpice returns the Spice field if non-nil, zero value otherwise.
 
 ### GetSpiceOk
 
-`func (o *GetCurrentVMStatus200ResponseData) GetSpiceOk() (*int32, bool)`
+`func (o *GetCurrentVMStatus200ResponseData) GetSpiceOk() (*bool, bool)`
 
 GetSpiceOk returns a tuple with the Spice field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSpice
 
-`func (o *GetCurrentVMStatus200ResponseData) SetSpice(v int32)`
+`func (o *GetCurrentVMStatus200ResponseData) SetSpice(v bool)`
 
 SetSpice sets Spice field to given value.
 

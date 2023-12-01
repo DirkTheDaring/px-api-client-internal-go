@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Skiplock** | Pointer to **int32** | Ignore locks - only root is allowed to use this option. | [optional] 
+**Skiplock** | Pointer to **bool** | Ignore locks - only root is allowed to use this option. | [optional] 
 **Statestorage** | Pointer to **string** | The storage for the VM state | [optional] 
-**Todisk** | Pointer to **int32** | If set, suspends the VM to disk. Will be resumed on next VM start. | [optional] 
+**Todisk** | Pointer to **bool** | If set, suspends the VM to disk. Will be resumed on next VM start. | [optional] 
 
 ## Methods
 
@@ -29,20 +29,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetSkiplock
 
-`func (o *SuspendVMRequest) GetSkiplock() int32`
+`func (o *SuspendVMRequest) GetSkiplock() bool`
 
 GetSkiplock returns the Skiplock field if non-nil, zero value otherwise.
 
 ### GetSkiplockOk
 
-`func (o *SuspendVMRequest) GetSkiplockOk() (*int32, bool)`
+`func (o *SuspendVMRequest) GetSkiplockOk() (*bool, bool)`
 
 GetSkiplockOk returns a tuple with the Skiplock field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSkiplock
 
-`func (o *SuspendVMRequest) SetSkiplock(v int32)`
+`func (o *SuspendVMRequest) SetSkiplock(v bool)`
 
 SetSkiplock sets Skiplock field to given value.
 
@@ -79,20 +79,20 @@ HasStatestorage returns a boolean if a field has been set.
 
 ### GetTodisk
 
-`func (o *SuspendVMRequest) GetTodisk() int32`
+`func (o *SuspendVMRequest) GetTodisk() bool`
 
 GetTodisk returns the Todisk field if non-nil, zero value otherwise.
 
 ### GetTodiskOk
 
-`func (o *SuspendVMRequest) GetTodiskOk() (*int32, bool)`
+`func (o *SuspendVMRequest) GetTodiskOk() (*bool, bool)`
 
 GetTodiskOk returns a tuple with the Todisk field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTodisk
 
-`func (o *SuspendVMRequest) SetTodisk(v int32)`
+`func (o *SuspendVMRequest) SetTodisk(v bool)`
 
 SetTodisk sets Todisk field to given value.
 

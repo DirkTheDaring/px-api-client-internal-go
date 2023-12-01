@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** | Snapshot identifier. Value &#39;current&#39; identifies the current VM. | [optional] 
 **Parent** | Pointer to **string** | Parent snapshot identifier. | [optional] 
 **Snaptime** | Pointer to **int64** | Snapshot creation time | [optional] 
-**Vmstate** | Pointer to **int32** | Snapshot includes RAM. | [optional] 
+**Vmstate** | Pointer to **bool** | Snapshot includes RAM. | [optional] 
 
 ## Methods
 
@@ -131,20 +131,20 @@ HasSnaptime returns a boolean if a field has been set.
 
 ### GetVmstate
 
-`func (o *GetVMSnapshots200ResponseDataInner) GetVmstate() int32`
+`func (o *GetVMSnapshots200ResponseDataInner) GetVmstate() bool`
 
 GetVmstate returns the Vmstate field if non-nil, zero value otherwise.
 
 ### GetVmstateOk
 
-`func (o *GetVMSnapshots200ResponseDataInner) GetVmstateOk() (*int32, bool)`
+`func (o *GetVMSnapshots200ResponseDataInner) GetVmstateOk() (*bool, bool)`
 
 GetVmstateOk returns a tuple with the Vmstate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVmstate
 
-`func (o *GetVMSnapshots200ResponseDataInner) SetVmstate(v int32)`
+`func (o *GetVMSnapshots200ResponseDataInner) SetVmstate(v bool)`
 
 SetVmstate sets Vmstate field to given value.
 

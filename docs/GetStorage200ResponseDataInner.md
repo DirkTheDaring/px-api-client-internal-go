@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **Nodes** | Pointer to **string** |  | [optional] 
 **Path** | Pointer to **string** |  | [optional] 
 **PruneBackups** | Pointer to **string** |  | [optional] 
-**Shared** | Pointer to **int32** |  | [optional] 
+**Shared** | Pointer to **bool** |  | [optional] 
 **Thinpool** | Pointer to **string** |  | [optional] 
 **Type** | Pointer to **string** |  | [optional] 
 **Vgname** | Pointer to **string** |  | [optional] 
@@ -186,20 +186,20 @@ HasPruneBackups returns a boolean if a field has been set.
 
 ### GetShared
 
-`func (o *GetStorage200ResponseDataInner) GetShared() int32`
+`func (o *GetStorage200ResponseDataInner) GetShared() bool`
 
 GetShared returns the Shared field if non-nil, zero value otherwise.
 
 ### GetSharedOk
 
-`func (o *GetStorage200ResponseDataInner) GetSharedOk() (*int32, bool)`
+`func (o *GetStorage200ResponseDataInner) GetSharedOk() (*bool, bool)`
 
 GetSharedOk returns a tuple with the Shared field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetShared
 
-`func (o *GetStorage200ResponseDataInner) SetShared(v int32)`
+`func (o *GetStorage200ResponseDataInner) SetShared(v bool)`
 
 SetShared sets Shared field to given value.
 

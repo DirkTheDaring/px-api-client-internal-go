@@ -25,7 +25,7 @@ type UpdateContainerConfigSyncRequest struct {
 	// Console mode. By default, the console command tries to open a connection to one of the available tty devices. By setting cmode to 'console' it tries to attach to /dev/console instead. If you set cmode to 'shell', it simply invokes a shell inside the container (no login).
 	Cmode *string `json:"cmode,omitempty"`
 	// Attach a console device (/dev/console) to the container.
-	Console *int32 `json:"console,omitempty"`
+	Console *bool `json:"console,omitempty"`
 	// The number of cores assigned to the container. A container can use all available cores by default.
 	Cores *int64 `json:"cores,omitempty"`
 	// Limit of CPU usage.  NOTE: If the computer has 2 CPUs, it has a total of '2' CPU time. Value '0' indicates no CPU limit.
@@ -33,7 +33,7 @@ type UpdateContainerConfigSyncRequest struct {
 	// CPU weight for a container, will be clamped to [1, 10000] in cgroup v2.
 	Cpuunits *int64 `json:"cpuunits,omitempty"`
 	// Try to be more verbose. For now this only enables debug log-level on start.
-	Debug *int32 `json:"debug,omitempty"`
+	Debug *bool `json:"debug,omitempty"`
 	// A list of settings you want to delete.
 	Delete *string `json:"delete,omitempty"`
 	// Description for the Container. Shown in the web-interface CT's summary. This is saved as comment inside the configuration file.
@@ -370,11 +370,11 @@ type UpdateContainerConfigSyncRequest struct {
 	Net30 *GetContainerConfig200ResponseDataNet0 `json:"net30,omitempty"`
 	Net31 *GetContainerConfig200ResponseDataNet0 `json:"net31,omitempty"`
 	// Specifies whether a container will be started during system bootup.
-	Onboot *int32 `json:"onboot,omitempty"`
+	Onboot *bool `json:"onboot,omitempty"`
 	// OS type. This is used to setup configuration inside the container, and corresponds to lxc setup scripts in /usr/share/lxc/config/<ostype>.common.conf. Value 'unmanaged' can be used to skip and OS specific setup.
 	Ostype *string `json:"ostype,omitempty"`
 	// Sets the protection flag of the container. This will prevent the CT or CT's disk remove/update operation.
-	Protection *int32 `json:"protection,omitempty"`
+	Protection *bool `json:"protection,omitempty"`
 	// Revert a pending change.
 	Revert *string `json:"revert,omitempty"`
 	Rootfs *GetContainerConfig200ResponseDataRootfs `json:"rootfs,omitempty"`
@@ -387,13 +387,13 @@ type UpdateContainerConfigSyncRequest struct {
 	// Tags of the Container. This is only meta information.
 	Tags *string `json:"tags,omitempty"`
 	// Enable/disable Template.
-	Template *int32 `json:"template,omitempty"`
+	Template *bool `json:"template,omitempty"`
 	// Time zone to use in the container. If option isn't set, then nothing will be done. Can be set to 'host' to match the host time zone, or an arbitrary time zone option from /usr/share/zoneinfo/zone.tab
 	Timezone *string `json:"timezone,omitempty"`
 	// Specify the number of tty available to the container
 	Tty *int64 `json:"tty,omitempty"`
 	// Makes the container run as unprivileged user. (Should not be modified manually.)
-	Unprivileged *int32 `json:"unprivileged,omitempty"`
+	Unprivileged *bool `json:"unprivileged,omitempty"`
 	Unused0 *GetContainerConfig200ResponseDataUnused0 `json:"unused0,omitempty"`
 	Unused1 *GetContainerConfig200ResponseDataUnused0 `json:"unused1,omitempty"`
 	Unused2 *GetContainerConfig200ResponseDataUnused0 `json:"unused2,omitempty"`
@@ -508,9 +508,9 @@ func (o *UpdateContainerConfigSyncRequest) SetCmode(v string) {
 }
 
 // GetConsole returns the Console field value if set, zero value otherwise.
-func (o *UpdateContainerConfigSyncRequest) GetConsole() int32 {
+func (o *UpdateContainerConfigSyncRequest) GetConsole() bool {
 	if o == nil || IsNil(o.Console) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Console
@@ -518,7 +518,7 @@ func (o *UpdateContainerConfigSyncRequest) GetConsole() int32 {
 
 // GetConsoleOk returns a tuple with the Console field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateContainerConfigSyncRequest) GetConsoleOk() (*int32, bool) {
+func (o *UpdateContainerConfigSyncRequest) GetConsoleOk() (*bool, bool) {
 	if o == nil || IsNil(o.Console) {
 		return nil, false
 	}
@@ -534,8 +534,8 @@ func (o *UpdateContainerConfigSyncRequest) HasConsole() bool {
 	return false
 }
 
-// SetConsole gets a reference to the given int32 and assigns it to the Console field.
-func (o *UpdateContainerConfigSyncRequest) SetConsole(v int32) {
+// SetConsole gets a reference to the given bool and assigns it to the Console field.
+func (o *UpdateContainerConfigSyncRequest) SetConsole(v bool) {
 	o.Console = &v
 }
 
@@ -636,9 +636,9 @@ func (o *UpdateContainerConfigSyncRequest) SetCpuunits(v int64) {
 }
 
 // GetDebug returns the Debug field value if set, zero value otherwise.
-func (o *UpdateContainerConfigSyncRequest) GetDebug() int32 {
+func (o *UpdateContainerConfigSyncRequest) GetDebug() bool {
 	if o == nil || IsNil(o.Debug) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Debug
@@ -646,7 +646,7 @@ func (o *UpdateContainerConfigSyncRequest) GetDebug() int32 {
 
 // GetDebugOk returns a tuple with the Debug field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateContainerConfigSyncRequest) GetDebugOk() (*int32, bool) {
+func (o *UpdateContainerConfigSyncRequest) GetDebugOk() (*bool, bool) {
 	if o == nil || IsNil(o.Debug) {
 		return nil, false
 	}
@@ -662,8 +662,8 @@ func (o *UpdateContainerConfigSyncRequest) HasDebug() bool {
 	return false
 }
 
-// SetDebug gets a reference to the given int32 and assigns it to the Debug field.
-func (o *UpdateContainerConfigSyncRequest) SetDebug(v int32) {
+// SetDebug gets a reference to the given bool and assigns it to the Debug field.
+func (o *UpdateContainerConfigSyncRequest) SetDebug(v bool) {
 	o.Debug = &v
 }
 
@@ -11132,9 +11132,9 @@ func (o *UpdateContainerConfigSyncRequest) SetNet31(v GetContainerConfig200Respo
 }
 
 // GetOnboot returns the Onboot field value if set, zero value otherwise.
-func (o *UpdateContainerConfigSyncRequest) GetOnboot() int32 {
+func (o *UpdateContainerConfigSyncRequest) GetOnboot() bool {
 	if o == nil || IsNil(o.Onboot) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Onboot
@@ -11142,7 +11142,7 @@ func (o *UpdateContainerConfigSyncRequest) GetOnboot() int32 {
 
 // GetOnbootOk returns a tuple with the Onboot field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateContainerConfigSyncRequest) GetOnbootOk() (*int32, bool) {
+func (o *UpdateContainerConfigSyncRequest) GetOnbootOk() (*bool, bool) {
 	if o == nil || IsNil(o.Onboot) {
 		return nil, false
 	}
@@ -11158,8 +11158,8 @@ func (o *UpdateContainerConfigSyncRequest) HasOnboot() bool {
 	return false
 }
 
-// SetOnboot gets a reference to the given int32 and assigns it to the Onboot field.
-func (o *UpdateContainerConfigSyncRequest) SetOnboot(v int32) {
+// SetOnboot gets a reference to the given bool and assigns it to the Onboot field.
+func (o *UpdateContainerConfigSyncRequest) SetOnboot(v bool) {
 	o.Onboot = &v
 }
 
@@ -11196,9 +11196,9 @@ func (o *UpdateContainerConfigSyncRequest) SetOstype(v string) {
 }
 
 // GetProtection returns the Protection field value if set, zero value otherwise.
-func (o *UpdateContainerConfigSyncRequest) GetProtection() int32 {
+func (o *UpdateContainerConfigSyncRequest) GetProtection() bool {
 	if o == nil || IsNil(o.Protection) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Protection
@@ -11206,7 +11206,7 @@ func (o *UpdateContainerConfigSyncRequest) GetProtection() int32 {
 
 // GetProtectionOk returns a tuple with the Protection field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateContainerConfigSyncRequest) GetProtectionOk() (*int32, bool) {
+func (o *UpdateContainerConfigSyncRequest) GetProtectionOk() (*bool, bool) {
 	if o == nil || IsNil(o.Protection) {
 		return nil, false
 	}
@@ -11222,8 +11222,8 @@ func (o *UpdateContainerConfigSyncRequest) HasProtection() bool {
 	return false
 }
 
-// SetProtection gets a reference to the given int32 and assigns it to the Protection field.
-func (o *UpdateContainerConfigSyncRequest) SetProtection(v int32) {
+// SetProtection gets a reference to the given bool and assigns it to the Protection field.
+func (o *UpdateContainerConfigSyncRequest) SetProtection(v bool) {
 	o.Protection = &v
 }
 
@@ -11420,9 +11420,9 @@ func (o *UpdateContainerConfigSyncRequest) SetTags(v string) {
 }
 
 // GetTemplate returns the Template field value if set, zero value otherwise.
-func (o *UpdateContainerConfigSyncRequest) GetTemplate() int32 {
+func (o *UpdateContainerConfigSyncRequest) GetTemplate() bool {
 	if o == nil || IsNil(o.Template) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Template
@@ -11430,7 +11430,7 @@ func (o *UpdateContainerConfigSyncRequest) GetTemplate() int32 {
 
 // GetTemplateOk returns a tuple with the Template field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateContainerConfigSyncRequest) GetTemplateOk() (*int32, bool) {
+func (o *UpdateContainerConfigSyncRequest) GetTemplateOk() (*bool, bool) {
 	if o == nil || IsNil(o.Template) {
 		return nil, false
 	}
@@ -11446,8 +11446,8 @@ func (o *UpdateContainerConfigSyncRequest) HasTemplate() bool {
 	return false
 }
 
-// SetTemplate gets a reference to the given int32 and assigns it to the Template field.
-func (o *UpdateContainerConfigSyncRequest) SetTemplate(v int32) {
+// SetTemplate gets a reference to the given bool and assigns it to the Template field.
+func (o *UpdateContainerConfigSyncRequest) SetTemplate(v bool) {
 	o.Template = &v
 }
 
@@ -11516,9 +11516,9 @@ func (o *UpdateContainerConfigSyncRequest) SetTty(v int64) {
 }
 
 // GetUnprivileged returns the Unprivileged field value if set, zero value otherwise.
-func (o *UpdateContainerConfigSyncRequest) GetUnprivileged() int32 {
+func (o *UpdateContainerConfigSyncRequest) GetUnprivileged() bool {
 	if o == nil || IsNil(o.Unprivileged) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Unprivileged
@@ -11526,7 +11526,7 @@ func (o *UpdateContainerConfigSyncRequest) GetUnprivileged() int32 {
 
 // GetUnprivilegedOk returns a tuple with the Unprivileged field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateContainerConfigSyncRequest) GetUnprivilegedOk() (*int32, bool) {
+func (o *UpdateContainerConfigSyncRequest) GetUnprivilegedOk() (*bool, bool) {
 	if o == nil || IsNil(o.Unprivileged) {
 		return nil, false
 	}
@@ -11542,8 +11542,8 @@ func (o *UpdateContainerConfigSyncRequest) HasUnprivileged() bool {
 	return false
 }
 
-// SetUnprivileged gets a reference to the given int32 and assigns it to the Unprivileged field.
-func (o *UpdateContainerConfigSyncRequest) SetUnprivileged(v int32) {
+// SetUnprivileged gets a reference to the given bool and assigns it to the Unprivileged field.
+func (o *UpdateContainerConfigSyncRequest) SetUnprivileged(v bool) {
 	o.Unprivileged = &v
 }
 

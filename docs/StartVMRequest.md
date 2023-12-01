@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **Migratedfrom** | Pointer to **string** | The cluster node name. | [optional] 
 **MigrationNetwork** | Pointer to **string** | CIDR of the (sub) network that is used for migration. | [optional] 
 **MigrationType** | Pointer to **string** | Migration traffic is encrypted using an SSH tunnel by default. On secure, completely private networks this can be disabled to increase performance. | [optional] 
-**Skiplock** | Pointer to **int32** | Ignore locks - only root is allowed to use this option. | [optional] 
+**Skiplock** | Pointer to **bool** | Ignore locks - only root is allowed to use this option. | [optional] 
 **Stateuri** | Pointer to **string** | Some command save/restore state from this location. | [optional] 
 **Targetstorage** | Pointer to **string** | Mapping from source to target storages. Providing only a single storage ID maps all source storages to that storage. Providing the special value &#39;1&#39; will map each source storage to itself. | [optional] 
 **Timeout** | Pointer to **int64** | Wait maximal timeout seconds. | [optional] 
@@ -160,20 +160,20 @@ HasMigrationType returns a boolean if a field has been set.
 
 ### GetSkiplock
 
-`func (o *StartVMRequest) GetSkiplock() int32`
+`func (o *StartVMRequest) GetSkiplock() bool`
 
 GetSkiplock returns the Skiplock field if non-nil, zero value otherwise.
 
 ### GetSkiplockOk
 
-`func (o *StartVMRequest) GetSkiplockOk() (*int32, bool)`
+`func (o *StartVMRequest) GetSkiplockOk() (*bool, bool)`
 
 GetSkiplockOk returns a tuple with the Skiplock field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSkiplock
 
-`func (o *StartVMRequest) SetSkiplock(v int32)`
+`func (o *StartVMRequest) SetSkiplock(v bool)`
 
 SetSkiplock sets Skiplock field to given value.
 

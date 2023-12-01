@@ -21,7 +21,7 @@ var _ MappedNullable = &ShutdownContainerRequest{}
 // ShutdownContainerRequest struct for ShutdownContainerRequest
 type ShutdownContainerRequest struct {
 	// Make sure the Container stops.
-	ForceStop *int32 `json:"forceStop,omitempty"`
+	ForceStop *bool `json:"forceStop,omitempty"`
 	// Wait maximal timeout seconds.
 	Timeout *int64 `json:"timeout,omitempty"`
 }
@@ -44,9 +44,9 @@ func NewShutdownContainerRequestWithDefaults() *ShutdownContainerRequest {
 }
 
 // GetForceStop returns the ForceStop field value if set, zero value otherwise.
-func (o *ShutdownContainerRequest) GetForceStop() int32 {
+func (o *ShutdownContainerRequest) GetForceStop() bool {
 	if o == nil || IsNil(o.ForceStop) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.ForceStop
@@ -54,7 +54,7 @@ func (o *ShutdownContainerRequest) GetForceStop() int32 {
 
 // GetForceStopOk returns a tuple with the ForceStop field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ShutdownContainerRequest) GetForceStopOk() (*int32, bool) {
+func (o *ShutdownContainerRequest) GetForceStopOk() (*bool, bool) {
 	if o == nil || IsNil(o.ForceStop) {
 		return nil, false
 	}
@@ -70,8 +70,8 @@ func (o *ShutdownContainerRequest) HasForceStop() bool {
 	return false
 }
 
-// SetForceStop gets a reference to the given int32 and assigns it to the ForceStop field.
-func (o *ShutdownContainerRequest) SetForceStop(v int32) {
+// SetForceStop gets a reference to the given bool and assigns it to the ForceStop field.
+func (o *ShutdownContainerRequest) SetForceStop(v bool) {
 	o.ForceStop = &v
 }
 

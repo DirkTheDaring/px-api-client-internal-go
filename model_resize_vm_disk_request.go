@@ -27,7 +27,7 @@ type ResizeVMDiskRequest struct {
 	// The new size. With the `+` sign the value is added to the actual size of the volume and without it, the value is taken as an absolute one. Shrinking disk size is not supported.
 	Size string `json:"size"`
 	// Ignore locks - only root is allowed to use this option.
-	Skiplock *int32 `json:"skiplock,omitempty"`
+	Skiplock *bool `json:"skiplock,omitempty"`
 }
 
 // NewResizeVMDiskRequest instantiates a new ResizeVMDiskRequest object
@@ -130,9 +130,9 @@ func (o *ResizeVMDiskRequest) SetSize(v string) {
 }
 
 // GetSkiplock returns the Skiplock field value if set, zero value otherwise.
-func (o *ResizeVMDiskRequest) GetSkiplock() int32 {
+func (o *ResizeVMDiskRequest) GetSkiplock() bool {
 	if o == nil || IsNil(o.Skiplock) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Skiplock
@@ -140,7 +140,7 @@ func (o *ResizeVMDiskRequest) GetSkiplock() int32 {
 
 // GetSkiplockOk returns a tuple with the Skiplock field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ResizeVMDiskRequest) GetSkiplockOk() (*int32, bool) {
+func (o *ResizeVMDiskRequest) GetSkiplockOk() (*bool, bool) {
 	if o == nil || IsNil(o.Skiplock) {
 		return nil, false
 	}
@@ -156,8 +156,8 @@ func (o *ResizeVMDiskRequest) HasSkiplock() bool {
 	return false
 }
 
-// SetSkiplock gets a reference to the given int32 and assigns it to the Skiplock field.
-func (o *ResizeVMDiskRequest) SetSkiplock(v int32) {
+// SetSkiplock gets a reference to the given bool and assigns it to the Skiplock field.
+func (o *ResizeVMDiskRequest) SetSkiplock(v bool) {
 	o.Skiplock = &v
 }
 

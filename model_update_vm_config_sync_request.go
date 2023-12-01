@@ -21,7 +21,7 @@ var _ MappedNullable = &UpdateVMConfigSyncRequest{}
 // UpdateVMConfigSyncRequest struct for UpdateVMConfigSyncRequest
 type UpdateVMConfigSyncRequest struct {
 	// Enable/disable ACPI.
-	Acpi *int32 `json:"acpi,omitempty"`
+	Acpi *bool `json:"acpi,omitempty"`
 	// List of host cores used to execute guest processes, for example: 0,5,8-11
 	Affinity *string `json:"affinity,omitempty"`
 	Agent *GetVMConfig200ResponseDataAgent `json:"agent,omitempty"`
@@ -31,7 +31,7 @@ type UpdateVMConfigSyncRequest struct {
 	Args *string `json:"args,omitempty"`
 	Audio0 *GetVMConfig200ResponseDataAudio0 `json:"audio0,omitempty"`
 	// Automatic restart after crash (currently ignored).
-	Autostart *int32 `json:"autostart,omitempty"`
+	Autostart *bool `json:"autostart,omitempty"`
 	// Amount of target RAM for the VM in MiB. Using zero disables the ballon driver.
 	Balloon *int64 `json:"balloon,omitempty"`
 	// Select BIOS implementation.
@@ -48,7 +48,7 @@ type UpdateVMConfigSyncRequest struct {
 	// Specifies the cloud-init configuration format. The default depends on the configured operating system type (`ostype`. We use the `nocloud` format for Linux, and `configdrive2` for windows.
 	Citype *string `json:"citype,omitempty"`
 	// cloud-init: do an automatic package upgrade after the first boot.
-	Ciupgrade *int32 `json:"ciupgrade,omitempty"`
+	Ciupgrade *bool `json:"ciupgrade,omitempty"`
 	// cloud-init: User name to change ssh keys and password for instead of the image's configured default user.
 	Ciuser *string `json:"ciuser,omitempty"`
 	// The number of cores per socket.
@@ -67,9 +67,9 @@ type UpdateVMConfigSyncRequest struct {
 	Digest *string `json:"digest,omitempty"`
 	Efidisk0 *CreateVMRequestEfidisk0 `json:"efidisk0,omitempty"`
 	// Force physical removal. Without this, we simple remove the disk from the config file and create an additional configuration entry called 'unused[n]', which contains the volume ID. Unlink of unused[n] always cause physical removal.
-	Force *int32 `json:"force,omitempty"`
+	Force *bool `json:"force,omitempty"`
 	// Freeze CPU at startup (use 'c' monitor command to start execution).
-	Freeze *int32 `json:"freeze,omitempty"`
+	Freeze *bool `json:"freeze,omitempty"`
 	// Script that will be executed during various steps in the vms lifetime.
 	Hookscript *string `json:"hookscript,omitempty"`
 	// Map host PCI devices into guest.
@@ -172,18 +172,19 @@ type UpdateVMConfigSyncRequest struct {
 	Ipconfig29 *GetVMConfig200ResponseDataIpconfig0 `json:"ipconfig29,omitempty"`
 	Ivshmem *GetVMConfig200ResponseDataIvshmem `json:"ivshmem,omitempty"`
 	// Use together with hugepages. If enabled, hugepages will not not be deleted after VM shutdown and can be used for subsequent starts.
-	Keephugepages *int32 `json:"keephugepages,omitempty"`
+	Keephugepages *bool `json:"keephugepages,omitempty"`
 	// Keyboard layout for VNC server. This option is generally not required and is often better handled from within the guest OS.
 	Keyboard *string `json:"keyboard,omitempty"`
 	// Enable/disable KVM hardware virtualization.
-	Kvm *int32 `json:"kvm,omitempty"`
+	Kvm *bool `json:"kvm,omitempty"`
 	// Set the real time clock (RTC) to local time. This is enabled by default if the `ostype` indicates a Microsoft Windows OS.
-	Localtime *int32 `json:"localtime,omitempty"`
+	Localtime *bool `json:"localtime,omitempty"`
 	// Lock/unlock the VM.
 	Lock *string `json:"lock,omitempty"`
 	// Specifies the QEMU machine type.
 	Machine *string `json:"machine,omitempty"`
-	Memory *GetVMConfig200ResponseDataMemory `json:"memory,omitempty"`
+	// Memory properties.
+	Memory *string `json:"memory,omitempty"`
 	// Set maximum tolerated downtime (in seconds) for migrations.
 	MigrateDowntime *float32 `json:"migrate_downtime,omitempty"`
 	// Set maximum speed (in MB/s) for migrations. Value 0 is no limit.
@@ -225,7 +226,7 @@ type UpdateVMConfigSyncRequest struct {
 	Net30 *GetVMConfig200ResponseDataNet0 `json:"net30,omitempty"`
 	Net31 *GetVMConfig200ResponseDataNet0 `json:"net31,omitempty"`
 	// Enable/disable NUMA.
-	Numa *int32 `json:"numa,omitempty"`
+	Numa *bool `json:"numa,omitempty"`
 	Numa0 *GetVMConfig200ResponseDataNuma0 `json:"numa0,omitempty"`
 	Numa1 *GetVMConfig200ResponseDataNuma0 `json:"numa1,omitempty"`
 	Numa2 *GetVMConfig200ResponseDataNuma0 `json:"numa2,omitempty"`
@@ -257,7 +258,7 @@ type UpdateVMConfigSyncRequest struct {
 	Numa28 *GetVMConfig200ResponseDataNuma0 `json:"numa28,omitempty"`
 	Numa29 *GetVMConfig200ResponseDataNuma0 `json:"numa29,omitempty"`
 	// Specifies whether a VM will be started during system bootup.
-	Onboot *int32 `json:"onboot,omitempty"`
+	Onboot *bool `json:"onboot,omitempty"`
 	// Specify guest operating system.
 	Ostype *string `json:"ostype,omitempty"`
 	// Map host parallel devices (n is 0 to 2).
@@ -269,9 +270,9 @@ type UpdateVMConfigSyncRequest struct {
 	// Map host parallel devices (n is 0 to 2).
 	Parallel3 *string `json:"parallel3,omitempty"`
 	// Sets the protection flag of the VM. This will disable the remove VM and remove disk operations.
-	Protection *int32 `json:"protection,omitempty"`
+	Protection *bool `json:"protection,omitempty"`
 	// Allow reboot. If set to '0' the VM exit on reboot.
-	Reboot *int32 `json:"reboot,omitempty"`
+	Reboot *bool `json:"reboot,omitempty"`
 	// Revert a pending change.
 	Revert *string `json:"revert,omitempty"`
 	Rng0 *GetVMConfig200ResponseDataRng0 `json:"rng0,omitempty"`
@@ -326,7 +327,7 @@ type UpdateVMConfigSyncRequest struct {
 	// Amount of memory shares for auto-ballooning. The larger the number is, the more memory this VM gets. Number is relative to weights of all other running VMs. Using zero disables auto-ballooning. Auto-ballooning is done by pvestatd.
 	Shares *int64 `json:"shares,omitempty"`
 	// Ignore locks - only root is allowed to use this option.
-	Skiplock *int32 `json:"skiplock,omitempty"`
+	Skiplock *bool `json:"skiplock,omitempty"`
 	// Specify SMBIOS type 1 fields.
 	Smbios1 *string `json:"smbios1,omitempty"`
 	// The number of CPUs. Please use option -sockets instead.
@@ -341,13 +342,13 @@ type UpdateVMConfigSyncRequest struct {
 	// Startup and shutdown behavior. Order is a non-negative number defining the general startup order. Shutdown in done with reverse ordering. Additionally you can set the 'up' or 'down' delay in seconds, which specifies a delay to wait before the next VM is started or stopped.
 	Startup *string `json:"startup,omitempty"`
 	// Enable/disable the USB tablet device.
-	Tablet *int32 `json:"tablet,omitempty"`
+	Tablet *bool `json:"tablet,omitempty"`
 	// Tags of the VM. This is only meta information.
 	Tags *string `json:"tags,omitempty"`
 	// Enable/disable time drift fix.
-	Tdf *int32 `json:"tdf,omitempty"`
+	Tdf *bool `json:"tdf,omitempty"`
 	// Enable/disable Template.
-	Template *int32 `json:"template,omitempty"`
+	Template *bool `json:"template,omitempty"`
 	Tpmstate0 *CreateVMRequestTpmstate0 `json:"tpmstate0,omitempty"`
 	Unused0 *GetVMConfig200ResponseDataUnused0 `json:"unused0,omitempty"`
 	Unused1 *GetVMConfig200ResponseDataUnused0 `json:"unused1,omitempty"`
@@ -427,9 +428,9 @@ func NewUpdateVMConfigSyncRequestWithDefaults() *UpdateVMConfigSyncRequest {
 }
 
 // GetAcpi returns the Acpi field value if set, zero value otherwise.
-func (o *UpdateVMConfigSyncRequest) GetAcpi() int32 {
+func (o *UpdateVMConfigSyncRequest) GetAcpi() bool {
 	if o == nil || IsNil(o.Acpi) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Acpi
@@ -437,7 +438,7 @@ func (o *UpdateVMConfigSyncRequest) GetAcpi() int32 {
 
 // GetAcpiOk returns a tuple with the Acpi field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateVMConfigSyncRequest) GetAcpiOk() (*int32, bool) {
+func (o *UpdateVMConfigSyncRequest) GetAcpiOk() (*bool, bool) {
 	if o == nil || IsNil(o.Acpi) {
 		return nil, false
 	}
@@ -453,8 +454,8 @@ func (o *UpdateVMConfigSyncRequest) HasAcpi() bool {
 	return false
 }
 
-// SetAcpi gets a reference to the given int32 and assigns it to the Acpi field.
-func (o *UpdateVMConfigSyncRequest) SetAcpi(v int32) {
+// SetAcpi gets a reference to the given bool and assigns it to the Acpi field.
+func (o *UpdateVMConfigSyncRequest) SetAcpi(v bool) {
 	o.Acpi = &v
 }
 
@@ -619,9 +620,9 @@ func (o *UpdateVMConfigSyncRequest) SetAudio0(v GetVMConfig200ResponseDataAudio0
 }
 
 // GetAutostart returns the Autostart field value if set, zero value otherwise.
-func (o *UpdateVMConfigSyncRequest) GetAutostart() int32 {
+func (o *UpdateVMConfigSyncRequest) GetAutostart() bool {
 	if o == nil || IsNil(o.Autostart) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Autostart
@@ -629,7 +630,7 @@ func (o *UpdateVMConfigSyncRequest) GetAutostart() int32 {
 
 // GetAutostartOk returns a tuple with the Autostart field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateVMConfigSyncRequest) GetAutostartOk() (*int32, bool) {
+func (o *UpdateVMConfigSyncRequest) GetAutostartOk() (*bool, bool) {
 	if o == nil || IsNil(o.Autostart) {
 		return nil, false
 	}
@@ -645,8 +646,8 @@ func (o *UpdateVMConfigSyncRequest) HasAutostart() bool {
 	return false
 }
 
-// SetAutostart gets a reference to the given int32 and assigns it to the Autostart field.
-func (o *UpdateVMConfigSyncRequest) SetAutostart(v int32) {
+// SetAutostart gets a reference to the given bool and assigns it to the Autostart field.
+func (o *UpdateVMConfigSyncRequest) SetAutostart(v bool) {
 	o.Autostart = &v
 }
 
@@ -907,9 +908,9 @@ func (o *UpdateVMConfigSyncRequest) SetCitype(v string) {
 }
 
 // GetCiupgrade returns the Ciupgrade field value if set, zero value otherwise.
-func (o *UpdateVMConfigSyncRequest) GetCiupgrade() int32 {
+func (o *UpdateVMConfigSyncRequest) GetCiupgrade() bool {
 	if o == nil || IsNil(o.Ciupgrade) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Ciupgrade
@@ -917,7 +918,7 @@ func (o *UpdateVMConfigSyncRequest) GetCiupgrade() int32 {
 
 // GetCiupgradeOk returns a tuple with the Ciupgrade field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateVMConfigSyncRequest) GetCiupgradeOk() (*int32, bool) {
+func (o *UpdateVMConfigSyncRequest) GetCiupgradeOk() (*bool, bool) {
 	if o == nil || IsNil(o.Ciupgrade) {
 		return nil, false
 	}
@@ -933,8 +934,8 @@ func (o *UpdateVMConfigSyncRequest) HasCiupgrade() bool {
 	return false
 }
 
-// SetCiupgrade gets a reference to the given int32 and assigns it to the Ciupgrade field.
-func (o *UpdateVMConfigSyncRequest) SetCiupgrade(v int32) {
+// SetCiupgrade gets a reference to the given bool and assigns it to the Ciupgrade field.
+func (o *UpdateVMConfigSyncRequest) SetCiupgrade(v bool) {
 	o.Ciupgrade = &v
 }
 
@@ -1227,9 +1228,9 @@ func (o *UpdateVMConfigSyncRequest) SetEfidisk0(v CreateVMRequestEfidisk0) {
 }
 
 // GetForce returns the Force field value if set, zero value otherwise.
-func (o *UpdateVMConfigSyncRequest) GetForce() int32 {
+func (o *UpdateVMConfigSyncRequest) GetForce() bool {
 	if o == nil || IsNil(o.Force) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Force
@@ -1237,7 +1238,7 @@ func (o *UpdateVMConfigSyncRequest) GetForce() int32 {
 
 // GetForceOk returns a tuple with the Force field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateVMConfigSyncRequest) GetForceOk() (*int32, bool) {
+func (o *UpdateVMConfigSyncRequest) GetForceOk() (*bool, bool) {
 	if o == nil || IsNil(o.Force) {
 		return nil, false
 	}
@@ -1253,15 +1254,15 @@ func (o *UpdateVMConfigSyncRequest) HasForce() bool {
 	return false
 }
 
-// SetForce gets a reference to the given int32 and assigns it to the Force field.
-func (o *UpdateVMConfigSyncRequest) SetForce(v int32) {
+// SetForce gets a reference to the given bool and assigns it to the Force field.
+func (o *UpdateVMConfigSyncRequest) SetForce(v bool) {
 	o.Force = &v
 }
 
 // GetFreeze returns the Freeze field value if set, zero value otherwise.
-func (o *UpdateVMConfigSyncRequest) GetFreeze() int32 {
+func (o *UpdateVMConfigSyncRequest) GetFreeze() bool {
 	if o == nil || IsNil(o.Freeze) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Freeze
@@ -1269,7 +1270,7 @@ func (o *UpdateVMConfigSyncRequest) GetFreeze() int32 {
 
 // GetFreezeOk returns a tuple with the Freeze field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateVMConfigSyncRequest) GetFreezeOk() (*int32, bool) {
+func (o *UpdateVMConfigSyncRequest) GetFreezeOk() (*bool, bool) {
 	if o == nil || IsNil(o.Freeze) {
 		return nil, false
 	}
@@ -1285,8 +1286,8 @@ func (o *UpdateVMConfigSyncRequest) HasFreeze() bool {
 	return false
 }
 
-// SetFreeze gets a reference to the given int32 and assigns it to the Freeze field.
-func (o *UpdateVMConfigSyncRequest) SetFreeze(v int32) {
+// SetFreeze gets a reference to the given bool and assigns it to the Freeze field.
+func (o *UpdateVMConfigSyncRequest) SetFreeze(v bool) {
 	o.Freeze = &v
 }
 
@@ -3467,9 +3468,9 @@ func (o *UpdateVMConfigSyncRequest) SetIvshmem(v GetVMConfig200ResponseDataIvshm
 }
 
 // GetKeephugepages returns the Keephugepages field value if set, zero value otherwise.
-func (o *UpdateVMConfigSyncRequest) GetKeephugepages() int32 {
+func (o *UpdateVMConfigSyncRequest) GetKeephugepages() bool {
 	if o == nil || IsNil(o.Keephugepages) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Keephugepages
@@ -3477,7 +3478,7 @@ func (o *UpdateVMConfigSyncRequest) GetKeephugepages() int32 {
 
 // GetKeephugepagesOk returns a tuple with the Keephugepages field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateVMConfigSyncRequest) GetKeephugepagesOk() (*int32, bool) {
+func (o *UpdateVMConfigSyncRequest) GetKeephugepagesOk() (*bool, bool) {
 	if o == nil || IsNil(o.Keephugepages) {
 		return nil, false
 	}
@@ -3493,8 +3494,8 @@ func (o *UpdateVMConfigSyncRequest) HasKeephugepages() bool {
 	return false
 }
 
-// SetKeephugepages gets a reference to the given int32 and assigns it to the Keephugepages field.
-func (o *UpdateVMConfigSyncRequest) SetKeephugepages(v int32) {
+// SetKeephugepages gets a reference to the given bool and assigns it to the Keephugepages field.
+func (o *UpdateVMConfigSyncRequest) SetKeephugepages(v bool) {
 	o.Keephugepages = &v
 }
 
@@ -3531,9 +3532,9 @@ func (o *UpdateVMConfigSyncRequest) SetKeyboard(v string) {
 }
 
 // GetKvm returns the Kvm field value if set, zero value otherwise.
-func (o *UpdateVMConfigSyncRequest) GetKvm() int32 {
+func (o *UpdateVMConfigSyncRequest) GetKvm() bool {
 	if o == nil || IsNil(o.Kvm) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Kvm
@@ -3541,7 +3542,7 @@ func (o *UpdateVMConfigSyncRequest) GetKvm() int32 {
 
 // GetKvmOk returns a tuple with the Kvm field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateVMConfigSyncRequest) GetKvmOk() (*int32, bool) {
+func (o *UpdateVMConfigSyncRequest) GetKvmOk() (*bool, bool) {
 	if o == nil || IsNil(o.Kvm) {
 		return nil, false
 	}
@@ -3557,15 +3558,15 @@ func (o *UpdateVMConfigSyncRequest) HasKvm() bool {
 	return false
 }
 
-// SetKvm gets a reference to the given int32 and assigns it to the Kvm field.
-func (o *UpdateVMConfigSyncRequest) SetKvm(v int32) {
+// SetKvm gets a reference to the given bool and assigns it to the Kvm field.
+func (o *UpdateVMConfigSyncRequest) SetKvm(v bool) {
 	o.Kvm = &v
 }
 
 // GetLocaltime returns the Localtime field value if set, zero value otherwise.
-func (o *UpdateVMConfigSyncRequest) GetLocaltime() int32 {
+func (o *UpdateVMConfigSyncRequest) GetLocaltime() bool {
 	if o == nil || IsNil(o.Localtime) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Localtime
@@ -3573,7 +3574,7 @@ func (o *UpdateVMConfigSyncRequest) GetLocaltime() int32 {
 
 // GetLocaltimeOk returns a tuple with the Localtime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateVMConfigSyncRequest) GetLocaltimeOk() (*int32, bool) {
+func (o *UpdateVMConfigSyncRequest) GetLocaltimeOk() (*bool, bool) {
 	if o == nil || IsNil(o.Localtime) {
 		return nil, false
 	}
@@ -3589,8 +3590,8 @@ func (o *UpdateVMConfigSyncRequest) HasLocaltime() bool {
 	return false
 }
 
-// SetLocaltime gets a reference to the given int32 and assigns it to the Localtime field.
-func (o *UpdateVMConfigSyncRequest) SetLocaltime(v int32) {
+// SetLocaltime gets a reference to the given bool and assigns it to the Localtime field.
+func (o *UpdateVMConfigSyncRequest) SetLocaltime(v bool) {
 	o.Localtime = &v
 }
 
@@ -3659,9 +3660,9 @@ func (o *UpdateVMConfigSyncRequest) SetMachine(v string) {
 }
 
 // GetMemory returns the Memory field value if set, zero value otherwise.
-func (o *UpdateVMConfigSyncRequest) GetMemory() GetVMConfig200ResponseDataMemory {
+func (o *UpdateVMConfigSyncRequest) GetMemory() string {
 	if o == nil || IsNil(o.Memory) {
-		var ret GetVMConfig200ResponseDataMemory
+		var ret string
 		return ret
 	}
 	return *o.Memory
@@ -3669,7 +3670,7 @@ func (o *UpdateVMConfigSyncRequest) GetMemory() GetVMConfig200ResponseDataMemory
 
 // GetMemoryOk returns a tuple with the Memory field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateVMConfigSyncRequest) GetMemoryOk() (*GetVMConfig200ResponseDataMemory, bool) {
+func (o *UpdateVMConfigSyncRequest) GetMemoryOk() (*string, bool) {
 	if o == nil || IsNil(o.Memory) {
 		return nil, false
 	}
@@ -3685,8 +3686,8 @@ func (o *UpdateVMConfigSyncRequest) HasMemory() bool {
 	return false
 }
 
-// SetMemory gets a reference to the given GetVMConfig200ResponseDataMemory and assigns it to the Memory field.
-func (o *UpdateVMConfigSyncRequest) SetMemory(v GetVMConfig200ResponseDataMemory) {
+// SetMemory gets a reference to the given string and assigns it to the Memory field.
+func (o *UpdateVMConfigSyncRequest) SetMemory(v string) {
 	o.Memory = &v
 }
 
@@ -4843,9 +4844,9 @@ func (o *UpdateVMConfigSyncRequest) SetNet31(v GetVMConfig200ResponseDataNet0) {
 }
 
 // GetNuma returns the Numa field value if set, zero value otherwise.
-func (o *UpdateVMConfigSyncRequest) GetNuma() int32 {
+func (o *UpdateVMConfigSyncRequest) GetNuma() bool {
 	if o == nil || IsNil(o.Numa) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Numa
@@ -4853,7 +4854,7 @@ func (o *UpdateVMConfigSyncRequest) GetNuma() int32 {
 
 // GetNumaOk returns a tuple with the Numa field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateVMConfigSyncRequest) GetNumaOk() (*int32, bool) {
+func (o *UpdateVMConfigSyncRequest) GetNumaOk() (*bool, bool) {
 	if o == nil || IsNil(o.Numa) {
 		return nil, false
 	}
@@ -4869,8 +4870,8 @@ func (o *UpdateVMConfigSyncRequest) HasNuma() bool {
 	return false
 }
 
-// SetNuma gets a reference to the given int32 and assigns it to the Numa field.
-func (o *UpdateVMConfigSyncRequest) SetNuma(v int32) {
+// SetNuma gets a reference to the given bool and assigns it to the Numa field.
+func (o *UpdateVMConfigSyncRequest) SetNuma(v bool) {
 	o.Numa = &v
 }
 
@@ -5835,9 +5836,9 @@ func (o *UpdateVMConfigSyncRequest) SetNuma29(v GetVMConfig200ResponseDataNuma0)
 }
 
 // GetOnboot returns the Onboot field value if set, zero value otherwise.
-func (o *UpdateVMConfigSyncRequest) GetOnboot() int32 {
+func (o *UpdateVMConfigSyncRequest) GetOnboot() bool {
 	if o == nil || IsNil(o.Onboot) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Onboot
@@ -5845,7 +5846,7 @@ func (o *UpdateVMConfigSyncRequest) GetOnboot() int32 {
 
 // GetOnbootOk returns a tuple with the Onboot field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateVMConfigSyncRequest) GetOnbootOk() (*int32, bool) {
+func (o *UpdateVMConfigSyncRequest) GetOnbootOk() (*bool, bool) {
 	if o == nil || IsNil(o.Onboot) {
 		return nil, false
 	}
@@ -5861,8 +5862,8 @@ func (o *UpdateVMConfigSyncRequest) HasOnboot() bool {
 	return false
 }
 
-// SetOnboot gets a reference to the given int32 and assigns it to the Onboot field.
-func (o *UpdateVMConfigSyncRequest) SetOnboot(v int32) {
+// SetOnboot gets a reference to the given bool and assigns it to the Onboot field.
+func (o *UpdateVMConfigSyncRequest) SetOnboot(v bool) {
 	o.Onboot = &v
 }
 
@@ -6027,9 +6028,9 @@ func (o *UpdateVMConfigSyncRequest) SetParallel3(v string) {
 }
 
 // GetProtection returns the Protection field value if set, zero value otherwise.
-func (o *UpdateVMConfigSyncRequest) GetProtection() int32 {
+func (o *UpdateVMConfigSyncRequest) GetProtection() bool {
 	if o == nil || IsNil(o.Protection) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Protection
@@ -6037,7 +6038,7 @@ func (o *UpdateVMConfigSyncRequest) GetProtection() int32 {
 
 // GetProtectionOk returns a tuple with the Protection field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateVMConfigSyncRequest) GetProtectionOk() (*int32, bool) {
+func (o *UpdateVMConfigSyncRequest) GetProtectionOk() (*bool, bool) {
 	if o == nil || IsNil(o.Protection) {
 		return nil, false
 	}
@@ -6053,15 +6054,15 @@ func (o *UpdateVMConfigSyncRequest) HasProtection() bool {
 	return false
 }
 
-// SetProtection gets a reference to the given int32 and assigns it to the Protection field.
-func (o *UpdateVMConfigSyncRequest) SetProtection(v int32) {
+// SetProtection gets a reference to the given bool and assigns it to the Protection field.
+func (o *UpdateVMConfigSyncRequest) SetProtection(v bool) {
 	o.Protection = &v
 }
 
 // GetReboot returns the Reboot field value if set, zero value otherwise.
-func (o *UpdateVMConfigSyncRequest) GetReboot() int32 {
+func (o *UpdateVMConfigSyncRequest) GetReboot() bool {
 	if o == nil || IsNil(o.Reboot) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Reboot
@@ -6069,7 +6070,7 @@ func (o *UpdateVMConfigSyncRequest) GetReboot() int32 {
 
 // GetRebootOk returns a tuple with the Reboot field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateVMConfigSyncRequest) GetRebootOk() (*int32, bool) {
+func (o *UpdateVMConfigSyncRequest) GetRebootOk() (*bool, bool) {
 	if o == nil || IsNil(o.Reboot) {
 		return nil, false
 	}
@@ -6085,8 +6086,8 @@ func (o *UpdateVMConfigSyncRequest) HasReboot() bool {
 	return false
 }
 
-// SetReboot gets a reference to the given int32 and assigns it to the Reboot field.
-func (o *UpdateVMConfigSyncRequest) SetReboot(v int32) {
+// SetReboot gets a reference to the given bool and assigns it to the Reboot field.
+func (o *UpdateVMConfigSyncRequest) SetReboot(v bool) {
 	o.Reboot = &v
 }
 
@@ -7531,9 +7532,9 @@ func (o *UpdateVMConfigSyncRequest) SetShares(v int64) {
 }
 
 // GetSkiplock returns the Skiplock field value if set, zero value otherwise.
-func (o *UpdateVMConfigSyncRequest) GetSkiplock() int32 {
+func (o *UpdateVMConfigSyncRequest) GetSkiplock() bool {
 	if o == nil || IsNil(o.Skiplock) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Skiplock
@@ -7541,7 +7542,7 @@ func (o *UpdateVMConfigSyncRequest) GetSkiplock() int32 {
 
 // GetSkiplockOk returns a tuple with the Skiplock field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateVMConfigSyncRequest) GetSkiplockOk() (*int32, bool) {
+func (o *UpdateVMConfigSyncRequest) GetSkiplockOk() (*bool, bool) {
 	if o == nil || IsNil(o.Skiplock) {
 		return nil, false
 	}
@@ -7557,8 +7558,8 @@ func (o *UpdateVMConfigSyncRequest) HasSkiplock() bool {
 	return false
 }
 
-// SetSkiplock gets a reference to the given int32 and assigns it to the Skiplock field.
-func (o *UpdateVMConfigSyncRequest) SetSkiplock(v int32) {
+// SetSkiplock gets a reference to the given bool and assigns it to the Skiplock field.
+func (o *UpdateVMConfigSyncRequest) SetSkiplock(v bool) {
 	o.Skiplock = &v
 }
 
@@ -7787,9 +7788,9 @@ func (o *UpdateVMConfigSyncRequest) SetStartup(v string) {
 }
 
 // GetTablet returns the Tablet field value if set, zero value otherwise.
-func (o *UpdateVMConfigSyncRequest) GetTablet() int32 {
+func (o *UpdateVMConfigSyncRequest) GetTablet() bool {
 	if o == nil || IsNil(o.Tablet) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Tablet
@@ -7797,7 +7798,7 @@ func (o *UpdateVMConfigSyncRequest) GetTablet() int32 {
 
 // GetTabletOk returns a tuple with the Tablet field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateVMConfigSyncRequest) GetTabletOk() (*int32, bool) {
+func (o *UpdateVMConfigSyncRequest) GetTabletOk() (*bool, bool) {
 	if o == nil || IsNil(o.Tablet) {
 		return nil, false
 	}
@@ -7813,8 +7814,8 @@ func (o *UpdateVMConfigSyncRequest) HasTablet() bool {
 	return false
 }
 
-// SetTablet gets a reference to the given int32 and assigns it to the Tablet field.
-func (o *UpdateVMConfigSyncRequest) SetTablet(v int32) {
+// SetTablet gets a reference to the given bool and assigns it to the Tablet field.
+func (o *UpdateVMConfigSyncRequest) SetTablet(v bool) {
 	o.Tablet = &v
 }
 
@@ -7851,9 +7852,9 @@ func (o *UpdateVMConfigSyncRequest) SetTags(v string) {
 }
 
 // GetTdf returns the Tdf field value if set, zero value otherwise.
-func (o *UpdateVMConfigSyncRequest) GetTdf() int32 {
+func (o *UpdateVMConfigSyncRequest) GetTdf() bool {
 	if o == nil || IsNil(o.Tdf) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Tdf
@@ -7861,7 +7862,7 @@ func (o *UpdateVMConfigSyncRequest) GetTdf() int32 {
 
 // GetTdfOk returns a tuple with the Tdf field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateVMConfigSyncRequest) GetTdfOk() (*int32, bool) {
+func (o *UpdateVMConfigSyncRequest) GetTdfOk() (*bool, bool) {
 	if o == nil || IsNil(o.Tdf) {
 		return nil, false
 	}
@@ -7877,15 +7878,15 @@ func (o *UpdateVMConfigSyncRequest) HasTdf() bool {
 	return false
 }
 
-// SetTdf gets a reference to the given int32 and assigns it to the Tdf field.
-func (o *UpdateVMConfigSyncRequest) SetTdf(v int32) {
+// SetTdf gets a reference to the given bool and assigns it to the Tdf field.
+func (o *UpdateVMConfigSyncRequest) SetTdf(v bool) {
 	o.Tdf = &v
 }
 
 // GetTemplate returns the Template field value if set, zero value otherwise.
-func (o *UpdateVMConfigSyncRequest) GetTemplate() int32 {
+func (o *UpdateVMConfigSyncRequest) GetTemplate() bool {
 	if o == nil || IsNil(o.Template) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Template
@@ -7893,7 +7894,7 @@ func (o *UpdateVMConfigSyncRequest) GetTemplate() int32 {
 
 // GetTemplateOk returns a tuple with the Template field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateVMConfigSyncRequest) GetTemplateOk() (*int32, bool) {
+func (o *UpdateVMConfigSyncRequest) GetTemplateOk() (*bool, bool) {
 	if o == nil || IsNil(o.Template) {
 		return nil, false
 	}
@@ -7909,8 +7910,8 @@ func (o *UpdateVMConfigSyncRequest) HasTemplate() bool {
 	return false
 }
 
-// SetTemplate gets a reference to the given int32 and assigns it to the Template field.
-func (o *UpdateVMConfigSyncRequest) SetTemplate(v int32) {
+// SetTemplate gets a reference to the given bool and assigns it to the Template field.
+func (o *UpdateVMConfigSyncRequest) SetTemplate(v bool) {
 	o.Template = &v
 }
 

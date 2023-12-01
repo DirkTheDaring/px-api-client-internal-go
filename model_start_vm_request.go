@@ -31,7 +31,7 @@ type StartVMRequest struct {
 	// Migration traffic is encrypted using an SSH tunnel by default. On secure, completely private networks this can be disabled to increase performance.
 	MigrationType *string `json:"migration_type,omitempty"`
 	// Ignore locks - only root is allowed to use this option.
-	Skiplock *int32 `json:"skiplock,omitempty"`
+	Skiplock *bool `json:"skiplock,omitempty"`
 	// Some command save/restore state from this location.
 	Stateuri *string `json:"stateuri,omitempty"`
 	// Mapping from source to target storages. Providing only a single storage ID maps all source storages to that storage. Providing the special value '1' will map each source storage to itself.
@@ -218,9 +218,9 @@ func (o *StartVMRequest) SetMigrationType(v string) {
 }
 
 // GetSkiplock returns the Skiplock field value if set, zero value otherwise.
-func (o *StartVMRequest) GetSkiplock() int32 {
+func (o *StartVMRequest) GetSkiplock() bool {
 	if o == nil || IsNil(o.Skiplock) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Skiplock
@@ -228,7 +228,7 @@ func (o *StartVMRequest) GetSkiplock() int32 {
 
 // GetSkiplockOk returns a tuple with the Skiplock field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *StartVMRequest) GetSkiplockOk() (*int32, bool) {
+func (o *StartVMRequest) GetSkiplockOk() (*bool, bool) {
 	if o == nil || IsNil(o.Skiplock) {
 		return nil, false
 	}
@@ -244,8 +244,8 @@ func (o *StartVMRequest) HasSkiplock() bool {
 	return false
 }
 
-// SetSkiplock gets a reference to the given int32 and assigns it to the Skiplock field.
-func (o *StartVMRequest) SetSkiplock(v int32) {
+// SetSkiplock gets a reference to the given bool and assigns it to the Skiplock field.
+func (o *StartVMRequest) SetSkiplock(v bool) {
 	o.Skiplock = &v
 }
 

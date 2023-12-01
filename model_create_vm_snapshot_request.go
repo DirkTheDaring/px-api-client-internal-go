@@ -25,7 +25,7 @@ type CreateVMSnapshotRequest struct {
 	// The name of the snapshot.
 	Snapname string `json:"snapname"`
 	// Save the vmstate
-	Vmstate *int32 `json:"vmstate,omitempty"`
+	Vmstate *bool `json:"vmstate,omitempty"`
 }
 
 // NewCreateVMSnapshotRequest instantiates a new CreateVMSnapshotRequest object
@@ -103,9 +103,9 @@ func (o *CreateVMSnapshotRequest) SetSnapname(v string) {
 }
 
 // GetVmstate returns the Vmstate field value if set, zero value otherwise.
-func (o *CreateVMSnapshotRequest) GetVmstate() int32 {
+func (o *CreateVMSnapshotRequest) GetVmstate() bool {
 	if o == nil || IsNil(o.Vmstate) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Vmstate
@@ -113,7 +113,7 @@ func (o *CreateVMSnapshotRequest) GetVmstate() int32 {
 
 // GetVmstateOk returns a tuple with the Vmstate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMSnapshotRequest) GetVmstateOk() (*int32, bool) {
+func (o *CreateVMSnapshotRequest) GetVmstateOk() (*bool, bool) {
 	if o == nil || IsNil(o.Vmstate) {
 		return nil, false
 	}
@@ -129,8 +129,8 @@ func (o *CreateVMSnapshotRequest) HasVmstate() bool {
 	return false
 }
 
-// SetVmstate gets a reference to the given int32 and assigns it to the Vmstate field.
-func (o *CreateVMSnapshotRequest) SetVmstate(v int32) {
+// SetVmstate gets a reference to the given bool and assigns it to the Vmstate field.
+func (o *CreateVMSnapshotRequest) SetVmstate(v bool) {
 	o.Vmstate = &v
 }
 

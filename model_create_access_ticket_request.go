@@ -21,7 +21,7 @@ var _ MappedNullable = &CreateAccessTicketRequest{}
 // CreateAccessTicketRequest struct for CreateAccessTicketRequest
 type CreateAccessTicketRequest struct {
 	// This parameter is now ignored and assumed to be 1.
-	NewFormat *int32 `json:"new-format,omitempty"`
+	NewFormat *bool `json:"new-format,omitempty"`
 	// One-time password for Two-factor authentication.
 	Otp *string `json:"otp,omitempty"`
 	// The secret password. This can also be a valid ticket.
@@ -58,9 +58,9 @@ func NewCreateAccessTicketRequestWithDefaults() *CreateAccessTicketRequest {
 }
 
 // GetNewFormat returns the NewFormat field value if set, zero value otherwise.
-func (o *CreateAccessTicketRequest) GetNewFormat() int32 {
+func (o *CreateAccessTicketRequest) GetNewFormat() bool {
 	if o == nil || IsNil(o.NewFormat) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.NewFormat
@@ -68,7 +68,7 @@ func (o *CreateAccessTicketRequest) GetNewFormat() int32 {
 
 // GetNewFormatOk returns a tuple with the NewFormat field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateAccessTicketRequest) GetNewFormatOk() (*int32, bool) {
+func (o *CreateAccessTicketRequest) GetNewFormatOk() (*bool, bool) {
 	if o == nil || IsNil(o.NewFormat) {
 		return nil, false
 	}
@@ -84,8 +84,8 @@ func (o *CreateAccessTicketRequest) HasNewFormat() bool {
 	return false
 }
 
-// SetNewFormat gets a reference to the given int32 and assigns it to the NewFormat field.
-func (o *CreateAccessTicketRequest) SetNewFormat(v int32) {
+// SetNewFormat gets a reference to the given bool and assigns it to the NewFormat field.
+func (o *CreateAccessTicketRequest) SetNewFormat(v bool) {
 	o.NewFormat = &v
 }
 

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Start** | Pointer to **int32** | Whether the container should get started after rolling back successfully | [optional] 
+**Start** | Pointer to **bool** | Whether the container should get started after rolling back successfully | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetStart
 
-`func (o *RollbackContainerSnapshotRequest) GetStart() int32`
+`func (o *RollbackContainerSnapshotRequest) GetStart() bool`
 
 GetStart returns the Start field if non-nil, zero value otherwise.
 
 ### GetStartOk
 
-`func (o *RollbackContainerSnapshotRequest) GetStartOk() (*int32, bool)`
+`func (o *RollbackContainerSnapshotRequest) GetStartOk() (*bool, bool)`
 
 GetStartOk returns a tuple with the Start field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStart
 
-`func (o *RollbackContainerSnapshotRequest) SetStart(v int32)`
+`func (o *RollbackContainerSnapshotRequest) SetStart(v bool)`
 
 SetStart sets Start field to given value.
 

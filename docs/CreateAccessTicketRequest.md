@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**NewFormat** | Pointer to **int32** | This parameter is now ignored and assumed to be 1. | [optional] 
+**NewFormat** | Pointer to **bool** | This parameter is now ignored and assumed to be 1. | [optional] 
 **Otp** | Pointer to **string** | One-time password for Two-factor authentication. | [optional] 
 **Password** | **string** | The secret password. This can also be a valid ticket. | 
 **Path** | Pointer to **string** | Verify ticket, and check if user have access &#39;privs&#39; on &#39;path&#39; | [optional] 
@@ -34,20 +34,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetNewFormat
 
-`func (o *CreateAccessTicketRequest) GetNewFormat() int32`
+`func (o *CreateAccessTicketRequest) GetNewFormat() bool`
 
 GetNewFormat returns the NewFormat field if non-nil, zero value otherwise.
 
 ### GetNewFormatOk
 
-`func (o *CreateAccessTicketRequest) GetNewFormatOk() (*int32, bool)`
+`func (o *CreateAccessTicketRequest) GetNewFormatOk() (*bool, bool)`
 
 GetNewFormatOk returns a tuple with the NewFormat field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNewFormat
 
-`func (o *CreateAccessTicketRequest) SetNewFormat(v int32)`
+`func (o *CreateAccessTicketRequest) SetNewFormat(v bool)`
 
 SetNewFormat sets NewFormat field to given value.
 

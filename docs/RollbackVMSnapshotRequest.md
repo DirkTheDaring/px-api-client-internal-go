@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Start** | Pointer to **int32** | Whether the VM should get started after rolling back successfully. (Note: VMs will be automatically started if the snapshot includes RAM.) | [optional] 
+**Start** | Pointer to **bool** | Whether the VM should get started after rolling back successfully. (Note: VMs will be automatically started if the snapshot includes RAM.) | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetStart
 
-`func (o *RollbackVMSnapshotRequest) GetStart() int32`
+`func (o *RollbackVMSnapshotRequest) GetStart() bool`
 
 GetStart returns the Start field if non-nil, zero value otherwise.
 
 ### GetStartOk
 
-`func (o *RollbackVMSnapshotRequest) GetStartOk() (*int32, bool)`
+`func (o *RollbackVMSnapshotRequest) GetStartOk() (*bool, bool)`
 
 GetStartOk returns a tuple with the Start field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStart
 
-`func (o *RollbackVMSnapshotRequest) SetStart(v int32)`
+`func (o *RollbackVMSnapshotRequest) SetStart(v bool)`
 
 SetStart sets Start field to given value.
 

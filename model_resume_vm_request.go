@@ -20,9 +20,9 @@ var _ MappedNullable = &ResumeVMRequest{}
 
 // ResumeVMRequest struct for ResumeVMRequest
 type ResumeVMRequest struct {
-	Nocheck *int32 `json:"nocheck,omitempty"`
+	Nocheck *bool `json:"nocheck,omitempty"`
 	// Ignore locks - only root is allowed to use this option.
-	Skiplock *int32 `json:"skiplock,omitempty"`
+	Skiplock *bool `json:"skiplock,omitempty"`
 }
 
 // NewResumeVMRequest instantiates a new ResumeVMRequest object
@@ -43,9 +43,9 @@ func NewResumeVMRequestWithDefaults() *ResumeVMRequest {
 }
 
 // GetNocheck returns the Nocheck field value if set, zero value otherwise.
-func (o *ResumeVMRequest) GetNocheck() int32 {
+func (o *ResumeVMRequest) GetNocheck() bool {
 	if o == nil || IsNil(o.Nocheck) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Nocheck
@@ -53,7 +53,7 @@ func (o *ResumeVMRequest) GetNocheck() int32 {
 
 // GetNocheckOk returns a tuple with the Nocheck field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ResumeVMRequest) GetNocheckOk() (*int32, bool) {
+func (o *ResumeVMRequest) GetNocheckOk() (*bool, bool) {
 	if o == nil || IsNil(o.Nocheck) {
 		return nil, false
 	}
@@ -69,15 +69,15 @@ func (o *ResumeVMRequest) HasNocheck() bool {
 	return false
 }
 
-// SetNocheck gets a reference to the given int32 and assigns it to the Nocheck field.
-func (o *ResumeVMRequest) SetNocheck(v int32) {
+// SetNocheck gets a reference to the given bool and assigns it to the Nocheck field.
+func (o *ResumeVMRequest) SetNocheck(v bool) {
 	o.Nocheck = &v
 }
 
 // GetSkiplock returns the Skiplock field value if set, zero value otherwise.
-func (o *ResumeVMRequest) GetSkiplock() int32 {
+func (o *ResumeVMRequest) GetSkiplock() bool {
 	if o == nil || IsNil(o.Skiplock) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Skiplock
@@ -85,7 +85,7 @@ func (o *ResumeVMRequest) GetSkiplock() int32 {
 
 // GetSkiplockOk returns a tuple with the Skiplock field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ResumeVMRequest) GetSkiplockOk() (*int32, bool) {
+func (o *ResumeVMRequest) GetSkiplockOk() (*bool, bool) {
 	if o == nil || IsNil(o.Skiplock) {
 		return nil, false
 	}
@@ -101,8 +101,8 @@ func (o *ResumeVMRequest) HasSkiplock() bool {
 	return false
 }
 
-// SetSkiplock gets a reference to the given int32 and assigns it to the Skiplock field.
-func (o *ResumeVMRequest) SetSkiplock(v int32) {
+// SetSkiplock gets a reference to the given bool and assigns it to the Skiplock field.
+func (o *ResumeVMRequest) SetSkiplock(v bool) {
 	o.Skiplock = &v
 }
 

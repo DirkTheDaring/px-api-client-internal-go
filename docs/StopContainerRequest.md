@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Skiplock** | Pointer to **int32** | Ignore locks - only root is allowed to use this option. | [optional] 
+**Skiplock** | Pointer to **bool** | Ignore locks - only root is allowed to use this option. | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetSkiplock
 
-`func (o *StopContainerRequest) GetSkiplock() int32`
+`func (o *StopContainerRequest) GetSkiplock() bool`
 
 GetSkiplock returns the Skiplock field if non-nil, zero value otherwise.
 
 ### GetSkiplockOk
 
-`func (o *StopContainerRequest) GetSkiplockOk() (*int32, bool)`
+`func (o *StopContainerRequest) GetSkiplockOk() (*bool, bool)`
 
 GetSkiplockOk returns a tuple with the Skiplock field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSkiplock
 
-`func (o *StopContainerRequest) SetSkiplock(v int32)`
+`func (o *StopContainerRequest) SetSkiplock(v bool)`
 
 SetSkiplock sets Skiplock field to given value.
 

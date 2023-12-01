@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Acpi** | Pointer to **int32** | Enable/disable ACPI. | [optional] 
+**Acpi** | Pointer to **bool** | Enable/disable ACPI. | [optional] 
 **Affinity** | Pointer to **string** | List of host cores used to execute guest processes, for example: 0,5,8-11 | [optional] 
 **Agent** | Pointer to [**GetVMConfig200ResponseDataAgent**](GetVMConfig200ResponseDataAgent.md) |  | [optional] 
 **Arch** | Pointer to **string** | Virtual processor architecture. Defaults to the host. | [optional] 
 **Archive** | Pointer to **string** | The backup archive. Either the file system path to a .tar or .vma file (use &#39;-&#39; to pipe data from stdin) or a proxmox storage backup volume identifier. | [optional] 
 **Args** | Pointer to **string** | Arbitrary arguments passed to kvm. | [optional] 
 **Audio0** | Pointer to [**GetVMConfig200ResponseDataAudio0**](GetVMConfig200ResponseDataAudio0.md) |  | [optional] 
-**Autostart** | Pointer to **int32** | Automatic restart after crash (currently ignored). | [optional] 
+**Autostart** | Pointer to **bool** | Automatic restart after crash (currently ignored). | [optional] 
 **Balloon** | Pointer to **int64** | Amount of target RAM for the VM in MiB. Using zero disables the ballon driver. | [optional] 
 **Bios** | Pointer to **string** | Select BIOS implementation. | [optional] 
 **Boot** | Pointer to [**GetVMConfig200ResponseDataBoot**](GetVMConfig200ResponseDataBoot.md) |  | [optional] 
@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 **Cicustom** | Pointer to **string** | cloud-init: Specify custom files to replace the automatically generated ones at start. | [optional] 
 **Cipassword** | Pointer to **string** | cloud-init: Password to assign the user. Using this is generally not recommended. Use ssh keys instead. Also note that older cloud-init versions do not support hashed passwords. | [optional] 
 **Citype** | Pointer to **string** | Specifies the cloud-init configuration format. The default depends on the configured operating system type (&#x60;ostype&#x60;. We use the &#x60;nocloud&#x60; format for Linux, and &#x60;configdrive2&#x60; for windows. | [optional] 
-**Ciupgrade** | Pointer to **int32** | cloud-init: do an automatic package upgrade after the first boot. | [optional] 
+**Ciupgrade** | Pointer to **bool** | cloud-init: do an automatic package upgrade after the first boot. | [optional] 
 **Ciuser** | Pointer to **string** | cloud-init: User name to change ssh keys and password for instead of the image&#39;s configured default user. | [optional] 
 **Cores** | Pointer to **int64** | The number of cores per socket. | [optional] 
 **Cpu** | Pointer to **string** | Emulated CPU type. | [optional] 
@@ -29,8 +29,8 @@ Name | Type | Description | Notes
 **Cpuunits** | Pointer to **int64** | CPU weight for a VM, will be clamped to [1, 10000] in cgroup v2. | [optional] 
 **Description** | Pointer to **string** | Description for the VM. Shown in the web-interface VM&#39;s summary. This is saved as comment inside the configuration file. | [optional] 
 **Efidisk0** | Pointer to [**CreateVMRequestEfidisk0**](CreateVMRequestEfidisk0.md) |  | [optional] 
-**Force** | Pointer to **int32** | Allow to overwrite existing VM. | [optional] 
-**Freeze** | Pointer to **int32** | Freeze CPU at startup (use &#39;c&#39; monitor command to start execution). | [optional] 
+**Force** | Pointer to **bool** | Allow to overwrite existing VM. | [optional] 
+**Freeze** | Pointer to **bool** | Freeze CPU at startup (use &#39;c&#39; monitor command to start execution). | [optional] 
 **Hookscript** | Pointer to **string** | Script that will be executed during various steps in the vms lifetime. | [optional] 
 **Hostpci0** | Pointer to **string** | Map host PCI devices into guest. | [optional] 
 **Hostpci1** | Pointer to **string** | Map host PCI devices into guest. | [optional] 
@@ -99,14 +99,14 @@ Name | Type | Description | Notes
 **Ipconfig28** | Pointer to [**GetVMConfig200ResponseDataIpconfig0**](GetVMConfig200ResponseDataIpconfig0.md) |  | [optional] 
 **Ipconfig29** | Pointer to [**GetVMConfig200ResponseDataIpconfig0**](GetVMConfig200ResponseDataIpconfig0.md) |  | [optional] 
 **Ivshmem** | Pointer to [**GetVMConfig200ResponseDataIvshmem**](GetVMConfig200ResponseDataIvshmem.md) |  | [optional] 
-**Keephugepages** | Pointer to **int32** | Use together with hugepages. If enabled, hugepages will not not be deleted after VM shutdown and can be used for subsequent starts. | [optional] 
+**Keephugepages** | Pointer to **bool** | Use together with hugepages. If enabled, hugepages will not not be deleted after VM shutdown and can be used for subsequent starts. | [optional] 
 **Keyboard** | Pointer to **string** | Keyboard layout for VNC server. This option is generally not required and is often better handled from within the guest OS. | [optional] 
-**Kvm** | Pointer to **int32** | Enable/disable KVM hardware virtualization. | [optional] 
-**LiveRestore** | Pointer to **int32** | Start the VM immediately from the backup and restore in background. PBS only. | [optional] 
-**Localtime** | Pointer to **int32** | Set the real time clock (RTC) to local time. This is enabled by default if the &#x60;ostype&#x60; indicates a Microsoft Windows OS. | [optional] 
+**Kvm** | Pointer to **bool** | Enable/disable KVM hardware virtualization. | [optional] 
+**LiveRestore** | Pointer to **bool** | Start the VM immediately from the backup and restore in background. PBS only. | [optional] 
+**Localtime** | Pointer to **bool** | Set the real time clock (RTC) to local time. This is enabled by default if the &#x60;ostype&#x60; indicates a Microsoft Windows OS. | [optional] 
 **Lock** | Pointer to **string** | Lock/unlock the VM. | [optional] 
 **Machine** | Pointer to **string** | Specifies the QEMU machine type. | [optional] 
-**Memory** | Pointer to [**GetVMConfig200ResponseDataMemory**](GetVMConfig200ResponseDataMemory.md) |  | [optional] 
+**Memory** | Pointer to **string** | Memory properties. | [optional] 
 **MigrateDowntime** | Pointer to **float32** | Set maximum tolerated downtime (in seconds) for migrations. | [optional] 
 **MigrateSpeed** | Pointer to **int64** | Set maximum speed (in MB/s) for migrations. Value 0 is no limit. | [optional] 
 **Name** | Pointer to **string** | Set a name for the VM. Only used on the configuration web interface. | [optional] 
@@ -143,7 +143,7 @@ Name | Type | Description | Notes
 **Net29** | Pointer to [**GetVMConfig200ResponseDataNet0**](GetVMConfig200ResponseDataNet0.md) |  | [optional] 
 **Net30** | Pointer to [**GetVMConfig200ResponseDataNet0**](GetVMConfig200ResponseDataNet0.md) |  | [optional] 
 **Net31** | Pointer to [**GetVMConfig200ResponseDataNet0**](GetVMConfig200ResponseDataNet0.md) |  | [optional] 
-**Numa** | Pointer to **int32** | Enable/disable NUMA. | [optional] 
+**Numa** | Pointer to **bool** | Enable/disable NUMA. | [optional] 
 **Numa0** | Pointer to [**GetVMConfig200ResponseDataNuma0**](GetVMConfig200ResponseDataNuma0.md) |  | [optional] 
 **Numa1** | Pointer to [**GetVMConfig200ResponseDataNuma0**](GetVMConfig200ResponseDataNuma0.md) |  | [optional] 
 **Numa2** | Pointer to [**GetVMConfig200ResponseDataNuma0**](GetVMConfig200ResponseDataNuma0.md) |  | [optional] 
@@ -174,15 +174,15 @@ Name | Type | Description | Notes
 **Numa27** | Pointer to [**GetVMConfig200ResponseDataNuma0**](GetVMConfig200ResponseDataNuma0.md) |  | [optional] 
 **Numa28** | Pointer to [**GetVMConfig200ResponseDataNuma0**](GetVMConfig200ResponseDataNuma0.md) |  | [optional] 
 **Numa29** | Pointer to [**GetVMConfig200ResponseDataNuma0**](GetVMConfig200ResponseDataNuma0.md) |  | [optional] 
-**Onboot** | Pointer to **int32** | Specifies whether a VM will be started during system bootup. | [optional] 
+**Onboot** | Pointer to **bool** | Specifies whether a VM will be started during system bootup. | [optional] 
 **Ostype** | Pointer to **string** | Specify guest operating system. | [optional] 
 **Parallel0** | Pointer to **string** | Map host parallel devices (n is 0 to 2). | [optional] 
 **Parallel1** | Pointer to **string** | Map host parallel devices (n is 0 to 2). | [optional] 
 **Parallel2** | Pointer to **string** | Map host parallel devices (n is 0 to 2). | [optional] 
 **Parallel3** | Pointer to **string** | Map host parallel devices (n is 0 to 2). | [optional] 
 **Pool** | Pointer to **string** | Add the VM to the specified pool. | [optional] 
-**Protection** | Pointer to **int32** | Sets the protection flag of the VM. This will disable the remove VM and remove disk operations. | [optional] 
-**Reboot** | Pointer to **int32** | Allow reboot. If set to &#39;0&#39; the VM exit on reboot. | [optional] 
+**Protection** | Pointer to **bool** | Sets the protection flag of the VM. This will disable the remove VM and remove disk operations. | [optional] 
+**Reboot** | Pointer to **bool** | Allow reboot. If set to &#39;0&#39; the VM exit on reboot. | [optional] 
 **Rng0** | Pointer to [**GetVMConfig200ResponseDataRng0**](GetVMConfig200ResponseDataRng0.md) |  | [optional] 
 **Sata0** | Pointer to [**CreateVMRequestSata0**](CreateVMRequestSata0.md) |  | [optional] 
 **Sata1** | Pointer to [**CreateVMRequestSata0**](CreateVMRequestSata0.md) |  | [optional] 
@@ -232,16 +232,16 @@ Name | Type | Description | Notes
 **Sockets** | Pointer to **int64** | The number of CPU sockets. | [optional] 
 **SpiceEnhancements** | Pointer to [**GetVMConfig200ResponseDataSpiceEnhancements**](GetVMConfig200ResponseDataSpiceEnhancements.md) |  | [optional] 
 **Sshkeys** | Pointer to **string** | cloud-init: Setup public SSH keys (one key per line, OpenSSH format). | [optional] 
-**Start** | Pointer to **int32** | Start VM after it was created successfully. | [optional] 
+**Start** | Pointer to **bool** | Start VM after it was created successfully. | [optional] 
 **Startdate** | Pointer to **string** | Set the initial date of the real time clock. Valid format for date are:&#39;now&#39; or &#39;2006-06-17T16:01:21&#39; or &#39;2006-06-17&#39;. | [optional] 
 **Startup** | Pointer to **string** | Startup and shutdown behavior. Order is a non-negative number defining the general startup order. Shutdown in done with reverse ordering. Additionally you can set the &#39;up&#39; or &#39;down&#39; delay in seconds, which specifies a delay to wait before the next VM is started or stopped. | [optional] 
 **Storage** | Pointer to **string** | Default storage. | [optional] 
-**Tablet** | Pointer to **int32** | Enable/disable the USB tablet device. | [optional] 
+**Tablet** | Pointer to **bool** | Enable/disable the USB tablet device. | [optional] 
 **Tags** | Pointer to **string** | Tags of the VM. This is only meta information. | [optional] 
-**Tdf** | Pointer to **int32** | Enable/disable time drift fix. | [optional] 
-**Template** | Pointer to **int32** | Enable/disable Template. | [optional] 
+**Tdf** | Pointer to **bool** | Enable/disable time drift fix. | [optional] 
+**Template** | Pointer to **bool** | Enable/disable Template. | [optional] 
 **Tpmstate0** | Pointer to [**CreateVMRequestTpmstate0**](CreateVMRequestTpmstate0.md) |  | [optional] 
-**Unique** | Pointer to **int32** | Assign a unique random ethernet address. | [optional] 
+**Unique** | Pointer to **bool** | Assign a unique random ethernet address. | [optional] 
 **Unused0** | Pointer to [**GetVMConfig200ResponseDataUnused0**](GetVMConfig200ResponseDataUnused0.md) |  | [optional] 
 **Unused1** | Pointer to [**GetVMConfig200ResponseDataUnused0**](GetVMConfig200ResponseDataUnused0.md) |  | [optional] 
 **Unused2** | Pointer to [**GetVMConfig200ResponseDataUnused0**](GetVMConfig200ResponseDataUnused0.md) |  | [optional] 
@@ -320,20 +320,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetAcpi
 
-`func (o *CreateVMRequest) GetAcpi() int32`
+`func (o *CreateVMRequest) GetAcpi() bool`
 
 GetAcpi returns the Acpi field if non-nil, zero value otherwise.
 
 ### GetAcpiOk
 
-`func (o *CreateVMRequest) GetAcpiOk() (*int32, bool)`
+`func (o *CreateVMRequest) GetAcpiOk() (*bool, bool)`
 
 GetAcpiOk returns a tuple with the Acpi field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAcpi
 
-`func (o *CreateVMRequest) SetAcpi(v int32)`
+`func (o *CreateVMRequest) SetAcpi(v bool)`
 
 SetAcpi sets Acpi field to given value.
 
@@ -495,20 +495,20 @@ HasAudio0 returns a boolean if a field has been set.
 
 ### GetAutostart
 
-`func (o *CreateVMRequest) GetAutostart() int32`
+`func (o *CreateVMRequest) GetAutostart() bool`
 
 GetAutostart returns the Autostart field if non-nil, zero value otherwise.
 
 ### GetAutostartOk
 
-`func (o *CreateVMRequest) GetAutostartOk() (*int32, bool)`
+`func (o *CreateVMRequest) GetAutostartOk() (*bool, bool)`
 
 GetAutostartOk returns a tuple with the Autostart field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAutostart
 
-`func (o *CreateVMRequest) SetAutostart(v int32)`
+`func (o *CreateVMRequest) SetAutostart(v bool)`
 
 SetAutostart sets Autostart field to given value.
 
@@ -745,20 +745,20 @@ HasCitype returns a boolean if a field has been set.
 
 ### GetCiupgrade
 
-`func (o *CreateVMRequest) GetCiupgrade() int32`
+`func (o *CreateVMRequest) GetCiupgrade() bool`
 
 GetCiupgrade returns the Ciupgrade field if non-nil, zero value otherwise.
 
 ### GetCiupgradeOk
 
-`func (o *CreateVMRequest) GetCiupgradeOk() (*int32, bool)`
+`func (o *CreateVMRequest) GetCiupgradeOk() (*bool, bool)`
 
 GetCiupgradeOk returns a tuple with the Ciupgrade field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCiupgrade
 
-`func (o *CreateVMRequest) SetCiupgrade(v int32)`
+`func (o *CreateVMRequest) SetCiupgrade(v bool)`
 
 SetCiupgrade sets Ciupgrade field to given value.
 
@@ -945,20 +945,20 @@ HasEfidisk0 returns a boolean if a field has been set.
 
 ### GetForce
 
-`func (o *CreateVMRequest) GetForce() int32`
+`func (o *CreateVMRequest) GetForce() bool`
 
 GetForce returns the Force field if non-nil, zero value otherwise.
 
 ### GetForceOk
 
-`func (o *CreateVMRequest) GetForceOk() (*int32, bool)`
+`func (o *CreateVMRequest) GetForceOk() (*bool, bool)`
 
 GetForceOk returns a tuple with the Force field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetForce
 
-`func (o *CreateVMRequest) SetForce(v int32)`
+`func (o *CreateVMRequest) SetForce(v bool)`
 
 SetForce sets Force field to given value.
 
@@ -970,20 +970,20 @@ HasForce returns a boolean if a field has been set.
 
 ### GetFreeze
 
-`func (o *CreateVMRequest) GetFreeze() int32`
+`func (o *CreateVMRequest) GetFreeze() bool`
 
 GetFreeze returns the Freeze field if non-nil, zero value otherwise.
 
 ### GetFreezeOk
 
-`func (o *CreateVMRequest) GetFreezeOk() (*int32, bool)`
+`func (o *CreateVMRequest) GetFreezeOk() (*bool, bool)`
 
 GetFreezeOk returns a tuple with the Freeze field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFreeze
 
-`func (o *CreateVMRequest) SetFreeze(v int32)`
+`func (o *CreateVMRequest) SetFreeze(v bool)`
 
 SetFreeze sets Freeze field to given value.
 
@@ -2695,20 +2695,20 @@ HasIvshmem returns a boolean if a field has been set.
 
 ### GetKeephugepages
 
-`func (o *CreateVMRequest) GetKeephugepages() int32`
+`func (o *CreateVMRequest) GetKeephugepages() bool`
 
 GetKeephugepages returns the Keephugepages field if non-nil, zero value otherwise.
 
 ### GetKeephugepagesOk
 
-`func (o *CreateVMRequest) GetKeephugepagesOk() (*int32, bool)`
+`func (o *CreateVMRequest) GetKeephugepagesOk() (*bool, bool)`
 
 GetKeephugepagesOk returns a tuple with the Keephugepages field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKeephugepages
 
-`func (o *CreateVMRequest) SetKeephugepages(v int32)`
+`func (o *CreateVMRequest) SetKeephugepages(v bool)`
 
 SetKeephugepages sets Keephugepages field to given value.
 
@@ -2745,20 +2745,20 @@ HasKeyboard returns a boolean if a field has been set.
 
 ### GetKvm
 
-`func (o *CreateVMRequest) GetKvm() int32`
+`func (o *CreateVMRequest) GetKvm() bool`
 
 GetKvm returns the Kvm field if non-nil, zero value otherwise.
 
 ### GetKvmOk
 
-`func (o *CreateVMRequest) GetKvmOk() (*int32, bool)`
+`func (o *CreateVMRequest) GetKvmOk() (*bool, bool)`
 
 GetKvmOk returns a tuple with the Kvm field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKvm
 
-`func (o *CreateVMRequest) SetKvm(v int32)`
+`func (o *CreateVMRequest) SetKvm(v bool)`
 
 SetKvm sets Kvm field to given value.
 
@@ -2770,20 +2770,20 @@ HasKvm returns a boolean if a field has been set.
 
 ### GetLiveRestore
 
-`func (o *CreateVMRequest) GetLiveRestore() int32`
+`func (o *CreateVMRequest) GetLiveRestore() bool`
 
 GetLiveRestore returns the LiveRestore field if non-nil, zero value otherwise.
 
 ### GetLiveRestoreOk
 
-`func (o *CreateVMRequest) GetLiveRestoreOk() (*int32, bool)`
+`func (o *CreateVMRequest) GetLiveRestoreOk() (*bool, bool)`
 
 GetLiveRestoreOk returns a tuple with the LiveRestore field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLiveRestore
 
-`func (o *CreateVMRequest) SetLiveRestore(v int32)`
+`func (o *CreateVMRequest) SetLiveRestore(v bool)`
 
 SetLiveRestore sets LiveRestore field to given value.
 
@@ -2795,20 +2795,20 @@ HasLiveRestore returns a boolean if a field has been set.
 
 ### GetLocaltime
 
-`func (o *CreateVMRequest) GetLocaltime() int32`
+`func (o *CreateVMRequest) GetLocaltime() bool`
 
 GetLocaltime returns the Localtime field if non-nil, zero value otherwise.
 
 ### GetLocaltimeOk
 
-`func (o *CreateVMRequest) GetLocaltimeOk() (*int32, bool)`
+`func (o *CreateVMRequest) GetLocaltimeOk() (*bool, bool)`
 
 GetLocaltimeOk returns a tuple with the Localtime field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLocaltime
 
-`func (o *CreateVMRequest) SetLocaltime(v int32)`
+`func (o *CreateVMRequest) SetLocaltime(v bool)`
 
 SetLocaltime sets Localtime field to given value.
 
@@ -2870,20 +2870,20 @@ HasMachine returns a boolean if a field has been set.
 
 ### GetMemory
 
-`func (o *CreateVMRequest) GetMemory() GetVMConfig200ResponseDataMemory`
+`func (o *CreateVMRequest) GetMemory() string`
 
 GetMemory returns the Memory field if non-nil, zero value otherwise.
 
 ### GetMemoryOk
 
-`func (o *CreateVMRequest) GetMemoryOk() (*GetVMConfig200ResponseDataMemory, bool)`
+`func (o *CreateVMRequest) GetMemoryOk() (*string, bool)`
 
 GetMemoryOk returns a tuple with the Memory field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMemory
 
-`func (o *CreateVMRequest) SetMemory(v GetVMConfig200ResponseDataMemory)`
+`func (o *CreateVMRequest) SetMemory(v string)`
 
 SetMemory sets Memory field to given value.
 
@@ -3795,20 +3795,20 @@ HasNet31 returns a boolean if a field has been set.
 
 ### GetNuma
 
-`func (o *CreateVMRequest) GetNuma() int32`
+`func (o *CreateVMRequest) GetNuma() bool`
 
 GetNuma returns the Numa field if non-nil, zero value otherwise.
 
 ### GetNumaOk
 
-`func (o *CreateVMRequest) GetNumaOk() (*int32, bool)`
+`func (o *CreateVMRequest) GetNumaOk() (*bool, bool)`
 
 GetNumaOk returns a tuple with the Numa field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNuma
 
-`func (o *CreateVMRequest) SetNuma(v int32)`
+`func (o *CreateVMRequest) SetNuma(v bool)`
 
 SetNuma sets Numa field to given value.
 
@@ -4570,20 +4570,20 @@ HasNuma29 returns a boolean if a field has been set.
 
 ### GetOnboot
 
-`func (o *CreateVMRequest) GetOnboot() int32`
+`func (o *CreateVMRequest) GetOnboot() bool`
 
 GetOnboot returns the Onboot field if non-nil, zero value otherwise.
 
 ### GetOnbootOk
 
-`func (o *CreateVMRequest) GetOnbootOk() (*int32, bool)`
+`func (o *CreateVMRequest) GetOnbootOk() (*bool, bool)`
 
 GetOnbootOk returns a tuple with the Onboot field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOnboot
 
-`func (o *CreateVMRequest) SetOnboot(v int32)`
+`func (o *CreateVMRequest) SetOnboot(v bool)`
 
 SetOnboot sets Onboot field to given value.
 
@@ -4745,20 +4745,20 @@ HasPool returns a boolean if a field has been set.
 
 ### GetProtection
 
-`func (o *CreateVMRequest) GetProtection() int32`
+`func (o *CreateVMRequest) GetProtection() bool`
 
 GetProtection returns the Protection field if non-nil, zero value otherwise.
 
 ### GetProtectionOk
 
-`func (o *CreateVMRequest) GetProtectionOk() (*int32, bool)`
+`func (o *CreateVMRequest) GetProtectionOk() (*bool, bool)`
 
 GetProtectionOk returns a tuple with the Protection field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProtection
 
-`func (o *CreateVMRequest) SetProtection(v int32)`
+`func (o *CreateVMRequest) SetProtection(v bool)`
 
 SetProtection sets Protection field to given value.
 
@@ -4770,20 +4770,20 @@ HasProtection returns a boolean if a field has been set.
 
 ### GetReboot
 
-`func (o *CreateVMRequest) GetReboot() int32`
+`func (o *CreateVMRequest) GetReboot() bool`
 
 GetReboot returns the Reboot field if non-nil, zero value otherwise.
 
 ### GetRebootOk
 
-`func (o *CreateVMRequest) GetRebootOk() (*int32, bool)`
+`func (o *CreateVMRequest) GetRebootOk() (*bool, bool)`
 
 GetRebootOk returns a tuple with the Reboot field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetReboot
 
-`func (o *CreateVMRequest) SetReboot(v int32)`
+`func (o *CreateVMRequest) SetReboot(v bool)`
 
 SetReboot sets Reboot field to given value.
 
@@ -6020,20 +6020,20 @@ HasSshkeys returns a boolean if a field has been set.
 
 ### GetStart
 
-`func (o *CreateVMRequest) GetStart() int32`
+`func (o *CreateVMRequest) GetStart() bool`
 
 GetStart returns the Start field if non-nil, zero value otherwise.
 
 ### GetStartOk
 
-`func (o *CreateVMRequest) GetStartOk() (*int32, bool)`
+`func (o *CreateVMRequest) GetStartOk() (*bool, bool)`
 
 GetStartOk returns a tuple with the Start field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStart
 
-`func (o *CreateVMRequest) SetStart(v int32)`
+`func (o *CreateVMRequest) SetStart(v bool)`
 
 SetStart sets Start field to given value.
 
@@ -6120,20 +6120,20 @@ HasStorage returns a boolean if a field has been set.
 
 ### GetTablet
 
-`func (o *CreateVMRequest) GetTablet() int32`
+`func (o *CreateVMRequest) GetTablet() bool`
 
 GetTablet returns the Tablet field if non-nil, zero value otherwise.
 
 ### GetTabletOk
 
-`func (o *CreateVMRequest) GetTabletOk() (*int32, bool)`
+`func (o *CreateVMRequest) GetTabletOk() (*bool, bool)`
 
 GetTabletOk returns a tuple with the Tablet field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTablet
 
-`func (o *CreateVMRequest) SetTablet(v int32)`
+`func (o *CreateVMRequest) SetTablet(v bool)`
 
 SetTablet sets Tablet field to given value.
 
@@ -6170,20 +6170,20 @@ HasTags returns a boolean if a field has been set.
 
 ### GetTdf
 
-`func (o *CreateVMRequest) GetTdf() int32`
+`func (o *CreateVMRequest) GetTdf() bool`
 
 GetTdf returns the Tdf field if non-nil, zero value otherwise.
 
 ### GetTdfOk
 
-`func (o *CreateVMRequest) GetTdfOk() (*int32, bool)`
+`func (o *CreateVMRequest) GetTdfOk() (*bool, bool)`
 
 GetTdfOk returns a tuple with the Tdf field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTdf
 
-`func (o *CreateVMRequest) SetTdf(v int32)`
+`func (o *CreateVMRequest) SetTdf(v bool)`
 
 SetTdf sets Tdf field to given value.
 
@@ -6195,20 +6195,20 @@ HasTdf returns a boolean if a field has been set.
 
 ### GetTemplate
 
-`func (o *CreateVMRequest) GetTemplate() int32`
+`func (o *CreateVMRequest) GetTemplate() bool`
 
 GetTemplate returns the Template field if non-nil, zero value otherwise.
 
 ### GetTemplateOk
 
-`func (o *CreateVMRequest) GetTemplateOk() (*int32, bool)`
+`func (o *CreateVMRequest) GetTemplateOk() (*bool, bool)`
 
 GetTemplateOk returns a tuple with the Template field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTemplate
 
-`func (o *CreateVMRequest) SetTemplate(v int32)`
+`func (o *CreateVMRequest) SetTemplate(v bool)`
 
 SetTemplate sets Template field to given value.
 
@@ -6245,20 +6245,20 @@ HasTpmstate0 returns a boolean if a field has been set.
 
 ### GetUnique
 
-`func (o *CreateVMRequest) GetUnique() int32`
+`func (o *CreateVMRequest) GetUnique() bool`
 
 GetUnique returns the Unique field if non-nil, zero value otherwise.
 
 ### GetUniqueOk
 
-`func (o *CreateVMRequest) GetUniqueOk() (*int32, bool)`
+`func (o *CreateVMRequest) GetUniqueOk() (*bool, bool)`
 
 GetUniqueOk returns a tuple with the Unique field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnique
 
-`func (o *CreateVMRequest) SetUnique(v int32)`
+`func (o *CreateVMRequest) SetUnique(v bool)`
 
 SetUnique sets Unique field to given value.
 

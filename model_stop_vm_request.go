@@ -21,11 +21,11 @@ var _ MappedNullable = &StopVMRequest{}
 // StopVMRequest struct for StopVMRequest
 type StopVMRequest struct {
 	// Do not deactivate storage volumes.
-	KeepActive *int32 `json:"keepActive,omitempty"`
+	KeepActive *bool `json:"keepActive,omitempty"`
 	// The cluster node name.
 	Migratedfrom *string `json:"migratedfrom,omitempty"`
 	// Ignore locks - only root is allowed to use this option.
-	Skiplock *int32 `json:"skiplock,omitempty"`
+	Skiplock *bool `json:"skiplock,omitempty"`
 	// Wait maximal timeout seconds.
 	Timeout *int64 `json:"timeout,omitempty"`
 }
@@ -48,9 +48,9 @@ func NewStopVMRequestWithDefaults() *StopVMRequest {
 }
 
 // GetKeepActive returns the KeepActive field value if set, zero value otherwise.
-func (o *StopVMRequest) GetKeepActive() int32 {
+func (o *StopVMRequest) GetKeepActive() bool {
 	if o == nil || IsNil(o.KeepActive) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.KeepActive
@@ -58,7 +58,7 @@ func (o *StopVMRequest) GetKeepActive() int32 {
 
 // GetKeepActiveOk returns a tuple with the KeepActive field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *StopVMRequest) GetKeepActiveOk() (*int32, bool) {
+func (o *StopVMRequest) GetKeepActiveOk() (*bool, bool) {
 	if o == nil || IsNil(o.KeepActive) {
 		return nil, false
 	}
@@ -74,8 +74,8 @@ func (o *StopVMRequest) HasKeepActive() bool {
 	return false
 }
 
-// SetKeepActive gets a reference to the given int32 and assigns it to the KeepActive field.
-func (o *StopVMRequest) SetKeepActive(v int32) {
+// SetKeepActive gets a reference to the given bool and assigns it to the KeepActive field.
+func (o *StopVMRequest) SetKeepActive(v bool) {
 	o.KeepActive = &v
 }
 
@@ -112,9 +112,9 @@ func (o *StopVMRequest) SetMigratedfrom(v string) {
 }
 
 // GetSkiplock returns the Skiplock field value if set, zero value otherwise.
-func (o *StopVMRequest) GetSkiplock() int32 {
+func (o *StopVMRequest) GetSkiplock() bool {
 	if o == nil || IsNil(o.Skiplock) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Skiplock
@@ -122,7 +122,7 @@ func (o *StopVMRequest) GetSkiplock() int32 {
 
 // GetSkiplockOk returns a tuple with the Skiplock field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *StopVMRequest) GetSkiplockOk() (*int32, bool) {
+func (o *StopVMRequest) GetSkiplockOk() (*bool, bool) {
 	if o == nil || IsNil(o.Skiplock) {
 		return nil, false
 	}
@@ -138,8 +138,8 @@ func (o *StopVMRequest) HasSkiplock() bool {
 	return false
 }
 
-// SetSkiplock gets a reference to the given int32 and assigns it to the Skiplock field.
-func (o *StopVMRequest) SetSkiplock(v int32) {
+// SetSkiplock gets a reference to the given bool and assigns it to the Skiplock field.
+func (o *StopVMRequest) SetSkiplock(v bool) {
 	o.Skiplock = &v
 }
 

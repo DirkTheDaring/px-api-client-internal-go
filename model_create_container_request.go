@@ -27,7 +27,7 @@ type CreateContainerRequest struct {
 	// Console mode. By default, the console command tries to open a connection to one of the available tty devices. By setting cmode to 'console' it tries to attach to /dev/console instead. If you set cmode to 'shell', it simply invokes a shell inside the container (no login).
 	Cmode *string `json:"cmode,omitempty"`
 	// Attach a console device (/dev/console) to the container.
-	Console *int32 `json:"console,omitempty"`
+	Console *bool `json:"console,omitempty"`
 	// The number of cores assigned to the container. A container can use all available cores by default.
 	Cores *int64 `json:"cores,omitempty"`
 	// Limit of CPU usage.  NOTE: If the computer has 2 CPUs, it has a total of '2' CPU time. Value '0' indicates no CPU limit.
@@ -35,7 +35,7 @@ type CreateContainerRequest struct {
 	// CPU weight for a container, will be clamped to [1, 10000] in cgroup v2.
 	Cpuunits *int64 `json:"cpuunits,omitempty"`
 	// Try to be more verbose. For now this only enables debug log-level on start.
-	Debug *int32 `json:"debug,omitempty"`
+	Debug *bool `json:"debug,omitempty"`
 	// Description for the Container. Shown in the web-interface CT's summary. This is saved as comment inside the configuration file.
 	Description *string `json:"description,omitempty"`
 	Dev0 *GetContainerConfig200ResponseDataDev0 `json:"dev0,omitempty"`
@@ -70,13 +70,13 @@ type CreateContainerRequest struct {
 	Dev29 *GetContainerConfig200ResponseDataDev0 `json:"dev29,omitempty"`
 	Features *GetContainerConfig200ResponseDataFeatures `json:"features,omitempty"`
 	// Allow to overwrite existing container.
-	Force *int32 `json:"force,omitempty"`
+	Force *bool `json:"force,omitempty"`
 	// Script that will be exectued during various steps in the containers lifetime.
 	Hookscript *string `json:"hookscript,omitempty"`
 	// Set a host name for the container.
 	Hostname *string `json:"hostname,omitempty"`
 	// Ignore errors when extracting the template.
-	IgnoreUnpackErrors *int32 `json:"ignore-unpack-errors,omitempty"`
+	IgnoreUnpackErrors *bool `json:"ignore-unpack-errors,omitempty"`
 	// Lock/unlock the container.
 	Lock *string `json:"lock,omitempty"`
 	// Amount of RAM for the container in MB.
@@ -372,7 +372,7 @@ type CreateContainerRequest struct {
 	Net30 *GetContainerConfig200ResponseDataNet0 `json:"net30,omitempty"`
 	Net31 *GetContainerConfig200ResponseDataNet0 `json:"net31,omitempty"`
 	// Specifies whether a container will be started during system bootup.
-	Onboot *int32 `json:"onboot,omitempty"`
+	Onboot *bool `json:"onboot,omitempty"`
 	// The OS template or backup file.
 	Ostemplate string `json:"ostemplate"`
 	// OS type. This is used to setup configuration inside the container, and corresponds to lxc setup scripts in /usr/share/lxc/config/<ostype>.common.conf. Value 'unmanaged' can be used to skip and OS specific setup.
@@ -382,16 +382,16 @@ type CreateContainerRequest struct {
 	// Add the VM to the specified pool.
 	Pool *string `json:"pool,omitempty"`
 	// Sets the protection flag of the container. This will prevent the CT or CT's disk remove/update operation.
-	Protection *int32 `json:"protection,omitempty"`
+	Protection *bool `json:"protection,omitempty"`
 	// Mark this as restore task.
-	Restore *int32 `json:"restore,omitempty"`
+	Restore *bool `json:"restore,omitempty"`
 	Rootfs *GetContainerConfig200ResponseDataRootfs `json:"rootfs,omitempty"`
 	// Sets DNS search domains for a container. Create will automatically use the setting from the host if you neither set searchdomain nor nameserver.
 	Searchdomain *string `json:"searchdomain,omitempty"`
 	// Setup public SSH keys (one key per line, OpenSSH format).
 	SshPublicKeys *string `json:"ssh-public-keys,omitempty"`
 	// Start the CT after its creation finished successfully.
-	Start *int32 `json:"start,omitempty"`
+	Start *bool `json:"start,omitempty"`
 	// Startup and shutdown behavior. Order is a non-negative number defining the general startup order. Shutdown in done with reverse ordering. Additionally you can set the 'up' or 'down' delay in seconds, which specifies a delay to wait before the next VM is started or stopped.
 	Startup *string `json:"startup,omitempty"`
 	// Default Storage.
@@ -401,15 +401,15 @@ type CreateContainerRequest struct {
 	// Tags of the Container. This is only meta information.
 	Tags *string `json:"tags,omitempty"`
 	// Enable/disable Template.
-	Template *int32 `json:"template,omitempty"`
+	Template *bool `json:"template,omitempty"`
 	// Time zone to use in the container. If option isn't set, then nothing will be done. Can be set to 'host' to match the host time zone, or an arbitrary time zone option from /usr/share/zoneinfo/zone.tab
 	Timezone *string `json:"timezone,omitempty"`
 	// Specify the number of tty available to the container
 	Tty *int64 `json:"tty,omitempty"`
 	// Assign a unique random ethernet address.
-	Unique *int32 `json:"unique,omitempty"`
+	Unique *bool `json:"unique,omitempty"`
 	// Makes the container run as unprivileged user. (Should not be modified manually.)
-	Unprivileged *int32 `json:"unprivileged,omitempty"`
+	Unprivileged *bool `json:"unprivileged,omitempty"`
 	Unused0 *GetContainerConfig200ResponseDataUnused0 `json:"unused0,omitempty"`
 	Unused1 *GetContainerConfig200ResponseDataUnused0 `json:"unused1,omitempty"`
 	Unused2 *GetContainerConfig200ResponseDataUnused0 `json:"unused2,omitempty"`
@@ -560,9 +560,9 @@ func (o *CreateContainerRequest) SetCmode(v string) {
 }
 
 // GetConsole returns the Console field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetConsole() int32 {
+func (o *CreateContainerRequest) GetConsole() bool {
 	if o == nil || IsNil(o.Console) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Console
@@ -570,7 +570,7 @@ func (o *CreateContainerRequest) GetConsole() int32 {
 
 // GetConsoleOk returns a tuple with the Console field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetConsoleOk() (*int32, bool) {
+func (o *CreateContainerRequest) GetConsoleOk() (*bool, bool) {
 	if o == nil || IsNil(o.Console) {
 		return nil, false
 	}
@@ -586,8 +586,8 @@ func (o *CreateContainerRequest) HasConsole() bool {
 	return false
 }
 
-// SetConsole gets a reference to the given int32 and assigns it to the Console field.
-func (o *CreateContainerRequest) SetConsole(v int32) {
+// SetConsole gets a reference to the given bool and assigns it to the Console field.
+func (o *CreateContainerRequest) SetConsole(v bool) {
 	o.Console = &v
 }
 
@@ -688,9 +688,9 @@ func (o *CreateContainerRequest) SetCpuunits(v int64) {
 }
 
 // GetDebug returns the Debug field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetDebug() int32 {
+func (o *CreateContainerRequest) GetDebug() bool {
 	if o == nil || IsNil(o.Debug) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Debug
@@ -698,7 +698,7 @@ func (o *CreateContainerRequest) GetDebug() int32 {
 
 // GetDebugOk returns a tuple with the Debug field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetDebugOk() (*int32, bool) {
+func (o *CreateContainerRequest) GetDebugOk() (*bool, bool) {
 	if o == nil || IsNil(o.Debug) {
 		return nil, false
 	}
@@ -714,8 +714,8 @@ func (o *CreateContainerRequest) HasDebug() bool {
 	return false
 }
 
-// SetDebug gets a reference to the given int32 and assigns it to the Debug field.
-func (o *CreateContainerRequest) SetDebug(v int32) {
+// SetDebug gets a reference to the given bool and assigns it to the Debug field.
+func (o *CreateContainerRequest) SetDebug(v bool) {
 	o.Debug = &v
 }
 
@@ -1744,9 +1744,9 @@ func (o *CreateContainerRequest) SetFeatures(v GetContainerConfig200ResponseData
 }
 
 // GetForce returns the Force field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetForce() int32 {
+func (o *CreateContainerRequest) GetForce() bool {
 	if o == nil || IsNil(o.Force) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Force
@@ -1754,7 +1754,7 @@ func (o *CreateContainerRequest) GetForce() int32 {
 
 // GetForceOk returns a tuple with the Force field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetForceOk() (*int32, bool) {
+func (o *CreateContainerRequest) GetForceOk() (*bool, bool) {
 	if o == nil || IsNil(o.Force) {
 		return nil, false
 	}
@@ -1770,8 +1770,8 @@ func (o *CreateContainerRequest) HasForce() bool {
 	return false
 }
 
-// SetForce gets a reference to the given int32 and assigns it to the Force field.
-func (o *CreateContainerRequest) SetForce(v int32) {
+// SetForce gets a reference to the given bool and assigns it to the Force field.
+func (o *CreateContainerRequest) SetForce(v bool) {
 	o.Force = &v
 }
 
@@ -1840,9 +1840,9 @@ func (o *CreateContainerRequest) SetHostname(v string) {
 }
 
 // GetIgnoreUnpackErrors returns the IgnoreUnpackErrors field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetIgnoreUnpackErrors() int32 {
+func (o *CreateContainerRequest) GetIgnoreUnpackErrors() bool {
 	if o == nil || IsNil(o.IgnoreUnpackErrors) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.IgnoreUnpackErrors
@@ -1850,7 +1850,7 @@ func (o *CreateContainerRequest) GetIgnoreUnpackErrors() int32 {
 
 // GetIgnoreUnpackErrorsOk returns a tuple with the IgnoreUnpackErrors field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetIgnoreUnpackErrorsOk() (*int32, bool) {
+func (o *CreateContainerRequest) GetIgnoreUnpackErrorsOk() (*bool, bool) {
 	if o == nil || IsNil(o.IgnoreUnpackErrors) {
 		return nil, false
 	}
@@ -1866,8 +1866,8 @@ func (o *CreateContainerRequest) HasIgnoreUnpackErrors() bool {
 	return false
 }
 
-// SetIgnoreUnpackErrors gets a reference to the given int32 and assigns it to the IgnoreUnpackErrors field.
-func (o *CreateContainerRequest) SetIgnoreUnpackErrors(v int32) {
+// SetIgnoreUnpackErrors gets a reference to the given bool and assigns it to the IgnoreUnpackErrors field.
+func (o *CreateContainerRequest) SetIgnoreUnpackErrors(v bool) {
 	o.IgnoreUnpackErrors = &v
 }
 
@@ -11184,9 +11184,9 @@ func (o *CreateContainerRequest) SetNet31(v GetContainerConfig200ResponseDataNet
 }
 
 // GetOnboot returns the Onboot field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetOnboot() int32 {
+func (o *CreateContainerRequest) GetOnboot() bool {
 	if o == nil || IsNil(o.Onboot) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Onboot
@@ -11194,7 +11194,7 @@ func (o *CreateContainerRequest) GetOnboot() int32 {
 
 // GetOnbootOk returns a tuple with the Onboot field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetOnbootOk() (*int32, bool) {
+func (o *CreateContainerRequest) GetOnbootOk() (*bool, bool) {
 	if o == nil || IsNil(o.Onboot) {
 		return nil, false
 	}
@@ -11210,8 +11210,8 @@ func (o *CreateContainerRequest) HasOnboot() bool {
 	return false
 }
 
-// SetOnboot gets a reference to the given int32 and assigns it to the Onboot field.
-func (o *CreateContainerRequest) SetOnboot(v int32) {
+// SetOnboot gets a reference to the given bool and assigns it to the Onboot field.
+func (o *CreateContainerRequest) SetOnboot(v bool) {
 	o.Onboot = &v
 }
 
@@ -11336,9 +11336,9 @@ func (o *CreateContainerRequest) SetPool(v string) {
 }
 
 // GetProtection returns the Protection field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetProtection() int32 {
+func (o *CreateContainerRequest) GetProtection() bool {
 	if o == nil || IsNil(o.Protection) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Protection
@@ -11346,7 +11346,7 @@ func (o *CreateContainerRequest) GetProtection() int32 {
 
 // GetProtectionOk returns a tuple with the Protection field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetProtectionOk() (*int32, bool) {
+func (o *CreateContainerRequest) GetProtectionOk() (*bool, bool) {
 	if o == nil || IsNil(o.Protection) {
 		return nil, false
 	}
@@ -11362,15 +11362,15 @@ func (o *CreateContainerRequest) HasProtection() bool {
 	return false
 }
 
-// SetProtection gets a reference to the given int32 and assigns it to the Protection field.
-func (o *CreateContainerRequest) SetProtection(v int32) {
+// SetProtection gets a reference to the given bool and assigns it to the Protection field.
+func (o *CreateContainerRequest) SetProtection(v bool) {
 	o.Protection = &v
 }
 
 // GetRestore returns the Restore field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetRestore() int32 {
+func (o *CreateContainerRequest) GetRestore() bool {
 	if o == nil || IsNil(o.Restore) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Restore
@@ -11378,7 +11378,7 @@ func (o *CreateContainerRequest) GetRestore() int32 {
 
 // GetRestoreOk returns a tuple with the Restore field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetRestoreOk() (*int32, bool) {
+func (o *CreateContainerRequest) GetRestoreOk() (*bool, bool) {
 	if o == nil || IsNil(o.Restore) {
 		return nil, false
 	}
@@ -11394,8 +11394,8 @@ func (o *CreateContainerRequest) HasRestore() bool {
 	return false
 }
 
-// SetRestore gets a reference to the given int32 and assigns it to the Restore field.
-func (o *CreateContainerRequest) SetRestore(v int32) {
+// SetRestore gets a reference to the given bool and assigns it to the Restore field.
+func (o *CreateContainerRequest) SetRestore(v bool) {
 	o.Restore = &v
 }
 
@@ -11496,9 +11496,9 @@ func (o *CreateContainerRequest) SetSshPublicKeys(v string) {
 }
 
 // GetStart returns the Start field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetStart() int32 {
+func (o *CreateContainerRequest) GetStart() bool {
 	if o == nil || IsNil(o.Start) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Start
@@ -11506,7 +11506,7 @@ func (o *CreateContainerRequest) GetStart() int32 {
 
 // GetStartOk returns a tuple with the Start field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetStartOk() (*int32, bool) {
+func (o *CreateContainerRequest) GetStartOk() (*bool, bool) {
 	if o == nil || IsNil(o.Start) {
 		return nil, false
 	}
@@ -11522,8 +11522,8 @@ func (o *CreateContainerRequest) HasStart() bool {
 	return false
 }
 
-// SetStart gets a reference to the given int32 and assigns it to the Start field.
-func (o *CreateContainerRequest) SetStart(v int32) {
+// SetStart gets a reference to the given bool and assigns it to the Start field.
+func (o *CreateContainerRequest) SetStart(v bool) {
 	o.Start = &v
 }
 
@@ -11656,9 +11656,9 @@ func (o *CreateContainerRequest) SetTags(v string) {
 }
 
 // GetTemplate returns the Template field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetTemplate() int32 {
+func (o *CreateContainerRequest) GetTemplate() bool {
 	if o == nil || IsNil(o.Template) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Template
@@ -11666,7 +11666,7 @@ func (o *CreateContainerRequest) GetTemplate() int32 {
 
 // GetTemplateOk returns a tuple with the Template field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetTemplateOk() (*int32, bool) {
+func (o *CreateContainerRequest) GetTemplateOk() (*bool, bool) {
 	if o == nil || IsNil(o.Template) {
 		return nil, false
 	}
@@ -11682,8 +11682,8 @@ func (o *CreateContainerRequest) HasTemplate() bool {
 	return false
 }
 
-// SetTemplate gets a reference to the given int32 and assigns it to the Template field.
-func (o *CreateContainerRequest) SetTemplate(v int32) {
+// SetTemplate gets a reference to the given bool and assigns it to the Template field.
+func (o *CreateContainerRequest) SetTemplate(v bool) {
 	o.Template = &v
 }
 
@@ -11752,9 +11752,9 @@ func (o *CreateContainerRequest) SetTty(v int64) {
 }
 
 // GetUnique returns the Unique field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetUnique() int32 {
+func (o *CreateContainerRequest) GetUnique() bool {
 	if o == nil || IsNil(o.Unique) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Unique
@@ -11762,7 +11762,7 @@ func (o *CreateContainerRequest) GetUnique() int32 {
 
 // GetUniqueOk returns a tuple with the Unique field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetUniqueOk() (*int32, bool) {
+func (o *CreateContainerRequest) GetUniqueOk() (*bool, bool) {
 	if o == nil || IsNil(o.Unique) {
 		return nil, false
 	}
@@ -11778,15 +11778,15 @@ func (o *CreateContainerRequest) HasUnique() bool {
 	return false
 }
 
-// SetUnique gets a reference to the given int32 and assigns it to the Unique field.
-func (o *CreateContainerRequest) SetUnique(v int32) {
+// SetUnique gets a reference to the given bool and assigns it to the Unique field.
+func (o *CreateContainerRequest) SetUnique(v bool) {
 	o.Unique = &v
 }
 
 // GetUnprivileged returns the Unprivileged field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetUnprivileged() int32 {
+func (o *CreateContainerRequest) GetUnprivileged() bool {
 	if o == nil || IsNil(o.Unprivileged) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Unprivileged
@@ -11794,7 +11794,7 @@ func (o *CreateContainerRequest) GetUnprivileged() int32 {
 
 // GetUnprivilegedOk returns a tuple with the Unprivileged field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetUnprivilegedOk() (*int32, bool) {
+func (o *CreateContainerRequest) GetUnprivilegedOk() (*bool, bool) {
 	if o == nil || IsNil(o.Unprivileged) {
 		return nil, false
 	}
@@ -11810,8 +11810,8 @@ func (o *CreateContainerRequest) HasUnprivileged() bool {
 	return false
 }
 
-// SetUnprivileged gets a reference to the given int32 and assigns it to the Unprivileged field.
-func (o *CreateContainerRequest) SetUnprivileged(v int32) {
+// SetUnprivileged gets a reference to the given bool and assigns it to the Unprivileged field.
+func (o *CreateContainerRequest) SetUnprivileged(v bool) {
 	o.Unprivileged = &v
 }
 

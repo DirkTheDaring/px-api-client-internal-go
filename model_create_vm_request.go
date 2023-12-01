@@ -21,7 +21,7 @@ var _ MappedNullable = &CreateVMRequest{}
 // CreateVMRequest struct for CreateVMRequest
 type CreateVMRequest struct {
 	// Enable/disable ACPI.
-	Acpi *int32 `json:"acpi,omitempty"`
+	Acpi *bool `json:"acpi,omitempty"`
 	// List of host cores used to execute guest processes, for example: 0,5,8-11
 	Affinity *string `json:"affinity,omitempty"`
 	Agent *GetVMConfig200ResponseDataAgent `json:"agent,omitempty"`
@@ -33,7 +33,7 @@ type CreateVMRequest struct {
 	Args *string `json:"args,omitempty"`
 	Audio0 *GetVMConfig200ResponseDataAudio0 `json:"audio0,omitempty"`
 	// Automatic restart after crash (currently ignored).
-	Autostart *int32 `json:"autostart,omitempty"`
+	Autostart *bool `json:"autostart,omitempty"`
 	// Amount of target RAM for the VM in MiB. Using zero disables the ballon driver.
 	Balloon *int64 `json:"balloon,omitempty"`
 	// Select BIOS implementation.
@@ -52,7 +52,7 @@ type CreateVMRequest struct {
 	// Specifies the cloud-init configuration format. The default depends on the configured operating system type (`ostype`. We use the `nocloud` format for Linux, and `configdrive2` for windows.
 	Citype *string `json:"citype,omitempty"`
 	// cloud-init: do an automatic package upgrade after the first boot.
-	Ciupgrade *int32 `json:"ciupgrade,omitempty"`
+	Ciupgrade *bool `json:"ciupgrade,omitempty"`
 	// cloud-init: User name to change ssh keys and password for instead of the image's configured default user.
 	Ciuser *string `json:"ciuser,omitempty"`
 	// The number of cores per socket.
@@ -67,9 +67,9 @@ type CreateVMRequest struct {
 	Description *string `json:"description,omitempty"`
 	Efidisk0 *CreateVMRequestEfidisk0 `json:"efidisk0,omitempty"`
 	// Allow to overwrite existing VM.
-	Force *int32 `json:"force,omitempty"`
+	Force *bool `json:"force,omitempty"`
 	// Freeze CPU at startup (use 'c' monitor command to start execution).
-	Freeze *int32 `json:"freeze,omitempty"`
+	Freeze *bool `json:"freeze,omitempty"`
 	// Script that will be executed during various steps in the vms lifetime.
 	Hookscript *string `json:"hookscript,omitempty"`
 	// Map host PCI devices into guest.
@@ -172,20 +172,21 @@ type CreateVMRequest struct {
 	Ipconfig29 *GetVMConfig200ResponseDataIpconfig0 `json:"ipconfig29,omitempty"`
 	Ivshmem *GetVMConfig200ResponseDataIvshmem `json:"ivshmem,omitempty"`
 	// Use together with hugepages. If enabled, hugepages will not not be deleted after VM shutdown and can be used for subsequent starts.
-	Keephugepages *int32 `json:"keephugepages,omitempty"`
+	Keephugepages *bool `json:"keephugepages,omitempty"`
 	// Keyboard layout for VNC server. This option is generally not required and is often better handled from within the guest OS.
 	Keyboard *string `json:"keyboard,omitempty"`
 	// Enable/disable KVM hardware virtualization.
-	Kvm *int32 `json:"kvm,omitempty"`
+	Kvm *bool `json:"kvm,omitempty"`
 	// Start the VM immediately from the backup and restore in background. PBS only.
-	LiveRestore *int32 `json:"live-restore,omitempty"`
+	LiveRestore *bool `json:"live-restore,omitempty"`
 	// Set the real time clock (RTC) to local time. This is enabled by default if the `ostype` indicates a Microsoft Windows OS.
-	Localtime *int32 `json:"localtime,omitempty"`
+	Localtime *bool `json:"localtime,omitempty"`
 	// Lock/unlock the VM.
 	Lock *string `json:"lock,omitempty"`
 	// Specifies the QEMU machine type.
 	Machine *string `json:"machine,omitempty"`
-	Memory *GetVMConfig200ResponseDataMemory `json:"memory,omitempty"`
+	// Memory properties.
+	Memory *string `json:"memory,omitempty"`
 	// Set maximum tolerated downtime (in seconds) for migrations.
 	MigrateDowntime *float32 `json:"migrate_downtime,omitempty"`
 	// Set maximum speed (in MB/s) for migrations. Value 0 is no limit.
@@ -227,7 +228,7 @@ type CreateVMRequest struct {
 	Net30 *GetVMConfig200ResponseDataNet0 `json:"net30,omitempty"`
 	Net31 *GetVMConfig200ResponseDataNet0 `json:"net31,omitempty"`
 	// Enable/disable NUMA.
-	Numa *int32 `json:"numa,omitempty"`
+	Numa *bool `json:"numa,omitempty"`
 	Numa0 *GetVMConfig200ResponseDataNuma0 `json:"numa0,omitempty"`
 	Numa1 *GetVMConfig200ResponseDataNuma0 `json:"numa1,omitempty"`
 	Numa2 *GetVMConfig200ResponseDataNuma0 `json:"numa2,omitempty"`
@@ -259,7 +260,7 @@ type CreateVMRequest struct {
 	Numa28 *GetVMConfig200ResponseDataNuma0 `json:"numa28,omitempty"`
 	Numa29 *GetVMConfig200ResponseDataNuma0 `json:"numa29,omitempty"`
 	// Specifies whether a VM will be started during system bootup.
-	Onboot *int32 `json:"onboot,omitempty"`
+	Onboot *bool `json:"onboot,omitempty"`
 	// Specify guest operating system.
 	Ostype *string `json:"ostype,omitempty"`
 	// Map host parallel devices (n is 0 to 2).
@@ -273,9 +274,9 @@ type CreateVMRequest struct {
 	// Add the VM to the specified pool.
 	Pool *string `json:"pool,omitempty"`
 	// Sets the protection flag of the VM. This will disable the remove VM and remove disk operations.
-	Protection *int32 `json:"protection,omitempty"`
+	Protection *bool `json:"protection,omitempty"`
 	// Allow reboot. If set to '0' the VM exit on reboot.
-	Reboot *int32 `json:"reboot,omitempty"`
+	Reboot *bool `json:"reboot,omitempty"`
 	Rng0 *GetVMConfig200ResponseDataRng0 `json:"rng0,omitempty"`
 	Sata0 *CreateVMRequestSata0 `json:"sata0,omitempty"`
 	Sata1 *CreateVMRequestSata0 `json:"sata1,omitempty"`
@@ -337,7 +338,7 @@ type CreateVMRequest struct {
 	// cloud-init: Setup public SSH keys (one key per line, OpenSSH format).
 	Sshkeys *string `json:"sshkeys,omitempty"`
 	// Start VM after it was created successfully.
-	Start *int32 `json:"start,omitempty"`
+	Start *bool `json:"start,omitempty"`
 	// Set the initial date of the real time clock. Valid format for date are:'now' or '2006-06-17T16:01:21' or '2006-06-17'.
 	Startdate *string `json:"startdate,omitempty"`
 	// Startup and shutdown behavior. Order is a non-negative number defining the general startup order. Shutdown in done with reverse ordering. Additionally you can set the 'up' or 'down' delay in seconds, which specifies a delay to wait before the next VM is started or stopped.
@@ -345,16 +346,16 @@ type CreateVMRequest struct {
 	// Default storage.
 	Storage *string `json:"storage,omitempty"`
 	// Enable/disable the USB tablet device.
-	Tablet *int32 `json:"tablet,omitempty"`
+	Tablet *bool `json:"tablet,omitempty"`
 	// Tags of the VM. This is only meta information.
 	Tags *string `json:"tags,omitempty"`
 	// Enable/disable time drift fix.
-	Tdf *int32 `json:"tdf,omitempty"`
+	Tdf *bool `json:"tdf,omitempty"`
 	// Enable/disable Template.
-	Template *int32 `json:"template,omitempty"`
+	Template *bool `json:"template,omitempty"`
 	Tpmstate0 *CreateVMRequestTpmstate0 `json:"tpmstate0,omitempty"`
 	// Assign a unique random ethernet address.
-	Unique *int32 `json:"unique,omitempty"`
+	Unique *bool `json:"unique,omitempty"`
 	Unused0 *GetVMConfig200ResponseDataUnused0 `json:"unused0,omitempty"`
 	Unused1 *GetVMConfig200ResponseDataUnused0 `json:"unused1,omitempty"`
 	Unused2 *GetVMConfig200ResponseDataUnused0 `json:"unused2,omitempty"`
@@ -436,9 +437,9 @@ func NewCreateVMRequestWithDefaults() *CreateVMRequest {
 }
 
 // GetAcpi returns the Acpi field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetAcpi() int32 {
+func (o *CreateVMRequest) GetAcpi() bool {
 	if o == nil || IsNil(o.Acpi) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Acpi
@@ -446,7 +447,7 @@ func (o *CreateVMRequest) GetAcpi() int32 {
 
 // GetAcpiOk returns a tuple with the Acpi field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetAcpiOk() (*int32, bool) {
+func (o *CreateVMRequest) GetAcpiOk() (*bool, bool) {
 	if o == nil || IsNil(o.Acpi) {
 		return nil, false
 	}
@@ -462,8 +463,8 @@ func (o *CreateVMRequest) HasAcpi() bool {
 	return false
 }
 
-// SetAcpi gets a reference to the given int32 and assigns it to the Acpi field.
-func (o *CreateVMRequest) SetAcpi(v int32) {
+// SetAcpi gets a reference to the given bool and assigns it to the Acpi field.
+func (o *CreateVMRequest) SetAcpi(v bool) {
 	o.Acpi = &v
 }
 
@@ -660,9 +661,9 @@ func (o *CreateVMRequest) SetAudio0(v GetVMConfig200ResponseDataAudio0) {
 }
 
 // GetAutostart returns the Autostart field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetAutostart() int32 {
+func (o *CreateVMRequest) GetAutostart() bool {
 	if o == nil || IsNil(o.Autostart) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Autostart
@@ -670,7 +671,7 @@ func (o *CreateVMRequest) GetAutostart() int32 {
 
 // GetAutostartOk returns a tuple with the Autostart field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetAutostartOk() (*int32, bool) {
+func (o *CreateVMRequest) GetAutostartOk() (*bool, bool) {
 	if o == nil || IsNil(o.Autostart) {
 		return nil, false
 	}
@@ -686,8 +687,8 @@ func (o *CreateVMRequest) HasAutostart() bool {
 	return false
 }
 
-// SetAutostart gets a reference to the given int32 and assigns it to the Autostart field.
-func (o *CreateVMRequest) SetAutostart(v int32) {
+// SetAutostart gets a reference to the given bool and assigns it to the Autostart field.
+func (o *CreateVMRequest) SetAutostart(v bool) {
 	o.Autostart = &v
 }
 
@@ -980,9 +981,9 @@ func (o *CreateVMRequest) SetCitype(v string) {
 }
 
 // GetCiupgrade returns the Ciupgrade field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetCiupgrade() int32 {
+func (o *CreateVMRequest) GetCiupgrade() bool {
 	if o == nil || IsNil(o.Ciupgrade) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Ciupgrade
@@ -990,7 +991,7 @@ func (o *CreateVMRequest) GetCiupgrade() int32 {
 
 // GetCiupgradeOk returns a tuple with the Ciupgrade field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetCiupgradeOk() (*int32, bool) {
+func (o *CreateVMRequest) GetCiupgradeOk() (*bool, bool) {
 	if o == nil || IsNil(o.Ciupgrade) {
 		return nil, false
 	}
@@ -1006,8 +1007,8 @@ func (o *CreateVMRequest) HasCiupgrade() bool {
 	return false
 }
 
-// SetCiupgrade gets a reference to the given int32 and assigns it to the Ciupgrade field.
-func (o *CreateVMRequest) SetCiupgrade(v int32) {
+// SetCiupgrade gets a reference to the given bool and assigns it to the Ciupgrade field.
+func (o *CreateVMRequest) SetCiupgrade(v bool) {
 	o.Ciupgrade = &v
 }
 
@@ -1236,9 +1237,9 @@ func (o *CreateVMRequest) SetEfidisk0(v CreateVMRequestEfidisk0) {
 }
 
 // GetForce returns the Force field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetForce() int32 {
+func (o *CreateVMRequest) GetForce() bool {
 	if o == nil || IsNil(o.Force) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Force
@@ -1246,7 +1247,7 @@ func (o *CreateVMRequest) GetForce() int32 {
 
 // GetForceOk returns a tuple with the Force field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetForceOk() (*int32, bool) {
+func (o *CreateVMRequest) GetForceOk() (*bool, bool) {
 	if o == nil || IsNil(o.Force) {
 		return nil, false
 	}
@@ -1262,15 +1263,15 @@ func (o *CreateVMRequest) HasForce() bool {
 	return false
 }
 
-// SetForce gets a reference to the given int32 and assigns it to the Force field.
-func (o *CreateVMRequest) SetForce(v int32) {
+// SetForce gets a reference to the given bool and assigns it to the Force field.
+func (o *CreateVMRequest) SetForce(v bool) {
 	o.Force = &v
 }
 
 // GetFreeze returns the Freeze field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetFreeze() int32 {
+func (o *CreateVMRequest) GetFreeze() bool {
 	if o == nil || IsNil(o.Freeze) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Freeze
@@ -1278,7 +1279,7 @@ func (o *CreateVMRequest) GetFreeze() int32 {
 
 // GetFreezeOk returns a tuple with the Freeze field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetFreezeOk() (*int32, bool) {
+func (o *CreateVMRequest) GetFreezeOk() (*bool, bool) {
 	if o == nil || IsNil(o.Freeze) {
 		return nil, false
 	}
@@ -1294,8 +1295,8 @@ func (o *CreateVMRequest) HasFreeze() bool {
 	return false
 }
 
-// SetFreeze gets a reference to the given int32 and assigns it to the Freeze field.
-func (o *CreateVMRequest) SetFreeze(v int32) {
+// SetFreeze gets a reference to the given bool and assigns it to the Freeze field.
+func (o *CreateVMRequest) SetFreeze(v bool) {
 	o.Freeze = &v
 }
 
@@ -3476,9 +3477,9 @@ func (o *CreateVMRequest) SetIvshmem(v GetVMConfig200ResponseDataIvshmem) {
 }
 
 // GetKeephugepages returns the Keephugepages field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetKeephugepages() int32 {
+func (o *CreateVMRequest) GetKeephugepages() bool {
 	if o == nil || IsNil(o.Keephugepages) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Keephugepages
@@ -3486,7 +3487,7 @@ func (o *CreateVMRequest) GetKeephugepages() int32 {
 
 // GetKeephugepagesOk returns a tuple with the Keephugepages field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetKeephugepagesOk() (*int32, bool) {
+func (o *CreateVMRequest) GetKeephugepagesOk() (*bool, bool) {
 	if o == nil || IsNil(o.Keephugepages) {
 		return nil, false
 	}
@@ -3502,8 +3503,8 @@ func (o *CreateVMRequest) HasKeephugepages() bool {
 	return false
 }
 
-// SetKeephugepages gets a reference to the given int32 and assigns it to the Keephugepages field.
-func (o *CreateVMRequest) SetKeephugepages(v int32) {
+// SetKeephugepages gets a reference to the given bool and assigns it to the Keephugepages field.
+func (o *CreateVMRequest) SetKeephugepages(v bool) {
 	o.Keephugepages = &v
 }
 
@@ -3540,9 +3541,9 @@ func (o *CreateVMRequest) SetKeyboard(v string) {
 }
 
 // GetKvm returns the Kvm field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetKvm() int32 {
+func (o *CreateVMRequest) GetKvm() bool {
 	if o == nil || IsNil(o.Kvm) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Kvm
@@ -3550,7 +3551,7 @@ func (o *CreateVMRequest) GetKvm() int32 {
 
 // GetKvmOk returns a tuple with the Kvm field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetKvmOk() (*int32, bool) {
+func (o *CreateVMRequest) GetKvmOk() (*bool, bool) {
 	if o == nil || IsNil(o.Kvm) {
 		return nil, false
 	}
@@ -3566,15 +3567,15 @@ func (o *CreateVMRequest) HasKvm() bool {
 	return false
 }
 
-// SetKvm gets a reference to the given int32 and assigns it to the Kvm field.
-func (o *CreateVMRequest) SetKvm(v int32) {
+// SetKvm gets a reference to the given bool and assigns it to the Kvm field.
+func (o *CreateVMRequest) SetKvm(v bool) {
 	o.Kvm = &v
 }
 
 // GetLiveRestore returns the LiveRestore field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetLiveRestore() int32 {
+func (o *CreateVMRequest) GetLiveRestore() bool {
 	if o == nil || IsNil(o.LiveRestore) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.LiveRestore
@@ -3582,7 +3583,7 @@ func (o *CreateVMRequest) GetLiveRestore() int32 {
 
 // GetLiveRestoreOk returns a tuple with the LiveRestore field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetLiveRestoreOk() (*int32, bool) {
+func (o *CreateVMRequest) GetLiveRestoreOk() (*bool, bool) {
 	if o == nil || IsNil(o.LiveRestore) {
 		return nil, false
 	}
@@ -3598,15 +3599,15 @@ func (o *CreateVMRequest) HasLiveRestore() bool {
 	return false
 }
 
-// SetLiveRestore gets a reference to the given int32 and assigns it to the LiveRestore field.
-func (o *CreateVMRequest) SetLiveRestore(v int32) {
+// SetLiveRestore gets a reference to the given bool and assigns it to the LiveRestore field.
+func (o *CreateVMRequest) SetLiveRestore(v bool) {
 	o.LiveRestore = &v
 }
 
 // GetLocaltime returns the Localtime field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetLocaltime() int32 {
+func (o *CreateVMRequest) GetLocaltime() bool {
 	if o == nil || IsNil(o.Localtime) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Localtime
@@ -3614,7 +3615,7 @@ func (o *CreateVMRequest) GetLocaltime() int32 {
 
 // GetLocaltimeOk returns a tuple with the Localtime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetLocaltimeOk() (*int32, bool) {
+func (o *CreateVMRequest) GetLocaltimeOk() (*bool, bool) {
 	if o == nil || IsNil(o.Localtime) {
 		return nil, false
 	}
@@ -3630,8 +3631,8 @@ func (o *CreateVMRequest) HasLocaltime() bool {
 	return false
 }
 
-// SetLocaltime gets a reference to the given int32 and assigns it to the Localtime field.
-func (o *CreateVMRequest) SetLocaltime(v int32) {
+// SetLocaltime gets a reference to the given bool and assigns it to the Localtime field.
+func (o *CreateVMRequest) SetLocaltime(v bool) {
 	o.Localtime = &v
 }
 
@@ -3700,9 +3701,9 @@ func (o *CreateVMRequest) SetMachine(v string) {
 }
 
 // GetMemory returns the Memory field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetMemory() GetVMConfig200ResponseDataMemory {
+func (o *CreateVMRequest) GetMemory() string {
 	if o == nil || IsNil(o.Memory) {
-		var ret GetVMConfig200ResponseDataMemory
+		var ret string
 		return ret
 	}
 	return *o.Memory
@@ -3710,7 +3711,7 @@ func (o *CreateVMRequest) GetMemory() GetVMConfig200ResponseDataMemory {
 
 // GetMemoryOk returns a tuple with the Memory field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetMemoryOk() (*GetVMConfig200ResponseDataMemory, bool) {
+func (o *CreateVMRequest) GetMemoryOk() (*string, bool) {
 	if o == nil || IsNil(o.Memory) {
 		return nil, false
 	}
@@ -3726,8 +3727,8 @@ func (o *CreateVMRequest) HasMemory() bool {
 	return false
 }
 
-// SetMemory gets a reference to the given GetVMConfig200ResponseDataMemory and assigns it to the Memory field.
-func (o *CreateVMRequest) SetMemory(v GetVMConfig200ResponseDataMemory) {
+// SetMemory gets a reference to the given string and assigns it to the Memory field.
+func (o *CreateVMRequest) SetMemory(v string) {
 	o.Memory = &v
 }
 
@@ -4884,9 +4885,9 @@ func (o *CreateVMRequest) SetNet31(v GetVMConfig200ResponseDataNet0) {
 }
 
 // GetNuma returns the Numa field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetNuma() int32 {
+func (o *CreateVMRequest) GetNuma() bool {
 	if o == nil || IsNil(o.Numa) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Numa
@@ -4894,7 +4895,7 @@ func (o *CreateVMRequest) GetNuma() int32 {
 
 // GetNumaOk returns a tuple with the Numa field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetNumaOk() (*int32, bool) {
+func (o *CreateVMRequest) GetNumaOk() (*bool, bool) {
 	if o == nil || IsNil(o.Numa) {
 		return nil, false
 	}
@@ -4910,8 +4911,8 @@ func (o *CreateVMRequest) HasNuma() bool {
 	return false
 }
 
-// SetNuma gets a reference to the given int32 and assigns it to the Numa field.
-func (o *CreateVMRequest) SetNuma(v int32) {
+// SetNuma gets a reference to the given bool and assigns it to the Numa field.
+func (o *CreateVMRequest) SetNuma(v bool) {
 	o.Numa = &v
 }
 
@@ -5876,9 +5877,9 @@ func (o *CreateVMRequest) SetNuma29(v GetVMConfig200ResponseDataNuma0) {
 }
 
 // GetOnboot returns the Onboot field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetOnboot() int32 {
+func (o *CreateVMRequest) GetOnboot() bool {
 	if o == nil || IsNil(o.Onboot) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Onboot
@@ -5886,7 +5887,7 @@ func (o *CreateVMRequest) GetOnboot() int32 {
 
 // GetOnbootOk returns a tuple with the Onboot field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetOnbootOk() (*int32, bool) {
+func (o *CreateVMRequest) GetOnbootOk() (*bool, bool) {
 	if o == nil || IsNil(o.Onboot) {
 		return nil, false
 	}
@@ -5902,8 +5903,8 @@ func (o *CreateVMRequest) HasOnboot() bool {
 	return false
 }
 
-// SetOnboot gets a reference to the given int32 and assigns it to the Onboot field.
-func (o *CreateVMRequest) SetOnboot(v int32) {
+// SetOnboot gets a reference to the given bool and assigns it to the Onboot field.
+func (o *CreateVMRequest) SetOnboot(v bool) {
 	o.Onboot = &v
 }
 
@@ -6100,9 +6101,9 @@ func (o *CreateVMRequest) SetPool(v string) {
 }
 
 // GetProtection returns the Protection field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetProtection() int32 {
+func (o *CreateVMRequest) GetProtection() bool {
 	if o == nil || IsNil(o.Protection) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Protection
@@ -6110,7 +6111,7 @@ func (o *CreateVMRequest) GetProtection() int32 {
 
 // GetProtectionOk returns a tuple with the Protection field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetProtectionOk() (*int32, bool) {
+func (o *CreateVMRequest) GetProtectionOk() (*bool, bool) {
 	if o == nil || IsNil(o.Protection) {
 		return nil, false
 	}
@@ -6126,15 +6127,15 @@ func (o *CreateVMRequest) HasProtection() bool {
 	return false
 }
 
-// SetProtection gets a reference to the given int32 and assigns it to the Protection field.
-func (o *CreateVMRequest) SetProtection(v int32) {
+// SetProtection gets a reference to the given bool and assigns it to the Protection field.
+func (o *CreateVMRequest) SetProtection(v bool) {
 	o.Protection = &v
 }
 
 // GetReboot returns the Reboot field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetReboot() int32 {
+func (o *CreateVMRequest) GetReboot() bool {
 	if o == nil || IsNil(o.Reboot) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Reboot
@@ -6142,7 +6143,7 @@ func (o *CreateVMRequest) GetReboot() int32 {
 
 // GetRebootOk returns a tuple with the Reboot field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetRebootOk() (*int32, bool) {
+func (o *CreateVMRequest) GetRebootOk() (*bool, bool) {
 	if o == nil || IsNil(o.Reboot) {
 		return nil, false
 	}
@@ -6158,8 +6159,8 @@ func (o *CreateVMRequest) HasReboot() bool {
 	return false
 }
 
-// SetReboot gets a reference to the given int32 and assigns it to the Reboot field.
-func (o *CreateVMRequest) SetReboot(v int32) {
+// SetReboot gets a reference to the given bool and assigns it to the Reboot field.
+func (o *CreateVMRequest) SetReboot(v bool) {
 	o.Reboot = &v
 }
 
@@ -7732,9 +7733,9 @@ func (o *CreateVMRequest) SetSshkeys(v string) {
 }
 
 // GetStart returns the Start field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetStart() int32 {
+func (o *CreateVMRequest) GetStart() bool {
 	if o == nil || IsNil(o.Start) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Start
@@ -7742,7 +7743,7 @@ func (o *CreateVMRequest) GetStart() int32 {
 
 // GetStartOk returns a tuple with the Start field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetStartOk() (*int32, bool) {
+func (o *CreateVMRequest) GetStartOk() (*bool, bool) {
 	if o == nil || IsNil(o.Start) {
 		return nil, false
 	}
@@ -7758,8 +7759,8 @@ func (o *CreateVMRequest) HasStart() bool {
 	return false
 }
 
-// SetStart gets a reference to the given int32 and assigns it to the Start field.
-func (o *CreateVMRequest) SetStart(v int32) {
+// SetStart gets a reference to the given bool and assigns it to the Start field.
+func (o *CreateVMRequest) SetStart(v bool) {
 	o.Start = &v
 }
 
@@ -7860,9 +7861,9 @@ func (o *CreateVMRequest) SetStorage(v string) {
 }
 
 // GetTablet returns the Tablet field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetTablet() int32 {
+func (o *CreateVMRequest) GetTablet() bool {
 	if o == nil || IsNil(o.Tablet) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Tablet
@@ -7870,7 +7871,7 @@ func (o *CreateVMRequest) GetTablet() int32 {
 
 // GetTabletOk returns a tuple with the Tablet field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetTabletOk() (*int32, bool) {
+func (o *CreateVMRequest) GetTabletOk() (*bool, bool) {
 	if o == nil || IsNil(o.Tablet) {
 		return nil, false
 	}
@@ -7886,8 +7887,8 @@ func (o *CreateVMRequest) HasTablet() bool {
 	return false
 }
 
-// SetTablet gets a reference to the given int32 and assigns it to the Tablet field.
-func (o *CreateVMRequest) SetTablet(v int32) {
+// SetTablet gets a reference to the given bool and assigns it to the Tablet field.
+func (o *CreateVMRequest) SetTablet(v bool) {
 	o.Tablet = &v
 }
 
@@ -7924,9 +7925,9 @@ func (o *CreateVMRequest) SetTags(v string) {
 }
 
 // GetTdf returns the Tdf field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetTdf() int32 {
+func (o *CreateVMRequest) GetTdf() bool {
 	if o == nil || IsNil(o.Tdf) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Tdf
@@ -7934,7 +7935,7 @@ func (o *CreateVMRequest) GetTdf() int32 {
 
 // GetTdfOk returns a tuple with the Tdf field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetTdfOk() (*int32, bool) {
+func (o *CreateVMRequest) GetTdfOk() (*bool, bool) {
 	if o == nil || IsNil(o.Tdf) {
 		return nil, false
 	}
@@ -7950,15 +7951,15 @@ func (o *CreateVMRequest) HasTdf() bool {
 	return false
 }
 
-// SetTdf gets a reference to the given int32 and assigns it to the Tdf field.
-func (o *CreateVMRequest) SetTdf(v int32) {
+// SetTdf gets a reference to the given bool and assigns it to the Tdf field.
+func (o *CreateVMRequest) SetTdf(v bool) {
 	o.Tdf = &v
 }
 
 // GetTemplate returns the Template field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetTemplate() int32 {
+func (o *CreateVMRequest) GetTemplate() bool {
 	if o == nil || IsNil(o.Template) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Template
@@ -7966,7 +7967,7 @@ func (o *CreateVMRequest) GetTemplate() int32 {
 
 // GetTemplateOk returns a tuple with the Template field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetTemplateOk() (*int32, bool) {
+func (o *CreateVMRequest) GetTemplateOk() (*bool, bool) {
 	if o == nil || IsNil(o.Template) {
 		return nil, false
 	}
@@ -7982,8 +7983,8 @@ func (o *CreateVMRequest) HasTemplate() bool {
 	return false
 }
 
-// SetTemplate gets a reference to the given int32 and assigns it to the Template field.
-func (o *CreateVMRequest) SetTemplate(v int32) {
+// SetTemplate gets a reference to the given bool and assigns it to the Template field.
+func (o *CreateVMRequest) SetTemplate(v bool) {
 	o.Template = &v
 }
 
@@ -8020,9 +8021,9 @@ func (o *CreateVMRequest) SetTpmstate0(v CreateVMRequestTpmstate0) {
 }
 
 // GetUnique returns the Unique field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetUnique() int32 {
+func (o *CreateVMRequest) GetUnique() bool {
 	if o == nil || IsNil(o.Unique) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Unique
@@ -8030,7 +8031,7 @@ func (o *CreateVMRequest) GetUnique() int32 {
 
 // GetUniqueOk returns a tuple with the Unique field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetUniqueOk() (*int32, bool) {
+func (o *CreateVMRequest) GetUniqueOk() (*bool, bool) {
 	if o == nil || IsNil(o.Unique) {
 		return nil, false
 	}
@@ -8046,8 +8047,8 @@ func (o *CreateVMRequest) HasUnique() bool {
 	return false
 }
 
-// SetUnique gets a reference to the given int32 and assigns it to the Unique field.
-func (o *CreateVMRequest) SetUnique(v int32) {
+// SetUnique gets a reference to the given bool and assigns it to the Unique field.
+func (o *CreateVMRequest) SetUnique(v bool) {
 	o.Unique = &v
 }
 

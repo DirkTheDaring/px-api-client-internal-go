@@ -21,11 +21,11 @@ var _ MappedNullable = &SuspendVMRequest{}
 // SuspendVMRequest struct for SuspendVMRequest
 type SuspendVMRequest struct {
 	// Ignore locks - only root is allowed to use this option.
-	Skiplock *int32 `json:"skiplock,omitempty"`
+	Skiplock *bool `json:"skiplock,omitempty"`
 	// The storage for the VM state
 	Statestorage *string `json:"statestorage,omitempty"`
 	// If set, suspends the VM to disk. Will be resumed on next VM start.
-	Todisk *int32 `json:"todisk,omitempty"`
+	Todisk *bool `json:"todisk,omitempty"`
 }
 
 // NewSuspendVMRequest instantiates a new SuspendVMRequest object
@@ -46,9 +46,9 @@ func NewSuspendVMRequestWithDefaults() *SuspendVMRequest {
 }
 
 // GetSkiplock returns the Skiplock field value if set, zero value otherwise.
-func (o *SuspendVMRequest) GetSkiplock() int32 {
+func (o *SuspendVMRequest) GetSkiplock() bool {
 	if o == nil || IsNil(o.Skiplock) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Skiplock
@@ -56,7 +56,7 @@ func (o *SuspendVMRequest) GetSkiplock() int32 {
 
 // GetSkiplockOk returns a tuple with the Skiplock field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SuspendVMRequest) GetSkiplockOk() (*int32, bool) {
+func (o *SuspendVMRequest) GetSkiplockOk() (*bool, bool) {
 	if o == nil || IsNil(o.Skiplock) {
 		return nil, false
 	}
@@ -72,8 +72,8 @@ func (o *SuspendVMRequest) HasSkiplock() bool {
 	return false
 }
 
-// SetSkiplock gets a reference to the given int32 and assigns it to the Skiplock field.
-func (o *SuspendVMRequest) SetSkiplock(v int32) {
+// SetSkiplock gets a reference to the given bool and assigns it to the Skiplock field.
+func (o *SuspendVMRequest) SetSkiplock(v bool) {
 	o.Skiplock = &v
 }
 
@@ -110,9 +110,9 @@ func (o *SuspendVMRequest) SetStatestorage(v string) {
 }
 
 // GetTodisk returns the Todisk field value if set, zero value otherwise.
-func (o *SuspendVMRequest) GetTodisk() int32 {
+func (o *SuspendVMRequest) GetTodisk() bool {
 	if o == nil || IsNil(o.Todisk) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Todisk
@@ -120,7 +120,7 @@ func (o *SuspendVMRequest) GetTodisk() int32 {
 
 // GetTodiskOk returns a tuple with the Todisk field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SuspendVMRequest) GetTodiskOk() (*int32, bool) {
+func (o *SuspendVMRequest) GetTodiskOk() (*bool, bool) {
 	if o == nil || IsNil(o.Todisk) {
 		return nil, false
 	}
@@ -136,8 +136,8 @@ func (o *SuspendVMRequest) HasTodisk() bool {
 	return false
 }
 
-// SetTodisk gets a reference to the given int32 and assigns it to the Todisk field.
-func (o *SuspendVMRequest) SetTodisk(v int32) {
+// SetTodisk gets a reference to the given bool and assigns it to the Todisk field.
+func (o *SuspendVMRequest) SetTodisk(v bool) {
 	o.Todisk = &v
 }
 

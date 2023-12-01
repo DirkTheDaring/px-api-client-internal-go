@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Debug** | Pointer to **int32** | If set, enables very verbose debug log-level on start. | [optional] 
-**Skiplock** | Pointer to **int32** | Ignore locks - only root is allowed to use this option. | [optional] 
+**Debug** | Pointer to **bool** | If set, enables very verbose debug log-level on start. | [optional] 
+**Skiplock** | Pointer to **bool** | Ignore locks - only root is allowed to use this option. | [optional] 
 
 ## Methods
 
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetDebug
 
-`func (o *StartContainerRequest) GetDebug() int32`
+`func (o *StartContainerRequest) GetDebug() bool`
 
 GetDebug returns the Debug field if non-nil, zero value otherwise.
 
 ### GetDebugOk
 
-`func (o *StartContainerRequest) GetDebugOk() (*int32, bool)`
+`func (o *StartContainerRequest) GetDebugOk() (*bool, bool)`
 
 GetDebugOk returns a tuple with the Debug field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDebug
 
-`func (o *StartContainerRequest) SetDebug(v int32)`
+`func (o *StartContainerRequest) SetDebug(v bool)`
 
 SetDebug sets Debug field to given value.
 
@@ -53,20 +53,20 @@ HasDebug returns a boolean if a field has been set.
 
 ### GetSkiplock
 
-`func (o *StartContainerRequest) GetSkiplock() int32`
+`func (o *StartContainerRequest) GetSkiplock() bool`
 
 GetSkiplock returns the Skiplock field if non-nil, zero value otherwise.
 
 ### GetSkiplockOk
 
-`func (o *StartContainerRequest) GetSkiplockOk() (*int32, bool)`
+`func (o *StartContainerRequest) GetSkiplockOk() (*bool, bool)`
 
 GetSkiplockOk returns a tuple with the Skiplock field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSkiplock
 
-`func (o *StartContainerRequest) SetSkiplock(v int32)`
+`func (o *StartContainerRequest) SetSkiplock(v bool)`
 
 SetSkiplock sets Skiplock field to given value.
 

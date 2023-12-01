@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ForceStop** | Pointer to **int32** | Make sure the Container stops. | [optional] 
+**ForceStop** | Pointer to **bool** | Make sure the Container stops. | [optional] 
 **Timeout** | Pointer to **int64** | Wait maximal timeout seconds. | [optional] 
 
 ## Methods
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetForceStop
 
-`func (o *ShutdownContainerRequest) GetForceStop() int32`
+`func (o *ShutdownContainerRequest) GetForceStop() bool`
 
 GetForceStop returns the ForceStop field if non-nil, zero value otherwise.
 
 ### GetForceStopOk
 
-`func (o *ShutdownContainerRequest) GetForceStopOk() (*int32, bool)`
+`func (o *ShutdownContainerRequest) GetForceStopOk() (*bool, bool)`
 
 GetForceStopOk returns a tuple with the ForceStop field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetForceStop
 
-`func (o *ShutdownContainerRequest) SetForceStop(v int32)`
+`func (o *ShutdownContainerRequest) SetForceStop(v bool)`
 
 SetForceStop sets ForceStop field to given value.
 

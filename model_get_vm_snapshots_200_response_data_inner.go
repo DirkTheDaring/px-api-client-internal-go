@@ -29,7 +29,7 @@ type GetVMSnapshots200ResponseDataInner struct {
 	// Snapshot creation time
 	Snaptime *int64 `json:"snaptime,omitempty"`
 	// Snapshot includes RAM.
-	Vmstate *int32 `json:"vmstate,omitempty"`
+	Vmstate *bool `json:"vmstate,omitempty"`
 }
 
 // NewGetVMSnapshots200ResponseDataInner instantiates a new GetVMSnapshots200ResponseDataInner object
@@ -178,9 +178,9 @@ func (o *GetVMSnapshots200ResponseDataInner) SetSnaptime(v int64) {
 }
 
 // GetVmstate returns the Vmstate field value if set, zero value otherwise.
-func (o *GetVMSnapshots200ResponseDataInner) GetVmstate() int32 {
+func (o *GetVMSnapshots200ResponseDataInner) GetVmstate() bool {
 	if o == nil || IsNil(o.Vmstate) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Vmstate
@@ -188,7 +188,7 @@ func (o *GetVMSnapshots200ResponseDataInner) GetVmstate() int32 {
 
 // GetVmstateOk returns a tuple with the Vmstate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMSnapshots200ResponseDataInner) GetVmstateOk() (*int32, bool) {
+func (o *GetVMSnapshots200ResponseDataInner) GetVmstateOk() (*bool, bool) {
 	if o == nil || IsNil(o.Vmstate) {
 		return nil, false
 	}
@@ -204,8 +204,8 @@ func (o *GetVMSnapshots200ResponseDataInner) HasVmstate() bool {
 	return false
 }
 
-// SetVmstate gets a reference to the given int32 and assigns it to the Vmstate field.
-func (o *GetVMSnapshots200ResponseDataInner) SetVmstate(v int32) {
+// SetVmstate gets a reference to the given bool and assigns it to the Vmstate field.
+func (o *GetVMSnapshots200ResponseDataInner) SetVmstate(v bool) {
 	o.Vmstate = &v
 }
 

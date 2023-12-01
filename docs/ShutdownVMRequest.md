@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ForceStop** | Pointer to **int32** | Make sure the VM stops. | [optional] 
-**KeepActive** | Pointer to **int32** | Do not deactivate storage volumes. | [optional] 
-**Skiplock** | Pointer to **int32** | Ignore locks - only root is allowed to use this option. | [optional] 
+**ForceStop** | Pointer to **bool** | Make sure the VM stops. | [optional] 
+**KeepActive** | Pointer to **bool** | Do not deactivate storage volumes. | [optional] 
+**Skiplock** | Pointer to **bool** | Ignore locks - only root is allowed to use this option. | [optional] 
 **Timeout** | Pointer to **int64** | Wait maximal timeout seconds. | [optional] 
 
 ## Methods
@@ -30,20 +30,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetForceStop
 
-`func (o *ShutdownVMRequest) GetForceStop() int32`
+`func (o *ShutdownVMRequest) GetForceStop() bool`
 
 GetForceStop returns the ForceStop field if non-nil, zero value otherwise.
 
 ### GetForceStopOk
 
-`func (o *ShutdownVMRequest) GetForceStopOk() (*int32, bool)`
+`func (o *ShutdownVMRequest) GetForceStopOk() (*bool, bool)`
 
 GetForceStopOk returns a tuple with the ForceStop field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetForceStop
 
-`func (o *ShutdownVMRequest) SetForceStop(v int32)`
+`func (o *ShutdownVMRequest) SetForceStop(v bool)`
 
 SetForceStop sets ForceStop field to given value.
 
@@ -55,20 +55,20 @@ HasForceStop returns a boolean if a field has been set.
 
 ### GetKeepActive
 
-`func (o *ShutdownVMRequest) GetKeepActive() int32`
+`func (o *ShutdownVMRequest) GetKeepActive() bool`
 
 GetKeepActive returns the KeepActive field if non-nil, zero value otherwise.
 
 ### GetKeepActiveOk
 
-`func (o *ShutdownVMRequest) GetKeepActiveOk() (*int32, bool)`
+`func (o *ShutdownVMRequest) GetKeepActiveOk() (*bool, bool)`
 
 GetKeepActiveOk returns a tuple with the KeepActive field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKeepActive
 
-`func (o *ShutdownVMRequest) SetKeepActive(v int32)`
+`func (o *ShutdownVMRequest) SetKeepActive(v bool)`
 
 SetKeepActive sets KeepActive field to given value.
 
@@ -80,20 +80,20 @@ HasKeepActive returns a boolean if a field has been set.
 
 ### GetSkiplock
 
-`func (o *ShutdownVMRequest) GetSkiplock() int32`
+`func (o *ShutdownVMRequest) GetSkiplock() bool`
 
 GetSkiplock returns the Skiplock field if non-nil, zero value otherwise.
 
 ### GetSkiplockOk
 
-`func (o *ShutdownVMRequest) GetSkiplockOk() (*int32, bool)`
+`func (o *ShutdownVMRequest) GetSkiplockOk() (*bool, bool)`
 
 GetSkiplockOk returns a tuple with the Skiplock field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSkiplock
 
-`func (o *ShutdownVMRequest) SetSkiplock(v int32)`
+`func (o *ShutdownVMRequest) SetSkiplock(v bool)`
 
 SetSkiplock sets Skiplock field to given value.
 

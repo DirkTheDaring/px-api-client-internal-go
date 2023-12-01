@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Nocheck** | Pointer to **int32** |  | [optional] 
-**Skiplock** | Pointer to **int32** | Ignore locks - only root is allowed to use this option. | [optional] 
+**Nocheck** | Pointer to **bool** |  | [optional] 
+**Skiplock** | Pointer to **bool** | Ignore locks - only root is allowed to use this option. | [optional] 
 
 ## Methods
 
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetNocheck
 
-`func (o *ResumeVMRequest) GetNocheck() int32`
+`func (o *ResumeVMRequest) GetNocheck() bool`
 
 GetNocheck returns the Nocheck field if non-nil, zero value otherwise.
 
 ### GetNocheckOk
 
-`func (o *ResumeVMRequest) GetNocheckOk() (*int32, bool)`
+`func (o *ResumeVMRequest) GetNocheckOk() (*bool, bool)`
 
 GetNocheckOk returns a tuple with the Nocheck field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNocheck
 
-`func (o *ResumeVMRequest) SetNocheck(v int32)`
+`func (o *ResumeVMRequest) SetNocheck(v bool)`
 
 SetNocheck sets Nocheck field to given value.
 
@@ -53,20 +53,20 @@ HasNocheck returns a boolean if a field has been set.
 
 ### GetSkiplock
 
-`func (o *ResumeVMRequest) GetSkiplock() int32`
+`func (o *ResumeVMRequest) GetSkiplock() bool`
 
 GetSkiplock returns the Skiplock field if non-nil, zero value otherwise.
 
 ### GetSkiplockOk
 
-`func (o *ResumeVMRequest) GetSkiplockOk() (*int32, bool)`
+`func (o *ResumeVMRequest) GetSkiplockOk() (*bool, bool)`
 
 GetSkiplockOk returns a tuple with the Skiplock field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSkiplock
 
-`func (o *ResumeVMRequest) SetSkiplock(v int32)`
+`func (o *ResumeVMRequest) SetSkiplock(v bool)`
 
 SetSkiplock sets Skiplock field to given value.
 

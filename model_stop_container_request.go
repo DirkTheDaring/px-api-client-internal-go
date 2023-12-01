@@ -21,7 +21,7 @@ var _ MappedNullable = &StopContainerRequest{}
 // StopContainerRequest struct for StopContainerRequest
 type StopContainerRequest struct {
 	// Ignore locks - only root is allowed to use this option.
-	Skiplock *int32 `json:"skiplock,omitempty"`
+	Skiplock *bool `json:"skiplock,omitempty"`
 }
 
 // NewStopContainerRequest instantiates a new StopContainerRequest object
@@ -42,9 +42,9 @@ func NewStopContainerRequestWithDefaults() *StopContainerRequest {
 }
 
 // GetSkiplock returns the Skiplock field value if set, zero value otherwise.
-func (o *StopContainerRequest) GetSkiplock() int32 {
+func (o *StopContainerRequest) GetSkiplock() bool {
 	if o == nil || IsNil(o.Skiplock) {
-		var ret int32
+		var ret bool
 		return ret
 	}
 	return *o.Skiplock
@@ -52,7 +52,7 @@ func (o *StopContainerRequest) GetSkiplock() int32 {
 
 // GetSkiplockOk returns a tuple with the Skiplock field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *StopContainerRequest) GetSkiplockOk() (*int32, bool) {
+func (o *StopContainerRequest) GetSkiplockOk() (*bool, bool) {
 	if o == nil || IsNil(o.Skiplock) {
 		return nil, false
 	}
@@ -68,8 +68,8 @@ func (o *StopContainerRequest) HasSkiplock() bool {
 	return false
 }
 
-// SetSkiplock gets a reference to the given int32 and assigns it to the Skiplock field.
-func (o *StopContainerRequest) SetSkiplock(v int32) {
+// SetSkiplock gets a reference to the given bool and assigns it to the Skiplock field.
+func (o *StopContainerRequest) SetSkiplock(v bool) {
 	o.Skiplock = &v
 }
 
