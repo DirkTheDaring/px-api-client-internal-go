@@ -306,7 +306,7 @@ import (
 
 func main() {
     node := "node_example" // string | The cluster node name.
-    createVMRequest := *openapiclient.NewCreateVMRequest(int64(123)) // CreateVMRequest |  (optional)
+    createVMRequest := *openapiclient.NewCreateVMRequest(int64(123), int64(123)) // CreateVMRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -3929,7 +3929,7 @@ import (
 func main() {
     node := "node_example" // string | The cluster node name.
     vmid := int64(789) // int64 | The (unique) ID of the VM.
-    updateVMConfigRequest := *openapiclient.NewUpdateVMConfigRequest() // UpdateVMConfigRequest |  (optional)
+    updateVMConfigRequest := *openapiclient.NewUpdateVMConfigRequest(int64(123)) // UpdateVMConfigRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -4004,7 +4004,7 @@ import (
 func main() {
     node := "node_example" // string | The cluster node name.
     vmid := int64(789) // int64 | The (unique) ID of the VM.
-    updateVMConfigSyncRequest := *openapiclient.NewUpdateVMConfigSyncRequest() // UpdateVMConfigSyncRequest |  (optional)
+    updateVMConfigSyncRequest := *openapiclient.NewUpdateVMConfigSyncRequest(int64(123)) // UpdateVMConfigSyncRequest |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)

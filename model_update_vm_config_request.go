@@ -185,7 +185,8 @@ type UpdateVMConfigRequest struct {
 	Lock *string `json:"lock,omitempty"`
 	// Specifies the QEMU machine type.
 	Machine *string `json:"machine,omitempty"`
-	Memory *CreateVMRequestMemory `json:"memory,omitempty"`
+	// Memory
+	Memory int64 `json:"memory"`
 	// Set maximum tolerated downtime (in seconds) for migrations.
 	MigrateDowntime *float32 `json:"migrate_downtime,omitempty"`
 	// Set maximum speed (in MB/s) for migrations. Value 0 is no limit.
@@ -415,8 +416,9 @@ type UpdateVMConfigRequest struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateVMConfigRequest() *UpdateVMConfigRequest {
+func NewUpdateVMConfigRequest(memory int64) *UpdateVMConfigRequest {
 	this := UpdateVMConfigRequest{}
+	this.Memory = memory
 	return &this
 }
 
@@ -3692,36 +3694,28 @@ func (o *UpdateVMConfigRequest) SetMachine(v string) {
 	o.Machine = &v
 }
 
-// GetMemory returns the Memory field value if set, zero value otherwise.
-func (o *UpdateVMConfigRequest) GetMemory() CreateVMRequestMemory {
-	if o == nil || IsNil(o.Memory) {
-		var ret CreateVMRequestMemory
+// GetMemory returns the Memory field value
+func (o *UpdateVMConfigRequest) GetMemory() int64 {
+	if o == nil {
+		var ret int64
 		return ret
 	}
-	return *o.Memory
+
+	return o.Memory
 }
 
-// GetMemoryOk returns a tuple with the Memory field value if set, nil otherwise
+// GetMemoryOk returns a tuple with the Memory field value
 // and a boolean to check if the value has been set.
-func (o *UpdateVMConfigRequest) GetMemoryOk() (*CreateVMRequestMemory, bool) {
-	if o == nil || IsNil(o.Memory) {
+func (o *UpdateVMConfigRequest) GetMemoryOk() (*int64, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Memory, true
+	return &o.Memory, true
 }
 
-// HasMemory returns a boolean if a field has been set.
-func (o *UpdateVMConfigRequest) HasMemory() bool {
-	if o != nil && !IsNil(o.Memory) {
-		return true
-	}
-
-	return false
-}
-
-// SetMemory gets a reference to the given CreateVMRequestMemory and assigns it to the Memory field.
-func (o *UpdateVMConfigRequest) SetMemory(v CreateVMRequestMemory) {
-	o.Memory = &v
+// SetMemory sets field value
+func (o *UpdateVMConfigRequest) SetMemory(v int64) {
+	o.Memory = v
 }
 
 // GetMigrateDowntime returns the MigrateDowntime field value if set, zero value otherwise.
@@ -10056,9 +10050,7 @@ func (o UpdateVMConfigRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Machine) {
 		toSerialize["machine"] = o.Machine
 	}
-	if !IsNil(o.Memory) {
-		toSerialize["memory"] = o.Memory
-	}
+	toSerialize["memory"] = o.Memory
 	if !IsNil(o.MigrateDowntime) {
 		toSerialize["migrate_downtime"] = o.MigrateDowntime
 	}

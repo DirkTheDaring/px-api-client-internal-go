@@ -106,7 +106,7 @@ Name | Type | Description | Notes
 **Localtime** | Pointer to **bool** | Set the real time clock (RTC) to local time. This is enabled by default if the &#x60;ostype&#x60; indicates a Microsoft Windows OS. | [optional] 
 **Lock** | Pointer to **string** | Lock/unlock the VM. | [optional] 
 **Machine** | Pointer to **string** | Specifies the QEMU machine type. | [optional] 
-**Memory** | Pointer to [**CreateVMRequestMemory**](CreateVMRequestMemory.md) |  | [optional] 
+**Memory** | **int64** | Memory | 
 **MigrateDowntime** | Pointer to **float32** | Set maximum tolerated downtime (in seconds) for migrations. | [optional] 
 **MigrateSpeed** | Pointer to **int64** | Set maximum speed (in MB/s) for migrations. Value 0 is no limit. | [optional] 
 **Name** | Pointer to **string** | Set a name for the VM. Only used on the configuration web interface. | [optional] 
@@ -303,7 +303,7 @@ Name | Type | Description | Notes
 
 ### NewCreateVMRequest
 
-`func NewCreateVMRequest(vmid int64, ) *CreateVMRequest`
+`func NewCreateVMRequest(memory int64, vmid int64, ) *CreateVMRequest`
 
 NewCreateVMRequest instantiates a new CreateVMRequest object
 This constructor will assign default values to properties that have it defined,
@@ -2870,28 +2870,23 @@ HasMachine returns a boolean if a field has been set.
 
 ### GetMemory
 
-`func (o *CreateVMRequest) GetMemory() CreateVMRequestMemory`
+`func (o *CreateVMRequest) GetMemory() int64`
 
 GetMemory returns the Memory field if non-nil, zero value otherwise.
 
 ### GetMemoryOk
 
-`func (o *CreateVMRequest) GetMemoryOk() (*CreateVMRequestMemory, bool)`
+`func (o *CreateVMRequest) GetMemoryOk() (*int64, bool)`
 
 GetMemoryOk returns a tuple with the Memory field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMemory
 
-`func (o *CreateVMRequest) SetMemory(v CreateVMRequestMemory)`
+`func (o *CreateVMRequest) SetMemory(v int64)`
 
 SetMemory sets Memory field to given value.
 
-### HasMemory
-
-`func (o *CreateVMRequest) HasMemory() bool`
-
-HasMemory returns a boolean if a field has been set.
 
 ### GetMigrateDowntime
 

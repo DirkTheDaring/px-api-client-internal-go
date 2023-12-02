@@ -159,7 +159,6 @@ Class | Method | HTTP request | Description
  - [CreateVMRequest](docs/CreateVMRequest.md)
  - [CreateVMRequestEfidisk0](docs/CreateVMRequestEfidisk0.md)
  - [CreateVMRequestIde0](docs/CreateVMRequestIde0.md)
- - [CreateVMRequestMemory](docs/CreateVMRequestMemory.md)
  - [CreateVMRequestSata0](docs/CreateVMRequestSata0.md)
  - [CreateVMRequestScsi0](docs/CreateVMRequestScsi0.md)
  - [CreateVMRequestTpmstate0](docs/CreateVMRequestTpmstate0.md)
