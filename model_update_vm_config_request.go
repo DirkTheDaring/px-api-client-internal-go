@@ -185,7 +185,7 @@ type UpdateVMConfigRequest struct {
 	Lock *string `json:"lock,omitempty"`
 	// Specifies the QEMU machine type.
 	Machine *string `json:"machine,omitempty"`
-	Memory *GetVMConfig200ResponseDataMemory `json:"memory,omitempty"`
+	Memory *CreateVMRequestMemory `json:"memory,omitempty"`
 	// Set maximum tolerated downtime (in seconds) for migrations.
 	MigrateDowntime *float32 `json:"migrate_downtime,omitempty"`
 	// Set maximum speed (in MB/s) for migrations. Value 0 is no limit.
@@ -3693,9 +3693,9 @@ func (o *UpdateVMConfigRequest) SetMachine(v string) {
 }
 
 // GetMemory returns the Memory field value if set, zero value otherwise.
-func (o *UpdateVMConfigRequest) GetMemory() GetVMConfig200ResponseDataMemory {
+func (o *UpdateVMConfigRequest) GetMemory() CreateVMRequestMemory {
 	if o == nil || IsNil(o.Memory) {
-		var ret GetVMConfig200ResponseDataMemory
+		var ret CreateVMRequestMemory
 		return ret
 	}
 	return *o.Memory
@@ -3703,7 +3703,7 @@ func (o *UpdateVMConfigRequest) GetMemory() GetVMConfig200ResponseDataMemory {
 
 // GetMemoryOk returns a tuple with the Memory field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateVMConfigRequest) GetMemoryOk() (*GetVMConfig200ResponseDataMemory, bool) {
+func (o *UpdateVMConfigRequest) GetMemoryOk() (*CreateVMRequestMemory, bool) {
 	if o == nil || IsNil(o.Memory) {
 		return nil, false
 	}
@@ -3719,8 +3719,8 @@ func (o *UpdateVMConfigRequest) HasMemory() bool {
 	return false
 }
 
-// SetMemory gets a reference to the given GetVMConfig200ResponseDataMemory and assigns it to the Memory field.
-func (o *UpdateVMConfigRequest) SetMemory(v GetVMConfig200ResponseDataMemory) {
+// SetMemory gets a reference to the given CreateVMRequestMemory and assigns it to the Memory field.
+func (o *UpdateVMConfigRequest) SetMemory(v CreateVMRequestMemory) {
 	o.Memory = &v
 }
 

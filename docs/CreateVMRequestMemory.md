@@ -1,4 +1,4 @@
-# GetVMConfig200ResponseDataMemory
+# CreateVMRequestMemory
 
 ## Properties
 
@@ -8,45 +8,45 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewGetVMConfig200ResponseDataMemory
+### NewCreateVMRequestMemory
 
-`func NewGetVMConfig200ResponseDataMemory() *GetVMConfig200ResponseDataMemory`
+`func NewCreateVMRequestMemory() *CreateVMRequestMemory`
 
-NewGetVMConfig200ResponseDataMemory instantiates a new GetVMConfig200ResponseDataMemory object
+NewCreateVMRequestMemory instantiates a new CreateVMRequestMemory object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewGetVMConfig200ResponseDataMemoryWithDefaults
+### NewCreateVMRequestMemoryWithDefaults
 
-`func NewGetVMConfig200ResponseDataMemoryWithDefaults() *GetVMConfig200ResponseDataMemory`
+`func NewCreateVMRequestMemoryWithDefaults() *CreateVMRequestMemory`
 
-NewGetVMConfig200ResponseDataMemoryWithDefaults instantiates a new GetVMConfig200ResponseDataMemory object
+NewCreateVMRequestMemoryWithDefaults instantiates a new CreateVMRequestMemory object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetCurrent
 
-`func (o *GetVMConfig200ResponseDataMemory) GetCurrent() int64`
+`func (o *CreateVMRequestMemory) GetCurrent() int64`
 
 GetCurrent returns the Current field if non-nil, zero value otherwise.
 
 ### GetCurrentOk
 
-`func (o *GetVMConfig200ResponseDataMemory) GetCurrentOk() (*int64, bool)`
+`func (o *CreateVMRequestMemory) GetCurrentOk() (*int64, bool)`
 
 GetCurrentOk returns a tuple with the Current field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCurrent
 
-`func (o *GetVMConfig200ResponseDataMemory) SetCurrent(v int64)`
+`func (o *CreateVMRequestMemory) SetCurrent(v int64)`
 
 SetCurrent sets Current field to given value.
 
 ### HasCurrent
 
-`func (o *GetVMConfig200ResponseDataMemory) HasCurrent() bool`
+`func (o *CreateVMRequestMemory) HasCurrent() bool`
 
 HasCurrent returns a boolean if a field has been set.
 

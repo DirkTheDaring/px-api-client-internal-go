@@ -106,7 +106,7 @@ Name | Type | Description | Notes
 **Localtime** | Pointer to **bool** | Set the real time clock (RTC) to local time. This is enabled by default if the &#x60;ostype&#x60; indicates a Microsoft Windows OS. | [optional] 
 **Lock** | Pointer to **string** | Lock/unlock the VM. | [optional] 
 **Machine** | Pointer to **string** | Specifies the QEMU machine type. | [optional] 
-**Memory** | Pointer to [**GetVMConfig200ResponseDataMemory**](GetVMConfig200ResponseDataMemory.md) |  | [optional] 
+**Memory** | Pointer to [**CreateVMRequestMemory**](CreateVMRequestMemory.md) |  | [optional] 
 **MigrateDowntime** | Pointer to **float32** | Set maximum tolerated downtime (in seconds) for migrations. | [optional] 
 **MigrateSpeed** | Pointer to **int64** | Set maximum speed (in MB/s) for migrations. Value 0 is no limit. | [optional] 
 **Name** | Pointer to **string** | Set a name for the VM. Only used on the configuration web interface. | [optional] 
@@ -2870,20 +2870,20 @@ HasMachine returns a boolean if a field has been set.
 
 ### GetMemory
 
-`func (o *CreateVMRequest) GetMemory() GetVMConfig200ResponseDataMemory`
+`func (o *CreateVMRequest) GetMemory() CreateVMRequestMemory`
 
 GetMemory returns the Memory field if non-nil, zero value otherwise.
 
 ### GetMemoryOk
 
-`func (o *CreateVMRequest) GetMemoryOk() (*GetVMConfig200ResponseDataMemory, bool)`
+`func (o *CreateVMRequest) GetMemoryOk() (*CreateVMRequestMemory, bool)`
 
 GetMemoryOk returns a tuple with the Memory field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMemory
 
-`func (o *CreateVMRequest) SetMemory(v GetVMConfig200ResponseDataMemory)`
+`func (o *CreateVMRequest) SetMemory(v CreateVMRequestMemory)`
 
 SetMemory sets Memory field to given value.
 
