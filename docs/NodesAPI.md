@@ -1,64 +1,64 @@
-# \NodesApi
+# \NodesAPI
 
 All URIs are relative to *https://127.0.0.1:8006/api2/json*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateContainer**](NodesApi.md#CreateContainer) | **Post** /nodes/{node}/lxc | createContainer
-[**CreateContainerSnapshot**](NodesApi.md#CreateContainerSnapshot) | **Post** /nodes/{node}/lxc/{vmid}/snapshot | createContainerSnapshot
-[**CreateNodesSingleStorageSingleContent**](NodesApi.md#CreateNodesSingleStorageSingleContent) | **Post** /nodes/{node}/storage/{storage}/content | createNodesSingleStorageSingleContent
-[**CreateVM**](NodesApi.md#CreateVM) | **Post** /nodes/{node}/qemu | createVM
-[**CreateVMSnapshot**](NodesApi.md#CreateVMSnapshot) | **Post** /nodes/{node}/qemu/{vmid}/snapshot | createVMSnapshot
-[**DeleteContainer**](NodesApi.md#DeleteContainer) | **Delete** /nodes/{node}/lxc/{vmid} | deleteContainer
-[**DeleteContainerSnapshot**](NodesApi.md#DeleteContainerSnapshot) | **Delete** /nodes/{node}/lxc/{vmid}/snapshot/{snapname} | deleteContainerSnapshot
-[**DeleteVM**](NodesApi.md#DeleteVM) | **Delete** /nodes/{node}/qemu/{vmid} | deleteVM
-[**DeleteVMSnapshot**](NodesApi.md#DeleteVMSnapshot) | **Delete** /nodes/{node}/qemu/{vmid}/snapshot/{snapname} | deleteVMSnapshot
-[**GetContainer**](NodesApi.md#GetContainer) | **Get** /nodes/{node}/lxc/{vmid} | getContainer
-[**GetContainerConfig**](NodesApi.md#GetContainerConfig) | **Get** /nodes/{node}/lxc/{vmid}/config | getContainerConfig
-[**GetContainerConfigPending**](NodesApi.md#GetContainerConfigPending) | **Get** /nodes/{node}/lxc/{vmid}/pending | getContainerConfigPending
-[**GetContainerSnapshot**](NodesApi.md#GetContainerSnapshot) | **Get** /nodes/{node}/lxc/{vmid}/snapshot/{snapname} | getContainerSnapshot
-[**GetContainerSnapshotConfig**](NodesApi.md#GetContainerSnapshotConfig) | **Get** /nodes/{node}/lxc/{vmid}/snapshot/{snapname}/config | getContainerSnapshotConfig
-[**GetContainerSnapshots**](NodesApi.md#GetContainerSnapshots) | **Get** /nodes/{node}/lxc/{vmid}/snapshot | getContainerSnapshots
-[**GetContainerStatus**](NodesApi.md#GetContainerStatus) | **Get** /nodes/{node}/lxc/{vmid}/status | getContainerStatus
-[**GetContainers**](NodesApi.md#GetContainers) | **Get** /nodes/{node}/lxc | getContainers
-[**GetCurrentContainerStatus**](NodesApi.md#GetCurrentContainerStatus) | **Get** /nodes/{node}/lxc/{vmid}/status/current | getCurrentContainerStatus
-[**GetCurrentVMStatus**](NodesApi.md#GetCurrentVMStatus) | **Get** /nodes/{node}/qemu/{vmid}/status/current | getCurrentVMStatus
-[**GetNodeTask**](NodesApi.md#GetNodeTask) | **Get** /nodes/{node}/tasks/{upid} | getNodeTask
-[**GetNodeTaskLog**](NodesApi.md#GetNodeTaskLog) | **Get** /nodes/{node}/tasks/{upid}/log | getNodeTaskLog
-[**GetNodeTaskStatus**](NodesApi.md#GetNodeTaskStatus) | **Get** /nodes/{node}/tasks/{upid}/status | getNodeTaskStatus
-[**GetNodeTasks**](NodesApi.md#GetNodeTasks) | **Get** /nodes/{node}/tasks | getNodeTasks
-[**GetStorageContent**](NodesApi.md#GetStorageContent) | **Get** /nodes/{node}/storage/{storage}/content | getStorageContent
-[**GetStorages**](NodesApi.md#GetStorages) | **Get** /nodes/{node}/storage | getStorages
-[**GetVM**](NodesApi.md#GetVM) | **Get** /nodes/{node}/qemu/{vmid} | getVM
-[**GetVMConfig**](NodesApi.md#GetVMConfig) | **Get** /nodes/{node}/qemu/{vmid}/config | getVMConfig
-[**GetVMConfigPending**](NodesApi.md#GetVMConfigPending) | **Get** /nodes/{node}/qemu/{vmid}/pending | getVMConfigPending
-[**GetVMSnapshot**](NodesApi.md#GetVMSnapshot) | **Get** /nodes/{node}/qemu/{vmid}/snapshot/{snapname} | getVMSnapshot
-[**GetVMSnapshotConfig**](NodesApi.md#GetVMSnapshotConfig) | **Get** /nodes/{node}/qemu/{vmid}/snapshot/{snapname}/config | getVMSnapshotConfig
-[**GetVMSnapshots**](NodesApi.md#GetVMSnapshots) | **Get** /nodes/{node}/qemu/{vmid}/snapshot | getVMSnapshots
-[**GetVMs**](NodesApi.md#GetVMs) | **Get** /nodes/{node}/qemu | getVMs
-[**RebootContainer**](NodesApi.md#RebootContainer) | **Post** /nodes/{node}/lxc/{vmid}/status/reboot | rebootContainer
-[**RebootVM**](NodesApi.md#RebootVM) | **Post** /nodes/{node}/qemu/{vmid}/status/reboot | rebootVM
-[**ResizeContainerDisk**](NodesApi.md#ResizeContainerDisk) | **Put** /nodes/{node}/lxc/{vmid}/resize | resizeContainerDisk
-[**ResizeVMDisk**](NodesApi.md#ResizeVMDisk) | **Put** /nodes/{node}/qemu/{vmid}/resize | resizeVMDisk
-[**ResumeContainer**](NodesApi.md#ResumeContainer) | **Post** /nodes/{node}/lxc/{vmid}/status/resume | resumeContainer
-[**ResumeVM**](NodesApi.md#ResumeVM) | **Post** /nodes/{node}/qemu/{vmid}/status/resume | resumeVM
-[**RollbackContainerSnapshot**](NodesApi.md#RollbackContainerSnapshot) | **Post** /nodes/{node}/lxc/{vmid}/snapshot/{snapname}/rollback | rollbackContainerSnapshot
-[**RollbackVMSnapshot**](NodesApi.md#RollbackVMSnapshot) | **Post** /nodes/{node}/qemu/{vmid}/snapshot/{snapname}/rollback | rollbackVMSnapshot
-[**ShutdownContainer**](NodesApi.md#ShutdownContainer) | **Post** /nodes/{node}/lxc/{vmid}/status/shutdown | shutdownContainer
-[**ShutdownVM**](NodesApi.md#ShutdownVM) | **Post** /nodes/{node}/qemu/{vmid}/status/shutdown | shutdownVM
-[**StartContainer**](NodesApi.md#StartContainer) | **Post** /nodes/{node}/lxc/{vmid}/status/start | startContainer
-[**StartVM**](NodesApi.md#StartVM) | **Post** /nodes/{node}/qemu/{vmid}/status/start | startVM
-[**StopContainer**](NodesApi.md#StopContainer) | **Post** /nodes/{node}/lxc/{vmid}/status/stop | stopContainer
-[**StopNodeTask**](NodesApi.md#StopNodeTask) | **Delete** /nodes/{node}/tasks/{upid} | stopNodeTask
-[**StopVM**](NodesApi.md#StopVM) | **Post** /nodes/{node}/qemu/{vmid}/status/stop | stopVM
-[**SuspendContainer**](NodesApi.md#SuspendContainer) | **Post** /nodes/{node}/lxc/{vmid}/status/suspend | suspendContainer
-[**SuspendVM**](NodesApi.md#SuspendVM) | **Post** /nodes/{node}/qemu/{vmid}/status/suspend | suspendVM
-[**UpdateContainerConfigSync**](NodesApi.md#UpdateContainerConfigSync) | **Put** /nodes/{node}/lxc/{vmid}/config | updateContainerConfigSync
-[**UpdateContainerSnapshotConfig**](NodesApi.md#UpdateContainerSnapshotConfig) | **Put** /nodes/{node}/lxc/{vmid}/snapshot/{snapname}/config | updateContainerSnapshotConfig
-[**UpdateVMConfig**](NodesApi.md#UpdateVMConfig) | **Post** /nodes/{node}/qemu/{vmid}/config | updateVMConfig
-[**UpdateVMConfigSync**](NodesApi.md#UpdateVMConfigSync) | **Put** /nodes/{node}/qemu/{vmid}/config | updateVMConfigSync
-[**UpdateVMSnapshotConfig**](NodesApi.md#UpdateVMSnapshotConfig) | **Put** /nodes/{node}/qemu/{vmid}/snapshot/{snapname}/config | updateVMSnapshotConfig
-[**UploadFile**](NodesApi.md#UploadFile) | **Post** /nodes/{node}/storage/{storage}/upload | uploadFile
+[**CreateContainer**](NodesAPI.md#CreateContainer) | **Post** /nodes/{node}/lxc | createContainer
+[**CreateContainerSnapshot**](NodesAPI.md#CreateContainerSnapshot) | **Post** /nodes/{node}/lxc/{vmid}/snapshot | createContainerSnapshot
+[**CreateNodesSingleStorageSingleContent**](NodesAPI.md#CreateNodesSingleStorageSingleContent) | **Post** /nodes/{node}/storage/{storage}/content | createNodesSingleStorageSingleContent
+[**CreateVM**](NodesAPI.md#CreateVM) | **Post** /nodes/{node}/qemu | createVM
+[**CreateVMSnapshot**](NodesAPI.md#CreateVMSnapshot) | **Post** /nodes/{node}/qemu/{vmid}/snapshot | createVMSnapshot
+[**DeleteContainer**](NodesAPI.md#DeleteContainer) | **Delete** /nodes/{node}/lxc/{vmid} | deleteContainer
+[**DeleteContainerSnapshot**](NodesAPI.md#DeleteContainerSnapshot) | **Delete** /nodes/{node}/lxc/{vmid}/snapshot/{snapname} | deleteContainerSnapshot
+[**DeleteVM**](NodesAPI.md#DeleteVM) | **Delete** /nodes/{node}/qemu/{vmid} | deleteVM
+[**DeleteVMSnapshot**](NodesAPI.md#DeleteVMSnapshot) | **Delete** /nodes/{node}/qemu/{vmid}/snapshot/{snapname} | deleteVMSnapshot
+[**GetContainer**](NodesAPI.md#GetContainer) | **Get** /nodes/{node}/lxc/{vmid} | getContainer
+[**GetContainerConfig**](NodesAPI.md#GetContainerConfig) | **Get** /nodes/{node}/lxc/{vmid}/config | getContainerConfig
+[**GetContainerConfigPending**](NodesAPI.md#GetContainerConfigPending) | **Get** /nodes/{node}/lxc/{vmid}/pending | getContainerConfigPending
+[**GetContainerSnapshot**](NodesAPI.md#GetContainerSnapshot) | **Get** /nodes/{node}/lxc/{vmid}/snapshot/{snapname} | getContainerSnapshot
+[**GetContainerSnapshotConfig**](NodesAPI.md#GetContainerSnapshotConfig) | **Get** /nodes/{node}/lxc/{vmid}/snapshot/{snapname}/config | getContainerSnapshotConfig
+[**GetContainerSnapshots**](NodesAPI.md#GetContainerSnapshots) | **Get** /nodes/{node}/lxc/{vmid}/snapshot | getContainerSnapshots
+[**GetContainerStatus**](NodesAPI.md#GetContainerStatus) | **Get** /nodes/{node}/lxc/{vmid}/status | getContainerStatus
+[**GetContainers**](NodesAPI.md#GetContainers) | **Get** /nodes/{node}/lxc | getContainers
+[**GetCurrentContainerStatus**](NodesAPI.md#GetCurrentContainerStatus) | **Get** /nodes/{node}/lxc/{vmid}/status/current | getCurrentContainerStatus
+[**GetCurrentVMStatus**](NodesAPI.md#GetCurrentVMStatus) | **Get** /nodes/{node}/qemu/{vmid}/status/current | getCurrentVMStatus
+[**GetNodeTask**](NodesAPI.md#GetNodeTask) | **Get** /nodes/{node}/tasks/{upid} | getNodeTask
+[**GetNodeTaskLog**](NodesAPI.md#GetNodeTaskLog) | **Get** /nodes/{node}/tasks/{upid}/log | getNodeTaskLog
+[**GetNodeTaskStatus**](NodesAPI.md#GetNodeTaskStatus) | **Get** /nodes/{node}/tasks/{upid}/status | getNodeTaskStatus
+[**GetNodeTasks**](NodesAPI.md#GetNodeTasks) | **Get** /nodes/{node}/tasks | getNodeTasks
+[**GetStorageContent**](NodesAPI.md#GetStorageContent) | **Get** /nodes/{node}/storage/{storage}/content | getStorageContent
+[**GetStorages**](NodesAPI.md#GetStorages) | **Get** /nodes/{node}/storage | getStorages
+[**GetVM**](NodesAPI.md#GetVM) | **Get** /nodes/{node}/qemu/{vmid} | getVM
+[**GetVMConfig**](NodesAPI.md#GetVMConfig) | **Get** /nodes/{node}/qemu/{vmid}/config | getVMConfig
+[**GetVMConfigPending**](NodesAPI.md#GetVMConfigPending) | **Get** /nodes/{node}/qemu/{vmid}/pending | getVMConfigPending
+[**GetVMSnapshot**](NodesAPI.md#GetVMSnapshot) | **Get** /nodes/{node}/qemu/{vmid}/snapshot/{snapname} | getVMSnapshot
+[**GetVMSnapshotConfig**](NodesAPI.md#GetVMSnapshotConfig) | **Get** /nodes/{node}/qemu/{vmid}/snapshot/{snapname}/config | getVMSnapshotConfig
+[**GetVMSnapshots**](NodesAPI.md#GetVMSnapshots) | **Get** /nodes/{node}/qemu/{vmid}/snapshot | getVMSnapshots
+[**GetVMs**](NodesAPI.md#GetVMs) | **Get** /nodes/{node}/qemu | getVMs
+[**RebootContainer**](NodesAPI.md#RebootContainer) | **Post** /nodes/{node}/lxc/{vmid}/status/reboot | rebootContainer
+[**RebootVM**](NodesAPI.md#RebootVM) | **Post** /nodes/{node}/qemu/{vmid}/status/reboot | rebootVM
+[**ResizeContainerDisk**](NodesAPI.md#ResizeContainerDisk) | **Put** /nodes/{node}/lxc/{vmid}/resize | resizeContainerDisk
+[**ResizeVMDisk**](NodesAPI.md#ResizeVMDisk) | **Put** /nodes/{node}/qemu/{vmid}/resize | resizeVMDisk
+[**ResumeContainer**](NodesAPI.md#ResumeContainer) | **Post** /nodes/{node}/lxc/{vmid}/status/resume | resumeContainer
+[**ResumeVM**](NodesAPI.md#ResumeVM) | **Post** /nodes/{node}/qemu/{vmid}/status/resume | resumeVM
+[**RollbackContainerSnapshot**](NodesAPI.md#RollbackContainerSnapshot) | **Post** /nodes/{node}/lxc/{vmid}/snapshot/{snapname}/rollback | rollbackContainerSnapshot
+[**RollbackVMSnapshot**](NodesAPI.md#RollbackVMSnapshot) | **Post** /nodes/{node}/qemu/{vmid}/snapshot/{snapname}/rollback | rollbackVMSnapshot
+[**ShutdownContainer**](NodesAPI.md#ShutdownContainer) | **Post** /nodes/{node}/lxc/{vmid}/status/shutdown | shutdownContainer
+[**ShutdownVM**](NodesAPI.md#ShutdownVM) | **Post** /nodes/{node}/qemu/{vmid}/status/shutdown | shutdownVM
+[**StartContainer**](NodesAPI.md#StartContainer) | **Post** /nodes/{node}/lxc/{vmid}/status/start | startContainer
+[**StartVM**](NodesAPI.md#StartVM) | **Post** /nodes/{node}/qemu/{vmid}/status/start | startVM
+[**StopContainer**](NodesAPI.md#StopContainer) | **Post** /nodes/{node}/lxc/{vmid}/status/stop | stopContainer
+[**StopNodeTask**](NodesAPI.md#StopNodeTask) | **Delete** /nodes/{node}/tasks/{upid} | stopNodeTask
+[**StopVM**](NodesAPI.md#StopVM) | **Post** /nodes/{node}/qemu/{vmid}/status/stop | stopVM
+[**SuspendContainer**](NodesAPI.md#SuspendContainer) | **Post** /nodes/{node}/lxc/{vmid}/status/suspend | suspendContainer
+[**SuspendVM**](NodesAPI.md#SuspendVM) | **Post** /nodes/{node}/qemu/{vmid}/status/suspend | suspendVM
+[**UpdateContainerConfigSync**](NodesAPI.md#UpdateContainerConfigSync) | **Put** /nodes/{node}/lxc/{vmid}/config | updateContainerConfigSync
+[**UpdateContainerSnapshotConfig**](NodesAPI.md#UpdateContainerSnapshotConfig) | **Put** /nodes/{node}/lxc/{vmid}/snapshot/{snapname}/config | updateContainerSnapshotConfig
+[**UpdateVMConfig**](NodesAPI.md#UpdateVMConfig) | **Post** /nodes/{node}/qemu/{vmid}/config | updateVMConfig
+[**UpdateVMConfigSync**](NodesAPI.md#UpdateVMConfigSync) | **Put** /nodes/{node}/qemu/{vmid}/config | updateVMConfigSync
+[**UpdateVMSnapshotConfig**](NodesAPI.md#UpdateVMSnapshotConfig) | **Put** /nodes/{node}/qemu/{vmid}/snapshot/{snapname}/config | updateVMSnapshotConfig
+[**UploadFile**](NodesAPI.md#UploadFile) | **Post** /nodes/{node}/storage/{storage}/upload | uploadFile
 
 
 
@@ -88,13 +88,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.NodesApi.CreateContainer(context.Background(), node).CreateContainerRequest(createContainerRequest).Execute()
+    resp, r, err := apiClient.NodesAPI.CreateContainer(context.Background(), node).CreateContainerRequest(createContainerRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `NodesApi.CreateContainer``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `NodesAPI.CreateContainer``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateContainer`: CreateVM200Response
-    fmt.Fprintf(os.Stdout, "Response from `NodesApi.CreateContainer`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `NodesAPI.CreateContainer`: %v\n", resp)
 }
 ```
 
@@ -161,13 +161,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.NodesApi.CreateContainerSnapshot(context.Background(), node, vmid).CreateContainerSnapshotRequest(createContainerSnapshotRequest).Execute()
+    resp, r, err := apiClient.NodesAPI.CreateContainerSnapshot(context.Background(), node, vmid).CreateContainerSnapshotRequest(createContainerSnapshotRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `NodesApi.CreateContainerSnapshot``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `NodesAPI.CreateContainerSnapshot``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateContainerSnapshot`: TaskStartResponse
-    fmt.Fprintf(os.Stdout, "Response from `NodesApi.CreateContainerSnapshot`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `NodesAPI.CreateContainerSnapshot`: %v\n", resp)
 }
 ```
 
@@ -236,13 +236,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.NodesApi.CreateNodesSingleStorageSingleContent(context.Background(), node, storage).CreateNodesSingleStorageSingleContentRequest(createNodesSingleStorageSingleContentRequest).Execute()
+    resp, r, err := apiClient.NodesAPI.CreateNodesSingleStorageSingleContent(context.Background(), node, storage).CreateNodesSingleStorageSingleContentRequest(createNodesSingleStorageSingleContentRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `NodesApi.CreateNodesSingleStorageSingleContent``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `NodesAPI.CreateNodesSingleStorageSingleContent``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateNodesSingleStorageSingleContent`: CreateNodesSingleStorageSingleContent200Response
-    fmt.Fprintf(os.Stdout, "Response from `NodesApi.CreateNodesSingleStorageSingleContent`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `NodesAPI.CreateNodesSingleStorageSingleContent`: %v\n", resp)
 }
 ```
 
@@ -310,13 +310,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.NodesApi.CreateVM(context.Background(), node).CreateVMRequest(createVMRequest).Execute()
+    resp, r, err := apiClient.NodesAPI.CreateVM(context.Background(), node).CreateVMRequest(createVMRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `NodesApi.CreateVM``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `NodesAPI.CreateVM``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateVM`: CreateVM200Response
-    fmt.Fprintf(os.Stdout, "Response from `NodesApi.CreateVM`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `NodesAPI.CreateVM`: %v\n", resp)
 }
 ```
 
@@ -383,13 +383,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.NodesApi.CreateVMSnapshot(context.Background(), node, vmid).CreateVMSnapshotRequest(createVMSnapshotRequest).Execute()
+    resp, r, err := apiClient.NodesAPI.CreateVMSnapshot(context.Background(), node, vmid).CreateVMSnapshotRequest(createVMSnapshotRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `NodesApi.CreateVMSnapshot``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `NodesAPI.CreateVMSnapshot``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateVMSnapshot`: TaskStartResponse
-    fmt.Fprintf(os.Stdout, "Response from `NodesApi.CreateVMSnapshot`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `NodesAPI.CreateVMSnapshot`: %v\n", resp)
 }
 ```
 
@@ -460,13 +460,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.NodesApi.DeleteContainer(context.Background(), node, vmid).DestroyUnreferencedDisks(destroyUnreferencedDisks).Force(force).Purge(purge).Execute()
+    resp, r, err := apiClient.NodesAPI.DeleteContainer(context.Background(), node, vmid).DestroyUnreferencedDisks(destroyUnreferencedDisks).Force(force).Purge(purge).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `NodesApi.DeleteContainer``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `NodesAPI.DeleteContainer``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `DeleteContainer`: CreateVM200Response
-    fmt.Fprintf(os.Stdout, "Response from `NodesApi.DeleteContainer`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `NodesAPI.DeleteContainer`: %v\n", resp)
 }
 ```
 
@@ -538,13 +538,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.NodesApi.DeleteContainerSnapshot(context.Background(), node, vmid, snapname).Force(force).Execute()
+    resp, r, err := apiClient.NodesAPI.DeleteContainerSnapshot(context.Background(), node, vmid, snapname).Force(force).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `NodesApi.DeleteContainerSnapshot``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `NodesAPI.DeleteContainerSnapshot``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `DeleteContainerSnapshot`: TaskStartResponse
-    fmt.Fprintf(os.Stdout, "Response from `NodesApi.DeleteContainerSnapshot`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `NodesAPI.DeleteContainerSnapshot`: %v\n", resp)
 }
 ```
 
@@ -617,13 +617,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.NodesApi.DeleteVM(context.Background(), node, vmid).DestroyUnreferencedDisks(destroyUnreferencedDisks).Purge(purge).Skiplock(skiplock).Execute()
+    resp, r, err := apiClient.NodesAPI.DeleteVM(context.Background(), node, vmid).DestroyUnreferencedDisks(destroyUnreferencedDisks).Purge(purge).Skiplock(skiplock).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `NodesApi.DeleteVM``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `NodesAPI.DeleteVM``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `DeleteVM`: CreateVM200Response
-    fmt.Fprintf(os.Stdout, "Response from `NodesApi.DeleteVM`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `NodesAPI.DeleteVM`: %v\n", resp)
 }
 ```
 
@@ -695,13 +695,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.NodesApi.DeleteVMSnapshot(context.Background(), node, vmid, snapname).Force(force).Execute()
+    resp, r, err := apiClient.NodesAPI.DeleteVMSnapshot(context.Background(), node, vmid, snapname).Force(force).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `NodesApi.DeleteVMSnapshot``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `NodesAPI.DeleteVMSnapshot``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `DeleteVMSnapshot`: TaskStartResponse
-    fmt.Fprintf(os.Stdout, "Response from `NodesApi.DeleteVMSnapshot`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `NodesAPI.DeleteVMSnapshot`: %v\n", resp)
 }
 ```
 
@@ -771,13 +771,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.NodesApi.GetContainer(context.Background(), node, vmid).Execute()
+    resp, r, err := apiClient.NodesAPI.GetContainer(context.Background(), node, vmid).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `NodesApi.GetContainer``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `NodesAPI.GetContainer``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetContainer`: GetVM200Response
-    fmt.Fprintf(os.Stdout, "Response from `NodesApi.GetContainer`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `NodesAPI.GetContainer`: %v\n", resp)
 }
 ```
 
@@ -846,13 +846,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.NodesApi.GetContainerConfig(context.Background(), node, vmid).Current(current).Snapshot(snapshot).Execute()
+    resp, r, err := apiClient.NodesAPI.GetContainerConfig(context.Background(), node, vmid).Current(current).Snapshot(snapshot).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `NodesApi.GetContainerConfig``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `NodesAPI.GetContainerConfig``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetContainerConfig`: GetContainerConfig200Response
-    fmt.Fprintf(os.Stdout, "Response from `NodesApi.GetContainerConfig`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `NodesAPI.GetContainerConfig`: %v\n", resp)
 }
 ```
 
@@ -921,13 +921,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.NodesApi.GetContainerConfigPending(context.Background(), node, vmid).Execute()
+    resp, r, err := apiClient.NodesAPI.GetContainerConfigPending(context.Background(), node, vmid).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `NodesApi.GetContainerConfigPending``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `NodesAPI.GetContainerConfigPending``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetContainerConfigPending`: GetContainerConfigPending200Response
-    fmt.Fprintf(os.Stdout, "Response from `NodesApi.GetContainerConfigPending`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `NodesAPI.GetContainerConfigPending`: %v\n", resp)
 }
 ```
 
@@ -995,13 +995,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.NodesApi.GetContainerSnapshot(context.Background(), node, vmid, snapname).Execute()
+    resp, r, err := apiClient.NodesAPI.GetContainerSnapshot(context.Background(), node, vmid, snapname).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `NodesApi.GetContainerSnapshot``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `NodesAPI.GetContainerSnapshot``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetContainerSnapshot`: GetVMSnapshot200Response
-    fmt.Fprintf(os.Stdout, "Response from `NodesApi.GetContainerSnapshot`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `NodesAPI.GetContainerSnapshot`: %v\n", resp)
 }
 ```
 
@@ -1071,13 +1071,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.NodesApi.GetContainerSnapshotConfig(context.Background(), node, vmid, snapname).Execute()
+    resp, r, err := apiClient.NodesAPI.GetContainerSnapshotConfig(context.Background(), node, vmid, snapname).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `NodesApi.GetContainerSnapshotConfig``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `NodesAPI.GetContainerSnapshotConfig``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetContainerSnapshotConfig`: GetVMSnapshotConfig200Response
-    fmt.Fprintf(os.Stdout, "Response from `NodesApi.GetContainerSnapshotConfig`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `NodesAPI.GetContainerSnapshotConfig`: %v\n", resp)
 }
 ```
 
@@ -1146,13 +1146,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.NodesApi.GetContainerSnapshots(context.Background(), node, vmid).Execute()
+    resp, r, err := apiClient.NodesAPI.GetContainerSnapshots(context.Background(), node, vmid).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `NodesApi.GetContainerSnapshots``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `NodesAPI.GetContainerSnapshots``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetContainerSnapshots`: GetContainerSnapshots200Response
-    fmt.Fprintf(os.Stdout, "Response from `NodesApi.GetContainerSnapshots`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `NodesAPI.GetContainerSnapshots`: %v\n", resp)
 }
 ```
 
@@ -1219,13 +1219,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.NodesApi.GetContainerStatus(context.Background(), node, vmid).Execute()
+    resp, r, err := apiClient.NodesAPI.GetContainerStatus(context.Background(), node, vmid).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `NodesApi.GetContainerStatus``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `NodesAPI.GetContainerStatus``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetContainerStatus`: GetVM200Response
-    fmt.Fprintf(os.Stdout, "Response from `NodesApi.GetContainerStatus`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `NodesAPI.GetContainerStatus`: %v\n", resp)
 }
 ```
 
@@ -1291,13 +1291,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.NodesApi.GetContainers(context.Background(), node).Execute()
+    resp, r, err := apiClient.NodesAPI.GetContainers(context.Background(), node).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `NodesApi.GetContainers``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `NodesAPI.GetContainers``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetContainers`: GetContainers200Response
-    fmt.Fprintf(os.Stdout, "Response from `NodesApi.GetContainers`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `NodesAPI.GetContainers`: %v\n", resp)
 }
 ```
 
@@ -1362,13 +1362,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.NodesApi.GetCurrentContainerStatus(context.Background(), node, vmid).Execute()
+    resp, r, err := apiClient.NodesAPI.GetCurrentContainerStatus(context.Background(), node, vmid).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `NodesApi.GetCurrentContainerStatus``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `NodesAPI.GetCurrentContainerStatus``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetCurrentContainerStatus`: GetCurrentContainerStatus200Response
-    fmt.Fprintf(os.Stdout, "Response from `NodesApi.GetCurrentContainerStatus`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `NodesAPI.GetCurrentContainerStatus`: %v\n", resp)
 }
 ```
 
@@ -1435,13 +1435,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.NodesApi.GetCurrentVMStatus(context.Background(), node, vmid).Execute()
+    resp, r, err := apiClient.NodesAPI.GetCurrentVMStatus(context.Background(), node, vmid).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `NodesApi.GetCurrentVMStatus``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `NodesAPI.GetCurrentVMStatus``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetCurrentVMStatus`: GetCurrentVMStatus200Response
-    fmt.Fprintf(os.Stdout, "Response from `NodesApi.GetCurrentVMStatus`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `NodesAPI.GetCurrentVMStatus`: %v\n", resp)
 }
 ```
 
@@ -1508,13 +1508,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.NodesApi.GetNodeTask(context.Background(), node, upid).Execute()
+    resp, r, err := apiClient.NodesAPI.GetNodeTask(context.Background(), node, upid).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `NodesApi.GetNodeTask``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `NodesAPI.GetNodeTask``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetNodeTask`: GetVMSnapshot200Response
-    fmt.Fprintf(os.Stdout, "Response from `NodesApi.GetNodeTask`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `NodesAPI.GetNodeTask`: %v\n", resp)
 }
 ```
 
@@ -1584,13 +1584,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.NodesApi.GetNodeTaskLog(context.Background(), node, upid).Download(download).Limit(limit).Start(start).Execute()
+    resp, r, err := apiClient.NodesAPI.GetNodeTaskLog(context.Background(), node, upid).Download(download).Limit(limit).Start(start).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `NodesApi.GetNodeTaskLog``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `NodesAPI.GetNodeTaskLog``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetNodeTaskLog`: GetNodeTaskLog200Response
-    fmt.Fprintf(os.Stdout, "Response from `NodesApi.GetNodeTaskLog`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `NodesAPI.GetNodeTaskLog`: %v\n", resp)
 }
 ```
 
@@ -1660,13 +1660,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.NodesApi.GetNodeTaskStatus(context.Background(), node, upid).Execute()
+    resp, r, err := apiClient.NodesAPI.GetNodeTaskStatus(context.Background(), node, upid).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `NodesApi.GetNodeTaskStatus``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `NodesAPI.GetNodeTaskStatus``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetNodeTaskStatus`: GetNodeTaskStatus200Response
-    fmt.Fprintf(os.Stdout, "Response from `NodesApi.GetNodeTaskStatus`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `NodesAPI.GetNodeTaskStatus`: %v\n", resp)
 }
 ```
 
@@ -1742,13 +1742,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.NodesApi.GetNodeTasks(context.Background(), node).Errors(errors).Limit(limit).Since(since).Source(source).Start(start).Statusfilter(statusfilter).Typefilter(typefilter).Until(until).Userfilter(userfilter).Vmid(vmid).Execute()
+    resp, r, err := apiClient.NodesAPI.GetNodeTasks(context.Background(), node).Errors(errors).Limit(limit).Since(since).Source(source).Start(start).Statusfilter(statusfilter).Typefilter(typefilter).Until(until).Userfilter(userfilter).Vmid(vmid).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `NodesApi.GetNodeTasks``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `NodesAPI.GetNodeTasks``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetNodeTasks`: GetNodeTasks200Response
-    fmt.Fprintf(os.Stdout, "Response from `NodesApi.GetNodeTasks`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `NodesAPI.GetNodeTasks`: %v\n", resp)
 }
 ```
 
@@ -1825,13 +1825,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.NodesApi.GetStorageContent(context.Background(), node, storage).Content(content).Vmid(vmid).Execute()
+    resp, r, err := apiClient.NodesAPI.GetStorageContent(context.Background(), node, storage).Content(content).Vmid(vmid).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `NodesApi.GetStorageContent``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `NodesAPI.GetStorageContent``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetStorageContent`: GetStorageContent200Response
-    fmt.Fprintf(os.Stdout, "Response from `NodesApi.GetStorageContent`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `NodesAPI.GetStorageContent`: %v\n", resp)
 }
 ```
 
@@ -1904,13 +1904,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.NodesApi.GetStorages(context.Background(), node).Content(content).Enabled(enabled).Format(format).Storage(storage).Target(target).Execute()
+    resp, r, err := apiClient.NodesAPI.GetStorages(context.Background(), node).Content(content).Enabled(enabled).Format(format).Storage(storage).Target(target).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `NodesApi.GetStorages``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `NodesAPI.GetStorages``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetStorages`: GetStorages200Response
-    fmt.Fprintf(os.Stdout, "Response from `NodesApi.GetStorages`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `NodesAPI.GetStorages`: %v\n", resp)
 }
 ```
 
@@ -1980,13 +1980,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.NodesApi.GetVM(context.Background(), node, vmid).Execute()
+    resp, r, err := apiClient.NodesAPI.GetVM(context.Background(), node, vmid).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `NodesApi.GetVM``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `NodesAPI.GetVM``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetVM`: GetVM200Response
-    fmt.Fprintf(os.Stdout, "Response from `NodesApi.GetVM`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `NodesAPI.GetVM`: %v\n", resp)
 }
 ```
 
@@ -2055,13 +2055,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.NodesApi.GetVMConfig(context.Background(), node, vmid).Current(current).Snapshot(snapshot).Execute()
+    resp, r, err := apiClient.NodesAPI.GetVMConfig(context.Background(), node, vmid).Current(current).Snapshot(snapshot).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `NodesApi.GetVMConfig``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `NodesAPI.GetVMConfig``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetVMConfig`: GetVMConfig200Response
-    fmt.Fprintf(os.Stdout, "Response from `NodesApi.GetVMConfig`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `NodesAPI.GetVMConfig`: %v\n", resp)
 }
 ```
 
@@ -2130,13 +2130,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.NodesApi.GetVMConfigPending(context.Background(), node, vmid).Execute()
+    resp, r, err := apiClient.NodesAPI.GetVMConfigPending(context.Background(), node, vmid).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `NodesApi.GetVMConfigPending``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `NodesAPI.GetVMConfigPending``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetVMConfigPending`: GetVMConfigPending200Response
-    fmt.Fprintf(os.Stdout, "Response from `NodesApi.GetVMConfigPending`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `NodesAPI.GetVMConfigPending`: %v\n", resp)
 }
 ```
 
@@ -2204,13 +2204,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.NodesApi.GetVMSnapshot(context.Background(), node, vmid, snapname).Execute()
+    resp, r, err := apiClient.NodesAPI.GetVMSnapshot(context.Background(), node, vmid, snapname).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `NodesApi.GetVMSnapshot``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `NodesAPI.GetVMSnapshot``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetVMSnapshot`: GetVMSnapshot200Response
-    fmt.Fprintf(os.Stdout, "Response from `NodesApi.GetVMSnapshot`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `NodesAPI.GetVMSnapshot`: %v\n", resp)
 }
 ```
 
@@ -2280,13 +2280,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.NodesApi.GetVMSnapshotConfig(context.Background(), node, vmid, snapname).Execute()
+    resp, r, err := apiClient.NodesAPI.GetVMSnapshotConfig(context.Background(), node, vmid, snapname).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `NodesApi.GetVMSnapshotConfig``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `NodesAPI.GetVMSnapshotConfig``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetVMSnapshotConfig`: GetVMSnapshotConfig200Response
-    fmt.Fprintf(os.Stdout, "Response from `NodesApi.GetVMSnapshotConfig`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `NodesAPI.GetVMSnapshotConfig`: %v\n", resp)
 }
 ```
 
@@ -2355,13 +2355,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.NodesApi.GetVMSnapshots(context.Background(), node, vmid).Execute()
+    resp, r, err := apiClient.NodesAPI.GetVMSnapshots(context.Background(), node, vmid).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `NodesApi.GetVMSnapshots``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `NodesAPI.GetVMSnapshots``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetVMSnapshots`: GetVMSnapshots200Response
-    fmt.Fprintf(os.Stdout, "Response from `NodesApi.GetVMSnapshots`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `NodesAPI.GetVMSnapshots`: %v\n", resp)
 }
 ```
 
@@ -2428,13 +2428,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.NodesApi.GetVMs(context.Background(), node).Full(full).Execute()
+    resp, r, err := apiClient.NodesAPI.GetVMs(context.Background(), node).Full(full).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `NodesApi.GetVMs``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `NodesAPI.GetVMs``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetVMs`: GetVMs200Response
-    fmt.Fprintf(os.Stdout, "Response from `NodesApi.GetVMs`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `NodesAPI.GetVMs`: %v\n", resp)
 }
 ```
 
@@ -2501,13 +2501,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.NodesApi.RebootContainer(context.Background(), node, vmid).RebootContainerRequest(rebootContainerRequest).Execute()
+    resp, r, err := apiClient.NodesAPI.RebootContainer(context.Background(), node, vmid).RebootContainerRequest(rebootContainerRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `NodesApi.RebootContainer``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `NodesAPI.RebootContainer``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `RebootContainer`: CreateVM200Response
-    fmt.Fprintf(os.Stdout, "Response from `NodesApi.RebootContainer`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `NodesAPI.RebootContainer`: %v\n", resp)
 }
 ```
 
@@ -2576,13 +2576,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.NodesApi.RebootVM(context.Background(), node, vmid).RebootVMRequest(rebootVMRequest).Execute()
+    resp, r, err := apiClient.NodesAPI.RebootVM(context.Background(), node, vmid).RebootVMRequest(rebootVMRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `NodesApi.RebootVM``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `NodesAPI.RebootVM``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `RebootVM`: CreateVM200Response
-    fmt.Fprintf(os.Stdout, "Response from `NodesApi.RebootVM`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `NodesAPI.RebootVM`: %v\n", resp)
 }
 ```
 
@@ -2651,13 +2651,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.NodesApi.ResizeContainerDisk(context.Background(), node, vmid).ResizeContainerDiskRequest(resizeContainerDiskRequest).Execute()
+    resp, r, err := apiClient.NodesAPI.ResizeContainerDisk(context.Background(), node, vmid).ResizeContainerDiskRequest(resizeContainerDiskRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `NodesApi.ResizeContainerDisk``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `NodesAPI.ResizeContainerDisk``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ResizeContainerDisk`: TaskStartResponse
-    fmt.Fprintf(os.Stdout, "Response from `NodesApi.ResizeContainerDisk`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `NodesAPI.ResizeContainerDisk`: %v\n", resp)
 }
 ```
 
@@ -2726,13 +2726,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.NodesApi.ResizeVMDisk(context.Background(), node, vmid).ResizeVMDiskRequest(resizeVMDiskRequest).Execute()
+    resp, r, err := apiClient.NodesAPI.ResizeVMDisk(context.Background(), node, vmid).ResizeVMDiskRequest(resizeVMDiskRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `NodesApi.ResizeVMDisk``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `NodesAPI.ResizeVMDisk``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ResizeVMDisk`: TaskStartResponse
-    fmt.Fprintf(os.Stdout, "Response from `NodesApi.ResizeVMDisk`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `NodesAPI.ResizeVMDisk`: %v\n", resp)
 }
 ```
 
@@ -2801,13 +2801,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.NodesApi.ResumeContainer(context.Background(), node, vmid).Body(body).Execute()
+    resp, r, err := apiClient.NodesAPI.ResumeContainer(context.Background(), node, vmid).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `NodesApi.ResumeContainer``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `NodesAPI.ResumeContainer``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ResumeContainer`: CreateVM200Response
-    fmt.Fprintf(os.Stdout, "Response from `NodesApi.ResumeContainer`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `NodesAPI.ResumeContainer`: %v\n", resp)
 }
 ```
 
@@ -2876,13 +2876,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.NodesApi.ResumeVM(context.Background(), node, vmid).ResumeVMRequest(resumeVMRequest).Execute()
+    resp, r, err := apiClient.NodesAPI.ResumeVM(context.Background(), node, vmid).ResumeVMRequest(resumeVMRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `NodesApi.ResumeVM``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `NodesAPI.ResumeVM``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ResumeVM`: CreateVM200Response
-    fmt.Fprintf(os.Stdout, "Response from `NodesApi.ResumeVM`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `NodesAPI.ResumeVM`: %v\n", resp)
 }
 ```
 
@@ -2952,13 +2952,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.NodesApi.RollbackContainerSnapshot(context.Background(), node, vmid, snapname).RollbackContainerSnapshotRequest(rollbackContainerSnapshotRequest).Execute()
+    resp, r, err := apiClient.NodesAPI.RollbackContainerSnapshot(context.Background(), node, vmid, snapname).RollbackContainerSnapshotRequest(rollbackContainerSnapshotRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `NodesApi.RollbackContainerSnapshot``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `NodesAPI.RollbackContainerSnapshot``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `RollbackContainerSnapshot`: TaskStartResponse
-    fmt.Fprintf(os.Stdout, "Response from `NodesApi.RollbackContainerSnapshot`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `NodesAPI.RollbackContainerSnapshot`: %v\n", resp)
 }
 ```
 
@@ -3030,13 +3030,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.NodesApi.RollbackVMSnapshot(context.Background(), node, vmid, snapname).RollbackVMSnapshotRequest(rollbackVMSnapshotRequest).Execute()
+    resp, r, err := apiClient.NodesAPI.RollbackVMSnapshot(context.Background(), node, vmid, snapname).RollbackVMSnapshotRequest(rollbackVMSnapshotRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `NodesApi.RollbackVMSnapshot``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `NodesAPI.RollbackVMSnapshot``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `RollbackVMSnapshot`: TaskStartResponse
-    fmt.Fprintf(os.Stdout, "Response from `NodesApi.RollbackVMSnapshot`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `NodesAPI.RollbackVMSnapshot`: %v\n", resp)
 }
 ```
 
@@ -3107,13 +3107,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.NodesApi.ShutdownContainer(context.Background(), node, vmid).ShutdownContainerRequest(shutdownContainerRequest).Execute()
+    resp, r, err := apiClient.NodesAPI.ShutdownContainer(context.Background(), node, vmid).ShutdownContainerRequest(shutdownContainerRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `NodesApi.ShutdownContainer``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `NodesAPI.ShutdownContainer``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ShutdownContainer`: CreateVM200Response
-    fmt.Fprintf(os.Stdout, "Response from `NodesApi.ShutdownContainer`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `NodesAPI.ShutdownContainer`: %v\n", resp)
 }
 ```
 
@@ -3182,13 +3182,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.NodesApi.ShutdownVM(context.Background(), node, vmid).ShutdownVMRequest(shutdownVMRequest).Execute()
+    resp, r, err := apiClient.NodesAPI.ShutdownVM(context.Background(), node, vmid).ShutdownVMRequest(shutdownVMRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `NodesApi.ShutdownVM``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `NodesAPI.ShutdownVM``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ShutdownVM`: CreateVM200Response
-    fmt.Fprintf(os.Stdout, "Response from `NodesApi.ShutdownVM`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `NodesAPI.ShutdownVM`: %v\n", resp)
 }
 ```
 
@@ -3257,13 +3257,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.NodesApi.StartContainer(context.Background(), node, vmid).StartContainerRequest(startContainerRequest).Execute()
+    resp, r, err := apiClient.NodesAPI.StartContainer(context.Background(), node, vmid).StartContainerRequest(startContainerRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `NodesApi.StartContainer``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `NodesAPI.StartContainer``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `StartContainer`: CreateVM200Response
-    fmt.Fprintf(os.Stdout, "Response from `NodesApi.StartContainer`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `NodesAPI.StartContainer`: %v\n", resp)
 }
 ```
 
@@ -3332,13 +3332,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.NodesApi.StartVM(context.Background(), node, vmid).StartVMRequest(startVMRequest).Execute()
+    resp, r, err := apiClient.NodesAPI.StartVM(context.Background(), node, vmid).StartVMRequest(startVMRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `NodesApi.StartVM``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `NodesAPI.StartVM``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `StartVM`: CreateVM200Response
-    fmt.Fprintf(os.Stdout, "Response from `NodesApi.StartVM`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `NodesAPI.StartVM`: %v\n", resp)
 }
 ```
 
@@ -3407,13 +3407,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.NodesApi.StopContainer(context.Background(), node, vmid).StopContainerRequest(stopContainerRequest).Execute()
+    resp, r, err := apiClient.NodesAPI.StopContainer(context.Background(), node, vmid).StopContainerRequest(stopContainerRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `NodesApi.StopContainer``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `NodesAPI.StopContainer``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `StopContainer`: CreateVM200Response
-    fmt.Fprintf(os.Stdout, "Response from `NodesApi.StopContainer`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `NodesAPI.StopContainer`: %v\n", resp)
 }
 ```
 
@@ -3481,13 +3481,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.NodesApi.StopNodeTask(context.Background(), node, upid).Execute()
+    resp, r, err := apiClient.NodesAPI.StopNodeTask(context.Background(), node, upid).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `NodesApi.StopNodeTask``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `NodesAPI.StopNodeTask``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `StopNodeTask`: CreateVM200Response
-    fmt.Fprintf(os.Stdout, "Response from `NodesApi.StopNodeTask`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `NodesAPI.StopNodeTask`: %v\n", resp)
 }
 ```
 
@@ -3555,13 +3555,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.NodesApi.StopVM(context.Background(), node, vmid).StopVMRequest(stopVMRequest).Execute()
+    resp, r, err := apiClient.NodesAPI.StopVM(context.Background(), node, vmid).StopVMRequest(stopVMRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `NodesApi.StopVM``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `NodesAPI.StopVM``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `StopVM`: CreateVM200Response
-    fmt.Fprintf(os.Stdout, "Response from `NodesApi.StopVM`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `NodesAPI.StopVM`: %v\n", resp)
 }
 ```
 
@@ -3630,13 +3630,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.NodesApi.SuspendContainer(context.Background(), node, vmid).Body(body).Execute()
+    resp, r, err := apiClient.NodesAPI.SuspendContainer(context.Background(), node, vmid).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `NodesApi.SuspendContainer``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `NodesAPI.SuspendContainer``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `SuspendContainer`: CreateVM200Response
-    fmt.Fprintf(os.Stdout, "Response from `NodesApi.SuspendContainer`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `NodesAPI.SuspendContainer`: %v\n", resp)
 }
 ```
 
@@ -3705,13 +3705,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.NodesApi.SuspendVM(context.Background(), node, vmid).SuspendVMRequest(suspendVMRequest).Execute()
+    resp, r, err := apiClient.NodesAPI.SuspendVM(context.Background(), node, vmid).SuspendVMRequest(suspendVMRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `NodesApi.SuspendVM``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `NodesAPI.SuspendVM``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `SuspendVM`: CreateVM200Response
-    fmt.Fprintf(os.Stdout, "Response from `NodesApi.SuspendVM`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `NodesAPI.SuspendVM`: %v\n", resp)
 }
 ```
 
@@ -3780,13 +3780,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.NodesApi.UpdateContainerConfigSync(context.Background(), node, vmid).UpdateContainerConfigSyncRequest(updateContainerConfigSyncRequest).Execute()
+    resp, r, err := apiClient.NodesAPI.UpdateContainerConfigSync(context.Background(), node, vmid).UpdateContainerConfigSyncRequest(updateContainerConfigSyncRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `NodesApi.UpdateContainerConfigSync``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `NodesAPI.UpdateContainerConfigSync``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateContainerConfigSync`: CreateVM200Response
-    fmt.Fprintf(os.Stdout, "Response from `NodesApi.UpdateContainerConfigSync`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `NodesAPI.UpdateContainerConfigSync`: %v\n", resp)
 }
 ```
 
@@ -3856,13 +3856,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.NodesApi.UpdateContainerSnapshotConfig(context.Background(), node, vmid, snapname).UpdateContainerSnapshotConfigRequest(updateContainerSnapshotConfigRequest).Execute()
+    resp, r, err := apiClient.NodesAPI.UpdateContainerSnapshotConfig(context.Background(), node, vmid, snapname).UpdateContainerSnapshotConfigRequest(updateContainerSnapshotConfigRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `NodesApi.UpdateContainerSnapshotConfig``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `NodesAPI.UpdateContainerSnapshotConfig``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateContainerSnapshotConfig`: CreateVM200Response
-    fmt.Fprintf(os.Stdout, "Response from `NodesApi.UpdateContainerSnapshotConfig`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `NodesAPI.UpdateContainerSnapshotConfig`: %v\n", resp)
 }
 ```
 
@@ -3933,13 +3933,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.NodesApi.UpdateVMConfig(context.Background(), node, vmid).UpdateVMConfigRequest(updateVMConfigRequest).Execute()
+    resp, r, err := apiClient.NodesAPI.UpdateVMConfig(context.Background(), node, vmid).UpdateVMConfigRequest(updateVMConfigRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `NodesApi.UpdateVMConfig``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `NodesAPI.UpdateVMConfig``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateVMConfig`: CreateVM200Response
-    fmt.Fprintf(os.Stdout, "Response from `NodesApi.UpdateVMConfig`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `NodesAPI.UpdateVMConfig`: %v\n", resp)
 }
 ```
 
@@ -4008,13 +4008,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.NodesApi.UpdateVMConfigSync(context.Background(), node, vmid).UpdateVMConfigSyncRequest(updateVMConfigSyncRequest).Execute()
+    resp, r, err := apiClient.NodesAPI.UpdateVMConfigSync(context.Background(), node, vmid).UpdateVMConfigSyncRequest(updateVMConfigSyncRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `NodesApi.UpdateVMConfigSync``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `NodesAPI.UpdateVMConfigSync``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateVMConfigSync`: CreateVM200Response
-    fmt.Fprintf(os.Stdout, "Response from `NodesApi.UpdateVMConfigSync`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `NodesAPI.UpdateVMConfigSync`: %v\n", resp)
 }
 ```
 
@@ -4084,13 +4084,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.NodesApi.UpdateVMSnapshotConfig(context.Background(), node, vmid, snapname).UpdateVMSnapshotConfigRequest(updateVMSnapshotConfigRequest).Execute()
+    resp, r, err := apiClient.NodesAPI.UpdateVMSnapshotConfig(context.Background(), node, vmid, snapname).UpdateVMSnapshotConfigRequest(updateVMSnapshotConfigRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `NodesApi.UpdateVMSnapshotConfig``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `NodesAPI.UpdateVMSnapshotConfig``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateVMSnapshotConfig`: CreateVM200Response
-    fmt.Fprintf(os.Stdout, "Response from `NodesApi.UpdateVMSnapshotConfig`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `NodesAPI.UpdateVMSnapshotConfig`: %v\n", resp)
 }
 ```
 
@@ -4165,13 +4165,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.NodesApi.UploadFile(context.Background(), node, storage).Content(content).Filename(filename).Checksum(checksum).ChecksumAlgorithm(checksumAlgorithm).Tmpfilename(tmpfilename).Execute()
+    resp, r, err := apiClient.NodesAPI.UploadFile(context.Background(), node, storage).Content(content).Filename(filename).Checksum(checksum).ChecksumAlgorithm(checksumAlgorithm).Tmpfilename(tmpfilename).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `NodesApi.UploadFile``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `NodesAPI.UploadFile``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UploadFile`: CreateVM200Response
-    fmt.Fprintf(os.Stdout, "Response from `NodesApi.UploadFile`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `NodesAPI.UploadFile`: %v\n", resp)
 }
 ```
 

@@ -20,7 +20,7 @@ import (
 )
 
 
-type ClusterApi interface {
+type ClusterAPI interface {
 
 	/*
 	GetClusterConfigNodes getClusterConfigNodes
@@ -65,12 +65,12 @@ type ClusterApi interface {
 	GetClusterResourcesExecute(r ApiGetClusterResourcesRequest) (*GetClusterResources200Response, *http.Response, error)
 }
 
-// ClusterApiService ClusterApi service
-type ClusterApiService service
+// ClusterAPIService ClusterAPI service
+type ClusterAPIService service
 
 type ApiGetClusterConfigNodesRequest struct {
 	ctx context.Context
-	ApiService ClusterApi
+	ApiService ClusterAPI
 }
 
 func (r ApiGetClusterConfigNodesRequest) Execute() (*GetClusterConfigNodes200Response, *http.Response, error) {
@@ -85,7 +85,7 @@ Corosync node list.
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetClusterConfigNodesRequest
 */
-func (a *ClusterApiService) GetClusterConfigNodes(ctx context.Context) ApiGetClusterConfigNodesRequest {
+func (a *ClusterAPIService) GetClusterConfigNodes(ctx context.Context) ApiGetClusterConfigNodesRequest {
 	return ApiGetClusterConfigNodesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -94,7 +94,7 @@ func (a *ClusterApiService) GetClusterConfigNodes(ctx context.Context) ApiGetClu
 
 // Execute executes the request
 //  @return GetClusterConfigNodes200Response
-func (a *ClusterApiService) GetClusterConfigNodesExecute(r ApiGetClusterConfigNodesRequest) (*GetClusterConfigNodes200Response, *http.Response, error) {
+func (a *ClusterAPIService) GetClusterConfigNodesExecute(r ApiGetClusterConfigNodesRequest) (*GetClusterConfigNodes200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -102,7 +102,7 @@ func (a *ClusterApiService) GetClusterConfigNodesExecute(r ApiGetClusterConfigNo
 		localVarReturnValue  *GetClusterConfigNodes200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ClusterApiService.GetClusterConfigNodes")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ClusterAPIService.GetClusterConfigNodes")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -197,7 +197,7 @@ func (a *ClusterApiService) GetClusterConfigNodesExecute(r ApiGetClusterConfigNo
 
 type ApiGetClusterNextidRequest struct {
 	ctx context.Context
-	ApiService ClusterApi
+	ApiService ClusterAPI
 	vmid *int64
 }
 
@@ -219,7 +219,7 @@ Get next free VMID. Pass a VMID to assert that its free (at time of check).
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetClusterNextidRequest
 */
-func (a *ClusterApiService) GetClusterNextid(ctx context.Context) ApiGetClusterNextidRequest {
+func (a *ClusterAPIService) GetClusterNextid(ctx context.Context) ApiGetClusterNextidRequest {
 	return ApiGetClusterNextidRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -228,7 +228,7 @@ func (a *ClusterApiService) GetClusterNextid(ctx context.Context) ApiGetClusterN
 
 // Execute executes the request
 //  @return GetClusterNextid200Response
-func (a *ClusterApiService) GetClusterNextidExecute(r ApiGetClusterNextidRequest) (*GetClusterNextid200Response, *http.Response, error) {
+func (a *ClusterAPIService) GetClusterNextidExecute(r ApiGetClusterNextidRequest) (*GetClusterNextid200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -236,7 +236,7 @@ func (a *ClusterApiService) GetClusterNextidExecute(r ApiGetClusterNextidRequest
 		localVarReturnValue  *GetClusterNextid200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ClusterApiService.GetClusterNextid")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ClusterAPIService.GetClusterNextid")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -334,7 +334,7 @@ func (a *ClusterApiService) GetClusterNextidExecute(r ApiGetClusterNextidRequest
 
 type ApiGetClusterResourcesRequest struct {
 	ctx context.Context
-	ApiService ClusterApi
+	ApiService ClusterAPI
 	type_ *string
 }
 
@@ -355,7 +355,7 @@ Resources index (cluster wide).
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetClusterResourcesRequest
 */
-func (a *ClusterApiService) GetClusterResources(ctx context.Context) ApiGetClusterResourcesRequest {
+func (a *ClusterAPIService) GetClusterResources(ctx context.Context) ApiGetClusterResourcesRequest {
 	return ApiGetClusterResourcesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -364,7 +364,7 @@ func (a *ClusterApiService) GetClusterResources(ctx context.Context) ApiGetClust
 
 // Execute executes the request
 //  @return GetClusterResources200Response
-func (a *ClusterApiService) GetClusterResourcesExecute(r ApiGetClusterResourcesRequest) (*GetClusterResources200Response, *http.Response, error) {
+func (a *ClusterAPIService) GetClusterResourcesExecute(r ApiGetClusterResourcesRequest) (*GetClusterResources200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -372,7 +372,7 @@ func (a *ClusterApiService) GetClusterResourcesExecute(r ApiGetClusterResourcesR
 		localVarReturnValue  *GetClusterResources200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ClusterApiService.GetClusterResources")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ClusterAPIService.GetClusterResources")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

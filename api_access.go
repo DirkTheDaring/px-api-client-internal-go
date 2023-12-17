@@ -20,7 +20,7 @@ import (
 )
 
 
-type AccessApi interface {
+type AccessAPI interface {
 
 	/*
 	CreateAccessTicket createAccessTicket
@@ -51,12 +51,12 @@ type AccessApi interface {
 	GetAccessTicketExecute(r ApiGetAccessTicketRequest) (*CreateVM200Response, *http.Response, error)
 }
 
-// AccessApiService AccessApi service
-type AccessApiService service
+// AccessAPIService AccessAPI service
+type AccessAPIService service
 
 type ApiCreateAccessTicketRequest struct {
 	ctx context.Context
-	ApiService AccessApi
+	ApiService AccessAPI
 	createAccessTicketRequest *CreateAccessTicketRequest
 }
 
@@ -77,7 +77,7 @@ Create or verify authentication ticket.
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiCreateAccessTicketRequest
 */
-func (a *AccessApiService) CreateAccessTicket(ctx context.Context) ApiCreateAccessTicketRequest {
+func (a *AccessAPIService) CreateAccessTicket(ctx context.Context) ApiCreateAccessTicketRequest {
 	return ApiCreateAccessTicketRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -86,7 +86,7 @@ func (a *AccessApiService) CreateAccessTicket(ctx context.Context) ApiCreateAcce
 
 // Execute executes the request
 //  @return CreateAccessTicket200Response
-func (a *AccessApiService) CreateAccessTicketExecute(r ApiCreateAccessTicketRequest) (*CreateAccessTicket200Response, *http.Response, error) {
+func (a *AccessAPIService) CreateAccessTicketExecute(r ApiCreateAccessTicketRequest) (*CreateAccessTicket200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -94,7 +94,7 @@ func (a *AccessApiService) CreateAccessTicketExecute(r ApiCreateAccessTicketRequ
 		localVarReturnValue  *CreateAccessTicket200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AccessApiService.CreateAccessTicket")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AccessAPIService.CreateAccessTicket")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -191,7 +191,7 @@ func (a *AccessApiService) CreateAccessTicketExecute(r ApiCreateAccessTicketRequ
 
 type ApiGetAccessTicketRequest struct {
 	ctx context.Context
-	ApiService AccessApi
+	ApiService AccessAPI
 }
 
 func (r ApiGetAccessTicketRequest) Execute() (*CreateVM200Response, *http.Response, error) {
@@ -206,7 +206,7 @@ Dummy. Useful for formatters which want to provide a login page.
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetAccessTicketRequest
 */
-func (a *AccessApiService) GetAccessTicket(ctx context.Context) ApiGetAccessTicketRequest {
+func (a *AccessAPIService) GetAccessTicket(ctx context.Context) ApiGetAccessTicketRequest {
 	return ApiGetAccessTicketRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -215,7 +215,7 @@ func (a *AccessApiService) GetAccessTicket(ctx context.Context) ApiGetAccessTick
 
 // Execute executes the request
 //  @return CreateVM200Response
-func (a *AccessApiService) GetAccessTicketExecute(r ApiGetAccessTicketRequest) (*CreateVM200Response, *http.Response, error) {
+func (a *AccessAPIService) GetAccessTicketExecute(r ApiGetAccessTicketRequest) (*CreateVM200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -223,7 +223,7 @@ func (a *AccessApiService) GetAccessTicketExecute(r ApiGetAccessTicketRequest) (
 		localVarReturnValue  *CreateVM200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AccessApiService.GetAccessTicket")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AccessAPIService.GetAccessTicket")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

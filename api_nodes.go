@@ -22,7 +22,7 @@ import (
 )
 
 
-type NodesApi interface {
+type NodesAPI interface {
 
 	/*
 	CreateContainer createContainer
@@ -909,12 +909,12 @@ type NodesApi interface {
 	UploadFileExecute(r ApiUploadFileRequest) (*CreateVM200Response, *http.Response, error)
 }
 
-// NodesApiService NodesApi service
-type NodesApiService service
+// NodesAPIService NodesAPI service
+type NodesAPIService service
 
 type ApiCreateContainerRequest struct {
 	ctx context.Context
-	ApiService NodesApi
+	ApiService NodesAPI
 	node string
 	createContainerRequest *CreateContainerRequest
 }
@@ -937,7 +937,7 @@ Create or restore a container.
  @param node The cluster node name.
  @return ApiCreateContainerRequest
 */
-func (a *NodesApiService) CreateContainer(ctx context.Context, node string) ApiCreateContainerRequest {
+func (a *NodesAPIService) CreateContainer(ctx context.Context, node string) ApiCreateContainerRequest {
 	return ApiCreateContainerRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -947,7 +947,7 @@ func (a *NodesApiService) CreateContainer(ctx context.Context, node string) ApiC
 
 // Execute executes the request
 //  @return CreateVM200Response
-func (a *NodesApiService) CreateContainerExecute(r ApiCreateContainerRequest) (*CreateVM200Response, *http.Response, error) {
+func (a *NodesAPIService) CreateContainerExecute(r ApiCreateContainerRequest) (*CreateVM200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -955,7 +955,7 @@ func (a *NodesApiService) CreateContainerExecute(r ApiCreateContainerRequest) (*
 		localVarReturnValue  *CreateVM200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.CreateContainer")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.CreateContainer")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1053,7 +1053,7 @@ func (a *NodesApiService) CreateContainerExecute(r ApiCreateContainerRequest) (*
 
 type ApiCreateContainerSnapshotRequest struct {
 	ctx context.Context
-	ApiService NodesApi
+	ApiService NodesAPI
 	node string
 	vmid int64
 	createContainerSnapshotRequest *CreateContainerSnapshotRequest
@@ -1078,7 +1078,7 @@ Snapshot a container.
  @param vmid The (unique) ID of the VM.
  @return ApiCreateContainerSnapshotRequest
 */
-func (a *NodesApiService) CreateContainerSnapshot(ctx context.Context, node string, vmid int64) ApiCreateContainerSnapshotRequest {
+func (a *NodesAPIService) CreateContainerSnapshot(ctx context.Context, node string, vmid int64) ApiCreateContainerSnapshotRequest {
 	return ApiCreateContainerSnapshotRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1089,7 +1089,7 @@ func (a *NodesApiService) CreateContainerSnapshot(ctx context.Context, node stri
 
 // Execute executes the request
 //  @return TaskStartResponse
-func (a *NodesApiService) CreateContainerSnapshotExecute(r ApiCreateContainerSnapshotRequest) (*TaskStartResponse, *http.Response, error) {
+func (a *NodesAPIService) CreateContainerSnapshotExecute(r ApiCreateContainerSnapshotRequest) (*TaskStartResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -1097,7 +1097,7 @@ func (a *NodesApiService) CreateContainerSnapshotExecute(r ApiCreateContainerSna
 		localVarReturnValue  *TaskStartResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.CreateContainerSnapshot")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.CreateContainerSnapshot")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1202,7 +1202,7 @@ func (a *NodesApiService) CreateContainerSnapshotExecute(r ApiCreateContainerSna
 
 type ApiCreateNodesSingleStorageSingleContentRequest struct {
 	ctx context.Context
-	ApiService NodesApi
+	ApiService NodesAPI
 	node string
 	storage string
 	createNodesSingleStorageSingleContentRequest *CreateNodesSingleStorageSingleContentRequest
@@ -1227,7 +1227,7 @@ Allocate disk images.
  @param storage The storage identifier.
  @return ApiCreateNodesSingleStorageSingleContentRequest
 */
-func (a *NodesApiService) CreateNodesSingleStorageSingleContent(ctx context.Context, node string, storage string) ApiCreateNodesSingleStorageSingleContentRequest {
+func (a *NodesAPIService) CreateNodesSingleStorageSingleContent(ctx context.Context, node string, storage string) ApiCreateNodesSingleStorageSingleContentRequest {
 	return ApiCreateNodesSingleStorageSingleContentRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1238,7 +1238,7 @@ func (a *NodesApiService) CreateNodesSingleStorageSingleContent(ctx context.Cont
 
 // Execute executes the request
 //  @return CreateNodesSingleStorageSingleContent200Response
-func (a *NodesApiService) CreateNodesSingleStorageSingleContentExecute(r ApiCreateNodesSingleStorageSingleContentRequest) (*CreateNodesSingleStorageSingleContent200Response, *http.Response, error) {
+func (a *NodesAPIService) CreateNodesSingleStorageSingleContentExecute(r ApiCreateNodesSingleStorageSingleContentRequest) (*CreateNodesSingleStorageSingleContent200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -1246,7 +1246,7 @@ func (a *NodesApiService) CreateNodesSingleStorageSingleContentExecute(r ApiCrea
 		localVarReturnValue  *CreateNodesSingleStorageSingleContent200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.CreateNodesSingleStorageSingleContent")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.CreateNodesSingleStorageSingleContent")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1345,7 +1345,7 @@ func (a *NodesApiService) CreateNodesSingleStorageSingleContentExecute(r ApiCrea
 
 type ApiCreateVMRequest struct {
 	ctx context.Context
-	ApiService NodesApi
+	ApiService NodesAPI
 	node string
 	createVMRequest *CreateVMRequest
 }
@@ -1368,7 +1368,7 @@ Create or restore a virtual machine.
  @param node The cluster node name.
  @return ApiCreateVMRequest
 */
-func (a *NodesApiService) CreateVM(ctx context.Context, node string) ApiCreateVMRequest {
+func (a *NodesAPIService) CreateVM(ctx context.Context, node string) ApiCreateVMRequest {
 	return ApiCreateVMRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1378,7 +1378,7 @@ func (a *NodesApiService) CreateVM(ctx context.Context, node string) ApiCreateVM
 
 // Execute executes the request
 //  @return CreateVM200Response
-func (a *NodesApiService) CreateVMExecute(r ApiCreateVMRequest) (*CreateVM200Response, *http.Response, error) {
+func (a *NodesAPIService) CreateVMExecute(r ApiCreateVMRequest) (*CreateVM200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -1386,7 +1386,7 @@ func (a *NodesApiService) CreateVMExecute(r ApiCreateVMRequest) (*CreateVM200Res
 		localVarReturnValue  *CreateVM200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.CreateVM")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.CreateVM")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1484,7 +1484,7 @@ func (a *NodesApiService) CreateVMExecute(r ApiCreateVMRequest) (*CreateVM200Res
 
 type ApiCreateVMSnapshotRequest struct {
 	ctx context.Context
-	ApiService NodesApi
+	ApiService NodesAPI
 	node string
 	vmid int64
 	createVMSnapshotRequest *CreateVMSnapshotRequest
@@ -1509,7 +1509,7 @@ Snapshot a VM.
  @param vmid The (unique) ID of the VM.
  @return ApiCreateVMSnapshotRequest
 */
-func (a *NodesApiService) CreateVMSnapshot(ctx context.Context, node string, vmid int64) ApiCreateVMSnapshotRequest {
+func (a *NodesAPIService) CreateVMSnapshot(ctx context.Context, node string, vmid int64) ApiCreateVMSnapshotRequest {
 	return ApiCreateVMSnapshotRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1520,7 +1520,7 @@ func (a *NodesApiService) CreateVMSnapshot(ctx context.Context, node string, vmi
 
 // Execute executes the request
 //  @return TaskStartResponse
-func (a *NodesApiService) CreateVMSnapshotExecute(r ApiCreateVMSnapshotRequest) (*TaskStartResponse, *http.Response, error) {
+func (a *NodesAPIService) CreateVMSnapshotExecute(r ApiCreateVMSnapshotRequest) (*TaskStartResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -1528,7 +1528,7 @@ func (a *NodesApiService) CreateVMSnapshotExecute(r ApiCreateVMSnapshotRequest) 
 		localVarReturnValue  *TaskStartResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.CreateVMSnapshot")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.CreateVMSnapshot")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1633,7 +1633,7 @@ func (a *NodesApiService) CreateVMSnapshotExecute(r ApiCreateVMSnapshotRequest) 
 
 type ApiDeleteContainerRequest struct {
 	ctx context.Context
-	ApiService NodesApi
+	ApiService NodesAPI
 	node string
 	vmid int64
 	destroyUnreferencedDisks *bool
@@ -1673,7 +1673,7 @@ Destroy the container (also delete all uses files).
  @param vmid The (unique) ID of the VM.
  @return ApiDeleteContainerRequest
 */
-func (a *NodesApiService) DeleteContainer(ctx context.Context, node string, vmid int64) ApiDeleteContainerRequest {
+func (a *NodesAPIService) DeleteContainer(ctx context.Context, node string, vmid int64) ApiDeleteContainerRequest {
 	return ApiDeleteContainerRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1684,7 +1684,7 @@ func (a *NodesApiService) DeleteContainer(ctx context.Context, node string, vmid
 
 // Execute executes the request
 //  @return CreateVM200Response
-func (a *NodesApiService) DeleteContainerExecute(r ApiDeleteContainerRequest) (*CreateVM200Response, *http.Response, error) {
+func (a *NodesAPIService) DeleteContainerExecute(r ApiDeleteContainerRequest) (*CreateVM200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -1692,7 +1692,7 @@ func (a *NodesApiService) DeleteContainerExecute(r ApiDeleteContainerRequest) (*
 		localVarReturnValue  *CreateVM200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.DeleteContainer")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.DeleteContainer")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1804,7 +1804,7 @@ func (a *NodesApiService) DeleteContainerExecute(r ApiDeleteContainerRequest) (*
 
 type ApiDeleteContainerSnapshotRequest struct {
 	ctx context.Context
-	ApiService NodesApi
+	ApiService NodesAPI
 	node string
 	vmid int64
 	snapname string
@@ -1832,7 +1832,7 @@ Delete a LXC snapshot.
  @param snapname The name of the snapshot.
  @return ApiDeleteContainerSnapshotRequest
 */
-func (a *NodesApiService) DeleteContainerSnapshot(ctx context.Context, node string, vmid int64, snapname string) ApiDeleteContainerSnapshotRequest {
+func (a *NodesAPIService) DeleteContainerSnapshot(ctx context.Context, node string, vmid int64, snapname string) ApiDeleteContainerSnapshotRequest {
 	return ApiDeleteContainerSnapshotRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1844,7 +1844,7 @@ func (a *NodesApiService) DeleteContainerSnapshot(ctx context.Context, node stri
 
 // Execute executes the request
 //  @return TaskStartResponse
-func (a *NodesApiService) DeleteContainerSnapshotExecute(r ApiDeleteContainerSnapshotRequest) (*TaskStartResponse, *http.Response, error) {
+func (a *NodesAPIService) DeleteContainerSnapshotExecute(r ApiDeleteContainerSnapshotRequest) (*TaskStartResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -1852,7 +1852,7 @@ func (a *NodesApiService) DeleteContainerSnapshotExecute(r ApiDeleteContainerSna
 		localVarReturnValue  *TaskStartResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.DeleteContainerSnapshot")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.DeleteContainerSnapshot")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1959,7 +1959,7 @@ func (a *NodesApiService) DeleteContainerSnapshotExecute(r ApiDeleteContainerSna
 
 type ApiDeleteVMRequest struct {
 	ctx context.Context
-	ApiService NodesApi
+	ApiService NodesAPI
 	node string
 	vmid int64
 	destroyUnreferencedDisks *bool
@@ -1999,7 +1999,7 @@ Destroy the VM and  all used/owned volumes. Removes any VM specific permissions 
  @param vmid The (unique) ID of the VM.
  @return ApiDeleteVMRequest
 */
-func (a *NodesApiService) DeleteVM(ctx context.Context, node string, vmid int64) ApiDeleteVMRequest {
+func (a *NodesAPIService) DeleteVM(ctx context.Context, node string, vmid int64) ApiDeleteVMRequest {
 	return ApiDeleteVMRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2010,7 +2010,7 @@ func (a *NodesApiService) DeleteVM(ctx context.Context, node string, vmid int64)
 
 // Execute executes the request
 //  @return CreateVM200Response
-func (a *NodesApiService) DeleteVMExecute(r ApiDeleteVMRequest) (*CreateVM200Response, *http.Response, error) {
+func (a *NodesAPIService) DeleteVMExecute(r ApiDeleteVMRequest) (*CreateVM200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -2018,7 +2018,7 @@ func (a *NodesApiService) DeleteVMExecute(r ApiDeleteVMRequest) (*CreateVM200Res
 		localVarReturnValue  *CreateVM200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.DeleteVM")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.DeleteVM")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -2130,7 +2130,7 @@ func (a *NodesApiService) DeleteVMExecute(r ApiDeleteVMRequest) (*CreateVM200Res
 
 type ApiDeleteVMSnapshotRequest struct {
 	ctx context.Context
-	ApiService NodesApi
+	ApiService NodesAPI
 	node string
 	vmid int64
 	snapname string
@@ -2158,7 +2158,7 @@ Delete a VM snapshot.
  @param snapname The name of the snapshot.
  @return ApiDeleteVMSnapshotRequest
 */
-func (a *NodesApiService) DeleteVMSnapshot(ctx context.Context, node string, vmid int64, snapname string) ApiDeleteVMSnapshotRequest {
+func (a *NodesAPIService) DeleteVMSnapshot(ctx context.Context, node string, vmid int64, snapname string) ApiDeleteVMSnapshotRequest {
 	return ApiDeleteVMSnapshotRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2170,7 +2170,7 @@ func (a *NodesApiService) DeleteVMSnapshot(ctx context.Context, node string, vmi
 
 // Execute executes the request
 //  @return TaskStartResponse
-func (a *NodesApiService) DeleteVMSnapshotExecute(r ApiDeleteVMSnapshotRequest) (*TaskStartResponse, *http.Response, error) {
+func (a *NodesAPIService) DeleteVMSnapshotExecute(r ApiDeleteVMSnapshotRequest) (*TaskStartResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -2178,7 +2178,7 @@ func (a *NodesApiService) DeleteVMSnapshotExecute(r ApiDeleteVMSnapshotRequest) 
 		localVarReturnValue  *TaskStartResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.DeleteVMSnapshot")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.DeleteVMSnapshot")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -2285,7 +2285,7 @@ func (a *NodesApiService) DeleteVMSnapshotExecute(r ApiDeleteVMSnapshotRequest) 
 
 type ApiGetContainerRequest struct {
 	ctx context.Context
-	ApiService NodesApi
+	ApiService NodesAPI
 	node string
 	vmid int64
 }
@@ -2304,7 +2304,7 @@ Directory index
  @param vmid The (unique) ID of the VM.
  @return ApiGetContainerRequest
 */
-func (a *NodesApiService) GetContainer(ctx context.Context, node string, vmid int64) ApiGetContainerRequest {
+func (a *NodesAPIService) GetContainer(ctx context.Context, node string, vmid int64) ApiGetContainerRequest {
 	return ApiGetContainerRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2315,7 +2315,7 @@ func (a *NodesApiService) GetContainer(ctx context.Context, node string, vmid in
 
 // Execute executes the request
 //  @return GetVM200Response
-func (a *NodesApiService) GetContainerExecute(r ApiGetContainerRequest) (*GetVM200Response, *http.Response, error) {
+func (a *NodesAPIService) GetContainerExecute(r ApiGetContainerRequest) (*GetVM200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -2323,7 +2323,7 @@ func (a *NodesApiService) GetContainerExecute(r ApiGetContainerRequest) (*GetVM2
 		localVarReturnValue  *GetVM200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.GetContainer")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.GetContainer")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -2426,7 +2426,7 @@ func (a *NodesApiService) GetContainerExecute(r ApiGetContainerRequest) (*GetVM2
 
 type ApiGetContainerConfigRequest struct {
 	ctx context.Context
-	ApiService NodesApi
+	ApiService NodesAPI
 	node string
 	vmid int64
 	current *bool
@@ -2459,7 +2459,7 @@ Get container configuration.
  @param vmid The (unique) ID of the VM.
  @return ApiGetContainerConfigRequest
 */
-func (a *NodesApiService) GetContainerConfig(ctx context.Context, node string, vmid int64) ApiGetContainerConfigRequest {
+func (a *NodesAPIService) GetContainerConfig(ctx context.Context, node string, vmid int64) ApiGetContainerConfigRequest {
 	return ApiGetContainerConfigRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2470,7 +2470,7 @@ func (a *NodesApiService) GetContainerConfig(ctx context.Context, node string, v
 
 // Execute executes the request
 //  @return GetContainerConfig200Response
-func (a *NodesApiService) GetContainerConfigExecute(r ApiGetContainerConfigRequest) (*GetContainerConfig200Response, *http.Response, error) {
+func (a *NodesAPIService) GetContainerConfigExecute(r ApiGetContainerConfigRequest) (*GetContainerConfig200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -2478,7 +2478,7 @@ func (a *NodesApiService) GetContainerConfigExecute(r ApiGetContainerConfigReque
 		localVarReturnValue  *GetContainerConfig200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.GetContainerConfig")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.GetContainerConfig")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -2587,7 +2587,7 @@ func (a *NodesApiService) GetContainerConfigExecute(r ApiGetContainerConfigReque
 
 type ApiGetContainerConfigPendingRequest struct {
 	ctx context.Context
-	ApiService NodesApi
+	ApiService NodesAPI
 	node string
 	vmid int64
 }
@@ -2606,7 +2606,7 @@ Get container configuration, including pending changes.
  @param vmid The (unique) ID of the VM.
  @return ApiGetContainerConfigPendingRequest
 */
-func (a *NodesApiService) GetContainerConfigPending(ctx context.Context, node string, vmid int64) ApiGetContainerConfigPendingRequest {
+func (a *NodesAPIService) GetContainerConfigPending(ctx context.Context, node string, vmid int64) ApiGetContainerConfigPendingRequest {
 	return ApiGetContainerConfigPendingRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2617,7 +2617,7 @@ func (a *NodesApiService) GetContainerConfigPending(ctx context.Context, node st
 
 // Execute executes the request
 //  @return GetContainerConfigPending200Response
-func (a *NodesApiService) GetContainerConfigPendingExecute(r ApiGetContainerConfigPendingRequest) (*GetContainerConfigPending200Response, *http.Response, error) {
+func (a *NodesAPIService) GetContainerConfigPendingExecute(r ApiGetContainerConfigPendingRequest) (*GetContainerConfigPending200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -2625,7 +2625,7 @@ func (a *NodesApiService) GetContainerConfigPendingExecute(r ApiGetContainerConf
 		localVarReturnValue  *GetContainerConfigPending200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.GetContainerConfigPending")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.GetContainerConfigPending")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -2728,7 +2728,7 @@ func (a *NodesApiService) GetContainerConfigPendingExecute(r ApiGetContainerConf
 
 type ApiGetContainerSnapshotRequest struct {
 	ctx context.Context
-	ApiService NodesApi
+	ApiService NodesAPI
 	node string
 	vmid int64
 	snapname string
@@ -2749,7 +2749,7 @@ GetContainerSnapshot getContainerSnapshot
  @param snapname The name of the snapshot.
  @return ApiGetContainerSnapshotRequest
 */
-func (a *NodesApiService) GetContainerSnapshot(ctx context.Context, node string, vmid int64, snapname string) ApiGetContainerSnapshotRequest {
+func (a *NodesAPIService) GetContainerSnapshot(ctx context.Context, node string, vmid int64, snapname string) ApiGetContainerSnapshotRequest {
 	return ApiGetContainerSnapshotRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2761,7 +2761,7 @@ func (a *NodesApiService) GetContainerSnapshot(ctx context.Context, node string,
 
 // Execute executes the request
 //  @return GetVMSnapshot200Response
-func (a *NodesApiService) GetContainerSnapshotExecute(r ApiGetContainerSnapshotRequest) (*GetVMSnapshot200Response, *http.Response, error) {
+func (a *NodesAPIService) GetContainerSnapshotExecute(r ApiGetContainerSnapshotRequest) (*GetVMSnapshot200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -2769,7 +2769,7 @@ func (a *NodesApiService) GetContainerSnapshotExecute(r ApiGetContainerSnapshotR
 		localVarReturnValue  *GetVMSnapshot200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.GetContainerSnapshot")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.GetContainerSnapshot")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -2873,7 +2873,7 @@ func (a *NodesApiService) GetContainerSnapshotExecute(r ApiGetContainerSnapshotR
 
 type ApiGetContainerSnapshotConfigRequest struct {
 	ctx context.Context
-	ApiService NodesApi
+	ApiService NodesAPI
 	node string
 	vmid int64
 	snapname string
@@ -2894,7 +2894,7 @@ Get snapshot configuration
  @param snapname The name of the snapshot.
  @return ApiGetContainerSnapshotConfigRequest
 */
-func (a *NodesApiService) GetContainerSnapshotConfig(ctx context.Context, node string, vmid int64, snapname string) ApiGetContainerSnapshotConfigRequest {
+func (a *NodesAPIService) GetContainerSnapshotConfig(ctx context.Context, node string, vmid int64, snapname string) ApiGetContainerSnapshotConfigRequest {
 	return ApiGetContainerSnapshotConfigRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2906,7 +2906,7 @@ func (a *NodesApiService) GetContainerSnapshotConfig(ctx context.Context, node s
 
 // Execute executes the request
 //  @return GetVMSnapshotConfig200Response
-func (a *NodesApiService) GetContainerSnapshotConfigExecute(r ApiGetContainerSnapshotConfigRequest) (*GetVMSnapshotConfig200Response, *http.Response, error) {
+func (a *NodesAPIService) GetContainerSnapshotConfigExecute(r ApiGetContainerSnapshotConfigRequest) (*GetVMSnapshotConfig200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -2914,7 +2914,7 @@ func (a *NodesApiService) GetContainerSnapshotConfigExecute(r ApiGetContainerSna
 		localVarReturnValue  *GetVMSnapshotConfig200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.GetContainerSnapshotConfig")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.GetContainerSnapshotConfig")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -3018,7 +3018,7 @@ func (a *NodesApiService) GetContainerSnapshotConfigExecute(r ApiGetContainerSna
 
 type ApiGetContainerSnapshotsRequest struct {
 	ctx context.Context
-	ApiService NodesApi
+	ApiService NodesAPI
 	node string
 	vmid int64
 }
@@ -3037,7 +3037,7 @@ List all snapshots.
  @param vmid The (unique) ID of the VM.
  @return ApiGetContainerSnapshotsRequest
 */
-func (a *NodesApiService) GetContainerSnapshots(ctx context.Context, node string, vmid int64) ApiGetContainerSnapshotsRequest {
+func (a *NodesAPIService) GetContainerSnapshots(ctx context.Context, node string, vmid int64) ApiGetContainerSnapshotsRequest {
 	return ApiGetContainerSnapshotsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -3048,7 +3048,7 @@ func (a *NodesApiService) GetContainerSnapshots(ctx context.Context, node string
 
 // Execute executes the request
 //  @return GetContainerSnapshots200Response
-func (a *NodesApiService) GetContainerSnapshotsExecute(r ApiGetContainerSnapshotsRequest) (*GetContainerSnapshots200Response, *http.Response, error) {
+func (a *NodesAPIService) GetContainerSnapshotsExecute(r ApiGetContainerSnapshotsRequest) (*GetContainerSnapshots200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -3056,7 +3056,7 @@ func (a *NodesApiService) GetContainerSnapshotsExecute(r ApiGetContainerSnapshot
 		localVarReturnValue  *GetContainerSnapshots200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.GetContainerSnapshots")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.GetContainerSnapshots")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -3159,7 +3159,7 @@ func (a *NodesApiService) GetContainerSnapshotsExecute(r ApiGetContainerSnapshot
 
 type ApiGetContainerStatusRequest struct {
 	ctx context.Context
-	ApiService NodesApi
+	ApiService NodesAPI
 	node string
 	vmid int64
 }
@@ -3178,7 +3178,7 @@ Directory index
  @param vmid The (unique) ID of the VM.
  @return ApiGetContainerStatusRequest
 */
-func (a *NodesApiService) GetContainerStatus(ctx context.Context, node string, vmid int64) ApiGetContainerStatusRequest {
+func (a *NodesAPIService) GetContainerStatus(ctx context.Context, node string, vmid int64) ApiGetContainerStatusRequest {
 	return ApiGetContainerStatusRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -3189,7 +3189,7 @@ func (a *NodesApiService) GetContainerStatus(ctx context.Context, node string, v
 
 // Execute executes the request
 //  @return GetVM200Response
-func (a *NodesApiService) GetContainerStatusExecute(r ApiGetContainerStatusRequest) (*GetVM200Response, *http.Response, error) {
+func (a *NodesAPIService) GetContainerStatusExecute(r ApiGetContainerStatusRequest) (*GetVM200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -3197,7 +3197,7 @@ func (a *NodesApiService) GetContainerStatusExecute(r ApiGetContainerStatusReque
 		localVarReturnValue  *GetVM200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.GetContainerStatus")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.GetContainerStatus")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -3300,7 +3300,7 @@ func (a *NodesApiService) GetContainerStatusExecute(r ApiGetContainerStatusReque
 
 type ApiGetContainersRequest struct {
 	ctx context.Context
-	ApiService NodesApi
+	ApiService NodesAPI
 	node string
 }
 
@@ -3317,7 +3317,7 @@ LXC container index (per node).
  @param node The cluster node name.
  @return ApiGetContainersRequest
 */
-func (a *NodesApiService) GetContainers(ctx context.Context, node string) ApiGetContainersRequest {
+func (a *NodesAPIService) GetContainers(ctx context.Context, node string) ApiGetContainersRequest {
 	return ApiGetContainersRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -3327,7 +3327,7 @@ func (a *NodesApiService) GetContainers(ctx context.Context, node string) ApiGet
 
 // Execute executes the request
 //  @return GetContainers200Response
-func (a *NodesApiService) GetContainersExecute(r ApiGetContainersRequest) (*GetContainers200Response, *http.Response, error) {
+func (a *NodesAPIService) GetContainersExecute(r ApiGetContainersRequest) (*GetContainers200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -3335,7 +3335,7 @@ func (a *NodesApiService) GetContainersExecute(r ApiGetContainersRequest) (*GetC
 		localVarReturnValue  *GetContainers200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.GetContainers")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.GetContainers")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -3431,7 +3431,7 @@ func (a *NodesApiService) GetContainersExecute(r ApiGetContainersRequest) (*GetC
 
 type ApiGetCurrentContainerStatusRequest struct {
 	ctx context.Context
-	ApiService NodesApi
+	ApiService NodesAPI
 	node string
 	vmid int64
 }
@@ -3450,7 +3450,7 @@ Get virtual machine status.
  @param vmid The (unique) ID of the VM.
  @return ApiGetCurrentContainerStatusRequest
 */
-func (a *NodesApiService) GetCurrentContainerStatus(ctx context.Context, node string, vmid int64) ApiGetCurrentContainerStatusRequest {
+func (a *NodesAPIService) GetCurrentContainerStatus(ctx context.Context, node string, vmid int64) ApiGetCurrentContainerStatusRequest {
 	return ApiGetCurrentContainerStatusRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -3461,7 +3461,7 @@ func (a *NodesApiService) GetCurrentContainerStatus(ctx context.Context, node st
 
 // Execute executes the request
 //  @return GetCurrentContainerStatus200Response
-func (a *NodesApiService) GetCurrentContainerStatusExecute(r ApiGetCurrentContainerStatusRequest) (*GetCurrentContainerStatus200Response, *http.Response, error) {
+func (a *NodesAPIService) GetCurrentContainerStatusExecute(r ApiGetCurrentContainerStatusRequest) (*GetCurrentContainerStatus200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -3469,7 +3469,7 @@ func (a *NodesApiService) GetCurrentContainerStatusExecute(r ApiGetCurrentContai
 		localVarReturnValue  *GetCurrentContainerStatus200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.GetCurrentContainerStatus")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.GetCurrentContainerStatus")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -3572,7 +3572,7 @@ func (a *NodesApiService) GetCurrentContainerStatusExecute(r ApiGetCurrentContai
 
 type ApiGetCurrentVMStatusRequest struct {
 	ctx context.Context
-	ApiService NodesApi
+	ApiService NodesAPI
 	node string
 	vmid int64
 }
@@ -3591,7 +3591,7 @@ Get virtual machine status.
  @param vmid The (unique) ID of the VM.
  @return ApiGetCurrentVMStatusRequest
 */
-func (a *NodesApiService) GetCurrentVMStatus(ctx context.Context, node string, vmid int64) ApiGetCurrentVMStatusRequest {
+func (a *NodesAPIService) GetCurrentVMStatus(ctx context.Context, node string, vmid int64) ApiGetCurrentVMStatusRequest {
 	return ApiGetCurrentVMStatusRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -3602,7 +3602,7 @@ func (a *NodesApiService) GetCurrentVMStatus(ctx context.Context, node string, v
 
 // Execute executes the request
 //  @return GetCurrentVMStatus200Response
-func (a *NodesApiService) GetCurrentVMStatusExecute(r ApiGetCurrentVMStatusRequest) (*GetCurrentVMStatus200Response, *http.Response, error) {
+func (a *NodesAPIService) GetCurrentVMStatusExecute(r ApiGetCurrentVMStatusRequest) (*GetCurrentVMStatus200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -3610,7 +3610,7 @@ func (a *NodesApiService) GetCurrentVMStatusExecute(r ApiGetCurrentVMStatusReque
 		localVarReturnValue  *GetCurrentVMStatus200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.GetCurrentVMStatus")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.GetCurrentVMStatus")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -3713,7 +3713,7 @@ func (a *NodesApiService) GetCurrentVMStatusExecute(r ApiGetCurrentVMStatusReque
 
 type ApiGetNodeTaskRequest struct {
 	ctx context.Context
-	ApiService NodesApi
+	ApiService NodesAPI
 	node string
 	upid string
 }
@@ -3732,7 +3732,7 @@ GetNodeTask getNodeTask
  @param upid
  @return ApiGetNodeTaskRequest
 */
-func (a *NodesApiService) GetNodeTask(ctx context.Context, node string, upid string) ApiGetNodeTaskRequest {
+func (a *NodesAPIService) GetNodeTask(ctx context.Context, node string, upid string) ApiGetNodeTaskRequest {
 	return ApiGetNodeTaskRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -3743,7 +3743,7 @@ func (a *NodesApiService) GetNodeTask(ctx context.Context, node string, upid str
 
 // Execute executes the request
 //  @return GetVMSnapshot200Response
-func (a *NodesApiService) GetNodeTaskExecute(r ApiGetNodeTaskRequest) (*GetVMSnapshot200Response, *http.Response, error) {
+func (a *NodesAPIService) GetNodeTaskExecute(r ApiGetNodeTaskRequest) (*GetVMSnapshot200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -3751,7 +3751,7 @@ func (a *NodesApiService) GetNodeTaskExecute(r ApiGetNodeTaskRequest) (*GetVMSna
 		localVarReturnValue  *GetVMSnapshot200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.GetNodeTask")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.GetNodeTask")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -3848,7 +3848,7 @@ func (a *NodesApiService) GetNodeTaskExecute(r ApiGetNodeTaskRequest) (*GetVMSna
 
 type ApiGetNodeTaskLogRequest struct {
 	ctx context.Context
-	ApiService NodesApi
+	ApiService NodesAPI
 	node string
 	upid string
 	download *bool
@@ -3888,7 +3888,7 @@ Read task log.
  @param upid The task's unique ID.
  @return ApiGetNodeTaskLogRequest
 */
-func (a *NodesApiService) GetNodeTaskLog(ctx context.Context, node string, upid string) ApiGetNodeTaskLogRequest {
+func (a *NodesAPIService) GetNodeTaskLog(ctx context.Context, node string, upid string) ApiGetNodeTaskLogRequest {
 	return ApiGetNodeTaskLogRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -3899,7 +3899,7 @@ func (a *NodesApiService) GetNodeTaskLog(ctx context.Context, node string, upid 
 
 // Execute executes the request
 //  @return GetNodeTaskLog200Response
-func (a *NodesApiService) GetNodeTaskLogExecute(r ApiGetNodeTaskLogRequest) (*GetNodeTaskLog200Response, *http.Response, error) {
+func (a *NodesAPIService) GetNodeTaskLogExecute(r ApiGetNodeTaskLogRequest) (*GetNodeTaskLog200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -3907,7 +3907,7 @@ func (a *NodesApiService) GetNodeTaskLogExecute(r ApiGetNodeTaskLogRequest) (*Ge
 		localVarReturnValue  *GetNodeTaskLog200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.GetNodeTaskLog")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.GetNodeTaskLog")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -4013,7 +4013,7 @@ func (a *NodesApiService) GetNodeTaskLogExecute(r ApiGetNodeTaskLogRequest) (*Ge
 
 type ApiGetNodeTaskStatusRequest struct {
 	ctx context.Context
-	ApiService NodesApi
+	ApiService NodesAPI
 	node string
 	upid string
 }
@@ -4032,7 +4032,7 @@ Read task status.
  @param upid The task's unique ID.
  @return ApiGetNodeTaskStatusRequest
 */
-func (a *NodesApiService) GetNodeTaskStatus(ctx context.Context, node string, upid string) ApiGetNodeTaskStatusRequest {
+func (a *NodesAPIService) GetNodeTaskStatus(ctx context.Context, node string, upid string) ApiGetNodeTaskStatusRequest {
 	return ApiGetNodeTaskStatusRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -4043,7 +4043,7 @@ func (a *NodesApiService) GetNodeTaskStatus(ctx context.Context, node string, up
 
 // Execute executes the request
 //  @return GetNodeTaskStatus200Response
-func (a *NodesApiService) GetNodeTaskStatusExecute(r ApiGetNodeTaskStatusRequest) (*GetNodeTaskStatus200Response, *http.Response, error) {
+func (a *NodesAPIService) GetNodeTaskStatusExecute(r ApiGetNodeTaskStatusRequest) (*GetNodeTaskStatus200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -4051,7 +4051,7 @@ func (a *NodesApiService) GetNodeTaskStatusExecute(r ApiGetNodeTaskStatusRequest
 		localVarReturnValue  *GetNodeTaskStatus200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.GetNodeTaskStatus")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.GetNodeTaskStatus")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -4148,7 +4148,7 @@ func (a *NodesApiService) GetNodeTaskStatusExecute(r ApiGetNodeTaskStatusRequest
 
 type ApiGetNodeTasksRequest struct {
 	ctx context.Context
-	ApiService NodesApi
+	ApiService NodesAPI
 	node string
 	errors *bool
 	limit *int64
@@ -4235,7 +4235,7 @@ Read task list for one node (finished tasks).
  @param node The cluster node name.
  @return ApiGetNodeTasksRequest
 */
-func (a *NodesApiService) GetNodeTasks(ctx context.Context, node string) ApiGetNodeTasksRequest {
+func (a *NodesAPIService) GetNodeTasks(ctx context.Context, node string) ApiGetNodeTasksRequest {
 	return ApiGetNodeTasksRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -4245,7 +4245,7 @@ func (a *NodesApiService) GetNodeTasks(ctx context.Context, node string) ApiGetN
 
 // Execute executes the request
 //  @return GetNodeTasks200Response
-func (a *NodesApiService) GetNodeTasksExecute(r ApiGetNodeTasksRequest) (*GetNodeTasks200Response, *http.Response, error) {
+func (a *NodesAPIService) GetNodeTasksExecute(r ApiGetNodeTasksRequest) (*GetNodeTasks200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -4253,7 +4253,7 @@ func (a *NodesApiService) GetNodeTasksExecute(r ApiGetNodeTasksRequest) (*GetNod
 		localVarReturnValue  *GetNodeTasks200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.GetNodeTasks")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.GetNodeTasks")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -4379,7 +4379,7 @@ func (a *NodesApiService) GetNodeTasksExecute(r ApiGetNodeTasksRequest) (*GetNod
 
 type ApiGetStorageContentRequest struct {
 	ctx context.Context
-	ApiService NodesApi
+	ApiService NodesAPI
 	node string
 	storage string
 	content *string
@@ -4412,7 +4412,7 @@ List storage content.
  @param storage The storage identifier.
  @return ApiGetStorageContentRequest
 */
-func (a *NodesApiService) GetStorageContent(ctx context.Context, node string, storage string) ApiGetStorageContentRequest {
+func (a *NodesAPIService) GetStorageContent(ctx context.Context, node string, storage string) ApiGetStorageContentRequest {
 	return ApiGetStorageContentRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -4423,7 +4423,7 @@ func (a *NodesApiService) GetStorageContent(ctx context.Context, node string, st
 
 // Execute executes the request
 //  @return GetStorageContent200Response
-func (a *NodesApiService) GetStorageContentExecute(r ApiGetStorageContentRequest) (*GetStorageContent200Response, *http.Response, error) {
+func (a *NodesAPIService) GetStorageContentExecute(r ApiGetStorageContentRequest) (*GetStorageContent200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -4431,7 +4431,7 @@ func (a *NodesApiService) GetStorageContentExecute(r ApiGetStorageContentRequest
 		localVarReturnValue  *GetStorageContent200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.GetStorageContent")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.GetStorageContent")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -4534,7 +4534,7 @@ func (a *NodesApiService) GetStorageContentExecute(r ApiGetStorageContentRequest
 
 type ApiGetStoragesRequest struct {
 	ctx context.Context
-	ApiService NodesApi
+	ApiService NodesAPI
 	node string
 	content *string
 	enabled *bool
@@ -4586,7 +4586,7 @@ Get status for all datastores.
  @param node The cluster node name.
  @return ApiGetStoragesRequest
 */
-func (a *NodesApiService) GetStorages(ctx context.Context, node string) ApiGetStoragesRequest {
+func (a *NodesAPIService) GetStorages(ctx context.Context, node string) ApiGetStoragesRequest {
 	return ApiGetStoragesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -4596,7 +4596,7 @@ func (a *NodesApiService) GetStorages(ctx context.Context, node string) ApiGetSt
 
 // Execute executes the request
 //  @return GetStorages200Response
-func (a *NodesApiService) GetStoragesExecute(r ApiGetStoragesRequest) (*GetStorages200Response, *http.Response, error) {
+func (a *NodesAPIService) GetStoragesExecute(r ApiGetStoragesRequest) (*GetStorages200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -4604,7 +4604,7 @@ func (a *NodesApiService) GetStoragesExecute(r ApiGetStoragesRequest) (*GetStora
 		localVarReturnValue  *GetStorages200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.GetStorages")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.GetStorages")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -4715,7 +4715,7 @@ func (a *NodesApiService) GetStoragesExecute(r ApiGetStoragesRequest) (*GetStora
 
 type ApiGetVMRequest struct {
 	ctx context.Context
-	ApiService NodesApi
+	ApiService NodesAPI
 	node string
 	vmid int64
 }
@@ -4734,7 +4734,7 @@ Directory index
  @param vmid The (unique) ID of the VM.
  @return ApiGetVMRequest
 */
-func (a *NodesApiService) GetVM(ctx context.Context, node string, vmid int64) ApiGetVMRequest {
+func (a *NodesAPIService) GetVM(ctx context.Context, node string, vmid int64) ApiGetVMRequest {
 	return ApiGetVMRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -4745,7 +4745,7 @@ func (a *NodesApiService) GetVM(ctx context.Context, node string, vmid int64) Ap
 
 // Execute executes the request
 //  @return GetVM200Response
-func (a *NodesApiService) GetVMExecute(r ApiGetVMRequest) (*GetVM200Response, *http.Response, error) {
+func (a *NodesAPIService) GetVMExecute(r ApiGetVMRequest) (*GetVM200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -4753,7 +4753,7 @@ func (a *NodesApiService) GetVMExecute(r ApiGetVMRequest) (*GetVM200Response, *h
 		localVarReturnValue  *GetVM200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.GetVM")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.GetVM")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -4856,7 +4856,7 @@ func (a *NodesApiService) GetVMExecute(r ApiGetVMRequest) (*GetVM200Response, *h
 
 type ApiGetVMConfigRequest struct {
 	ctx context.Context
-	ApiService NodesApi
+	ApiService NodesAPI
 	node string
 	vmid int64
 	current *bool
@@ -4889,7 +4889,7 @@ Get the virtual machine configuration with pending configuration changes applied
  @param vmid The (unique) ID of the VM.
  @return ApiGetVMConfigRequest
 */
-func (a *NodesApiService) GetVMConfig(ctx context.Context, node string, vmid int64) ApiGetVMConfigRequest {
+func (a *NodesAPIService) GetVMConfig(ctx context.Context, node string, vmid int64) ApiGetVMConfigRequest {
 	return ApiGetVMConfigRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -4900,7 +4900,7 @@ func (a *NodesApiService) GetVMConfig(ctx context.Context, node string, vmid int
 
 // Execute executes the request
 //  @return GetVMConfig200Response
-func (a *NodesApiService) GetVMConfigExecute(r ApiGetVMConfigRequest) (*GetVMConfig200Response, *http.Response, error) {
+func (a *NodesAPIService) GetVMConfigExecute(r ApiGetVMConfigRequest) (*GetVMConfig200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -4908,7 +4908,7 @@ func (a *NodesApiService) GetVMConfigExecute(r ApiGetVMConfigRequest) (*GetVMCon
 		localVarReturnValue  *GetVMConfig200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.GetVMConfig")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.GetVMConfig")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -5017,7 +5017,7 @@ func (a *NodesApiService) GetVMConfigExecute(r ApiGetVMConfigRequest) (*GetVMCon
 
 type ApiGetVMConfigPendingRequest struct {
 	ctx context.Context
-	ApiService NodesApi
+	ApiService NodesAPI
 	node string
 	vmid int64
 }
@@ -5036,7 +5036,7 @@ Get the virtual machine configuration with both current and pending values.
  @param vmid The (unique) ID of the VM.
  @return ApiGetVMConfigPendingRequest
 */
-func (a *NodesApiService) GetVMConfigPending(ctx context.Context, node string, vmid int64) ApiGetVMConfigPendingRequest {
+func (a *NodesAPIService) GetVMConfigPending(ctx context.Context, node string, vmid int64) ApiGetVMConfigPendingRequest {
 	return ApiGetVMConfigPendingRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -5047,7 +5047,7 @@ func (a *NodesApiService) GetVMConfigPending(ctx context.Context, node string, v
 
 // Execute executes the request
 //  @return GetVMConfigPending200Response
-func (a *NodesApiService) GetVMConfigPendingExecute(r ApiGetVMConfigPendingRequest) (*GetVMConfigPending200Response, *http.Response, error) {
+func (a *NodesAPIService) GetVMConfigPendingExecute(r ApiGetVMConfigPendingRequest) (*GetVMConfigPending200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -5055,7 +5055,7 @@ func (a *NodesApiService) GetVMConfigPendingExecute(r ApiGetVMConfigPendingReque
 		localVarReturnValue  *GetVMConfigPending200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.GetVMConfigPending")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.GetVMConfigPending")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -5158,7 +5158,7 @@ func (a *NodesApiService) GetVMConfigPendingExecute(r ApiGetVMConfigPendingReque
 
 type ApiGetVMSnapshotRequest struct {
 	ctx context.Context
-	ApiService NodesApi
+	ApiService NodesAPI
 	node string
 	vmid int64
 	snapname string
@@ -5179,7 +5179,7 @@ GetVMSnapshot getVMSnapshot
  @param snapname The name of the snapshot.
  @return ApiGetVMSnapshotRequest
 */
-func (a *NodesApiService) GetVMSnapshot(ctx context.Context, node string, vmid int64, snapname string) ApiGetVMSnapshotRequest {
+func (a *NodesAPIService) GetVMSnapshot(ctx context.Context, node string, vmid int64, snapname string) ApiGetVMSnapshotRequest {
 	return ApiGetVMSnapshotRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -5191,7 +5191,7 @@ func (a *NodesApiService) GetVMSnapshot(ctx context.Context, node string, vmid i
 
 // Execute executes the request
 //  @return GetVMSnapshot200Response
-func (a *NodesApiService) GetVMSnapshotExecute(r ApiGetVMSnapshotRequest) (*GetVMSnapshot200Response, *http.Response, error) {
+func (a *NodesAPIService) GetVMSnapshotExecute(r ApiGetVMSnapshotRequest) (*GetVMSnapshot200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -5199,7 +5199,7 @@ func (a *NodesApiService) GetVMSnapshotExecute(r ApiGetVMSnapshotRequest) (*GetV
 		localVarReturnValue  *GetVMSnapshot200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.GetVMSnapshot")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.GetVMSnapshot")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -5303,7 +5303,7 @@ func (a *NodesApiService) GetVMSnapshotExecute(r ApiGetVMSnapshotRequest) (*GetV
 
 type ApiGetVMSnapshotConfigRequest struct {
 	ctx context.Context
-	ApiService NodesApi
+	ApiService NodesAPI
 	node string
 	vmid int64
 	snapname string
@@ -5324,7 +5324,7 @@ Get snapshot configuration
  @param snapname The name of the snapshot.
  @return ApiGetVMSnapshotConfigRequest
 */
-func (a *NodesApiService) GetVMSnapshotConfig(ctx context.Context, node string, vmid int64, snapname string) ApiGetVMSnapshotConfigRequest {
+func (a *NodesAPIService) GetVMSnapshotConfig(ctx context.Context, node string, vmid int64, snapname string) ApiGetVMSnapshotConfigRequest {
 	return ApiGetVMSnapshotConfigRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -5336,7 +5336,7 @@ func (a *NodesApiService) GetVMSnapshotConfig(ctx context.Context, node string, 
 
 // Execute executes the request
 //  @return GetVMSnapshotConfig200Response
-func (a *NodesApiService) GetVMSnapshotConfigExecute(r ApiGetVMSnapshotConfigRequest) (*GetVMSnapshotConfig200Response, *http.Response, error) {
+func (a *NodesAPIService) GetVMSnapshotConfigExecute(r ApiGetVMSnapshotConfigRequest) (*GetVMSnapshotConfig200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -5344,7 +5344,7 @@ func (a *NodesApiService) GetVMSnapshotConfigExecute(r ApiGetVMSnapshotConfigReq
 		localVarReturnValue  *GetVMSnapshotConfig200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.GetVMSnapshotConfig")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.GetVMSnapshotConfig")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -5448,7 +5448,7 @@ func (a *NodesApiService) GetVMSnapshotConfigExecute(r ApiGetVMSnapshotConfigReq
 
 type ApiGetVMSnapshotsRequest struct {
 	ctx context.Context
-	ApiService NodesApi
+	ApiService NodesAPI
 	node string
 	vmid int64
 }
@@ -5467,7 +5467,7 @@ List all snapshots.
  @param vmid The (unique) ID of the VM.
  @return ApiGetVMSnapshotsRequest
 */
-func (a *NodesApiService) GetVMSnapshots(ctx context.Context, node string, vmid int64) ApiGetVMSnapshotsRequest {
+func (a *NodesAPIService) GetVMSnapshots(ctx context.Context, node string, vmid int64) ApiGetVMSnapshotsRequest {
 	return ApiGetVMSnapshotsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -5478,7 +5478,7 @@ func (a *NodesApiService) GetVMSnapshots(ctx context.Context, node string, vmid 
 
 // Execute executes the request
 //  @return GetVMSnapshots200Response
-func (a *NodesApiService) GetVMSnapshotsExecute(r ApiGetVMSnapshotsRequest) (*GetVMSnapshots200Response, *http.Response, error) {
+func (a *NodesAPIService) GetVMSnapshotsExecute(r ApiGetVMSnapshotsRequest) (*GetVMSnapshots200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -5486,7 +5486,7 @@ func (a *NodesApiService) GetVMSnapshotsExecute(r ApiGetVMSnapshotsRequest) (*Ge
 		localVarReturnValue  *GetVMSnapshots200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.GetVMSnapshots")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.GetVMSnapshots")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -5589,7 +5589,7 @@ func (a *NodesApiService) GetVMSnapshotsExecute(r ApiGetVMSnapshotsRequest) (*Ge
 
 type ApiGetVMsRequest struct {
 	ctx context.Context
-	ApiService NodesApi
+	ApiService NodesAPI
 	node string
 	full *bool
 }
@@ -5613,7 +5613,7 @@ Virtual machine index (per node).
  @param node The cluster node name.
  @return ApiGetVMsRequest
 */
-func (a *NodesApiService) GetVMs(ctx context.Context, node string) ApiGetVMsRequest {
+func (a *NodesAPIService) GetVMs(ctx context.Context, node string) ApiGetVMsRequest {
 	return ApiGetVMsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -5623,7 +5623,7 @@ func (a *NodesApiService) GetVMs(ctx context.Context, node string) ApiGetVMsRequ
 
 // Execute executes the request
 //  @return GetVMs200Response
-func (a *NodesApiService) GetVMsExecute(r ApiGetVMsRequest) (*GetVMs200Response, *http.Response, error) {
+func (a *NodesAPIService) GetVMsExecute(r ApiGetVMsRequest) (*GetVMs200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -5631,7 +5631,7 @@ func (a *NodesApiService) GetVMsExecute(r ApiGetVMsRequest) (*GetVMs200Response,
 		localVarReturnValue  *GetVMs200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.GetVMs")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.GetVMs")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -5730,7 +5730,7 @@ func (a *NodesApiService) GetVMsExecute(r ApiGetVMsRequest) (*GetVMs200Response,
 
 type ApiRebootContainerRequest struct {
 	ctx context.Context
-	ApiService NodesApi
+	ApiService NodesAPI
 	node string
 	vmid int64
 	rebootContainerRequest *RebootContainerRequest
@@ -5755,7 +5755,7 @@ Reboot the container by shutting it down, and starting it again. Applies pending
  @param vmid The (unique) ID of the VM.
  @return ApiRebootContainerRequest
 */
-func (a *NodesApiService) RebootContainer(ctx context.Context, node string, vmid int64) ApiRebootContainerRequest {
+func (a *NodesAPIService) RebootContainer(ctx context.Context, node string, vmid int64) ApiRebootContainerRequest {
 	return ApiRebootContainerRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -5766,7 +5766,7 @@ func (a *NodesApiService) RebootContainer(ctx context.Context, node string, vmid
 
 // Execute executes the request
 //  @return CreateVM200Response
-func (a *NodesApiService) RebootContainerExecute(r ApiRebootContainerRequest) (*CreateVM200Response, *http.Response, error) {
+func (a *NodesAPIService) RebootContainerExecute(r ApiRebootContainerRequest) (*CreateVM200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -5774,7 +5774,7 @@ func (a *NodesApiService) RebootContainerExecute(r ApiRebootContainerRequest) (*
 		localVarReturnValue  *CreateVM200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.RebootContainer")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.RebootContainer")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -5879,7 +5879,7 @@ func (a *NodesApiService) RebootContainerExecute(r ApiRebootContainerRequest) (*
 
 type ApiRebootVMRequest struct {
 	ctx context.Context
-	ApiService NodesApi
+	ApiService NodesAPI
 	node string
 	vmid int64
 	rebootVMRequest *RebootVMRequest
@@ -5904,7 +5904,7 @@ Reboot the VM by shutting it down, and starting it again. Applies pending change
  @param vmid The (unique) ID of the VM.
  @return ApiRebootVMRequest
 */
-func (a *NodesApiService) RebootVM(ctx context.Context, node string, vmid int64) ApiRebootVMRequest {
+func (a *NodesAPIService) RebootVM(ctx context.Context, node string, vmid int64) ApiRebootVMRequest {
 	return ApiRebootVMRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -5915,7 +5915,7 @@ func (a *NodesApiService) RebootVM(ctx context.Context, node string, vmid int64)
 
 // Execute executes the request
 //  @return CreateVM200Response
-func (a *NodesApiService) RebootVMExecute(r ApiRebootVMRequest) (*CreateVM200Response, *http.Response, error) {
+func (a *NodesAPIService) RebootVMExecute(r ApiRebootVMRequest) (*CreateVM200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -5923,7 +5923,7 @@ func (a *NodesApiService) RebootVMExecute(r ApiRebootVMRequest) (*CreateVM200Res
 		localVarReturnValue  *CreateVM200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.RebootVM")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.RebootVM")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -6028,7 +6028,7 @@ func (a *NodesApiService) RebootVMExecute(r ApiRebootVMRequest) (*CreateVM200Res
 
 type ApiResizeContainerDiskRequest struct {
 	ctx context.Context
-	ApiService NodesApi
+	ApiService NodesAPI
 	node string
 	vmid int64
 	resizeContainerDiskRequest *ResizeContainerDiskRequest
@@ -6053,7 +6053,7 @@ Resize a container mount point.
  @param vmid The (unique) ID of the VM.
  @return ApiResizeContainerDiskRequest
 */
-func (a *NodesApiService) ResizeContainerDisk(ctx context.Context, node string, vmid int64) ApiResizeContainerDiskRequest {
+func (a *NodesAPIService) ResizeContainerDisk(ctx context.Context, node string, vmid int64) ApiResizeContainerDiskRequest {
 	return ApiResizeContainerDiskRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -6064,7 +6064,7 @@ func (a *NodesApiService) ResizeContainerDisk(ctx context.Context, node string, 
 
 // Execute executes the request
 //  @return TaskStartResponse
-func (a *NodesApiService) ResizeContainerDiskExecute(r ApiResizeContainerDiskRequest) (*TaskStartResponse, *http.Response, error) {
+func (a *NodesAPIService) ResizeContainerDiskExecute(r ApiResizeContainerDiskRequest) (*TaskStartResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -6072,7 +6072,7 @@ func (a *NodesApiService) ResizeContainerDiskExecute(r ApiResizeContainerDiskReq
 		localVarReturnValue  *TaskStartResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.ResizeContainerDisk")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.ResizeContainerDisk")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -6177,7 +6177,7 @@ func (a *NodesApiService) ResizeContainerDiskExecute(r ApiResizeContainerDiskReq
 
 type ApiResizeVMDiskRequest struct {
 	ctx context.Context
-	ApiService NodesApi
+	ApiService NodesAPI
 	node string
 	vmid int64
 	resizeVMDiskRequest *ResizeVMDiskRequest
@@ -6202,7 +6202,7 @@ Extend volume size.
  @param vmid The (unique) ID of the VM.
  @return ApiResizeVMDiskRequest
 */
-func (a *NodesApiService) ResizeVMDisk(ctx context.Context, node string, vmid int64) ApiResizeVMDiskRequest {
+func (a *NodesAPIService) ResizeVMDisk(ctx context.Context, node string, vmid int64) ApiResizeVMDiskRequest {
 	return ApiResizeVMDiskRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -6213,7 +6213,7 @@ func (a *NodesApiService) ResizeVMDisk(ctx context.Context, node string, vmid in
 
 // Execute executes the request
 //  @return TaskStartResponse
-func (a *NodesApiService) ResizeVMDiskExecute(r ApiResizeVMDiskRequest) (*TaskStartResponse, *http.Response, error) {
+func (a *NodesAPIService) ResizeVMDiskExecute(r ApiResizeVMDiskRequest) (*TaskStartResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -6221,7 +6221,7 @@ func (a *NodesApiService) ResizeVMDiskExecute(r ApiResizeVMDiskRequest) (*TaskSt
 		localVarReturnValue  *TaskStartResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.ResizeVMDisk")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.ResizeVMDisk")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -6326,7 +6326,7 @@ func (a *NodesApiService) ResizeVMDiskExecute(r ApiResizeVMDiskRequest) (*TaskSt
 
 type ApiResumeContainerRequest struct {
 	ctx context.Context
-	ApiService NodesApi
+	ApiService NodesAPI
 	node string
 	vmid int64
 	body *map[string]interface{}
@@ -6351,7 +6351,7 @@ Resume the container.
  @param vmid The (unique) ID of the VM.
  @return ApiResumeContainerRequest
 */
-func (a *NodesApiService) ResumeContainer(ctx context.Context, node string, vmid int64) ApiResumeContainerRequest {
+func (a *NodesAPIService) ResumeContainer(ctx context.Context, node string, vmid int64) ApiResumeContainerRequest {
 	return ApiResumeContainerRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -6362,7 +6362,7 @@ func (a *NodesApiService) ResumeContainer(ctx context.Context, node string, vmid
 
 // Execute executes the request
 //  @return CreateVM200Response
-func (a *NodesApiService) ResumeContainerExecute(r ApiResumeContainerRequest) (*CreateVM200Response, *http.Response, error) {
+func (a *NodesAPIService) ResumeContainerExecute(r ApiResumeContainerRequest) (*CreateVM200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -6370,7 +6370,7 @@ func (a *NodesApiService) ResumeContainerExecute(r ApiResumeContainerRequest) (*
 		localVarReturnValue  *CreateVM200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.ResumeContainer")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.ResumeContainer")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -6475,7 +6475,7 @@ func (a *NodesApiService) ResumeContainerExecute(r ApiResumeContainerRequest) (*
 
 type ApiResumeVMRequest struct {
 	ctx context.Context
-	ApiService NodesApi
+	ApiService NodesAPI
 	node string
 	vmid int64
 	resumeVMRequest *ResumeVMRequest
@@ -6500,7 +6500,7 @@ Resume virtual machine.
  @param vmid The (unique) ID of the VM.
  @return ApiResumeVMRequest
 */
-func (a *NodesApiService) ResumeVM(ctx context.Context, node string, vmid int64) ApiResumeVMRequest {
+func (a *NodesAPIService) ResumeVM(ctx context.Context, node string, vmid int64) ApiResumeVMRequest {
 	return ApiResumeVMRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -6511,7 +6511,7 @@ func (a *NodesApiService) ResumeVM(ctx context.Context, node string, vmid int64)
 
 // Execute executes the request
 //  @return CreateVM200Response
-func (a *NodesApiService) ResumeVMExecute(r ApiResumeVMRequest) (*CreateVM200Response, *http.Response, error) {
+func (a *NodesAPIService) ResumeVMExecute(r ApiResumeVMRequest) (*CreateVM200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -6519,7 +6519,7 @@ func (a *NodesApiService) ResumeVMExecute(r ApiResumeVMRequest) (*CreateVM200Res
 		localVarReturnValue  *CreateVM200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.ResumeVM")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.ResumeVM")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -6624,7 +6624,7 @@ func (a *NodesApiService) ResumeVMExecute(r ApiResumeVMRequest) (*CreateVM200Res
 
 type ApiRollbackContainerSnapshotRequest struct {
 	ctx context.Context
-	ApiService NodesApi
+	ApiService NodesAPI
 	node string
 	vmid int64
 	snapname string
@@ -6651,7 +6651,7 @@ Rollback LXC state to specified snapshot.
  @param snapname The name of the snapshot.
  @return ApiRollbackContainerSnapshotRequest
 */
-func (a *NodesApiService) RollbackContainerSnapshot(ctx context.Context, node string, vmid int64, snapname string) ApiRollbackContainerSnapshotRequest {
+func (a *NodesAPIService) RollbackContainerSnapshot(ctx context.Context, node string, vmid int64, snapname string) ApiRollbackContainerSnapshotRequest {
 	return ApiRollbackContainerSnapshotRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -6663,7 +6663,7 @@ func (a *NodesApiService) RollbackContainerSnapshot(ctx context.Context, node st
 
 // Execute executes the request
 //  @return TaskStartResponse
-func (a *NodesApiService) RollbackContainerSnapshotExecute(r ApiRollbackContainerSnapshotRequest) (*TaskStartResponse, *http.Response, error) {
+func (a *NodesAPIService) RollbackContainerSnapshotExecute(r ApiRollbackContainerSnapshotRequest) (*TaskStartResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -6671,7 +6671,7 @@ func (a *NodesApiService) RollbackContainerSnapshotExecute(r ApiRollbackContaine
 		localVarReturnValue  *TaskStartResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.RollbackContainerSnapshot")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.RollbackContainerSnapshot")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -6777,7 +6777,7 @@ func (a *NodesApiService) RollbackContainerSnapshotExecute(r ApiRollbackContaine
 
 type ApiRollbackVMSnapshotRequest struct {
 	ctx context.Context
-	ApiService NodesApi
+	ApiService NodesAPI
 	node string
 	vmid int64
 	snapname string
@@ -6804,7 +6804,7 @@ Rollback VM state to specified snapshot.
  @param snapname The name of the snapshot.
  @return ApiRollbackVMSnapshotRequest
 */
-func (a *NodesApiService) RollbackVMSnapshot(ctx context.Context, node string, vmid int64, snapname string) ApiRollbackVMSnapshotRequest {
+func (a *NodesAPIService) RollbackVMSnapshot(ctx context.Context, node string, vmid int64, snapname string) ApiRollbackVMSnapshotRequest {
 	return ApiRollbackVMSnapshotRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -6816,7 +6816,7 @@ func (a *NodesApiService) RollbackVMSnapshot(ctx context.Context, node string, v
 
 // Execute executes the request
 //  @return TaskStartResponse
-func (a *NodesApiService) RollbackVMSnapshotExecute(r ApiRollbackVMSnapshotRequest) (*TaskStartResponse, *http.Response, error) {
+func (a *NodesAPIService) RollbackVMSnapshotExecute(r ApiRollbackVMSnapshotRequest) (*TaskStartResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -6824,7 +6824,7 @@ func (a *NodesApiService) RollbackVMSnapshotExecute(r ApiRollbackVMSnapshotReque
 		localVarReturnValue  *TaskStartResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.RollbackVMSnapshot")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.RollbackVMSnapshot")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -6930,7 +6930,7 @@ func (a *NodesApiService) RollbackVMSnapshotExecute(r ApiRollbackVMSnapshotReque
 
 type ApiShutdownContainerRequest struct {
 	ctx context.Context
-	ApiService NodesApi
+	ApiService NodesAPI
 	node string
 	vmid int64
 	shutdownContainerRequest *ShutdownContainerRequest
@@ -6955,7 +6955,7 @@ Shutdown the container. This will trigger a clean shutdown of the container, see
  @param vmid The (unique) ID of the VM.
  @return ApiShutdownContainerRequest
 */
-func (a *NodesApiService) ShutdownContainer(ctx context.Context, node string, vmid int64) ApiShutdownContainerRequest {
+func (a *NodesAPIService) ShutdownContainer(ctx context.Context, node string, vmid int64) ApiShutdownContainerRequest {
 	return ApiShutdownContainerRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -6966,7 +6966,7 @@ func (a *NodesApiService) ShutdownContainer(ctx context.Context, node string, vm
 
 // Execute executes the request
 //  @return CreateVM200Response
-func (a *NodesApiService) ShutdownContainerExecute(r ApiShutdownContainerRequest) (*CreateVM200Response, *http.Response, error) {
+func (a *NodesAPIService) ShutdownContainerExecute(r ApiShutdownContainerRequest) (*CreateVM200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -6974,7 +6974,7 @@ func (a *NodesApiService) ShutdownContainerExecute(r ApiShutdownContainerRequest
 		localVarReturnValue  *CreateVM200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.ShutdownContainer")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.ShutdownContainer")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -7079,7 +7079,7 @@ func (a *NodesApiService) ShutdownContainerExecute(r ApiShutdownContainerRequest
 
 type ApiShutdownVMRequest struct {
 	ctx context.Context
-	ApiService NodesApi
+	ApiService NodesAPI
 	node string
 	vmid int64
 	shutdownVMRequest *ShutdownVMRequest
@@ -7104,7 +7104,7 @@ Shutdown virtual machine. This is similar to pressing the power button on a phys
  @param vmid The (unique) ID of the VM.
  @return ApiShutdownVMRequest
 */
-func (a *NodesApiService) ShutdownVM(ctx context.Context, node string, vmid int64) ApiShutdownVMRequest {
+func (a *NodesAPIService) ShutdownVM(ctx context.Context, node string, vmid int64) ApiShutdownVMRequest {
 	return ApiShutdownVMRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -7115,7 +7115,7 @@ func (a *NodesApiService) ShutdownVM(ctx context.Context, node string, vmid int6
 
 // Execute executes the request
 //  @return CreateVM200Response
-func (a *NodesApiService) ShutdownVMExecute(r ApiShutdownVMRequest) (*CreateVM200Response, *http.Response, error) {
+func (a *NodesAPIService) ShutdownVMExecute(r ApiShutdownVMRequest) (*CreateVM200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -7123,7 +7123,7 @@ func (a *NodesApiService) ShutdownVMExecute(r ApiShutdownVMRequest) (*CreateVM20
 		localVarReturnValue  *CreateVM200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.ShutdownVM")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.ShutdownVM")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -7228,7 +7228,7 @@ func (a *NodesApiService) ShutdownVMExecute(r ApiShutdownVMRequest) (*CreateVM20
 
 type ApiStartContainerRequest struct {
 	ctx context.Context
-	ApiService NodesApi
+	ApiService NodesAPI
 	node string
 	vmid int64
 	startContainerRequest *StartContainerRequest
@@ -7253,7 +7253,7 @@ Start the container.
  @param vmid The (unique) ID of the VM.
  @return ApiStartContainerRequest
 */
-func (a *NodesApiService) StartContainer(ctx context.Context, node string, vmid int64) ApiStartContainerRequest {
+func (a *NodesAPIService) StartContainer(ctx context.Context, node string, vmid int64) ApiStartContainerRequest {
 	return ApiStartContainerRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -7264,7 +7264,7 @@ func (a *NodesApiService) StartContainer(ctx context.Context, node string, vmid 
 
 // Execute executes the request
 //  @return CreateVM200Response
-func (a *NodesApiService) StartContainerExecute(r ApiStartContainerRequest) (*CreateVM200Response, *http.Response, error) {
+func (a *NodesAPIService) StartContainerExecute(r ApiStartContainerRequest) (*CreateVM200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -7272,7 +7272,7 @@ func (a *NodesApiService) StartContainerExecute(r ApiStartContainerRequest) (*Cr
 		localVarReturnValue  *CreateVM200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.StartContainer")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.StartContainer")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -7377,7 +7377,7 @@ func (a *NodesApiService) StartContainerExecute(r ApiStartContainerRequest) (*Cr
 
 type ApiStartVMRequest struct {
 	ctx context.Context
-	ApiService NodesApi
+	ApiService NodesAPI
 	node string
 	vmid int64
 	startVMRequest *StartVMRequest
@@ -7402,7 +7402,7 @@ Start virtual machine.
  @param vmid The (unique) ID of the VM.
  @return ApiStartVMRequest
 */
-func (a *NodesApiService) StartVM(ctx context.Context, node string, vmid int64) ApiStartVMRequest {
+func (a *NodesAPIService) StartVM(ctx context.Context, node string, vmid int64) ApiStartVMRequest {
 	return ApiStartVMRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -7413,7 +7413,7 @@ func (a *NodesApiService) StartVM(ctx context.Context, node string, vmid int64) 
 
 // Execute executes the request
 //  @return CreateVM200Response
-func (a *NodesApiService) StartVMExecute(r ApiStartVMRequest) (*CreateVM200Response, *http.Response, error) {
+func (a *NodesAPIService) StartVMExecute(r ApiStartVMRequest) (*CreateVM200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -7421,7 +7421,7 @@ func (a *NodesApiService) StartVMExecute(r ApiStartVMRequest) (*CreateVM200Respo
 		localVarReturnValue  *CreateVM200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.StartVM")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.StartVM")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -7526,7 +7526,7 @@ func (a *NodesApiService) StartVMExecute(r ApiStartVMRequest) (*CreateVM200Respo
 
 type ApiStopContainerRequest struct {
 	ctx context.Context
-	ApiService NodesApi
+	ApiService NodesAPI
 	node string
 	vmid int64
 	stopContainerRequest *StopContainerRequest
@@ -7551,7 +7551,7 @@ Stop the container. This will abruptly stop all processes running in the contain
  @param vmid The (unique) ID of the VM.
  @return ApiStopContainerRequest
 */
-func (a *NodesApiService) StopContainer(ctx context.Context, node string, vmid int64) ApiStopContainerRequest {
+func (a *NodesAPIService) StopContainer(ctx context.Context, node string, vmid int64) ApiStopContainerRequest {
 	return ApiStopContainerRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -7562,7 +7562,7 @@ func (a *NodesApiService) StopContainer(ctx context.Context, node string, vmid i
 
 // Execute executes the request
 //  @return CreateVM200Response
-func (a *NodesApiService) StopContainerExecute(r ApiStopContainerRequest) (*CreateVM200Response, *http.Response, error) {
+func (a *NodesAPIService) StopContainerExecute(r ApiStopContainerRequest) (*CreateVM200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -7570,7 +7570,7 @@ func (a *NodesApiService) StopContainerExecute(r ApiStopContainerRequest) (*Crea
 		localVarReturnValue  *CreateVM200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.StopContainer")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.StopContainer")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -7675,7 +7675,7 @@ func (a *NodesApiService) StopContainerExecute(r ApiStopContainerRequest) (*Crea
 
 type ApiStopNodeTaskRequest struct {
 	ctx context.Context
-	ApiService NodesApi
+	ApiService NodesAPI
 	node string
 	upid string
 }
@@ -7694,7 +7694,7 @@ Stop a task.
  @param upid
  @return ApiStopNodeTaskRequest
 */
-func (a *NodesApiService) StopNodeTask(ctx context.Context, node string, upid string) ApiStopNodeTaskRequest {
+func (a *NodesAPIService) StopNodeTask(ctx context.Context, node string, upid string) ApiStopNodeTaskRequest {
 	return ApiStopNodeTaskRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -7705,7 +7705,7 @@ func (a *NodesApiService) StopNodeTask(ctx context.Context, node string, upid st
 
 // Execute executes the request
 //  @return CreateVM200Response
-func (a *NodesApiService) StopNodeTaskExecute(r ApiStopNodeTaskRequest) (*CreateVM200Response, *http.Response, error) {
+func (a *NodesAPIService) StopNodeTaskExecute(r ApiStopNodeTaskRequest) (*CreateVM200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -7713,7 +7713,7 @@ func (a *NodesApiService) StopNodeTaskExecute(r ApiStopNodeTaskRequest) (*Create
 		localVarReturnValue  *CreateVM200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.StopNodeTask")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.StopNodeTask")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -7810,7 +7810,7 @@ func (a *NodesApiService) StopNodeTaskExecute(r ApiStopNodeTaskRequest) (*Create
 
 type ApiStopVMRequest struct {
 	ctx context.Context
-	ApiService NodesApi
+	ApiService NodesAPI
 	node string
 	vmid int64
 	stopVMRequest *StopVMRequest
@@ -7835,7 +7835,7 @@ Stop virtual machine. The qemu process will exit immediately. Thisis akin to pul
  @param vmid The (unique) ID of the VM.
  @return ApiStopVMRequest
 */
-func (a *NodesApiService) StopVM(ctx context.Context, node string, vmid int64) ApiStopVMRequest {
+func (a *NodesAPIService) StopVM(ctx context.Context, node string, vmid int64) ApiStopVMRequest {
 	return ApiStopVMRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -7846,7 +7846,7 @@ func (a *NodesApiService) StopVM(ctx context.Context, node string, vmid int64) A
 
 // Execute executes the request
 //  @return CreateVM200Response
-func (a *NodesApiService) StopVMExecute(r ApiStopVMRequest) (*CreateVM200Response, *http.Response, error) {
+func (a *NodesAPIService) StopVMExecute(r ApiStopVMRequest) (*CreateVM200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -7854,7 +7854,7 @@ func (a *NodesApiService) StopVMExecute(r ApiStopVMRequest) (*CreateVM200Respons
 		localVarReturnValue  *CreateVM200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.StopVM")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.StopVM")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -7959,7 +7959,7 @@ func (a *NodesApiService) StopVMExecute(r ApiStopVMRequest) (*CreateVM200Respons
 
 type ApiSuspendContainerRequest struct {
 	ctx context.Context
-	ApiService NodesApi
+	ApiService NodesAPI
 	node string
 	vmid int64
 	body *map[string]interface{}
@@ -7984,7 +7984,7 @@ Suspend the container. This is experimental.
  @param vmid The (unique) ID of the VM.
  @return ApiSuspendContainerRequest
 */
-func (a *NodesApiService) SuspendContainer(ctx context.Context, node string, vmid int64) ApiSuspendContainerRequest {
+func (a *NodesAPIService) SuspendContainer(ctx context.Context, node string, vmid int64) ApiSuspendContainerRequest {
 	return ApiSuspendContainerRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -7995,7 +7995,7 @@ func (a *NodesApiService) SuspendContainer(ctx context.Context, node string, vmi
 
 // Execute executes the request
 //  @return CreateVM200Response
-func (a *NodesApiService) SuspendContainerExecute(r ApiSuspendContainerRequest) (*CreateVM200Response, *http.Response, error) {
+func (a *NodesAPIService) SuspendContainerExecute(r ApiSuspendContainerRequest) (*CreateVM200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -8003,7 +8003,7 @@ func (a *NodesApiService) SuspendContainerExecute(r ApiSuspendContainerRequest) 
 		localVarReturnValue  *CreateVM200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.SuspendContainer")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.SuspendContainer")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -8108,7 +8108,7 @@ func (a *NodesApiService) SuspendContainerExecute(r ApiSuspendContainerRequest) 
 
 type ApiSuspendVMRequest struct {
 	ctx context.Context
-	ApiService NodesApi
+	ApiService NodesAPI
 	node string
 	vmid int64
 	suspendVMRequest *SuspendVMRequest
@@ -8133,7 +8133,7 @@ Suspend virtual machine.
  @param vmid The (unique) ID of the VM.
  @return ApiSuspendVMRequest
 */
-func (a *NodesApiService) SuspendVM(ctx context.Context, node string, vmid int64) ApiSuspendVMRequest {
+func (a *NodesAPIService) SuspendVM(ctx context.Context, node string, vmid int64) ApiSuspendVMRequest {
 	return ApiSuspendVMRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -8144,7 +8144,7 @@ func (a *NodesApiService) SuspendVM(ctx context.Context, node string, vmid int64
 
 // Execute executes the request
 //  @return CreateVM200Response
-func (a *NodesApiService) SuspendVMExecute(r ApiSuspendVMRequest) (*CreateVM200Response, *http.Response, error) {
+func (a *NodesAPIService) SuspendVMExecute(r ApiSuspendVMRequest) (*CreateVM200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -8152,7 +8152,7 @@ func (a *NodesApiService) SuspendVMExecute(r ApiSuspendVMRequest) (*CreateVM200R
 		localVarReturnValue  *CreateVM200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.SuspendVM")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.SuspendVM")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -8257,7 +8257,7 @@ func (a *NodesApiService) SuspendVMExecute(r ApiSuspendVMRequest) (*CreateVM200R
 
 type ApiUpdateContainerConfigSyncRequest struct {
 	ctx context.Context
-	ApiService NodesApi
+	ApiService NodesAPI
 	node string
 	vmid int64
 	updateContainerConfigSyncRequest *UpdateContainerConfigSyncRequest
@@ -8282,7 +8282,7 @@ Set container options.
  @param vmid The (unique) ID of the VM.
  @return ApiUpdateContainerConfigSyncRequest
 */
-func (a *NodesApiService) UpdateContainerConfigSync(ctx context.Context, node string, vmid int64) ApiUpdateContainerConfigSyncRequest {
+func (a *NodesAPIService) UpdateContainerConfigSync(ctx context.Context, node string, vmid int64) ApiUpdateContainerConfigSyncRequest {
 	return ApiUpdateContainerConfigSyncRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -8293,7 +8293,7 @@ func (a *NodesApiService) UpdateContainerConfigSync(ctx context.Context, node st
 
 // Execute executes the request
 //  @return CreateVM200Response
-func (a *NodesApiService) UpdateContainerConfigSyncExecute(r ApiUpdateContainerConfigSyncRequest) (*CreateVM200Response, *http.Response, error) {
+func (a *NodesAPIService) UpdateContainerConfigSyncExecute(r ApiUpdateContainerConfigSyncRequest) (*CreateVM200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -8301,7 +8301,7 @@ func (a *NodesApiService) UpdateContainerConfigSyncExecute(r ApiUpdateContainerC
 		localVarReturnValue  *CreateVM200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.UpdateContainerConfigSync")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.UpdateContainerConfigSync")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -8406,7 +8406,7 @@ func (a *NodesApiService) UpdateContainerConfigSyncExecute(r ApiUpdateContainerC
 
 type ApiUpdateContainerSnapshotConfigRequest struct {
 	ctx context.Context
-	ApiService NodesApi
+	ApiService NodesAPI
 	node string
 	vmid int64
 	snapname string
@@ -8433,7 +8433,7 @@ Update snapshot metadata.
  @param snapname The name of the snapshot.
  @return ApiUpdateContainerSnapshotConfigRequest
 */
-func (a *NodesApiService) UpdateContainerSnapshotConfig(ctx context.Context, node string, vmid int64, snapname string) ApiUpdateContainerSnapshotConfigRequest {
+func (a *NodesAPIService) UpdateContainerSnapshotConfig(ctx context.Context, node string, vmid int64, snapname string) ApiUpdateContainerSnapshotConfigRequest {
 	return ApiUpdateContainerSnapshotConfigRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -8445,7 +8445,7 @@ func (a *NodesApiService) UpdateContainerSnapshotConfig(ctx context.Context, nod
 
 // Execute executes the request
 //  @return CreateVM200Response
-func (a *NodesApiService) UpdateContainerSnapshotConfigExecute(r ApiUpdateContainerSnapshotConfigRequest) (*CreateVM200Response, *http.Response, error) {
+func (a *NodesAPIService) UpdateContainerSnapshotConfigExecute(r ApiUpdateContainerSnapshotConfigRequest) (*CreateVM200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -8453,7 +8453,7 @@ func (a *NodesApiService) UpdateContainerSnapshotConfigExecute(r ApiUpdateContai
 		localVarReturnValue  *CreateVM200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.UpdateContainerSnapshotConfig")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.UpdateContainerSnapshotConfig")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -8559,7 +8559,7 @@ func (a *NodesApiService) UpdateContainerSnapshotConfigExecute(r ApiUpdateContai
 
 type ApiUpdateVMConfigRequest struct {
 	ctx context.Context
-	ApiService NodesApi
+	ApiService NodesAPI
 	node string
 	vmid int64
 	updateVMConfigRequest *UpdateVMConfigRequest
@@ -8584,7 +8584,7 @@ Set virtual machine options (asynchrounous API).
  @param vmid The (unique) ID of the VM.
  @return ApiUpdateVMConfigRequest
 */
-func (a *NodesApiService) UpdateVMConfig(ctx context.Context, node string, vmid int64) ApiUpdateVMConfigRequest {
+func (a *NodesAPIService) UpdateVMConfig(ctx context.Context, node string, vmid int64) ApiUpdateVMConfigRequest {
 	return ApiUpdateVMConfigRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -8595,7 +8595,7 @@ func (a *NodesApiService) UpdateVMConfig(ctx context.Context, node string, vmid 
 
 // Execute executes the request
 //  @return CreateVM200Response
-func (a *NodesApiService) UpdateVMConfigExecute(r ApiUpdateVMConfigRequest) (*CreateVM200Response, *http.Response, error) {
+func (a *NodesAPIService) UpdateVMConfigExecute(r ApiUpdateVMConfigRequest) (*CreateVM200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -8603,7 +8603,7 @@ func (a *NodesApiService) UpdateVMConfigExecute(r ApiUpdateVMConfigRequest) (*Cr
 		localVarReturnValue  *CreateVM200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.UpdateVMConfig")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.UpdateVMConfig")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -8708,7 +8708,7 @@ func (a *NodesApiService) UpdateVMConfigExecute(r ApiUpdateVMConfigRequest) (*Cr
 
 type ApiUpdateVMConfigSyncRequest struct {
 	ctx context.Context
-	ApiService NodesApi
+	ApiService NodesAPI
 	node string
 	vmid int64
 	updateVMConfigSyncRequest *UpdateVMConfigSyncRequest
@@ -8733,7 +8733,7 @@ Set virtual machine options (synchrounous API) - You should consider using the P
  @param vmid The (unique) ID of the VM.
  @return ApiUpdateVMConfigSyncRequest
 */
-func (a *NodesApiService) UpdateVMConfigSync(ctx context.Context, node string, vmid int64) ApiUpdateVMConfigSyncRequest {
+func (a *NodesAPIService) UpdateVMConfigSync(ctx context.Context, node string, vmid int64) ApiUpdateVMConfigSyncRequest {
 	return ApiUpdateVMConfigSyncRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -8744,7 +8744,7 @@ func (a *NodesApiService) UpdateVMConfigSync(ctx context.Context, node string, v
 
 // Execute executes the request
 //  @return CreateVM200Response
-func (a *NodesApiService) UpdateVMConfigSyncExecute(r ApiUpdateVMConfigSyncRequest) (*CreateVM200Response, *http.Response, error) {
+func (a *NodesAPIService) UpdateVMConfigSyncExecute(r ApiUpdateVMConfigSyncRequest) (*CreateVM200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -8752,7 +8752,7 @@ func (a *NodesApiService) UpdateVMConfigSyncExecute(r ApiUpdateVMConfigSyncReque
 		localVarReturnValue  *CreateVM200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.UpdateVMConfigSync")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.UpdateVMConfigSync")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -8857,7 +8857,7 @@ func (a *NodesApiService) UpdateVMConfigSyncExecute(r ApiUpdateVMConfigSyncReque
 
 type ApiUpdateVMSnapshotConfigRequest struct {
 	ctx context.Context
-	ApiService NodesApi
+	ApiService NodesAPI
 	node string
 	vmid int64
 	snapname string
@@ -8884,7 +8884,7 @@ Update snapshot metadata.
  @param snapname The name of the snapshot.
  @return ApiUpdateVMSnapshotConfigRequest
 */
-func (a *NodesApiService) UpdateVMSnapshotConfig(ctx context.Context, node string, vmid int64, snapname string) ApiUpdateVMSnapshotConfigRequest {
+func (a *NodesAPIService) UpdateVMSnapshotConfig(ctx context.Context, node string, vmid int64, snapname string) ApiUpdateVMSnapshotConfigRequest {
 	return ApiUpdateVMSnapshotConfigRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -8896,7 +8896,7 @@ func (a *NodesApiService) UpdateVMSnapshotConfig(ctx context.Context, node strin
 
 // Execute executes the request
 //  @return CreateVM200Response
-func (a *NodesApiService) UpdateVMSnapshotConfigExecute(r ApiUpdateVMSnapshotConfigRequest) (*CreateVM200Response, *http.Response, error) {
+func (a *NodesAPIService) UpdateVMSnapshotConfigExecute(r ApiUpdateVMSnapshotConfigRequest) (*CreateVM200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -8904,7 +8904,7 @@ func (a *NodesApiService) UpdateVMSnapshotConfigExecute(r ApiUpdateVMSnapshotCon
 		localVarReturnValue  *CreateVM200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.UpdateVMSnapshotConfig")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.UpdateVMSnapshotConfig")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -9010,7 +9010,7 @@ func (a *NodesApiService) UpdateVMSnapshotConfigExecute(r ApiUpdateVMSnapshotCon
 
 type ApiUploadFileRequest struct {
 	ctx context.Context
-	ApiService NodesApi
+	ApiService NodesAPI
 	node string
 	storage string
 	content *string
@@ -9064,7 +9064,7 @@ Upload templates and ISO images.
  @param storage The storage identifier.
  @return ApiUploadFileRequest
 */
-func (a *NodesApiService) UploadFile(ctx context.Context, node string, storage string) ApiUploadFileRequest {
+func (a *NodesAPIService) UploadFile(ctx context.Context, node string, storage string) ApiUploadFileRequest {
 	return ApiUploadFileRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -9075,7 +9075,7 @@ func (a *NodesApiService) UploadFile(ctx context.Context, node string, storage s
 
 // Execute executes the request
 //  @return CreateVM200Response
-func (a *NodesApiService) UploadFileExecute(r ApiUploadFileRequest) (*CreateVM200Response, *http.Response, error) {
+func (a *NodesAPIService) UploadFileExecute(r ApiUploadFileRequest) (*CreateVM200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -9083,7 +9083,7 @@ func (a *NodesApiService) UploadFileExecute(r ApiUploadFileRequest) (*CreateVM20
 		localVarReturnValue  *CreateVM200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.UploadFile")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.UploadFile")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -9131,8 +9131,6 @@ func (a *NodesApiService) UploadFileExecute(r ApiUploadFileRequest) (*CreateVM20
 	var filenameLocalVarFileBytes    []byte
 
 	filenameLocalVarFormFileName = "filename"
-
-
 	filenameLocalVarFile := r.filename
 
 	if filenameLocalVarFile != nil {

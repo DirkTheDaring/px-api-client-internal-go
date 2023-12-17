@@ -1,12 +1,12 @@
-# \ClusterApi
+# \ClusterAPI
 
 All URIs are relative to *https://127.0.0.1:8006/api2/json*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetClusterConfigNodes**](ClusterApi.md#GetClusterConfigNodes) | **Get** /cluster/config/nodes | getClusterConfigNodes
-[**GetClusterNextid**](ClusterApi.md#GetClusterNextid) | **Get** /cluster/nextid | getClusterNextid
-[**GetClusterResources**](ClusterApi.md#GetClusterResources) | **Get** /cluster/resources | getClusterResources
+[**GetClusterConfigNodes**](ClusterAPI.md#GetClusterConfigNodes) | **Get** /cluster/config/nodes | getClusterConfigNodes
+[**GetClusterNextid**](ClusterAPI.md#GetClusterNextid) | **Get** /cluster/nextid | getClusterNextid
+[**GetClusterResources**](ClusterAPI.md#GetClusterResources) | **Get** /cluster/resources | getClusterResources
 
 
 
@@ -34,13 +34,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ClusterApi.GetClusterConfigNodes(context.Background()).Execute()
+    resp, r, err := apiClient.ClusterAPI.GetClusterConfigNodes(context.Background()).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ClusterApi.GetClusterConfigNodes``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ClusterAPI.GetClusterConfigNodes``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetClusterConfigNodes`: GetClusterConfigNodes200Response
-    fmt.Fprintf(os.Stdout, "Response from `ClusterApi.GetClusterConfigNodes`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `ClusterAPI.GetClusterConfigNodes`: %v\n", resp)
 }
 ```
 
@@ -96,13 +96,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ClusterApi.GetClusterNextid(context.Background()).Vmid(vmid).Execute()
+    resp, r, err := apiClient.ClusterAPI.GetClusterNextid(context.Background()).Vmid(vmid).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ClusterApi.GetClusterNextid``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ClusterAPI.GetClusterNextid``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetClusterNextid`: GetClusterNextid200Response
-    fmt.Fprintf(os.Stdout, "Response from `ClusterApi.GetClusterNextid`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `ClusterAPI.GetClusterNextid`: %v\n", resp)
 }
 ```
 
@@ -162,13 +162,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ClusterApi.GetClusterResources(context.Background()).Type_(type_).Execute()
+    resp, r, err := apiClient.ClusterAPI.GetClusterResources(context.Background()).Type_(type_).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ClusterApi.GetClusterResources``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ClusterAPI.GetClusterResources``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetClusterResources`: GetClusterResources200Response
-    fmt.Fprintf(os.Stdout, "Response from `ClusterApi.GetClusterResources`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `ClusterAPI.GetClusterResources`: %v\n", resp)
 }
 ```
 

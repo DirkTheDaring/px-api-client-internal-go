@@ -36,7 +36,7 @@ Default configuration comes with `Servers` field that contains server objects as
 
 ### Select Server Configuration
 
-For using other server than the one defined on index 0 set context value `sw.ContextServerIndex` of type `int`.
+For using other server than the one defined on index 0 set context value `pxapiobject.ContextServerIndex` of type `int`.
 
 ```golang
 ctx := context.WithValue(context.Background(), pxapiobject.ContextServerIndex, 1)
@@ -44,7 +44,7 @@ ctx := context.WithValue(context.Background(), pxapiobject.ContextServerIndex, 1
 
 ### Templated Server URL
 
-Templated server URL is formatted using default variables from configuration or from context value `sw.ContextServerVariables` of type `map[string]string`.
+Templated server URL is formatted using default variables from configuration or from context value `pxapiobject.ContextServerVariables` of type `map[string]string`.
 
 ```golang
 ctx := context.WithValue(context.Background(), pxapiobject.ContextServerVariables, map[string]string{
@@ -58,7 +58,7 @@ Note, enum values are always validated and all unused variables are silently ign
 
 Each operation can use different server URL defined using `OperationServers` map in the `Configuration`.
 An operation is uniquely identified by `"{classname}Service.{nickname}"` string.
-Similar rules for overriding default operation server index and variables applies by using `sw.ContextOperationServerIndices` and `sw.ContextOperationServerVariables` context maps.
+Similar rules for overriding default operation server index and variables applies by using `pxapiobject.ContextOperationServerIndices` and `pxapiobject.ContextOperationServerVariables` context maps.
 
 ```golang
 ctx := context.WithValue(context.Background(), pxapiobject.ContextOperationServerIndices, map[string]int{
@@ -77,68 +77,68 @@ All URIs are relative to *https://127.0.0.1:8006/api2/json*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*AccessApi* | [**CreateAccessTicket**](docs/AccessApi.md#createaccessticket) | **Post** /access/ticket | createAccessTicket
-*AccessApi* | [**GetAccessTicket**](docs/AccessApi.md#getaccessticket) | **Get** /access/ticket | getAccessTicket
-*ClusterApi* | [**GetClusterConfigNodes**](docs/ClusterApi.md#getclusterconfignodes) | **Get** /cluster/config/nodes | getClusterConfigNodes
-*ClusterApi* | [**GetClusterNextid**](docs/ClusterApi.md#getclusternextid) | **Get** /cluster/nextid | getClusterNextid
-*ClusterApi* | [**GetClusterResources**](docs/ClusterApi.md#getclusterresources) | **Get** /cluster/resources | getClusterResources
-*NodesApi* | [**CreateContainer**](docs/NodesApi.md#createcontainer) | **Post** /nodes/{node}/lxc | createContainer
-*NodesApi* | [**CreateContainerSnapshot**](docs/NodesApi.md#createcontainersnapshot) | **Post** /nodes/{node}/lxc/{vmid}/snapshot | createContainerSnapshot
-*NodesApi* | [**CreateNodesSingleStorageSingleContent**](docs/NodesApi.md#createnodessinglestoragesinglecontent) | **Post** /nodes/{node}/storage/{storage}/content | createNodesSingleStorageSingleContent
-*NodesApi* | [**CreateVM**](docs/NodesApi.md#createvm) | **Post** /nodes/{node}/qemu | createVM
-*NodesApi* | [**CreateVMSnapshot**](docs/NodesApi.md#createvmsnapshot) | **Post** /nodes/{node}/qemu/{vmid}/snapshot | createVMSnapshot
-*NodesApi* | [**DeleteContainer**](docs/NodesApi.md#deletecontainer) | **Delete** /nodes/{node}/lxc/{vmid} | deleteContainer
-*NodesApi* | [**DeleteContainerSnapshot**](docs/NodesApi.md#deletecontainersnapshot) | **Delete** /nodes/{node}/lxc/{vmid}/snapshot/{snapname} | deleteContainerSnapshot
-*NodesApi* | [**DeleteVM**](docs/NodesApi.md#deletevm) | **Delete** /nodes/{node}/qemu/{vmid} | deleteVM
-*NodesApi* | [**DeleteVMSnapshot**](docs/NodesApi.md#deletevmsnapshot) | **Delete** /nodes/{node}/qemu/{vmid}/snapshot/{snapname} | deleteVMSnapshot
-*NodesApi* | [**GetContainer**](docs/NodesApi.md#getcontainer) | **Get** /nodes/{node}/lxc/{vmid} | getContainer
-*NodesApi* | [**GetContainerConfig**](docs/NodesApi.md#getcontainerconfig) | **Get** /nodes/{node}/lxc/{vmid}/config | getContainerConfig
-*NodesApi* | [**GetContainerConfigPending**](docs/NodesApi.md#getcontainerconfigpending) | **Get** /nodes/{node}/lxc/{vmid}/pending | getContainerConfigPending
-*NodesApi* | [**GetContainerSnapshot**](docs/NodesApi.md#getcontainersnapshot) | **Get** /nodes/{node}/lxc/{vmid}/snapshot/{snapname} | getContainerSnapshot
-*NodesApi* | [**GetContainerSnapshotConfig**](docs/NodesApi.md#getcontainersnapshotconfig) | **Get** /nodes/{node}/lxc/{vmid}/snapshot/{snapname}/config | getContainerSnapshotConfig
-*NodesApi* | [**GetContainerSnapshots**](docs/NodesApi.md#getcontainersnapshots) | **Get** /nodes/{node}/lxc/{vmid}/snapshot | getContainerSnapshots
-*NodesApi* | [**GetContainerStatus**](docs/NodesApi.md#getcontainerstatus) | **Get** /nodes/{node}/lxc/{vmid}/status | getContainerStatus
-*NodesApi* | [**GetContainers**](docs/NodesApi.md#getcontainers) | **Get** /nodes/{node}/lxc | getContainers
-*NodesApi* | [**GetCurrentContainerStatus**](docs/NodesApi.md#getcurrentcontainerstatus) | **Get** /nodes/{node}/lxc/{vmid}/status/current | getCurrentContainerStatus
-*NodesApi* | [**GetCurrentVMStatus**](docs/NodesApi.md#getcurrentvmstatus) | **Get** /nodes/{node}/qemu/{vmid}/status/current | getCurrentVMStatus
-*NodesApi* | [**GetNodeTask**](docs/NodesApi.md#getnodetask) | **Get** /nodes/{node}/tasks/{upid} | getNodeTask
-*NodesApi* | [**GetNodeTaskLog**](docs/NodesApi.md#getnodetasklog) | **Get** /nodes/{node}/tasks/{upid}/log | getNodeTaskLog
-*NodesApi* | [**GetNodeTaskStatus**](docs/NodesApi.md#getnodetaskstatus) | **Get** /nodes/{node}/tasks/{upid}/status | getNodeTaskStatus
-*NodesApi* | [**GetNodeTasks**](docs/NodesApi.md#getnodetasks) | **Get** /nodes/{node}/tasks | getNodeTasks
-*NodesApi* | [**GetStorageContent**](docs/NodesApi.md#getstoragecontent) | **Get** /nodes/{node}/storage/{storage}/content | getStorageContent
-*NodesApi* | [**GetStorages**](docs/NodesApi.md#getstorages) | **Get** /nodes/{node}/storage | getStorages
-*NodesApi* | [**GetVM**](docs/NodesApi.md#getvm) | **Get** /nodes/{node}/qemu/{vmid} | getVM
-*NodesApi* | [**GetVMConfig**](docs/NodesApi.md#getvmconfig) | **Get** /nodes/{node}/qemu/{vmid}/config | getVMConfig
-*NodesApi* | [**GetVMConfigPending**](docs/NodesApi.md#getvmconfigpending) | **Get** /nodes/{node}/qemu/{vmid}/pending | getVMConfigPending
-*NodesApi* | [**GetVMSnapshot**](docs/NodesApi.md#getvmsnapshot) | **Get** /nodes/{node}/qemu/{vmid}/snapshot/{snapname} | getVMSnapshot
-*NodesApi* | [**GetVMSnapshotConfig**](docs/NodesApi.md#getvmsnapshotconfig) | **Get** /nodes/{node}/qemu/{vmid}/snapshot/{snapname}/config | getVMSnapshotConfig
-*NodesApi* | [**GetVMSnapshots**](docs/NodesApi.md#getvmsnapshots) | **Get** /nodes/{node}/qemu/{vmid}/snapshot | getVMSnapshots
-*NodesApi* | [**GetVMs**](docs/NodesApi.md#getvms) | **Get** /nodes/{node}/qemu | getVMs
-*NodesApi* | [**RebootContainer**](docs/NodesApi.md#rebootcontainer) | **Post** /nodes/{node}/lxc/{vmid}/status/reboot | rebootContainer
-*NodesApi* | [**RebootVM**](docs/NodesApi.md#rebootvm) | **Post** /nodes/{node}/qemu/{vmid}/status/reboot | rebootVM
-*NodesApi* | [**ResizeContainerDisk**](docs/NodesApi.md#resizecontainerdisk) | **Put** /nodes/{node}/lxc/{vmid}/resize | resizeContainerDisk
-*NodesApi* | [**ResizeVMDisk**](docs/NodesApi.md#resizevmdisk) | **Put** /nodes/{node}/qemu/{vmid}/resize | resizeVMDisk
-*NodesApi* | [**ResumeContainer**](docs/NodesApi.md#resumecontainer) | **Post** /nodes/{node}/lxc/{vmid}/status/resume | resumeContainer
-*NodesApi* | [**ResumeVM**](docs/NodesApi.md#resumevm) | **Post** /nodes/{node}/qemu/{vmid}/status/resume | resumeVM
-*NodesApi* | [**RollbackContainerSnapshot**](docs/NodesApi.md#rollbackcontainersnapshot) | **Post** /nodes/{node}/lxc/{vmid}/snapshot/{snapname}/rollback | rollbackContainerSnapshot
-*NodesApi* | [**RollbackVMSnapshot**](docs/NodesApi.md#rollbackvmsnapshot) | **Post** /nodes/{node}/qemu/{vmid}/snapshot/{snapname}/rollback | rollbackVMSnapshot
-*NodesApi* | [**ShutdownContainer**](docs/NodesApi.md#shutdowncontainer) | **Post** /nodes/{node}/lxc/{vmid}/status/shutdown | shutdownContainer
-*NodesApi* | [**ShutdownVM**](docs/NodesApi.md#shutdownvm) | **Post** /nodes/{node}/qemu/{vmid}/status/shutdown | shutdownVM
-*NodesApi* | [**StartContainer**](docs/NodesApi.md#startcontainer) | **Post** /nodes/{node}/lxc/{vmid}/status/start | startContainer
-*NodesApi* | [**StartVM**](docs/NodesApi.md#startvm) | **Post** /nodes/{node}/qemu/{vmid}/status/start | startVM
-*NodesApi* | [**StopContainer**](docs/NodesApi.md#stopcontainer) | **Post** /nodes/{node}/lxc/{vmid}/status/stop | stopContainer
-*NodesApi* | [**StopNodeTask**](docs/NodesApi.md#stopnodetask) | **Delete** /nodes/{node}/tasks/{upid} | stopNodeTask
-*NodesApi* | [**StopVM**](docs/NodesApi.md#stopvm) | **Post** /nodes/{node}/qemu/{vmid}/status/stop | stopVM
-*NodesApi* | [**SuspendContainer**](docs/NodesApi.md#suspendcontainer) | **Post** /nodes/{node}/lxc/{vmid}/status/suspend | suspendContainer
-*NodesApi* | [**SuspendVM**](docs/NodesApi.md#suspendvm) | **Post** /nodes/{node}/qemu/{vmid}/status/suspend | suspendVM
-*NodesApi* | [**UpdateContainerConfigSync**](docs/NodesApi.md#updatecontainerconfigsync) | **Put** /nodes/{node}/lxc/{vmid}/config | updateContainerConfigSync
-*NodesApi* | [**UpdateContainerSnapshotConfig**](docs/NodesApi.md#updatecontainersnapshotconfig) | **Put** /nodes/{node}/lxc/{vmid}/snapshot/{snapname}/config | updateContainerSnapshotConfig
-*NodesApi* | [**UpdateVMConfig**](docs/NodesApi.md#updatevmconfig) | **Post** /nodes/{node}/qemu/{vmid}/config | updateVMConfig
-*NodesApi* | [**UpdateVMConfigSync**](docs/NodesApi.md#updatevmconfigsync) | **Put** /nodes/{node}/qemu/{vmid}/config | updateVMConfigSync
-*NodesApi* | [**UpdateVMSnapshotConfig**](docs/NodesApi.md#updatevmsnapshotconfig) | **Put** /nodes/{node}/qemu/{vmid}/snapshot/{snapname}/config | updateVMSnapshotConfig
-*NodesApi* | [**UploadFile**](docs/NodesApi.md#uploadfile) | **Post** /nodes/{node}/storage/{storage}/upload | uploadFile
-*StorageApi* | [**CreateStorage**](docs/StorageApi.md#createstorage) | **Post** /storage | createStorage
-*StorageApi* | [**GetStorage**](docs/StorageApi.md#getstorage) | **Get** /storage | getStorage
+*AccessAPI* | [**CreateAccessTicket**](docs/AccessAPI.md#createaccessticket) | **Post** /access/ticket | createAccessTicket
+*AccessAPI* | [**GetAccessTicket**](docs/AccessAPI.md#getaccessticket) | **Get** /access/ticket | getAccessTicket
+*ClusterAPI* | [**GetClusterConfigNodes**](docs/ClusterAPI.md#getclusterconfignodes) | **Get** /cluster/config/nodes | getClusterConfigNodes
+*ClusterAPI* | [**GetClusterNextid**](docs/ClusterAPI.md#getclusternextid) | **Get** /cluster/nextid | getClusterNextid
+*ClusterAPI* | [**GetClusterResources**](docs/ClusterAPI.md#getclusterresources) | **Get** /cluster/resources | getClusterResources
+*NodesAPI* | [**CreateContainer**](docs/NodesAPI.md#createcontainer) | **Post** /nodes/{node}/lxc | createContainer
+*NodesAPI* | [**CreateContainerSnapshot**](docs/NodesAPI.md#createcontainersnapshot) | **Post** /nodes/{node}/lxc/{vmid}/snapshot | createContainerSnapshot
+*NodesAPI* | [**CreateNodesSingleStorageSingleContent**](docs/NodesAPI.md#createnodessinglestoragesinglecontent) | **Post** /nodes/{node}/storage/{storage}/content | createNodesSingleStorageSingleContent
+*NodesAPI* | [**CreateVM**](docs/NodesAPI.md#createvm) | **Post** /nodes/{node}/qemu | createVM
+*NodesAPI* | [**CreateVMSnapshot**](docs/NodesAPI.md#createvmsnapshot) | **Post** /nodes/{node}/qemu/{vmid}/snapshot | createVMSnapshot
+*NodesAPI* | [**DeleteContainer**](docs/NodesAPI.md#deletecontainer) | **Delete** /nodes/{node}/lxc/{vmid} | deleteContainer
+*NodesAPI* | [**DeleteContainerSnapshot**](docs/NodesAPI.md#deletecontainersnapshot) | **Delete** /nodes/{node}/lxc/{vmid}/snapshot/{snapname} | deleteContainerSnapshot
+*NodesAPI* | [**DeleteVM**](docs/NodesAPI.md#deletevm) | **Delete** /nodes/{node}/qemu/{vmid} | deleteVM
+*NodesAPI* | [**DeleteVMSnapshot**](docs/NodesAPI.md#deletevmsnapshot) | **Delete** /nodes/{node}/qemu/{vmid}/snapshot/{snapname} | deleteVMSnapshot
+*NodesAPI* | [**GetContainer**](docs/NodesAPI.md#getcontainer) | **Get** /nodes/{node}/lxc/{vmid} | getContainer
+*NodesAPI* | [**GetContainerConfig**](docs/NodesAPI.md#getcontainerconfig) | **Get** /nodes/{node}/lxc/{vmid}/config | getContainerConfig
+*NodesAPI* | [**GetContainerConfigPending**](docs/NodesAPI.md#getcontainerconfigpending) | **Get** /nodes/{node}/lxc/{vmid}/pending | getContainerConfigPending
+*NodesAPI* | [**GetContainerSnapshot**](docs/NodesAPI.md#getcontainersnapshot) | **Get** /nodes/{node}/lxc/{vmid}/snapshot/{snapname} | getContainerSnapshot
+*NodesAPI* | [**GetContainerSnapshotConfig**](docs/NodesAPI.md#getcontainersnapshotconfig) | **Get** /nodes/{node}/lxc/{vmid}/snapshot/{snapname}/config | getContainerSnapshotConfig
+*NodesAPI* | [**GetContainerSnapshots**](docs/NodesAPI.md#getcontainersnapshots) | **Get** /nodes/{node}/lxc/{vmid}/snapshot | getContainerSnapshots
+*NodesAPI* | [**GetContainerStatus**](docs/NodesAPI.md#getcontainerstatus) | **Get** /nodes/{node}/lxc/{vmid}/status | getContainerStatus
+*NodesAPI* | [**GetContainers**](docs/NodesAPI.md#getcontainers) | **Get** /nodes/{node}/lxc | getContainers
+*NodesAPI* | [**GetCurrentContainerStatus**](docs/NodesAPI.md#getcurrentcontainerstatus) | **Get** /nodes/{node}/lxc/{vmid}/status/current | getCurrentContainerStatus
+*NodesAPI* | [**GetCurrentVMStatus**](docs/NodesAPI.md#getcurrentvmstatus) | **Get** /nodes/{node}/qemu/{vmid}/status/current | getCurrentVMStatus
+*NodesAPI* | [**GetNodeTask**](docs/NodesAPI.md#getnodetask) | **Get** /nodes/{node}/tasks/{upid} | getNodeTask
+*NodesAPI* | [**GetNodeTaskLog**](docs/NodesAPI.md#getnodetasklog) | **Get** /nodes/{node}/tasks/{upid}/log | getNodeTaskLog
+*NodesAPI* | [**GetNodeTaskStatus**](docs/NodesAPI.md#getnodetaskstatus) | **Get** /nodes/{node}/tasks/{upid}/status | getNodeTaskStatus
+*NodesAPI* | [**GetNodeTasks**](docs/NodesAPI.md#getnodetasks) | **Get** /nodes/{node}/tasks | getNodeTasks
+*NodesAPI* | [**GetStorageContent**](docs/NodesAPI.md#getstoragecontent) | **Get** /nodes/{node}/storage/{storage}/content | getStorageContent
+*NodesAPI* | [**GetStorages**](docs/NodesAPI.md#getstorages) | **Get** /nodes/{node}/storage | getStorages
+*NodesAPI* | [**GetVM**](docs/NodesAPI.md#getvm) | **Get** /nodes/{node}/qemu/{vmid} | getVM
+*NodesAPI* | [**GetVMConfig**](docs/NodesAPI.md#getvmconfig) | **Get** /nodes/{node}/qemu/{vmid}/config | getVMConfig
+*NodesAPI* | [**GetVMConfigPending**](docs/NodesAPI.md#getvmconfigpending) | **Get** /nodes/{node}/qemu/{vmid}/pending | getVMConfigPending
+*NodesAPI* | [**GetVMSnapshot**](docs/NodesAPI.md#getvmsnapshot) | **Get** /nodes/{node}/qemu/{vmid}/snapshot/{snapname} | getVMSnapshot
+*NodesAPI* | [**GetVMSnapshotConfig**](docs/NodesAPI.md#getvmsnapshotconfig) | **Get** /nodes/{node}/qemu/{vmid}/snapshot/{snapname}/config | getVMSnapshotConfig
+*NodesAPI* | [**GetVMSnapshots**](docs/NodesAPI.md#getvmsnapshots) | **Get** /nodes/{node}/qemu/{vmid}/snapshot | getVMSnapshots
+*NodesAPI* | [**GetVMs**](docs/NodesAPI.md#getvms) | **Get** /nodes/{node}/qemu | getVMs
+*NodesAPI* | [**RebootContainer**](docs/NodesAPI.md#rebootcontainer) | **Post** /nodes/{node}/lxc/{vmid}/status/reboot | rebootContainer
+*NodesAPI* | [**RebootVM**](docs/NodesAPI.md#rebootvm) | **Post** /nodes/{node}/qemu/{vmid}/status/reboot | rebootVM
+*NodesAPI* | [**ResizeContainerDisk**](docs/NodesAPI.md#resizecontainerdisk) | **Put** /nodes/{node}/lxc/{vmid}/resize | resizeContainerDisk
+*NodesAPI* | [**ResizeVMDisk**](docs/NodesAPI.md#resizevmdisk) | **Put** /nodes/{node}/qemu/{vmid}/resize | resizeVMDisk
+*NodesAPI* | [**ResumeContainer**](docs/NodesAPI.md#resumecontainer) | **Post** /nodes/{node}/lxc/{vmid}/status/resume | resumeContainer
+*NodesAPI* | [**ResumeVM**](docs/NodesAPI.md#resumevm) | **Post** /nodes/{node}/qemu/{vmid}/status/resume | resumeVM
+*NodesAPI* | [**RollbackContainerSnapshot**](docs/NodesAPI.md#rollbackcontainersnapshot) | **Post** /nodes/{node}/lxc/{vmid}/snapshot/{snapname}/rollback | rollbackContainerSnapshot
+*NodesAPI* | [**RollbackVMSnapshot**](docs/NodesAPI.md#rollbackvmsnapshot) | **Post** /nodes/{node}/qemu/{vmid}/snapshot/{snapname}/rollback | rollbackVMSnapshot
+*NodesAPI* | [**ShutdownContainer**](docs/NodesAPI.md#shutdowncontainer) | **Post** /nodes/{node}/lxc/{vmid}/status/shutdown | shutdownContainer
+*NodesAPI* | [**ShutdownVM**](docs/NodesAPI.md#shutdownvm) | **Post** /nodes/{node}/qemu/{vmid}/status/shutdown | shutdownVM
+*NodesAPI* | [**StartContainer**](docs/NodesAPI.md#startcontainer) | **Post** /nodes/{node}/lxc/{vmid}/status/start | startContainer
+*NodesAPI* | [**StartVM**](docs/NodesAPI.md#startvm) | **Post** /nodes/{node}/qemu/{vmid}/status/start | startVM
+*NodesAPI* | [**StopContainer**](docs/NodesAPI.md#stopcontainer) | **Post** /nodes/{node}/lxc/{vmid}/status/stop | stopContainer
+*NodesAPI* | [**StopNodeTask**](docs/NodesAPI.md#stopnodetask) | **Delete** /nodes/{node}/tasks/{upid} | stopNodeTask
+*NodesAPI* | [**StopVM**](docs/NodesAPI.md#stopvm) | **Post** /nodes/{node}/qemu/{vmid}/status/stop | stopVM
+*NodesAPI* | [**SuspendContainer**](docs/NodesAPI.md#suspendcontainer) | **Post** /nodes/{node}/lxc/{vmid}/status/suspend | suspendContainer
+*NodesAPI* | [**SuspendVM**](docs/NodesAPI.md#suspendvm) | **Post** /nodes/{node}/qemu/{vmid}/status/suspend | suspendVM
+*NodesAPI* | [**UpdateContainerConfigSync**](docs/NodesAPI.md#updatecontainerconfigsync) | **Put** /nodes/{node}/lxc/{vmid}/config | updateContainerConfigSync
+*NodesAPI* | [**UpdateContainerSnapshotConfig**](docs/NodesAPI.md#updatecontainersnapshotconfig) | **Put** /nodes/{node}/lxc/{vmid}/snapshot/{snapname}/config | updateContainerSnapshotConfig
+*NodesAPI* | [**UpdateVMConfig**](docs/NodesAPI.md#updatevmconfig) | **Post** /nodes/{node}/qemu/{vmid}/config | updateVMConfig
+*NodesAPI* | [**UpdateVMConfigSync**](docs/NodesAPI.md#updatevmconfigsync) | **Put** /nodes/{node}/qemu/{vmid}/config | updateVMConfigSync
+*NodesAPI* | [**UpdateVMSnapshotConfig**](docs/NodesAPI.md#updatevmsnapshotconfig) | **Put** /nodes/{node}/qemu/{vmid}/snapshot/{snapname}/config | updateVMSnapshotConfig
+*NodesAPI* | [**UploadFile**](docs/NodesAPI.md#uploadfile) | **Post** /nodes/{node}/storage/{storage}/upload | uploadFile
+*StorageAPI* | [**CreateStorage**](docs/StorageAPI.md#createstorage) | **Post** /storage | createStorage
+*StorageAPI* | [**GetStorage**](docs/StorageAPI.md#getstorage) | **Get** /storage | getStorage
 
 
 ## Documentation For Models
@@ -267,6 +267,19 @@ Authentication schemes defined for the API:
 
 Note, each API key must be added to a map of `map[string]APIKey` where the key is: Cookie and passed in as the auth context for each request.
 
+Example
+
+```golang
+auth := context.WithValue(
+		context.Background(),
+		pxapiobject.ContextAPIKeys,
+		map[string]pxapiobject.APIKey{
+			"Cookie": {Key: "API_KEY_STRING"},
+		},
+	)
+r, err := client.Service.Operation(auth, args)
+```
+
 ### token
 
 - **Type**: API key
@@ -274,6 +287,19 @@ Note, each API key must be added to a map of `map[string]APIKey` where the key i
 - **Location**: HTTP header
 
 Note, each API key must be added to a map of `map[string]APIKey` where the key is: CSRFPreventionToken and passed in as the auth context for each request.
+
+Example
+
+```golang
+auth := context.WithValue(
+		context.Background(),
+		pxapiobject.ContextAPIKeys,
+		map[string]pxapiobject.APIKey{
+			"CSRFPreventionToken": {Key: "API_KEY_STRING"},
+		},
+	)
+r, err := client.Service.Operation(auth, args)
+```
 
 
 ## Documentation for Utility Methods

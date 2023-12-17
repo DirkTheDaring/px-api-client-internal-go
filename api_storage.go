@@ -20,7 +20,7 @@ import (
 )
 
 
-type StorageApi interface {
+type StorageAPI interface {
 
 	/*
 	CreateStorage createStorage
@@ -51,12 +51,12 @@ type StorageApi interface {
 	GetStorageExecute(r ApiGetStorageRequest) (*GetStorage200Response, *http.Response, error)
 }
 
-// StorageApiService StorageApi service
-type StorageApiService service
+// StorageAPIService StorageAPI service
+type StorageAPIService service
 
 type ApiCreateStorageRequest struct {
 	ctx context.Context
-	ApiService StorageApi
+	ApiService StorageAPI
 	createStorageRequest *CreateStorageRequest
 }
 
@@ -77,7 +77,7 @@ Create a new storage.
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiCreateStorageRequest
 */
-func (a *StorageApiService) CreateStorage(ctx context.Context) ApiCreateStorageRequest {
+func (a *StorageAPIService) CreateStorage(ctx context.Context) ApiCreateStorageRequest {
 	return ApiCreateStorageRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -86,7 +86,7 @@ func (a *StorageApiService) CreateStorage(ctx context.Context) ApiCreateStorageR
 
 // Execute executes the request
 //  @return CreateStorage200Response
-func (a *StorageApiService) CreateStorageExecute(r ApiCreateStorageRequest) (*CreateStorage200Response, *http.Response, error) {
+func (a *StorageAPIService) CreateStorageExecute(r ApiCreateStorageRequest) (*CreateStorage200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -94,7 +94,7 @@ func (a *StorageApiService) CreateStorageExecute(r ApiCreateStorageRequest) (*Cr
 		localVarReturnValue  *CreateStorage200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StorageApiService.CreateStorage")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StorageAPIService.CreateStorage")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -191,7 +191,7 @@ func (a *StorageApiService) CreateStorageExecute(r ApiCreateStorageRequest) (*Cr
 
 type ApiGetStorageRequest struct {
 	ctx context.Context
-	ApiService StorageApi
+	ApiService StorageAPI
 	type_ *string
 }
 
@@ -213,7 +213,7 @@ Storage index.
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetStorageRequest
 */
-func (a *StorageApiService) GetStorage(ctx context.Context) ApiGetStorageRequest {
+func (a *StorageAPIService) GetStorage(ctx context.Context) ApiGetStorageRequest {
 	return ApiGetStorageRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -222,7 +222,7 @@ func (a *StorageApiService) GetStorage(ctx context.Context) ApiGetStorageRequest
 
 // Execute executes the request
 //  @return GetStorage200Response
-func (a *StorageApiService) GetStorageExecute(r ApiGetStorageRequest) (*GetStorage200Response, *http.Response, error) {
+func (a *StorageAPIService) GetStorageExecute(r ApiGetStorageRequest) (*GetStorage200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -230,7 +230,7 @@ func (a *StorageApiService) GetStorageExecute(r ApiGetStorageRequest) (*GetStora
 		localVarReturnValue  *GetStorage200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StorageApiService.GetStorage")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StorageAPIService.GetStorage")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

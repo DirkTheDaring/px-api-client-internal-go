@@ -1,7 +1,7 @@
 /*
 ProxMox VE API
 
-Testing ClusterApiService
+Testing ClusterAPIService
 
 */
 
@@ -17,16 +17,16 @@ import (
 	openapiclient "github.com/DirkTheDaring/px-api-client-internal-go"
 )
 
-func Test_pxapiobject_ClusterApiService(t *testing.T) {
+func Test_pxapiobject_ClusterAPIService(t *testing.T) {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test ClusterApiService GetClusterConfigNodes", func(t *testing.T) {
+	t.Run("Test ClusterAPIService GetClusterConfigNodes", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.ClusterApi.GetClusterConfigNodes(context.Background()).Execute()
+		resp, httpRes, err := apiClient.ClusterAPI.GetClusterConfigNodes(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -34,11 +34,11 @@ func Test_pxapiobject_ClusterApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test ClusterApiService GetClusterNextid", func(t *testing.T) {
+	t.Run("Test ClusterAPIService GetClusterNextid", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.ClusterApi.GetClusterNextid(context.Background()).Execute()
+		resp, httpRes, err := apiClient.ClusterAPI.GetClusterNextid(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -46,11 +46,11 @@ func Test_pxapiobject_ClusterApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test ClusterApiService GetClusterResources", func(t *testing.T) {
+	t.Run("Test ClusterAPIService GetClusterResources", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.ClusterApi.GetClusterResources(context.Background()).Execute()
+		resp, httpRes, err := apiClient.ClusterAPI.GetClusterResources(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

@@ -13,6 +13,7 @@ package pxapiobject
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the CreateStorageRequest type satisfies the MappedNullable interface at compile time
@@ -142,6 +143,8 @@ type CreateStorageRequest struct {
 	// Glusterfs Volume.
 	Volume *string `json:"volume,omitempty"`
 }
+
+type _CreateStorageRequest CreateStorageRequest
 
 // NewCreateStorageRequest instantiates a new CreateStorageRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -2288,6 +2291,42 @@ func (o CreateStorageRequest) ToMap() (map[string]interface{}, error) {
 		toSerialize["volume"] = o.Volume
 	}
 	return toSerialize, nil
+}
+
+func (o *CreateStorageRequest) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"storage",
+		"type",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varCreateStorageRequest := _CreateStorageRequest{}
+
+	err = json.Unmarshal(bytes, &varCreateStorageRequest)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CreateStorageRequest(varCreateStorageRequest)
+
+	return err
 }
 
 type NullableCreateStorageRequest struct {

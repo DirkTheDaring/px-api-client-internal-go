@@ -1,11 +1,11 @@
-# \AccessApi
+# \AccessAPI
 
 All URIs are relative to *https://127.0.0.1:8006/api2/json*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateAccessTicket**](AccessApi.md#CreateAccessTicket) | **Post** /access/ticket | createAccessTicket
-[**GetAccessTicket**](AccessApi.md#GetAccessTicket) | **Get** /access/ticket | getAccessTicket
+[**CreateAccessTicket**](AccessAPI.md#CreateAccessTicket) | **Post** /access/ticket | createAccessTicket
+[**GetAccessTicket**](AccessAPI.md#GetAccessTicket) | **Get** /access/ticket | getAccessTicket
 
 
 
@@ -34,13 +34,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AccessApi.CreateAccessTicket(context.Background()).CreateAccessTicketRequest(createAccessTicketRequest).Execute()
+    resp, r, err := apiClient.AccessAPI.CreateAccessTicket(context.Background()).CreateAccessTicketRequest(createAccessTicketRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AccessApi.CreateAccessTicket``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AccessAPI.CreateAccessTicket``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateAccessTicket`: CreateAccessTicket200Response
-    fmt.Fprintf(os.Stdout, "Response from `AccessApi.CreateAccessTicket`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `AccessAPI.CreateAccessTicket`: %v\n", resp)
 }
 ```
 
@@ -99,13 +99,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AccessApi.GetAccessTicket(context.Background()).Execute()
+    resp, r, err := apiClient.AccessAPI.GetAccessTicket(context.Background()).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AccessApi.GetAccessTicket``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AccessAPI.GetAccessTicket``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetAccessTicket`: CreateVM200Response
-    fmt.Fprintf(os.Stdout, "Response from `AccessApi.GetAccessTicket`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `AccessAPI.GetAccessTicket`: %v\n", resp)
 }
 ```
 

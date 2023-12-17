@@ -14,6 +14,7 @@ package pxapiobject
 import (
 	"encoding/json"
 	"os"
+	"fmt"
 )
 
 // checks if the CreateNodesSingleStorageSingleContentRequest type satisfies the MappedNullable interface at compile time
@@ -29,6 +30,8 @@ type CreateNodesSingleStorageSingleContentRequest struct {
 	// Specify owner VM
 	Vmid int64 `json:"vmid"`
 }
+
+type _CreateNodesSingleStorageSingleContentRequest CreateNodesSingleStorageSingleContentRequest
 
 // NewCreateNodesSingleStorageSingleContentRequest instantiates a new CreateNodesSingleStorageSingleContentRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -171,6 +174,43 @@ func (o CreateNodesSingleStorageSingleContentRequest) ToMap() (map[string]interf
 	toSerialize["size"] = o.Size
 	toSerialize["vmid"] = o.Vmid
 	return toSerialize, nil
+}
+
+func (o *CreateNodesSingleStorageSingleContentRequest) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"filename",
+		"size",
+		"vmid",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varCreateNodesSingleStorageSingleContentRequest := _CreateNodesSingleStorageSingleContentRequest{}
+
+	err = json.Unmarshal(bytes, &varCreateNodesSingleStorageSingleContentRequest)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CreateNodesSingleStorageSingleContentRequest(varCreateNodesSingleStorageSingleContentRequest)
+
+	return err
 }
 
 type NullableCreateNodesSingleStorageSingleContentRequest struct {

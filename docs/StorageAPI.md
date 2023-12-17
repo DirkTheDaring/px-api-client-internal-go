@@ -1,11 +1,11 @@
-# \StorageApi
+# \StorageAPI
 
 All URIs are relative to *https://127.0.0.1:8006/api2/json*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateStorage**](StorageApi.md#CreateStorage) | **Post** /storage | createStorage
-[**GetStorage**](StorageApi.md#GetStorage) | **Get** /storage | getStorage
+[**CreateStorage**](StorageAPI.md#CreateStorage) | **Post** /storage | createStorage
+[**GetStorage**](StorageAPI.md#GetStorage) | **Get** /storage | getStorage
 
 
 
@@ -34,13 +34,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.StorageApi.CreateStorage(context.Background()).CreateStorageRequest(createStorageRequest).Execute()
+    resp, r, err := apiClient.StorageAPI.CreateStorage(context.Background()).CreateStorageRequest(createStorageRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `StorageApi.CreateStorage``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `StorageAPI.CreateStorage``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateStorage`: CreateStorage200Response
-    fmt.Fprintf(os.Stdout, "Response from `StorageApi.CreateStorage`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `StorageAPI.CreateStorage`: %v\n", resp)
 }
 ```
 
@@ -100,13 +100,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.StorageApi.GetStorage(context.Background()).Type_(type_).Execute()
+    resp, r, err := apiClient.StorageAPI.GetStorage(context.Background()).Type_(type_).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `StorageApi.GetStorage``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `StorageAPI.GetStorage``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetStorage`: GetStorage200Response
-    fmt.Fprintf(os.Stdout, "Response from `StorageApi.GetStorage`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `StorageAPI.GetStorage`: %v\n", resp)
 }
 ```
 

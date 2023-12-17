@@ -13,6 +13,7 @@ package pxapiobject
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the CreateContainerRequest type satisfies the MappedNullable interface at compile time
@@ -443,6 +444,8 @@ type CreateContainerRequest struct {
 	// The (unique) ID of the VM.
 	Vmid int64 `json:"vmid"`
 }
+
+type _CreateContainerRequest CreateContainerRequest
 
 // NewCreateContainerRequest instantiates a new CreateContainerRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -13964,6 +13967,42 @@ func (o CreateContainerRequest) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["vmid"] = o.Vmid
 	return toSerialize, nil
+}
+
+func (o *CreateContainerRequest) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"ostemplate",
+		"vmid",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varCreateContainerRequest := _CreateContainerRequest{}
+
+	err = json.Unmarshal(bytes, &varCreateContainerRequest)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CreateContainerRequest(varCreateContainerRequest)
+
+	return err
 }
 
 type NullableCreateContainerRequest struct {
