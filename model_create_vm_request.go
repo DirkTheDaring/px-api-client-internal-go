@@ -187,7 +187,7 @@ type CreateVMRequest struct {
 	// Specifies the QEMU machine type.
 	Machine *string `json:"machine,omitempty"`
 	// Memory
-	Memory int64 `json:"memory"`
+	Memory *int64 `json:"memory,omitempty"`
 	// Set maximum tolerated downtime (in seconds) for migrations.
 	MigrateDowntime *float32 `json:"migrate_downtime,omitempty"`
 	// Set maximum speed (in MB/s) for migrations. Value 0 is no limit.
@@ -425,9 +425,8 @@ type _CreateVMRequest CreateVMRequest
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateVMRequest(memory int64, vmid int64) *CreateVMRequest {
+func NewCreateVMRequest(vmid int64) *CreateVMRequest {
 	this := CreateVMRequest{}
-	this.Memory = memory
 	this.Vmid = vmid
 	return &this
 }
@@ -3704,28 +3703,36 @@ func (o *CreateVMRequest) SetMachine(v string) {
 	o.Machine = &v
 }
 
-// GetMemory returns the Memory field value
+// GetMemory returns the Memory field value if set, zero value otherwise.
 func (o *CreateVMRequest) GetMemory() int64 {
-	if o == nil {
+	if o == nil || IsNil(o.Memory) {
 		var ret int64
 		return ret
 	}
-
-	return o.Memory
+	return *o.Memory
 }
 
-// GetMemoryOk returns a tuple with the Memory field value
+// GetMemoryOk returns a tuple with the Memory field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateVMRequest) GetMemoryOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Memory) {
 		return nil, false
 	}
-	return &o.Memory, true
+	return o.Memory, true
 }
 
-// SetMemory sets field value
+// HasMemory returns a boolean if a field has been set.
+func (o *CreateVMRequest) HasMemory() bool {
+	if o != nil && !IsNil(o.Memory) {
+		return true
+	}
+
+	return false
+}
+
+// SetMemory gets a reference to the given int64 and assigns it to the Memory field.
 func (o *CreateVMRequest) SetMemory(v int64) {
-	o.Memory = v
+	o.Memory = &v
 }
 
 // GetMigrateDowntime returns the MigrateDowntime field value if set, zero value otherwise.
@@ -10148,7 +10155,9 @@ func (o CreateVMRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Machine) {
 		toSerialize["machine"] = o.Machine
 	}
-	toSerialize["memory"] = o.Memory
+	if !IsNil(o.Memory) {
+		toSerialize["memory"] = o.Memory
+	}
 	if !IsNil(o.MigrateDowntime) {
 		toSerialize["migrate_downtime"] = o.MigrateDowntime
 	}
@@ -10728,7 +10737,6 @@ func (o *CreateVMRequest) UnmarshalJSON(bytes []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"memory",
 		"vmid",
 	}
 

@@ -106,7 +106,7 @@ Name | Type | Description | Notes
 **Localtime** | Pointer to **bool** | Set the real time clock (RTC) to local time. This is enabled by default if the &#x60;ostype&#x60; indicates a Microsoft Windows OS. | [optional] 
 **Lock** | Pointer to **string** | Lock/unlock the VM. | [optional] 
 **Machine** | Pointer to **string** | Specifies the QEMU machine type. | [optional] 
-**Memory** | **int64** | Memory | 
+**Memory** | Pointer to **int64** | Memory | [optional] 
 **MigrateDowntime** | Pointer to **float32** | Set maximum tolerated downtime (in seconds) for migrations. | [optional] 
 **MigrateSpeed** | Pointer to **int64** | Set maximum speed (in MB/s) for migrations. Value 0 is no limit. | [optional] 
 **Name** | Pointer to **string** | Set a name for the VM. Only used on the configuration web interface. | [optional] 
@@ -300,7 +300,7 @@ Name | Type | Description | Notes
 
 ### NewUpdateVMConfigRequest
 
-`func NewUpdateVMConfigRequest(memory int64, ) *UpdateVMConfigRequest`
+`func NewUpdateVMConfigRequest() *UpdateVMConfigRequest`
 
 NewUpdateVMConfigRequest instantiates a new UpdateVMConfigRequest object
 This constructor will assign default values to properties that have it defined,
@@ -2884,6 +2884,11 @@ and a boolean to check if the value has been set.
 
 SetMemory sets Memory field to given value.
 
+### HasMemory
+
+`func (o *UpdateVMConfigRequest) HasMemory() bool`
+
+HasMemory returns a boolean if a field has been set.
 
 ### GetMigrateDowntime
 

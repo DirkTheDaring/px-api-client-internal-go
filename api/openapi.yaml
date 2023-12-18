@@ -8072,7 +8072,6 @@ components:
         watchdog:
           $ref: '#/components/schemas/getVMConfig_200_response_data_watchdog'
       required:
-      - memory
       - vmid
       type: object
     UpdateVMConfigRequest:
@@ -13109,8 +13108,6 @@ components:
           type: string
         watchdog:
           $ref: '#/components/schemas/getVMConfig_200_response_data_watchdog'
-      required:
-      - memory
       type: object
     UpdateVMConfigSyncRequest:
       example:
@@ -18138,8 +18135,6 @@ components:
           type: string
         watchdog:
           $ref: '#/components/schemas/getVMConfig_200_response_data_watchdog'
-      required:
-      - memory
       type: object
     StartVMRequest:
       example:
