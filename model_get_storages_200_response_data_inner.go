@@ -3,7 +3,7 @@ ProxMox VE API
 
 ProxMox VE API
 
-API version: 8.0
+API version: 8.3
 Contact: baldur@email.de
 */
 
@@ -18,18 +18,18 @@ import (
 // checks if the GetStorages200ResponseDataInner type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &GetStorages200ResponseDataInner{}
 
-// GetStorages200ResponseDataInner struct for GetStorages200ResponseDataInner
+// GetStorages200ResponseDataInner 
 type GetStorages200ResponseDataInner struct {
 	// Set when storage is accessible.
-	Active *bool `json:"active,omitempty"`
+	Active *int32 `json:"active,omitempty"`
 	// Available storage space in bytes.
 	Avail *int64 `json:"avail,omitempty"`
 	// Allowed storage content types.
 	Content *string `json:"content,omitempty"`
 	// Set when storage is enabled (not disabled).
-	Enabled *bool `json:"enabled,omitempty"`
+	Enabled *int32 `json:"enabled,omitempty"`
 	// Shared flag from storage configuration.
-	Shared *bool `json:"shared,omitempty"`
+	Shared *int32 `json:"shared,omitempty"`
 	// The storage identifier.
 	Storage *string `json:"storage,omitempty"`
 	// Total storage space in bytes.
@@ -60,9 +60,9 @@ func NewGetStorages200ResponseDataInnerWithDefaults() *GetStorages200ResponseDat
 }
 
 // GetActive returns the Active field value if set, zero value otherwise.
-func (o *GetStorages200ResponseDataInner) GetActive() bool {
+func (o *GetStorages200ResponseDataInner) GetActive() int32 {
 	if o == nil || IsNil(o.Active) {
-		var ret bool
+		var ret int32
 		return ret
 	}
 	return *o.Active
@@ -70,7 +70,7 @@ func (o *GetStorages200ResponseDataInner) GetActive() bool {
 
 // GetActiveOk returns a tuple with the Active field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetStorages200ResponseDataInner) GetActiveOk() (*bool, bool) {
+func (o *GetStorages200ResponseDataInner) GetActiveOk() (*int32, bool) {
 	if o == nil || IsNil(o.Active) {
 		return nil, false
 	}
@@ -86,8 +86,8 @@ func (o *GetStorages200ResponseDataInner) HasActive() bool {
 	return false
 }
 
-// SetActive gets a reference to the given bool and assigns it to the Active field.
-func (o *GetStorages200ResponseDataInner) SetActive(v bool) {
+// SetActive gets a reference to the given int32 and assigns it to the Active field.
+func (o *GetStorages200ResponseDataInner) SetActive(v int32) {
 	o.Active = &v
 }
 
@@ -156,9 +156,9 @@ func (o *GetStorages200ResponseDataInner) SetContent(v string) {
 }
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
-func (o *GetStorages200ResponseDataInner) GetEnabled() bool {
+func (o *GetStorages200ResponseDataInner) GetEnabled() int32 {
 	if o == nil || IsNil(o.Enabled) {
-		var ret bool
+		var ret int32
 		return ret
 	}
 	return *o.Enabled
@@ -166,7 +166,7 @@ func (o *GetStorages200ResponseDataInner) GetEnabled() bool {
 
 // GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetStorages200ResponseDataInner) GetEnabledOk() (*bool, bool) {
+func (o *GetStorages200ResponseDataInner) GetEnabledOk() (*int32, bool) {
 	if o == nil || IsNil(o.Enabled) {
 		return nil, false
 	}
@@ -182,15 +182,15 @@ func (o *GetStorages200ResponseDataInner) HasEnabled() bool {
 	return false
 }
 
-// SetEnabled gets a reference to the given bool and assigns it to the Enabled field.
-func (o *GetStorages200ResponseDataInner) SetEnabled(v bool) {
+// SetEnabled gets a reference to the given int32 and assigns it to the Enabled field.
+func (o *GetStorages200ResponseDataInner) SetEnabled(v int32) {
 	o.Enabled = &v
 }
 
 // GetShared returns the Shared field value if set, zero value otherwise.
-func (o *GetStorages200ResponseDataInner) GetShared() bool {
+func (o *GetStorages200ResponseDataInner) GetShared() int32 {
 	if o == nil || IsNil(o.Shared) {
-		var ret bool
+		var ret int32
 		return ret
 	}
 	return *o.Shared
@@ -198,7 +198,7 @@ func (o *GetStorages200ResponseDataInner) GetShared() bool {
 
 // GetSharedOk returns a tuple with the Shared field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetStorages200ResponseDataInner) GetSharedOk() (*bool, bool) {
+func (o *GetStorages200ResponseDataInner) GetSharedOk() (*int32, bool) {
 	if o == nil || IsNil(o.Shared) {
 		return nil, false
 	}
@@ -214,8 +214,8 @@ func (o *GetStorages200ResponseDataInner) HasShared() bool {
 	return false
 }
 
-// SetShared gets a reference to the given bool and assigns it to the Shared field.
-func (o *GetStorages200ResponseDataInner) SetShared(v bool) {
+// SetShared gets a reference to the given int32 and assigns it to the Shared field.
+func (o *GetStorages200ResponseDataInner) SetShared(v int32) {
 	o.Shared = &v
 }
 

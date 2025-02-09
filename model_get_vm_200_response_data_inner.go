@@ -3,7 +3,7 @@ ProxMox VE API
 
 ProxMox VE API
 
-API version: 8.0
+API version: 8.3
 Contact: baldur@email.de
 */
 
@@ -18,8 +18,9 @@ import (
 // checks if the GetVM200ResponseDataInner type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &GetVM200ResponseDataInner{}
 
-// GetVM200ResponseDataInner struct for GetVM200ResponseDataInner
+// GetVM200ResponseDataInner 
 type GetVM200ResponseDataInner struct {
+	// 
 	Subdir *string `json:"subdir,omitempty"`
 }
 

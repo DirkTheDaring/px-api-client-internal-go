@@ -4,64 +4,61 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Aio** | Pointer to **string** | AIO type to use. | [optional] 
-**Backup** | Pointer to **bool** | Whether the drive should be included when making backups. | [optional] 
-**Bps** | Pointer to **int64** | Maximum r/w speed in bytes per second. | [optional] 
-**BpsMaxLength** | Pointer to **int64** | Maximum length of I/O bursts in seconds. | [optional] 
-**BpsRd** | Pointer to **int64** | Maximum read speed in bytes per second. | [optional] 
-**BpsRdLength** | Pointer to **string** |  | [optional] 
-**BpsRdMaxLength** | Pointer to **int64** | Maximum length of read I/O bursts in seconds. | [optional] 
-**BpsWr** | Pointer to **int64** | Maximum write speed in bytes per second. | [optional] 
-**BpsWrLength** | Pointer to **string** |  | [optional] 
-**BpsWrMaxLength** | Pointer to **int64** | Maximum length of write I/O bursts in seconds. | [optional] 
-**Cache** | Pointer to **string** | The drive&#39;s cache mode | [optional] 
-**Cyls** | Pointer to **int64** | Force the drive&#39;s physical geometry to have a specific cylinder count. | [optional] 
-**DetectZeroes** | Pointer to **bool** | Controls whether to detect and try to optimize writes of zeroes. | [optional] 
-**Discard** | Pointer to **string** | Controls whether to pass discard/trim requests to the underlying storage. | [optional] 
-**File** | Pointer to **string** | The drive&#39;s backing volume. | [optional] 
-**Format** | Pointer to **string** | The drive&#39;s backing file&#39;s data format. | [optional] 
-**Heads** | Pointer to **int64** | Force the drive&#39;s physical geometry to have a specific head count. | [optional] 
-**ImportFrom** | Pointer to **string** | Create a new disk, importing from this source (volume ID or absolute path). When an absolute path is specified, it&#39;s up to you to ensure that the source is not actively used by another process during the import! | [optional] 
-**Iops** | Pointer to **int64** | Maximum r/w I/O in operations per second. | [optional] 
-**IopsMax** | Pointer to **int64** | Maximum unthrottled r/w I/O pool in operations per second. | [optional] 
-**IopsMaxLength** | Pointer to **int64** | Maximum length of I/O bursts in seconds. | [optional] 
-**IopsRd** | Pointer to **int64** | Maximum read I/O in operations per second. | [optional] 
-**IopsRdLength** | Pointer to **string** |  | [optional] 
-**IopsRdMax** | Pointer to **int64** | Maximum unthrottled read I/O pool in operations per second. | [optional] 
-**IopsRdMaxLength** | Pointer to **int64** | Maximum length of read I/O bursts in seconds. | [optional] 
-**IopsWr** | Pointer to **int64** | Maximum write I/O in operations per second. | [optional] 
-**IopsWrLength** | Pointer to **string** |  | [optional] 
-**IopsWrMax** | Pointer to **int64** | Maximum unthrottled write I/O pool in operations per second. | [optional] 
-**IopsWrMaxLength** | Pointer to **int64** | Maximum length of write I/O bursts in seconds. | [optional] 
-**Iothread** | Pointer to **bool** | Whether to use iothreads for this drive | [optional] 
-**Mbps** | Pointer to **float32** | Maximum r/w speed in megabytes per second. | [optional] 
-**MbpsMax** | Pointer to **float32** | Maximum unthrottled r/w pool in megabytes per second. | [optional] 
-**MbpsRd** | Pointer to **float32** | Maximum read speed in megabytes per second. | [optional] 
-**MbpsRdMax** | Pointer to **float32** | Maximum unthrottled read pool in megabytes per second. | [optional] 
-**MbpsWr** | Pointer to **float32** | Maximum write speed in megabytes per second. | [optional] 
-**MbpsWrMax** | Pointer to **float32** | Maximum unthrottled write pool in megabytes per second. | [optional] 
-**Media** | Pointer to **string** | The drive&#39;s media type. | [optional] 
-**Queues** | Pointer to **int64** | Number of queues. | [optional] 
-**Replicate** | Pointer to **bool** | Whether the drive should considered for replication jobs. | [optional] 
-**Rerror** | Pointer to **string** | Read error action. | [optional] 
-**Ro** | Pointer to **bool** | Whether the drive is read-only. | [optional] 
-**Scsiblock** | Pointer to **bool** | whether to use scsi-block for full passthrough of host block device  WARNING: can lead to I/O errors in combination with low memory or high memory fragmentation on host | [optional] 
-**Secs** | Pointer to **int64** | Force the drive&#39;s physical geometry to have a specific sector count. | [optional] 
-**Serial** | Pointer to **string** | The drive&#39;s reported serial number, url-encoded, up to 20 bytes long. | [optional] 
-**Shared** | Pointer to **bool** | Mark this locally-managed volume as available on all nodes | [optional] 
-**Size** | Pointer to **string** | Disk size. This is purely informational and has no effect. | [optional] 
-**Snapshot** | Pointer to **bool** | Controls qemu&#39;s snapshot mode feature. If activated, changes made to the disk are temporary and will be discarded when the VM is shutdown. | [optional] 
-**Ssd** | Pointer to **bool** | Whether to expose this drive as an SSD, rather than a rotational hard disk. | [optional] 
-**Trans** | Pointer to **string** | Force disk geometry bios translation mode. | [optional] 
-**Volume** | Pointer to **string** |  | [optional] 
-**Werror** | Pointer to **string** | Write error action. | [optional] 
-**Wwn** | Pointer to **string** | The drive&#39;s worldwide name, encoded as 16 bytes hex string, prefixed by &#39;0x&#39;. | [optional] 
+**Aio** | Pointer to **string** |  | [optional] 
+**Backup** | Pointer to **bool** |  | [optional] 
+**Bps** | Pointer to **int64** |  | [optional] 
+**BpsMaxLength** | Pointer to **int64** |  | [optional] 
+**BpsRd** | Pointer to **int64** |  | [optional] 
+**BpsRdMaxLength** | Pointer to **int64** |  | [optional] 
+**BpsWr** | Pointer to **int64** |  | [optional] 
+**BpsWrMaxLength** | Pointer to **int64** |  | [optional] 
+**Cache** | Pointer to **string** |  | [optional] 
+**Cyls** | Pointer to **int64** |  | [optional] 
+**DetectZeroes** | Pointer to **bool** |  | [optional] 
+**Discard** | Pointer to **string** |  | [optional] 
+**File** | **string** |  | 
+**Format** | Pointer to **string** |  | [optional] 
+**Heads** | Pointer to **int64** |  | [optional] 
+**ImportFrom** | Pointer to **string** |  | [optional] 
+**Iops** | Pointer to **int64** |  | [optional] 
+**IopsMax** | Pointer to **int64** |  | [optional] 
+**IopsMaxLength** | Pointer to **int64** |  | [optional] 
+**IopsRd** | Pointer to **int64** |  | [optional] 
+**IopsRdMax** | Pointer to **int64** |  | [optional] 
+**IopsRdMaxLength** | Pointer to **int64** |  | [optional] 
+**IopsWr** | Pointer to **int64** |  | [optional] 
+**IopsWrMax** | Pointer to **int64** |  | [optional] 
+**IopsWrMaxLength** | Pointer to **int64** |  | [optional] 
+**Iothread** | Pointer to **bool** |  | [optional] 
+**Mbps** | Pointer to **float32** |  | [optional] 
+**MbpsMax** | Pointer to **float32** |  | [optional] 
+**MbpsRd** | Pointer to **float32** |  | [optional] 
+**MbpsRdMax** | Pointer to **float32** |  | [optional] 
+**MbpsWr** | Pointer to **float32** |  | [optional] 
+**MbpsWrMax** | Pointer to **float32** |  | [optional] 
+**Media** | Pointer to **string** |  | [optional] 
+**Product** | Pointer to **string** |  | [optional] 
+**Queues** | Pointer to **int64** |  | [optional] 
+**Replicate** | Pointer to **bool** |  | [optional] 
+**Rerror** | Pointer to **string** |  | [optional] 
+**Ro** | Pointer to **bool** |  | [optional] 
+**Scsiblock** | Pointer to **bool** |  | [optional] 
+**Secs** | Pointer to **int64** |  | [optional] 
+**Serial** | Pointer to **string** |  | [optional] 
+**Shared** | Pointer to **bool** |  | [optional] 
+**Size** | Pointer to **string** |  | [optional] 
+**Snapshot** | Pointer to **bool** |  | [optional] 
+**Ssd** | Pointer to **bool** |  | [optional] 
+**Trans** | Pointer to **string** |  | [optional] 
+**Vendor** | Pointer to **string** |  | [optional] 
+**Werror** | Pointer to **string** |  | [optional] 
+**Wwn** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
 ### NewCreateVMRequestScsi0
 
-`func NewCreateVMRequestScsi0() *CreateVMRequestScsi0`
+`func NewCreateVMRequestScsi0(file string, ) *CreateVMRequestScsi0`
 
 NewCreateVMRequestScsi0 instantiates a new CreateVMRequestScsi0 object
 This constructor will assign default values to properties that have it defined,
@@ -201,31 +198,6 @@ SetBpsRd sets BpsRd field to given value.
 
 HasBpsRd returns a boolean if a field has been set.
 
-### GetBpsRdLength
-
-`func (o *CreateVMRequestScsi0) GetBpsRdLength() string`
-
-GetBpsRdLength returns the BpsRdLength field if non-nil, zero value otherwise.
-
-### GetBpsRdLengthOk
-
-`func (o *CreateVMRequestScsi0) GetBpsRdLengthOk() (*string, bool)`
-
-GetBpsRdLengthOk returns a tuple with the BpsRdLength field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetBpsRdLength
-
-`func (o *CreateVMRequestScsi0) SetBpsRdLength(v string)`
-
-SetBpsRdLength sets BpsRdLength field to given value.
-
-### HasBpsRdLength
-
-`func (o *CreateVMRequestScsi0) HasBpsRdLength() bool`
-
-HasBpsRdLength returns a boolean if a field has been set.
-
 ### GetBpsRdMaxLength
 
 `func (o *CreateVMRequestScsi0) GetBpsRdMaxLength() int64`
@@ -275,31 +247,6 @@ SetBpsWr sets BpsWr field to given value.
 `func (o *CreateVMRequestScsi0) HasBpsWr() bool`
 
 HasBpsWr returns a boolean if a field has been set.
-
-### GetBpsWrLength
-
-`func (o *CreateVMRequestScsi0) GetBpsWrLength() string`
-
-GetBpsWrLength returns the BpsWrLength field if non-nil, zero value otherwise.
-
-### GetBpsWrLengthOk
-
-`func (o *CreateVMRequestScsi0) GetBpsWrLengthOk() (*string, bool)`
-
-GetBpsWrLengthOk returns a tuple with the BpsWrLength field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetBpsWrLength
-
-`func (o *CreateVMRequestScsi0) SetBpsWrLength(v string)`
-
-SetBpsWrLength sets BpsWrLength field to given value.
-
-### HasBpsWrLength
-
-`func (o *CreateVMRequestScsi0) HasBpsWrLength() bool`
-
-HasBpsWrLength returns a boolean if a field has been set.
 
 ### GetBpsWrMaxLength
 
@@ -445,11 +392,6 @@ and a boolean to check if the value has been set.
 
 SetFile sets File field to given value.
 
-### HasFile
-
-`func (o *CreateVMRequestScsi0) HasFile() bool`
-
-HasFile returns a boolean if a field has been set.
 
 ### GetFormat
 
@@ -626,31 +568,6 @@ SetIopsRd sets IopsRd field to given value.
 
 HasIopsRd returns a boolean if a field has been set.
 
-### GetIopsRdLength
-
-`func (o *CreateVMRequestScsi0) GetIopsRdLength() string`
-
-GetIopsRdLength returns the IopsRdLength field if non-nil, zero value otherwise.
-
-### GetIopsRdLengthOk
-
-`func (o *CreateVMRequestScsi0) GetIopsRdLengthOk() (*string, bool)`
-
-GetIopsRdLengthOk returns a tuple with the IopsRdLength field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIopsRdLength
-
-`func (o *CreateVMRequestScsi0) SetIopsRdLength(v string)`
-
-SetIopsRdLength sets IopsRdLength field to given value.
-
-### HasIopsRdLength
-
-`func (o *CreateVMRequestScsi0) HasIopsRdLength() bool`
-
-HasIopsRdLength returns a boolean if a field has been set.
-
 ### GetIopsRdMax
 
 `func (o *CreateVMRequestScsi0) GetIopsRdMax() int64`
@@ -725,31 +642,6 @@ SetIopsWr sets IopsWr field to given value.
 `func (o *CreateVMRequestScsi0) HasIopsWr() bool`
 
 HasIopsWr returns a boolean if a field has been set.
-
-### GetIopsWrLength
-
-`func (o *CreateVMRequestScsi0) GetIopsWrLength() string`
-
-GetIopsWrLength returns the IopsWrLength field if non-nil, zero value otherwise.
-
-### GetIopsWrLengthOk
-
-`func (o *CreateVMRequestScsi0) GetIopsWrLengthOk() (*string, bool)`
-
-GetIopsWrLengthOk returns a tuple with the IopsWrLength field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIopsWrLength
-
-`func (o *CreateVMRequestScsi0) SetIopsWrLength(v string)`
-
-SetIopsWrLength sets IopsWrLength field to given value.
-
-### HasIopsWrLength
-
-`func (o *CreateVMRequestScsi0) HasIopsWrLength() bool`
-
-HasIopsWrLength returns a boolean if a field has been set.
 
 ### GetIopsWrMax
 
@@ -1000,6 +892,31 @@ SetMedia sets Media field to given value.
 `func (o *CreateVMRequestScsi0) HasMedia() bool`
 
 HasMedia returns a boolean if a field has been set.
+
+### GetProduct
+
+`func (o *CreateVMRequestScsi0) GetProduct() string`
+
+GetProduct returns the Product field if non-nil, zero value otherwise.
+
+### GetProductOk
+
+`func (o *CreateVMRequestScsi0) GetProductOk() (*string, bool)`
+
+GetProductOk returns a tuple with the Product field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProduct
+
+`func (o *CreateVMRequestScsi0) SetProduct(v string)`
+
+SetProduct sets Product field to given value.
+
+### HasProduct
+
+`func (o *CreateVMRequestScsi0) HasProduct() bool`
+
+HasProduct returns a boolean if a field has been set.
 
 ### GetQueues
 
@@ -1301,30 +1218,30 @@ SetTrans sets Trans field to given value.
 
 HasTrans returns a boolean if a field has been set.
 
-### GetVolume
+### GetVendor
 
-`func (o *CreateVMRequestScsi0) GetVolume() string`
+`func (o *CreateVMRequestScsi0) GetVendor() string`
 
-GetVolume returns the Volume field if non-nil, zero value otherwise.
+GetVendor returns the Vendor field if non-nil, zero value otherwise.
 
-### GetVolumeOk
+### GetVendorOk
 
-`func (o *CreateVMRequestScsi0) GetVolumeOk() (*string, bool)`
+`func (o *CreateVMRequestScsi0) GetVendorOk() (*string, bool)`
 
-GetVolumeOk returns a tuple with the Volume field if it's non-nil, zero value otherwise
+GetVendorOk returns a tuple with the Vendor field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetVolume
+### SetVendor
 
-`func (o *CreateVMRequestScsi0) SetVolume(v string)`
+`func (o *CreateVMRequestScsi0) SetVendor(v string)`
 
-SetVolume sets Volume field to given value.
+SetVendor sets Vendor field to given value.
 
-### HasVolume
+### HasVendor
 
-`func (o *CreateVMRequestScsi0) HasVolume() bool`
+`func (o *CreateVMRequestScsi0) HasVendor() bool`
 
-HasVolume returns a boolean if a field has been set.
+HasVendor returns a boolean if a field has been set.
 
 ### GetWerror
 

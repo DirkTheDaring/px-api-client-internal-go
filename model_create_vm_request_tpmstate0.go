@@ -3,7 +3,7 @@ ProxMox VE API
 
 ProxMox VE API
 
-API version: 8.0
+API version: 8.3
 Contact: baldur@email.de
 */
 
@@ -20,23 +20,19 @@ var _ MappedNullable = &CreateVMRequestTpmstate0{}
 
 // CreateVMRequestTpmstate0 struct for CreateVMRequestTpmstate0
 type CreateVMRequestTpmstate0 struct {
-	// The drive's backing volume.
-	File *string `json:"file,omitempty"`
-	// Create a new disk, importing from this source (volume ID or absolute path). When an absolute path is specified, it's up to you to ensure that the source is not actively used by another process during the import!
+	File string `json:"file"`
 	ImportFrom *string `json:"import-from,omitempty"`
-	// Disk size. This is purely informational and has no effect.
 	Size *string `json:"size,omitempty"`
-	// The TPM interface version. v2.0 is newer and should be preferred. Note that this cannot be changed later on.
 	Version *string `json:"version,omitempty"`
-	Volume *string `json:"volume,omitempty"`
 }
 
 // NewCreateVMRequestTpmstate0 instantiates a new CreateVMRequestTpmstate0 object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateVMRequestTpmstate0() *CreateVMRequestTpmstate0 {
+func NewCreateVMRequestTpmstate0(file string) *CreateVMRequestTpmstate0 {
 	this := CreateVMRequestTpmstate0{}
+	this.File = file
 	return &this
 }
 
@@ -48,36 +44,28 @@ func NewCreateVMRequestTpmstate0WithDefaults() *CreateVMRequestTpmstate0 {
 	return &this
 }
 
-// GetFile returns the File field value if set, zero value otherwise.
+// GetFile returns the File field value
 func (o *CreateVMRequestTpmstate0) GetFile() string {
-	if o == nil || IsNil(o.File) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.File
+
+	return o.File
 }
 
-// GetFileOk returns a tuple with the File field value if set, nil otherwise
+// GetFileOk returns a tuple with the File field value
 // and a boolean to check if the value has been set.
 func (o *CreateVMRequestTpmstate0) GetFileOk() (*string, bool) {
-	if o == nil || IsNil(o.File) {
+	if o == nil {
 		return nil, false
 	}
-	return o.File, true
+	return &o.File, true
 }
 
-// HasFile returns a boolean if a field has been set.
-func (o *CreateVMRequestTpmstate0) HasFile() bool {
-	if o != nil && !IsNil(o.File) {
-		return true
-	}
-
-	return false
-}
-
-// SetFile gets a reference to the given string and assigns it to the File field.
+// SetFile sets field value
 func (o *CreateVMRequestTpmstate0) SetFile(v string) {
-	o.File = &v
+	o.File = v
 }
 
 // GetImportFrom returns the ImportFrom field value if set, zero value otherwise.
@@ -176,38 +164,6 @@ func (o *CreateVMRequestTpmstate0) SetVersion(v string) {
 	o.Version = &v
 }
 
-// GetVolume returns the Volume field value if set, zero value otherwise.
-func (o *CreateVMRequestTpmstate0) GetVolume() string {
-	if o == nil || IsNil(o.Volume) {
-		var ret string
-		return ret
-	}
-	return *o.Volume
-}
-
-// GetVolumeOk returns a tuple with the Volume field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateVMRequestTpmstate0) GetVolumeOk() (*string, bool) {
-	if o == nil || IsNil(o.Volume) {
-		return nil, false
-	}
-	return o.Volume, true
-}
-
-// HasVolume returns a boolean if a field has been set.
-func (o *CreateVMRequestTpmstate0) HasVolume() bool {
-	if o != nil && !IsNil(o.Volume) {
-		return true
-	}
-
-	return false
-}
-
-// SetVolume gets a reference to the given string and assigns it to the Volume field.
-func (o *CreateVMRequestTpmstate0) SetVolume(v string) {
-	o.Volume = &v
-}
-
 func (o CreateVMRequestTpmstate0) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -218,9 +174,7 @@ func (o CreateVMRequestTpmstate0) MarshalJSON() ([]byte, error) {
 
 func (o CreateVMRequestTpmstate0) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.File) {
-		toSerialize["file"] = o.File
-	}
+	toSerialize["file"] = o.File
 	if !IsNil(o.ImportFrom) {
 		toSerialize["import-from"] = o.ImportFrom
 	}
@@ -229,9 +183,6 @@ func (o CreateVMRequestTpmstate0) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Version) {
 		toSerialize["version"] = o.Version
-	}
-	if !IsNil(o.Volume) {
-		toSerialize["volume"] = o.Volume
 	}
 	return toSerialize, nil
 }

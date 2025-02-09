@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Timeout** | Pointer to **int64** | Wait maximal timeout seconds for the shutdown. | [optional] 
+**Timeout** | Pointer to **int64** |  | [optional] 
 
 ## Methods
 

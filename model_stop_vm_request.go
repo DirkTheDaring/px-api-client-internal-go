@@ -3,7 +3,7 @@ ProxMox VE API
 
 ProxMox VE API
 
-API version: 8.0
+API version: 8.3
 Contact: baldur@email.de
 */
 
@@ -20,13 +20,10 @@ var _ MappedNullable = &StopVMRequest{}
 
 // StopVMRequest struct for StopVMRequest
 type StopVMRequest struct {
-	// Do not deactivate storage volumes.
 	KeepActive *bool `json:"keepActive,omitempty"`
-	// The cluster node name.
 	Migratedfrom *string `json:"migratedfrom,omitempty"`
-	// Ignore locks - only root is allowed to use this option.
+	OverruleShutdown *bool `json:"overrule-shutdown,omitempty"`
 	Skiplock *bool `json:"skiplock,omitempty"`
-	// Wait maximal timeout seconds.
 	Timeout *int64 `json:"timeout,omitempty"`
 }
 
@@ -111,6 +108,38 @@ func (o *StopVMRequest) SetMigratedfrom(v string) {
 	o.Migratedfrom = &v
 }
 
+// GetOverruleShutdown returns the OverruleShutdown field value if set, zero value otherwise.
+func (o *StopVMRequest) GetOverruleShutdown() bool {
+	if o == nil || IsNil(o.OverruleShutdown) {
+		var ret bool
+		return ret
+	}
+	return *o.OverruleShutdown
+}
+
+// GetOverruleShutdownOk returns a tuple with the OverruleShutdown field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *StopVMRequest) GetOverruleShutdownOk() (*bool, bool) {
+	if o == nil || IsNil(o.OverruleShutdown) {
+		return nil, false
+	}
+	return o.OverruleShutdown, true
+}
+
+// HasOverruleShutdown returns a boolean if a field has been set.
+func (o *StopVMRequest) HasOverruleShutdown() bool {
+	if o != nil && !IsNil(o.OverruleShutdown) {
+		return true
+	}
+
+	return false
+}
+
+// SetOverruleShutdown gets a reference to the given bool and assigns it to the OverruleShutdown field.
+func (o *StopVMRequest) SetOverruleShutdown(v bool) {
+	o.OverruleShutdown = &v
+}
+
 // GetSkiplock returns the Skiplock field value if set, zero value otherwise.
 func (o *StopVMRequest) GetSkiplock() bool {
 	if o == nil || IsNil(o.Skiplock) {
@@ -190,6 +219,9 @@ func (o StopVMRequest) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Migratedfrom) {
 		toSerialize["migratedfrom"] = o.Migratedfrom
+	}
+	if !IsNil(o.OverruleShutdown) {
+		toSerialize["overrule-shutdown"] = o.OverruleShutdown
 	}
 	if !IsNil(o.Skiplock) {
 		toSerialize["skiplock"] = o.Skiplock

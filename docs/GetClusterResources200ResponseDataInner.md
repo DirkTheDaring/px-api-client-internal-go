@@ -4,32 +4,33 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CgroupMode** | Pointer to **int64** | The cgroup mode the node operates under (when type &#x3D;&#x3D; node). | [optional] 
-**Content** | Pointer to **string** | Allowed storage content types (when type &#x3D;&#x3D; storage). | [optional] 
-**Cpu** | Pointer to **float32** | CPU utilization (when type in node,qemu,lxc). | [optional] 
-**Disk** | Pointer to **int64** | Used disk space in bytes (when type in storage), used root image spave for VMs (type in qemu,lxc). | [optional] 
+**CgroupMode** | Pointer to **int64** | The cgroup mode the node operates under (for type &#39;node&#39;). | [optional] 
+**Content** | Pointer to **string** | Allowed storage content types (for type &#39;storage&#39;). | [optional] 
+**Cpu** | Pointer to **float32** | CPU utilization (for types &#39;node&#39;, &#39;qemu&#39; and &#39;lxc&#39;). | [optional] 
+**Disk** | Pointer to **int64** | Used disk space in bytes (for type &#39;storage&#39;), used root image space for VMs (for types &#39;qemu&#39; and &#39;lxc&#39;). | [optional] 
+**Diskread** | Pointer to **int64** | The amount of bytes the guest read from its block devices since the guest was started. This info is not available for all storage types. (for types &#39;qemu&#39; and &#39;lxc&#39;) | [optional] 
+**Diskwrite** | Pointer to **int64** | The amount of bytes the guest wrote to its block devices since the guest was started. This info is not available for all storage types. (for types &#39;qemu&#39; and &#39;lxc&#39;) | [optional] 
 **Hastate** | Pointer to **string** | HA service status (for HA managed VMs). | [optional] 
 **Id** | Pointer to **string** | Resource id. | [optional] 
-**Level** | Pointer to **string** | Support level (when type &#x3D;&#x3D; node). | [optional] 
-**Maxcpu** | Pointer to **float32** | Number of available CPUs (when type in node,qemu,lxc). | [optional] 
-**Maxdisk** | Pointer to **int64** | Storage size in bytes (when type in storage), root image size for VMs (type in qemu,lxc). | [optional] 
-**Maxmem** | Pointer to **int64** | Number of available memory in bytes (when type in node,qemu,lxc). | [optional] 
-**Mem** | Pointer to **int64** | Used memory in bytes (when type in node,qemu,lxc). | [optional] 
+**Level** | Pointer to **string** | Support level (for type &#39;node&#39;). | [optional] 
+**Lock** | Pointer to **string** | The guest&#39;s current config lock (for types &#39;qemu&#39; and &#39;lxc&#39;) | [optional] 
+**Maxcpu** | Pointer to **float32** | Number of available CPUs (for types &#39;node&#39;, &#39;qemu&#39; and &#39;lxc&#39;). | [optional] 
+**Maxdisk** | Pointer to **int64** | Storage size in bytes (for type &#39;storage&#39;), root image size for VMs (for types &#39;qemu&#39; and &#39;lxc&#39;). | [optional] 
+**Maxmem** | Pointer to **int64** | Number of available memory in bytes (for types &#39;node&#39;, &#39;qemu&#39; and &#39;lxc&#39;). | [optional] 
+**Mem** | Pointer to **int64** | Used memory in bytes (for types &#39;node&#39;, &#39;qemu&#39; and &#39;lxc&#39;). | [optional] 
 **Name** | Pointer to **string** | Name of the resource. | [optional] 
-**Node** | Pointer to **string** | The cluster node name (when type in node,storage,qemu,lxc). | [optional] 
+**Netin** | Pointer to **int64** | The amount of traffic in bytes that was sent to the guest over the network since it was started. (for types &#39;qemu&#39; and &#39;lxc&#39;) | [optional] 
+**Netout** | Pointer to **int64** | The amount of traffic in bytes that was sent from the guest over the network since it was started. (for types &#39;qemu&#39; and &#39;lxc&#39;) | [optional] 
+**Node** | Pointer to **string** | The cluster node name (for types &#39;node&#39;, &#39;storage&#39;, &#39;qemu&#39;, and &#39;lxc&#39;). | [optional] 
 **Plugintype** | Pointer to **string** | More specific type, if available. | [optional] 
-**Pool** | Pointer to **string** | The pool name (when type in pool,qemu,lxc). | [optional] 
+**Pool** | Pointer to **string** | The pool name (for types &#39;pool&#39;, &#39;qemu&#39; and &#39;lxc&#39;). | [optional] 
 **Status** | Pointer to **string** | Resource type dependent status. | [optional] 
-**Storage** | Pointer to **string** | The storage identifier (when type &#x3D;&#x3D; storage). | [optional] 
+**Storage** | Pointer to **string** | The storage identifier (for type &#39;storage&#39;). | [optional] 
+**Tags** | Pointer to **string** | The guest&#39;s tags (for types &#39;qemu&#39; and &#39;lxc&#39;) | [optional] 
+**Template** | Pointer to **int64** | Determines if the guest is a template. (for types &#39;qemu&#39; and &#39;lxc&#39;) | [optional] 
 **Type** | Pointer to **string** | Resource type. | [optional] 
-**Uptime** | Pointer to **int64** | Node uptime in seconds (when type in node,qemu,lxc). | [optional] 
-**Vmid** | Pointer to **int64** | The numerical vmid (when type in qemu,lxc). | [optional] 
-**Diskread** | Pointer to **int64** | tbd. | [optional] 
-**Diskwrite** | Pointer to **int64** | tbd. | [optional] 
-**Lock** | Pointer to **string** | locked or notexisting | [optional] 
-**Netin** | Pointer to **int64** | tbd. | [optional] 
-**Netout** | Pointer to **int64** | tbd. | [optional] 
-**Template** | Pointer to **int64** | tbd. | [optional] 
+**Uptime** | Pointer to **int64** | Uptime of node or virtual guest in seconds (for types &#39;node&#39;, &#39;qemu&#39; and &#39;lxc&#39;). | [optional] 
+**Vmid** | Pointer to **int64** | The numerical vmid (for types &#39;qemu&#39; and &#39;lxc&#39;). | [optional] 
 
 ## Methods
 
@@ -150,6 +151,56 @@ SetDisk sets Disk field to given value.
 
 HasDisk returns a boolean if a field has been set.
 
+### GetDiskread
+
+`func (o *GetClusterResources200ResponseDataInner) GetDiskread() int64`
+
+GetDiskread returns the Diskread field if non-nil, zero value otherwise.
+
+### GetDiskreadOk
+
+`func (o *GetClusterResources200ResponseDataInner) GetDiskreadOk() (*int64, bool)`
+
+GetDiskreadOk returns a tuple with the Diskread field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDiskread
+
+`func (o *GetClusterResources200ResponseDataInner) SetDiskread(v int64)`
+
+SetDiskread sets Diskread field to given value.
+
+### HasDiskread
+
+`func (o *GetClusterResources200ResponseDataInner) HasDiskread() bool`
+
+HasDiskread returns a boolean if a field has been set.
+
+### GetDiskwrite
+
+`func (o *GetClusterResources200ResponseDataInner) GetDiskwrite() int64`
+
+GetDiskwrite returns the Diskwrite field if non-nil, zero value otherwise.
+
+### GetDiskwriteOk
+
+`func (o *GetClusterResources200ResponseDataInner) GetDiskwriteOk() (*int64, bool)`
+
+GetDiskwriteOk returns a tuple with the Diskwrite field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDiskwrite
+
+`func (o *GetClusterResources200ResponseDataInner) SetDiskwrite(v int64)`
+
+SetDiskwrite sets Diskwrite field to given value.
+
+### HasDiskwrite
+
+`func (o *GetClusterResources200ResponseDataInner) HasDiskwrite() bool`
+
+HasDiskwrite returns a boolean if a field has been set.
+
 ### GetHastate
 
 `func (o *GetClusterResources200ResponseDataInner) GetHastate() string`
@@ -224,6 +275,31 @@ SetLevel sets Level field to given value.
 `func (o *GetClusterResources200ResponseDataInner) HasLevel() bool`
 
 HasLevel returns a boolean if a field has been set.
+
+### GetLock
+
+`func (o *GetClusterResources200ResponseDataInner) GetLock() string`
+
+GetLock returns the Lock field if non-nil, zero value otherwise.
+
+### GetLockOk
+
+`func (o *GetClusterResources200ResponseDataInner) GetLockOk() (*string, bool)`
+
+GetLockOk returns a tuple with the Lock field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLock
+
+`func (o *GetClusterResources200ResponseDataInner) SetLock(v string)`
+
+SetLock sets Lock field to given value.
+
+### HasLock
+
+`func (o *GetClusterResources200ResponseDataInner) HasLock() bool`
+
+HasLock returns a boolean if a field has been set.
 
 ### GetMaxcpu
 
@@ -350,6 +426,56 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
+### GetNetin
+
+`func (o *GetClusterResources200ResponseDataInner) GetNetin() int64`
+
+GetNetin returns the Netin field if non-nil, zero value otherwise.
+
+### GetNetinOk
+
+`func (o *GetClusterResources200ResponseDataInner) GetNetinOk() (*int64, bool)`
+
+GetNetinOk returns a tuple with the Netin field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNetin
+
+`func (o *GetClusterResources200ResponseDataInner) SetNetin(v int64)`
+
+SetNetin sets Netin field to given value.
+
+### HasNetin
+
+`func (o *GetClusterResources200ResponseDataInner) HasNetin() bool`
+
+HasNetin returns a boolean if a field has been set.
+
+### GetNetout
+
+`func (o *GetClusterResources200ResponseDataInner) GetNetout() int64`
+
+GetNetout returns the Netout field if non-nil, zero value otherwise.
+
+### GetNetoutOk
+
+`func (o *GetClusterResources200ResponseDataInner) GetNetoutOk() (*int64, bool)`
+
+GetNetoutOk returns a tuple with the Netout field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNetout
+
+`func (o *GetClusterResources200ResponseDataInner) SetNetout(v int64)`
+
+SetNetout sets Netout field to given value.
+
+### HasNetout
+
+`func (o *GetClusterResources200ResponseDataInner) HasNetout() bool`
+
+HasNetout returns a boolean if a field has been set.
+
 ### GetNode
 
 `func (o *GetClusterResources200ResponseDataInner) GetNode() string`
@@ -475,6 +601,56 @@ SetStorage sets Storage field to given value.
 
 HasStorage returns a boolean if a field has been set.
 
+### GetTags
+
+`func (o *GetClusterResources200ResponseDataInner) GetTags() string`
+
+GetTags returns the Tags field if non-nil, zero value otherwise.
+
+### GetTagsOk
+
+`func (o *GetClusterResources200ResponseDataInner) GetTagsOk() (*string, bool)`
+
+GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTags
+
+`func (o *GetClusterResources200ResponseDataInner) SetTags(v string)`
+
+SetTags sets Tags field to given value.
+
+### HasTags
+
+`func (o *GetClusterResources200ResponseDataInner) HasTags() bool`
+
+HasTags returns a boolean if a field has been set.
+
+### GetTemplate
+
+`func (o *GetClusterResources200ResponseDataInner) GetTemplate() int64`
+
+GetTemplate returns the Template field if non-nil, zero value otherwise.
+
+### GetTemplateOk
+
+`func (o *GetClusterResources200ResponseDataInner) GetTemplateOk() (*int64, bool)`
+
+GetTemplateOk returns a tuple with the Template field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTemplate
+
+`func (o *GetClusterResources200ResponseDataInner) SetTemplate(v int64)`
+
+SetTemplate sets Template field to given value.
+
+### HasTemplate
+
+`func (o *GetClusterResources200ResponseDataInner) HasTemplate() bool`
+
+HasTemplate returns a boolean if a field has been set.
+
 ### GetType
 
 `func (o *GetClusterResources200ResponseDataInner) GetType() string`
@@ -549,156 +725,6 @@ SetVmid sets Vmid field to given value.
 `func (o *GetClusterResources200ResponseDataInner) HasVmid() bool`
 
 HasVmid returns a boolean if a field has been set.
-
-### GetDiskread
-
-`func (o *GetClusterResources200ResponseDataInner) GetDiskread() int64`
-
-GetDiskread returns the Diskread field if non-nil, zero value otherwise.
-
-### GetDiskreadOk
-
-`func (o *GetClusterResources200ResponseDataInner) GetDiskreadOk() (*int64, bool)`
-
-GetDiskreadOk returns a tuple with the Diskread field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDiskread
-
-`func (o *GetClusterResources200ResponseDataInner) SetDiskread(v int64)`
-
-SetDiskread sets Diskread field to given value.
-
-### HasDiskread
-
-`func (o *GetClusterResources200ResponseDataInner) HasDiskread() bool`
-
-HasDiskread returns a boolean if a field has been set.
-
-### GetDiskwrite
-
-`func (o *GetClusterResources200ResponseDataInner) GetDiskwrite() int64`
-
-GetDiskwrite returns the Diskwrite field if non-nil, zero value otherwise.
-
-### GetDiskwriteOk
-
-`func (o *GetClusterResources200ResponseDataInner) GetDiskwriteOk() (*int64, bool)`
-
-GetDiskwriteOk returns a tuple with the Diskwrite field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDiskwrite
-
-`func (o *GetClusterResources200ResponseDataInner) SetDiskwrite(v int64)`
-
-SetDiskwrite sets Diskwrite field to given value.
-
-### HasDiskwrite
-
-`func (o *GetClusterResources200ResponseDataInner) HasDiskwrite() bool`
-
-HasDiskwrite returns a boolean if a field has been set.
-
-### GetLock
-
-`func (o *GetClusterResources200ResponseDataInner) GetLock() string`
-
-GetLock returns the Lock field if non-nil, zero value otherwise.
-
-### GetLockOk
-
-`func (o *GetClusterResources200ResponseDataInner) GetLockOk() (*string, bool)`
-
-GetLockOk returns a tuple with the Lock field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLock
-
-`func (o *GetClusterResources200ResponseDataInner) SetLock(v string)`
-
-SetLock sets Lock field to given value.
-
-### HasLock
-
-`func (o *GetClusterResources200ResponseDataInner) HasLock() bool`
-
-HasLock returns a boolean if a field has been set.
-
-### GetNetin
-
-`func (o *GetClusterResources200ResponseDataInner) GetNetin() int64`
-
-GetNetin returns the Netin field if non-nil, zero value otherwise.
-
-### GetNetinOk
-
-`func (o *GetClusterResources200ResponseDataInner) GetNetinOk() (*int64, bool)`
-
-GetNetinOk returns a tuple with the Netin field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetNetin
-
-`func (o *GetClusterResources200ResponseDataInner) SetNetin(v int64)`
-
-SetNetin sets Netin field to given value.
-
-### HasNetin
-
-`func (o *GetClusterResources200ResponseDataInner) HasNetin() bool`
-
-HasNetin returns a boolean if a field has been set.
-
-### GetNetout
-
-`func (o *GetClusterResources200ResponseDataInner) GetNetout() int64`
-
-GetNetout returns the Netout field if non-nil, zero value otherwise.
-
-### GetNetoutOk
-
-`func (o *GetClusterResources200ResponseDataInner) GetNetoutOk() (*int64, bool)`
-
-GetNetoutOk returns a tuple with the Netout field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetNetout
-
-`func (o *GetClusterResources200ResponseDataInner) SetNetout(v int64)`
-
-SetNetout sets Netout field to given value.
-
-### HasNetout
-
-`func (o *GetClusterResources200ResponseDataInner) HasNetout() bool`
-
-HasNetout returns a boolean if a field has been set.
-
-### GetTemplate
-
-`func (o *GetClusterResources200ResponseDataInner) GetTemplate() int64`
-
-GetTemplate returns the Template field if non-nil, zero value otherwise.
-
-### GetTemplateOk
-
-`func (o *GetClusterResources200ResponseDataInner) GetTemplateOk() (*int64, bool)`
-
-GetTemplateOk returns a tuple with the Template field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTemplate
-
-`func (o *GetClusterResources200ResponseDataInner) SetTemplate(v int64)`
-
-SetTemplate sets Template field to given value.
-
-### HasTemplate
-
-`func (o *GetClusterResources200ResponseDataInner) HasTemplate() bool`
-
-HasTemplate returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

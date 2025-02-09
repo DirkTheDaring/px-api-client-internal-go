@@ -3,7 +3,7 @@ ProxMox VE API
 
 ProxMox VE API
 
-API version: 8.0
+API version: 8.3
 Contact: baldur@email.de
 */
 
@@ -18,7 +18,7 @@ import (
 // checks if the GetVMConfigPending200ResponseDataInnerOneOf1 type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &GetVMConfigPending200ResponseDataInnerOneOf1{}
 
-// GetVMConfigPending200ResponseDataInnerOneOf1 struct for GetVMConfigPending200ResponseDataInnerOneOf1
+// GetVMConfigPending200ResponseDataInnerOneOf1 
 type GetVMConfigPending200ResponseDataInnerOneOf1 struct {
 	// Indicates a pending delete request if present and not 0. The value 2 indicates a force-delete request.
 	Delete *int64 `json:"delete,omitempty"`
@@ -27,7 +27,7 @@ type GetVMConfigPending200ResponseDataInnerOneOf1 struct {
 	// Pending value.
 	Pending *string `json:"pending,omitempty"`
 	// Current value.
-	Value *string `json:"value,omitempty"`
+	Value *int64 `json:"value,omitempty"`
 }
 
 // NewGetVMConfigPending200ResponseDataInnerOneOf1 instantiates a new GetVMConfigPending200ResponseDataInnerOneOf1 object
@@ -144,9 +144,9 @@ func (o *GetVMConfigPending200ResponseDataInnerOneOf1) SetPending(v string) {
 }
 
 // GetValue returns the Value field value if set, zero value otherwise.
-func (o *GetVMConfigPending200ResponseDataInnerOneOf1) GetValue() string {
+func (o *GetVMConfigPending200ResponseDataInnerOneOf1) GetValue() int64 {
 	if o == nil || IsNil(o.Value) {
-		var ret string
+		var ret int64
 		return ret
 	}
 	return *o.Value
@@ -154,7 +154,7 @@ func (o *GetVMConfigPending200ResponseDataInnerOneOf1) GetValue() string {
 
 // GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfigPending200ResponseDataInnerOneOf1) GetValueOk() (*string, bool) {
+func (o *GetVMConfigPending200ResponseDataInnerOneOf1) GetValueOk() (*int64, bool) {
 	if o == nil || IsNil(o.Value) {
 		return nil, false
 	}
@@ -170,8 +170,8 @@ func (o *GetVMConfigPending200ResponseDataInnerOneOf1) HasValue() bool {
 	return false
 }
 
-// SetValue gets a reference to the given string and assigns it to the Value field.
-func (o *GetVMConfigPending200ResponseDataInnerOneOf1) SetValue(v string) {
+// SetValue gets a reference to the given int64 and assigns it to the Value field.
+func (o *GetVMConfigPending200ResponseDataInnerOneOf1) SetValue(v int64) {
 	o.Value = &v
 }
 

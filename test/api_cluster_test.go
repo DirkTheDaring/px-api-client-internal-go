@@ -1,7 +1,7 @@
 /*
 ProxMox VE API
 
-Testing ClusterAPIService
+Testing ClusterApiService
 
 */
 
@@ -14,19 +14,19 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/DirkTheDaring/px-api-client-internal-go"
+	openapiclient "github.com/DirkTheDaring/proxmox-openapi-go"
 )
 
-func Test_pxapiobject_ClusterAPIService(t *testing.T) {
+func Test_pxapiobject_ClusterApiService(t *testing.T) {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test ClusterAPIService GetClusterConfigNodes", func(t *testing.T) {
+	t.Run("Test ClusterApiService GetClusterConfigNodes", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.ClusterAPI.GetClusterConfigNodes(context.Background()).Execute()
+		resp, httpRes, err := apiClient.ClusterApi.GetClusterConfigNodes(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -34,11 +34,11 @@ func Test_pxapiobject_ClusterAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test ClusterAPIService GetClusterNextid", func(t *testing.T) {
+	t.Run("Test ClusterApiService GetClusterNextid", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.ClusterAPI.GetClusterNextid(context.Background()).Execute()
+		resp, httpRes, err := apiClient.ClusterApi.GetClusterNextid(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -46,11 +46,11 @@ func Test_pxapiobject_ClusterAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test ClusterAPIService GetClusterResources", func(t *testing.T) {
+	t.Run("Test ClusterApiService GetClusterResources", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.ClusterAPI.GetClusterResources(context.Background()).Execute()
+		resp, httpRes, err := apiClient.ClusterApi.GetClusterResources(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

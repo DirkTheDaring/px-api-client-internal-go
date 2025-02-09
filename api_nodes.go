@@ -3,7 +3,7 @@ ProxMox VE API
 
 ProxMox VE API
 
-API version: 8.0
+API version: 8.3
 Contact: baldur@email.de
 */
 
@@ -22,7 +22,7 @@ import (
 )
 
 
-type NodesAPI interface {
+type NodesApi interface {
 
 	/*
 	CreateContainer createContainer
@@ -30,7 +30,7 @@ type NodesAPI interface {
 	Create or restore a container.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param node The cluster node name.
+	@param node node
 	@return ApiCreateContainerRequest
 	*/
 	CreateContainer(ctx context.Context, node string) ApiCreateContainerRequest
@@ -45,8 +45,8 @@ type NodesAPI interface {
 	Snapshot a container.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param node The cluster node name.
-	@param vmid The (unique) ID of the VM.
+	@param node node
+	@param vmid vmid
 	@return ApiCreateContainerSnapshotRequest
 	*/
 	CreateContainerSnapshot(ctx context.Context, node string, vmid int64) ApiCreateContainerSnapshotRequest
@@ -61,8 +61,8 @@ type NodesAPI interface {
 	Allocate disk images.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param node The cluster node name.
-	@param storage The storage identifier.
+	@param node node
+	@param storage storage
 	@return ApiCreateNodesSingleStorageSingleContentRequest
 	*/
 	CreateNodesSingleStorageSingleContent(ctx context.Context, node string, storage string) ApiCreateNodesSingleStorageSingleContentRequest
@@ -77,7 +77,7 @@ type NodesAPI interface {
 	Create or restore a virtual machine.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param node The cluster node name.
+	@param node node
 	@return ApiCreateVMRequest
 	*/
 	CreateVM(ctx context.Context, node string) ApiCreateVMRequest
@@ -92,8 +92,8 @@ type NodesAPI interface {
 	Snapshot a VM.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param node The cluster node name.
-	@param vmid The (unique) ID of the VM.
+	@param node node
+	@param vmid vmid
 	@return ApiCreateVMSnapshotRequest
 	*/
 	CreateVMSnapshot(ctx context.Context, node string, vmid int64) ApiCreateVMSnapshotRequest
@@ -108,8 +108,8 @@ type NodesAPI interface {
 	Destroy the container (also delete all uses files).
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param node The cluster node name.
-	@param vmid The (unique) ID of the VM.
+	@param node node
+	@param vmid vmid
 	@return ApiDeleteContainerRequest
 	*/
 	DeleteContainer(ctx context.Context, node string, vmid int64) ApiDeleteContainerRequest
@@ -124,12 +124,12 @@ type NodesAPI interface {
 	Delete a LXC snapshot.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param node The cluster node name.
-	@param vmid The (unique) ID of the VM.
-	@param snapname The name of the snapshot.
+	@param node node
+	@param snapname snapname
+	@param vmid vmid
 	@return ApiDeleteContainerSnapshotRequest
 	*/
-	DeleteContainerSnapshot(ctx context.Context, node string, vmid int64, snapname string) ApiDeleteContainerSnapshotRequest
+	DeleteContainerSnapshot(ctx context.Context, node string, snapname string, vmid int64) ApiDeleteContainerSnapshotRequest
 
 	// DeleteContainerSnapshotExecute executes the request
 	//  @return TaskStartResponse
@@ -141,8 +141,8 @@ type NodesAPI interface {
 	Destroy the VM and  all used/owned volumes. Removes any VM specific permissions and firewall rules
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param node The cluster node name.
-	@param vmid The (unique) ID of the VM.
+	@param node node
+	@param vmid vmid
 	@return ApiDeleteVMRequest
 	*/
 	DeleteVM(ctx context.Context, node string, vmid int64) ApiDeleteVMRequest
@@ -157,12 +157,12 @@ type NodesAPI interface {
 	Delete a VM snapshot.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param node The cluster node name.
-	@param vmid The (unique) ID of the VM.
-	@param snapname The name of the snapshot.
+	@param node node
+	@param snapname snapname
+	@param vmid vmid
 	@return ApiDeleteVMSnapshotRequest
 	*/
-	DeleteVMSnapshot(ctx context.Context, node string, vmid int64, snapname string) ApiDeleteVMSnapshotRequest
+	DeleteVMSnapshot(ctx context.Context, node string, snapname string, vmid int64) ApiDeleteVMSnapshotRequest
 
 	// DeleteVMSnapshotExecute executes the request
 	//  @return TaskStartResponse
@@ -174,8 +174,8 @@ type NodesAPI interface {
 	Directory index
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param node The cluster node name.
-	@param vmid The (unique) ID of the VM.
+	@param node node
+	@param vmid vmid
 	@return ApiGetContainerRequest
 	*/
 	GetContainer(ctx context.Context, node string, vmid int64) ApiGetContainerRequest
@@ -190,8 +190,8 @@ type NodesAPI interface {
 	Get container configuration.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param node The cluster node name.
-	@param vmid The (unique) ID of the VM.
+	@param node node
+	@param vmid vmid
 	@return ApiGetContainerConfigRequest
 	*/
 	GetContainerConfig(ctx context.Context, node string, vmid int64) ApiGetContainerConfigRequest
@@ -206,8 +206,8 @@ type NodesAPI interface {
 	Get container configuration, including pending changes.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param node The cluster node name.
-	@param vmid The (unique) ID of the VM.
+	@param node node
+	@param vmid vmid
 	@return ApiGetContainerConfigPendingRequest
 	*/
 	GetContainerConfigPending(ctx context.Context, node string, vmid int64) ApiGetContainerConfigPendingRequest
@@ -222,12 +222,12 @@ type NodesAPI interface {
 	
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param node The cluster node name.
-	@param vmid The (unique) ID of the VM.
-	@param snapname The name of the snapshot.
+	@param node node
+	@param snapname snapname
+	@param vmid vmid
 	@return ApiGetContainerSnapshotRequest
 	*/
-	GetContainerSnapshot(ctx context.Context, node string, vmid int64, snapname string) ApiGetContainerSnapshotRequest
+	GetContainerSnapshot(ctx context.Context, node string, snapname string, vmid int64) ApiGetContainerSnapshotRequest
 
 	// GetContainerSnapshotExecute executes the request
 	//  @return GetVMSnapshot200Response
@@ -239,12 +239,12 @@ type NodesAPI interface {
 	Get snapshot configuration
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param node The cluster node name.
-	@param vmid The (unique) ID of the VM.
-	@param snapname The name of the snapshot.
+	@param node node
+	@param snapname snapname
+	@param vmid vmid
 	@return ApiGetContainerSnapshotConfigRequest
 	*/
-	GetContainerSnapshotConfig(ctx context.Context, node string, vmid int64, snapname string) ApiGetContainerSnapshotConfigRequest
+	GetContainerSnapshotConfig(ctx context.Context, node string, snapname string, vmid int64) ApiGetContainerSnapshotConfigRequest
 
 	// GetContainerSnapshotConfigExecute executes the request
 	//  @return GetVMSnapshotConfig200Response
@@ -256,8 +256,8 @@ type NodesAPI interface {
 	List all snapshots.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param node The cluster node name.
-	@param vmid The (unique) ID of the VM.
+	@param node node
+	@param vmid vmid
 	@return ApiGetContainerSnapshotsRequest
 	*/
 	GetContainerSnapshots(ctx context.Context, node string, vmid int64) ApiGetContainerSnapshotsRequest
@@ -272,8 +272,8 @@ type NodesAPI interface {
 	Directory index
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param node The cluster node name.
-	@param vmid The (unique) ID of the VM.
+	@param node node
+	@param vmid vmid
 	@return ApiGetContainerStatusRequest
 	*/
 	GetContainerStatus(ctx context.Context, node string, vmid int64) ApiGetContainerStatusRequest
@@ -288,7 +288,7 @@ type NodesAPI interface {
 	LXC container index (per node).
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param node The cluster node name.
+	@param node node
 	@return ApiGetContainersRequest
 	*/
 	GetContainers(ctx context.Context, node string) ApiGetContainersRequest
@@ -303,8 +303,8 @@ type NodesAPI interface {
 	Get virtual machine status.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param node The cluster node name.
-	@param vmid The (unique) ID of the VM.
+	@param node node
+	@param vmid vmid
 	@return ApiGetCurrentContainerStatusRequest
 	*/
 	GetCurrentContainerStatus(ctx context.Context, node string, vmid int64) ApiGetCurrentContainerStatusRequest
@@ -319,8 +319,8 @@ type NodesAPI interface {
 	Get virtual machine status.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param node The cluster node name.
-	@param vmid The (unique) ID of the VM.
+	@param node node
+	@param vmid vmid
 	@return ApiGetCurrentVMStatusRequest
 	*/
 	GetCurrentVMStatus(ctx context.Context, node string, vmid int64) ApiGetCurrentVMStatusRequest
@@ -335,8 +335,8 @@ type NodesAPI interface {
 	
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param node The cluster node name.
-	@param upid
+	@param node node
+	@param upid upid
 	@return ApiGetNodeTaskRequest
 	*/
 	GetNodeTask(ctx context.Context, node string, upid string) ApiGetNodeTaskRequest
@@ -351,8 +351,8 @@ type NodesAPI interface {
 	Read task log.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param node The cluster node name.
-	@param upid The task's unique ID.
+	@param node node
+	@param upid upid
 	@return ApiGetNodeTaskLogRequest
 	*/
 	GetNodeTaskLog(ctx context.Context, node string, upid string) ApiGetNodeTaskLogRequest
@@ -367,8 +367,8 @@ type NodesAPI interface {
 	Read task status.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param node The cluster node name.
-	@param upid The task's unique ID.
+	@param node node
+	@param upid upid
 	@return ApiGetNodeTaskStatusRequest
 	*/
 	GetNodeTaskStatus(ctx context.Context, node string, upid string) ApiGetNodeTaskStatusRequest
@@ -383,7 +383,7 @@ type NodesAPI interface {
 	Read task list for one node (finished tasks).
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param node The cluster node name.
+	@param node node
 	@return ApiGetNodeTasksRequest
 	*/
 	GetNodeTasks(ctx context.Context, node string) ApiGetNodeTasksRequest
@@ -398,8 +398,8 @@ type NodesAPI interface {
 	List storage content.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param node The cluster node name.
-	@param storage The storage identifier.
+	@param node node
+	@param storage storage
 	@return ApiGetStorageContentRequest
 	*/
 	GetStorageContent(ctx context.Context, node string, storage string) ApiGetStorageContentRequest
@@ -414,7 +414,7 @@ type NodesAPI interface {
 	Get status for all datastores.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param node The cluster node name.
+	@param node node
 	@return ApiGetStoragesRequest
 	*/
 	GetStorages(ctx context.Context, node string) ApiGetStoragesRequest
@@ -429,8 +429,8 @@ type NodesAPI interface {
 	Directory index
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param node The cluster node name.
-	@param vmid The (unique) ID of the VM.
+	@param node node
+	@param vmid vmid
 	@return ApiGetVMRequest
 	*/
 	GetVM(ctx context.Context, node string, vmid int64) ApiGetVMRequest
@@ -445,8 +445,8 @@ type NodesAPI interface {
 	Get the virtual machine configuration with pending configuration changes applied. Set the 'current' parameter to get the current configuration instead.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param node The cluster node name.
-	@param vmid The (unique) ID of the VM.
+	@param node node
+	@param vmid vmid
 	@return ApiGetVMConfigRequest
 	*/
 	GetVMConfig(ctx context.Context, node string, vmid int64) ApiGetVMConfigRequest
@@ -461,8 +461,8 @@ type NodesAPI interface {
 	Get the virtual machine configuration with both current and pending values.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param node The cluster node name.
-	@param vmid The (unique) ID of the VM.
+	@param node node
+	@param vmid vmid
 	@return ApiGetVMConfigPendingRequest
 	*/
 	GetVMConfigPending(ctx context.Context, node string, vmid int64) ApiGetVMConfigPendingRequest
@@ -477,12 +477,12 @@ type NodesAPI interface {
 	
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param node The cluster node name.
-	@param vmid The (unique) ID of the VM.
-	@param snapname The name of the snapshot.
+	@param node node
+	@param snapname snapname
+	@param vmid vmid
 	@return ApiGetVMSnapshotRequest
 	*/
-	GetVMSnapshot(ctx context.Context, node string, vmid int64, snapname string) ApiGetVMSnapshotRequest
+	GetVMSnapshot(ctx context.Context, node string, snapname string, vmid int64) ApiGetVMSnapshotRequest
 
 	// GetVMSnapshotExecute executes the request
 	//  @return GetVMSnapshot200Response
@@ -494,12 +494,12 @@ type NodesAPI interface {
 	Get snapshot configuration
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param node The cluster node name.
-	@param vmid The (unique) ID of the VM.
-	@param snapname The name of the snapshot.
+	@param node node
+	@param snapname snapname
+	@param vmid vmid
 	@return ApiGetVMSnapshotConfigRequest
 	*/
-	GetVMSnapshotConfig(ctx context.Context, node string, vmid int64, snapname string) ApiGetVMSnapshotConfigRequest
+	GetVMSnapshotConfig(ctx context.Context, node string, snapname string, vmid int64) ApiGetVMSnapshotConfigRequest
 
 	// GetVMSnapshotConfigExecute executes the request
 	//  @return GetVMSnapshotConfig200Response
@@ -511,8 +511,8 @@ type NodesAPI interface {
 	List all snapshots.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param node The cluster node name.
-	@param vmid The (unique) ID of the VM.
+	@param node node
+	@param vmid vmid
 	@return ApiGetVMSnapshotsRequest
 	*/
 	GetVMSnapshots(ctx context.Context, node string, vmid int64) ApiGetVMSnapshotsRequest
@@ -527,7 +527,7 @@ type NodesAPI interface {
 	Virtual machine index (per node).
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param node The cluster node name.
+	@param node node
 	@return ApiGetVMsRequest
 	*/
 	GetVMs(ctx context.Context, node string) ApiGetVMsRequest
@@ -542,8 +542,8 @@ type NodesAPI interface {
 	Reboot the container by shutting it down, and starting it again. Applies pending changes.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param node The cluster node name.
-	@param vmid The (unique) ID of the VM.
+	@param node node
+	@param vmid vmid
 	@return ApiRebootContainerRequest
 	*/
 	RebootContainer(ctx context.Context, node string, vmid int64) ApiRebootContainerRequest
@@ -558,8 +558,8 @@ type NodesAPI interface {
 	Reboot the VM by shutting it down, and starting it again. Applies pending changes.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param node The cluster node name.
-	@param vmid The (unique) ID of the VM.
+	@param node node
+	@param vmid vmid
 	@return ApiRebootVMRequest
 	*/
 	RebootVM(ctx context.Context, node string, vmid int64) ApiRebootVMRequest
@@ -574,8 +574,8 @@ type NodesAPI interface {
 	Resize a container mount point.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param node The cluster node name.
-	@param vmid The (unique) ID of the VM.
+	@param node node
+	@param vmid vmid
 	@return ApiResizeContainerDiskRequest
 	*/
 	ResizeContainerDisk(ctx context.Context, node string, vmid int64) ApiResizeContainerDiskRequest
@@ -590,8 +590,8 @@ type NodesAPI interface {
 	Extend volume size.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param node The cluster node name.
-	@param vmid The (unique) ID of the VM.
+	@param node node
+	@param vmid vmid
 	@return ApiResizeVMDiskRequest
 	*/
 	ResizeVMDisk(ctx context.Context, node string, vmid int64) ApiResizeVMDiskRequest
@@ -606,8 +606,8 @@ type NodesAPI interface {
 	Resume the container.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param node The cluster node name.
-	@param vmid The (unique) ID of the VM.
+	@param node node
+	@param vmid vmid
 	@return ApiResumeContainerRequest
 	*/
 	ResumeContainer(ctx context.Context, node string, vmid int64) ApiResumeContainerRequest
@@ -622,8 +622,8 @@ type NodesAPI interface {
 	Resume virtual machine.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param node The cluster node name.
-	@param vmid The (unique) ID of the VM.
+	@param node node
+	@param vmid vmid
 	@return ApiResumeVMRequest
 	*/
 	ResumeVM(ctx context.Context, node string, vmid int64) ApiResumeVMRequest
@@ -638,12 +638,12 @@ type NodesAPI interface {
 	Rollback LXC state to specified snapshot.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param node The cluster node name.
-	@param vmid The (unique) ID of the VM.
-	@param snapname The name of the snapshot.
+	@param node node
+	@param snapname snapname
+	@param vmid vmid
 	@return ApiRollbackContainerSnapshotRequest
 	*/
-	RollbackContainerSnapshot(ctx context.Context, node string, vmid int64, snapname string) ApiRollbackContainerSnapshotRequest
+	RollbackContainerSnapshot(ctx context.Context, node string, snapname string, vmid int64) ApiRollbackContainerSnapshotRequest
 
 	// RollbackContainerSnapshotExecute executes the request
 	//  @return TaskStartResponse
@@ -655,12 +655,12 @@ type NodesAPI interface {
 	Rollback VM state to specified snapshot.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param node The cluster node name.
-	@param vmid The (unique) ID of the VM.
-	@param snapname The name of the snapshot.
+	@param node node
+	@param snapname snapname
+	@param vmid vmid
 	@return ApiRollbackVMSnapshotRequest
 	*/
-	RollbackVMSnapshot(ctx context.Context, node string, vmid int64, snapname string) ApiRollbackVMSnapshotRequest
+	RollbackVMSnapshot(ctx context.Context, node string, snapname string, vmid int64) ApiRollbackVMSnapshotRequest
 
 	// RollbackVMSnapshotExecute executes the request
 	//  @return TaskStartResponse
@@ -672,8 +672,8 @@ type NodesAPI interface {
 	Shutdown the container. This will trigger a clean shutdown of the container, see lxc-stop(1) for details.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param node The cluster node name.
-	@param vmid The (unique) ID of the VM.
+	@param node node
+	@param vmid vmid
 	@return ApiShutdownContainerRequest
 	*/
 	ShutdownContainer(ctx context.Context, node string, vmid int64) ApiShutdownContainerRequest
@@ -685,11 +685,11 @@ type NodesAPI interface {
 	/*
 	ShutdownVM shutdownVM
 
-	Shutdown virtual machine. This is similar to pressing the power button on a physical machine.This will send an ACPI event for the guest OS, which should then proceed to a clean shutdown.
+	Shutdown virtual machine. This is similar to pressing the power button on a physical machine. This will send an ACPI event for the guest OS, which should then proceed to a clean shutdown.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param node The cluster node name.
-	@param vmid The (unique) ID of the VM.
+	@param node node
+	@param vmid vmid
 	@return ApiShutdownVMRequest
 	*/
 	ShutdownVM(ctx context.Context, node string, vmid int64) ApiShutdownVMRequest
@@ -704,8 +704,8 @@ type NodesAPI interface {
 	Start the container.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param node The cluster node name.
-	@param vmid The (unique) ID of the VM.
+	@param node node
+	@param vmid vmid
 	@return ApiStartContainerRequest
 	*/
 	StartContainer(ctx context.Context, node string, vmid int64) ApiStartContainerRequest
@@ -720,8 +720,8 @@ type NodesAPI interface {
 	Start virtual machine.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param node The cluster node name.
-	@param vmid The (unique) ID of the VM.
+	@param node node
+	@param vmid vmid
 	@return ApiStartVMRequest
 	*/
 	StartVM(ctx context.Context, node string, vmid int64) ApiStartVMRequest
@@ -736,8 +736,8 @@ type NodesAPI interface {
 	Stop the container. This will abruptly stop all processes running in the container.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param node The cluster node name.
-	@param vmid The (unique) ID of the VM.
+	@param node node
+	@param vmid vmid
 	@return ApiStopContainerRequest
 	*/
 	StopContainer(ctx context.Context, node string, vmid int64) ApiStopContainerRequest
@@ -752,8 +752,8 @@ type NodesAPI interface {
 	Stop a task.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param node The cluster node name.
-	@param upid
+	@param node node
+	@param upid upid
 	@return ApiStopNodeTaskRequest
 	*/
 	StopNodeTask(ctx context.Context, node string, upid string) ApiStopNodeTaskRequest
@@ -765,11 +765,11 @@ type NodesAPI interface {
 	/*
 	StopVM stopVM
 
-	Stop virtual machine. The qemu process will exit immediately. Thisis akin to pulling the power plug of a running computer and may damage the VM data
+	Stop virtual machine. The qemu process will exit immediately. This is akin to pulling the power plug of a running computer and may damage the VM data.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param node The cluster node name.
-	@param vmid The (unique) ID of the VM.
+	@param node node
+	@param vmid vmid
 	@return ApiStopVMRequest
 	*/
 	StopVM(ctx context.Context, node string, vmid int64) ApiStopVMRequest
@@ -784,8 +784,8 @@ type NodesAPI interface {
 	Suspend the container. This is experimental.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param node The cluster node name.
-	@param vmid The (unique) ID of the VM.
+	@param node node
+	@param vmid vmid
 	@return ApiSuspendContainerRequest
 	*/
 	SuspendContainer(ctx context.Context, node string, vmid int64) ApiSuspendContainerRequest
@@ -800,8 +800,8 @@ type NodesAPI interface {
 	Suspend virtual machine.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param node The cluster node name.
-	@param vmid The (unique) ID of the VM.
+	@param node node
+	@param vmid vmid
 	@return ApiSuspendVMRequest
 	*/
 	SuspendVM(ctx context.Context, node string, vmid int64) ApiSuspendVMRequest
@@ -816,8 +816,8 @@ type NodesAPI interface {
 	Set container options.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param node The cluster node name.
-	@param vmid The (unique) ID of the VM.
+	@param node node
+	@param vmid vmid
 	@return ApiUpdateContainerConfigSyncRequest
 	*/
 	UpdateContainerConfigSync(ctx context.Context, node string, vmid int64) ApiUpdateContainerConfigSyncRequest
@@ -832,12 +832,12 @@ type NodesAPI interface {
 	Update snapshot metadata.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param node The cluster node name.
-	@param vmid The (unique) ID of the VM.
-	@param snapname The name of the snapshot.
+	@param node node
+	@param snapname snapname
+	@param vmid vmid
 	@return ApiUpdateContainerSnapshotConfigRequest
 	*/
-	UpdateContainerSnapshotConfig(ctx context.Context, node string, vmid int64, snapname string) ApiUpdateContainerSnapshotConfigRequest
+	UpdateContainerSnapshotConfig(ctx context.Context, node string, snapname string, vmid int64) ApiUpdateContainerSnapshotConfigRequest
 
 	// UpdateContainerSnapshotConfigExecute executes the request
 	//  @return CreateVM200Response
@@ -846,11 +846,11 @@ type NodesAPI interface {
 	/*
 	UpdateVMConfig updateVMConfig
 
-	Set virtual machine options (asynchrounous API).
+	Set virtual machine options (asynchronous API).
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param node The cluster node name.
-	@param vmid The (unique) ID of the VM.
+	@param node node
+	@param vmid vmid
 	@return ApiUpdateVMConfigRequest
 	*/
 	UpdateVMConfig(ctx context.Context, node string, vmid int64) ApiUpdateVMConfigRequest
@@ -862,11 +862,11 @@ type NodesAPI interface {
 	/*
 	UpdateVMConfigSync updateVMConfigSync
 
-	Set virtual machine options (synchrounous API) - You should consider using the POST method instead for any actions involving hotplug or storage allocation.
+	Set virtual machine options (synchronous API) - You should consider using the POST method instead for any actions involving hotplug or storage allocation.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param node The cluster node name.
-	@param vmid The (unique) ID of the VM.
+	@param node node
+	@param vmid vmid
 	@return ApiUpdateVMConfigSyncRequest
 	*/
 	UpdateVMConfigSync(ctx context.Context, node string, vmid int64) ApiUpdateVMConfigSyncRequest
@@ -881,12 +881,12 @@ type NodesAPI interface {
 	Update snapshot metadata.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param node The cluster node name.
-	@param vmid The (unique) ID of the VM.
-	@param snapname The name of the snapshot.
+	@param node node
+	@param snapname snapname
+	@param vmid vmid
 	@return ApiUpdateVMSnapshotConfigRequest
 	*/
-	UpdateVMSnapshotConfig(ctx context.Context, node string, vmid int64, snapname string) ApiUpdateVMSnapshotConfigRequest
+	UpdateVMSnapshotConfig(ctx context.Context, node string, snapname string, vmid int64) ApiUpdateVMSnapshotConfigRequest
 
 	// UpdateVMSnapshotConfigExecute executes the request
 	//  @return CreateVM200Response
@@ -895,11 +895,11 @@ type NodesAPI interface {
 	/*
 	UploadFile uploadFile
 
-	Upload templates and ISO images.
+	Upload templates, ISO images and OVAs.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param node The cluster node name.
-	@param storage The storage identifier.
+	@param node node
+	@param storage storage
 	@return ApiUploadFileRequest
 	*/
 	UploadFile(ctx context.Context, node string, storage string) ApiUploadFileRequest
@@ -909,12 +909,12 @@ type NodesAPI interface {
 	UploadFileExecute(r ApiUploadFileRequest) (*CreateVM200Response, *http.Response, error)
 }
 
-// NodesAPIService NodesAPI service
-type NodesAPIService service
+// NodesApiService NodesApi service
+type NodesApiService service
 
 type ApiCreateContainerRequest struct {
 	ctx context.Context
-	ApiService NodesAPI
+	ApiService NodesApi
 	node string
 	createContainerRequest *CreateContainerRequest
 }
@@ -934,10 +934,10 @@ CreateContainer createContainer
 Create or restore a container.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param node The cluster node name.
+ @param node node
  @return ApiCreateContainerRequest
 */
-func (a *NodesAPIService) CreateContainer(ctx context.Context, node string) ApiCreateContainerRequest {
+func (a *NodesApiService) CreateContainer(ctx context.Context, node string) ApiCreateContainerRequest {
 	return ApiCreateContainerRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -947,7 +947,7 @@ func (a *NodesAPIService) CreateContainer(ctx context.Context, node string) ApiC
 
 // Execute executes the request
 //  @return CreateVM200Response
-func (a *NodesAPIService) CreateContainerExecute(r ApiCreateContainerRequest) (*CreateVM200Response, *http.Response, error) {
+func (a *NodesApiService) CreateContainerExecute(r ApiCreateContainerRequest) (*CreateVM200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -955,7 +955,7 @@ func (a *NodesAPIService) CreateContainerExecute(r ApiCreateContainerRequest) (*
 		localVarReturnValue  *CreateVM200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.CreateContainer")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.CreateContainer")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1053,7 +1053,7 @@ func (a *NodesAPIService) CreateContainerExecute(r ApiCreateContainerRequest) (*
 
 type ApiCreateContainerSnapshotRequest struct {
 	ctx context.Context
-	ApiService NodesAPI
+	ApiService NodesApi
 	node string
 	vmid int64
 	createContainerSnapshotRequest *CreateContainerSnapshotRequest
@@ -1074,11 +1074,11 @@ CreateContainerSnapshot createContainerSnapshot
 Snapshot a container.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param node The cluster node name.
- @param vmid The (unique) ID of the VM.
+ @param node node
+ @param vmid vmid
  @return ApiCreateContainerSnapshotRequest
 */
-func (a *NodesAPIService) CreateContainerSnapshot(ctx context.Context, node string, vmid int64) ApiCreateContainerSnapshotRequest {
+func (a *NodesApiService) CreateContainerSnapshot(ctx context.Context, node string, vmid int64) ApiCreateContainerSnapshotRequest {
 	return ApiCreateContainerSnapshotRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1089,7 +1089,7 @@ func (a *NodesAPIService) CreateContainerSnapshot(ctx context.Context, node stri
 
 // Execute executes the request
 //  @return TaskStartResponse
-func (a *NodesAPIService) CreateContainerSnapshotExecute(r ApiCreateContainerSnapshotRequest) (*TaskStartResponse, *http.Response, error) {
+func (a *NodesApiService) CreateContainerSnapshotExecute(r ApiCreateContainerSnapshotRequest) (*TaskStartResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -1097,7 +1097,7 @@ func (a *NodesAPIService) CreateContainerSnapshotExecute(r ApiCreateContainerSna
 		localVarReturnValue  *TaskStartResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.CreateContainerSnapshot")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.CreateContainerSnapshot")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1109,12 +1109,6 @@ func (a *NodesAPIService) CreateContainerSnapshotExecute(r ApiCreateContainerSna
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.vmid < 100 {
-		return localVarReturnValue, nil, reportError("vmid must be greater than 100")
-	}
-	if r.vmid > 999999999 {
-		return localVarReturnValue, nil, reportError("vmid must be less than 999999999")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -1202,7 +1196,7 @@ func (a *NodesAPIService) CreateContainerSnapshotExecute(r ApiCreateContainerSna
 
 type ApiCreateNodesSingleStorageSingleContentRequest struct {
 	ctx context.Context
-	ApiService NodesAPI
+	ApiService NodesApi
 	node string
 	storage string
 	createNodesSingleStorageSingleContentRequest *CreateNodesSingleStorageSingleContentRequest
@@ -1223,11 +1217,11 @@ CreateNodesSingleStorageSingleContent createNodesSingleStorageSingleContent
 Allocate disk images.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param node The cluster node name.
- @param storage The storage identifier.
+ @param node node
+ @param storage storage
  @return ApiCreateNodesSingleStorageSingleContentRequest
 */
-func (a *NodesAPIService) CreateNodesSingleStorageSingleContent(ctx context.Context, node string, storage string) ApiCreateNodesSingleStorageSingleContentRequest {
+func (a *NodesApiService) CreateNodesSingleStorageSingleContent(ctx context.Context, node string, storage string) ApiCreateNodesSingleStorageSingleContentRequest {
 	return ApiCreateNodesSingleStorageSingleContentRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1238,7 +1232,7 @@ func (a *NodesAPIService) CreateNodesSingleStorageSingleContent(ctx context.Cont
 
 // Execute executes the request
 //  @return CreateNodesSingleStorageSingleContent200Response
-func (a *NodesAPIService) CreateNodesSingleStorageSingleContentExecute(r ApiCreateNodesSingleStorageSingleContentRequest) (*CreateNodesSingleStorageSingleContent200Response, *http.Response, error) {
+func (a *NodesApiService) CreateNodesSingleStorageSingleContentExecute(r ApiCreateNodesSingleStorageSingleContentRequest) (*CreateNodesSingleStorageSingleContent200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -1246,7 +1240,7 @@ func (a *NodesAPIService) CreateNodesSingleStorageSingleContentExecute(r ApiCrea
 		localVarReturnValue  *CreateNodesSingleStorageSingleContent200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.CreateNodesSingleStorageSingleContent")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.CreateNodesSingleStorageSingleContent")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1345,7 +1339,7 @@ func (a *NodesAPIService) CreateNodesSingleStorageSingleContentExecute(r ApiCrea
 
 type ApiCreateVMRequest struct {
 	ctx context.Context
-	ApiService NodesAPI
+	ApiService NodesApi
 	node string
 	createVMRequest *CreateVMRequest
 }
@@ -1365,10 +1359,10 @@ CreateVM createVM
 Create or restore a virtual machine.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param node The cluster node name.
+ @param node node
  @return ApiCreateVMRequest
 */
-func (a *NodesAPIService) CreateVM(ctx context.Context, node string) ApiCreateVMRequest {
+func (a *NodesApiService) CreateVM(ctx context.Context, node string) ApiCreateVMRequest {
 	return ApiCreateVMRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1378,7 +1372,7 @@ func (a *NodesAPIService) CreateVM(ctx context.Context, node string) ApiCreateVM
 
 // Execute executes the request
 //  @return CreateVM200Response
-func (a *NodesAPIService) CreateVMExecute(r ApiCreateVMRequest) (*CreateVM200Response, *http.Response, error) {
+func (a *NodesApiService) CreateVMExecute(r ApiCreateVMRequest) (*CreateVM200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -1386,7 +1380,7 @@ func (a *NodesAPIService) CreateVMExecute(r ApiCreateVMRequest) (*CreateVM200Res
 		localVarReturnValue  *CreateVM200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.CreateVM")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.CreateVM")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1484,7 +1478,7 @@ func (a *NodesAPIService) CreateVMExecute(r ApiCreateVMRequest) (*CreateVM200Res
 
 type ApiCreateVMSnapshotRequest struct {
 	ctx context.Context
-	ApiService NodesAPI
+	ApiService NodesApi
 	node string
 	vmid int64
 	createVMSnapshotRequest *CreateVMSnapshotRequest
@@ -1505,11 +1499,11 @@ CreateVMSnapshot createVMSnapshot
 Snapshot a VM.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param node The cluster node name.
- @param vmid The (unique) ID of the VM.
+ @param node node
+ @param vmid vmid
  @return ApiCreateVMSnapshotRequest
 */
-func (a *NodesAPIService) CreateVMSnapshot(ctx context.Context, node string, vmid int64) ApiCreateVMSnapshotRequest {
+func (a *NodesApiService) CreateVMSnapshot(ctx context.Context, node string, vmid int64) ApiCreateVMSnapshotRequest {
 	return ApiCreateVMSnapshotRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1520,7 +1514,7 @@ func (a *NodesAPIService) CreateVMSnapshot(ctx context.Context, node string, vmi
 
 // Execute executes the request
 //  @return TaskStartResponse
-func (a *NodesAPIService) CreateVMSnapshotExecute(r ApiCreateVMSnapshotRequest) (*TaskStartResponse, *http.Response, error) {
+func (a *NodesApiService) CreateVMSnapshotExecute(r ApiCreateVMSnapshotRequest) (*TaskStartResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -1528,7 +1522,7 @@ func (a *NodesAPIService) CreateVMSnapshotExecute(r ApiCreateVMSnapshotRequest) 
 		localVarReturnValue  *TaskStartResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.CreateVMSnapshot")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.CreateVMSnapshot")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1540,12 +1534,6 @@ func (a *NodesAPIService) CreateVMSnapshotExecute(r ApiCreateVMSnapshotRequest) 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.vmid < 100 {
-		return localVarReturnValue, nil, reportError("vmid must be greater than 100")
-	}
-	if r.vmid > 999999999 {
-		return localVarReturnValue, nil, reportError("vmid must be less than 999999999")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -1633,30 +1621,9 @@ func (a *NodesAPIService) CreateVMSnapshotExecute(r ApiCreateVMSnapshotRequest) 
 
 type ApiDeleteContainerRequest struct {
 	ctx context.Context
-	ApiService NodesAPI
+	ApiService NodesApi
 	node string
 	vmid int64
-	destroyUnreferencedDisks *bool
-	force *bool
-	purge *bool
-}
-
-// If set, destroy additionally all disks with the VMID from all enabled storages which are not referenced in the config.
-func (r ApiDeleteContainerRequest) DestroyUnreferencedDisks(destroyUnreferencedDisks bool) ApiDeleteContainerRequest {
-	r.destroyUnreferencedDisks = &destroyUnreferencedDisks
-	return r
-}
-
-// Force destroy, even if running.
-func (r ApiDeleteContainerRequest) Force(force bool) ApiDeleteContainerRequest {
-	r.force = &force
-	return r
-}
-
-// Remove container from all related configurations. For example, backup jobs, replication jobs or HA. Related ACLs and Firewall entries will *always* be removed.
-func (r ApiDeleteContainerRequest) Purge(purge bool) ApiDeleteContainerRequest {
-	r.purge = &purge
-	return r
 }
 
 func (r ApiDeleteContainerRequest) Execute() (*CreateVM200Response, *http.Response, error) {
@@ -1669,11 +1636,11 @@ DeleteContainer deleteContainer
 Destroy the container (also delete all uses files).
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param node The cluster node name.
- @param vmid The (unique) ID of the VM.
+ @param node node
+ @param vmid vmid
  @return ApiDeleteContainerRequest
 */
-func (a *NodesAPIService) DeleteContainer(ctx context.Context, node string, vmid int64) ApiDeleteContainerRequest {
+func (a *NodesApiService) DeleteContainer(ctx context.Context, node string, vmid int64) ApiDeleteContainerRequest {
 	return ApiDeleteContainerRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1684,7 +1651,7 @@ func (a *NodesAPIService) DeleteContainer(ctx context.Context, node string, vmid
 
 // Execute executes the request
 //  @return CreateVM200Response
-func (a *NodesAPIService) DeleteContainerExecute(r ApiDeleteContainerRequest) (*CreateVM200Response, *http.Response, error) {
+func (a *NodesApiService) DeleteContainerExecute(r ApiDeleteContainerRequest) (*CreateVM200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -1692,7 +1659,7 @@ func (a *NodesAPIService) DeleteContainerExecute(r ApiDeleteContainerRequest) (*
 		localVarReturnValue  *CreateVM200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.DeleteContainer")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.DeleteContainer")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1704,22 +1671,7 @@ func (a *NodesAPIService) DeleteContainerExecute(r ApiDeleteContainerRequest) (*
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.vmid < 100 {
-		return localVarReturnValue, nil, reportError("vmid must be greater than 100")
-	}
-	if r.vmid > 999999999 {
-		return localVarReturnValue, nil, reportError("vmid must be less than 999999999")
-	}
 
-	if r.destroyUnreferencedDisks != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "destroy-unreferenced-disks", r.destroyUnreferencedDisks, "")
-	}
-	if r.force != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "force", r.force, "")
-	}
-	if r.purge != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "purge", r.purge, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1804,17 +1756,10 @@ func (a *NodesAPIService) DeleteContainerExecute(r ApiDeleteContainerRequest) (*
 
 type ApiDeleteContainerSnapshotRequest struct {
 	ctx context.Context
-	ApiService NodesAPI
+	ApiService NodesApi
 	node string
-	vmid int64
 	snapname string
-	force *bool
-}
-
-// For removal from config file, even if removing disk snapshots fails.
-func (r ApiDeleteContainerSnapshotRequest) Force(force bool) ApiDeleteContainerSnapshotRequest {
-	r.force = &force
-	return r
+	vmid int64
 }
 
 func (r ApiDeleteContainerSnapshotRequest) Execute() (*TaskStartResponse, *http.Response, error) {
@@ -1827,24 +1772,24 @@ DeleteContainerSnapshot deleteContainerSnapshot
 Delete a LXC snapshot.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param node The cluster node name.
- @param vmid The (unique) ID of the VM.
- @param snapname The name of the snapshot.
+ @param node node
+ @param snapname snapname
+ @param vmid vmid
  @return ApiDeleteContainerSnapshotRequest
 */
-func (a *NodesAPIService) DeleteContainerSnapshot(ctx context.Context, node string, vmid int64, snapname string) ApiDeleteContainerSnapshotRequest {
+func (a *NodesApiService) DeleteContainerSnapshot(ctx context.Context, node string, snapname string, vmid int64) ApiDeleteContainerSnapshotRequest {
 	return ApiDeleteContainerSnapshotRequest{
 		ApiService: a,
 		ctx: ctx,
 		node: node,
-		vmid: vmid,
 		snapname: snapname,
+		vmid: vmid,
 	}
 }
 
 // Execute executes the request
 //  @return TaskStartResponse
-func (a *NodesAPIService) DeleteContainerSnapshotExecute(r ApiDeleteContainerSnapshotRequest) (*TaskStartResponse, *http.Response, error) {
+func (a *NodesApiService) DeleteContainerSnapshotExecute(r ApiDeleteContainerSnapshotRequest) (*TaskStartResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -1852,29 +1797,20 @@ func (a *NodesAPIService) DeleteContainerSnapshotExecute(r ApiDeleteContainerSna
 		localVarReturnValue  *TaskStartResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.DeleteContainerSnapshot")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.DeleteContainerSnapshot")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/nodes/{node}/lxc/{vmid}/snapshot/{snapname}"
 	localVarPath = strings.Replace(localVarPath, "{"+"node"+"}", url.PathEscape(parameterValueToString(r.node, "node")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"vmid"+"}", url.PathEscape(parameterValueToString(r.vmid, "vmid")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"snapname"+"}", url.PathEscape(parameterValueToString(r.snapname, "snapname")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"vmid"+"}", url.PathEscape(parameterValueToString(r.vmid, "vmid")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.vmid < 100 {
-		return localVarReturnValue, nil, reportError("vmid must be greater than 100")
-	}
-	if r.vmid > 999999999 {
-		return localVarReturnValue, nil, reportError("vmid must be less than 999999999")
-	}
 
-	if r.force != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "force", r.force, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1959,30 +1895,9 @@ func (a *NodesAPIService) DeleteContainerSnapshotExecute(r ApiDeleteContainerSna
 
 type ApiDeleteVMRequest struct {
 	ctx context.Context
-	ApiService NodesAPI
+	ApiService NodesApi
 	node string
 	vmid int64
-	destroyUnreferencedDisks *bool
-	purge *bool
-	skiplock *bool
-}
-
-// If set, destroy additionally all disks not referenced in the config but with a matching VMID from all enabled storages.
-func (r ApiDeleteVMRequest) DestroyUnreferencedDisks(destroyUnreferencedDisks bool) ApiDeleteVMRequest {
-	r.destroyUnreferencedDisks = &destroyUnreferencedDisks
-	return r
-}
-
-// Remove VMID from configurations, like backup &amp; replication jobs and HA.
-func (r ApiDeleteVMRequest) Purge(purge bool) ApiDeleteVMRequest {
-	r.purge = &purge
-	return r
-}
-
-// Ignore locks - only root is allowed to use this option.
-func (r ApiDeleteVMRequest) Skiplock(skiplock bool) ApiDeleteVMRequest {
-	r.skiplock = &skiplock
-	return r
 }
 
 func (r ApiDeleteVMRequest) Execute() (*CreateVM200Response, *http.Response, error) {
@@ -1995,11 +1910,11 @@ DeleteVM deleteVM
 Destroy the VM and  all used/owned volumes. Removes any VM specific permissions and firewall rules
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param node The cluster node name.
- @param vmid The (unique) ID of the VM.
+ @param node node
+ @param vmid vmid
  @return ApiDeleteVMRequest
 */
-func (a *NodesAPIService) DeleteVM(ctx context.Context, node string, vmid int64) ApiDeleteVMRequest {
+func (a *NodesApiService) DeleteVM(ctx context.Context, node string, vmid int64) ApiDeleteVMRequest {
 	return ApiDeleteVMRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2010,7 +1925,7 @@ func (a *NodesAPIService) DeleteVM(ctx context.Context, node string, vmid int64)
 
 // Execute executes the request
 //  @return CreateVM200Response
-func (a *NodesAPIService) DeleteVMExecute(r ApiDeleteVMRequest) (*CreateVM200Response, *http.Response, error) {
+func (a *NodesApiService) DeleteVMExecute(r ApiDeleteVMRequest) (*CreateVM200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -2018,7 +1933,7 @@ func (a *NodesAPIService) DeleteVMExecute(r ApiDeleteVMRequest) (*CreateVM200Res
 		localVarReturnValue  *CreateVM200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.DeleteVM")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.DeleteVM")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -2030,22 +1945,7 @@ func (a *NodesAPIService) DeleteVMExecute(r ApiDeleteVMRequest) (*CreateVM200Res
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.vmid < 100 {
-		return localVarReturnValue, nil, reportError("vmid must be greater than 100")
-	}
-	if r.vmid > 999999999 {
-		return localVarReturnValue, nil, reportError("vmid must be less than 999999999")
-	}
 
-	if r.destroyUnreferencedDisks != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "destroy-unreferenced-disks", r.destroyUnreferencedDisks, "")
-	}
-	if r.purge != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "purge", r.purge, "")
-	}
-	if r.skiplock != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "skiplock", r.skiplock, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -2130,17 +2030,10 @@ func (a *NodesAPIService) DeleteVMExecute(r ApiDeleteVMRequest) (*CreateVM200Res
 
 type ApiDeleteVMSnapshotRequest struct {
 	ctx context.Context
-	ApiService NodesAPI
+	ApiService NodesApi
 	node string
-	vmid int64
 	snapname string
-	force *bool
-}
-
-// For removal from config file, even if removing disk snapshots fails.
-func (r ApiDeleteVMSnapshotRequest) Force(force bool) ApiDeleteVMSnapshotRequest {
-	r.force = &force
-	return r
+	vmid int64
 }
 
 func (r ApiDeleteVMSnapshotRequest) Execute() (*TaskStartResponse, *http.Response, error) {
@@ -2153,24 +2046,24 @@ DeleteVMSnapshot deleteVMSnapshot
 Delete a VM snapshot.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param node The cluster node name.
- @param vmid The (unique) ID of the VM.
- @param snapname The name of the snapshot.
+ @param node node
+ @param snapname snapname
+ @param vmid vmid
  @return ApiDeleteVMSnapshotRequest
 */
-func (a *NodesAPIService) DeleteVMSnapshot(ctx context.Context, node string, vmid int64, snapname string) ApiDeleteVMSnapshotRequest {
+func (a *NodesApiService) DeleteVMSnapshot(ctx context.Context, node string, snapname string, vmid int64) ApiDeleteVMSnapshotRequest {
 	return ApiDeleteVMSnapshotRequest{
 		ApiService: a,
 		ctx: ctx,
 		node: node,
-		vmid: vmid,
 		snapname: snapname,
+		vmid: vmid,
 	}
 }
 
 // Execute executes the request
 //  @return TaskStartResponse
-func (a *NodesAPIService) DeleteVMSnapshotExecute(r ApiDeleteVMSnapshotRequest) (*TaskStartResponse, *http.Response, error) {
+func (a *NodesApiService) DeleteVMSnapshotExecute(r ApiDeleteVMSnapshotRequest) (*TaskStartResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -2178,29 +2071,20 @@ func (a *NodesAPIService) DeleteVMSnapshotExecute(r ApiDeleteVMSnapshotRequest) 
 		localVarReturnValue  *TaskStartResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.DeleteVMSnapshot")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.DeleteVMSnapshot")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/nodes/{node}/qemu/{vmid}/snapshot/{snapname}"
 	localVarPath = strings.Replace(localVarPath, "{"+"node"+"}", url.PathEscape(parameterValueToString(r.node, "node")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"vmid"+"}", url.PathEscape(parameterValueToString(r.vmid, "vmid")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"snapname"+"}", url.PathEscape(parameterValueToString(r.snapname, "snapname")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"vmid"+"}", url.PathEscape(parameterValueToString(r.vmid, "vmid")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.vmid < 100 {
-		return localVarReturnValue, nil, reportError("vmid must be greater than 100")
-	}
-	if r.vmid > 999999999 {
-		return localVarReturnValue, nil, reportError("vmid must be less than 999999999")
-	}
 
-	if r.force != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "force", r.force, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -2285,7 +2169,7 @@ func (a *NodesAPIService) DeleteVMSnapshotExecute(r ApiDeleteVMSnapshotRequest) 
 
 type ApiGetContainerRequest struct {
 	ctx context.Context
-	ApiService NodesAPI
+	ApiService NodesApi
 	node string
 	vmid int64
 }
@@ -2300,11 +2184,11 @@ GetContainer getContainer
 Directory index
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param node The cluster node name.
- @param vmid The (unique) ID of the VM.
+ @param node node
+ @param vmid vmid
  @return ApiGetContainerRequest
 */
-func (a *NodesAPIService) GetContainer(ctx context.Context, node string, vmid int64) ApiGetContainerRequest {
+func (a *NodesApiService) GetContainer(ctx context.Context, node string, vmid int64) ApiGetContainerRequest {
 	return ApiGetContainerRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2315,7 +2199,7 @@ func (a *NodesAPIService) GetContainer(ctx context.Context, node string, vmid in
 
 // Execute executes the request
 //  @return GetVM200Response
-func (a *NodesAPIService) GetContainerExecute(r ApiGetContainerRequest) (*GetVM200Response, *http.Response, error) {
+func (a *NodesApiService) GetContainerExecute(r ApiGetContainerRequest) (*GetVM200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -2323,7 +2207,7 @@ func (a *NodesAPIService) GetContainerExecute(r ApiGetContainerRequest) (*GetVM2
 		localVarReturnValue  *GetVM200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.GetContainer")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.GetContainer")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -2335,12 +2219,6 @@ func (a *NodesAPIService) GetContainerExecute(r ApiGetContainerRequest) (*GetVM2
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.vmid < 100 {
-		return localVarReturnValue, nil, reportError("vmid must be greater than 100")
-	}
-	if r.vmid > 999999999 {
-		return localVarReturnValue, nil, reportError("vmid must be less than 999999999")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -2426,23 +2304,9 @@ func (a *NodesAPIService) GetContainerExecute(r ApiGetContainerRequest) (*GetVM2
 
 type ApiGetContainerConfigRequest struct {
 	ctx context.Context
-	ApiService NodesAPI
+	ApiService NodesApi
 	node string
 	vmid int64
-	current *bool
-	snapshot *string
-}
-
-// Get current values (instead of pending values).
-func (r ApiGetContainerConfigRequest) Current(current bool) ApiGetContainerConfigRequest {
-	r.current = &current
-	return r
-}
-
-// Fetch config values from given snapshot.
-func (r ApiGetContainerConfigRequest) Snapshot(snapshot string) ApiGetContainerConfigRequest {
-	r.snapshot = &snapshot
-	return r
 }
 
 func (r ApiGetContainerConfigRequest) Execute() (*GetContainerConfig200Response, *http.Response, error) {
@@ -2455,11 +2319,11 @@ GetContainerConfig getContainerConfig
 Get container configuration.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param node The cluster node name.
- @param vmid The (unique) ID of the VM.
+ @param node node
+ @param vmid vmid
  @return ApiGetContainerConfigRequest
 */
-func (a *NodesAPIService) GetContainerConfig(ctx context.Context, node string, vmid int64) ApiGetContainerConfigRequest {
+func (a *NodesApiService) GetContainerConfig(ctx context.Context, node string, vmid int64) ApiGetContainerConfigRequest {
 	return ApiGetContainerConfigRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2470,7 +2334,7 @@ func (a *NodesAPIService) GetContainerConfig(ctx context.Context, node string, v
 
 // Execute executes the request
 //  @return GetContainerConfig200Response
-func (a *NodesAPIService) GetContainerConfigExecute(r ApiGetContainerConfigRequest) (*GetContainerConfig200Response, *http.Response, error) {
+func (a *NodesApiService) GetContainerConfigExecute(r ApiGetContainerConfigRequest) (*GetContainerConfig200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -2478,7 +2342,7 @@ func (a *NodesAPIService) GetContainerConfigExecute(r ApiGetContainerConfigReque
 		localVarReturnValue  *GetContainerConfig200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.GetContainerConfig")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.GetContainerConfig")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -2490,19 +2354,7 @@ func (a *NodesAPIService) GetContainerConfigExecute(r ApiGetContainerConfigReque
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.vmid < 100 {
-		return localVarReturnValue, nil, reportError("vmid must be greater than 100")
-	}
-	if r.vmid > 999999999 {
-		return localVarReturnValue, nil, reportError("vmid must be less than 999999999")
-	}
 
-	if r.current != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "current", r.current, "")
-	}
-	if r.snapshot != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "snapshot", r.snapshot, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -2587,7 +2439,7 @@ func (a *NodesAPIService) GetContainerConfigExecute(r ApiGetContainerConfigReque
 
 type ApiGetContainerConfigPendingRequest struct {
 	ctx context.Context
-	ApiService NodesAPI
+	ApiService NodesApi
 	node string
 	vmid int64
 }
@@ -2602,11 +2454,11 @@ GetContainerConfigPending getContainerConfigPending
 Get container configuration, including pending changes.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param node The cluster node name.
- @param vmid The (unique) ID of the VM.
+ @param node node
+ @param vmid vmid
  @return ApiGetContainerConfigPendingRequest
 */
-func (a *NodesAPIService) GetContainerConfigPending(ctx context.Context, node string, vmid int64) ApiGetContainerConfigPendingRequest {
+func (a *NodesApiService) GetContainerConfigPending(ctx context.Context, node string, vmid int64) ApiGetContainerConfigPendingRequest {
 	return ApiGetContainerConfigPendingRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2617,7 +2469,7 @@ func (a *NodesAPIService) GetContainerConfigPending(ctx context.Context, node st
 
 // Execute executes the request
 //  @return GetContainerConfigPending200Response
-func (a *NodesAPIService) GetContainerConfigPendingExecute(r ApiGetContainerConfigPendingRequest) (*GetContainerConfigPending200Response, *http.Response, error) {
+func (a *NodesApiService) GetContainerConfigPendingExecute(r ApiGetContainerConfigPendingRequest) (*GetContainerConfigPending200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -2625,7 +2477,7 @@ func (a *NodesAPIService) GetContainerConfigPendingExecute(r ApiGetContainerConf
 		localVarReturnValue  *GetContainerConfigPending200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.GetContainerConfigPending")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.GetContainerConfigPending")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -2637,12 +2489,6 @@ func (a *NodesAPIService) GetContainerConfigPendingExecute(r ApiGetContainerConf
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.vmid < 100 {
-		return localVarReturnValue, nil, reportError("vmid must be greater than 100")
-	}
-	if r.vmid > 999999999 {
-		return localVarReturnValue, nil, reportError("vmid must be less than 999999999")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -2728,10 +2574,10 @@ func (a *NodesAPIService) GetContainerConfigPendingExecute(r ApiGetContainerConf
 
 type ApiGetContainerSnapshotRequest struct {
 	ctx context.Context
-	ApiService NodesAPI
+	ApiService NodesApi
 	node string
-	vmid int64
 	snapname string
+	vmid int64
 }
 
 func (r ApiGetContainerSnapshotRequest) Execute() (*GetVMSnapshot200Response, *http.Response, error) {
@@ -2744,24 +2590,24 @@ GetContainerSnapshot getContainerSnapshot
 
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param node The cluster node name.
- @param vmid The (unique) ID of the VM.
- @param snapname The name of the snapshot.
+ @param node node
+ @param snapname snapname
+ @param vmid vmid
  @return ApiGetContainerSnapshotRequest
 */
-func (a *NodesAPIService) GetContainerSnapshot(ctx context.Context, node string, vmid int64, snapname string) ApiGetContainerSnapshotRequest {
+func (a *NodesApiService) GetContainerSnapshot(ctx context.Context, node string, snapname string, vmid int64) ApiGetContainerSnapshotRequest {
 	return ApiGetContainerSnapshotRequest{
 		ApiService: a,
 		ctx: ctx,
 		node: node,
-		vmid: vmid,
 		snapname: snapname,
+		vmid: vmid,
 	}
 }
 
 // Execute executes the request
 //  @return GetVMSnapshot200Response
-func (a *NodesAPIService) GetContainerSnapshotExecute(r ApiGetContainerSnapshotRequest) (*GetVMSnapshot200Response, *http.Response, error) {
+func (a *NodesApiService) GetContainerSnapshotExecute(r ApiGetContainerSnapshotRequest) (*GetVMSnapshot200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -2769,25 +2615,19 @@ func (a *NodesAPIService) GetContainerSnapshotExecute(r ApiGetContainerSnapshotR
 		localVarReturnValue  *GetVMSnapshot200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.GetContainerSnapshot")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.GetContainerSnapshot")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/nodes/{node}/lxc/{vmid}/snapshot/{snapname}"
 	localVarPath = strings.Replace(localVarPath, "{"+"node"+"}", url.PathEscape(parameterValueToString(r.node, "node")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"vmid"+"}", url.PathEscape(parameterValueToString(r.vmid, "vmid")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"snapname"+"}", url.PathEscape(parameterValueToString(r.snapname, "snapname")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"vmid"+"}", url.PathEscape(parameterValueToString(r.vmid, "vmid")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.vmid < 100 {
-		return localVarReturnValue, nil, reportError("vmid must be greater than 100")
-	}
-	if r.vmid > 999999999 {
-		return localVarReturnValue, nil, reportError("vmid must be less than 999999999")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -2873,10 +2713,10 @@ func (a *NodesAPIService) GetContainerSnapshotExecute(r ApiGetContainerSnapshotR
 
 type ApiGetContainerSnapshotConfigRequest struct {
 	ctx context.Context
-	ApiService NodesAPI
+	ApiService NodesApi
 	node string
-	vmid int64
 	snapname string
+	vmid int64
 }
 
 func (r ApiGetContainerSnapshotConfigRequest) Execute() (*GetVMSnapshotConfig200Response, *http.Response, error) {
@@ -2889,24 +2729,24 @@ GetContainerSnapshotConfig getContainerSnapshotConfig
 Get snapshot configuration
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param node The cluster node name.
- @param vmid The (unique) ID of the VM.
- @param snapname The name of the snapshot.
+ @param node node
+ @param snapname snapname
+ @param vmid vmid
  @return ApiGetContainerSnapshotConfigRequest
 */
-func (a *NodesAPIService) GetContainerSnapshotConfig(ctx context.Context, node string, vmid int64, snapname string) ApiGetContainerSnapshotConfigRequest {
+func (a *NodesApiService) GetContainerSnapshotConfig(ctx context.Context, node string, snapname string, vmid int64) ApiGetContainerSnapshotConfigRequest {
 	return ApiGetContainerSnapshotConfigRequest{
 		ApiService: a,
 		ctx: ctx,
 		node: node,
-		vmid: vmid,
 		snapname: snapname,
+		vmid: vmid,
 	}
 }
 
 // Execute executes the request
 //  @return GetVMSnapshotConfig200Response
-func (a *NodesAPIService) GetContainerSnapshotConfigExecute(r ApiGetContainerSnapshotConfigRequest) (*GetVMSnapshotConfig200Response, *http.Response, error) {
+func (a *NodesApiService) GetContainerSnapshotConfigExecute(r ApiGetContainerSnapshotConfigRequest) (*GetVMSnapshotConfig200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -2914,25 +2754,19 @@ func (a *NodesAPIService) GetContainerSnapshotConfigExecute(r ApiGetContainerSna
 		localVarReturnValue  *GetVMSnapshotConfig200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.GetContainerSnapshotConfig")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.GetContainerSnapshotConfig")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/nodes/{node}/lxc/{vmid}/snapshot/{snapname}/config"
 	localVarPath = strings.Replace(localVarPath, "{"+"node"+"}", url.PathEscape(parameterValueToString(r.node, "node")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"vmid"+"}", url.PathEscape(parameterValueToString(r.vmid, "vmid")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"snapname"+"}", url.PathEscape(parameterValueToString(r.snapname, "snapname")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"vmid"+"}", url.PathEscape(parameterValueToString(r.vmid, "vmid")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.vmid < 100 {
-		return localVarReturnValue, nil, reportError("vmid must be greater than 100")
-	}
-	if r.vmid > 999999999 {
-		return localVarReturnValue, nil, reportError("vmid must be less than 999999999")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -3018,7 +2852,7 @@ func (a *NodesAPIService) GetContainerSnapshotConfigExecute(r ApiGetContainerSna
 
 type ApiGetContainerSnapshotsRequest struct {
 	ctx context.Context
-	ApiService NodesAPI
+	ApiService NodesApi
 	node string
 	vmid int64
 }
@@ -3033,11 +2867,11 @@ GetContainerSnapshots getContainerSnapshots
 List all snapshots.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param node The cluster node name.
- @param vmid The (unique) ID of the VM.
+ @param node node
+ @param vmid vmid
  @return ApiGetContainerSnapshotsRequest
 */
-func (a *NodesAPIService) GetContainerSnapshots(ctx context.Context, node string, vmid int64) ApiGetContainerSnapshotsRequest {
+func (a *NodesApiService) GetContainerSnapshots(ctx context.Context, node string, vmid int64) ApiGetContainerSnapshotsRequest {
 	return ApiGetContainerSnapshotsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -3048,7 +2882,7 @@ func (a *NodesAPIService) GetContainerSnapshots(ctx context.Context, node string
 
 // Execute executes the request
 //  @return GetContainerSnapshots200Response
-func (a *NodesAPIService) GetContainerSnapshotsExecute(r ApiGetContainerSnapshotsRequest) (*GetContainerSnapshots200Response, *http.Response, error) {
+func (a *NodesApiService) GetContainerSnapshotsExecute(r ApiGetContainerSnapshotsRequest) (*GetContainerSnapshots200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -3056,7 +2890,7 @@ func (a *NodesAPIService) GetContainerSnapshotsExecute(r ApiGetContainerSnapshot
 		localVarReturnValue  *GetContainerSnapshots200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.GetContainerSnapshots")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.GetContainerSnapshots")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -3068,12 +2902,6 @@ func (a *NodesAPIService) GetContainerSnapshotsExecute(r ApiGetContainerSnapshot
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.vmid < 100 {
-		return localVarReturnValue, nil, reportError("vmid must be greater than 100")
-	}
-	if r.vmid > 999999999 {
-		return localVarReturnValue, nil, reportError("vmid must be less than 999999999")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -3159,7 +2987,7 @@ func (a *NodesAPIService) GetContainerSnapshotsExecute(r ApiGetContainerSnapshot
 
 type ApiGetContainerStatusRequest struct {
 	ctx context.Context
-	ApiService NodesAPI
+	ApiService NodesApi
 	node string
 	vmid int64
 }
@@ -3174,11 +3002,11 @@ GetContainerStatus getContainerStatus
 Directory index
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param node The cluster node name.
- @param vmid The (unique) ID of the VM.
+ @param node node
+ @param vmid vmid
  @return ApiGetContainerStatusRequest
 */
-func (a *NodesAPIService) GetContainerStatus(ctx context.Context, node string, vmid int64) ApiGetContainerStatusRequest {
+func (a *NodesApiService) GetContainerStatus(ctx context.Context, node string, vmid int64) ApiGetContainerStatusRequest {
 	return ApiGetContainerStatusRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -3189,7 +3017,7 @@ func (a *NodesAPIService) GetContainerStatus(ctx context.Context, node string, v
 
 // Execute executes the request
 //  @return GetVM200Response
-func (a *NodesAPIService) GetContainerStatusExecute(r ApiGetContainerStatusRequest) (*GetVM200Response, *http.Response, error) {
+func (a *NodesApiService) GetContainerStatusExecute(r ApiGetContainerStatusRequest) (*GetVM200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -3197,7 +3025,7 @@ func (a *NodesAPIService) GetContainerStatusExecute(r ApiGetContainerStatusReque
 		localVarReturnValue  *GetVM200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.GetContainerStatus")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.GetContainerStatus")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -3209,12 +3037,6 @@ func (a *NodesAPIService) GetContainerStatusExecute(r ApiGetContainerStatusReque
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.vmid < 100 {
-		return localVarReturnValue, nil, reportError("vmid must be greater than 100")
-	}
-	if r.vmid > 999999999 {
-		return localVarReturnValue, nil, reportError("vmid must be less than 999999999")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -3300,7 +3122,7 @@ func (a *NodesAPIService) GetContainerStatusExecute(r ApiGetContainerStatusReque
 
 type ApiGetContainersRequest struct {
 	ctx context.Context
-	ApiService NodesAPI
+	ApiService NodesApi
 	node string
 }
 
@@ -3314,10 +3136,10 @@ GetContainers getContainers
 LXC container index (per node).
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param node The cluster node name.
+ @param node node
  @return ApiGetContainersRequest
 */
-func (a *NodesAPIService) GetContainers(ctx context.Context, node string) ApiGetContainersRequest {
+func (a *NodesApiService) GetContainers(ctx context.Context, node string) ApiGetContainersRequest {
 	return ApiGetContainersRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -3327,7 +3149,7 @@ func (a *NodesAPIService) GetContainers(ctx context.Context, node string) ApiGet
 
 // Execute executes the request
 //  @return GetContainers200Response
-func (a *NodesAPIService) GetContainersExecute(r ApiGetContainersRequest) (*GetContainers200Response, *http.Response, error) {
+func (a *NodesApiService) GetContainersExecute(r ApiGetContainersRequest) (*GetContainers200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -3335,7 +3157,7 @@ func (a *NodesAPIService) GetContainersExecute(r ApiGetContainersRequest) (*GetC
 		localVarReturnValue  *GetContainers200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.GetContainers")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.GetContainers")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -3431,7 +3253,7 @@ func (a *NodesAPIService) GetContainersExecute(r ApiGetContainersRequest) (*GetC
 
 type ApiGetCurrentContainerStatusRequest struct {
 	ctx context.Context
-	ApiService NodesAPI
+	ApiService NodesApi
 	node string
 	vmid int64
 }
@@ -3446,11 +3268,11 @@ GetCurrentContainerStatus getCurrentContainerStatus
 Get virtual machine status.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param node The cluster node name.
- @param vmid The (unique) ID of the VM.
+ @param node node
+ @param vmid vmid
  @return ApiGetCurrentContainerStatusRequest
 */
-func (a *NodesAPIService) GetCurrentContainerStatus(ctx context.Context, node string, vmid int64) ApiGetCurrentContainerStatusRequest {
+func (a *NodesApiService) GetCurrentContainerStatus(ctx context.Context, node string, vmid int64) ApiGetCurrentContainerStatusRequest {
 	return ApiGetCurrentContainerStatusRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -3461,7 +3283,7 @@ func (a *NodesAPIService) GetCurrentContainerStatus(ctx context.Context, node st
 
 // Execute executes the request
 //  @return GetCurrentContainerStatus200Response
-func (a *NodesAPIService) GetCurrentContainerStatusExecute(r ApiGetCurrentContainerStatusRequest) (*GetCurrentContainerStatus200Response, *http.Response, error) {
+func (a *NodesApiService) GetCurrentContainerStatusExecute(r ApiGetCurrentContainerStatusRequest) (*GetCurrentContainerStatus200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -3469,7 +3291,7 @@ func (a *NodesAPIService) GetCurrentContainerStatusExecute(r ApiGetCurrentContai
 		localVarReturnValue  *GetCurrentContainerStatus200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.GetCurrentContainerStatus")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.GetCurrentContainerStatus")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -3481,12 +3303,6 @@ func (a *NodesAPIService) GetCurrentContainerStatusExecute(r ApiGetCurrentContai
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.vmid < 100 {
-		return localVarReturnValue, nil, reportError("vmid must be greater than 100")
-	}
-	if r.vmid > 999999999 {
-		return localVarReturnValue, nil, reportError("vmid must be less than 999999999")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -3572,7 +3388,7 @@ func (a *NodesAPIService) GetCurrentContainerStatusExecute(r ApiGetCurrentContai
 
 type ApiGetCurrentVMStatusRequest struct {
 	ctx context.Context
-	ApiService NodesAPI
+	ApiService NodesApi
 	node string
 	vmid int64
 }
@@ -3587,11 +3403,11 @@ GetCurrentVMStatus getCurrentVMStatus
 Get virtual machine status.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param node The cluster node name.
- @param vmid The (unique) ID of the VM.
+ @param node node
+ @param vmid vmid
  @return ApiGetCurrentVMStatusRequest
 */
-func (a *NodesAPIService) GetCurrentVMStatus(ctx context.Context, node string, vmid int64) ApiGetCurrentVMStatusRequest {
+func (a *NodesApiService) GetCurrentVMStatus(ctx context.Context, node string, vmid int64) ApiGetCurrentVMStatusRequest {
 	return ApiGetCurrentVMStatusRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -3602,7 +3418,7 @@ func (a *NodesAPIService) GetCurrentVMStatus(ctx context.Context, node string, v
 
 // Execute executes the request
 //  @return GetCurrentVMStatus200Response
-func (a *NodesAPIService) GetCurrentVMStatusExecute(r ApiGetCurrentVMStatusRequest) (*GetCurrentVMStatus200Response, *http.Response, error) {
+func (a *NodesApiService) GetCurrentVMStatusExecute(r ApiGetCurrentVMStatusRequest) (*GetCurrentVMStatus200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -3610,7 +3426,7 @@ func (a *NodesAPIService) GetCurrentVMStatusExecute(r ApiGetCurrentVMStatusReque
 		localVarReturnValue  *GetCurrentVMStatus200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.GetCurrentVMStatus")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.GetCurrentVMStatus")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -3622,12 +3438,6 @@ func (a *NodesAPIService) GetCurrentVMStatusExecute(r ApiGetCurrentVMStatusReque
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.vmid < 100 {
-		return localVarReturnValue, nil, reportError("vmid must be greater than 100")
-	}
-	if r.vmid > 999999999 {
-		return localVarReturnValue, nil, reportError("vmid must be less than 999999999")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -3713,7 +3523,7 @@ func (a *NodesAPIService) GetCurrentVMStatusExecute(r ApiGetCurrentVMStatusReque
 
 type ApiGetNodeTaskRequest struct {
 	ctx context.Context
-	ApiService NodesAPI
+	ApiService NodesApi
 	node string
 	upid string
 }
@@ -3728,11 +3538,11 @@ GetNodeTask getNodeTask
 
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param node The cluster node name.
- @param upid
+ @param node node
+ @param upid upid
  @return ApiGetNodeTaskRequest
 */
-func (a *NodesAPIService) GetNodeTask(ctx context.Context, node string, upid string) ApiGetNodeTaskRequest {
+func (a *NodesApiService) GetNodeTask(ctx context.Context, node string, upid string) ApiGetNodeTaskRequest {
 	return ApiGetNodeTaskRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -3743,7 +3553,7 @@ func (a *NodesAPIService) GetNodeTask(ctx context.Context, node string, upid str
 
 // Execute executes the request
 //  @return GetVMSnapshot200Response
-func (a *NodesAPIService) GetNodeTaskExecute(r ApiGetNodeTaskRequest) (*GetVMSnapshot200Response, *http.Response, error) {
+func (a *NodesApiService) GetNodeTaskExecute(r ApiGetNodeTaskRequest) (*GetVMSnapshot200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -3751,7 +3561,7 @@ func (a *NodesAPIService) GetNodeTaskExecute(r ApiGetNodeTaskRequest) (*GetVMSna
 		localVarReturnValue  *GetVMSnapshot200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.GetNodeTask")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.GetNodeTask")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -3848,30 +3658,9 @@ func (a *NodesAPIService) GetNodeTaskExecute(r ApiGetNodeTaskRequest) (*GetVMSna
 
 type ApiGetNodeTaskLogRequest struct {
 	ctx context.Context
-	ApiService NodesAPI
+	ApiService NodesApi
 	node string
 	upid string
-	download *bool
-	limit *int64
-	start *int64
-}
-
-// Whether the tasklog file should be downloaded. This parameter can&#39;t be used in conjunction with other parameters
-func (r ApiGetNodeTaskLogRequest) Download(download bool) ApiGetNodeTaskLogRequest {
-	r.download = &download
-	return r
-}
-
-// The amount of lines to read from the tasklog.
-func (r ApiGetNodeTaskLogRequest) Limit(limit int64) ApiGetNodeTaskLogRequest {
-	r.limit = &limit
-	return r
-}
-
-// Start at this line when reading the tasklog
-func (r ApiGetNodeTaskLogRequest) Start(start int64) ApiGetNodeTaskLogRequest {
-	r.start = &start
-	return r
 }
 
 func (r ApiGetNodeTaskLogRequest) Execute() (*GetNodeTaskLog200Response, *http.Response, error) {
@@ -3884,11 +3673,11 @@ GetNodeTaskLog getNodeTaskLog
 Read task log.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param node The cluster node name.
- @param upid The task's unique ID.
+ @param node node
+ @param upid upid
  @return ApiGetNodeTaskLogRequest
 */
-func (a *NodesAPIService) GetNodeTaskLog(ctx context.Context, node string, upid string) ApiGetNodeTaskLogRequest {
+func (a *NodesApiService) GetNodeTaskLog(ctx context.Context, node string, upid string) ApiGetNodeTaskLogRequest {
 	return ApiGetNodeTaskLogRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -3899,7 +3688,7 @@ func (a *NodesAPIService) GetNodeTaskLog(ctx context.Context, node string, upid 
 
 // Execute executes the request
 //  @return GetNodeTaskLog200Response
-func (a *NodesAPIService) GetNodeTaskLogExecute(r ApiGetNodeTaskLogRequest) (*GetNodeTaskLog200Response, *http.Response, error) {
+func (a *NodesApiService) GetNodeTaskLogExecute(r ApiGetNodeTaskLogRequest) (*GetNodeTaskLog200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -3907,7 +3696,7 @@ func (a *NodesAPIService) GetNodeTaskLogExecute(r ApiGetNodeTaskLogRequest) (*Ge
 		localVarReturnValue  *GetNodeTaskLog200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.GetNodeTaskLog")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.GetNodeTaskLog")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -3920,15 +3709,6 @@ func (a *NodesAPIService) GetNodeTaskLogExecute(r ApiGetNodeTaskLogRequest) (*Ge
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if r.download != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "download", r.download, "")
-	}
-	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
-	}
-	if r.start != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "start", r.start, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -4013,7 +3793,7 @@ func (a *NodesAPIService) GetNodeTaskLogExecute(r ApiGetNodeTaskLogRequest) (*Ge
 
 type ApiGetNodeTaskStatusRequest struct {
 	ctx context.Context
-	ApiService NodesAPI
+	ApiService NodesApi
 	node string
 	upid string
 }
@@ -4028,11 +3808,11 @@ GetNodeTaskStatus getNodeTaskStatus
 Read task status.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param node The cluster node name.
- @param upid The task's unique ID.
+ @param node node
+ @param upid upid
  @return ApiGetNodeTaskStatusRequest
 */
-func (a *NodesAPIService) GetNodeTaskStatus(ctx context.Context, node string, upid string) ApiGetNodeTaskStatusRequest {
+func (a *NodesApiService) GetNodeTaskStatus(ctx context.Context, node string, upid string) ApiGetNodeTaskStatusRequest {
 	return ApiGetNodeTaskStatusRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -4043,7 +3823,7 @@ func (a *NodesAPIService) GetNodeTaskStatus(ctx context.Context, node string, up
 
 // Execute executes the request
 //  @return GetNodeTaskStatus200Response
-func (a *NodesAPIService) GetNodeTaskStatusExecute(r ApiGetNodeTaskStatusRequest) (*GetNodeTaskStatus200Response, *http.Response, error) {
+func (a *NodesApiService) GetNodeTaskStatusExecute(r ApiGetNodeTaskStatusRequest) (*GetNodeTaskStatus200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -4051,7 +3831,7 @@ func (a *NodesAPIService) GetNodeTaskStatusExecute(r ApiGetNodeTaskStatusRequest
 		localVarReturnValue  *GetNodeTaskStatus200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.GetNodeTaskStatus")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.GetNodeTaskStatus")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -4148,78 +3928,8 @@ func (a *NodesAPIService) GetNodeTaskStatusExecute(r ApiGetNodeTaskStatusRequest
 
 type ApiGetNodeTasksRequest struct {
 	ctx context.Context
-	ApiService NodesAPI
+	ApiService NodesApi
 	node string
-	errors *bool
-	limit *int64
-	since *int64
-	source *string
-	start *int64
-	statusfilter *string
-	typefilter *string
-	until *int64
-	userfilter *string
-	vmid *int64
-}
-
-// Only list tasks with a status of ERROR.
-func (r ApiGetNodeTasksRequest) Errors(errors bool) ApiGetNodeTasksRequest {
-	r.errors = &errors
-	return r
-}
-
-// Only list this amount of tasks.
-func (r ApiGetNodeTasksRequest) Limit(limit int64) ApiGetNodeTasksRequest {
-	r.limit = &limit
-	return r
-}
-
-// Only list tasks since this UNIX epoch.
-func (r ApiGetNodeTasksRequest) Since(since int64) ApiGetNodeTasksRequest {
-	r.since = &since
-	return r
-}
-
-// List archived, active or all tasks.
-func (r ApiGetNodeTasksRequest) Source(source string) ApiGetNodeTasksRequest {
-	r.source = &source
-	return r
-}
-
-// List tasks beginning from this offset.
-func (r ApiGetNodeTasksRequest) Start(start int64) ApiGetNodeTasksRequest {
-	r.start = &start
-	return r
-}
-
-// List of Task States that should be returned.
-func (r ApiGetNodeTasksRequest) Statusfilter(statusfilter string) ApiGetNodeTasksRequest {
-	r.statusfilter = &statusfilter
-	return r
-}
-
-// Only list tasks of this type (e.g., vzstart, vzdump).
-func (r ApiGetNodeTasksRequest) Typefilter(typefilter string) ApiGetNodeTasksRequest {
-	r.typefilter = &typefilter
-	return r
-}
-
-// Only list tasks until this UNIX epoch.
-func (r ApiGetNodeTasksRequest) Until(until int64) ApiGetNodeTasksRequest {
-	r.until = &until
-	return r
-}
-
-// Only list tasks from this user.
-func (r ApiGetNodeTasksRequest) Userfilter(userfilter string) ApiGetNodeTasksRequest {
-	r.userfilter = &userfilter
-	return r
-}
-
-// Only list tasks for this VM.
-func (r ApiGetNodeTasksRequest) Vmid(vmid int64) ApiGetNodeTasksRequest {
-	r.vmid = &vmid
-	return r
 }
 
 func (r ApiGetNodeTasksRequest) Execute() (*GetNodeTasks200Response, *http.Response, error) {
@@ -4232,10 +3942,10 @@ GetNodeTasks getNodeTasks
 Read task list for one node (finished tasks).
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param node The cluster node name.
+ @param node node
  @return ApiGetNodeTasksRequest
 */
-func (a *NodesAPIService) GetNodeTasks(ctx context.Context, node string) ApiGetNodeTasksRequest {
+func (a *NodesApiService) GetNodeTasks(ctx context.Context, node string) ApiGetNodeTasksRequest {
 	return ApiGetNodeTasksRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -4245,7 +3955,7 @@ func (a *NodesAPIService) GetNodeTasks(ctx context.Context, node string) ApiGetN
 
 // Execute executes the request
 //  @return GetNodeTasks200Response
-func (a *NodesAPIService) GetNodeTasksExecute(r ApiGetNodeTasksRequest) (*GetNodeTasks200Response, *http.Response, error) {
+func (a *NodesApiService) GetNodeTasksExecute(r ApiGetNodeTasksRequest) (*GetNodeTasks200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -4253,7 +3963,7 @@ func (a *NodesAPIService) GetNodeTasksExecute(r ApiGetNodeTasksRequest) (*GetNod
 		localVarReturnValue  *GetNodeTasks200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.GetNodeTasks")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.GetNodeTasks")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -4265,36 +3975,6 @@ func (a *NodesAPIService) GetNodeTasksExecute(r ApiGetNodeTasksRequest) (*GetNod
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if r.errors != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "errors", r.errors, "")
-	}
-	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
-	}
-	if r.since != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "since", r.since, "")
-	}
-	if r.source != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "source", r.source, "")
-	}
-	if r.start != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "start", r.start, "")
-	}
-	if r.statusfilter != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "statusfilter", r.statusfilter, "")
-	}
-	if r.typefilter != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "typefilter", r.typefilter, "")
-	}
-	if r.until != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "until", r.until, "")
-	}
-	if r.userfilter != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "userfilter", r.userfilter, "")
-	}
-	if r.vmid != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "vmid", r.vmid, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -4379,23 +4059,9 @@ func (a *NodesAPIService) GetNodeTasksExecute(r ApiGetNodeTasksRequest) (*GetNod
 
 type ApiGetStorageContentRequest struct {
 	ctx context.Context
-	ApiService NodesAPI
+	ApiService NodesApi
 	node string
 	storage string
-	content *string
-	vmid *int64
-}
-
-// Only list content of this type.
-func (r ApiGetStorageContentRequest) Content(content string) ApiGetStorageContentRequest {
-	r.content = &content
-	return r
-}
-
-// Only list images for this VM
-func (r ApiGetStorageContentRequest) Vmid(vmid int64) ApiGetStorageContentRequest {
-	r.vmid = &vmid
-	return r
 }
 
 func (r ApiGetStorageContentRequest) Execute() (*GetStorageContent200Response, *http.Response, error) {
@@ -4408,11 +4074,11 @@ GetStorageContent getStorageContent
 List storage content.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param node The cluster node name.
- @param storage The storage identifier.
+ @param node node
+ @param storage storage
  @return ApiGetStorageContentRequest
 */
-func (a *NodesAPIService) GetStorageContent(ctx context.Context, node string, storage string) ApiGetStorageContentRequest {
+func (a *NodesApiService) GetStorageContent(ctx context.Context, node string, storage string) ApiGetStorageContentRequest {
 	return ApiGetStorageContentRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -4423,7 +4089,7 @@ func (a *NodesAPIService) GetStorageContent(ctx context.Context, node string, st
 
 // Execute executes the request
 //  @return GetStorageContent200Response
-func (a *NodesAPIService) GetStorageContentExecute(r ApiGetStorageContentRequest) (*GetStorageContent200Response, *http.Response, error) {
+func (a *NodesApiService) GetStorageContentExecute(r ApiGetStorageContentRequest) (*GetStorageContent200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -4431,7 +4097,7 @@ func (a *NodesAPIService) GetStorageContentExecute(r ApiGetStorageContentRequest
 		localVarReturnValue  *GetStorageContent200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.GetStorageContent")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.GetStorageContent")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -4444,12 +4110,6 @@ func (a *NodesAPIService) GetStorageContentExecute(r ApiGetStorageContentRequest
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if r.content != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "content", r.content, "")
-	}
-	if r.vmid != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "vmid", r.vmid, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -4534,43 +4194,8 @@ func (a *NodesAPIService) GetStorageContentExecute(r ApiGetStorageContentRequest
 
 type ApiGetStoragesRequest struct {
 	ctx context.Context
-	ApiService NodesAPI
+	ApiService NodesApi
 	node string
-	content *string
-	enabled *bool
-	format *bool
-	storage *string
-	target *string
-}
-
-// Only list stores which support this content type.
-func (r ApiGetStoragesRequest) Content(content string) ApiGetStoragesRequest {
-	r.content = &content
-	return r
-}
-
-// Only list stores which are enabled (not disabled in config).
-func (r ApiGetStoragesRequest) Enabled(enabled bool) ApiGetStoragesRequest {
-	r.enabled = &enabled
-	return r
-}
-
-// Include information about formats
-func (r ApiGetStoragesRequest) Format(format bool) ApiGetStoragesRequest {
-	r.format = &format
-	return r
-}
-
-// Only list status for  specified storage
-func (r ApiGetStoragesRequest) Storage(storage string) ApiGetStoragesRequest {
-	r.storage = &storage
-	return r
-}
-
-// If target is different to &#39;node&#39;, we only lists shared storages which content is accessible on this &#39;node&#39; and the specified &#39;target&#39; node.
-func (r ApiGetStoragesRequest) Target(target string) ApiGetStoragesRequest {
-	r.target = &target
-	return r
 }
 
 func (r ApiGetStoragesRequest) Execute() (*GetStorages200Response, *http.Response, error) {
@@ -4583,10 +4208,10 @@ GetStorages getStorages
 Get status for all datastores.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param node The cluster node name.
+ @param node node
  @return ApiGetStoragesRequest
 */
-func (a *NodesAPIService) GetStorages(ctx context.Context, node string) ApiGetStoragesRequest {
+func (a *NodesApiService) GetStorages(ctx context.Context, node string) ApiGetStoragesRequest {
 	return ApiGetStoragesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -4596,7 +4221,7 @@ func (a *NodesAPIService) GetStorages(ctx context.Context, node string) ApiGetSt
 
 // Execute executes the request
 //  @return GetStorages200Response
-func (a *NodesAPIService) GetStoragesExecute(r ApiGetStoragesRequest) (*GetStorages200Response, *http.Response, error) {
+func (a *NodesApiService) GetStoragesExecute(r ApiGetStoragesRequest) (*GetStorages200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -4604,7 +4229,7 @@ func (a *NodesAPIService) GetStoragesExecute(r ApiGetStoragesRequest) (*GetStora
 		localVarReturnValue  *GetStorages200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.GetStorages")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.GetStorages")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -4616,21 +4241,6 @@ func (a *NodesAPIService) GetStoragesExecute(r ApiGetStoragesRequest) (*GetStora
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if r.content != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "content", r.content, "")
-	}
-	if r.enabled != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "enabled", r.enabled, "")
-	}
-	if r.format != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "format", r.format, "")
-	}
-	if r.storage != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "storage", r.storage, "")
-	}
-	if r.target != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "target", r.target, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -4715,7 +4325,7 @@ func (a *NodesAPIService) GetStoragesExecute(r ApiGetStoragesRequest) (*GetStora
 
 type ApiGetVMRequest struct {
 	ctx context.Context
-	ApiService NodesAPI
+	ApiService NodesApi
 	node string
 	vmid int64
 }
@@ -4730,11 +4340,11 @@ GetVM getVM
 Directory index
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param node The cluster node name.
- @param vmid The (unique) ID of the VM.
+ @param node node
+ @param vmid vmid
  @return ApiGetVMRequest
 */
-func (a *NodesAPIService) GetVM(ctx context.Context, node string, vmid int64) ApiGetVMRequest {
+func (a *NodesApiService) GetVM(ctx context.Context, node string, vmid int64) ApiGetVMRequest {
 	return ApiGetVMRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -4745,7 +4355,7 @@ func (a *NodesAPIService) GetVM(ctx context.Context, node string, vmid int64) Ap
 
 // Execute executes the request
 //  @return GetVM200Response
-func (a *NodesAPIService) GetVMExecute(r ApiGetVMRequest) (*GetVM200Response, *http.Response, error) {
+func (a *NodesApiService) GetVMExecute(r ApiGetVMRequest) (*GetVM200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -4753,7 +4363,7 @@ func (a *NodesAPIService) GetVMExecute(r ApiGetVMRequest) (*GetVM200Response, *h
 		localVarReturnValue  *GetVM200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.GetVM")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.GetVM")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -4765,12 +4375,6 @@ func (a *NodesAPIService) GetVMExecute(r ApiGetVMRequest) (*GetVM200Response, *h
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.vmid < 100 {
-		return localVarReturnValue, nil, reportError("vmid must be greater than 100")
-	}
-	if r.vmid > 999999999 {
-		return localVarReturnValue, nil, reportError("vmid must be less than 999999999")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -4856,23 +4460,9 @@ func (a *NodesAPIService) GetVMExecute(r ApiGetVMRequest) (*GetVM200Response, *h
 
 type ApiGetVMConfigRequest struct {
 	ctx context.Context
-	ApiService NodesAPI
+	ApiService NodesApi
 	node string
 	vmid int64
-	current *bool
-	snapshot *string
-}
-
-// Get current values (instead of pending values).
-func (r ApiGetVMConfigRequest) Current(current bool) ApiGetVMConfigRequest {
-	r.current = &current
-	return r
-}
-
-// Fetch config values from given snapshot.
-func (r ApiGetVMConfigRequest) Snapshot(snapshot string) ApiGetVMConfigRequest {
-	r.snapshot = &snapshot
-	return r
 }
 
 func (r ApiGetVMConfigRequest) Execute() (*GetVMConfig200Response, *http.Response, error) {
@@ -4885,11 +4475,11 @@ GetVMConfig getVMConfig
 Get the virtual machine configuration with pending configuration changes applied. Set the 'current' parameter to get the current configuration instead.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param node The cluster node name.
- @param vmid The (unique) ID of the VM.
+ @param node node
+ @param vmid vmid
  @return ApiGetVMConfigRequest
 */
-func (a *NodesAPIService) GetVMConfig(ctx context.Context, node string, vmid int64) ApiGetVMConfigRequest {
+func (a *NodesApiService) GetVMConfig(ctx context.Context, node string, vmid int64) ApiGetVMConfigRequest {
 	return ApiGetVMConfigRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -4900,7 +4490,7 @@ func (a *NodesAPIService) GetVMConfig(ctx context.Context, node string, vmid int
 
 // Execute executes the request
 //  @return GetVMConfig200Response
-func (a *NodesAPIService) GetVMConfigExecute(r ApiGetVMConfigRequest) (*GetVMConfig200Response, *http.Response, error) {
+func (a *NodesApiService) GetVMConfigExecute(r ApiGetVMConfigRequest) (*GetVMConfig200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -4908,7 +4498,7 @@ func (a *NodesAPIService) GetVMConfigExecute(r ApiGetVMConfigRequest) (*GetVMCon
 		localVarReturnValue  *GetVMConfig200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.GetVMConfig")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.GetVMConfig")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -4920,19 +4510,7 @@ func (a *NodesAPIService) GetVMConfigExecute(r ApiGetVMConfigRequest) (*GetVMCon
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.vmid < 100 {
-		return localVarReturnValue, nil, reportError("vmid must be greater than 100")
-	}
-	if r.vmid > 999999999 {
-		return localVarReturnValue, nil, reportError("vmid must be less than 999999999")
-	}
 
-	if r.current != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "current", r.current, "")
-	}
-	if r.snapshot != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "snapshot", r.snapshot, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -5017,7 +4595,7 @@ func (a *NodesAPIService) GetVMConfigExecute(r ApiGetVMConfigRequest) (*GetVMCon
 
 type ApiGetVMConfigPendingRequest struct {
 	ctx context.Context
-	ApiService NodesAPI
+	ApiService NodesApi
 	node string
 	vmid int64
 }
@@ -5032,11 +4610,11 @@ GetVMConfigPending getVMConfigPending
 Get the virtual machine configuration with both current and pending values.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param node The cluster node name.
- @param vmid The (unique) ID of the VM.
+ @param node node
+ @param vmid vmid
  @return ApiGetVMConfigPendingRequest
 */
-func (a *NodesAPIService) GetVMConfigPending(ctx context.Context, node string, vmid int64) ApiGetVMConfigPendingRequest {
+func (a *NodesApiService) GetVMConfigPending(ctx context.Context, node string, vmid int64) ApiGetVMConfigPendingRequest {
 	return ApiGetVMConfigPendingRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -5047,7 +4625,7 @@ func (a *NodesAPIService) GetVMConfigPending(ctx context.Context, node string, v
 
 // Execute executes the request
 //  @return GetVMConfigPending200Response
-func (a *NodesAPIService) GetVMConfigPendingExecute(r ApiGetVMConfigPendingRequest) (*GetVMConfigPending200Response, *http.Response, error) {
+func (a *NodesApiService) GetVMConfigPendingExecute(r ApiGetVMConfigPendingRequest) (*GetVMConfigPending200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -5055,7 +4633,7 @@ func (a *NodesAPIService) GetVMConfigPendingExecute(r ApiGetVMConfigPendingReque
 		localVarReturnValue  *GetVMConfigPending200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.GetVMConfigPending")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.GetVMConfigPending")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -5067,12 +4645,6 @@ func (a *NodesAPIService) GetVMConfigPendingExecute(r ApiGetVMConfigPendingReque
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.vmid < 100 {
-		return localVarReturnValue, nil, reportError("vmid must be greater than 100")
-	}
-	if r.vmid > 999999999 {
-		return localVarReturnValue, nil, reportError("vmid must be less than 999999999")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -5158,10 +4730,10 @@ func (a *NodesAPIService) GetVMConfigPendingExecute(r ApiGetVMConfigPendingReque
 
 type ApiGetVMSnapshotRequest struct {
 	ctx context.Context
-	ApiService NodesAPI
+	ApiService NodesApi
 	node string
-	vmid int64
 	snapname string
+	vmid int64
 }
 
 func (r ApiGetVMSnapshotRequest) Execute() (*GetVMSnapshot200Response, *http.Response, error) {
@@ -5174,24 +4746,24 @@ GetVMSnapshot getVMSnapshot
 
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param node The cluster node name.
- @param vmid The (unique) ID of the VM.
- @param snapname The name of the snapshot.
+ @param node node
+ @param snapname snapname
+ @param vmid vmid
  @return ApiGetVMSnapshotRequest
 */
-func (a *NodesAPIService) GetVMSnapshot(ctx context.Context, node string, vmid int64, snapname string) ApiGetVMSnapshotRequest {
+func (a *NodesApiService) GetVMSnapshot(ctx context.Context, node string, snapname string, vmid int64) ApiGetVMSnapshotRequest {
 	return ApiGetVMSnapshotRequest{
 		ApiService: a,
 		ctx: ctx,
 		node: node,
-		vmid: vmid,
 		snapname: snapname,
+		vmid: vmid,
 	}
 }
 
 // Execute executes the request
 //  @return GetVMSnapshot200Response
-func (a *NodesAPIService) GetVMSnapshotExecute(r ApiGetVMSnapshotRequest) (*GetVMSnapshot200Response, *http.Response, error) {
+func (a *NodesApiService) GetVMSnapshotExecute(r ApiGetVMSnapshotRequest) (*GetVMSnapshot200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -5199,25 +4771,19 @@ func (a *NodesAPIService) GetVMSnapshotExecute(r ApiGetVMSnapshotRequest) (*GetV
 		localVarReturnValue  *GetVMSnapshot200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.GetVMSnapshot")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.GetVMSnapshot")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/nodes/{node}/qemu/{vmid}/snapshot/{snapname}"
 	localVarPath = strings.Replace(localVarPath, "{"+"node"+"}", url.PathEscape(parameterValueToString(r.node, "node")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"vmid"+"}", url.PathEscape(parameterValueToString(r.vmid, "vmid")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"snapname"+"}", url.PathEscape(parameterValueToString(r.snapname, "snapname")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"vmid"+"}", url.PathEscape(parameterValueToString(r.vmid, "vmid")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.vmid < 100 {
-		return localVarReturnValue, nil, reportError("vmid must be greater than 100")
-	}
-	if r.vmid > 999999999 {
-		return localVarReturnValue, nil, reportError("vmid must be less than 999999999")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -5303,10 +4869,10 @@ func (a *NodesAPIService) GetVMSnapshotExecute(r ApiGetVMSnapshotRequest) (*GetV
 
 type ApiGetVMSnapshotConfigRequest struct {
 	ctx context.Context
-	ApiService NodesAPI
+	ApiService NodesApi
 	node string
-	vmid int64
 	snapname string
+	vmid int64
 }
 
 func (r ApiGetVMSnapshotConfigRequest) Execute() (*GetVMSnapshotConfig200Response, *http.Response, error) {
@@ -5319,24 +4885,24 @@ GetVMSnapshotConfig getVMSnapshotConfig
 Get snapshot configuration
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param node The cluster node name.
- @param vmid The (unique) ID of the VM.
- @param snapname The name of the snapshot.
+ @param node node
+ @param snapname snapname
+ @param vmid vmid
  @return ApiGetVMSnapshotConfigRequest
 */
-func (a *NodesAPIService) GetVMSnapshotConfig(ctx context.Context, node string, vmid int64, snapname string) ApiGetVMSnapshotConfigRequest {
+func (a *NodesApiService) GetVMSnapshotConfig(ctx context.Context, node string, snapname string, vmid int64) ApiGetVMSnapshotConfigRequest {
 	return ApiGetVMSnapshotConfigRequest{
 		ApiService: a,
 		ctx: ctx,
 		node: node,
-		vmid: vmid,
 		snapname: snapname,
+		vmid: vmid,
 	}
 }
 
 // Execute executes the request
 //  @return GetVMSnapshotConfig200Response
-func (a *NodesAPIService) GetVMSnapshotConfigExecute(r ApiGetVMSnapshotConfigRequest) (*GetVMSnapshotConfig200Response, *http.Response, error) {
+func (a *NodesApiService) GetVMSnapshotConfigExecute(r ApiGetVMSnapshotConfigRequest) (*GetVMSnapshotConfig200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -5344,25 +4910,19 @@ func (a *NodesAPIService) GetVMSnapshotConfigExecute(r ApiGetVMSnapshotConfigReq
 		localVarReturnValue  *GetVMSnapshotConfig200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.GetVMSnapshotConfig")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.GetVMSnapshotConfig")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/nodes/{node}/qemu/{vmid}/snapshot/{snapname}/config"
 	localVarPath = strings.Replace(localVarPath, "{"+"node"+"}", url.PathEscape(parameterValueToString(r.node, "node")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"vmid"+"}", url.PathEscape(parameterValueToString(r.vmid, "vmid")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"snapname"+"}", url.PathEscape(parameterValueToString(r.snapname, "snapname")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"vmid"+"}", url.PathEscape(parameterValueToString(r.vmid, "vmid")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.vmid < 100 {
-		return localVarReturnValue, nil, reportError("vmid must be greater than 100")
-	}
-	if r.vmid > 999999999 {
-		return localVarReturnValue, nil, reportError("vmid must be less than 999999999")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -5448,7 +5008,7 @@ func (a *NodesAPIService) GetVMSnapshotConfigExecute(r ApiGetVMSnapshotConfigReq
 
 type ApiGetVMSnapshotsRequest struct {
 	ctx context.Context
-	ApiService NodesAPI
+	ApiService NodesApi
 	node string
 	vmid int64
 }
@@ -5463,11 +5023,11 @@ GetVMSnapshots getVMSnapshots
 List all snapshots.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param node The cluster node name.
- @param vmid The (unique) ID of the VM.
+ @param node node
+ @param vmid vmid
  @return ApiGetVMSnapshotsRequest
 */
-func (a *NodesAPIService) GetVMSnapshots(ctx context.Context, node string, vmid int64) ApiGetVMSnapshotsRequest {
+func (a *NodesApiService) GetVMSnapshots(ctx context.Context, node string, vmid int64) ApiGetVMSnapshotsRequest {
 	return ApiGetVMSnapshotsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -5478,7 +5038,7 @@ func (a *NodesAPIService) GetVMSnapshots(ctx context.Context, node string, vmid 
 
 // Execute executes the request
 //  @return GetVMSnapshots200Response
-func (a *NodesAPIService) GetVMSnapshotsExecute(r ApiGetVMSnapshotsRequest) (*GetVMSnapshots200Response, *http.Response, error) {
+func (a *NodesApiService) GetVMSnapshotsExecute(r ApiGetVMSnapshotsRequest) (*GetVMSnapshots200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -5486,7 +5046,7 @@ func (a *NodesAPIService) GetVMSnapshotsExecute(r ApiGetVMSnapshotsRequest) (*Ge
 		localVarReturnValue  *GetVMSnapshots200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.GetVMSnapshots")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.GetVMSnapshots")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -5498,12 +5058,6 @@ func (a *NodesAPIService) GetVMSnapshotsExecute(r ApiGetVMSnapshotsRequest) (*Ge
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.vmid < 100 {
-		return localVarReturnValue, nil, reportError("vmid must be greater than 100")
-	}
-	if r.vmid > 999999999 {
-		return localVarReturnValue, nil, reportError("vmid must be less than 999999999")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -5589,15 +5143,8 @@ func (a *NodesAPIService) GetVMSnapshotsExecute(r ApiGetVMSnapshotsRequest) (*Ge
 
 type ApiGetVMsRequest struct {
 	ctx context.Context
-	ApiService NodesAPI
+	ApiService NodesApi
 	node string
-	full *bool
-}
-
-// Determine the full status of active VMs.
-func (r ApiGetVMsRequest) Full(full bool) ApiGetVMsRequest {
-	r.full = &full
-	return r
 }
 
 func (r ApiGetVMsRequest) Execute() (*GetVMs200Response, *http.Response, error) {
@@ -5610,10 +5157,10 @@ GetVMs getVMs
 Virtual machine index (per node).
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param node The cluster node name.
+ @param node node
  @return ApiGetVMsRequest
 */
-func (a *NodesAPIService) GetVMs(ctx context.Context, node string) ApiGetVMsRequest {
+func (a *NodesApiService) GetVMs(ctx context.Context, node string) ApiGetVMsRequest {
 	return ApiGetVMsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -5623,7 +5170,7 @@ func (a *NodesAPIService) GetVMs(ctx context.Context, node string) ApiGetVMsRequ
 
 // Execute executes the request
 //  @return GetVMs200Response
-func (a *NodesAPIService) GetVMsExecute(r ApiGetVMsRequest) (*GetVMs200Response, *http.Response, error) {
+func (a *NodesApiService) GetVMsExecute(r ApiGetVMsRequest) (*GetVMs200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -5631,7 +5178,7 @@ func (a *NodesAPIService) GetVMsExecute(r ApiGetVMsRequest) (*GetVMs200Response,
 		localVarReturnValue  *GetVMs200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.GetVMs")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.GetVMs")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -5643,9 +5190,6 @@ func (a *NodesAPIService) GetVMsExecute(r ApiGetVMsRequest) (*GetVMs200Response,
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if r.full != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "full", r.full, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -5730,7 +5274,7 @@ func (a *NodesAPIService) GetVMsExecute(r ApiGetVMsRequest) (*GetVMs200Response,
 
 type ApiRebootContainerRequest struct {
 	ctx context.Context
-	ApiService NodesAPI
+	ApiService NodesApi
 	node string
 	vmid int64
 	rebootContainerRequest *RebootContainerRequest
@@ -5751,11 +5295,11 @@ RebootContainer rebootContainer
 Reboot the container by shutting it down, and starting it again. Applies pending changes.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param node The cluster node name.
- @param vmid The (unique) ID of the VM.
+ @param node node
+ @param vmid vmid
  @return ApiRebootContainerRequest
 */
-func (a *NodesAPIService) RebootContainer(ctx context.Context, node string, vmid int64) ApiRebootContainerRequest {
+func (a *NodesApiService) RebootContainer(ctx context.Context, node string, vmid int64) ApiRebootContainerRequest {
 	return ApiRebootContainerRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -5766,7 +5310,7 @@ func (a *NodesAPIService) RebootContainer(ctx context.Context, node string, vmid
 
 // Execute executes the request
 //  @return CreateVM200Response
-func (a *NodesAPIService) RebootContainerExecute(r ApiRebootContainerRequest) (*CreateVM200Response, *http.Response, error) {
+func (a *NodesApiService) RebootContainerExecute(r ApiRebootContainerRequest) (*CreateVM200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -5774,7 +5318,7 @@ func (a *NodesAPIService) RebootContainerExecute(r ApiRebootContainerRequest) (*
 		localVarReturnValue  *CreateVM200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.RebootContainer")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.RebootContainer")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -5786,12 +5330,6 @@ func (a *NodesAPIService) RebootContainerExecute(r ApiRebootContainerRequest) (*
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.vmid < 100 {
-		return localVarReturnValue, nil, reportError("vmid must be greater than 100")
-	}
-	if r.vmid > 999999999 {
-		return localVarReturnValue, nil, reportError("vmid must be less than 999999999")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -5879,7 +5417,7 @@ func (a *NodesAPIService) RebootContainerExecute(r ApiRebootContainerRequest) (*
 
 type ApiRebootVMRequest struct {
 	ctx context.Context
-	ApiService NodesAPI
+	ApiService NodesApi
 	node string
 	vmid int64
 	rebootVMRequest *RebootVMRequest
@@ -5900,11 +5438,11 @@ RebootVM rebootVM
 Reboot the VM by shutting it down, and starting it again. Applies pending changes.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param node The cluster node name.
- @param vmid The (unique) ID of the VM.
+ @param node node
+ @param vmid vmid
  @return ApiRebootVMRequest
 */
-func (a *NodesAPIService) RebootVM(ctx context.Context, node string, vmid int64) ApiRebootVMRequest {
+func (a *NodesApiService) RebootVM(ctx context.Context, node string, vmid int64) ApiRebootVMRequest {
 	return ApiRebootVMRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -5915,7 +5453,7 @@ func (a *NodesAPIService) RebootVM(ctx context.Context, node string, vmid int64)
 
 // Execute executes the request
 //  @return CreateVM200Response
-func (a *NodesAPIService) RebootVMExecute(r ApiRebootVMRequest) (*CreateVM200Response, *http.Response, error) {
+func (a *NodesApiService) RebootVMExecute(r ApiRebootVMRequest) (*CreateVM200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -5923,7 +5461,7 @@ func (a *NodesAPIService) RebootVMExecute(r ApiRebootVMRequest) (*CreateVM200Res
 		localVarReturnValue  *CreateVM200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.RebootVM")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.RebootVM")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -5935,12 +5473,6 @@ func (a *NodesAPIService) RebootVMExecute(r ApiRebootVMRequest) (*CreateVM200Res
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.vmid < 100 {
-		return localVarReturnValue, nil, reportError("vmid must be greater than 100")
-	}
-	if r.vmid > 999999999 {
-		return localVarReturnValue, nil, reportError("vmid must be less than 999999999")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -6028,7 +5560,7 @@ func (a *NodesAPIService) RebootVMExecute(r ApiRebootVMRequest) (*CreateVM200Res
 
 type ApiResizeContainerDiskRequest struct {
 	ctx context.Context
-	ApiService NodesAPI
+	ApiService NodesApi
 	node string
 	vmid int64
 	resizeContainerDiskRequest *ResizeContainerDiskRequest
@@ -6049,11 +5581,11 @@ ResizeContainerDisk resizeContainerDisk
 Resize a container mount point.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param node The cluster node name.
- @param vmid The (unique) ID of the VM.
+ @param node node
+ @param vmid vmid
  @return ApiResizeContainerDiskRequest
 */
-func (a *NodesAPIService) ResizeContainerDisk(ctx context.Context, node string, vmid int64) ApiResizeContainerDiskRequest {
+func (a *NodesApiService) ResizeContainerDisk(ctx context.Context, node string, vmid int64) ApiResizeContainerDiskRequest {
 	return ApiResizeContainerDiskRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -6064,7 +5596,7 @@ func (a *NodesAPIService) ResizeContainerDisk(ctx context.Context, node string, 
 
 // Execute executes the request
 //  @return TaskStartResponse
-func (a *NodesAPIService) ResizeContainerDiskExecute(r ApiResizeContainerDiskRequest) (*TaskStartResponse, *http.Response, error) {
+func (a *NodesApiService) ResizeContainerDiskExecute(r ApiResizeContainerDiskRequest) (*TaskStartResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -6072,7 +5604,7 @@ func (a *NodesAPIService) ResizeContainerDiskExecute(r ApiResizeContainerDiskReq
 		localVarReturnValue  *TaskStartResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.ResizeContainerDisk")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.ResizeContainerDisk")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -6084,12 +5616,6 @@ func (a *NodesAPIService) ResizeContainerDiskExecute(r ApiResizeContainerDiskReq
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.vmid < 100 {
-		return localVarReturnValue, nil, reportError("vmid must be greater than 100")
-	}
-	if r.vmid > 999999999 {
-		return localVarReturnValue, nil, reportError("vmid must be less than 999999999")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -6177,7 +5703,7 @@ func (a *NodesAPIService) ResizeContainerDiskExecute(r ApiResizeContainerDiskReq
 
 type ApiResizeVMDiskRequest struct {
 	ctx context.Context
-	ApiService NodesAPI
+	ApiService NodesApi
 	node string
 	vmid int64
 	resizeVMDiskRequest *ResizeVMDiskRequest
@@ -6198,11 +5724,11 @@ ResizeVMDisk resizeVMDisk
 Extend volume size.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param node The cluster node name.
- @param vmid The (unique) ID of the VM.
+ @param node node
+ @param vmid vmid
  @return ApiResizeVMDiskRequest
 */
-func (a *NodesAPIService) ResizeVMDisk(ctx context.Context, node string, vmid int64) ApiResizeVMDiskRequest {
+func (a *NodesApiService) ResizeVMDisk(ctx context.Context, node string, vmid int64) ApiResizeVMDiskRequest {
 	return ApiResizeVMDiskRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -6213,7 +5739,7 @@ func (a *NodesAPIService) ResizeVMDisk(ctx context.Context, node string, vmid in
 
 // Execute executes the request
 //  @return TaskStartResponse
-func (a *NodesAPIService) ResizeVMDiskExecute(r ApiResizeVMDiskRequest) (*TaskStartResponse, *http.Response, error) {
+func (a *NodesApiService) ResizeVMDiskExecute(r ApiResizeVMDiskRequest) (*TaskStartResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -6221,7 +5747,7 @@ func (a *NodesAPIService) ResizeVMDiskExecute(r ApiResizeVMDiskRequest) (*TaskSt
 		localVarReturnValue  *TaskStartResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.ResizeVMDisk")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.ResizeVMDisk")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -6233,12 +5759,6 @@ func (a *NodesAPIService) ResizeVMDiskExecute(r ApiResizeVMDiskRequest) (*TaskSt
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.vmid < 100 {
-		return localVarReturnValue, nil, reportError("vmid must be greater than 100")
-	}
-	if r.vmid > 999999999 {
-		return localVarReturnValue, nil, reportError("vmid must be less than 999999999")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -6326,7 +5846,7 @@ func (a *NodesAPIService) ResizeVMDiskExecute(r ApiResizeVMDiskRequest) (*TaskSt
 
 type ApiResumeContainerRequest struct {
 	ctx context.Context
-	ApiService NodesAPI
+	ApiService NodesApi
 	node string
 	vmid int64
 	body *map[string]interface{}
@@ -6347,11 +5867,11 @@ ResumeContainer resumeContainer
 Resume the container.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param node The cluster node name.
- @param vmid The (unique) ID of the VM.
+ @param node node
+ @param vmid vmid
  @return ApiResumeContainerRequest
 */
-func (a *NodesAPIService) ResumeContainer(ctx context.Context, node string, vmid int64) ApiResumeContainerRequest {
+func (a *NodesApiService) ResumeContainer(ctx context.Context, node string, vmid int64) ApiResumeContainerRequest {
 	return ApiResumeContainerRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -6362,7 +5882,7 @@ func (a *NodesAPIService) ResumeContainer(ctx context.Context, node string, vmid
 
 // Execute executes the request
 //  @return CreateVM200Response
-func (a *NodesAPIService) ResumeContainerExecute(r ApiResumeContainerRequest) (*CreateVM200Response, *http.Response, error) {
+func (a *NodesApiService) ResumeContainerExecute(r ApiResumeContainerRequest) (*CreateVM200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -6370,7 +5890,7 @@ func (a *NodesAPIService) ResumeContainerExecute(r ApiResumeContainerRequest) (*
 		localVarReturnValue  *CreateVM200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.ResumeContainer")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.ResumeContainer")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -6382,12 +5902,6 @@ func (a *NodesAPIService) ResumeContainerExecute(r ApiResumeContainerRequest) (*
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.vmid < 100 {
-		return localVarReturnValue, nil, reportError("vmid must be greater than 100")
-	}
-	if r.vmid > 999999999 {
-		return localVarReturnValue, nil, reportError("vmid must be less than 999999999")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -6475,7 +5989,7 @@ func (a *NodesAPIService) ResumeContainerExecute(r ApiResumeContainerRequest) (*
 
 type ApiResumeVMRequest struct {
 	ctx context.Context
-	ApiService NodesAPI
+	ApiService NodesApi
 	node string
 	vmid int64
 	resumeVMRequest *ResumeVMRequest
@@ -6496,11 +6010,11 @@ ResumeVM resumeVM
 Resume virtual machine.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param node The cluster node name.
- @param vmid The (unique) ID of the VM.
+ @param node node
+ @param vmid vmid
  @return ApiResumeVMRequest
 */
-func (a *NodesAPIService) ResumeVM(ctx context.Context, node string, vmid int64) ApiResumeVMRequest {
+func (a *NodesApiService) ResumeVM(ctx context.Context, node string, vmid int64) ApiResumeVMRequest {
 	return ApiResumeVMRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -6511,7 +6025,7 @@ func (a *NodesAPIService) ResumeVM(ctx context.Context, node string, vmid int64)
 
 // Execute executes the request
 //  @return CreateVM200Response
-func (a *NodesAPIService) ResumeVMExecute(r ApiResumeVMRequest) (*CreateVM200Response, *http.Response, error) {
+func (a *NodesApiService) ResumeVMExecute(r ApiResumeVMRequest) (*CreateVM200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -6519,7 +6033,7 @@ func (a *NodesAPIService) ResumeVMExecute(r ApiResumeVMRequest) (*CreateVM200Res
 		localVarReturnValue  *CreateVM200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.ResumeVM")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.ResumeVM")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -6531,12 +6045,6 @@ func (a *NodesAPIService) ResumeVMExecute(r ApiResumeVMRequest) (*CreateVM200Res
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.vmid < 100 {
-		return localVarReturnValue, nil, reportError("vmid must be greater than 100")
-	}
-	if r.vmid > 999999999 {
-		return localVarReturnValue, nil, reportError("vmid must be less than 999999999")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -6624,10 +6132,10 @@ func (a *NodesAPIService) ResumeVMExecute(r ApiResumeVMRequest) (*CreateVM200Res
 
 type ApiRollbackContainerSnapshotRequest struct {
 	ctx context.Context
-	ApiService NodesAPI
+	ApiService NodesApi
 	node string
-	vmid int64
 	snapname string
+	vmid int64
 	rollbackContainerSnapshotRequest *RollbackContainerSnapshotRequest
 }
 
@@ -6646,24 +6154,24 @@ RollbackContainerSnapshot rollbackContainerSnapshot
 Rollback LXC state to specified snapshot.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param node The cluster node name.
- @param vmid The (unique) ID of the VM.
- @param snapname The name of the snapshot.
+ @param node node
+ @param snapname snapname
+ @param vmid vmid
  @return ApiRollbackContainerSnapshotRequest
 */
-func (a *NodesAPIService) RollbackContainerSnapshot(ctx context.Context, node string, vmid int64, snapname string) ApiRollbackContainerSnapshotRequest {
+func (a *NodesApiService) RollbackContainerSnapshot(ctx context.Context, node string, snapname string, vmid int64) ApiRollbackContainerSnapshotRequest {
 	return ApiRollbackContainerSnapshotRequest{
 		ApiService: a,
 		ctx: ctx,
 		node: node,
-		vmid: vmid,
 		snapname: snapname,
+		vmid: vmid,
 	}
 }
 
 // Execute executes the request
 //  @return TaskStartResponse
-func (a *NodesAPIService) RollbackContainerSnapshotExecute(r ApiRollbackContainerSnapshotRequest) (*TaskStartResponse, *http.Response, error) {
+func (a *NodesApiService) RollbackContainerSnapshotExecute(r ApiRollbackContainerSnapshotRequest) (*TaskStartResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -6671,25 +6179,19 @@ func (a *NodesAPIService) RollbackContainerSnapshotExecute(r ApiRollbackContaine
 		localVarReturnValue  *TaskStartResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.RollbackContainerSnapshot")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.RollbackContainerSnapshot")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/nodes/{node}/lxc/{vmid}/snapshot/{snapname}/rollback"
 	localVarPath = strings.Replace(localVarPath, "{"+"node"+"}", url.PathEscape(parameterValueToString(r.node, "node")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"vmid"+"}", url.PathEscape(parameterValueToString(r.vmid, "vmid")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"snapname"+"}", url.PathEscape(parameterValueToString(r.snapname, "snapname")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"vmid"+"}", url.PathEscape(parameterValueToString(r.vmid, "vmid")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.vmid < 100 {
-		return localVarReturnValue, nil, reportError("vmid must be greater than 100")
-	}
-	if r.vmid > 999999999 {
-		return localVarReturnValue, nil, reportError("vmid must be less than 999999999")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -6777,10 +6279,10 @@ func (a *NodesAPIService) RollbackContainerSnapshotExecute(r ApiRollbackContaine
 
 type ApiRollbackVMSnapshotRequest struct {
 	ctx context.Context
-	ApiService NodesAPI
+	ApiService NodesApi
 	node string
-	vmid int64
 	snapname string
+	vmid int64
 	rollbackVMSnapshotRequest *RollbackVMSnapshotRequest
 }
 
@@ -6799,24 +6301,24 @@ RollbackVMSnapshot rollbackVMSnapshot
 Rollback VM state to specified snapshot.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param node The cluster node name.
- @param vmid The (unique) ID of the VM.
- @param snapname The name of the snapshot.
+ @param node node
+ @param snapname snapname
+ @param vmid vmid
  @return ApiRollbackVMSnapshotRequest
 */
-func (a *NodesAPIService) RollbackVMSnapshot(ctx context.Context, node string, vmid int64, snapname string) ApiRollbackVMSnapshotRequest {
+func (a *NodesApiService) RollbackVMSnapshot(ctx context.Context, node string, snapname string, vmid int64) ApiRollbackVMSnapshotRequest {
 	return ApiRollbackVMSnapshotRequest{
 		ApiService: a,
 		ctx: ctx,
 		node: node,
-		vmid: vmid,
 		snapname: snapname,
+		vmid: vmid,
 	}
 }
 
 // Execute executes the request
 //  @return TaskStartResponse
-func (a *NodesAPIService) RollbackVMSnapshotExecute(r ApiRollbackVMSnapshotRequest) (*TaskStartResponse, *http.Response, error) {
+func (a *NodesApiService) RollbackVMSnapshotExecute(r ApiRollbackVMSnapshotRequest) (*TaskStartResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -6824,25 +6326,19 @@ func (a *NodesAPIService) RollbackVMSnapshotExecute(r ApiRollbackVMSnapshotReque
 		localVarReturnValue  *TaskStartResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.RollbackVMSnapshot")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.RollbackVMSnapshot")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/nodes/{node}/qemu/{vmid}/snapshot/{snapname}/rollback"
 	localVarPath = strings.Replace(localVarPath, "{"+"node"+"}", url.PathEscape(parameterValueToString(r.node, "node")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"vmid"+"}", url.PathEscape(parameterValueToString(r.vmid, "vmid")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"snapname"+"}", url.PathEscape(parameterValueToString(r.snapname, "snapname")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"vmid"+"}", url.PathEscape(parameterValueToString(r.vmid, "vmid")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.vmid < 100 {
-		return localVarReturnValue, nil, reportError("vmid must be greater than 100")
-	}
-	if r.vmid > 999999999 {
-		return localVarReturnValue, nil, reportError("vmid must be less than 999999999")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -6930,7 +6426,7 @@ func (a *NodesAPIService) RollbackVMSnapshotExecute(r ApiRollbackVMSnapshotReque
 
 type ApiShutdownContainerRequest struct {
 	ctx context.Context
-	ApiService NodesAPI
+	ApiService NodesApi
 	node string
 	vmid int64
 	shutdownContainerRequest *ShutdownContainerRequest
@@ -6951,11 +6447,11 @@ ShutdownContainer shutdownContainer
 Shutdown the container. This will trigger a clean shutdown of the container, see lxc-stop(1) for details.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param node The cluster node name.
- @param vmid The (unique) ID of the VM.
+ @param node node
+ @param vmid vmid
  @return ApiShutdownContainerRequest
 */
-func (a *NodesAPIService) ShutdownContainer(ctx context.Context, node string, vmid int64) ApiShutdownContainerRequest {
+func (a *NodesApiService) ShutdownContainer(ctx context.Context, node string, vmid int64) ApiShutdownContainerRequest {
 	return ApiShutdownContainerRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -6966,7 +6462,7 @@ func (a *NodesAPIService) ShutdownContainer(ctx context.Context, node string, vm
 
 // Execute executes the request
 //  @return CreateVM200Response
-func (a *NodesAPIService) ShutdownContainerExecute(r ApiShutdownContainerRequest) (*CreateVM200Response, *http.Response, error) {
+func (a *NodesApiService) ShutdownContainerExecute(r ApiShutdownContainerRequest) (*CreateVM200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -6974,7 +6470,7 @@ func (a *NodesAPIService) ShutdownContainerExecute(r ApiShutdownContainerRequest
 		localVarReturnValue  *CreateVM200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.ShutdownContainer")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.ShutdownContainer")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -6986,12 +6482,6 @@ func (a *NodesAPIService) ShutdownContainerExecute(r ApiShutdownContainerRequest
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.vmid < 100 {
-		return localVarReturnValue, nil, reportError("vmid must be greater than 100")
-	}
-	if r.vmid > 999999999 {
-		return localVarReturnValue, nil, reportError("vmid must be less than 999999999")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -7079,7 +6569,7 @@ func (a *NodesAPIService) ShutdownContainerExecute(r ApiShutdownContainerRequest
 
 type ApiShutdownVMRequest struct {
 	ctx context.Context
-	ApiService NodesAPI
+	ApiService NodesApi
 	node string
 	vmid int64
 	shutdownVMRequest *ShutdownVMRequest
@@ -7097,14 +6587,14 @@ func (r ApiShutdownVMRequest) Execute() (*CreateVM200Response, *http.Response, e
 /*
 ShutdownVM shutdownVM
 
-Shutdown virtual machine. This is similar to pressing the power button on a physical machine.This will send an ACPI event for the guest OS, which should then proceed to a clean shutdown.
+Shutdown virtual machine. This is similar to pressing the power button on a physical machine. This will send an ACPI event for the guest OS, which should then proceed to a clean shutdown.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param node The cluster node name.
- @param vmid The (unique) ID of the VM.
+ @param node node
+ @param vmid vmid
  @return ApiShutdownVMRequest
 */
-func (a *NodesAPIService) ShutdownVM(ctx context.Context, node string, vmid int64) ApiShutdownVMRequest {
+func (a *NodesApiService) ShutdownVM(ctx context.Context, node string, vmid int64) ApiShutdownVMRequest {
 	return ApiShutdownVMRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -7115,7 +6605,7 @@ func (a *NodesAPIService) ShutdownVM(ctx context.Context, node string, vmid int6
 
 // Execute executes the request
 //  @return CreateVM200Response
-func (a *NodesAPIService) ShutdownVMExecute(r ApiShutdownVMRequest) (*CreateVM200Response, *http.Response, error) {
+func (a *NodesApiService) ShutdownVMExecute(r ApiShutdownVMRequest) (*CreateVM200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -7123,7 +6613,7 @@ func (a *NodesAPIService) ShutdownVMExecute(r ApiShutdownVMRequest) (*CreateVM20
 		localVarReturnValue  *CreateVM200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.ShutdownVM")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.ShutdownVM")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -7135,12 +6625,6 @@ func (a *NodesAPIService) ShutdownVMExecute(r ApiShutdownVMRequest) (*CreateVM20
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.vmid < 100 {
-		return localVarReturnValue, nil, reportError("vmid must be greater than 100")
-	}
-	if r.vmid > 999999999 {
-		return localVarReturnValue, nil, reportError("vmid must be less than 999999999")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -7228,7 +6712,7 @@ func (a *NodesAPIService) ShutdownVMExecute(r ApiShutdownVMRequest) (*CreateVM20
 
 type ApiStartContainerRequest struct {
 	ctx context.Context
-	ApiService NodesAPI
+	ApiService NodesApi
 	node string
 	vmid int64
 	startContainerRequest *StartContainerRequest
@@ -7249,11 +6733,11 @@ StartContainer startContainer
 Start the container.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param node The cluster node name.
- @param vmid The (unique) ID of the VM.
+ @param node node
+ @param vmid vmid
  @return ApiStartContainerRequest
 */
-func (a *NodesAPIService) StartContainer(ctx context.Context, node string, vmid int64) ApiStartContainerRequest {
+func (a *NodesApiService) StartContainer(ctx context.Context, node string, vmid int64) ApiStartContainerRequest {
 	return ApiStartContainerRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -7264,7 +6748,7 @@ func (a *NodesAPIService) StartContainer(ctx context.Context, node string, vmid 
 
 // Execute executes the request
 //  @return CreateVM200Response
-func (a *NodesAPIService) StartContainerExecute(r ApiStartContainerRequest) (*CreateVM200Response, *http.Response, error) {
+func (a *NodesApiService) StartContainerExecute(r ApiStartContainerRequest) (*CreateVM200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -7272,7 +6756,7 @@ func (a *NodesAPIService) StartContainerExecute(r ApiStartContainerRequest) (*Cr
 		localVarReturnValue  *CreateVM200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.StartContainer")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.StartContainer")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -7284,12 +6768,6 @@ func (a *NodesAPIService) StartContainerExecute(r ApiStartContainerRequest) (*Cr
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.vmid < 100 {
-		return localVarReturnValue, nil, reportError("vmid must be greater than 100")
-	}
-	if r.vmid > 999999999 {
-		return localVarReturnValue, nil, reportError("vmid must be less than 999999999")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -7377,7 +6855,7 @@ func (a *NodesAPIService) StartContainerExecute(r ApiStartContainerRequest) (*Cr
 
 type ApiStartVMRequest struct {
 	ctx context.Context
-	ApiService NodesAPI
+	ApiService NodesApi
 	node string
 	vmid int64
 	startVMRequest *StartVMRequest
@@ -7398,11 +6876,11 @@ StartVM startVM
 Start virtual machine.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param node The cluster node name.
- @param vmid The (unique) ID of the VM.
+ @param node node
+ @param vmid vmid
  @return ApiStartVMRequest
 */
-func (a *NodesAPIService) StartVM(ctx context.Context, node string, vmid int64) ApiStartVMRequest {
+func (a *NodesApiService) StartVM(ctx context.Context, node string, vmid int64) ApiStartVMRequest {
 	return ApiStartVMRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -7413,7 +6891,7 @@ func (a *NodesAPIService) StartVM(ctx context.Context, node string, vmid int64) 
 
 // Execute executes the request
 //  @return CreateVM200Response
-func (a *NodesAPIService) StartVMExecute(r ApiStartVMRequest) (*CreateVM200Response, *http.Response, error) {
+func (a *NodesApiService) StartVMExecute(r ApiStartVMRequest) (*CreateVM200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -7421,7 +6899,7 @@ func (a *NodesAPIService) StartVMExecute(r ApiStartVMRequest) (*CreateVM200Respo
 		localVarReturnValue  *CreateVM200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.StartVM")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.StartVM")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -7433,12 +6911,6 @@ func (a *NodesAPIService) StartVMExecute(r ApiStartVMRequest) (*CreateVM200Respo
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.vmid < 100 {
-		return localVarReturnValue, nil, reportError("vmid must be greater than 100")
-	}
-	if r.vmid > 999999999 {
-		return localVarReturnValue, nil, reportError("vmid must be less than 999999999")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -7526,7 +6998,7 @@ func (a *NodesAPIService) StartVMExecute(r ApiStartVMRequest) (*CreateVM200Respo
 
 type ApiStopContainerRequest struct {
 	ctx context.Context
-	ApiService NodesAPI
+	ApiService NodesApi
 	node string
 	vmid int64
 	stopContainerRequest *StopContainerRequest
@@ -7547,11 +7019,11 @@ StopContainer stopContainer
 Stop the container. This will abruptly stop all processes running in the container.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param node The cluster node name.
- @param vmid The (unique) ID of the VM.
+ @param node node
+ @param vmid vmid
  @return ApiStopContainerRequest
 */
-func (a *NodesAPIService) StopContainer(ctx context.Context, node string, vmid int64) ApiStopContainerRequest {
+func (a *NodesApiService) StopContainer(ctx context.Context, node string, vmid int64) ApiStopContainerRequest {
 	return ApiStopContainerRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -7562,7 +7034,7 @@ func (a *NodesAPIService) StopContainer(ctx context.Context, node string, vmid i
 
 // Execute executes the request
 //  @return CreateVM200Response
-func (a *NodesAPIService) StopContainerExecute(r ApiStopContainerRequest) (*CreateVM200Response, *http.Response, error) {
+func (a *NodesApiService) StopContainerExecute(r ApiStopContainerRequest) (*CreateVM200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -7570,7 +7042,7 @@ func (a *NodesAPIService) StopContainerExecute(r ApiStopContainerRequest) (*Crea
 		localVarReturnValue  *CreateVM200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.StopContainer")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.StopContainer")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -7582,12 +7054,6 @@ func (a *NodesAPIService) StopContainerExecute(r ApiStopContainerRequest) (*Crea
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.vmid < 100 {
-		return localVarReturnValue, nil, reportError("vmid must be greater than 100")
-	}
-	if r.vmid > 999999999 {
-		return localVarReturnValue, nil, reportError("vmid must be less than 999999999")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -7675,7 +7141,7 @@ func (a *NodesAPIService) StopContainerExecute(r ApiStopContainerRequest) (*Crea
 
 type ApiStopNodeTaskRequest struct {
 	ctx context.Context
-	ApiService NodesAPI
+	ApiService NodesApi
 	node string
 	upid string
 }
@@ -7690,11 +7156,11 @@ StopNodeTask stopNodeTask
 Stop a task.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param node The cluster node name.
- @param upid
+ @param node node
+ @param upid upid
  @return ApiStopNodeTaskRequest
 */
-func (a *NodesAPIService) StopNodeTask(ctx context.Context, node string, upid string) ApiStopNodeTaskRequest {
+func (a *NodesApiService) StopNodeTask(ctx context.Context, node string, upid string) ApiStopNodeTaskRequest {
 	return ApiStopNodeTaskRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -7705,7 +7171,7 @@ func (a *NodesAPIService) StopNodeTask(ctx context.Context, node string, upid st
 
 // Execute executes the request
 //  @return CreateVM200Response
-func (a *NodesAPIService) StopNodeTaskExecute(r ApiStopNodeTaskRequest) (*CreateVM200Response, *http.Response, error) {
+func (a *NodesApiService) StopNodeTaskExecute(r ApiStopNodeTaskRequest) (*CreateVM200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -7713,7 +7179,7 @@ func (a *NodesAPIService) StopNodeTaskExecute(r ApiStopNodeTaskRequest) (*Create
 		localVarReturnValue  *CreateVM200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.StopNodeTask")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.StopNodeTask")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -7810,7 +7276,7 @@ func (a *NodesAPIService) StopNodeTaskExecute(r ApiStopNodeTaskRequest) (*Create
 
 type ApiStopVMRequest struct {
 	ctx context.Context
-	ApiService NodesAPI
+	ApiService NodesApi
 	node string
 	vmid int64
 	stopVMRequest *StopVMRequest
@@ -7828,14 +7294,14 @@ func (r ApiStopVMRequest) Execute() (*CreateVM200Response, *http.Response, error
 /*
 StopVM stopVM
 
-Stop virtual machine. The qemu process will exit immediately. Thisis akin to pulling the power plug of a running computer and may damage the VM data
+Stop virtual machine. The qemu process will exit immediately. This is akin to pulling the power plug of a running computer and may damage the VM data.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param node The cluster node name.
- @param vmid The (unique) ID of the VM.
+ @param node node
+ @param vmid vmid
  @return ApiStopVMRequest
 */
-func (a *NodesAPIService) StopVM(ctx context.Context, node string, vmid int64) ApiStopVMRequest {
+func (a *NodesApiService) StopVM(ctx context.Context, node string, vmid int64) ApiStopVMRequest {
 	return ApiStopVMRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -7846,7 +7312,7 @@ func (a *NodesAPIService) StopVM(ctx context.Context, node string, vmid int64) A
 
 // Execute executes the request
 //  @return CreateVM200Response
-func (a *NodesAPIService) StopVMExecute(r ApiStopVMRequest) (*CreateVM200Response, *http.Response, error) {
+func (a *NodesApiService) StopVMExecute(r ApiStopVMRequest) (*CreateVM200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -7854,7 +7320,7 @@ func (a *NodesAPIService) StopVMExecute(r ApiStopVMRequest) (*CreateVM200Respons
 		localVarReturnValue  *CreateVM200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.StopVM")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.StopVM")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -7866,12 +7332,6 @@ func (a *NodesAPIService) StopVMExecute(r ApiStopVMRequest) (*CreateVM200Respons
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.vmid < 100 {
-		return localVarReturnValue, nil, reportError("vmid must be greater than 100")
-	}
-	if r.vmid > 999999999 {
-		return localVarReturnValue, nil, reportError("vmid must be less than 999999999")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -7959,7 +7419,7 @@ func (a *NodesAPIService) StopVMExecute(r ApiStopVMRequest) (*CreateVM200Respons
 
 type ApiSuspendContainerRequest struct {
 	ctx context.Context
-	ApiService NodesAPI
+	ApiService NodesApi
 	node string
 	vmid int64
 	body *map[string]interface{}
@@ -7980,11 +7440,11 @@ SuspendContainer suspendContainer
 Suspend the container. This is experimental.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param node The cluster node name.
- @param vmid The (unique) ID of the VM.
+ @param node node
+ @param vmid vmid
  @return ApiSuspendContainerRequest
 */
-func (a *NodesAPIService) SuspendContainer(ctx context.Context, node string, vmid int64) ApiSuspendContainerRequest {
+func (a *NodesApiService) SuspendContainer(ctx context.Context, node string, vmid int64) ApiSuspendContainerRequest {
 	return ApiSuspendContainerRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -7995,7 +7455,7 @@ func (a *NodesAPIService) SuspendContainer(ctx context.Context, node string, vmi
 
 // Execute executes the request
 //  @return CreateVM200Response
-func (a *NodesAPIService) SuspendContainerExecute(r ApiSuspendContainerRequest) (*CreateVM200Response, *http.Response, error) {
+func (a *NodesApiService) SuspendContainerExecute(r ApiSuspendContainerRequest) (*CreateVM200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -8003,7 +7463,7 @@ func (a *NodesAPIService) SuspendContainerExecute(r ApiSuspendContainerRequest) 
 		localVarReturnValue  *CreateVM200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.SuspendContainer")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.SuspendContainer")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -8015,12 +7475,6 @@ func (a *NodesAPIService) SuspendContainerExecute(r ApiSuspendContainerRequest) 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.vmid < 100 {
-		return localVarReturnValue, nil, reportError("vmid must be greater than 100")
-	}
-	if r.vmid > 999999999 {
-		return localVarReturnValue, nil, reportError("vmid must be less than 999999999")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -8108,7 +7562,7 @@ func (a *NodesAPIService) SuspendContainerExecute(r ApiSuspendContainerRequest) 
 
 type ApiSuspendVMRequest struct {
 	ctx context.Context
-	ApiService NodesAPI
+	ApiService NodesApi
 	node string
 	vmid int64
 	suspendVMRequest *SuspendVMRequest
@@ -8129,11 +7583,11 @@ SuspendVM suspendVM
 Suspend virtual machine.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param node The cluster node name.
- @param vmid The (unique) ID of the VM.
+ @param node node
+ @param vmid vmid
  @return ApiSuspendVMRequest
 */
-func (a *NodesAPIService) SuspendVM(ctx context.Context, node string, vmid int64) ApiSuspendVMRequest {
+func (a *NodesApiService) SuspendVM(ctx context.Context, node string, vmid int64) ApiSuspendVMRequest {
 	return ApiSuspendVMRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -8144,7 +7598,7 @@ func (a *NodesAPIService) SuspendVM(ctx context.Context, node string, vmid int64
 
 // Execute executes the request
 //  @return CreateVM200Response
-func (a *NodesAPIService) SuspendVMExecute(r ApiSuspendVMRequest) (*CreateVM200Response, *http.Response, error) {
+func (a *NodesApiService) SuspendVMExecute(r ApiSuspendVMRequest) (*CreateVM200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -8152,7 +7606,7 @@ func (a *NodesAPIService) SuspendVMExecute(r ApiSuspendVMRequest) (*CreateVM200R
 		localVarReturnValue  *CreateVM200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.SuspendVM")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.SuspendVM")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -8164,12 +7618,6 @@ func (a *NodesAPIService) SuspendVMExecute(r ApiSuspendVMRequest) (*CreateVM200R
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.vmid < 100 {
-		return localVarReturnValue, nil, reportError("vmid must be greater than 100")
-	}
-	if r.vmid > 999999999 {
-		return localVarReturnValue, nil, reportError("vmid must be less than 999999999")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -8257,7 +7705,7 @@ func (a *NodesAPIService) SuspendVMExecute(r ApiSuspendVMRequest) (*CreateVM200R
 
 type ApiUpdateContainerConfigSyncRequest struct {
 	ctx context.Context
-	ApiService NodesAPI
+	ApiService NodesApi
 	node string
 	vmid int64
 	updateContainerConfigSyncRequest *UpdateContainerConfigSyncRequest
@@ -8278,11 +7726,11 @@ UpdateContainerConfigSync updateContainerConfigSync
 Set container options.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param node The cluster node name.
- @param vmid The (unique) ID of the VM.
+ @param node node
+ @param vmid vmid
  @return ApiUpdateContainerConfigSyncRequest
 */
-func (a *NodesAPIService) UpdateContainerConfigSync(ctx context.Context, node string, vmid int64) ApiUpdateContainerConfigSyncRequest {
+func (a *NodesApiService) UpdateContainerConfigSync(ctx context.Context, node string, vmid int64) ApiUpdateContainerConfigSyncRequest {
 	return ApiUpdateContainerConfigSyncRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -8293,7 +7741,7 @@ func (a *NodesAPIService) UpdateContainerConfigSync(ctx context.Context, node st
 
 // Execute executes the request
 //  @return CreateVM200Response
-func (a *NodesAPIService) UpdateContainerConfigSyncExecute(r ApiUpdateContainerConfigSyncRequest) (*CreateVM200Response, *http.Response, error) {
+func (a *NodesApiService) UpdateContainerConfigSyncExecute(r ApiUpdateContainerConfigSyncRequest) (*CreateVM200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -8301,7 +7749,7 @@ func (a *NodesAPIService) UpdateContainerConfigSyncExecute(r ApiUpdateContainerC
 		localVarReturnValue  *CreateVM200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.UpdateContainerConfigSync")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.UpdateContainerConfigSync")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -8313,12 +7761,6 @@ func (a *NodesAPIService) UpdateContainerConfigSyncExecute(r ApiUpdateContainerC
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.vmid < 100 {
-		return localVarReturnValue, nil, reportError("vmid must be greater than 100")
-	}
-	if r.vmid > 999999999 {
-		return localVarReturnValue, nil, reportError("vmid must be less than 999999999")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -8406,10 +7848,10 @@ func (a *NodesAPIService) UpdateContainerConfigSyncExecute(r ApiUpdateContainerC
 
 type ApiUpdateContainerSnapshotConfigRequest struct {
 	ctx context.Context
-	ApiService NodesAPI
+	ApiService NodesApi
 	node string
-	vmid int64
 	snapname string
+	vmid int64
 	updateContainerSnapshotConfigRequest *UpdateContainerSnapshotConfigRequest
 }
 
@@ -8428,24 +7870,24 @@ UpdateContainerSnapshotConfig updateContainerSnapshotConfig
 Update snapshot metadata.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param node The cluster node name.
- @param vmid The (unique) ID of the VM.
- @param snapname The name of the snapshot.
+ @param node node
+ @param snapname snapname
+ @param vmid vmid
  @return ApiUpdateContainerSnapshotConfigRequest
 */
-func (a *NodesAPIService) UpdateContainerSnapshotConfig(ctx context.Context, node string, vmid int64, snapname string) ApiUpdateContainerSnapshotConfigRequest {
+func (a *NodesApiService) UpdateContainerSnapshotConfig(ctx context.Context, node string, snapname string, vmid int64) ApiUpdateContainerSnapshotConfigRequest {
 	return ApiUpdateContainerSnapshotConfigRequest{
 		ApiService: a,
 		ctx: ctx,
 		node: node,
-		vmid: vmid,
 		snapname: snapname,
+		vmid: vmid,
 	}
 }
 
 // Execute executes the request
 //  @return CreateVM200Response
-func (a *NodesAPIService) UpdateContainerSnapshotConfigExecute(r ApiUpdateContainerSnapshotConfigRequest) (*CreateVM200Response, *http.Response, error) {
+func (a *NodesApiService) UpdateContainerSnapshotConfigExecute(r ApiUpdateContainerSnapshotConfigRequest) (*CreateVM200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -8453,25 +7895,19 @@ func (a *NodesAPIService) UpdateContainerSnapshotConfigExecute(r ApiUpdateContai
 		localVarReturnValue  *CreateVM200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.UpdateContainerSnapshotConfig")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.UpdateContainerSnapshotConfig")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/nodes/{node}/lxc/{vmid}/snapshot/{snapname}/config"
 	localVarPath = strings.Replace(localVarPath, "{"+"node"+"}", url.PathEscape(parameterValueToString(r.node, "node")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"vmid"+"}", url.PathEscape(parameterValueToString(r.vmid, "vmid")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"snapname"+"}", url.PathEscape(parameterValueToString(r.snapname, "snapname")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"vmid"+"}", url.PathEscape(parameterValueToString(r.vmid, "vmid")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.vmid < 100 {
-		return localVarReturnValue, nil, reportError("vmid must be greater than 100")
-	}
-	if r.vmid > 999999999 {
-		return localVarReturnValue, nil, reportError("vmid must be less than 999999999")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -8559,7 +7995,7 @@ func (a *NodesAPIService) UpdateContainerSnapshotConfigExecute(r ApiUpdateContai
 
 type ApiUpdateVMConfigRequest struct {
 	ctx context.Context
-	ApiService NodesAPI
+	ApiService NodesApi
 	node string
 	vmid int64
 	updateVMConfigRequest *UpdateVMConfigRequest
@@ -8577,14 +8013,14 @@ func (r ApiUpdateVMConfigRequest) Execute() (*CreateVM200Response, *http.Respons
 /*
 UpdateVMConfig updateVMConfig
 
-Set virtual machine options (asynchrounous API).
+Set virtual machine options (asynchronous API).
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param node The cluster node name.
- @param vmid The (unique) ID of the VM.
+ @param node node
+ @param vmid vmid
  @return ApiUpdateVMConfigRequest
 */
-func (a *NodesAPIService) UpdateVMConfig(ctx context.Context, node string, vmid int64) ApiUpdateVMConfigRequest {
+func (a *NodesApiService) UpdateVMConfig(ctx context.Context, node string, vmid int64) ApiUpdateVMConfigRequest {
 	return ApiUpdateVMConfigRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -8595,7 +8031,7 @@ func (a *NodesAPIService) UpdateVMConfig(ctx context.Context, node string, vmid 
 
 // Execute executes the request
 //  @return CreateVM200Response
-func (a *NodesAPIService) UpdateVMConfigExecute(r ApiUpdateVMConfigRequest) (*CreateVM200Response, *http.Response, error) {
+func (a *NodesApiService) UpdateVMConfigExecute(r ApiUpdateVMConfigRequest) (*CreateVM200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -8603,7 +8039,7 @@ func (a *NodesAPIService) UpdateVMConfigExecute(r ApiUpdateVMConfigRequest) (*Cr
 		localVarReturnValue  *CreateVM200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.UpdateVMConfig")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.UpdateVMConfig")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -8615,12 +8051,6 @@ func (a *NodesAPIService) UpdateVMConfigExecute(r ApiUpdateVMConfigRequest) (*Cr
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.vmid < 100 {
-		return localVarReturnValue, nil, reportError("vmid must be greater than 100")
-	}
-	if r.vmid > 999999999 {
-		return localVarReturnValue, nil, reportError("vmid must be less than 999999999")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -8708,7 +8138,7 @@ func (a *NodesAPIService) UpdateVMConfigExecute(r ApiUpdateVMConfigRequest) (*Cr
 
 type ApiUpdateVMConfigSyncRequest struct {
 	ctx context.Context
-	ApiService NodesAPI
+	ApiService NodesApi
 	node string
 	vmid int64
 	updateVMConfigSyncRequest *UpdateVMConfigSyncRequest
@@ -8726,14 +8156,14 @@ func (r ApiUpdateVMConfigSyncRequest) Execute() (*CreateVM200Response, *http.Res
 /*
 UpdateVMConfigSync updateVMConfigSync
 
-Set virtual machine options (synchrounous API) - You should consider using the POST method instead for any actions involving hotplug or storage allocation.
+Set virtual machine options (synchronous API) - You should consider using the POST method instead for any actions involving hotplug or storage allocation.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param node The cluster node name.
- @param vmid The (unique) ID of the VM.
+ @param node node
+ @param vmid vmid
  @return ApiUpdateVMConfigSyncRequest
 */
-func (a *NodesAPIService) UpdateVMConfigSync(ctx context.Context, node string, vmid int64) ApiUpdateVMConfigSyncRequest {
+func (a *NodesApiService) UpdateVMConfigSync(ctx context.Context, node string, vmid int64) ApiUpdateVMConfigSyncRequest {
 	return ApiUpdateVMConfigSyncRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -8744,7 +8174,7 @@ func (a *NodesAPIService) UpdateVMConfigSync(ctx context.Context, node string, v
 
 // Execute executes the request
 //  @return CreateVM200Response
-func (a *NodesAPIService) UpdateVMConfigSyncExecute(r ApiUpdateVMConfigSyncRequest) (*CreateVM200Response, *http.Response, error) {
+func (a *NodesApiService) UpdateVMConfigSyncExecute(r ApiUpdateVMConfigSyncRequest) (*CreateVM200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -8752,7 +8182,7 @@ func (a *NodesAPIService) UpdateVMConfigSyncExecute(r ApiUpdateVMConfigSyncReque
 		localVarReturnValue  *CreateVM200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.UpdateVMConfigSync")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.UpdateVMConfigSync")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -8764,12 +8194,6 @@ func (a *NodesAPIService) UpdateVMConfigSyncExecute(r ApiUpdateVMConfigSyncReque
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.vmid < 100 {
-		return localVarReturnValue, nil, reportError("vmid must be greater than 100")
-	}
-	if r.vmid > 999999999 {
-		return localVarReturnValue, nil, reportError("vmid must be less than 999999999")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -8857,10 +8281,10 @@ func (a *NodesAPIService) UpdateVMConfigSyncExecute(r ApiUpdateVMConfigSyncReque
 
 type ApiUpdateVMSnapshotConfigRequest struct {
 	ctx context.Context
-	ApiService NodesAPI
+	ApiService NodesApi
 	node string
-	vmid int64
 	snapname string
+	vmid int64
 	updateVMSnapshotConfigRequest *UpdateVMSnapshotConfigRequest
 }
 
@@ -8879,24 +8303,24 @@ UpdateVMSnapshotConfig updateVMSnapshotConfig
 Update snapshot metadata.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param node The cluster node name.
- @param vmid The (unique) ID of the VM.
- @param snapname The name of the snapshot.
+ @param node node
+ @param snapname snapname
+ @param vmid vmid
  @return ApiUpdateVMSnapshotConfigRequest
 */
-func (a *NodesAPIService) UpdateVMSnapshotConfig(ctx context.Context, node string, vmid int64, snapname string) ApiUpdateVMSnapshotConfigRequest {
+func (a *NodesApiService) UpdateVMSnapshotConfig(ctx context.Context, node string, snapname string, vmid int64) ApiUpdateVMSnapshotConfigRequest {
 	return ApiUpdateVMSnapshotConfigRequest{
 		ApiService: a,
 		ctx: ctx,
 		node: node,
-		vmid: vmid,
 		snapname: snapname,
+		vmid: vmid,
 	}
 }
 
 // Execute executes the request
 //  @return CreateVM200Response
-func (a *NodesAPIService) UpdateVMSnapshotConfigExecute(r ApiUpdateVMSnapshotConfigRequest) (*CreateVM200Response, *http.Response, error) {
+func (a *NodesApiService) UpdateVMSnapshotConfigExecute(r ApiUpdateVMSnapshotConfigRequest) (*CreateVM200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -8904,25 +8328,19 @@ func (a *NodesAPIService) UpdateVMSnapshotConfigExecute(r ApiUpdateVMSnapshotCon
 		localVarReturnValue  *CreateVM200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.UpdateVMSnapshotConfig")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.UpdateVMSnapshotConfig")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/nodes/{node}/qemu/{vmid}/snapshot/{snapname}/config"
 	localVarPath = strings.Replace(localVarPath, "{"+"node"+"}", url.PathEscape(parameterValueToString(r.node, "node")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"vmid"+"}", url.PathEscape(parameterValueToString(r.vmid, "vmid")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"snapname"+"}", url.PathEscape(parameterValueToString(r.snapname, "snapname")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"vmid"+"}", url.PathEscape(parameterValueToString(r.vmid, "vmid")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.vmid < 100 {
-		return localVarReturnValue, nil, reportError("vmid must be greater than 100")
-	}
-	if r.vmid > 999999999 {
-		return localVarReturnValue, nil, reportError("vmid must be less than 999999999")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -9010,7 +8428,7 @@ func (a *NodesAPIService) UpdateVMSnapshotConfigExecute(r ApiUpdateVMSnapshotCon
 
 type ApiUploadFileRequest struct {
 	ctx context.Context
-	ApiService NodesAPI
+	ApiService NodesApi
 	node string
 	storage string
 	content *string
@@ -9020,31 +8438,26 @@ type ApiUploadFileRequest struct {
 	tmpfilename *string
 }
 
-// Content type.
 func (r ApiUploadFileRequest) Content(content string) ApiUploadFileRequest {
 	r.content = &content
 	return r
 }
 
-// The name of the file to create. Caution: This will be normalized!
 func (r ApiUploadFileRequest) Filename(filename *os.File) ApiUploadFileRequest {
 	r.filename = filename
 	return r
 }
 
-// The expected checksum of the file.
 func (r ApiUploadFileRequest) Checksum(checksum string) ApiUploadFileRequest {
 	r.checksum = &checksum
 	return r
 }
 
-// The algorithm to calculate the checksum of the file.
 func (r ApiUploadFileRequest) ChecksumAlgorithm(checksumAlgorithm string) ApiUploadFileRequest {
 	r.checksumAlgorithm = &checksumAlgorithm
 	return r
 }
 
-// The source file name. This parameter is usually set by the REST handler. You can only overwrite it when connecting to the trusted port on localhost.
 func (r ApiUploadFileRequest) Tmpfilename(tmpfilename string) ApiUploadFileRequest {
 	r.tmpfilename = &tmpfilename
 	return r
@@ -9057,14 +8470,14 @@ func (r ApiUploadFileRequest) Execute() (*CreateVM200Response, *http.Response, e
 /*
 UploadFile uploadFile
 
-Upload templates and ISO images.
+Upload templates, ISO images and OVAs.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param node The cluster node name.
- @param storage The storage identifier.
+ @param node node
+ @param storage storage
  @return ApiUploadFileRequest
 */
-func (a *NodesAPIService) UploadFile(ctx context.Context, node string, storage string) ApiUploadFileRequest {
+func (a *NodesApiService) UploadFile(ctx context.Context, node string, storage string) ApiUploadFileRequest {
 	return ApiUploadFileRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -9075,7 +8488,7 @@ func (a *NodesAPIService) UploadFile(ctx context.Context, node string, storage s
 
 // Execute executes the request
 //  @return CreateVM200Response
-func (a *NodesAPIService) UploadFileExecute(r ApiUploadFileRequest) (*CreateVM200Response, *http.Response, error) {
+func (a *NodesApiService) UploadFileExecute(r ApiUploadFileRequest) (*CreateVM200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -9083,7 +8496,7 @@ func (a *NodesAPIService) UploadFileExecute(r ApiUploadFileRequest) (*CreateVM20
 		localVarReturnValue  *CreateVM200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.UploadFile")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.UploadFile")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -9131,6 +8544,8 @@ func (a *NodesAPIService) UploadFileExecute(r ApiUploadFileRequest) (*CreateVM20
 	var filenameLocalVarFileBytes    []byte
 
 	filenameLocalVarFormFileName = "filename"
+
+
 	filenameLocalVarFile := r.filename
 
 	if filenameLocalVarFile != nil {

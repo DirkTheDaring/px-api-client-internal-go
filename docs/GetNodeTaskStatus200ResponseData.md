@@ -8,7 +8,8 @@ Name | Type | Description | Notes
 **Id** | Pointer to **string** |  | [optional] 
 **Node** | Pointer to **string** |  | [optional] 
 **Pid** | Pointer to **int64** |  | [optional] 
-**Starttime** | Pointer to **float32** |  | [optional] 
+**Pstart** | Pointer to **int64** |  | [optional] 
+**Starttime** | Pointer to **int64** |  | [optional] 
 **Status** | Pointer to **string** |  | [optional] 
 **Type** | Pointer to **string** |  | [optional] 
 **Upid** | Pointer to **string** |  | [optional] 
@@ -133,22 +134,47 @@ SetPid sets Pid field to given value.
 
 HasPid returns a boolean if a field has been set.
 
+### GetPstart
+
+`func (o *GetNodeTaskStatus200ResponseData) GetPstart() int64`
+
+GetPstart returns the Pstart field if non-nil, zero value otherwise.
+
+### GetPstartOk
+
+`func (o *GetNodeTaskStatus200ResponseData) GetPstartOk() (*int64, bool)`
+
+GetPstartOk returns a tuple with the Pstart field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPstart
+
+`func (o *GetNodeTaskStatus200ResponseData) SetPstart(v int64)`
+
+SetPstart sets Pstart field to given value.
+
+### HasPstart
+
+`func (o *GetNodeTaskStatus200ResponseData) HasPstart() bool`
+
+HasPstart returns a boolean if a field has been set.
+
 ### GetStarttime
 
-`func (o *GetNodeTaskStatus200ResponseData) GetStarttime() float32`
+`func (o *GetNodeTaskStatus200ResponseData) GetStarttime() int64`
 
 GetStarttime returns the Starttime field if non-nil, zero value otherwise.
 
 ### GetStarttimeOk
 
-`func (o *GetNodeTaskStatus200ResponseData) GetStarttimeOk() (*float32, bool)`
+`func (o *GetNodeTaskStatus200ResponseData) GetStarttimeOk() (*int64, bool)`
 
 GetStarttimeOk returns a tuple with the Starttime field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStarttime
 
-`func (o *GetNodeTaskStatus200ResponseData) SetStarttime(v float32)`
+`func (o *GetNodeTaskStatus200ResponseData) SetStarttime(v int64)`
 
 SetStarttime sets Starttime field to given value.
 

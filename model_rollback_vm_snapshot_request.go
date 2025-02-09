@@ -3,7 +3,7 @@ ProxMox VE API
 
 ProxMox VE API
 
-API version: 8.0
+API version: 8.3
 Contact: baldur@email.de
 */
 
@@ -20,7 +20,6 @@ var _ MappedNullable = &RollbackVMSnapshotRequest{}
 
 // RollbackVMSnapshotRequest struct for RollbackVMSnapshotRequest
 type RollbackVMSnapshotRequest struct {
-	// Whether the VM should get started after rolling back successfully. (Note: VMs will be automatically started if the snapshot includes RAM.)
 	Start *bool `json:"start,omitempty"`
 }
 

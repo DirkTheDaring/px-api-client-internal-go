@@ -3,7 +3,7 @@ ProxMox VE API
 
 ProxMox VE API
 
-API version: 8.0
+API version: 8.3
 Contact: baldur@email.de
 */
 
@@ -20,7 +20,6 @@ var _ MappedNullable = &UpdateVMSnapshotConfigRequest{}
 
 // UpdateVMSnapshotConfigRequest struct for UpdateVMSnapshotConfigRequest
 type UpdateVMSnapshotConfigRequest struct {
-	// A textual description or comment.
 	Description *string `json:"description,omitempty"`
 }
 

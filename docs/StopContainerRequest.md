@@ -4,7 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Skiplock** | Pointer to **bool** | Ignore locks - only root is allowed to use this option. | [optional] 
+**OverruleShutdown** | Pointer to **bool** |  | [optional] 
+**Skiplock** | Pointer to **bool** |  | [optional] 
 
 ## Methods
 
@@ -24,6 +25,31 @@ will change when the set of required properties is changed
 NewStopContainerRequestWithDefaults instantiates a new StopContainerRequest object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetOverruleShutdown
+
+`func (o *StopContainerRequest) GetOverruleShutdown() bool`
+
+GetOverruleShutdown returns the OverruleShutdown field if non-nil, zero value otherwise.
+
+### GetOverruleShutdownOk
+
+`func (o *StopContainerRequest) GetOverruleShutdownOk() (*bool, bool)`
+
+GetOverruleShutdownOk returns a tuple with the OverruleShutdown field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOverruleShutdown
+
+`func (o *StopContainerRequest) SetOverruleShutdown(v bool)`
+
+SetOverruleShutdown sets OverruleShutdown field to given value.
+
+### HasOverruleShutdown
+
+`func (o *StopContainerRequest) HasOverruleShutdown() bool`
+
+HasOverruleShutdown returns a boolean if a field has been set.
 
 ### GetSkiplock
 

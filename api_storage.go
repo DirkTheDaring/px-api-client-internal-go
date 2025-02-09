@@ -3,7 +3,7 @@ ProxMox VE API
 
 ProxMox VE API
 
-API version: 8.0
+API version: 8.3
 Contact: baldur@email.de
 */
 
@@ -20,7 +20,7 @@ import (
 )
 
 
-type StorageAPI interface {
+type StorageApi interface {
 
 	/*
 	CreateStorage createStorage
@@ -51,12 +51,12 @@ type StorageAPI interface {
 	GetStorageExecute(r ApiGetStorageRequest) (*GetStorage200Response, *http.Response, error)
 }
 
-// StorageAPIService StorageAPI service
-type StorageAPIService service
+// StorageApiService StorageApi service
+type StorageApiService service
 
 type ApiCreateStorageRequest struct {
 	ctx context.Context
-	ApiService StorageAPI
+	ApiService StorageApi
 	createStorageRequest *CreateStorageRequest
 }
 
@@ -77,7 +77,7 @@ Create a new storage.
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiCreateStorageRequest
 */
-func (a *StorageAPIService) CreateStorage(ctx context.Context) ApiCreateStorageRequest {
+func (a *StorageApiService) CreateStorage(ctx context.Context) ApiCreateStorageRequest {
 	return ApiCreateStorageRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -86,7 +86,7 @@ func (a *StorageAPIService) CreateStorage(ctx context.Context) ApiCreateStorageR
 
 // Execute executes the request
 //  @return CreateStorage200Response
-func (a *StorageAPIService) CreateStorageExecute(r ApiCreateStorageRequest) (*CreateStorage200Response, *http.Response, error) {
+func (a *StorageApiService) CreateStorageExecute(r ApiCreateStorageRequest) (*CreateStorage200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -94,7 +94,7 @@ func (a *StorageAPIService) CreateStorageExecute(r ApiCreateStorageRequest) (*Cr
 		localVarReturnValue  *CreateStorage200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StorageAPIService.CreateStorage")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StorageApiService.CreateStorage")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -191,14 +191,7 @@ func (a *StorageAPIService) CreateStorageExecute(r ApiCreateStorageRequest) (*Cr
 
 type ApiGetStorageRequest struct {
 	ctx context.Context
-	ApiService StorageAPI
-	type_ *string
-}
-
-// Only list storage of specific type
-func (r ApiGetStorageRequest) Type_(type_ string) ApiGetStorageRequest {
-	r.type_ = &type_
-	return r
+	ApiService StorageApi
 }
 
 func (r ApiGetStorageRequest) Execute() (*GetStorage200Response, *http.Response, error) {
@@ -213,7 +206,7 @@ Storage index.
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetStorageRequest
 */
-func (a *StorageAPIService) GetStorage(ctx context.Context) ApiGetStorageRequest {
+func (a *StorageApiService) GetStorage(ctx context.Context) ApiGetStorageRequest {
 	return ApiGetStorageRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -222,7 +215,7 @@ func (a *StorageAPIService) GetStorage(ctx context.Context) ApiGetStorageRequest
 
 // Execute executes the request
 //  @return GetStorage200Response
-func (a *StorageAPIService) GetStorageExecute(r ApiGetStorageRequest) (*GetStorage200Response, *http.Response, error) {
+func (a *StorageApiService) GetStorageExecute(r ApiGetStorageRequest) (*GetStorage200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -230,7 +223,7 @@ func (a *StorageAPIService) GetStorageExecute(r ApiGetStorageRequest) (*GetStora
 		localVarReturnValue  *GetStorage200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StorageAPIService.GetStorage")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StorageApiService.GetStorage")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -241,9 +234,6 @@ func (a *StorageAPIService) GetStorageExecute(r ApiGetStorageRequest) (*GetStora
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if r.type_ != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "type", r.type_, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

@@ -1,7 +1,7 @@
 /*
 ProxMox VE API
 
-Testing StorageAPIService
+Testing StorageApiService
 
 */
 
@@ -14,19 +14,19 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/DirkTheDaring/px-api-client-internal-go"
+	openapiclient "github.com/DirkTheDaring/proxmox-openapi-go"
 )
 
-func Test_pxapiobject_StorageAPIService(t *testing.T) {
+func Test_pxapiobject_StorageApiService(t *testing.T) {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test StorageAPIService CreateStorage", func(t *testing.T) {
+	t.Run("Test StorageApiService CreateStorage", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.StorageAPI.CreateStorage(context.Background()).Execute()
+		resp, httpRes, err := apiClient.StorageApi.CreateStorage(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -34,11 +34,11 @@ func Test_pxapiobject_StorageAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test StorageAPIService GetStorage", func(t *testing.T) {
+	t.Run("Test StorageApiService GetStorage", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.StorageAPI.GetStorage(context.Background()).Execute()
+		resp, httpRes, err := apiClient.StorageApi.GetStorage(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

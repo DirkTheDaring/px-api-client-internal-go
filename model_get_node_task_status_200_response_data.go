@@ -3,7 +3,7 @@ ProxMox VE API
 
 ProxMox VE API
 
-API version: 8.0
+API version: 8.3
 Contact: baldur@email.de
 */
 
@@ -18,16 +18,27 @@ import (
 // checks if the GetNodeTaskStatus200ResponseData type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &GetNodeTaskStatus200ResponseData{}
 
-// GetNodeTaskStatus200ResponseData struct for GetNodeTaskStatus200ResponseData
+// GetNodeTaskStatus200ResponseData 
 type GetNodeTaskStatus200ResponseData struct {
+	// 
 	Exitstatus *string `json:"exitstatus,omitempty"`
+	// 
 	Id *string `json:"id,omitempty"`
+	// 
 	Node *string `json:"node,omitempty"`
+	// 
 	Pid *int64 `json:"pid,omitempty"`
-	Starttime *float32 `json:"starttime,omitempty"`
+	// 
+	Pstart *int64 `json:"pstart,omitempty"`
+	// 
+	Starttime *int64 `json:"starttime,omitempty"`
+	// 
 	Status *string `json:"status,omitempty"`
+	// 
 	Type *string `json:"type,omitempty"`
+	// 
 	Upid *string `json:"upid,omitempty"`
+	// 
 	User *string `json:"user,omitempty"`
 }
 
@@ -176,10 +187,42 @@ func (o *GetNodeTaskStatus200ResponseData) SetPid(v int64) {
 	o.Pid = &v
 }
 
+// GetPstart returns the Pstart field value if set, zero value otherwise.
+func (o *GetNodeTaskStatus200ResponseData) GetPstart() int64 {
+	if o == nil || IsNil(o.Pstart) {
+		var ret int64
+		return ret
+	}
+	return *o.Pstart
+}
+
+// GetPstartOk returns a tuple with the Pstart field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetNodeTaskStatus200ResponseData) GetPstartOk() (*int64, bool) {
+	if o == nil || IsNil(o.Pstart) {
+		return nil, false
+	}
+	return o.Pstart, true
+}
+
+// HasPstart returns a boolean if a field has been set.
+func (o *GetNodeTaskStatus200ResponseData) HasPstart() bool {
+	if o != nil && !IsNil(o.Pstart) {
+		return true
+	}
+
+	return false
+}
+
+// SetPstart gets a reference to the given int64 and assigns it to the Pstart field.
+func (o *GetNodeTaskStatus200ResponseData) SetPstart(v int64) {
+	o.Pstart = &v
+}
+
 // GetStarttime returns the Starttime field value if set, zero value otherwise.
-func (o *GetNodeTaskStatus200ResponseData) GetStarttime() float32 {
+func (o *GetNodeTaskStatus200ResponseData) GetStarttime() int64 {
 	if o == nil || IsNil(o.Starttime) {
-		var ret float32
+		var ret int64
 		return ret
 	}
 	return *o.Starttime
@@ -187,7 +230,7 @@ func (o *GetNodeTaskStatus200ResponseData) GetStarttime() float32 {
 
 // GetStarttimeOk returns a tuple with the Starttime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetNodeTaskStatus200ResponseData) GetStarttimeOk() (*float32, bool) {
+func (o *GetNodeTaskStatus200ResponseData) GetStarttimeOk() (*int64, bool) {
 	if o == nil || IsNil(o.Starttime) {
 		return nil, false
 	}
@@ -203,8 +246,8 @@ func (o *GetNodeTaskStatus200ResponseData) HasStarttime() bool {
 	return false
 }
 
-// SetStarttime gets a reference to the given float32 and assigns it to the Starttime field.
-func (o *GetNodeTaskStatus200ResponseData) SetStarttime(v float32) {
+// SetStarttime gets a reference to the given int64 and assigns it to the Starttime field.
+func (o *GetNodeTaskStatus200ResponseData) SetStarttime(v int64) {
 	o.Starttime = &v
 }
 
@@ -357,6 +400,9 @@ func (o GetNodeTaskStatus200ResponseData) ToMap() (map[string]interface{}, error
 	}
 	if !IsNil(o.Pid) {
 		toSerialize["pid"] = o.Pid
+	}
+	if !IsNil(o.Pstart) {
+		toSerialize["pstart"] = o.Pstart
 	}
 	if !IsNil(o.Starttime) {
 		toSerialize["starttime"] = o.Starttime

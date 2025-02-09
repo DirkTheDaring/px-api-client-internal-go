@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Delete** | Pointer to **int64** | Indicates a pending delete request if present and not 0. The value 2 indicates a force-delete request. | [optional] 
 **Key** | Pointer to **string** | Configuration option name. | [optional] 
 **Pending** | Pointer to **string** | Pending value. | [optional] 
-**Value** | Pointer to **string** | Current value. | [optional] 
+**Value** | Pointer to **int64** | Current value. | [optional] 
 
 ## Methods
 
@@ -105,20 +105,20 @@ HasPending returns a boolean if a field has been set.
 
 ### GetValue
 
-`func (o *GetVMConfigPending200ResponseDataInnerOneOf1) GetValue() string`
+`func (o *GetVMConfigPending200ResponseDataInnerOneOf1) GetValue() int64`
 
 GetValue returns the Value field if non-nil, zero value otherwise.
 
 ### GetValueOk
 
-`func (o *GetVMConfigPending200ResponseDataInnerOneOf1) GetValueOk() (*string, bool)`
+`func (o *GetVMConfigPending200ResponseDataInnerOneOf1) GetValueOk() (*int64, bool)`
 
 GetValueOk returns a tuple with the Value field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetValue
 
-`func (o *GetVMConfigPending200ResponseDataInnerOneOf1) SetValue(v string)`
+`func (o *GetVMConfigPending200ResponseDataInnerOneOf1) SetValue(v int64)`
 
 SetValue sets Value field to given value.
 

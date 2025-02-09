@@ -3,7 +3,7 @@ ProxMox VE API
 
 ProxMox VE API
 
-API version: 8.0
+API version: 8.3
 Contact: baldur@email.de
 */
 
@@ -18,8 +18,9 @@ import (
 // checks if the GetClusterConfigNodes200ResponseDataInner type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &GetClusterConfigNodes200ResponseDataInner{}
 
-// GetClusterConfigNodes200ResponseDataInner struct for GetClusterConfigNodes200ResponseDataInner
+// GetClusterConfigNodes200ResponseDataInner 
 type GetClusterConfigNodes200ResponseDataInner struct {
+	// 
 	Node *string `json:"node,omitempty"`
 }
 

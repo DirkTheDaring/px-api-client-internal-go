@@ -3,7 +3,7 @@ ProxMox VE API
 
 ProxMox VE API
 
-API version: 8.0
+API version: 8.3
 Contact: baldur@email.de
 */
 
@@ -18,7 +18,7 @@ import (
 // checks if the GetContainerConfigPending200ResponseDataInner type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &GetContainerConfigPending200ResponseDataInner{}
 
-// GetContainerConfigPending200ResponseDataInner struct for GetContainerConfigPending200ResponseDataInner
+// GetContainerConfigPending200ResponseDataInner 
 type GetContainerConfigPending200ResponseDataInner struct {
 	// Indicates a pending delete request if present and not 0.
 	Delete *int64 `json:"delete,omitempty"`

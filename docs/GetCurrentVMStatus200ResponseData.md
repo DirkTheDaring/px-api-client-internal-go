@@ -4,22 +4,27 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Agent** | Pointer to **bool** | QEMU Guest Agent is enabled in config. | [optional] 
+**Agent** | Pointer to **int32** | QEMU Guest Agent is enabled in config. | [optional] 
 **Clipboard** | Pointer to **string** | Enable a specific clipboard. If not set, depending on the display type the SPICE one will be added. | [optional] 
 **Cpus** | Pointer to **float32** | Maximum usable CPUs. | [optional] 
+**Diskread** | Pointer to **int64** | The amount of bytes the guest read from it&#39;s block devices since the guest was started. (Note: This info is not available for all storage types.) | [optional] 
+**Diskwrite** | Pointer to **int64** | The amount of bytes the guest wrote from it&#39;s block devices since the guest was started. (Note: This info is not available for all storage types.) | [optional] 
 **Ha** | Pointer to **map[string]interface{}** | HA manager service status. | [optional] 
 **Lock** | Pointer to **string** | The current config lock, if any. | [optional] 
 **Maxdisk** | Pointer to **int64** | Root disk size in bytes. | [optional] 
 **Maxmem** | Pointer to **int64** | Maximum memory in bytes. | [optional] 
-**Name** | Pointer to **string** | VM name. | [optional] 
-**Pid** | Pointer to **int64** | PID of running qemu process. | [optional] 
+**Name** | Pointer to **string** | VM (host)name. | [optional] 
+**Netin** | Pointer to **int64** | The amount of traffic in bytes that was sent to the guest over the network since it was started. | [optional] 
+**Netout** | Pointer to **int64** | The amount of traffic in bytes that was sent from the guest over the network since it was started. | [optional] 
+**Pid** | Pointer to **int64** | PID of the QEMU process, if the VM is running. | [optional] 
 **Qmpstatus** | Pointer to **string** | VM run state from the &#39;query-status&#39; QMP monitor command. | [optional] 
 **RunningMachine** | Pointer to **string** | The currently running machine type (if running). | [optional] 
-**RunningQemu** | Pointer to **string** | The currently running QEMU version (if running). | [optional] 
-**Spice** | Pointer to **bool** | QEMU VGA configuration supports spice. | [optional] 
+**RunningQemu** | Pointer to **string** | The QEMU version the VM is currently using (if running). | [optional] 
+**Spice** | Pointer to **int32** | QEMU VGA configuration supports spice. | [optional] 
 **Status** | Pointer to **string** | QEMU process status. | [optional] 
 **Tags** | Pointer to **string** | The current configured tags, if any | [optional] 
-**Uptime** | Pointer to **int64** | Uptime. | [optional] 
+**Template** | Pointer to **int32** | Determines if the guest is a template. | [optional] 
+**Uptime** | Pointer to **int64** | Uptime in seconds. | [optional] 
 **Vmid** | Pointer to **int64** | The (unique) ID of the VM. | [optional] 
 
 ## Methods
@@ -43,20 +48,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetAgent
 
-`func (o *GetCurrentVMStatus200ResponseData) GetAgent() bool`
+`func (o *GetCurrentVMStatus200ResponseData) GetAgent() int32`
 
 GetAgent returns the Agent field if non-nil, zero value otherwise.
 
 ### GetAgentOk
 
-`func (o *GetCurrentVMStatus200ResponseData) GetAgentOk() (*bool, bool)`
+`func (o *GetCurrentVMStatus200ResponseData) GetAgentOk() (*int32, bool)`
 
 GetAgentOk returns a tuple with the Agent field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAgent
 
-`func (o *GetCurrentVMStatus200ResponseData) SetAgent(v bool)`
+`func (o *GetCurrentVMStatus200ResponseData) SetAgent(v int32)`
 
 SetAgent sets Agent field to given value.
 
@@ -115,6 +120,56 @@ SetCpus sets Cpus field to given value.
 `func (o *GetCurrentVMStatus200ResponseData) HasCpus() bool`
 
 HasCpus returns a boolean if a field has been set.
+
+### GetDiskread
+
+`func (o *GetCurrentVMStatus200ResponseData) GetDiskread() int64`
+
+GetDiskread returns the Diskread field if non-nil, zero value otherwise.
+
+### GetDiskreadOk
+
+`func (o *GetCurrentVMStatus200ResponseData) GetDiskreadOk() (*int64, bool)`
+
+GetDiskreadOk returns a tuple with the Diskread field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDiskread
+
+`func (o *GetCurrentVMStatus200ResponseData) SetDiskread(v int64)`
+
+SetDiskread sets Diskread field to given value.
+
+### HasDiskread
+
+`func (o *GetCurrentVMStatus200ResponseData) HasDiskread() bool`
+
+HasDiskread returns a boolean if a field has been set.
+
+### GetDiskwrite
+
+`func (o *GetCurrentVMStatus200ResponseData) GetDiskwrite() int64`
+
+GetDiskwrite returns the Diskwrite field if non-nil, zero value otherwise.
+
+### GetDiskwriteOk
+
+`func (o *GetCurrentVMStatus200ResponseData) GetDiskwriteOk() (*int64, bool)`
+
+GetDiskwriteOk returns a tuple with the Diskwrite field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDiskwrite
+
+`func (o *GetCurrentVMStatus200ResponseData) SetDiskwrite(v int64)`
+
+SetDiskwrite sets Diskwrite field to given value.
+
+### HasDiskwrite
+
+`func (o *GetCurrentVMStatus200ResponseData) HasDiskwrite() bool`
+
+HasDiskwrite returns a boolean if a field has been set.
 
 ### GetHa
 
@@ -241,6 +296,56 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
+### GetNetin
+
+`func (o *GetCurrentVMStatus200ResponseData) GetNetin() int64`
+
+GetNetin returns the Netin field if non-nil, zero value otherwise.
+
+### GetNetinOk
+
+`func (o *GetCurrentVMStatus200ResponseData) GetNetinOk() (*int64, bool)`
+
+GetNetinOk returns a tuple with the Netin field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNetin
+
+`func (o *GetCurrentVMStatus200ResponseData) SetNetin(v int64)`
+
+SetNetin sets Netin field to given value.
+
+### HasNetin
+
+`func (o *GetCurrentVMStatus200ResponseData) HasNetin() bool`
+
+HasNetin returns a boolean if a field has been set.
+
+### GetNetout
+
+`func (o *GetCurrentVMStatus200ResponseData) GetNetout() int64`
+
+GetNetout returns the Netout field if non-nil, zero value otherwise.
+
+### GetNetoutOk
+
+`func (o *GetCurrentVMStatus200ResponseData) GetNetoutOk() (*int64, bool)`
+
+GetNetoutOk returns a tuple with the Netout field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNetout
+
+`func (o *GetCurrentVMStatus200ResponseData) SetNetout(v int64)`
+
+SetNetout sets Netout field to given value.
+
+### HasNetout
+
+`func (o *GetCurrentVMStatus200ResponseData) HasNetout() bool`
+
+HasNetout returns a boolean if a field has been set.
+
 ### GetPid
 
 `func (o *GetCurrentVMStatus200ResponseData) GetPid() int64`
@@ -343,20 +448,20 @@ HasRunningQemu returns a boolean if a field has been set.
 
 ### GetSpice
 
-`func (o *GetCurrentVMStatus200ResponseData) GetSpice() bool`
+`func (o *GetCurrentVMStatus200ResponseData) GetSpice() int32`
 
 GetSpice returns the Spice field if non-nil, zero value otherwise.
 
 ### GetSpiceOk
 
-`func (o *GetCurrentVMStatus200ResponseData) GetSpiceOk() (*bool, bool)`
+`func (o *GetCurrentVMStatus200ResponseData) GetSpiceOk() (*int32, bool)`
 
 GetSpiceOk returns a tuple with the Spice field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSpice
 
-`func (o *GetCurrentVMStatus200ResponseData) SetSpice(v bool)`
+`func (o *GetCurrentVMStatus200ResponseData) SetSpice(v int32)`
 
 SetSpice sets Spice field to given value.
 
@@ -415,6 +520,31 @@ SetTags sets Tags field to given value.
 `func (o *GetCurrentVMStatus200ResponseData) HasTags() bool`
 
 HasTags returns a boolean if a field has been set.
+
+### GetTemplate
+
+`func (o *GetCurrentVMStatus200ResponseData) GetTemplate() int32`
+
+GetTemplate returns the Template field if non-nil, zero value otherwise.
+
+### GetTemplateOk
+
+`func (o *GetCurrentVMStatus200ResponseData) GetTemplateOk() (*int32, bool)`
+
+GetTemplateOk returns a tuple with the Template field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTemplate
+
+`func (o *GetCurrentVMStatus200ResponseData) SetTemplate(v int32)`
+
+SetTemplate sets Template field to given value.
+
+### HasTemplate
+
+`func (o *GetCurrentVMStatus200ResponseData) HasTemplate() bool`
+
+HasTemplate returns a boolean if a field has been set.
 
 ### GetUptime
 

@@ -3,7 +3,7 @@ ProxMox VE API
 
 ProxMox VE API
 
-API version: 8.0
+API version: 8.3
 Contact: baldur@email.de
 */
 
@@ -36,13 +36,13 @@ import (
 )
 
 var (
-	JsonCheck       = regexp.MustCompile(`(?i:(?:application|text)/(?:[^;]+\+)?json)`)
-	XmlCheck        = regexp.MustCompile(`(?i:(?:application|text)/(?:[^;]+\+)?xml)`)
+	jsonCheck = regexp.MustCompile(`(?i:(?:application|text)/(?:vnd\.[^;]+\+)?json)`)
+	xmlCheck  = regexp.MustCompile(`(?i:(?:application|text)/xml)`)
 	queryParamSplit = regexp.MustCompile(`(^|&)([^&]+)`)
 	queryDescape    = strings.NewReplacer( "%5B", "[", "%5D", "]" )
 )
 
-// APIClient manages communication with the ProxMox VE API API v8.0
+// APIClient manages communication with the ProxMox VE API API v8.3
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
 	cfg    *Configuration
@@ -50,13 +50,13 @@ type APIClient struct {
 
 	// API Services
 
-	AccessAPI AccessAPI
+	AccessApi AccessApi
 
-	ClusterAPI ClusterAPI
+	ClusterApi ClusterApi
 
-	NodesAPI NodesAPI
+	NodesApi NodesApi
 
-	StorageAPI StorageAPI
+	StorageApi StorageApi
 }
 
 type service struct {
@@ -75,10 +75,10 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.common.client = c
 
 	// API Services
-	c.AccessAPI = (*AccessAPIService)(&c.common)
-	c.ClusterAPI = (*ClusterAPIService)(&c.common)
-	c.NodesAPI = (*NodesAPIService)(&c.common)
-	c.StorageAPI = (*StorageAPIService)(&c.common)
+	c.AccessApi = (*AccessApiService)(&c.common)
+	c.ClusterApi = (*ClusterApiService)(&c.common)
+	c.NodesApi = (*NodesApiService)(&c.common)
+	c.StorageApi = (*StorageApiService)(&c.common)
 
 	return c
 }
@@ -460,13 +460,13 @@ func (c *APIClient) decode(v interface{}, b []byte, contentType string) (err err
 		_, err = (*f).Seek(0, io.SeekStart)
 		return
 	}
-	if XmlCheck.MatchString(contentType) {
+	if xmlCheck.MatchString(contentType) {
 		if err = xml.Unmarshal(b, v); err != nil {
 			return err
 		}
 		return nil
 	}
-	if JsonCheck.MatchString(contentType) {
+	if jsonCheck.MatchString(contentType) {
 		if actualObj, ok := v.(interface{ GetActualInstance() interface{} }); ok { // oneOf, anyOf schemas
 			if unmarshalObj, ok := actualObj.(interface{ UnmarshalJSON([]byte) error }); ok { // make sure it has UnmarshalJSON defined
 				if err = unmarshalObj.UnmarshalJSON(b); err != nil {
@@ -531,14 +531,10 @@ func setBody(body interface{}, contentType string) (bodyBuf *bytes.Buffer, err e
 		_, err = bodyBuf.WriteString(s)
 	} else if s, ok := body.(*string); ok {
 		_, err = bodyBuf.WriteString(*s)
-	} else if JsonCheck.MatchString(contentType) {
+	} else if jsonCheck.MatchString(contentType) {
 		err = json.NewEncoder(bodyBuf).Encode(body)
-	} else if XmlCheck.MatchString(contentType) {
-		var bs []byte
-		bs, err = xml.Marshal(body)
-		if err == nil {
-			bodyBuf.Write(bs)
-		}
+	} else if xmlCheck.MatchString(contentType) {
+		err = xml.NewEncoder(bodyBuf).Encode(body)
 	}
 
 	if err != nil {

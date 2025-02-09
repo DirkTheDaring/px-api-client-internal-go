@@ -3,7 +3,7 @@ ProxMox VE API
 
 ProxMox VE API
 
-API version: 8.0
+API version: 8.3
 Contact: baldur@email.de
 */
 
@@ -20,7 +20,7 @@ import (
 )
 
 
-type AccessAPI interface {
+type AccessApi interface {
 
 	/*
 	CreateAccessTicket createAccessTicket
@@ -51,12 +51,12 @@ type AccessAPI interface {
 	GetAccessTicketExecute(r ApiGetAccessTicketRequest) (*CreateVM200Response, *http.Response, error)
 }
 
-// AccessAPIService AccessAPI service
-type AccessAPIService service
+// AccessApiService AccessApi service
+type AccessApiService service
 
 type ApiCreateAccessTicketRequest struct {
 	ctx context.Context
-	ApiService AccessAPI
+	ApiService AccessApi
 	createAccessTicketRequest *CreateAccessTicketRequest
 }
 
@@ -77,7 +77,7 @@ Create or verify authentication ticket.
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiCreateAccessTicketRequest
 */
-func (a *AccessAPIService) CreateAccessTicket(ctx context.Context) ApiCreateAccessTicketRequest {
+func (a *AccessApiService) CreateAccessTicket(ctx context.Context) ApiCreateAccessTicketRequest {
 	return ApiCreateAccessTicketRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -86,7 +86,7 @@ func (a *AccessAPIService) CreateAccessTicket(ctx context.Context) ApiCreateAcce
 
 // Execute executes the request
 //  @return CreateAccessTicket200Response
-func (a *AccessAPIService) CreateAccessTicketExecute(r ApiCreateAccessTicketRequest) (*CreateAccessTicket200Response, *http.Response, error) {
+func (a *AccessApiService) CreateAccessTicketExecute(r ApiCreateAccessTicketRequest) (*CreateAccessTicket200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -94,7 +94,7 @@ func (a *AccessAPIService) CreateAccessTicketExecute(r ApiCreateAccessTicketRequ
 		localVarReturnValue  *CreateAccessTicket200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AccessAPIService.CreateAccessTicket")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AccessApiService.CreateAccessTicket")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -124,34 +124,6 @@ func (a *AccessAPIService) CreateAccessTicketExecute(r ApiCreateAccessTicketRequ
 	}
 	// body params
 	localVarPostBody = r.createAccessTicketRequest
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["cookie"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Cookie"] = key
-			}
-		}
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["token"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["CSRFPreventionToken"] = key
-			}
-		}
-	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -191,7 +163,7 @@ func (a *AccessAPIService) CreateAccessTicketExecute(r ApiCreateAccessTicketRequ
 
 type ApiGetAccessTicketRequest struct {
 	ctx context.Context
-	ApiService AccessAPI
+	ApiService AccessApi
 }
 
 func (r ApiGetAccessTicketRequest) Execute() (*CreateVM200Response, *http.Response, error) {
@@ -206,7 +178,7 @@ Dummy. Useful for formatters which want to provide a login page.
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetAccessTicketRequest
 */
-func (a *AccessAPIService) GetAccessTicket(ctx context.Context) ApiGetAccessTicketRequest {
+func (a *AccessApiService) GetAccessTicket(ctx context.Context) ApiGetAccessTicketRequest {
 	return ApiGetAccessTicketRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -215,7 +187,7 @@ func (a *AccessAPIService) GetAccessTicket(ctx context.Context) ApiGetAccessTick
 
 // Execute executes the request
 //  @return CreateVM200Response
-func (a *AccessAPIService) GetAccessTicketExecute(r ApiGetAccessTicketRequest) (*CreateVM200Response, *http.Response, error) {
+func (a *AccessApiService) GetAccessTicketExecute(r ApiGetAccessTicketRequest) (*CreateVM200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -223,7 +195,7 @@ func (a *AccessAPIService) GetAccessTicketExecute(r ApiGetAccessTicketRequest) (
 		localVarReturnValue  *CreateVM200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AccessAPIService.GetAccessTicket")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AccessApiService.GetAccessTicket")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -250,34 +222,6 @@ func (a *AccessAPIService) GetAccessTicketExecute(r ApiGetAccessTicketRequest) (
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["cookie"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Cookie"] = key
-			}
-		}
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["token"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["CSRFPreventionToken"] = key
-			}
-		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {

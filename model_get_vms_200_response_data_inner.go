@@ -3,7 +3,7 @@ ProxMox VE API
 
 ProxMox VE API
 
-API version: 8.0
+API version: 8.3
 Contact: baldur@email.de
 */
 
@@ -18,31 +18,41 @@ import (
 // checks if the GetVMs200ResponseDataInner type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &GetVMs200ResponseDataInner{}
 
-// GetVMs200ResponseDataInner struct for GetVMs200ResponseDataInner
+// GetVMs200ResponseDataInner 
 type GetVMs200ResponseDataInner struct {
 	// Maximum usable CPUs.
 	Cpus *float32 `json:"cpus,omitempty"`
+	// The amount of bytes the guest read from it's block devices since the guest was started. (Note: This info is not available for all storage types.)
+	Diskread *int64 `json:"diskread,omitempty"`
+	// The amount of bytes the guest wrote from it's block devices since the guest was started. (Note: This info is not available for all storage types.)
+	Diskwrite *int64 `json:"diskwrite,omitempty"`
 	// The current config lock, if any.
 	Lock *string `json:"lock,omitempty"`
 	// Root disk size in bytes.
 	Maxdisk *int64 `json:"maxdisk,omitempty"`
 	// Maximum memory in bytes.
 	Maxmem *int64 `json:"maxmem,omitempty"`
-	// VM name.
+	// VM (host)name.
 	Name *string `json:"name,omitempty"`
-	// PID of running qemu process.
+	// The amount of traffic in bytes that was sent to the guest over the network since it was started.
+	Netin *int64 `json:"netin,omitempty"`
+	// The amount of traffic in bytes that was sent from the guest over the network since it was started.
+	Netout *int64 `json:"netout,omitempty"`
+	// PID of the QEMU process, if the VM is running.
 	Pid *int64 `json:"pid,omitempty"`
 	// VM run state from the 'query-status' QMP monitor command.
 	Qmpstatus *string `json:"qmpstatus,omitempty"`
 	// The currently running machine type (if running).
 	RunningMachine *string `json:"running-machine,omitempty"`
-	// The currently running QEMU version (if running).
+	// The QEMU version the VM is currently using (if running).
 	RunningQemu *string `json:"running-qemu,omitempty"`
 	// QEMU process status.
 	Status *string `json:"status,omitempty"`
 	// The current configured tags, if any
 	Tags *string `json:"tags,omitempty"`
-	// Uptime.
+	// Determines if the guest is a template.
+	Template *int32 `json:"template,omitempty"`
+	// Uptime in seconds.
 	Uptime *int64 `json:"uptime,omitempty"`
 	// The (unique) ID of the VM.
 	Vmid *int64 `json:"vmid,omitempty"`
@@ -95,6 +105,70 @@ func (o *GetVMs200ResponseDataInner) HasCpus() bool {
 // SetCpus gets a reference to the given float32 and assigns it to the Cpus field.
 func (o *GetVMs200ResponseDataInner) SetCpus(v float32) {
 	o.Cpus = &v
+}
+
+// GetDiskread returns the Diskread field value if set, zero value otherwise.
+func (o *GetVMs200ResponseDataInner) GetDiskread() int64 {
+	if o == nil || IsNil(o.Diskread) {
+		var ret int64
+		return ret
+	}
+	return *o.Diskread
+}
+
+// GetDiskreadOk returns a tuple with the Diskread field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetVMs200ResponseDataInner) GetDiskreadOk() (*int64, bool) {
+	if o == nil || IsNil(o.Diskread) {
+		return nil, false
+	}
+	return o.Diskread, true
+}
+
+// HasDiskread returns a boolean if a field has been set.
+func (o *GetVMs200ResponseDataInner) HasDiskread() bool {
+	if o != nil && !IsNil(o.Diskread) {
+		return true
+	}
+
+	return false
+}
+
+// SetDiskread gets a reference to the given int64 and assigns it to the Diskread field.
+func (o *GetVMs200ResponseDataInner) SetDiskread(v int64) {
+	o.Diskread = &v
+}
+
+// GetDiskwrite returns the Diskwrite field value if set, zero value otherwise.
+func (o *GetVMs200ResponseDataInner) GetDiskwrite() int64 {
+	if o == nil || IsNil(o.Diskwrite) {
+		var ret int64
+		return ret
+	}
+	return *o.Diskwrite
+}
+
+// GetDiskwriteOk returns a tuple with the Diskwrite field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetVMs200ResponseDataInner) GetDiskwriteOk() (*int64, bool) {
+	if o == nil || IsNil(o.Diskwrite) {
+		return nil, false
+	}
+	return o.Diskwrite, true
+}
+
+// HasDiskwrite returns a boolean if a field has been set.
+func (o *GetVMs200ResponseDataInner) HasDiskwrite() bool {
+	if o != nil && !IsNil(o.Diskwrite) {
+		return true
+	}
+
+	return false
+}
+
+// SetDiskwrite gets a reference to the given int64 and assigns it to the Diskwrite field.
+func (o *GetVMs200ResponseDataInner) SetDiskwrite(v int64) {
+	o.Diskwrite = &v
 }
 
 // GetLock returns the Lock field value if set, zero value otherwise.
@@ -223,6 +297,70 @@ func (o *GetVMs200ResponseDataInner) HasName() bool {
 // SetName gets a reference to the given string and assigns it to the Name field.
 func (o *GetVMs200ResponseDataInner) SetName(v string) {
 	o.Name = &v
+}
+
+// GetNetin returns the Netin field value if set, zero value otherwise.
+func (o *GetVMs200ResponseDataInner) GetNetin() int64 {
+	if o == nil || IsNil(o.Netin) {
+		var ret int64
+		return ret
+	}
+	return *o.Netin
+}
+
+// GetNetinOk returns a tuple with the Netin field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetVMs200ResponseDataInner) GetNetinOk() (*int64, bool) {
+	if o == nil || IsNil(o.Netin) {
+		return nil, false
+	}
+	return o.Netin, true
+}
+
+// HasNetin returns a boolean if a field has been set.
+func (o *GetVMs200ResponseDataInner) HasNetin() bool {
+	if o != nil && !IsNil(o.Netin) {
+		return true
+	}
+
+	return false
+}
+
+// SetNetin gets a reference to the given int64 and assigns it to the Netin field.
+func (o *GetVMs200ResponseDataInner) SetNetin(v int64) {
+	o.Netin = &v
+}
+
+// GetNetout returns the Netout field value if set, zero value otherwise.
+func (o *GetVMs200ResponseDataInner) GetNetout() int64 {
+	if o == nil || IsNil(o.Netout) {
+		var ret int64
+		return ret
+	}
+	return *o.Netout
+}
+
+// GetNetoutOk returns a tuple with the Netout field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetVMs200ResponseDataInner) GetNetoutOk() (*int64, bool) {
+	if o == nil || IsNil(o.Netout) {
+		return nil, false
+	}
+	return o.Netout, true
+}
+
+// HasNetout returns a boolean if a field has been set.
+func (o *GetVMs200ResponseDataInner) HasNetout() bool {
+	if o != nil && !IsNil(o.Netout) {
+		return true
+	}
+
+	return false
+}
+
+// SetNetout gets a reference to the given int64 and assigns it to the Netout field.
+func (o *GetVMs200ResponseDataInner) SetNetout(v int64) {
+	o.Netout = &v
 }
 
 // GetPid returns the Pid field value if set, zero value otherwise.
@@ -417,6 +555,38 @@ func (o *GetVMs200ResponseDataInner) SetTags(v string) {
 	o.Tags = &v
 }
 
+// GetTemplate returns the Template field value if set, zero value otherwise.
+func (o *GetVMs200ResponseDataInner) GetTemplate() int32 {
+	if o == nil || IsNil(o.Template) {
+		var ret int32
+		return ret
+	}
+	return *o.Template
+}
+
+// GetTemplateOk returns a tuple with the Template field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetVMs200ResponseDataInner) GetTemplateOk() (*int32, bool) {
+	if o == nil || IsNil(o.Template) {
+		return nil, false
+	}
+	return o.Template, true
+}
+
+// HasTemplate returns a boolean if a field has been set.
+func (o *GetVMs200ResponseDataInner) HasTemplate() bool {
+	if o != nil && !IsNil(o.Template) {
+		return true
+	}
+
+	return false
+}
+
+// SetTemplate gets a reference to the given int32 and assigns it to the Template field.
+func (o *GetVMs200ResponseDataInner) SetTemplate(v int32) {
+	o.Template = &v
+}
+
 // GetUptime returns the Uptime field value if set, zero value otherwise.
 func (o *GetVMs200ResponseDataInner) GetUptime() int64 {
 	if o == nil || IsNil(o.Uptime) {
@@ -494,6 +664,12 @@ func (o GetVMs200ResponseDataInner) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Cpus) {
 		toSerialize["cpus"] = o.Cpus
 	}
+	if !IsNil(o.Diskread) {
+		toSerialize["diskread"] = o.Diskread
+	}
+	if !IsNil(o.Diskwrite) {
+		toSerialize["diskwrite"] = o.Diskwrite
+	}
 	if !IsNil(o.Lock) {
 		toSerialize["lock"] = o.Lock
 	}
@@ -505,6 +681,12 @@ func (o GetVMs200ResponseDataInner) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Netin) {
+		toSerialize["netin"] = o.Netin
+	}
+	if !IsNil(o.Netout) {
+		toSerialize["netout"] = o.Netout
 	}
 	if !IsNil(o.Pid) {
 		toSerialize["pid"] = o.Pid
@@ -523,6 +705,9 @@ func (o GetVMs200ResponseDataInner) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
+	}
+	if !IsNil(o.Template) {
+		toSerialize["template"] = o.Template
 	}
 	if !IsNil(o.Uptime) {
 		toSerialize["uptime"] = o.Uptime

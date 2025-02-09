@@ -3,7 +3,7 @@ ProxMox VE API
 
 ProxMox VE API
 
-API version: 8.0
+API version: 8.3
 Contact: baldur@email.de
 */
 
@@ -18,60 +18,62 @@ import (
 // checks if the GetClusterResources200ResponseDataInner type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &GetClusterResources200ResponseDataInner{}
 
-// GetClusterResources200ResponseDataInner struct for GetClusterResources200ResponseDataInner
+// GetClusterResources200ResponseDataInner 
 type GetClusterResources200ResponseDataInner struct {
-	// The cgroup mode the node operates under (when type == node).
+	// The cgroup mode the node operates under (for type 'node').
 	CgroupMode *int64 `json:"cgroup-mode,omitempty"`
-	// Allowed storage content types (when type == storage).
+	// Allowed storage content types (for type 'storage').
 	Content *string `json:"content,omitempty"`
-	// CPU utilization (when type in node,qemu,lxc).
+	// CPU utilization (for types 'node', 'qemu' and 'lxc').
 	Cpu *float32 `json:"cpu,omitempty"`
-	// Used disk space in bytes (when type in storage), used root image spave for VMs (type in qemu,lxc).
+	// Used disk space in bytes (for type 'storage'), used root image space for VMs (for types 'qemu' and 'lxc').
 	Disk *int64 `json:"disk,omitempty"`
+	// The amount of bytes the guest read from its block devices since the guest was started. This info is not available for all storage types. (for types 'qemu' and 'lxc')
+	Diskread *int64 `json:"diskread,omitempty"`
+	// The amount of bytes the guest wrote to its block devices since the guest was started. This info is not available for all storage types. (for types 'qemu' and 'lxc')
+	Diskwrite *int64 `json:"diskwrite,omitempty"`
 	// HA service status (for HA managed VMs).
 	Hastate *string `json:"hastate,omitempty"`
 	// Resource id.
 	Id *string `json:"id,omitempty"`
-	// Support level (when type == node).
+	// Support level (for type 'node').
 	Level *string `json:"level,omitempty"`
-	// Number of available CPUs (when type in node,qemu,lxc).
+	// The guest's current config lock (for types 'qemu' and 'lxc')
+	Lock *string `json:"lock,omitempty"`
+	// Number of available CPUs (for types 'node', 'qemu' and 'lxc').
 	Maxcpu *float32 `json:"maxcpu,omitempty"`
-	// Storage size in bytes (when type in storage), root image size for VMs (type in qemu,lxc).
+	// Storage size in bytes (for type 'storage'), root image size for VMs (for types 'qemu' and 'lxc').
 	Maxdisk *int64 `json:"maxdisk,omitempty"`
-	// Number of available memory in bytes (when type in node,qemu,lxc).
+	// Number of available memory in bytes (for types 'node', 'qemu' and 'lxc').
 	Maxmem *int64 `json:"maxmem,omitempty"`
-	// Used memory in bytes (when type in node,qemu,lxc).
+	// Used memory in bytes (for types 'node', 'qemu' and 'lxc').
 	Mem *int64 `json:"mem,omitempty"`
 	// Name of the resource.
 	Name *string `json:"name,omitempty"`
-	// The cluster node name (when type in node,storage,qemu,lxc).
+	// The amount of traffic in bytes that was sent to the guest over the network since it was started. (for types 'qemu' and 'lxc')
+	Netin *int64 `json:"netin,omitempty"`
+	// The amount of traffic in bytes that was sent from the guest over the network since it was started. (for types 'qemu' and 'lxc')
+	Netout *int64 `json:"netout,omitempty"`
+	// The cluster node name (for types 'node', 'storage', 'qemu', and 'lxc').
 	Node *string `json:"node,omitempty"`
 	// More specific type, if available.
 	Plugintype *string `json:"plugintype,omitempty"`
-	// The pool name (when type in pool,qemu,lxc).
+	// The pool name (for types 'pool', 'qemu' and 'lxc').
 	Pool *string `json:"pool,omitempty"`
 	// Resource type dependent status.
 	Status *string `json:"status,omitempty"`
-	// The storage identifier (when type == storage).
+	// The storage identifier (for type 'storage').
 	Storage *string `json:"storage,omitempty"`
+	// The guest's tags (for types 'qemu' and 'lxc')
+	Tags *string `json:"tags,omitempty"`
+	// Determines if the guest is a template. (for types 'qemu' and 'lxc')
+	Template *int64 `json:"template,omitempty"`
 	// Resource type.
 	Type *string `json:"type,omitempty"`
-	// Node uptime in seconds (when type in node,qemu,lxc).
+	// Uptime of node or virtual guest in seconds (for types 'node', 'qemu' and 'lxc').
 	Uptime *int64 `json:"uptime,omitempty"`
-	// The numerical vmid (when type in qemu,lxc).
+	// The numerical vmid (for types 'qemu' and 'lxc').
 	Vmid *int64 `json:"vmid,omitempty"`
-	// tbd.
-	Diskread *int64 `json:"diskread,omitempty"`
-	// tbd.
-	Diskwrite *int64 `json:"diskwrite,omitempty"`
-	// locked or notexisting
-	Lock *string `json:"lock,omitempty"`
-	// tbd.
-	Netin *int64 `json:"netin,omitempty"`
-	// tbd.
-	Netout *int64 `json:"netout,omitempty"`
-	// tbd.
-	Template *int64 `json:"template,omitempty"`
 }
 
 // NewGetClusterResources200ResponseDataInner instantiates a new GetClusterResources200ResponseDataInner object
@@ -219,6 +221,70 @@ func (o *GetClusterResources200ResponseDataInner) SetDisk(v int64) {
 	o.Disk = &v
 }
 
+// GetDiskread returns the Diskread field value if set, zero value otherwise.
+func (o *GetClusterResources200ResponseDataInner) GetDiskread() int64 {
+	if o == nil || IsNil(o.Diskread) {
+		var ret int64
+		return ret
+	}
+	return *o.Diskread
+}
+
+// GetDiskreadOk returns a tuple with the Diskread field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetClusterResources200ResponseDataInner) GetDiskreadOk() (*int64, bool) {
+	if o == nil || IsNil(o.Diskread) {
+		return nil, false
+	}
+	return o.Diskread, true
+}
+
+// HasDiskread returns a boolean if a field has been set.
+func (o *GetClusterResources200ResponseDataInner) HasDiskread() bool {
+	if o != nil && !IsNil(o.Diskread) {
+		return true
+	}
+
+	return false
+}
+
+// SetDiskread gets a reference to the given int64 and assigns it to the Diskread field.
+func (o *GetClusterResources200ResponseDataInner) SetDiskread(v int64) {
+	o.Diskread = &v
+}
+
+// GetDiskwrite returns the Diskwrite field value if set, zero value otherwise.
+func (o *GetClusterResources200ResponseDataInner) GetDiskwrite() int64 {
+	if o == nil || IsNil(o.Diskwrite) {
+		var ret int64
+		return ret
+	}
+	return *o.Diskwrite
+}
+
+// GetDiskwriteOk returns a tuple with the Diskwrite field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetClusterResources200ResponseDataInner) GetDiskwriteOk() (*int64, bool) {
+	if o == nil || IsNil(o.Diskwrite) {
+		return nil, false
+	}
+	return o.Diskwrite, true
+}
+
+// HasDiskwrite returns a boolean if a field has been set.
+func (o *GetClusterResources200ResponseDataInner) HasDiskwrite() bool {
+	if o != nil && !IsNil(o.Diskwrite) {
+		return true
+	}
+
+	return false
+}
+
+// SetDiskwrite gets a reference to the given int64 and assigns it to the Diskwrite field.
+func (o *GetClusterResources200ResponseDataInner) SetDiskwrite(v int64) {
+	o.Diskwrite = &v
+}
+
 // GetHastate returns the Hastate field value if set, zero value otherwise.
 func (o *GetClusterResources200ResponseDataInner) GetHastate() string {
 	if o == nil || IsNil(o.Hastate) {
@@ -313,6 +379,38 @@ func (o *GetClusterResources200ResponseDataInner) HasLevel() bool {
 // SetLevel gets a reference to the given string and assigns it to the Level field.
 func (o *GetClusterResources200ResponseDataInner) SetLevel(v string) {
 	o.Level = &v
+}
+
+// GetLock returns the Lock field value if set, zero value otherwise.
+func (o *GetClusterResources200ResponseDataInner) GetLock() string {
+	if o == nil || IsNil(o.Lock) {
+		var ret string
+		return ret
+	}
+	return *o.Lock
+}
+
+// GetLockOk returns a tuple with the Lock field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetClusterResources200ResponseDataInner) GetLockOk() (*string, bool) {
+	if o == nil || IsNil(o.Lock) {
+		return nil, false
+	}
+	return o.Lock, true
+}
+
+// HasLock returns a boolean if a field has been set.
+func (o *GetClusterResources200ResponseDataInner) HasLock() bool {
+	if o != nil && !IsNil(o.Lock) {
+		return true
+	}
+
+	return false
+}
+
+// SetLock gets a reference to the given string and assigns it to the Lock field.
+func (o *GetClusterResources200ResponseDataInner) SetLock(v string) {
+	o.Lock = &v
 }
 
 // GetMaxcpu returns the Maxcpu field value if set, zero value otherwise.
@@ -475,6 +573,70 @@ func (o *GetClusterResources200ResponseDataInner) SetName(v string) {
 	o.Name = &v
 }
 
+// GetNetin returns the Netin field value if set, zero value otherwise.
+func (o *GetClusterResources200ResponseDataInner) GetNetin() int64 {
+	if o == nil || IsNil(o.Netin) {
+		var ret int64
+		return ret
+	}
+	return *o.Netin
+}
+
+// GetNetinOk returns a tuple with the Netin field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetClusterResources200ResponseDataInner) GetNetinOk() (*int64, bool) {
+	if o == nil || IsNil(o.Netin) {
+		return nil, false
+	}
+	return o.Netin, true
+}
+
+// HasNetin returns a boolean if a field has been set.
+func (o *GetClusterResources200ResponseDataInner) HasNetin() bool {
+	if o != nil && !IsNil(o.Netin) {
+		return true
+	}
+
+	return false
+}
+
+// SetNetin gets a reference to the given int64 and assigns it to the Netin field.
+func (o *GetClusterResources200ResponseDataInner) SetNetin(v int64) {
+	o.Netin = &v
+}
+
+// GetNetout returns the Netout field value if set, zero value otherwise.
+func (o *GetClusterResources200ResponseDataInner) GetNetout() int64 {
+	if o == nil || IsNil(o.Netout) {
+		var ret int64
+		return ret
+	}
+	return *o.Netout
+}
+
+// GetNetoutOk returns a tuple with the Netout field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetClusterResources200ResponseDataInner) GetNetoutOk() (*int64, bool) {
+	if o == nil || IsNil(o.Netout) {
+		return nil, false
+	}
+	return o.Netout, true
+}
+
+// HasNetout returns a boolean if a field has been set.
+func (o *GetClusterResources200ResponseDataInner) HasNetout() bool {
+	if o != nil && !IsNil(o.Netout) {
+		return true
+	}
+
+	return false
+}
+
+// SetNetout gets a reference to the given int64 and assigns it to the Netout field.
+func (o *GetClusterResources200ResponseDataInner) SetNetout(v int64) {
+	o.Netout = &v
+}
+
 // GetNode returns the Node field value if set, zero value otherwise.
 func (o *GetClusterResources200ResponseDataInner) GetNode() string {
 	if o == nil || IsNil(o.Node) {
@@ -635,6 +797,70 @@ func (o *GetClusterResources200ResponseDataInner) SetStorage(v string) {
 	o.Storage = &v
 }
 
+// GetTags returns the Tags field value if set, zero value otherwise.
+func (o *GetClusterResources200ResponseDataInner) GetTags() string {
+	if o == nil || IsNil(o.Tags) {
+		var ret string
+		return ret
+	}
+	return *o.Tags
+}
+
+// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetClusterResources200ResponseDataInner) GetTagsOk() (*string, bool) {
+	if o == nil || IsNil(o.Tags) {
+		return nil, false
+	}
+	return o.Tags, true
+}
+
+// HasTags returns a boolean if a field has been set.
+func (o *GetClusterResources200ResponseDataInner) HasTags() bool {
+	if o != nil && !IsNil(o.Tags) {
+		return true
+	}
+
+	return false
+}
+
+// SetTags gets a reference to the given string and assigns it to the Tags field.
+func (o *GetClusterResources200ResponseDataInner) SetTags(v string) {
+	o.Tags = &v
+}
+
+// GetTemplate returns the Template field value if set, zero value otherwise.
+func (o *GetClusterResources200ResponseDataInner) GetTemplate() int64 {
+	if o == nil || IsNil(o.Template) {
+		var ret int64
+		return ret
+	}
+	return *o.Template
+}
+
+// GetTemplateOk returns a tuple with the Template field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetClusterResources200ResponseDataInner) GetTemplateOk() (*int64, bool) {
+	if o == nil || IsNil(o.Template) {
+		return nil, false
+	}
+	return o.Template, true
+}
+
+// HasTemplate returns a boolean if a field has been set.
+func (o *GetClusterResources200ResponseDataInner) HasTemplate() bool {
+	if o != nil && !IsNil(o.Template) {
+		return true
+	}
+
+	return false
+}
+
+// SetTemplate gets a reference to the given int64 and assigns it to the Template field.
+func (o *GetClusterResources200ResponseDataInner) SetTemplate(v int64) {
+	o.Template = &v
+}
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *GetClusterResources200ResponseDataInner) GetType() string {
 	if o == nil || IsNil(o.Type) {
@@ -731,198 +957,6 @@ func (o *GetClusterResources200ResponseDataInner) SetVmid(v int64) {
 	o.Vmid = &v
 }
 
-// GetDiskread returns the Diskread field value if set, zero value otherwise.
-func (o *GetClusterResources200ResponseDataInner) GetDiskread() int64 {
-	if o == nil || IsNil(o.Diskread) {
-		var ret int64
-		return ret
-	}
-	return *o.Diskread
-}
-
-// GetDiskreadOk returns a tuple with the Diskread field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *GetClusterResources200ResponseDataInner) GetDiskreadOk() (*int64, bool) {
-	if o == nil || IsNil(o.Diskread) {
-		return nil, false
-	}
-	return o.Diskread, true
-}
-
-// HasDiskread returns a boolean if a field has been set.
-func (o *GetClusterResources200ResponseDataInner) HasDiskread() bool {
-	if o != nil && !IsNil(o.Diskread) {
-		return true
-	}
-
-	return false
-}
-
-// SetDiskread gets a reference to the given int64 and assigns it to the Diskread field.
-func (o *GetClusterResources200ResponseDataInner) SetDiskread(v int64) {
-	o.Diskread = &v
-}
-
-// GetDiskwrite returns the Diskwrite field value if set, zero value otherwise.
-func (o *GetClusterResources200ResponseDataInner) GetDiskwrite() int64 {
-	if o == nil || IsNil(o.Diskwrite) {
-		var ret int64
-		return ret
-	}
-	return *o.Diskwrite
-}
-
-// GetDiskwriteOk returns a tuple with the Diskwrite field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *GetClusterResources200ResponseDataInner) GetDiskwriteOk() (*int64, bool) {
-	if o == nil || IsNil(o.Diskwrite) {
-		return nil, false
-	}
-	return o.Diskwrite, true
-}
-
-// HasDiskwrite returns a boolean if a field has been set.
-func (o *GetClusterResources200ResponseDataInner) HasDiskwrite() bool {
-	if o != nil && !IsNil(o.Diskwrite) {
-		return true
-	}
-
-	return false
-}
-
-// SetDiskwrite gets a reference to the given int64 and assigns it to the Diskwrite field.
-func (o *GetClusterResources200ResponseDataInner) SetDiskwrite(v int64) {
-	o.Diskwrite = &v
-}
-
-// GetLock returns the Lock field value if set, zero value otherwise.
-func (o *GetClusterResources200ResponseDataInner) GetLock() string {
-	if o == nil || IsNil(o.Lock) {
-		var ret string
-		return ret
-	}
-	return *o.Lock
-}
-
-// GetLockOk returns a tuple with the Lock field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *GetClusterResources200ResponseDataInner) GetLockOk() (*string, bool) {
-	if o == nil || IsNil(o.Lock) {
-		return nil, false
-	}
-	return o.Lock, true
-}
-
-// HasLock returns a boolean if a field has been set.
-func (o *GetClusterResources200ResponseDataInner) HasLock() bool {
-	if o != nil && !IsNil(o.Lock) {
-		return true
-	}
-
-	return false
-}
-
-// SetLock gets a reference to the given string and assigns it to the Lock field.
-func (o *GetClusterResources200ResponseDataInner) SetLock(v string) {
-	o.Lock = &v
-}
-
-// GetNetin returns the Netin field value if set, zero value otherwise.
-func (o *GetClusterResources200ResponseDataInner) GetNetin() int64 {
-	if o == nil || IsNil(o.Netin) {
-		var ret int64
-		return ret
-	}
-	return *o.Netin
-}
-
-// GetNetinOk returns a tuple with the Netin field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *GetClusterResources200ResponseDataInner) GetNetinOk() (*int64, bool) {
-	if o == nil || IsNil(o.Netin) {
-		return nil, false
-	}
-	return o.Netin, true
-}
-
-// HasNetin returns a boolean if a field has been set.
-func (o *GetClusterResources200ResponseDataInner) HasNetin() bool {
-	if o != nil && !IsNil(o.Netin) {
-		return true
-	}
-
-	return false
-}
-
-// SetNetin gets a reference to the given int64 and assigns it to the Netin field.
-func (o *GetClusterResources200ResponseDataInner) SetNetin(v int64) {
-	o.Netin = &v
-}
-
-// GetNetout returns the Netout field value if set, zero value otherwise.
-func (o *GetClusterResources200ResponseDataInner) GetNetout() int64 {
-	if o == nil || IsNil(o.Netout) {
-		var ret int64
-		return ret
-	}
-	return *o.Netout
-}
-
-// GetNetoutOk returns a tuple with the Netout field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *GetClusterResources200ResponseDataInner) GetNetoutOk() (*int64, bool) {
-	if o == nil || IsNil(o.Netout) {
-		return nil, false
-	}
-	return o.Netout, true
-}
-
-// HasNetout returns a boolean if a field has been set.
-func (o *GetClusterResources200ResponseDataInner) HasNetout() bool {
-	if o != nil && !IsNil(o.Netout) {
-		return true
-	}
-
-	return false
-}
-
-// SetNetout gets a reference to the given int64 and assigns it to the Netout field.
-func (o *GetClusterResources200ResponseDataInner) SetNetout(v int64) {
-	o.Netout = &v
-}
-
-// GetTemplate returns the Template field value if set, zero value otherwise.
-func (o *GetClusterResources200ResponseDataInner) GetTemplate() int64 {
-	if o == nil || IsNil(o.Template) {
-		var ret int64
-		return ret
-	}
-	return *o.Template
-}
-
-// GetTemplateOk returns a tuple with the Template field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *GetClusterResources200ResponseDataInner) GetTemplateOk() (*int64, bool) {
-	if o == nil || IsNil(o.Template) {
-		return nil, false
-	}
-	return o.Template, true
-}
-
-// HasTemplate returns a boolean if a field has been set.
-func (o *GetClusterResources200ResponseDataInner) HasTemplate() bool {
-	if o != nil && !IsNil(o.Template) {
-		return true
-	}
-
-	return false
-}
-
-// SetTemplate gets a reference to the given int64 and assigns it to the Template field.
-func (o *GetClusterResources200ResponseDataInner) SetTemplate(v int64) {
-	o.Template = &v
-}
-
 func (o GetClusterResources200ResponseDataInner) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -945,6 +979,12 @@ func (o GetClusterResources200ResponseDataInner) ToMap() (map[string]interface{}
 	if !IsNil(o.Disk) {
 		toSerialize["disk"] = o.Disk
 	}
+	if !IsNil(o.Diskread) {
+		toSerialize["diskread"] = o.Diskread
+	}
+	if !IsNil(o.Diskwrite) {
+		toSerialize["diskwrite"] = o.Diskwrite
+	}
 	if !IsNil(o.Hastate) {
 		toSerialize["hastate"] = o.Hastate
 	}
@@ -953,6 +993,9 @@ func (o GetClusterResources200ResponseDataInner) ToMap() (map[string]interface{}
 	}
 	if !IsNil(o.Level) {
 		toSerialize["level"] = o.Level
+	}
+	if !IsNil(o.Lock) {
+		toSerialize["lock"] = o.Lock
 	}
 	if !IsNil(o.Maxcpu) {
 		toSerialize["maxcpu"] = o.Maxcpu
@@ -969,6 +1012,12 @@ func (o GetClusterResources200ResponseDataInner) ToMap() (map[string]interface{}
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
+	if !IsNil(o.Netin) {
+		toSerialize["netin"] = o.Netin
+	}
+	if !IsNil(o.Netout) {
+		toSerialize["netout"] = o.Netout
+	}
 	if !IsNil(o.Node) {
 		toSerialize["node"] = o.Node
 	}
@@ -984,6 +1033,12 @@ func (o GetClusterResources200ResponseDataInner) ToMap() (map[string]interface{}
 	if !IsNil(o.Storage) {
 		toSerialize["storage"] = o.Storage
 	}
+	if !IsNil(o.Tags) {
+		toSerialize["tags"] = o.Tags
+	}
+	if !IsNil(o.Template) {
+		toSerialize["template"] = o.Template
+	}
 	if !IsNil(o.Type) {
 		toSerialize["type"] = o.Type
 	}
@@ -992,24 +1047,6 @@ func (o GetClusterResources200ResponseDataInner) ToMap() (map[string]interface{}
 	}
 	if !IsNil(o.Vmid) {
 		toSerialize["vmid"] = o.Vmid
-	}
-	if !IsNil(o.Diskread) {
-		toSerialize["diskread"] = o.Diskread
-	}
-	if !IsNil(o.Diskwrite) {
-		toSerialize["diskwrite"] = o.Diskwrite
-	}
-	if !IsNil(o.Lock) {
-		toSerialize["lock"] = o.Lock
-	}
-	if !IsNil(o.Netin) {
-		toSerialize["netin"] = o.Netin
-	}
-	if !IsNil(o.Netout) {
-		toSerialize["netout"] = o.Netout
-	}
-	if !IsNil(o.Template) {
-		toSerialize["template"] = o.Template
 	}
 	return toSerialize, nil
 }

@@ -3,7 +3,7 @@ ProxMox VE API
 
 ProxMox VE API
 
-API version: 8.0
+API version: 8.3
 Contact: baldur@email.de
 */
 
@@ -13,7 +13,6 @@ package pxapiobject
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the CreateVMRequest type satisfies the MappedNullable interface at compile time
@@ -21,264 +20,188 @@ var _ MappedNullable = &CreateVMRequest{}
 
 // CreateVMRequest struct for CreateVMRequest
 type CreateVMRequest struct {
-	// Enable/disable ACPI.
 	Acpi *bool `json:"acpi,omitempty"`
-	// List of host cores used to execute guest processes, for example: 0,5,8-11
 	Affinity *string `json:"affinity,omitempty"`
-	Agent *GetVMConfig200ResponseDataAgent `json:"agent,omitempty"`
-	// Virtual processor architecture. Defaults to the host.
+	Agent *CreateVMRequestAgent `json:"agent,omitempty"`
+	AmdSev *string `json:"amd-sev,omitempty"`
 	Arch *string `json:"arch,omitempty"`
-	// The backup archive. Either the file system path to a .tar or .vma file (use '-' to pipe data from stdin) or a proxmox storage backup volume identifier.
 	Archive *string `json:"archive,omitempty"`
-	// Arbitrary arguments passed to kvm.
 	Args *string `json:"args,omitempty"`
-	Audio0 *GetVMConfig200ResponseDataAudio0 `json:"audio0,omitempty"`
-	// Automatic restart after crash (currently ignored).
+	Audio0 *CreateVMRequestAudio0 `json:"audio0,omitempty"`
 	Autostart *bool `json:"autostart,omitempty"`
-	// Amount of target RAM for the VM in MiB. Using zero disables the ballon driver.
 	Balloon *int64 `json:"balloon,omitempty"`
-	// Select BIOS implementation.
 	Bios *string `json:"bios,omitempty"`
-	Boot *GetVMConfig200ResponseDataBoot `json:"boot,omitempty"`
-	// Enable booting from specified disk. Deprecated: Use 'boot: order=foo;bar' instead.
+	Boot *CreateVMRequestBoot `json:"boot,omitempty"`
 	Bootdisk *string `json:"bootdisk,omitempty"`
-	// Override I/O bandwidth limit (in KiB/s).
 	Bwlimit *int64 `json:"bwlimit,omitempty"`
-	// This is an alias for option -ide2
 	Cdrom *string `json:"cdrom,omitempty"`
-	// cloud-init: Specify custom files to replace the automatically generated ones at start.
 	Cicustom *string `json:"cicustom,omitempty"`
-	// cloud-init: Password to assign the user. Using this is generally not recommended. Use ssh keys instead. Also note that older cloud-init versions do not support hashed passwords.
 	Cipassword *string `json:"cipassword,omitempty"`
-	// Specifies the cloud-init configuration format. The default depends on the configured operating system type (`ostype`. We use the `nocloud` format for Linux, and `configdrive2` for windows.
 	Citype *string `json:"citype,omitempty"`
-	// cloud-init: do an automatic package upgrade after the first boot.
 	Ciupgrade *bool `json:"ciupgrade,omitempty"`
-	// cloud-init: User name to change ssh keys and password for instead of the image's configured default user.
 	Ciuser *string `json:"ciuser,omitempty"`
-	// The number of cores per socket.
 	Cores *int64 `json:"cores,omitempty"`
-	// Emulated CPU type.
 	Cpu *string `json:"cpu,omitempty"`
-	// Limit of CPU usage.
 	Cpulimit *float32 `json:"cpulimit,omitempty"`
-	// CPU weight for a VM, will be clamped to [1, 10000] in cgroup v2.
 	Cpuunits *int64 `json:"cpuunits,omitempty"`
-	// Description for the VM. Shown in the web-interface VM's summary. This is saved as comment inside the configuration file.
 	Description *string `json:"description,omitempty"`
 	Efidisk0 *CreateVMRequestEfidisk0 `json:"efidisk0,omitempty"`
-	// Allow to overwrite existing VM.
 	Force *bool `json:"force,omitempty"`
-	// Freeze CPU at startup (use 'c' monitor command to start execution).
 	Freeze *bool `json:"freeze,omitempty"`
-	// Script that will be executed during various steps in the vms lifetime.
 	Hookscript *string `json:"hookscript,omitempty"`
-	// Map host PCI devices into guest.
 	Hostpci0 *string `json:"hostpci0,omitempty"`
-	// Map host PCI devices into guest.
 	Hostpci1 *string `json:"hostpci1,omitempty"`
-	// Map host PCI devices into guest.
 	Hostpci2 *string `json:"hostpci2,omitempty"`
-	// Map host PCI devices into guest.
 	Hostpci3 *string `json:"hostpci3,omitempty"`
-	// Map host PCI devices into guest.
 	Hostpci4 *string `json:"hostpci4,omitempty"`
-	// Map host PCI devices into guest.
 	Hostpci5 *string `json:"hostpci5,omitempty"`
-	// Map host PCI devices into guest.
 	Hostpci6 *string `json:"hostpci6,omitempty"`
-	// Map host PCI devices into guest.
 	Hostpci7 *string `json:"hostpci7,omitempty"`
-	// Map host PCI devices into guest.
 	Hostpci8 *string `json:"hostpci8,omitempty"`
-	// Map host PCI devices into guest.
 	Hostpci9 *string `json:"hostpci9,omitempty"`
-	// Map host PCI devices into guest.
 	Hostpci10 *string `json:"hostpci10,omitempty"`
-	// Map host PCI devices into guest.
 	Hostpci11 *string `json:"hostpci11,omitempty"`
-	// Map host PCI devices into guest.
 	Hostpci12 *string `json:"hostpci12,omitempty"`
-	// Map host PCI devices into guest.
 	Hostpci13 *string `json:"hostpci13,omitempty"`
-	// Map host PCI devices into guest.
 	Hostpci14 *string `json:"hostpci14,omitempty"`
-	// Map host PCI devices into guest.
 	Hostpci15 *string `json:"hostpci15,omitempty"`
-	// Map host PCI devices into guest.
 	Hostpci16 *string `json:"hostpci16,omitempty"`
-	// Map host PCI devices into guest.
 	Hostpci17 *string `json:"hostpci17,omitempty"`
-	// Map host PCI devices into guest.
 	Hostpci18 *string `json:"hostpci18,omitempty"`
-	// Map host PCI devices into guest.
 	Hostpci19 *string `json:"hostpci19,omitempty"`
-	// Map host PCI devices into guest.
 	Hostpci20 *string `json:"hostpci20,omitempty"`
-	// Map host PCI devices into guest.
 	Hostpci21 *string `json:"hostpci21,omitempty"`
-	// Map host PCI devices into guest.
 	Hostpci22 *string `json:"hostpci22,omitempty"`
-	// Map host PCI devices into guest.
 	Hostpci23 *string `json:"hostpci23,omitempty"`
-	// Map host PCI devices into guest.
 	Hostpci24 *string `json:"hostpci24,omitempty"`
-	// Map host PCI devices into guest.
 	Hostpci25 *string `json:"hostpci25,omitempty"`
-	// Map host PCI devices into guest.
 	Hostpci26 *string `json:"hostpci26,omitempty"`
-	// Map host PCI devices into guest.
 	Hostpci27 *string `json:"hostpci27,omitempty"`
-	// Map host PCI devices into guest.
 	Hostpci28 *string `json:"hostpci28,omitempty"`
-	// Map host PCI devices into guest.
 	Hostpci29 *string `json:"hostpci29,omitempty"`
-	// Selectively enable hotplug features. This is a comma separated list of hotplug features: 'network', 'disk', 'cpu', 'memory', 'usb' and 'cloudinit'. Use '0' to disable hotplug completely. Using '1' as value is an alias for the default `network,disk,usb`. USB hotplugging is possible for guests with machine version >= 7.1 and ostype l26 or windows > 7.
 	Hotplug *string `json:"hotplug,omitempty"`
-	// Enable/disable hugepages memory.
 	Hugepages *string `json:"hugepages,omitempty"`
 	Ide0 *CreateVMRequestIde0 `json:"ide0,omitempty"`
 	Ide1 *CreateVMRequestIde0 `json:"ide1,omitempty"`
 	Ide2 *CreateVMRequestIde0 `json:"ide2,omitempty"`
 	Ide3 *CreateVMRequestIde0 `json:"ide3,omitempty"`
-	Ipconfig0 *GetVMConfig200ResponseDataIpconfig0 `json:"ipconfig0,omitempty"`
-	Ipconfig1 *GetVMConfig200ResponseDataIpconfig0 `json:"ipconfig1,omitempty"`
-	Ipconfig2 *GetVMConfig200ResponseDataIpconfig0 `json:"ipconfig2,omitempty"`
-	Ipconfig3 *GetVMConfig200ResponseDataIpconfig0 `json:"ipconfig3,omitempty"`
-	Ipconfig4 *GetVMConfig200ResponseDataIpconfig0 `json:"ipconfig4,omitempty"`
-	Ipconfig5 *GetVMConfig200ResponseDataIpconfig0 `json:"ipconfig5,omitempty"`
-	Ipconfig6 *GetVMConfig200ResponseDataIpconfig0 `json:"ipconfig6,omitempty"`
-	Ipconfig7 *GetVMConfig200ResponseDataIpconfig0 `json:"ipconfig7,omitempty"`
-	Ipconfig8 *GetVMConfig200ResponseDataIpconfig0 `json:"ipconfig8,omitempty"`
-	Ipconfig9 *GetVMConfig200ResponseDataIpconfig0 `json:"ipconfig9,omitempty"`
-	Ipconfig10 *GetVMConfig200ResponseDataIpconfig0 `json:"ipconfig10,omitempty"`
-	Ipconfig11 *GetVMConfig200ResponseDataIpconfig0 `json:"ipconfig11,omitempty"`
-	Ipconfig12 *GetVMConfig200ResponseDataIpconfig0 `json:"ipconfig12,omitempty"`
-	Ipconfig13 *GetVMConfig200ResponseDataIpconfig0 `json:"ipconfig13,omitempty"`
-	Ipconfig14 *GetVMConfig200ResponseDataIpconfig0 `json:"ipconfig14,omitempty"`
-	Ipconfig15 *GetVMConfig200ResponseDataIpconfig0 `json:"ipconfig15,omitempty"`
-	Ipconfig16 *GetVMConfig200ResponseDataIpconfig0 `json:"ipconfig16,omitempty"`
-	Ipconfig17 *GetVMConfig200ResponseDataIpconfig0 `json:"ipconfig17,omitempty"`
-	Ipconfig18 *GetVMConfig200ResponseDataIpconfig0 `json:"ipconfig18,omitempty"`
-	Ipconfig19 *GetVMConfig200ResponseDataIpconfig0 `json:"ipconfig19,omitempty"`
-	Ipconfig20 *GetVMConfig200ResponseDataIpconfig0 `json:"ipconfig20,omitempty"`
-	Ipconfig21 *GetVMConfig200ResponseDataIpconfig0 `json:"ipconfig21,omitempty"`
-	Ipconfig22 *GetVMConfig200ResponseDataIpconfig0 `json:"ipconfig22,omitempty"`
-	Ipconfig23 *GetVMConfig200ResponseDataIpconfig0 `json:"ipconfig23,omitempty"`
-	Ipconfig24 *GetVMConfig200ResponseDataIpconfig0 `json:"ipconfig24,omitempty"`
-	Ipconfig25 *GetVMConfig200ResponseDataIpconfig0 `json:"ipconfig25,omitempty"`
-	Ipconfig26 *GetVMConfig200ResponseDataIpconfig0 `json:"ipconfig26,omitempty"`
-	Ipconfig27 *GetVMConfig200ResponseDataIpconfig0 `json:"ipconfig27,omitempty"`
-	Ipconfig28 *GetVMConfig200ResponseDataIpconfig0 `json:"ipconfig28,omitempty"`
-	Ipconfig29 *GetVMConfig200ResponseDataIpconfig0 `json:"ipconfig29,omitempty"`
-	Ivshmem *GetVMConfig200ResponseDataIvshmem `json:"ivshmem,omitempty"`
-	// Use together with hugepages. If enabled, hugepages will not not be deleted after VM shutdown and can be used for subsequent starts.
+	ImportWorkingStorage *string `json:"import-working-storage,omitempty"`
+	Ipconfig0 *CreateVMRequestIpconfig0 `json:"ipconfig0,omitempty"`
+	Ipconfig1 *CreateVMRequestIpconfig0 `json:"ipconfig1,omitempty"`
+	Ipconfig2 *CreateVMRequestIpconfig0 `json:"ipconfig2,omitempty"`
+	Ipconfig3 *CreateVMRequestIpconfig0 `json:"ipconfig3,omitempty"`
+	Ipconfig4 *CreateVMRequestIpconfig0 `json:"ipconfig4,omitempty"`
+	Ipconfig5 *CreateVMRequestIpconfig0 `json:"ipconfig5,omitempty"`
+	Ipconfig6 *CreateVMRequestIpconfig0 `json:"ipconfig6,omitempty"`
+	Ipconfig7 *CreateVMRequestIpconfig0 `json:"ipconfig7,omitempty"`
+	Ipconfig8 *CreateVMRequestIpconfig0 `json:"ipconfig8,omitempty"`
+	Ipconfig9 *CreateVMRequestIpconfig0 `json:"ipconfig9,omitempty"`
+	Ipconfig10 *CreateVMRequestIpconfig0 `json:"ipconfig10,omitempty"`
+	Ipconfig11 *CreateVMRequestIpconfig0 `json:"ipconfig11,omitempty"`
+	Ipconfig12 *CreateVMRequestIpconfig0 `json:"ipconfig12,omitempty"`
+	Ipconfig13 *CreateVMRequestIpconfig0 `json:"ipconfig13,omitempty"`
+	Ipconfig14 *CreateVMRequestIpconfig0 `json:"ipconfig14,omitempty"`
+	Ipconfig15 *CreateVMRequestIpconfig0 `json:"ipconfig15,omitempty"`
+	Ipconfig16 *CreateVMRequestIpconfig0 `json:"ipconfig16,omitempty"`
+	Ipconfig17 *CreateVMRequestIpconfig0 `json:"ipconfig17,omitempty"`
+	Ipconfig18 *CreateVMRequestIpconfig0 `json:"ipconfig18,omitempty"`
+	Ipconfig19 *CreateVMRequestIpconfig0 `json:"ipconfig19,omitempty"`
+	Ipconfig20 *CreateVMRequestIpconfig0 `json:"ipconfig20,omitempty"`
+	Ipconfig21 *CreateVMRequestIpconfig0 `json:"ipconfig21,omitempty"`
+	Ipconfig22 *CreateVMRequestIpconfig0 `json:"ipconfig22,omitempty"`
+	Ipconfig23 *CreateVMRequestIpconfig0 `json:"ipconfig23,omitempty"`
+	Ipconfig24 *CreateVMRequestIpconfig0 `json:"ipconfig24,omitempty"`
+	Ipconfig25 *CreateVMRequestIpconfig0 `json:"ipconfig25,omitempty"`
+	Ipconfig26 *CreateVMRequestIpconfig0 `json:"ipconfig26,omitempty"`
+	Ipconfig27 *CreateVMRequestIpconfig0 `json:"ipconfig27,omitempty"`
+	Ipconfig28 *CreateVMRequestIpconfig0 `json:"ipconfig28,omitempty"`
+	Ipconfig29 *CreateVMRequestIpconfig0 `json:"ipconfig29,omitempty"`
+	Ivshmem *CreateVMRequestIvshmem `json:"ivshmem,omitempty"`
 	Keephugepages *bool `json:"keephugepages,omitempty"`
-	// Keyboard layout for VNC server. This option is generally not required and is often better handled from within the guest OS.
 	Keyboard *string `json:"keyboard,omitempty"`
-	// Enable/disable KVM hardware virtualization.
 	Kvm *bool `json:"kvm,omitempty"`
-	// Start the VM immediately from the backup and restore in background. PBS only.
 	LiveRestore *bool `json:"live-restore,omitempty"`
-	// Set the real time clock (RTC) to local time. This is enabled by default if the `ostype` indicates a Microsoft Windows OS.
 	Localtime *bool `json:"localtime,omitempty"`
-	// Lock/unlock the VM.
 	Lock *string `json:"lock,omitempty"`
-	// Specifies the QEMU machine type.
-	Machine *string `json:"machine,omitempty"`
-	// Memory
-	Memory *int64 `json:"memory,omitempty"`
-	// Set maximum tolerated downtime (in seconds) for migrations.
+	Machine *CreateVMRequestMachine `json:"machine,omitempty"`
+	Memory *CreateVMRequestMemory `json:"memory,omitempty"`
 	MigrateDowntime *float32 `json:"migrate_downtime,omitempty"`
-	// Set maximum speed (in MB/s) for migrations. Value 0 is no limit.
 	MigrateSpeed *int64 `json:"migrate_speed,omitempty"`
-	// Set a name for the VM. Only used on the configuration web interface.
 	Name *string `json:"name,omitempty"`
-	// cloud-init: Sets DNS server IP address for a container. Create will automatically use the setting from the host if neither searchdomain nor nameserver are set.
 	Nameserver *string `json:"nameserver,omitempty"`
-	Net0 *GetVMConfig200ResponseDataNet0 `json:"net0,omitempty"`
-	Net1 *GetVMConfig200ResponseDataNet0 `json:"net1,omitempty"`
-	Net2 *GetVMConfig200ResponseDataNet0 `json:"net2,omitempty"`
-	Net3 *GetVMConfig200ResponseDataNet0 `json:"net3,omitempty"`
-	Net4 *GetVMConfig200ResponseDataNet0 `json:"net4,omitempty"`
-	Net5 *GetVMConfig200ResponseDataNet0 `json:"net5,omitempty"`
-	Net6 *GetVMConfig200ResponseDataNet0 `json:"net6,omitempty"`
-	Net7 *GetVMConfig200ResponseDataNet0 `json:"net7,omitempty"`
-	Net8 *GetVMConfig200ResponseDataNet0 `json:"net8,omitempty"`
-	Net9 *GetVMConfig200ResponseDataNet0 `json:"net9,omitempty"`
-	Net10 *GetVMConfig200ResponseDataNet0 `json:"net10,omitempty"`
-	Net11 *GetVMConfig200ResponseDataNet0 `json:"net11,omitempty"`
-	Net12 *GetVMConfig200ResponseDataNet0 `json:"net12,omitempty"`
-	Net13 *GetVMConfig200ResponseDataNet0 `json:"net13,omitempty"`
-	Net14 *GetVMConfig200ResponseDataNet0 `json:"net14,omitempty"`
-	Net15 *GetVMConfig200ResponseDataNet0 `json:"net15,omitempty"`
-	Net16 *GetVMConfig200ResponseDataNet0 `json:"net16,omitempty"`
-	Net17 *GetVMConfig200ResponseDataNet0 `json:"net17,omitempty"`
-	Net18 *GetVMConfig200ResponseDataNet0 `json:"net18,omitempty"`
-	Net19 *GetVMConfig200ResponseDataNet0 `json:"net19,omitempty"`
-	Net20 *GetVMConfig200ResponseDataNet0 `json:"net20,omitempty"`
-	Net21 *GetVMConfig200ResponseDataNet0 `json:"net21,omitempty"`
-	Net22 *GetVMConfig200ResponseDataNet0 `json:"net22,omitempty"`
-	Net23 *GetVMConfig200ResponseDataNet0 `json:"net23,omitempty"`
-	Net24 *GetVMConfig200ResponseDataNet0 `json:"net24,omitempty"`
-	Net25 *GetVMConfig200ResponseDataNet0 `json:"net25,omitempty"`
-	Net26 *GetVMConfig200ResponseDataNet0 `json:"net26,omitempty"`
-	Net27 *GetVMConfig200ResponseDataNet0 `json:"net27,omitempty"`
-	Net28 *GetVMConfig200ResponseDataNet0 `json:"net28,omitempty"`
-	Net29 *GetVMConfig200ResponseDataNet0 `json:"net29,omitempty"`
-	Net30 *GetVMConfig200ResponseDataNet0 `json:"net30,omitempty"`
-	Net31 *GetVMConfig200ResponseDataNet0 `json:"net31,omitempty"`
-	// Enable/disable NUMA.
+	Net0 *CreateVMRequestNet0 `json:"net0,omitempty"`
+	Net1 *CreateVMRequestNet0 `json:"net1,omitempty"`
+	Net2 *CreateVMRequestNet0 `json:"net2,omitempty"`
+	Net3 *CreateVMRequestNet0 `json:"net3,omitempty"`
+	Net4 *CreateVMRequestNet0 `json:"net4,omitempty"`
+	Net5 *CreateVMRequestNet0 `json:"net5,omitempty"`
+	Net6 *CreateVMRequestNet0 `json:"net6,omitempty"`
+	Net7 *CreateVMRequestNet0 `json:"net7,omitempty"`
+	Net8 *CreateVMRequestNet0 `json:"net8,omitempty"`
+	Net9 *CreateVMRequestNet0 `json:"net9,omitempty"`
+	Net10 *CreateVMRequestNet0 `json:"net10,omitempty"`
+	Net11 *CreateVMRequestNet0 `json:"net11,omitempty"`
+	Net12 *CreateVMRequestNet0 `json:"net12,omitempty"`
+	Net13 *CreateVMRequestNet0 `json:"net13,omitempty"`
+	Net14 *CreateVMRequestNet0 `json:"net14,omitempty"`
+	Net15 *CreateVMRequestNet0 `json:"net15,omitempty"`
+	Net16 *CreateVMRequestNet0 `json:"net16,omitempty"`
+	Net17 *CreateVMRequestNet0 `json:"net17,omitempty"`
+	Net18 *CreateVMRequestNet0 `json:"net18,omitempty"`
+	Net19 *CreateVMRequestNet0 `json:"net19,omitempty"`
+	Net20 *CreateVMRequestNet0 `json:"net20,omitempty"`
+	Net21 *CreateVMRequestNet0 `json:"net21,omitempty"`
+	Net22 *CreateVMRequestNet0 `json:"net22,omitempty"`
+	Net23 *CreateVMRequestNet0 `json:"net23,omitempty"`
+	Net24 *CreateVMRequestNet0 `json:"net24,omitempty"`
+	Net25 *CreateVMRequestNet0 `json:"net25,omitempty"`
+	Net26 *CreateVMRequestNet0 `json:"net26,omitempty"`
+	Net27 *CreateVMRequestNet0 `json:"net27,omitempty"`
+	Net28 *CreateVMRequestNet0 `json:"net28,omitempty"`
+	Net29 *CreateVMRequestNet0 `json:"net29,omitempty"`
+	Net30 *CreateVMRequestNet0 `json:"net30,omitempty"`
+	Net31 *CreateVMRequestNet0 `json:"net31,omitempty"`
 	Numa *bool `json:"numa,omitempty"`
-	Numa0 *GetVMConfig200ResponseDataNuma0 `json:"numa0,omitempty"`
-	Numa1 *GetVMConfig200ResponseDataNuma0 `json:"numa1,omitempty"`
-	Numa2 *GetVMConfig200ResponseDataNuma0 `json:"numa2,omitempty"`
-	Numa3 *GetVMConfig200ResponseDataNuma0 `json:"numa3,omitempty"`
-	Numa4 *GetVMConfig200ResponseDataNuma0 `json:"numa4,omitempty"`
-	Numa5 *GetVMConfig200ResponseDataNuma0 `json:"numa5,omitempty"`
-	Numa6 *GetVMConfig200ResponseDataNuma0 `json:"numa6,omitempty"`
-	Numa7 *GetVMConfig200ResponseDataNuma0 `json:"numa7,omitempty"`
-	Numa8 *GetVMConfig200ResponseDataNuma0 `json:"numa8,omitempty"`
-	Numa9 *GetVMConfig200ResponseDataNuma0 `json:"numa9,omitempty"`
-	Numa10 *GetVMConfig200ResponseDataNuma0 `json:"numa10,omitempty"`
-	Numa11 *GetVMConfig200ResponseDataNuma0 `json:"numa11,omitempty"`
-	Numa12 *GetVMConfig200ResponseDataNuma0 `json:"numa12,omitempty"`
-	Numa13 *GetVMConfig200ResponseDataNuma0 `json:"numa13,omitempty"`
-	Numa14 *GetVMConfig200ResponseDataNuma0 `json:"numa14,omitempty"`
-	Numa15 *GetVMConfig200ResponseDataNuma0 `json:"numa15,omitempty"`
-	Numa16 *GetVMConfig200ResponseDataNuma0 `json:"numa16,omitempty"`
-	Numa17 *GetVMConfig200ResponseDataNuma0 `json:"numa17,omitempty"`
-	Numa18 *GetVMConfig200ResponseDataNuma0 `json:"numa18,omitempty"`
-	Numa19 *GetVMConfig200ResponseDataNuma0 `json:"numa19,omitempty"`
-	Numa20 *GetVMConfig200ResponseDataNuma0 `json:"numa20,omitempty"`
-	Numa21 *GetVMConfig200ResponseDataNuma0 `json:"numa21,omitempty"`
-	Numa22 *GetVMConfig200ResponseDataNuma0 `json:"numa22,omitempty"`
-	Numa23 *GetVMConfig200ResponseDataNuma0 `json:"numa23,omitempty"`
-	Numa24 *GetVMConfig200ResponseDataNuma0 `json:"numa24,omitempty"`
-	Numa25 *GetVMConfig200ResponseDataNuma0 `json:"numa25,omitempty"`
-	Numa26 *GetVMConfig200ResponseDataNuma0 `json:"numa26,omitempty"`
-	Numa27 *GetVMConfig200ResponseDataNuma0 `json:"numa27,omitempty"`
-	Numa28 *GetVMConfig200ResponseDataNuma0 `json:"numa28,omitempty"`
-	Numa29 *GetVMConfig200ResponseDataNuma0 `json:"numa29,omitempty"`
-	// Specifies whether a VM will be started during system bootup.
+	Numa0 *CreateVMRequestNuma0 `json:"numa0,omitempty"`
+	Numa1 *CreateVMRequestNuma0 `json:"numa1,omitempty"`
+	Numa2 *CreateVMRequestNuma0 `json:"numa2,omitempty"`
+	Numa3 *CreateVMRequestNuma0 `json:"numa3,omitempty"`
+	Numa4 *CreateVMRequestNuma0 `json:"numa4,omitempty"`
+	Numa5 *CreateVMRequestNuma0 `json:"numa5,omitempty"`
+	Numa6 *CreateVMRequestNuma0 `json:"numa6,omitempty"`
+	Numa7 *CreateVMRequestNuma0 `json:"numa7,omitempty"`
+	Numa8 *CreateVMRequestNuma0 `json:"numa8,omitempty"`
+	Numa9 *CreateVMRequestNuma0 `json:"numa9,omitempty"`
+	Numa10 *CreateVMRequestNuma0 `json:"numa10,omitempty"`
+	Numa11 *CreateVMRequestNuma0 `json:"numa11,omitempty"`
+	Numa12 *CreateVMRequestNuma0 `json:"numa12,omitempty"`
+	Numa13 *CreateVMRequestNuma0 `json:"numa13,omitempty"`
+	Numa14 *CreateVMRequestNuma0 `json:"numa14,omitempty"`
+	Numa15 *CreateVMRequestNuma0 `json:"numa15,omitempty"`
+	Numa16 *CreateVMRequestNuma0 `json:"numa16,omitempty"`
+	Numa17 *CreateVMRequestNuma0 `json:"numa17,omitempty"`
+	Numa18 *CreateVMRequestNuma0 `json:"numa18,omitempty"`
+	Numa19 *CreateVMRequestNuma0 `json:"numa19,omitempty"`
+	Numa20 *CreateVMRequestNuma0 `json:"numa20,omitempty"`
+	Numa21 *CreateVMRequestNuma0 `json:"numa21,omitempty"`
+	Numa22 *CreateVMRequestNuma0 `json:"numa22,omitempty"`
+	Numa23 *CreateVMRequestNuma0 `json:"numa23,omitempty"`
+	Numa24 *CreateVMRequestNuma0 `json:"numa24,omitempty"`
+	Numa25 *CreateVMRequestNuma0 `json:"numa25,omitempty"`
+	Numa26 *CreateVMRequestNuma0 `json:"numa26,omitempty"`
+	Numa27 *CreateVMRequestNuma0 `json:"numa27,omitempty"`
+	Numa28 *CreateVMRequestNuma0 `json:"numa28,omitempty"`
+	Numa29 *CreateVMRequestNuma0 `json:"numa29,omitempty"`
 	Onboot *bool `json:"onboot,omitempty"`
-	// Specify guest operating system.
 	Ostype *string `json:"ostype,omitempty"`
-	// Map host parallel devices (n is 0 to 2).
 	Parallel0 *string `json:"parallel0,omitempty"`
-	// Map host parallel devices (n is 0 to 2).
 	Parallel1 *string `json:"parallel1,omitempty"`
-	// Map host parallel devices (n is 0 to 2).
 	Parallel2 *string `json:"parallel2,omitempty"`
-	// Map host parallel devices (n is 0 to 2).
 	Parallel3 *string `json:"parallel3,omitempty"`
-	// Add the VM to the specified pool.
 	Pool *string `json:"pool,omitempty"`
-	// Sets the protection flag of the VM. This will disable the remove VM and remove disk operations.
 	Protection *bool `json:"protection,omitempty"`
-	// Allow reboot. If set to '0' the VM exit on reboot.
 	Reboot *bool `json:"reboot,omitempty"`
-	Rng0 *GetVMConfig200ResponseDataRng0 `json:"rng0,omitempty"`
+	Rng0 *CreateVMRequestRng0 `json:"rng0,omitempty"`
 	Sata0 *CreateVMRequestSata0 `json:"sata0,omitempty"`
 	Sata1 *CreateVMRequestSata0 `json:"sata1,omitempty"`
 	Sata2 *CreateVMRequestSata0 `json:"sata2,omitempty"`
@@ -315,85 +238,64 @@ type CreateVMRequest struct {
 	Scsi27 *CreateVMRequestScsi0 `json:"scsi27,omitempty"`
 	Scsi28 *CreateVMRequestScsi0 `json:"scsi28,omitempty"`
 	Scsi29 *CreateVMRequestScsi0 `json:"scsi29,omitempty"`
-	// SCSI controller model
 	Scsihw *string `json:"scsihw,omitempty"`
-	// cloud-init: Sets DNS search domains for a container. Create will automatically use the setting from the host if neither searchdomain nor nameserver are set.
 	Searchdomain *string `json:"searchdomain,omitempty"`
-	// Create a serial device inside the VM (n is 0 to 3)
 	Serial0 *string `json:"serial0,omitempty"`
-	// Create a serial device inside the VM (n is 0 to 3)
 	Serial1 *string `json:"serial1,omitempty"`
-	// Create a serial device inside the VM (n is 0 to 3)
 	Serial2 *string `json:"serial2,omitempty"`
-	// Create a serial device inside the VM (n is 0 to 3)
 	Serial3 *string `json:"serial3,omitempty"`
-	// Amount of memory shares for auto-ballooning. The larger the number is, the more memory this VM gets. Number is relative to weights of all other running VMs. Using zero disables auto-ballooning. Auto-ballooning is done by pvestatd.
 	Shares *int64 `json:"shares,omitempty"`
-	// Specify SMBIOS type 1 fields.
 	Smbios1 *string `json:"smbios1,omitempty"`
-	// The number of CPUs. Please use option -sockets instead.
 	Smp *int64 `json:"smp,omitempty"`
-	// The number of CPU sockets.
 	Sockets *int64 `json:"sockets,omitempty"`
-	SpiceEnhancements *GetVMConfig200ResponseDataSpiceEnhancements `json:"spice_enhancements,omitempty"`
-	// cloud-init: Setup public SSH keys (one key per line, OpenSSH format).
+	SpiceEnhancements *CreateVMRequestSpiceEnhancements `json:"spice_enhancements,omitempty"`
 	Sshkeys *string `json:"sshkeys,omitempty"`
-	// Start VM after it was created successfully.
 	Start *bool `json:"start,omitempty"`
-	// Set the initial date of the real time clock. Valid format for date are:'now' or '2006-06-17T16:01:21' or '2006-06-17'.
 	Startdate *string `json:"startdate,omitempty"`
-	// Startup and shutdown behavior. Order is a non-negative number defining the general startup order. Shutdown in done with reverse ordering. Additionally you can set the 'up' or 'down' delay in seconds, which specifies a delay to wait before the next VM is started or stopped.
 	Startup *string `json:"startup,omitempty"`
-	// Default storage.
 	Storage *string `json:"storage,omitempty"`
-	// Enable/disable the USB tablet device.
 	Tablet *bool `json:"tablet,omitempty"`
-	// Tags of the VM. This is only meta information.
 	Tags *string `json:"tags,omitempty"`
-	// Enable/disable time drift fix.
 	Tdf *bool `json:"tdf,omitempty"`
-	// Enable/disable Template.
 	Template *bool `json:"template,omitempty"`
 	Tpmstate0 *CreateVMRequestTpmstate0 `json:"tpmstate0,omitempty"`
-	// Assign a unique random ethernet address.
 	Unique *bool `json:"unique,omitempty"`
-	Unused0 *GetVMConfig200ResponseDataUnused0 `json:"unused0,omitempty"`
-	Unused1 *GetVMConfig200ResponseDataUnused0 `json:"unused1,omitempty"`
-	Unused2 *GetVMConfig200ResponseDataUnused0 `json:"unused2,omitempty"`
-	Unused3 *GetVMConfig200ResponseDataUnused0 `json:"unused3,omitempty"`
-	Unused4 *GetVMConfig200ResponseDataUnused0 `json:"unused4,omitempty"`
-	Unused5 *GetVMConfig200ResponseDataUnused0 `json:"unused5,omitempty"`
-	Unused6 *GetVMConfig200ResponseDataUnused0 `json:"unused6,omitempty"`
-	Unused7 *GetVMConfig200ResponseDataUnused0 `json:"unused7,omitempty"`
-	Unused8 *GetVMConfig200ResponseDataUnused0 `json:"unused8,omitempty"`
-	Unused9 *GetVMConfig200ResponseDataUnused0 `json:"unused9,omitempty"`
-	Unused10 *GetVMConfig200ResponseDataUnused0 `json:"unused10,omitempty"`
-	Unused11 *GetVMConfig200ResponseDataUnused0 `json:"unused11,omitempty"`
-	Unused12 *GetVMConfig200ResponseDataUnused0 `json:"unused12,omitempty"`
-	Unused13 *GetVMConfig200ResponseDataUnused0 `json:"unused13,omitempty"`
-	Unused14 *GetVMConfig200ResponseDataUnused0 `json:"unused14,omitempty"`
-	Unused15 *GetVMConfig200ResponseDataUnused0 `json:"unused15,omitempty"`
-	Unused16 *GetVMConfig200ResponseDataUnused0 `json:"unused16,omitempty"`
-	Unused17 *GetVMConfig200ResponseDataUnused0 `json:"unused17,omitempty"`
-	Unused18 *GetVMConfig200ResponseDataUnused0 `json:"unused18,omitempty"`
-	Unused19 *GetVMConfig200ResponseDataUnused0 `json:"unused19,omitempty"`
-	Unused20 *GetVMConfig200ResponseDataUnused0 `json:"unused20,omitempty"`
-	Unused21 *GetVMConfig200ResponseDataUnused0 `json:"unused21,omitempty"`
-	Unused22 *GetVMConfig200ResponseDataUnused0 `json:"unused22,omitempty"`
-	Unused23 *GetVMConfig200ResponseDataUnused0 `json:"unused23,omitempty"`
-	Unused24 *GetVMConfig200ResponseDataUnused0 `json:"unused24,omitempty"`
-	Unused25 *GetVMConfig200ResponseDataUnused0 `json:"unused25,omitempty"`
-	Unused26 *GetVMConfig200ResponseDataUnused0 `json:"unused26,omitempty"`
-	Unused27 *GetVMConfig200ResponseDataUnused0 `json:"unused27,omitempty"`
-	Unused28 *GetVMConfig200ResponseDataUnused0 `json:"unused28,omitempty"`
-	Unused29 *GetVMConfig200ResponseDataUnused0 `json:"unused29,omitempty"`
-	Usb0 *GetVMConfig200ResponseDataUsb0 `json:"usb0,omitempty"`
-	Usb1 *GetVMConfig200ResponseDataUsb0 `json:"usb1,omitempty"`
-	Usb2 *GetVMConfig200ResponseDataUsb0 `json:"usb2,omitempty"`
-	Usb3 *GetVMConfig200ResponseDataUsb0 `json:"usb3,omitempty"`
-	// Number of hotplugged vcpus.
+	Unused0 *CreateVMRequestUnused0 `json:"unused0,omitempty"`
+	Unused1 *CreateVMRequestUnused0 `json:"unused1,omitempty"`
+	Unused2 *CreateVMRequestUnused0 `json:"unused2,omitempty"`
+	Unused3 *CreateVMRequestUnused0 `json:"unused3,omitempty"`
+	Unused4 *CreateVMRequestUnused0 `json:"unused4,omitempty"`
+	Unused5 *CreateVMRequestUnused0 `json:"unused5,omitempty"`
+	Unused6 *CreateVMRequestUnused0 `json:"unused6,omitempty"`
+	Unused7 *CreateVMRequestUnused0 `json:"unused7,omitempty"`
+	Unused8 *CreateVMRequestUnused0 `json:"unused8,omitempty"`
+	Unused9 *CreateVMRequestUnused0 `json:"unused9,omitempty"`
+	Unused10 *CreateVMRequestUnused0 `json:"unused10,omitempty"`
+	Unused11 *CreateVMRequestUnused0 `json:"unused11,omitempty"`
+	Unused12 *CreateVMRequestUnused0 `json:"unused12,omitempty"`
+	Unused13 *CreateVMRequestUnused0 `json:"unused13,omitempty"`
+	Unused14 *CreateVMRequestUnused0 `json:"unused14,omitempty"`
+	Unused15 *CreateVMRequestUnused0 `json:"unused15,omitempty"`
+	Unused16 *CreateVMRequestUnused0 `json:"unused16,omitempty"`
+	Unused17 *CreateVMRequestUnused0 `json:"unused17,omitempty"`
+	Unused18 *CreateVMRequestUnused0 `json:"unused18,omitempty"`
+	Unused19 *CreateVMRequestUnused0 `json:"unused19,omitempty"`
+	Unused20 *CreateVMRequestUnused0 `json:"unused20,omitempty"`
+	Unused21 *CreateVMRequestUnused0 `json:"unused21,omitempty"`
+	Unused22 *CreateVMRequestUnused0 `json:"unused22,omitempty"`
+	Unused23 *CreateVMRequestUnused0 `json:"unused23,omitempty"`
+	Unused24 *CreateVMRequestUnused0 `json:"unused24,omitempty"`
+	Unused25 *CreateVMRequestUnused0 `json:"unused25,omitempty"`
+	Unused26 *CreateVMRequestUnused0 `json:"unused26,omitempty"`
+	Unused27 *CreateVMRequestUnused0 `json:"unused27,omitempty"`
+	Unused28 *CreateVMRequestUnused0 `json:"unused28,omitempty"`
+	Unused29 *CreateVMRequestUnused0 `json:"unused29,omitempty"`
+	Usb0 *CreateVMRequestUsb0 `json:"usb0,omitempty"`
+	Usb1 *CreateVMRequestUsb0 `json:"usb1,omitempty"`
+	Usb2 *CreateVMRequestUsb0 `json:"usb2,omitempty"`
+	Usb3 *CreateVMRequestUsb0 `json:"usb3,omitempty"`
 	Vcpus *int64 `json:"vcpus,omitempty"`
-	Vga *GetVMConfig200ResponseDataVga `json:"vga,omitempty"`
+	Vga *CreateVMRequestVga `json:"vga,omitempty"`
 	Virtio0 *CreateVMRequestVirtio0 `json:"virtio0,omitempty"`
 	Virtio1 *CreateVMRequestVirtio0 `json:"virtio1,omitempty"`
 	Virtio2 *CreateVMRequestVirtio0 `json:"virtio2,omitempty"`
@@ -410,16 +312,11 @@ type CreateVMRequest struct {
 	Virtio13 *CreateVMRequestVirtio0 `json:"virtio13,omitempty"`
 	Virtio14 *CreateVMRequestVirtio0 `json:"virtio14,omitempty"`
 	Virtio15 *CreateVMRequestVirtio0 `json:"virtio15,omitempty"`
-	// Set VM Generation ID. Use '1' to autogenerate on create or update, pass '0' to disable explicitly.
 	Vmgenid *string `json:"vmgenid,omitempty"`
-	// The (unique) ID of the VM.
 	Vmid int64 `json:"vmid"`
-	// Default storage for VM state volumes/files.
 	Vmstatestorage *string `json:"vmstatestorage,omitempty"`
-	Watchdog *GetVMConfig200ResponseDataWatchdog `json:"watchdog,omitempty"`
+	Watchdog *CreateVMRequestWatchdog `json:"watchdog,omitempty"`
 }
-
-type _CreateVMRequest CreateVMRequest
 
 // NewCreateVMRequest instantiates a new CreateVMRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -504,9 +401,9 @@ func (o *CreateVMRequest) SetAffinity(v string) {
 }
 
 // GetAgent returns the Agent field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetAgent() GetVMConfig200ResponseDataAgent {
+func (o *CreateVMRequest) GetAgent() CreateVMRequestAgent {
 	if o == nil || IsNil(o.Agent) {
-		var ret GetVMConfig200ResponseDataAgent
+		var ret CreateVMRequestAgent
 		return ret
 	}
 	return *o.Agent
@@ -514,7 +411,7 @@ func (o *CreateVMRequest) GetAgent() GetVMConfig200ResponseDataAgent {
 
 // GetAgentOk returns a tuple with the Agent field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetAgentOk() (*GetVMConfig200ResponseDataAgent, bool) {
+func (o *CreateVMRequest) GetAgentOk() (*CreateVMRequestAgent, bool) {
 	if o == nil || IsNil(o.Agent) {
 		return nil, false
 	}
@@ -530,9 +427,41 @@ func (o *CreateVMRequest) HasAgent() bool {
 	return false
 }
 
-// SetAgent gets a reference to the given GetVMConfig200ResponseDataAgent and assigns it to the Agent field.
-func (o *CreateVMRequest) SetAgent(v GetVMConfig200ResponseDataAgent) {
+// SetAgent gets a reference to the given CreateVMRequestAgent and assigns it to the Agent field.
+func (o *CreateVMRequest) SetAgent(v CreateVMRequestAgent) {
 	o.Agent = &v
+}
+
+// GetAmdSev returns the AmdSev field value if set, zero value otherwise.
+func (o *CreateVMRequest) GetAmdSev() string {
+	if o == nil || IsNil(o.AmdSev) {
+		var ret string
+		return ret
+	}
+	return *o.AmdSev
+}
+
+// GetAmdSevOk returns a tuple with the AmdSev field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateVMRequest) GetAmdSevOk() (*string, bool) {
+	if o == nil || IsNil(o.AmdSev) {
+		return nil, false
+	}
+	return o.AmdSev, true
+}
+
+// HasAmdSev returns a boolean if a field has been set.
+func (o *CreateVMRequest) HasAmdSev() bool {
+	if o != nil && !IsNil(o.AmdSev) {
+		return true
+	}
+
+	return false
+}
+
+// SetAmdSev gets a reference to the given string and assigns it to the AmdSev field.
+func (o *CreateVMRequest) SetAmdSev(v string) {
+	o.AmdSev = &v
 }
 
 // GetArch returns the Arch field value if set, zero value otherwise.
@@ -632,9 +561,9 @@ func (o *CreateVMRequest) SetArgs(v string) {
 }
 
 // GetAudio0 returns the Audio0 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetAudio0() GetVMConfig200ResponseDataAudio0 {
+func (o *CreateVMRequest) GetAudio0() CreateVMRequestAudio0 {
 	if o == nil || IsNil(o.Audio0) {
-		var ret GetVMConfig200ResponseDataAudio0
+		var ret CreateVMRequestAudio0
 		return ret
 	}
 	return *o.Audio0
@@ -642,7 +571,7 @@ func (o *CreateVMRequest) GetAudio0() GetVMConfig200ResponseDataAudio0 {
 
 // GetAudio0Ok returns a tuple with the Audio0 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetAudio0Ok() (*GetVMConfig200ResponseDataAudio0, bool) {
+func (o *CreateVMRequest) GetAudio0Ok() (*CreateVMRequestAudio0, bool) {
 	if o == nil || IsNil(o.Audio0) {
 		return nil, false
 	}
@@ -658,8 +587,8 @@ func (o *CreateVMRequest) HasAudio0() bool {
 	return false
 }
 
-// SetAudio0 gets a reference to the given GetVMConfig200ResponseDataAudio0 and assigns it to the Audio0 field.
-func (o *CreateVMRequest) SetAudio0(v GetVMConfig200ResponseDataAudio0) {
+// SetAudio0 gets a reference to the given CreateVMRequestAudio0 and assigns it to the Audio0 field.
+func (o *CreateVMRequest) SetAudio0(v CreateVMRequestAudio0) {
 	o.Audio0 = &v
 }
 
@@ -760,9 +689,9 @@ func (o *CreateVMRequest) SetBios(v string) {
 }
 
 // GetBoot returns the Boot field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetBoot() GetVMConfig200ResponseDataBoot {
+func (o *CreateVMRequest) GetBoot() CreateVMRequestBoot {
 	if o == nil || IsNil(o.Boot) {
-		var ret GetVMConfig200ResponseDataBoot
+		var ret CreateVMRequestBoot
 		return ret
 	}
 	return *o.Boot
@@ -770,7 +699,7 @@ func (o *CreateVMRequest) GetBoot() GetVMConfig200ResponseDataBoot {
 
 // GetBootOk returns a tuple with the Boot field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetBootOk() (*GetVMConfig200ResponseDataBoot, bool) {
+func (o *CreateVMRequest) GetBootOk() (*CreateVMRequestBoot, bool) {
 	if o == nil || IsNil(o.Boot) {
 		return nil, false
 	}
@@ -786,8 +715,8 @@ func (o *CreateVMRequest) HasBoot() bool {
 	return false
 }
 
-// SetBoot gets a reference to the given GetVMConfig200ResponseDataBoot and assigns it to the Boot field.
-func (o *CreateVMRequest) SetBoot(v GetVMConfig200ResponseDataBoot) {
+// SetBoot gets a reference to the given CreateVMRequestBoot and assigns it to the Boot field.
+func (o *CreateVMRequest) SetBoot(v CreateVMRequestBoot) {
 	o.Boot = &v
 }
 
@@ -2487,10 +2416,42 @@ func (o *CreateVMRequest) SetIde3(v CreateVMRequestIde0) {
 	o.Ide3 = &v
 }
 
+// GetImportWorkingStorage returns the ImportWorkingStorage field value if set, zero value otherwise.
+func (o *CreateVMRequest) GetImportWorkingStorage() string {
+	if o == nil || IsNil(o.ImportWorkingStorage) {
+		var ret string
+		return ret
+	}
+	return *o.ImportWorkingStorage
+}
+
+// GetImportWorkingStorageOk returns a tuple with the ImportWorkingStorage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateVMRequest) GetImportWorkingStorageOk() (*string, bool) {
+	if o == nil || IsNil(o.ImportWorkingStorage) {
+		return nil, false
+	}
+	return o.ImportWorkingStorage, true
+}
+
+// HasImportWorkingStorage returns a boolean if a field has been set.
+func (o *CreateVMRequest) HasImportWorkingStorage() bool {
+	if o != nil && !IsNil(o.ImportWorkingStorage) {
+		return true
+	}
+
+	return false
+}
+
+// SetImportWorkingStorage gets a reference to the given string and assigns it to the ImportWorkingStorage field.
+func (o *CreateVMRequest) SetImportWorkingStorage(v string) {
+	o.ImportWorkingStorage = &v
+}
+
 // GetIpconfig0 returns the Ipconfig0 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetIpconfig0() GetVMConfig200ResponseDataIpconfig0 {
+func (o *CreateVMRequest) GetIpconfig0() CreateVMRequestIpconfig0 {
 	if o == nil || IsNil(o.Ipconfig0) {
-		var ret GetVMConfig200ResponseDataIpconfig0
+		var ret CreateVMRequestIpconfig0
 		return ret
 	}
 	return *o.Ipconfig0
@@ -2498,7 +2459,7 @@ func (o *CreateVMRequest) GetIpconfig0() GetVMConfig200ResponseDataIpconfig0 {
 
 // GetIpconfig0Ok returns a tuple with the Ipconfig0 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetIpconfig0Ok() (*GetVMConfig200ResponseDataIpconfig0, bool) {
+func (o *CreateVMRequest) GetIpconfig0Ok() (*CreateVMRequestIpconfig0, bool) {
 	if o == nil || IsNil(o.Ipconfig0) {
 		return nil, false
 	}
@@ -2514,15 +2475,15 @@ func (o *CreateVMRequest) HasIpconfig0() bool {
 	return false
 }
 
-// SetIpconfig0 gets a reference to the given GetVMConfig200ResponseDataIpconfig0 and assigns it to the Ipconfig0 field.
-func (o *CreateVMRequest) SetIpconfig0(v GetVMConfig200ResponseDataIpconfig0) {
+// SetIpconfig0 gets a reference to the given CreateVMRequestIpconfig0 and assigns it to the Ipconfig0 field.
+func (o *CreateVMRequest) SetIpconfig0(v CreateVMRequestIpconfig0) {
 	o.Ipconfig0 = &v
 }
 
 // GetIpconfig1 returns the Ipconfig1 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetIpconfig1() GetVMConfig200ResponseDataIpconfig0 {
+func (o *CreateVMRequest) GetIpconfig1() CreateVMRequestIpconfig0 {
 	if o == nil || IsNil(o.Ipconfig1) {
-		var ret GetVMConfig200ResponseDataIpconfig0
+		var ret CreateVMRequestIpconfig0
 		return ret
 	}
 	return *o.Ipconfig1
@@ -2530,7 +2491,7 @@ func (o *CreateVMRequest) GetIpconfig1() GetVMConfig200ResponseDataIpconfig0 {
 
 // GetIpconfig1Ok returns a tuple with the Ipconfig1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetIpconfig1Ok() (*GetVMConfig200ResponseDataIpconfig0, bool) {
+func (o *CreateVMRequest) GetIpconfig1Ok() (*CreateVMRequestIpconfig0, bool) {
 	if o == nil || IsNil(o.Ipconfig1) {
 		return nil, false
 	}
@@ -2546,15 +2507,15 @@ func (o *CreateVMRequest) HasIpconfig1() bool {
 	return false
 }
 
-// SetIpconfig1 gets a reference to the given GetVMConfig200ResponseDataIpconfig0 and assigns it to the Ipconfig1 field.
-func (o *CreateVMRequest) SetIpconfig1(v GetVMConfig200ResponseDataIpconfig0) {
+// SetIpconfig1 gets a reference to the given CreateVMRequestIpconfig0 and assigns it to the Ipconfig1 field.
+func (o *CreateVMRequest) SetIpconfig1(v CreateVMRequestIpconfig0) {
 	o.Ipconfig1 = &v
 }
 
 // GetIpconfig2 returns the Ipconfig2 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetIpconfig2() GetVMConfig200ResponseDataIpconfig0 {
+func (o *CreateVMRequest) GetIpconfig2() CreateVMRequestIpconfig0 {
 	if o == nil || IsNil(o.Ipconfig2) {
-		var ret GetVMConfig200ResponseDataIpconfig0
+		var ret CreateVMRequestIpconfig0
 		return ret
 	}
 	return *o.Ipconfig2
@@ -2562,7 +2523,7 @@ func (o *CreateVMRequest) GetIpconfig2() GetVMConfig200ResponseDataIpconfig0 {
 
 // GetIpconfig2Ok returns a tuple with the Ipconfig2 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetIpconfig2Ok() (*GetVMConfig200ResponseDataIpconfig0, bool) {
+func (o *CreateVMRequest) GetIpconfig2Ok() (*CreateVMRequestIpconfig0, bool) {
 	if o == nil || IsNil(o.Ipconfig2) {
 		return nil, false
 	}
@@ -2578,15 +2539,15 @@ func (o *CreateVMRequest) HasIpconfig2() bool {
 	return false
 }
 
-// SetIpconfig2 gets a reference to the given GetVMConfig200ResponseDataIpconfig0 and assigns it to the Ipconfig2 field.
-func (o *CreateVMRequest) SetIpconfig2(v GetVMConfig200ResponseDataIpconfig0) {
+// SetIpconfig2 gets a reference to the given CreateVMRequestIpconfig0 and assigns it to the Ipconfig2 field.
+func (o *CreateVMRequest) SetIpconfig2(v CreateVMRequestIpconfig0) {
 	o.Ipconfig2 = &v
 }
 
 // GetIpconfig3 returns the Ipconfig3 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetIpconfig3() GetVMConfig200ResponseDataIpconfig0 {
+func (o *CreateVMRequest) GetIpconfig3() CreateVMRequestIpconfig0 {
 	if o == nil || IsNil(o.Ipconfig3) {
-		var ret GetVMConfig200ResponseDataIpconfig0
+		var ret CreateVMRequestIpconfig0
 		return ret
 	}
 	return *o.Ipconfig3
@@ -2594,7 +2555,7 @@ func (o *CreateVMRequest) GetIpconfig3() GetVMConfig200ResponseDataIpconfig0 {
 
 // GetIpconfig3Ok returns a tuple with the Ipconfig3 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetIpconfig3Ok() (*GetVMConfig200ResponseDataIpconfig0, bool) {
+func (o *CreateVMRequest) GetIpconfig3Ok() (*CreateVMRequestIpconfig0, bool) {
 	if o == nil || IsNil(o.Ipconfig3) {
 		return nil, false
 	}
@@ -2610,15 +2571,15 @@ func (o *CreateVMRequest) HasIpconfig3() bool {
 	return false
 }
 
-// SetIpconfig3 gets a reference to the given GetVMConfig200ResponseDataIpconfig0 and assigns it to the Ipconfig3 field.
-func (o *CreateVMRequest) SetIpconfig3(v GetVMConfig200ResponseDataIpconfig0) {
+// SetIpconfig3 gets a reference to the given CreateVMRequestIpconfig0 and assigns it to the Ipconfig3 field.
+func (o *CreateVMRequest) SetIpconfig3(v CreateVMRequestIpconfig0) {
 	o.Ipconfig3 = &v
 }
 
 // GetIpconfig4 returns the Ipconfig4 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetIpconfig4() GetVMConfig200ResponseDataIpconfig0 {
+func (o *CreateVMRequest) GetIpconfig4() CreateVMRequestIpconfig0 {
 	if o == nil || IsNil(o.Ipconfig4) {
-		var ret GetVMConfig200ResponseDataIpconfig0
+		var ret CreateVMRequestIpconfig0
 		return ret
 	}
 	return *o.Ipconfig4
@@ -2626,7 +2587,7 @@ func (o *CreateVMRequest) GetIpconfig4() GetVMConfig200ResponseDataIpconfig0 {
 
 // GetIpconfig4Ok returns a tuple with the Ipconfig4 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetIpconfig4Ok() (*GetVMConfig200ResponseDataIpconfig0, bool) {
+func (o *CreateVMRequest) GetIpconfig4Ok() (*CreateVMRequestIpconfig0, bool) {
 	if o == nil || IsNil(o.Ipconfig4) {
 		return nil, false
 	}
@@ -2642,15 +2603,15 @@ func (o *CreateVMRequest) HasIpconfig4() bool {
 	return false
 }
 
-// SetIpconfig4 gets a reference to the given GetVMConfig200ResponseDataIpconfig0 and assigns it to the Ipconfig4 field.
-func (o *CreateVMRequest) SetIpconfig4(v GetVMConfig200ResponseDataIpconfig0) {
+// SetIpconfig4 gets a reference to the given CreateVMRequestIpconfig0 and assigns it to the Ipconfig4 field.
+func (o *CreateVMRequest) SetIpconfig4(v CreateVMRequestIpconfig0) {
 	o.Ipconfig4 = &v
 }
 
 // GetIpconfig5 returns the Ipconfig5 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetIpconfig5() GetVMConfig200ResponseDataIpconfig0 {
+func (o *CreateVMRequest) GetIpconfig5() CreateVMRequestIpconfig0 {
 	if o == nil || IsNil(o.Ipconfig5) {
-		var ret GetVMConfig200ResponseDataIpconfig0
+		var ret CreateVMRequestIpconfig0
 		return ret
 	}
 	return *o.Ipconfig5
@@ -2658,7 +2619,7 @@ func (o *CreateVMRequest) GetIpconfig5() GetVMConfig200ResponseDataIpconfig0 {
 
 // GetIpconfig5Ok returns a tuple with the Ipconfig5 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetIpconfig5Ok() (*GetVMConfig200ResponseDataIpconfig0, bool) {
+func (o *CreateVMRequest) GetIpconfig5Ok() (*CreateVMRequestIpconfig0, bool) {
 	if o == nil || IsNil(o.Ipconfig5) {
 		return nil, false
 	}
@@ -2674,15 +2635,15 @@ func (o *CreateVMRequest) HasIpconfig5() bool {
 	return false
 }
 
-// SetIpconfig5 gets a reference to the given GetVMConfig200ResponseDataIpconfig0 and assigns it to the Ipconfig5 field.
-func (o *CreateVMRequest) SetIpconfig5(v GetVMConfig200ResponseDataIpconfig0) {
+// SetIpconfig5 gets a reference to the given CreateVMRequestIpconfig0 and assigns it to the Ipconfig5 field.
+func (o *CreateVMRequest) SetIpconfig5(v CreateVMRequestIpconfig0) {
 	o.Ipconfig5 = &v
 }
 
 // GetIpconfig6 returns the Ipconfig6 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetIpconfig6() GetVMConfig200ResponseDataIpconfig0 {
+func (o *CreateVMRequest) GetIpconfig6() CreateVMRequestIpconfig0 {
 	if o == nil || IsNil(o.Ipconfig6) {
-		var ret GetVMConfig200ResponseDataIpconfig0
+		var ret CreateVMRequestIpconfig0
 		return ret
 	}
 	return *o.Ipconfig6
@@ -2690,7 +2651,7 @@ func (o *CreateVMRequest) GetIpconfig6() GetVMConfig200ResponseDataIpconfig0 {
 
 // GetIpconfig6Ok returns a tuple with the Ipconfig6 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetIpconfig6Ok() (*GetVMConfig200ResponseDataIpconfig0, bool) {
+func (o *CreateVMRequest) GetIpconfig6Ok() (*CreateVMRequestIpconfig0, bool) {
 	if o == nil || IsNil(o.Ipconfig6) {
 		return nil, false
 	}
@@ -2706,15 +2667,15 @@ func (o *CreateVMRequest) HasIpconfig6() bool {
 	return false
 }
 
-// SetIpconfig6 gets a reference to the given GetVMConfig200ResponseDataIpconfig0 and assigns it to the Ipconfig6 field.
-func (o *CreateVMRequest) SetIpconfig6(v GetVMConfig200ResponseDataIpconfig0) {
+// SetIpconfig6 gets a reference to the given CreateVMRequestIpconfig0 and assigns it to the Ipconfig6 field.
+func (o *CreateVMRequest) SetIpconfig6(v CreateVMRequestIpconfig0) {
 	o.Ipconfig6 = &v
 }
 
 // GetIpconfig7 returns the Ipconfig7 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetIpconfig7() GetVMConfig200ResponseDataIpconfig0 {
+func (o *CreateVMRequest) GetIpconfig7() CreateVMRequestIpconfig0 {
 	if o == nil || IsNil(o.Ipconfig7) {
-		var ret GetVMConfig200ResponseDataIpconfig0
+		var ret CreateVMRequestIpconfig0
 		return ret
 	}
 	return *o.Ipconfig7
@@ -2722,7 +2683,7 @@ func (o *CreateVMRequest) GetIpconfig7() GetVMConfig200ResponseDataIpconfig0 {
 
 // GetIpconfig7Ok returns a tuple with the Ipconfig7 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetIpconfig7Ok() (*GetVMConfig200ResponseDataIpconfig0, bool) {
+func (o *CreateVMRequest) GetIpconfig7Ok() (*CreateVMRequestIpconfig0, bool) {
 	if o == nil || IsNil(o.Ipconfig7) {
 		return nil, false
 	}
@@ -2738,15 +2699,15 @@ func (o *CreateVMRequest) HasIpconfig7() bool {
 	return false
 }
 
-// SetIpconfig7 gets a reference to the given GetVMConfig200ResponseDataIpconfig0 and assigns it to the Ipconfig7 field.
-func (o *CreateVMRequest) SetIpconfig7(v GetVMConfig200ResponseDataIpconfig0) {
+// SetIpconfig7 gets a reference to the given CreateVMRequestIpconfig0 and assigns it to the Ipconfig7 field.
+func (o *CreateVMRequest) SetIpconfig7(v CreateVMRequestIpconfig0) {
 	o.Ipconfig7 = &v
 }
 
 // GetIpconfig8 returns the Ipconfig8 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetIpconfig8() GetVMConfig200ResponseDataIpconfig0 {
+func (o *CreateVMRequest) GetIpconfig8() CreateVMRequestIpconfig0 {
 	if o == nil || IsNil(o.Ipconfig8) {
-		var ret GetVMConfig200ResponseDataIpconfig0
+		var ret CreateVMRequestIpconfig0
 		return ret
 	}
 	return *o.Ipconfig8
@@ -2754,7 +2715,7 @@ func (o *CreateVMRequest) GetIpconfig8() GetVMConfig200ResponseDataIpconfig0 {
 
 // GetIpconfig8Ok returns a tuple with the Ipconfig8 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetIpconfig8Ok() (*GetVMConfig200ResponseDataIpconfig0, bool) {
+func (o *CreateVMRequest) GetIpconfig8Ok() (*CreateVMRequestIpconfig0, bool) {
 	if o == nil || IsNil(o.Ipconfig8) {
 		return nil, false
 	}
@@ -2770,15 +2731,15 @@ func (o *CreateVMRequest) HasIpconfig8() bool {
 	return false
 }
 
-// SetIpconfig8 gets a reference to the given GetVMConfig200ResponseDataIpconfig0 and assigns it to the Ipconfig8 field.
-func (o *CreateVMRequest) SetIpconfig8(v GetVMConfig200ResponseDataIpconfig0) {
+// SetIpconfig8 gets a reference to the given CreateVMRequestIpconfig0 and assigns it to the Ipconfig8 field.
+func (o *CreateVMRequest) SetIpconfig8(v CreateVMRequestIpconfig0) {
 	o.Ipconfig8 = &v
 }
 
 // GetIpconfig9 returns the Ipconfig9 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetIpconfig9() GetVMConfig200ResponseDataIpconfig0 {
+func (o *CreateVMRequest) GetIpconfig9() CreateVMRequestIpconfig0 {
 	if o == nil || IsNil(o.Ipconfig9) {
-		var ret GetVMConfig200ResponseDataIpconfig0
+		var ret CreateVMRequestIpconfig0
 		return ret
 	}
 	return *o.Ipconfig9
@@ -2786,7 +2747,7 @@ func (o *CreateVMRequest) GetIpconfig9() GetVMConfig200ResponseDataIpconfig0 {
 
 // GetIpconfig9Ok returns a tuple with the Ipconfig9 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetIpconfig9Ok() (*GetVMConfig200ResponseDataIpconfig0, bool) {
+func (o *CreateVMRequest) GetIpconfig9Ok() (*CreateVMRequestIpconfig0, bool) {
 	if o == nil || IsNil(o.Ipconfig9) {
 		return nil, false
 	}
@@ -2802,15 +2763,15 @@ func (o *CreateVMRequest) HasIpconfig9() bool {
 	return false
 }
 
-// SetIpconfig9 gets a reference to the given GetVMConfig200ResponseDataIpconfig0 and assigns it to the Ipconfig9 field.
-func (o *CreateVMRequest) SetIpconfig9(v GetVMConfig200ResponseDataIpconfig0) {
+// SetIpconfig9 gets a reference to the given CreateVMRequestIpconfig0 and assigns it to the Ipconfig9 field.
+func (o *CreateVMRequest) SetIpconfig9(v CreateVMRequestIpconfig0) {
 	o.Ipconfig9 = &v
 }
 
 // GetIpconfig10 returns the Ipconfig10 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetIpconfig10() GetVMConfig200ResponseDataIpconfig0 {
+func (o *CreateVMRequest) GetIpconfig10() CreateVMRequestIpconfig0 {
 	if o == nil || IsNil(o.Ipconfig10) {
-		var ret GetVMConfig200ResponseDataIpconfig0
+		var ret CreateVMRequestIpconfig0
 		return ret
 	}
 	return *o.Ipconfig10
@@ -2818,7 +2779,7 @@ func (o *CreateVMRequest) GetIpconfig10() GetVMConfig200ResponseDataIpconfig0 {
 
 // GetIpconfig10Ok returns a tuple with the Ipconfig10 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetIpconfig10Ok() (*GetVMConfig200ResponseDataIpconfig0, bool) {
+func (o *CreateVMRequest) GetIpconfig10Ok() (*CreateVMRequestIpconfig0, bool) {
 	if o == nil || IsNil(o.Ipconfig10) {
 		return nil, false
 	}
@@ -2834,15 +2795,15 @@ func (o *CreateVMRequest) HasIpconfig10() bool {
 	return false
 }
 
-// SetIpconfig10 gets a reference to the given GetVMConfig200ResponseDataIpconfig0 and assigns it to the Ipconfig10 field.
-func (o *CreateVMRequest) SetIpconfig10(v GetVMConfig200ResponseDataIpconfig0) {
+// SetIpconfig10 gets a reference to the given CreateVMRequestIpconfig0 and assigns it to the Ipconfig10 field.
+func (o *CreateVMRequest) SetIpconfig10(v CreateVMRequestIpconfig0) {
 	o.Ipconfig10 = &v
 }
 
 // GetIpconfig11 returns the Ipconfig11 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetIpconfig11() GetVMConfig200ResponseDataIpconfig0 {
+func (o *CreateVMRequest) GetIpconfig11() CreateVMRequestIpconfig0 {
 	if o == nil || IsNil(o.Ipconfig11) {
-		var ret GetVMConfig200ResponseDataIpconfig0
+		var ret CreateVMRequestIpconfig0
 		return ret
 	}
 	return *o.Ipconfig11
@@ -2850,7 +2811,7 @@ func (o *CreateVMRequest) GetIpconfig11() GetVMConfig200ResponseDataIpconfig0 {
 
 // GetIpconfig11Ok returns a tuple with the Ipconfig11 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetIpconfig11Ok() (*GetVMConfig200ResponseDataIpconfig0, bool) {
+func (o *CreateVMRequest) GetIpconfig11Ok() (*CreateVMRequestIpconfig0, bool) {
 	if o == nil || IsNil(o.Ipconfig11) {
 		return nil, false
 	}
@@ -2866,15 +2827,15 @@ func (o *CreateVMRequest) HasIpconfig11() bool {
 	return false
 }
 
-// SetIpconfig11 gets a reference to the given GetVMConfig200ResponseDataIpconfig0 and assigns it to the Ipconfig11 field.
-func (o *CreateVMRequest) SetIpconfig11(v GetVMConfig200ResponseDataIpconfig0) {
+// SetIpconfig11 gets a reference to the given CreateVMRequestIpconfig0 and assigns it to the Ipconfig11 field.
+func (o *CreateVMRequest) SetIpconfig11(v CreateVMRequestIpconfig0) {
 	o.Ipconfig11 = &v
 }
 
 // GetIpconfig12 returns the Ipconfig12 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetIpconfig12() GetVMConfig200ResponseDataIpconfig0 {
+func (o *CreateVMRequest) GetIpconfig12() CreateVMRequestIpconfig0 {
 	if o == nil || IsNil(o.Ipconfig12) {
-		var ret GetVMConfig200ResponseDataIpconfig0
+		var ret CreateVMRequestIpconfig0
 		return ret
 	}
 	return *o.Ipconfig12
@@ -2882,7 +2843,7 @@ func (o *CreateVMRequest) GetIpconfig12() GetVMConfig200ResponseDataIpconfig0 {
 
 // GetIpconfig12Ok returns a tuple with the Ipconfig12 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetIpconfig12Ok() (*GetVMConfig200ResponseDataIpconfig0, bool) {
+func (o *CreateVMRequest) GetIpconfig12Ok() (*CreateVMRequestIpconfig0, bool) {
 	if o == nil || IsNil(o.Ipconfig12) {
 		return nil, false
 	}
@@ -2898,15 +2859,15 @@ func (o *CreateVMRequest) HasIpconfig12() bool {
 	return false
 }
 
-// SetIpconfig12 gets a reference to the given GetVMConfig200ResponseDataIpconfig0 and assigns it to the Ipconfig12 field.
-func (o *CreateVMRequest) SetIpconfig12(v GetVMConfig200ResponseDataIpconfig0) {
+// SetIpconfig12 gets a reference to the given CreateVMRequestIpconfig0 and assigns it to the Ipconfig12 field.
+func (o *CreateVMRequest) SetIpconfig12(v CreateVMRequestIpconfig0) {
 	o.Ipconfig12 = &v
 }
 
 // GetIpconfig13 returns the Ipconfig13 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetIpconfig13() GetVMConfig200ResponseDataIpconfig0 {
+func (o *CreateVMRequest) GetIpconfig13() CreateVMRequestIpconfig0 {
 	if o == nil || IsNil(o.Ipconfig13) {
-		var ret GetVMConfig200ResponseDataIpconfig0
+		var ret CreateVMRequestIpconfig0
 		return ret
 	}
 	return *o.Ipconfig13
@@ -2914,7 +2875,7 @@ func (o *CreateVMRequest) GetIpconfig13() GetVMConfig200ResponseDataIpconfig0 {
 
 // GetIpconfig13Ok returns a tuple with the Ipconfig13 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetIpconfig13Ok() (*GetVMConfig200ResponseDataIpconfig0, bool) {
+func (o *CreateVMRequest) GetIpconfig13Ok() (*CreateVMRequestIpconfig0, bool) {
 	if o == nil || IsNil(o.Ipconfig13) {
 		return nil, false
 	}
@@ -2930,15 +2891,15 @@ func (o *CreateVMRequest) HasIpconfig13() bool {
 	return false
 }
 
-// SetIpconfig13 gets a reference to the given GetVMConfig200ResponseDataIpconfig0 and assigns it to the Ipconfig13 field.
-func (o *CreateVMRequest) SetIpconfig13(v GetVMConfig200ResponseDataIpconfig0) {
+// SetIpconfig13 gets a reference to the given CreateVMRequestIpconfig0 and assigns it to the Ipconfig13 field.
+func (o *CreateVMRequest) SetIpconfig13(v CreateVMRequestIpconfig0) {
 	o.Ipconfig13 = &v
 }
 
 // GetIpconfig14 returns the Ipconfig14 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetIpconfig14() GetVMConfig200ResponseDataIpconfig0 {
+func (o *CreateVMRequest) GetIpconfig14() CreateVMRequestIpconfig0 {
 	if o == nil || IsNil(o.Ipconfig14) {
-		var ret GetVMConfig200ResponseDataIpconfig0
+		var ret CreateVMRequestIpconfig0
 		return ret
 	}
 	return *o.Ipconfig14
@@ -2946,7 +2907,7 @@ func (o *CreateVMRequest) GetIpconfig14() GetVMConfig200ResponseDataIpconfig0 {
 
 // GetIpconfig14Ok returns a tuple with the Ipconfig14 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetIpconfig14Ok() (*GetVMConfig200ResponseDataIpconfig0, bool) {
+func (o *CreateVMRequest) GetIpconfig14Ok() (*CreateVMRequestIpconfig0, bool) {
 	if o == nil || IsNil(o.Ipconfig14) {
 		return nil, false
 	}
@@ -2962,15 +2923,15 @@ func (o *CreateVMRequest) HasIpconfig14() bool {
 	return false
 }
 
-// SetIpconfig14 gets a reference to the given GetVMConfig200ResponseDataIpconfig0 and assigns it to the Ipconfig14 field.
-func (o *CreateVMRequest) SetIpconfig14(v GetVMConfig200ResponseDataIpconfig0) {
+// SetIpconfig14 gets a reference to the given CreateVMRequestIpconfig0 and assigns it to the Ipconfig14 field.
+func (o *CreateVMRequest) SetIpconfig14(v CreateVMRequestIpconfig0) {
 	o.Ipconfig14 = &v
 }
 
 // GetIpconfig15 returns the Ipconfig15 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetIpconfig15() GetVMConfig200ResponseDataIpconfig0 {
+func (o *CreateVMRequest) GetIpconfig15() CreateVMRequestIpconfig0 {
 	if o == nil || IsNil(o.Ipconfig15) {
-		var ret GetVMConfig200ResponseDataIpconfig0
+		var ret CreateVMRequestIpconfig0
 		return ret
 	}
 	return *o.Ipconfig15
@@ -2978,7 +2939,7 @@ func (o *CreateVMRequest) GetIpconfig15() GetVMConfig200ResponseDataIpconfig0 {
 
 // GetIpconfig15Ok returns a tuple with the Ipconfig15 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetIpconfig15Ok() (*GetVMConfig200ResponseDataIpconfig0, bool) {
+func (o *CreateVMRequest) GetIpconfig15Ok() (*CreateVMRequestIpconfig0, bool) {
 	if o == nil || IsNil(o.Ipconfig15) {
 		return nil, false
 	}
@@ -2994,15 +2955,15 @@ func (o *CreateVMRequest) HasIpconfig15() bool {
 	return false
 }
 
-// SetIpconfig15 gets a reference to the given GetVMConfig200ResponseDataIpconfig0 and assigns it to the Ipconfig15 field.
-func (o *CreateVMRequest) SetIpconfig15(v GetVMConfig200ResponseDataIpconfig0) {
+// SetIpconfig15 gets a reference to the given CreateVMRequestIpconfig0 and assigns it to the Ipconfig15 field.
+func (o *CreateVMRequest) SetIpconfig15(v CreateVMRequestIpconfig0) {
 	o.Ipconfig15 = &v
 }
 
 // GetIpconfig16 returns the Ipconfig16 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetIpconfig16() GetVMConfig200ResponseDataIpconfig0 {
+func (o *CreateVMRequest) GetIpconfig16() CreateVMRequestIpconfig0 {
 	if o == nil || IsNil(o.Ipconfig16) {
-		var ret GetVMConfig200ResponseDataIpconfig0
+		var ret CreateVMRequestIpconfig0
 		return ret
 	}
 	return *o.Ipconfig16
@@ -3010,7 +2971,7 @@ func (o *CreateVMRequest) GetIpconfig16() GetVMConfig200ResponseDataIpconfig0 {
 
 // GetIpconfig16Ok returns a tuple with the Ipconfig16 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetIpconfig16Ok() (*GetVMConfig200ResponseDataIpconfig0, bool) {
+func (o *CreateVMRequest) GetIpconfig16Ok() (*CreateVMRequestIpconfig0, bool) {
 	if o == nil || IsNil(o.Ipconfig16) {
 		return nil, false
 	}
@@ -3026,15 +2987,15 @@ func (o *CreateVMRequest) HasIpconfig16() bool {
 	return false
 }
 
-// SetIpconfig16 gets a reference to the given GetVMConfig200ResponseDataIpconfig0 and assigns it to the Ipconfig16 field.
-func (o *CreateVMRequest) SetIpconfig16(v GetVMConfig200ResponseDataIpconfig0) {
+// SetIpconfig16 gets a reference to the given CreateVMRequestIpconfig0 and assigns it to the Ipconfig16 field.
+func (o *CreateVMRequest) SetIpconfig16(v CreateVMRequestIpconfig0) {
 	o.Ipconfig16 = &v
 }
 
 // GetIpconfig17 returns the Ipconfig17 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetIpconfig17() GetVMConfig200ResponseDataIpconfig0 {
+func (o *CreateVMRequest) GetIpconfig17() CreateVMRequestIpconfig0 {
 	if o == nil || IsNil(o.Ipconfig17) {
-		var ret GetVMConfig200ResponseDataIpconfig0
+		var ret CreateVMRequestIpconfig0
 		return ret
 	}
 	return *o.Ipconfig17
@@ -3042,7 +3003,7 @@ func (o *CreateVMRequest) GetIpconfig17() GetVMConfig200ResponseDataIpconfig0 {
 
 // GetIpconfig17Ok returns a tuple with the Ipconfig17 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetIpconfig17Ok() (*GetVMConfig200ResponseDataIpconfig0, bool) {
+func (o *CreateVMRequest) GetIpconfig17Ok() (*CreateVMRequestIpconfig0, bool) {
 	if o == nil || IsNil(o.Ipconfig17) {
 		return nil, false
 	}
@@ -3058,15 +3019,15 @@ func (o *CreateVMRequest) HasIpconfig17() bool {
 	return false
 }
 
-// SetIpconfig17 gets a reference to the given GetVMConfig200ResponseDataIpconfig0 and assigns it to the Ipconfig17 field.
-func (o *CreateVMRequest) SetIpconfig17(v GetVMConfig200ResponseDataIpconfig0) {
+// SetIpconfig17 gets a reference to the given CreateVMRequestIpconfig0 and assigns it to the Ipconfig17 field.
+func (o *CreateVMRequest) SetIpconfig17(v CreateVMRequestIpconfig0) {
 	o.Ipconfig17 = &v
 }
 
 // GetIpconfig18 returns the Ipconfig18 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetIpconfig18() GetVMConfig200ResponseDataIpconfig0 {
+func (o *CreateVMRequest) GetIpconfig18() CreateVMRequestIpconfig0 {
 	if o == nil || IsNil(o.Ipconfig18) {
-		var ret GetVMConfig200ResponseDataIpconfig0
+		var ret CreateVMRequestIpconfig0
 		return ret
 	}
 	return *o.Ipconfig18
@@ -3074,7 +3035,7 @@ func (o *CreateVMRequest) GetIpconfig18() GetVMConfig200ResponseDataIpconfig0 {
 
 // GetIpconfig18Ok returns a tuple with the Ipconfig18 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetIpconfig18Ok() (*GetVMConfig200ResponseDataIpconfig0, bool) {
+func (o *CreateVMRequest) GetIpconfig18Ok() (*CreateVMRequestIpconfig0, bool) {
 	if o == nil || IsNil(o.Ipconfig18) {
 		return nil, false
 	}
@@ -3090,15 +3051,15 @@ func (o *CreateVMRequest) HasIpconfig18() bool {
 	return false
 }
 
-// SetIpconfig18 gets a reference to the given GetVMConfig200ResponseDataIpconfig0 and assigns it to the Ipconfig18 field.
-func (o *CreateVMRequest) SetIpconfig18(v GetVMConfig200ResponseDataIpconfig0) {
+// SetIpconfig18 gets a reference to the given CreateVMRequestIpconfig0 and assigns it to the Ipconfig18 field.
+func (o *CreateVMRequest) SetIpconfig18(v CreateVMRequestIpconfig0) {
 	o.Ipconfig18 = &v
 }
 
 // GetIpconfig19 returns the Ipconfig19 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetIpconfig19() GetVMConfig200ResponseDataIpconfig0 {
+func (o *CreateVMRequest) GetIpconfig19() CreateVMRequestIpconfig0 {
 	if o == nil || IsNil(o.Ipconfig19) {
-		var ret GetVMConfig200ResponseDataIpconfig0
+		var ret CreateVMRequestIpconfig0
 		return ret
 	}
 	return *o.Ipconfig19
@@ -3106,7 +3067,7 @@ func (o *CreateVMRequest) GetIpconfig19() GetVMConfig200ResponseDataIpconfig0 {
 
 // GetIpconfig19Ok returns a tuple with the Ipconfig19 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetIpconfig19Ok() (*GetVMConfig200ResponseDataIpconfig0, bool) {
+func (o *CreateVMRequest) GetIpconfig19Ok() (*CreateVMRequestIpconfig0, bool) {
 	if o == nil || IsNil(o.Ipconfig19) {
 		return nil, false
 	}
@@ -3122,15 +3083,15 @@ func (o *CreateVMRequest) HasIpconfig19() bool {
 	return false
 }
 
-// SetIpconfig19 gets a reference to the given GetVMConfig200ResponseDataIpconfig0 and assigns it to the Ipconfig19 field.
-func (o *CreateVMRequest) SetIpconfig19(v GetVMConfig200ResponseDataIpconfig0) {
+// SetIpconfig19 gets a reference to the given CreateVMRequestIpconfig0 and assigns it to the Ipconfig19 field.
+func (o *CreateVMRequest) SetIpconfig19(v CreateVMRequestIpconfig0) {
 	o.Ipconfig19 = &v
 }
 
 // GetIpconfig20 returns the Ipconfig20 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetIpconfig20() GetVMConfig200ResponseDataIpconfig0 {
+func (o *CreateVMRequest) GetIpconfig20() CreateVMRequestIpconfig0 {
 	if o == nil || IsNil(o.Ipconfig20) {
-		var ret GetVMConfig200ResponseDataIpconfig0
+		var ret CreateVMRequestIpconfig0
 		return ret
 	}
 	return *o.Ipconfig20
@@ -3138,7 +3099,7 @@ func (o *CreateVMRequest) GetIpconfig20() GetVMConfig200ResponseDataIpconfig0 {
 
 // GetIpconfig20Ok returns a tuple with the Ipconfig20 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetIpconfig20Ok() (*GetVMConfig200ResponseDataIpconfig0, bool) {
+func (o *CreateVMRequest) GetIpconfig20Ok() (*CreateVMRequestIpconfig0, bool) {
 	if o == nil || IsNil(o.Ipconfig20) {
 		return nil, false
 	}
@@ -3154,15 +3115,15 @@ func (o *CreateVMRequest) HasIpconfig20() bool {
 	return false
 }
 
-// SetIpconfig20 gets a reference to the given GetVMConfig200ResponseDataIpconfig0 and assigns it to the Ipconfig20 field.
-func (o *CreateVMRequest) SetIpconfig20(v GetVMConfig200ResponseDataIpconfig0) {
+// SetIpconfig20 gets a reference to the given CreateVMRequestIpconfig0 and assigns it to the Ipconfig20 field.
+func (o *CreateVMRequest) SetIpconfig20(v CreateVMRequestIpconfig0) {
 	o.Ipconfig20 = &v
 }
 
 // GetIpconfig21 returns the Ipconfig21 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetIpconfig21() GetVMConfig200ResponseDataIpconfig0 {
+func (o *CreateVMRequest) GetIpconfig21() CreateVMRequestIpconfig0 {
 	if o == nil || IsNil(o.Ipconfig21) {
-		var ret GetVMConfig200ResponseDataIpconfig0
+		var ret CreateVMRequestIpconfig0
 		return ret
 	}
 	return *o.Ipconfig21
@@ -3170,7 +3131,7 @@ func (o *CreateVMRequest) GetIpconfig21() GetVMConfig200ResponseDataIpconfig0 {
 
 // GetIpconfig21Ok returns a tuple with the Ipconfig21 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetIpconfig21Ok() (*GetVMConfig200ResponseDataIpconfig0, bool) {
+func (o *CreateVMRequest) GetIpconfig21Ok() (*CreateVMRequestIpconfig0, bool) {
 	if o == nil || IsNil(o.Ipconfig21) {
 		return nil, false
 	}
@@ -3186,15 +3147,15 @@ func (o *CreateVMRequest) HasIpconfig21() bool {
 	return false
 }
 
-// SetIpconfig21 gets a reference to the given GetVMConfig200ResponseDataIpconfig0 and assigns it to the Ipconfig21 field.
-func (o *CreateVMRequest) SetIpconfig21(v GetVMConfig200ResponseDataIpconfig0) {
+// SetIpconfig21 gets a reference to the given CreateVMRequestIpconfig0 and assigns it to the Ipconfig21 field.
+func (o *CreateVMRequest) SetIpconfig21(v CreateVMRequestIpconfig0) {
 	o.Ipconfig21 = &v
 }
 
 // GetIpconfig22 returns the Ipconfig22 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetIpconfig22() GetVMConfig200ResponseDataIpconfig0 {
+func (o *CreateVMRequest) GetIpconfig22() CreateVMRequestIpconfig0 {
 	if o == nil || IsNil(o.Ipconfig22) {
-		var ret GetVMConfig200ResponseDataIpconfig0
+		var ret CreateVMRequestIpconfig0
 		return ret
 	}
 	return *o.Ipconfig22
@@ -3202,7 +3163,7 @@ func (o *CreateVMRequest) GetIpconfig22() GetVMConfig200ResponseDataIpconfig0 {
 
 // GetIpconfig22Ok returns a tuple with the Ipconfig22 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetIpconfig22Ok() (*GetVMConfig200ResponseDataIpconfig0, bool) {
+func (o *CreateVMRequest) GetIpconfig22Ok() (*CreateVMRequestIpconfig0, bool) {
 	if o == nil || IsNil(o.Ipconfig22) {
 		return nil, false
 	}
@@ -3218,15 +3179,15 @@ func (o *CreateVMRequest) HasIpconfig22() bool {
 	return false
 }
 
-// SetIpconfig22 gets a reference to the given GetVMConfig200ResponseDataIpconfig0 and assigns it to the Ipconfig22 field.
-func (o *CreateVMRequest) SetIpconfig22(v GetVMConfig200ResponseDataIpconfig0) {
+// SetIpconfig22 gets a reference to the given CreateVMRequestIpconfig0 and assigns it to the Ipconfig22 field.
+func (o *CreateVMRequest) SetIpconfig22(v CreateVMRequestIpconfig0) {
 	o.Ipconfig22 = &v
 }
 
 // GetIpconfig23 returns the Ipconfig23 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetIpconfig23() GetVMConfig200ResponseDataIpconfig0 {
+func (o *CreateVMRequest) GetIpconfig23() CreateVMRequestIpconfig0 {
 	if o == nil || IsNil(o.Ipconfig23) {
-		var ret GetVMConfig200ResponseDataIpconfig0
+		var ret CreateVMRequestIpconfig0
 		return ret
 	}
 	return *o.Ipconfig23
@@ -3234,7 +3195,7 @@ func (o *CreateVMRequest) GetIpconfig23() GetVMConfig200ResponseDataIpconfig0 {
 
 // GetIpconfig23Ok returns a tuple with the Ipconfig23 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetIpconfig23Ok() (*GetVMConfig200ResponseDataIpconfig0, bool) {
+func (o *CreateVMRequest) GetIpconfig23Ok() (*CreateVMRequestIpconfig0, bool) {
 	if o == nil || IsNil(o.Ipconfig23) {
 		return nil, false
 	}
@@ -3250,15 +3211,15 @@ func (o *CreateVMRequest) HasIpconfig23() bool {
 	return false
 }
 
-// SetIpconfig23 gets a reference to the given GetVMConfig200ResponseDataIpconfig0 and assigns it to the Ipconfig23 field.
-func (o *CreateVMRequest) SetIpconfig23(v GetVMConfig200ResponseDataIpconfig0) {
+// SetIpconfig23 gets a reference to the given CreateVMRequestIpconfig0 and assigns it to the Ipconfig23 field.
+func (o *CreateVMRequest) SetIpconfig23(v CreateVMRequestIpconfig0) {
 	o.Ipconfig23 = &v
 }
 
 // GetIpconfig24 returns the Ipconfig24 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetIpconfig24() GetVMConfig200ResponseDataIpconfig0 {
+func (o *CreateVMRequest) GetIpconfig24() CreateVMRequestIpconfig0 {
 	if o == nil || IsNil(o.Ipconfig24) {
-		var ret GetVMConfig200ResponseDataIpconfig0
+		var ret CreateVMRequestIpconfig0
 		return ret
 	}
 	return *o.Ipconfig24
@@ -3266,7 +3227,7 @@ func (o *CreateVMRequest) GetIpconfig24() GetVMConfig200ResponseDataIpconfig0 {
 
 // GetIpconfig24Ok returns a tuple with the Ipconfig24 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetIpconfig24Ok() (*GetVMConfig200ResponseDataIpconfig0, bool) {
+func (o *CreateVMRequest) GetIpconfig24Ok() (*CreateVMRequestIpconfig0, bool) {
 	if o == nil || IsNil(o.Ipconfig24) {
 		return nil, false
 	}
@@ -3282,15 +3243,15 @@ func (o *CreateVMRequest) HasIpconfig24() bool {
 	return false
 }
 
-// SetIpconfig24 gets a reference to the given GetVMConfig200ResponseDataIpconfig0 and assigns it to the Ipconfig24 field.
-func (o *CreateVMRequest) SetIpconfig24(v GetVMConfig200ResponseDataIpconfig0) {
+// SetIpconfig24 gets a reference to the given CreateVMRequestIpconfig0 and assigns it to the Ipconfig24 field.
+func (o *CreateVMRequest) SetIpconfig24(v CreateVMRequestIpconfig0) {
 	o.Ipconfig24 = &v
 }
 
 // GetIpconfig25 returns the Ipconfig25 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetIpconfig25() GetVMConfig200ResponseDataIpconfig0 {
+func (o *CreateVMRequest) GetIpconfig25() CreateVMRequestIpconfig0 {
 	if o == nil || IsNil(o.Ipconfig25) {
-		var ret GetVMConfig200ResponseDataIpconfig0
+		var ret CreateVMRequestIpconfig0
 		return ret
 	}
 	return *o.Ipconfig25
@@ -3298,7 +3259,7 @@ func (o *CreateVMRequest) GetIpconfig25() GetVMConfig200ResponseDataIpconfig0 {
 
 // GetIpconfig25Ok returns a tuple with the Ipconfig25 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetIpconfig25Ok() (*GetVMConfig200ResponseDataIpconfig0, bool) {
+func (o *CreateVMRequest) GetIpconfig25Ok() (*CreateVMRequestIpconfig0, bool) {
 	if o == nil || IsNil(o.Ipconfig25) {
 		return nil, false
 	}
@@ -3314,15 +3275,15 @@ func (o *CreateVMRequest) HasIpconfig25() bool {
 	return false
 }
 
-// SetIpconfig25 gets a reference to the given GetVMConfig200ResponseDataIpconfig0 and assigns it to the Ipconfig25 field.
-func (o *CreateVMRequest) SetIpconfig25(v GetVMConfig200ResponseDataIpconfig0) {
+// SetIpconfig25 gets a reference to the given CreateVMRequestIpconfig0 and assigns it to the Ipconfig25 field.
+func (o *CreateVMRequest) SetIpconfig25(v CreateVMRequestIpconfig0) {
 	o.Ipconfig25 = &v
 }
 
 // GetIpconfig26 returns the Ipconfig26 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetIpconfig26() GetVMConfig200ResponseDataIpconfig0 {
+func (o *CreateVMRequest) GetIpconfig26() CreateVMRequestIpconfig0 {
 	if o == nil || IsNil(o.Ipconfig26) {
-		var ret GetVMConfig200ResponseDataIpconfig0
+		var ret CreateVMRequestIpconfig0
 		return ret
 	}
 	return *o.Ipconfig26
@@ -3330,7 +3291,7 @@ func (o *CreateVMRequest) GetIpconfig26() GetVMConfig200ResponseDataIpconfig0 {
 
 // GetIpconfig26Ok returns a tuple with the Ipconfig26 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetIpconfig26Ok() (*GetVMConfig200ResponseDataIpconfig0, bool) {
+func (o *CreateVMRequest) GetIpconfig26Ok() (*CreateVMRequestIpconfig0, bool) {
 	if o == nil || IsNil(o.Ipconfig26) {
 		return nil, false
 	}
@@ -3346,15 +3307,15 @@ func (o *CreateVMRequest) HasIpconfig26() bool {
 	return false
 }
 
-// SetIpconfig26 gets a reference to the given GetVMConfig200ResponseDataIpconfig0 and assigns it to the Ipconfig26 field.
-func (o *CreateVMRequest) SetIpconfig26(v GetVMConfig200ResponseDataIpconfig0) {
+// SetIpconfig26 gets a reference to the given CreateVMRequestIpconfig0 and assigns it to the Ipconfig26 field.
+func (o *CreateVMRequest) SetIpconfig26(v CreateVMRequestIpconfig0) {
 	o.Ipconfig26 = &v
 }
 
 // GetIpconfig27 returns the Ipconfig27 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetIpconfig27() GetVMConfig200ResponseDataIpconfig0 {
+func (o *CreateVMRequest) GetIpconfig27() CreateVMRequestIpconfig0 {
 	if o == nil || IsNil(o.Ipconfig27) {
-		var ret GetVMConfig200ResponseDataIpconfig0
+		var ret CreateVMRequestIpconfig0
 		return ret
 	}
 	return *o.Ipconfig27
@@ -3362,7 +3323,7 @@ func (o *CreateVMRequest) GetIpconfig27() GetVMConfig200ResponseDataIpconfig0 {
 
 // GetIpconfig27Ok returns a tuple with the Ipconfig27 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetIpconfig27Ok() (*GetVMConfig200ResponseDataIpconfig0, bool) {
+func (o *CreateVMRequest) GetIpconfig27Ok() (*CreateVMRequestIpconfig0, bool) {
 	if o == nil || IsNil(o.Ipconfig27) {
 		return nil, false
 	}
@@ -3378,15 +3339,15 @@ func (o *CreateVMRequest) HasIpconfig27() bool {
 	return false
 }
 
-// SetIpconfig27 gets a reference to the given GetVMConfig200ResponseDataIpconfig0 and assigns it to the Ipconfig27 field.
-func (o *CreateVMRequest) SetIpconfig27(v GetVMConfig200ResponseDataIpconfig0) {
+// SetIpconfig27 gets a reference to the given CreateVMRequestIpconfig0 and assigns it to the Ipconfig27 field.
+func (o *CreateVMRequest) SetIpconfig27(v CreateVMRequestIpconfig0) {
 	o.Ipconfig27 = &v
 }
 
 // GetIpconfig28 returns the Ipconfig28 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetIpconfig28() GetVMConfig200ResponseDataIpconfig0 {
+func (o *CreateVMRequest) GetIpconfig28() CreateVMRequestIpconfig0 {
 	if o == nil || IsNil(o.Ipconfig28) {
-		var ret GetVMConfig200ResponseDataIpconfig0
+		var ret CreateVMRequestIpconfig0
 		return ret
 	}
 	return *o.Ipconfig28
@@ -3394,7 +3355,7 @@ func (o *CreateVMRequest) GetIpconfig28() GetVMConfig200ResponseDataIpconfig0 {
 
 // GetIpconfig28Ok returns a tuple with the Ipconfig28 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetIpconfig28Ok() (*GetVMConfig200ResponseDataIpconfig0, bool) {
+func (o *CreateVMRequest) GetIpconfig28Ok() (*CreateVMRequestIpconfig0, bool) {
 	if o == nil || IsNil(o.Ipconfig28) {
 		return nil, false
 	}
@@ -3410,15 +3371,15 @@ func (o *CreateVMRequest) HasIpconfig28() bool {
 	return false
 }
 
-// SetIpconfig28 gets a reference to the given GetVMConfig200ResponseDataIpconfig0 and assigns it to the Ipconfig28 field.
-func (o *CreateVMRequest) SetIpconfig28(v GetVMConfig200ResponseDataIpconfig0) {
+// SetIpconfig28 gets a reference to the given CreateVMRequestIpconfig0 and assigns it to the Ipconfig28 field.
+func (o *CreateVMRequest) SetIpconfig28(v CreateVMRequestIpconfig0) {
 	o.Ipconfig28 = &v
 }
 
 // GetIpconfig29 returns the Ipconfig29 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetIpconfig29() GetVMConfig200ResponseDataIpconfig0 {
+func (o *CreateVMRequest) GetIpconfig29() CreateVMRequestIpconfig0 {
 	if o == nil || IsNil(o.Ipconfig29) {
-		var ret GetVMConfig200ResponseDataIpconfig0
+		var ret CreateVMRequestIpconfig0
 		return ret
 	}
 	return *o.Ipconfig29
@@ -3426,7 +3387,7 @@ func (o *CreateVMRequest) GetIpconfig29() GetVMConfig200ResponseDataIpconfig0 {
 
 // GetIpconfig29Ok returns a tuple with the Ipconfig29 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetIpconfig29Ok() (*GetVMConfig200ResponseDataIpconfig0, bool) {
+func (o *CreateVMRequest) GetIpconfig29Ok() (*CreateVMRequestIpconfig0, bool) {
 	if o == nil || IsNil(o.Ipconfig29) {
 		return nil, false
 	}
@@ -3442,15 +3403,15 @@ func (o *CreateVMRequest) HasIpconfig29() bool {
 	return false
 }
 
-// SetIpconfig29 gets a reference to the given GetVMConfig200ResponseDataIpconfig0 and assigns it to the Ipconfig29 field.
-func (o *CreateVMRequest) SetIpconfig29(v GetVMConfig200ResponseDataIpconfig0) {
+// SetIpconfig29 gets a reference to the given CreateVMRequestIpconfig0 and assigns it to the Ipconfig29 field.
+func (o *CreateVMRequest) SetIpconfig29(v CreateVMRequestIpconfig0) {
 	o.Ipconfig29 = &v
 }
 
 // GetIvshmem returns the Ivshmem field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetIvshmem() GetVMConfig200ResponseDataIvshmem {
+func (o *CreateVMRequest) GetIvshmem() CreateVMRequestIvshmem {
 	if o == nil || IsNil(o.Ivshmem) {
-		var ret GetVMConfig200ResponseDataIvshmem
+		var ret CreateVMRequestIvshmem
 		return ret
 	}
 	return *o.Ivshmem
@@ -3458,7 +3419,7 @@ func (o *CreateVMRequest) GetIvshmem() GetVMConfig200ResponseDataIvshmem {
 
 // GetIvshmemOk returns a tuple with the Ivshmem field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetIvshmemOk() (*GetVMConfig200ResponseDataIvshmem, bool) {
+func (o *CreateVMRequest) GetIvshmemOk() (*CreateVMRequestIvshmem, bool) {
 	if o == nil || IsNil(o.Ivshmem) {
 		return nil, false
 	}
@@ -3474,8 +3435,8 @@ func (o *CreateVMRequest) HasIvshmem() bool {
 	return false
 }
 
-// SetIvshmem gets a reference to the given GetVMConfig200ResponseDataIvshmem and assigns it to the Ivshmem field.
-func (o *CreateVMRequest) SetIvshmem(v GetVMConfig200ResponseDataIvshmem) {
+// SetIvshmem gets a reference to the given CreateVMRequestIvshmem and assigns it to the Ivshmem field.
+func (o *CreateVMRequest) SetIvshmem(v CreateVMRequestIvshmem) {
 	o.Ivshmem = &v
 }
 
@@ -3672,9 +3633,9 @@ func (o *CreateVMRequest) SetLock(v string) {
 }
 
 // GetMachine returns the Machine field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetMachine() string {
+func (o *CreateVMRequest) GetMachine() CreateVMRequestMachine {
 	if o == nil || IsNil(o.Machine) {
-		var ret string
+		var ret CreateVMRequestMachine
 		return ret
 	}
 	return *o.Machine
@@ -3682,7 +3643,7 @@ func (o *CreateVMRequest) GetMachine() string {
 
 // GetMachineOk returns a tuple with the Machine field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetMachineOk() (*string, bool) {
+func (o *CreateVMRequest) GetMachineOk() (*CreateVMRequestMachine, bool) {
 	if o == nil || IsNil(o.Machine) {
 		return nil, false
 	}
@@ -3698,15 +3659,15 @@ func (o *CreateVMRequest) HasMachine() bool {
 	return false
 }
 
-// SetMachine gets a reference to the given string and assigns it to the Machine field.
-func (o *CreateVMRequest) SetMachine(v string) {
+// SetMachine gets a reference to the given CreateVMRequestMachine and assigns it to the Machine field.
+func (o *CreateVMRequest) SetMachine(v CreateVMRequestMachine) {
 	o.Machine = &v
 }
 
 // GetMemory returns the Memory field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetMemory() int64 {
+func (o *CreateVMRequest) GetMemory() CreateVMRequestMemory {
 	if o == nil || IsNil(o.Memory) {
-		var ret int64
+		var ret CreateVMRequestMemory
 		return ret
 	}
 	return *o.Memory
@@ -3714,7 +3675,7 @@ func (o *CreateVMRequest) GetMemory() int64 {
 
 // GetMemoryOk returns a tuple with the Memory field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetMemoryOk() (*int64, bool) {
+func (o *CreateVMRequest) GetMemoryOk() (*CreateVMRequestMemory, bool) {
 	if o == nil || IsNil(o.Memory) {
 		return nil, false
 	}
@@ -3730,8 +3691,8 @@ func (o *CreateVMRequest) HasMemory() bool {
 	return false
 }
 
-// SetMemory gets a reference to the given int64 and assigns it to the Memory field.
-func (o *CreateVMRequest) SetMemory(v int64) {
+// SetMemory gets a reference to the given CreateVMRequestMemory and assigns it to the Memory field.
+func (o *CreateVMRequest) SetMemory(v CreateVMRequestMemory) {
 	o.Memory = &v
 }
 
@@ -3864,9 +3825,9 @@ func (o *CreateVMRequest) SetNameserver(v string) {
 }
 
 // GetNet0 returns the Net0 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetNet0() GetVMConfig200ResponseDataNet0 {
+func (o *CreateVMRequest) GetNet0() CreateVMRequestNet0 {
 	if o == nil || IsNil(o.Net0) {
-		var ret GetVMConfig200ResponseDataNet0
+		var ret CreateVMRequestNet0
 		return ret
 	}
 	return *o.Net0
@@ -3874,7 +3835,7 @@ func (o *CreateVMRequest) GetNet0() GetVMConfig200ResponseDataNet0 {
 
 // GetNet0Ok returns a tuple with the Net0 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetNet0Ok() (*GetVMConfig200ResponseDataNet0, bool) {
+func (o *CreateVMRequest) GetNet0Ok() (*CreateVMRequestNet0, bool) {
 	if o == nil || IsNil(o.Net0) {
 		return nil, false
 	}
@@ -3890,15 +3851,15 @@ func (o *CreateVMRequest) HasNet0() bool {
 	return false
 }
 
-// SetNet0 gets a reference to the given GetVMConfig200ResponseDataNet0 and assigns it to the Net0 field.
-func (o *CreateVMRequest) SetNet0(v GetVMConfig200ResponseDataNet0) {
+// SetNet0 gets a reference to the given CreateVMRequestNet0 and assigns it to the Net0 field.
+func (o *CreateVMRequest) SetNet0(v CreateVMRequestNet0) {
 	o.Net0 = &v
 }
 
 // GetNet1 returns the Net1 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetNet1() GetVMConfig200ResponseDataNet0 {
+func (o *CreateVMRequest) GetNet1() CreateVMRequestNet0 {
 	if o == nil || IsNil(o.Net1) {
-		var ret GetVMConfig200ResponseDataNet0
+		var ret CreateVMRequestNet0
 		return ret
 	}
 	return *o.Net1
@@ -3906,7 +3867,7 @@ func (o *CreateVMRequest) GetNet1() GetVMConfig200ResponseDataNet0 {
 
 // GetNet1Ok returns a tuple with the Net1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetNet1Ok() (*GetVMConfig200ResponseDataNet0, bool) {
+func (o *CreateVMRequest) GetNet1Ok() (*CreateVMRequestNet0, bool) {
 	if o == nil || IsNil(o.Net1) {
 		return nil, false
 	}
@@ -3922,15 +3883,15 @@ func (o *CreateVMRequest) HasNet1() bool {
 	return false
 }
 
-// SetNet1 gets a reference to the given GetVMConfig200ResponseDataNet0 and assigns it to the Net1 field.
-func (o *CreateVMRequest) SetNet1(v GetVMConfig200ResponseDataNet0) {
+// SetNet1 gets a reference to the given CreateVMRequestNet0 and assigns it to the Net1 field.
+func (o *CreateVMRequest) SetNet1(v CreateVMRequestNet0) {
 	o.Net1 = &v
 }
 
 // GetNet2 returns the Net2 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetNet2() GetVMConfig200ResponseDataNet0 {
+func (o *CreateVMRequest) GetNet2() CreateVMRequestNet0 {
 	if o == nil || IsNil(o.Net2) {
-		var ret GetVMConfig200ResponseDataNet0
+		var ret CreateVMRequestNet0
 		return ret
 	}
 	return *o.Net2
@@ -3938,7 +3899,7 @@ func (o *CreateVMRequest) GetNet2() GetVMConfig200ResponseDataNet0 {
 
 // GetNet2Ok returns a tuple with the Net2 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetNet2Ok() (*GetVMConfig200ResponseDataNet0, bool) {
+func (o *CreateVMRequest) GetNet2Ok() (*CreateVMRequestNet0, bool) {
 	if o == nil || IsNil(o.Net2) {
 		return nil, false
 	}
@@ -3954,15 +3915,15 @@ func (o *CreateVMRequest) HasNet2() bool {
 	return false
 }
 
-// SetNet2 gets a reference to the given GetVMConfig200ResponseDataNet0 and assigns it to the Net2 field.
-func (o *CreateVMRequest) SetNet2(v GetVMConfig200ResponseDataNet0) {
+// SetNet2 gets a reference to the given CreateVMRequestNet0 and assigns it to the Net2 field.
+func (o *CreateVMRequest) SetNet2(v CreateVMRequestNet0) {
 	o.Net2 = &v
 }
 
 // GetNet3 returns the Net3 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetNet3() GetVMConfig200ResponseDataNet0 {
+func (o *CreateVMRequest) GetNet3() CreateVMRequestNet0 {
 	if o == nil || IsNil(o.Net3) {
-		var ret GetVMConfig200ResponseDataNet0
+		var ret CreateVMRequestNet0
 		return ret
 	}
 	return *o.Net3
@@ -3970,7 +3931,7 @@ func (o *CreateVMRequest) GetNet3() GetVMConfig200ResponseDataNet0 {
 
 // GetNet3Ok returns a tuple with the Net3 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetNet3Ok() (*GetVMConfig200ResponseDataNet0, bool) {
+func (o *CreateVMRequest) GetNet3Ok() (*CreateVMRequestNet0, bool) {
 	if o == nil || IsNil(o.Net3) {
 		return nil, false
 	}
@@ -3986,15 +3947,15 @@ func (o *CreateVMRequest) HasNet3() bool {
 	return false
 }
 
-// SetNet3 gets a reference to the given GetVMConfig200ResponseDataNet0 and assigns it to the Net3 field.
-func (o *CreateVMRequest) SetNet3(v GetVMConfig200ResponseDataNet0) {
+// SetNet3 gets a reference to the given CreateVMRequestNet0 and assigns it to the Net3 field.
+func (o *CreateVMRequest) SetNet3(v CreateVMRequestNet0) {
 	o.Net3 = &v
 }
 
 // GetNet4 returns the Net4 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetNet4() GetVMConfig200ResponseDataNet0 {
+func (o *CreateVMRequest) GetNet4() CreateVMRequestNet0 {
 	if o == nil || IsNil(o.Net4) {
-		var ret GetVMConfig200ResponseDataNet0
+		var ret CreateVMRequestNet0
 		return ret
 	}
 	return *o.Net4
@@ -4002,7 +3963,7 @@ func (o *CreateVMRequest) GetNet4() GetVMConfig200ResponseDataNet0 {
 
 // GetNet4Ok returns a tuple with the Net4 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetNet4Ok() (*GetVMConfig200ResponseDataNet0, bool) {
+func (o *CreateVMRequest) GetNet4Ok() (*CreateVMRequestNet0, bool) {
 	if o == nil || IsNil(o.Net4) {
 		return nil, false
 	}
@@ -4018,15 +3979,15 @@ func (o *CreateVMRequest) HasNet4() bool {
 	return false
 }
 
-// SetNet4 gets a reference to the given GetVMConfig200ResponseDataNet0 and assigns it to the Net4 field.
-func (o *CreateVMRequest) SetNet4(v GetVMConfig200ResponseDataNet0) {
+// SetNet4 gets a reference to the given CreateVMRequestNet0 and assigns it to the Net4 field.
+func (o *CreateVMRequest) SetNet4(v CreateVMRequestNet0) {
 	o.Net4 = &v
 }
 
 // GetNet5 returns the Net5 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetNet5() GetVMConfig200ResponseDataNet0 {
+func (o *CreateVMRequest) GetNet5() CreateVMRequestNet0 {
 	if o == nil || IsNil(o.Net5) {
-		var ret GetVMConfig200ResponseDataNet0
+		var ret CreateVMRequestNet0
 		return ret
 	}
 	return *o.Net5
@@ -4034,7 +3995,7 @@ func (o *CreateVMRequest) GetNet5() GetVMConfig200ResponseDataNet0 {
 
 // GetNet5Ok returns a tuple with the Net5 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetNet5Ok() (*GetVMConfig200ResponseDataNet0, bool) {
+func (o *CreateVMRequest) GetNet5Ok() (*CreateVMRequestNet0, bool) {
 	if o == nil || IsNil(o.Net5) {
 		return nil, false
 	}
@@ -4050,15 +4011,15 @@ func (o *CreateVMRequest) HasNet5() bool {
 	return false
 }
 
-// SetNet5 gets a reference to the given GetVMConfig200ResponseDataNet0 and assigns it to the Net5 field.
-func (o *CreateVMRequest) SetNet5(v GetVMConfig200ResponseDataNet0) {
+// SetNet5 gets a reference to the given CreateVMRequestNet0 and assigns it to the Net5 field.
+func (o *CreateVMRequest) SetNet5(v CreateVMRequestNet0) {
 	o.Net5 = &v
 }
 
 // GetNet6 returns the Net6 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetNet6() GetVMConfig200ResponseDataNet0 {
+func (o *CreateVMRequest) GetNet6() CreateVMRequestNet0 {
 	if o == nil || IsNil(o.Net6) {
-		var ret GetVMConfig200ResponseDataNet0
+		var ret CreateVMRequestNet0
 		return ret
 	}
 	return *o.Net6
@@ -4066,7 +4027,7 @@ func (o *CreateVMRequest) GetNet6() GetVMConfig200ResponseDataNet0 {
 
 // GetNet6Ok returns a tuple with the Net6 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetNet6Ok() (*GetVMConfig200ResponseDataNet0, bool) {
+func (o *CreateVMRequest) GetNet6Ok() (*CreateVMRequestNet0, bool) {
 	if o == nil || IsNil(o.Net6) {
 		return nil, false
 	}
@@ -4082,15 +4043,15 @@ func (o *CreateVMRequest) HasNet6() bool {
 	return false
 }
 
-// SetNet6 gets a reference to the given GetVMConfig200ResponseDataNet0 and assigns it to the Net6 field.
-func (o *CreateVMRequest) SetNet6(v GetVMConfig200ResponseDataNet0) {
+// SetNet6 gets a reference to the given CreateVMRequestNet0 and assigns it to the Net6 field.
+func (o *CreateVMRequest) SetNet6(v CreateVMRequestNet0) {
 	o.Net6 = &v
 }
 
 // GetNet7 returns the Net7 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetNet7() GetVMConfig200ResponseDataNet0 {
+func (o *CreateVMRequest) GetNet7() CreateVMRequestNet0 {
 	if o == nil || IsNil(o.Net7) {
-		var ret GetVMConfig200ResponseDataNet0
+		var ret CreateVMRequestNet0
 		return ret
 	}
 	return *o.Net7
@@ -4098,7 +4059,7 @@ func (o *CreateVMRequest) GetNet7() GetVMConfig200ResponseDataNet0 {
 
 // GetNet7Ok returns a tuple with the Net7 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetNet7Ok() (*GetVMConfig200ResponseDataNet0, bool) {
+func (o *CreateVMRequest) GetNet7Ok() (*CreateVMRequestNet0, bool) {
 	if o == nil || IsNil(o.Net7) {
 		return nil, false
 	}
@@ -4114,15 +4075,15 @@ func (o *CreateVMRequest) HasNet7() bool {
 	return false
 }
 
-// SetNet7 gets a reference to the given GetVMConfig200ResponseDataNet0 and assigns it to the Net7 field.
-func (o *CreateVMRequest) SetNet7(v GetVMConfig200ResponseDataNet0) {
+// SetNet7 gets a reference to the given CreateVMRequestNet0 and assigns it to the Net7 field.
+func (o *CreateVMRequest) SetNet7(v CreateVMRequestNet0) {
 	o.Net7 = &v
 }
 
 // GetNet8 returns the Net8 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetNet8() GetVMConfig200ResponseDataNet0 {
+func (o *CreateVMRequest) GetNet8() CreateVMRequestNet0 {
 	if o == nil || IsNil(o.Net8) {
-		var ret GetVMConfig200ResponseDataNet0
+		var ret CreateVMRequestNet0
 		return ret
 	}
 	return *o.Net8
@@ -4130,7 +4091,7 @@ func (o *CreateVMRequest) GetNet8() GetVMConfig200ResponseDataNet0 {
 
 // GetNet8Ok returns a tuple with the Net8 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetNet8Ok() (*GetVMConfig200ResponseDataNet0, bool) {
+func (o *CreateVMRequest) GetNet8Ok() (*CreateVMRequestNet0, bool) {
 	if o == nil || IsNil(o.Net8) {
 		return nil, false
 	}
@@ -4146,15 +4107,15 @@ func (o *CreateVMRequest) HasNet8() bool {
 	return false
 }
 
-// SetNet8 gets a reference to the given GetVMConfig200ResponseDataNet0 and assigns it to the Net8 field.
-func (o *CreateVMRequest) SetNet8(v GetVMConfig200ResponseDataNet0) {
+// SetNet8 gets a reference to the given CreateVMRequestNet0 and assigns it to the Net8 field.
+func (o *CreateVMRequest) SetNet8(v CreateVMRequestNet0) {
 	o.Net8 = &v
 }
 
 // GetNet9 returns the Net9 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetNet9() GetVMConfig200ResponseDataNet0 {
+func (o *CreateVMRequest) GetNet9() CreateVMRequestNet0 {
 	if o == nil || IsNil(o.Net9) {
-		var ret GetVMConfig200ResponseDataNet0
+		var ret CreateVMRequestNet0
 		return ret
 	}
 	return *o.Net9
@@ -4162,7 +4123,7 @@ func (o *CreateVMRequest) GetNet9() GetVMConfig200ResponseDataNet0 {
 
 // GetNet9Ok returns a tuple with the Net9 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetNet9Ok() (*GetVMConfig200ResponseDataNet0, bool) {
+func (o *CreateVMRequest) GetNet9Ok() (*CreateVMRequestNet0, bool) {
 	if o == nil || IsNil(o.Net9) {
 		return nil, false
 	}
@@ -4178,15 +4139,15 @@ func (o *CreateVMRequest) HasNet9() bool {
 	return false
 }
 
-// SetNet9 gets a reference to the given GetVMConfig200ResponseDataNet0 and assigns it to the Net9 field.
-func (o *CreateVMRequest) SetNet9(v GetVMConfig200ResponseDataNet0) {
+// SetNet9 gets a reference to the given CreateVMRequestNet0 and assigns it to the Net9 field.
+func (o *CreateVMRequest) SetNet9(v CreateVMRequestNet0) {
 	o.Net9 = &v
 }
 
 // GetNet10 returns the Net10 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetNet10() GetVMConfig200ResponseDataNet0 {
+func (o *CreateVMRequest) GetNet10() CreateVMRequestNet0 {
 	if o == nil || IsNil(o.Net10) {
-		var ret GetVMConfig200ResponseDataNet0
+		var ret CreateVMRequestNet0
 		return ret
 	}
 	return *o.Net10
@@ -4194,7 +4155,7 @@ func (o *CreateVMRequest) GetNet10() GetVMConfig200ResponseDataNet0 {
 
 // GetNet10Ok returns a tuple with the Net10 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetNet10Ok() (*GetVMConfig200ResponseDataNet0, bool) {
+func (o *CreateVMRequest) GetNet10Ok() (*CreateVMRequestNet0, bool) {
 	if o == nil || IsNil(o.Net10) {
 		return nil, false
 	}
@@ -4210,15 +4171,15 @@ func (o *CreateVMRequest) HasNet10() bool {
 	return false
 }
 
-// SetNet10 gets a reference to the given GetVMConfig200ResponseDataNet0 and assigns it to the Net10 field.
-func (o *CreateVMRequest) SetNet10(v GetVMConfig200ResponseDataNet0) {
+// SetNet10 gets a reference to the given CreateVMRequestNet0 and assigns it to the Net10 field.
+func (o *CreateVMRequest) SetNet10(v CreateVMRequestNet0) {
 	o.Net10 = &v
 }
 
 // GetNet11 returns the Net11 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetNet11() GetVMConfig200ResponseDataNet0 {
+func (o *CreateVMRequest) GetNet11() CreateVMRequestNet0 {
 	if o == nil || IsNil(o.Net11) {
-		var ret GetVMConfig200ResponseDataNet0
+		var ret CreateVMRequestNet0
 		return ret
 	}
 	return *o.Net11
@@ -4226,7 +4187,7 @@ func (o *CreateVMRequest) GetNet11() GetVMConfig200ResponseDataNet0 {
 
 // GetNet11Ok returns a tuple with the Net11 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetNet11Ok() (*GetVMConfig200ResponseDataNet0, bool) {
+func (o *CreateVMRequest) GetNet11Ok() (*CreateVMRequestNet0, bool) {
 	if o == nil || IsNil(o.Net11) {
 		return nil, false
 	}
@@ -4242,15 +4203,15 @@ func (o *CreateVMRequest) HasNet11() bool {
 	return false
 }
 
-// SetNet11 gets a reference to the given GetVMConfig200ResponseDataNet0 and assigns it to the Net11 field.
-func (o *CreateVMRequest) SetNet11(v GetVMConfig200ResponseDataNet0) {
+// SetNet11 gets a reference to the given CreateVMRequestNet0 and assigns it to the Net11 field.
+func (o *CreateVMRequest) SetNet11(v CreateVMRequestNet0) {
 	o.Net11 = &v
 }
 
 // GetNet12 returns the Net12 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetNet12() GetVMConfig200ResponseDataNet0 {
+func (o *CreateVMRequest) GetNet12() CreateVMRequestNet0 {
 	if o == nil || IsNil(o.Net12) {
-		var ret GetVMConfig200ResponseDataNet0
+		var ret CreateVMRequestNet0
 		return ret
 	}
 	return *o.Net12
@@ -4258,7 +4219,7 @@ func (o *CreateVMRequest) GetNet12() GetVMConfig200ResponseDataNet0 {
 
 // GetNet12Ok returns a tuple with the Net12 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetNet12Ok() (*GetVMConfig200ResponseDataNet0, bool) {
+func (o *CreateVMRequest) GetNet12Ok() (*CreateVMRequestNet0, bool) {
 	if o == nil || IsNil(o.Net12) {
 		return nil, false
 	}
@@ -4274,15 +4235,15 @@ func (o *CreateVMRequest) HasNet12() bool {
 	return false
 }
 
-// SetNet12 gets a reference to the given GetVMConfig200ResponseDataNet0 and assigns it to the Net12 field.
-func (o *CreateVMRequest) SetNet12(v GetVMConfig200ResponseDataNet0) {
+// SetNet12 gets a reference to the given CreateVMRequestNet0 and assigns it to the Net12 field.
+func (o *CreateVMRequest) SetNet12(v CreateVMRequestNet0) {
 	o.Net12 = &v
 }
 
 // GetNet13 returns the Net13 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetNet13() GetVMConfig200ResponseDataNet0 {
+func (o *CreateVMRequest) GetNet13() CreateVMRequestNet0 {
 	if o == nil || IsNil(o.Net13) {
-		var ret GetVMConfig200ResponseDataNet0
+		var ret CreateVMRequestNet0
 		return ret
 	}
 	return *o.Net13
@@ -4290,7 +4251,7 @@ func (o *CreateVMRequest) GetNet13() GetVMConfig200ResponseDataNet0 {
 
 // GetNet13Ok returns a tuple with the Net13 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetNet13Ok() (*GetVMConfig200ResponseDataNet0, bool) {
+func (o *CreateVMRequest) GetNet13Ok() (*CreateVMRequestNet0, bool) {
 	if o == nil || IsNil(o.Net13) {
 		return nil, false
 	}
@@ -4306,15 +4267,15 @@ func (o *CreateVMRequest) HasNet13() bool {
 	return false
 }
 
-// SetNet13 gets a reference to the given GetVMConfig200ResponseDataNet0 and assigns it to the Net13 field.
-func (o *CreateVMRequest) SetNet13(v GetVMConfig200ResponseDataNet0) {
+// SetNet13 gets a reference to the given CreateVMRequestNet0 and assigns it to the Net13 field.
+func (o *CreateVMRequest) SetNet13(v CreateVMRequestNet0) {
 	o.Net13 = &v
 }
 
 // GetNet14 returns the Net14 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetNet14() GetVMConfig200ResponseDataNet0 {
+func (o *CreateVMRequest) GetNet14() CreateVMRequestNet0 {
 	if o == nil || IsNil(o.Net14) {
-		var ret GetVMConfig200ResponseDataNet0
+		var ret CreateVMRequestNet0
 		return ret
 	}
 	return *o.Net14
@@ -4322,7 +4283,7 @@ func (o *CreateVMRequest) GetNet14() GetVMConfig200ResponseDataNet0 {
 
 // GetNet14Ok returns a tuple with the Net14 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetNet14Ok() (*GetVMConfig200ResponseDataNet0, bool) {
+func (o *CreateVMRequest) GetNet14Ok() (*CreateVMRequestNet0, bool) {
 	if o == nil || IsNil(o.Net14) {
 		return nil, false
 	}
@@ -4338,15 +4299,15 @@ func (o *CreateVMRequest) HasNet14() bool {
 	return false
 }
 
-// SetNet14 gets a reference to the given GetVMConfig200ResponseDataNet0 and assigns it to the Net14 field.
-func (o *CreateVMRequest) SetNet14(v GetVMConfig200ResponseDataNet0) {
+// SetNet14 gets a reference to the given CreateVMRequestNet0 and assigns it to the Net14 field.
+func (o *CreateVMRequest) SetNet14(v CreateVMRequestNet0) {
 	o.Net14 = &v
 }
 
 // GetNet15 returns the Net15 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetNet15() GetVMConfig200ResponseDataNet0 {
+func (o *CreateVMRequest) GetNet15() CreateVMRequestNet0 {
 	if o == nil || IsNil(o.Net15) {
-		var ret GetVMConfig200ResponseDataNet0
+		var ret CreateVMRequestNet0
 		return ret
 	}
 	return *o.Net15
@@ -4354,7 +4315,7 @@ func (o *CreateVMRequest) GetNet15() GetVMConfig200ResponseDataNet0 {
 
 // GetNet15Ok returns a tuple with the Net15 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetNet15Ok() (*GetVMConfig200ResponseDataNet0, bool) {
+func (o *CreateVMRequest) GetNet15Ok() (*CreateVMRequestNet0, bool) {
 	if o == nil || IsNil(o.Net15) {
 		return nil, false
 	}
@@ -4370,15 +4331,15 @@ func (o *CreateVMRequest) HasNet15() bool {
 	return false
 }
 
-// SetNet15 gets a reference to the given GetVMConfig200ResponseDataNet0 and assigns it to the Net15 field.
-func (o *CreateVMRequest) SetNet15(v GetVMConfig200ResponseDataNet0) {
+// SetNet15 gets a reference to the given CreateVMRequestNet0 and assigns it to the Net15 field.
+func (o *CreateVMRequest) SetNet15(v CreateVMRequestNet0) {
 	o.Net15 = &v
 }
 
 // GetNet16 returns the Net16 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetNet16() GetVMConfig200ResponseDataNet0 {
+func (o *CreateVMRequest) GetNet16() CreateVMRequestNet0 {
 	if o == nil || IsNil(o.Net16) {
-		var ret GetVMConfig200ResponseDataNet0
+		var ret CreateVMRequestNet0
 		return ret
 	}
 	return *o.Net16
@@ -4386,7 +4347,7 @@ func (o *CreateVMRequest) GetNet16() GetVMConfig200ResponseDataNet0 {
 
 // GetNet16Ok returns a tuple with the Net16 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetNet16Ok() (*GetVMConfig200ResponseDataNet0, bool) {
+func (o *CreateVMRequest) GetNet16Ok() (*CreateVMRequestNet0, bool) {
 	if o == nil || IsNil(o.Net16) {
 		return nil, false
 	}
@@ -4402,15 +4363,15 @@ func (o *CreateVMRequest) HasNet16() bool {
 	return false
 }
 
-// SetNet16 gets a reference to the given GetVMConfig200ResponseDataNet0 and assigns it to the Net16 field.
-func (o *CreateVMRequest) SetNet16(v GetVMConfig200ResponseDataNet0) {
+// SetNet16 gets a reference to the given CreateVMRequestNet0 and assigns it to the Net16 field.
+func (o *CreateVMRequest) SetNet16(v CreateVMRequestNet0) {
 	o.Net16 = &v
 }
 
 // GetNet17 returns the Net17 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetNet17() GetVMConfig200ResponseDataNet0 {
+func (o *CreateVMRequest) GetNet17() CreateVMRequestNet0 {
 	if o == nil || IsNil(o.Net17) {
-		var ret GetVMConfig200ResponseDataNet0
+		var ret CreateVMRequestNet0
 		return ret
 	}
 	return *o.Net17
@@ -4418,7 +4379,7 @@ func (o *CreateVMRequest) GetNet17() GetVMConfig200ResponseDataNet0 {
 
 // GetNet17Ok returns a tuple with the Net17 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetNet17Ok() (*GetVMConfig200ResponseDataNet0, bool) {
+func (o *CreateVMRequest) GetNet17Ok() (*CreateVMRequestNet0, bool) {
 	if o == nil || IsNil(o.Net17) {
 		return nil, false
 	}
@@ -4434,15 +4395,15 @@ func (o *CreateVMRequest) HasNet17() bool {
 	return false
 }
 
-// SetNet17 gets a reference to the given GetVMConfig200ResponseDataNet0 and assigns it to the Net17 field.
-func (o *CreateVMRequest) SetNet17(v GetVMConfig200ResponseDataNet0) {
+// SetNet17 gets a reference to the given CreateVMRequestNet0 and assigns it to the Net17 field.
+func (o *CreateVMRequest) SetNet17(v CreateVMRequestNet0) {
 	o.Net17 = &v
 }
 
 // GetNet18 returns the Net18 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetNet18() GetVMConfig200ResponseDataNet0 {
+func (o *CreateVMRequest) GetNet18() CreateVMRequestNet0 {
 	if o == nil || IsNil(o.Net18) {
-		var ret GetVMConfig200ResponseDataNet0
+		var ret CreateVMRequestNet0
 		return ret
 	}
 	return *o.Net18
@@ -4450,7 +4411,7 @@ func (o *CreateVMRequest) GetNet18() GetVMConfig200ResponseDataNet0 {
 
 // GetNet18Ok returns a tuple with the Net18 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetNet18Ok() (*GetVMConfig200ResponseDataNet0, bool) {
+func (o *CreateVMRequest) GetNet18Ok() (*CreateVMRequestNet0, bool) {
 	if o == nil || IsNil(o.Net18) {
 		return nil, false
 	}
@@ -4466,15 +4427,15 @@ func (o *CreateVMRequest) HasNet18() bool {
 	return false
 }
 
-// SetNet18 gets a reference to the given GetVMConfig200ResponseDataNet0 and assigns it to the Net18 field.
-func (o *CreateVMRequest) SetNet18(v GetVMConfig200ResponseDataNet0) {
+// SetNet18 gets a reference to the given CreateVMRequestNet0 and assigns it to the Net18 field.
+func (o *CreateVMRequest) SetNet18(v CreateVMRequestNet0) {
 	o.Net18 = &v
 }
 
 // GetNet19 returns the Net19 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetNet19() GetVMConfig200ResponseDataNet0 {
+func (o *CreateVMRequest) GetNet19() CreateVMRequestNet0 {
 	if o == nil || IsNil(o.Net19) {
-		var ret GetVMConfig200ResponseDataNet0
+		var ret CreateVMRequestNet0
 		return ret
 	}
 	return *o.Net19
@@ -4482,7 +4443,7 @@ func (o *CreateVMRequest) GetNet19() GetVMConfig200ResponseDataNet0 {
 
 // GetNet19Ok returns a tuple with the Net19 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetNet19Ok() (*GetVMConfig200ResponseDataNet0, bool) {
+func (o *CreateVMRequest) GetNet19Ok() (*CreateVMRequestNet0, bool) {
 	if o == nil || IsNil(o.Net19) {
 		return nil, false
 	}
@@ -4498,15 +4459,15 @@ func (o *CreateVMRequest) HasNet19() bool {
 	return false
 }
 
-// SetNet19 gets a reference to the given GetVMConfig200ResponseDataNet0 and assigns it to the Net19 field.
-func (o *CreateVMRequest) SetNet19(v GetVMConfig200ResponseDataNet0) {
+// SetNet19 gets a reference to the given CreateVMRequestNet0 and assigns it to the Net19 field.
+func (o *CreateVMRequest) SetNet19(v CreateVMRequestNet0) {
 	o.Net19 = &v
 }
 
 // GetNet20 returns the Net20 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetNet20() GetVMConfig200ResponseDataNet0 {
+func (o *CreateVMRequest) GetNet20() CreateVMRequestNet0 {
 	if o == nil || IsNil(o.Net20) {
-		var ret GetVMConfig200ResponseDataNet0
+		var ret CreateVMRequestNet0
 		return ret
 	}
 	return *o.Net20
@@ -4514,7 +4475,7 @@ func (o *CreateVMRequest) GetNet20() GetVMConfig200ResponseDataNet0 {
 
 // GetNet20Ok returns a tuple with the Net20 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetNet20Ok() (*GetVMConfig200ResponseDataNet0, bool) {
+func (o *CreateVMRequest) GetNet20Ok() (*CreateVMRequestNet0, bool) {
 	if o == nil || IsNil(o.Net20) {
 		return nil, false
 	}
@@ -4530,15 +4491,15 @@ func (o *CreateVMRequest) HasNet20() bool {
 	return false
 }
 
-// SetNet20 gets a reference to the given GetVMConfig200ResponseDataNet0 and assigns it to the Net20 field.
-func (o *CreateVMRequest) SetNet20(v GetVMConfig200ResponseDataNet0) {
+// SetNet20 gets a reference to the given CreateVMRequestNet0 and assigns it to the Net20 field.
+func (o *CreateVMRequest) SetNet20(v CreateVMRequestNet0) {
 	o.Net20 = &v
 }
 
 // GetNet21 returns the Net21 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetNet21() GetVMConfig200ResponseDataNet0 {
+func (o *CreateVMRequest) GetNet21() CreateVMRequestNet0 {
 	if o == nil || IsNil(o.Net21) {
-		var ret GetVMConfig200ResponseDataNet0
+		var ret CreateVMRequestNet0
 		return ret
 	}
 	return *o.Net21
@@ -4546,7 +4507,7 @@ func (o *CreateVMRequest) GetNet21() GetVMConfig200ResponseDataNet0 {
 
 // GetNet21Ok returns a tuple with the Net21 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetNet21Ok() (*GetVMConfig200ResponseDataNet0, bool) {
+func (o *CreateVMRequest) GetNet21Ok() (*CreateVMRequestNet0, bool) {
 	if o == nil || IsNil(o.Net21) {
 		return nil, false
 	}
@@ -4562,15 +4523,15 @@ func (o *CreateVMRequest) HasNet21() bool {
 	return false
 }
 
-// SetNet21 gets a reference to the given GetVMConfig200ResponseDataNet0 and assigns it to the Net21 field.
-func (o *CreateVMRequest) SetNet21(v GetVMConfig200ResponseDataNet0) {
+// SetNet21 gets a reference to the given CreateVMRequestNet0 and assigns it to the Net21 field.
+func (o *CreateVMRequest) SetNet21(v CreateVMRequestNet0) {
 	o.Net21 = &v
 }
 
 // GetNet22 returns the Net22 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetNet22() GetVMConfig200ResponseDataNet0 {
+func (o *CreateVMRequest) GetNet22() CreateVMRequestNet0 {
 	if o == nil || IsNil(o.Net22) {
-		var ret GetVMConfig200ResponseDataNet0
+		var ret CreateVMRequestNet0
 		return ret
 	}
 	return *o.Net22
@@ -4578,7 +4539,7 @@ func (o *CreateVMRequest) GetNet22() GetVMConfig200ResponseDataNet0 {
 
 // GetNet22Ok returns a tuple with the Net22 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetNet22Ok() (*GetVMConfig200ResponseDataNet0, bool) {
+func (o *CreateVMRequest) GetNet22Ok() (*CreateVMRequestNet0, bool) {
 	if o == nil || IsNil(o.Net22) {
 		return nil, false
 	}
@@ -4594,15 +4555,15 @@ func (o *CreateVMRequest) HasNet22() bool {
 	return false
 }
 
-// SetNet22 gets a reference to the given GetVMConfig200ResponseDataNet0 and assigns it to the Net22 field.
-func (o *CreateVMRequest) SetNet22(v GetVMConfig200ResponseDataNet0) {
+// SetNet22 gets a reference to the given CreateVMRequestNet0 and assigns it to the Net22 field.
+func (o *CreateVMRequest) SetNet22(v CreateVMRequestNet0) {
 	o.Net22 = &v
 }
 
 // GetNet23 returns the Net23 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetNet23() GetVMConfig200ResponseDataNet0 {
+func (o *CreateVMRequest) GetNet23() CreateVMRequestNet0 {
 	if o == nil || IsNil(o.Net23) {
-		var ret GetVMConfig200ResponseDataNet0
+		var ret CreateVMRequestNet0
 		return ret
 	}
 	return *o.Net23
@@ -4610,7 +4571,7 @@ func (o *CreateVMRequest) GetNet23() GetVMConfig200ResponseDataNet0 {
 
 // GetNet23Ok returns a tuple with the Net23 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetNet23Ok() (*GetVMConfig200ResponseDataNet0, bool) {
+func (o *CreateVMRequest) GetNet23Ok() (*CreateVMRequestNet0, bool) {
 	if o == nil || IsNil(o.Net23) {
 		return nil, false
 	}
@@ -4626,15 +4587,15 @@ func (o *CreateVMRequest) HasNet23() bool {
 	return false
 }
 
-// SetNet23 gets a reference to the given GetVMConfig200ResponseDataNet0 and assigns it to the Net23 field.
-func (o *CreateVMRequest) SetNet23(v GetVMConfig200ResponseDataNet0) {
+// SetNet23 gets a reference to the given CreateVMRequestNet0 and assigns it to the Net23 field.
+func (o *CreateVMRequest) SetNet23(v CreateVMRequestNet0) {
 	o.Net23 = &v
 }
 
 // GetNet24 returns the Net24 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetNet24() GetVMConfig200ResponseDataNet0 {
+func (o *CreateVMRequest) GetNet24() CreateVMRequestNet0 {
 	if o == nil || IsNil(o.Net24) {
-		var ret GetVMConfig200ResponseDataNet0
+		var ret CreateVMRequestNet0
 		return ret
 	}
 	return *o.Net24
@@ -4642,7 +4603,7 @@ func (o *CreateVMRequest) GetNet24() GetVMConfig200ResponseDataNet0 {
 
 // GetNet24Ok returns a tuple with the Net24 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetNet24Ok() (*GetVMConfig200ResponseDataNet0, bool) {
+func (o *CreateVMRequest) GetNet24Ok() (*CreateVMRequestNet0, bool) {
 	if o == nil || IsNil(o.Net24) {
 		return nil, false
 	}
@@ -4658,15 +4619,15 @@ func (o *CreateVMRequest) HasNet24() bool {
 	return false
 }
 
-// SetNet24 gets a reference to the given GetVMConfig200ResponseDataNet0 and assigns it to the Net24 field.
-func (o *CreateVMRequest) SetNet24(v GetVMConfig200ResponseDataNet0) {
+// SetNet24 gets a reference to the given CreateVMRequestNet0 and assigns it to the Net24 field.
+func (o *CreateVMRequest) SetNet24(v CreateVMRequestNet0) {
 	o.Net24 = &v
 }
 
 // GetNet25 returns the Net25 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetNet25() GetVMConfig200ResponseDataNet0 {
+func (o *CreateVMRequest) GetNet25() CreateVMRequestNet0 {
 	if o == nil || IsNil(o.Net25) {
-		var ret GetVMConfig200ResponseDataNet0
+		var ret CreateVMRequestNet0
 		return ret
 	}
 	return *o.Net25
@@ -4674,7 +4635,7 @@ func (o *CreateVMRequest) GetNet25() GetVMConfig200ResponseDataNet0 {
 
 // GetNet25Ok returns a tuple with the Net25 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetNet25Ok() (*GetVMConfig200ResponseDataNet0, bool) {
+func (o *CreateVMRequest) GetNet25Ok() (*CreateVMRequestNet0, bool) {
 	if o == nil || IsNil(o.Net25) {
 		return nil, false
 	}
@@ -4690,15 +4651,15 @@ func (o *CreateVMRequest) HasNet25() bool {
 	return false
 }
 
-// SetNet25 gets a reference to the given GetVMConfig200ResponseDataNet0 and assigns it to the Net25 field.
-func (o *CreateVMRequest) SetNet25(v GetVMConfig200ResponseDataNet0) {
+// SetNet25 gets a reference to the given CreateVMRequestNet0 and assigns it to the Net25 field.
+func (o *CreateVMRequest) SetNet25(v CreateVMRequestNet0) {
 	o.Net25 = &v
 }
 
 // GetNet26 returns the Net26 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetNet26() GetVMConfig200ResponseDataNet0 {
+func (o *CreateVMRequest) GetNet26() CreateVMRequestNet0 {
 	if o == nil || IsNil(o.Net26) {
-		var ret GetVMConfig200ResponseDataNet0
+		var ret CreateVMRequestNet0
 		return ret
 	}
 	return *o.Net26
@@ -4706,7 +4667,7 @@ func (o *CreateVMRequest) GetNet26() GetVMConfig200ResponseDataNet0 {
 
 // GetNet26Ok returns a tuple with the Net26 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetNet26Ok() (*GetVMConfig200ResponseDataNet0, bool) {
+func (o *CreateVMRequest) GetNet26Ok() (*CreateVMRequestNet0, bool) {
 	if o == nil || IsNil(o.Net26) {
 		return nil, false
 	}
@@ -4722,15 +4683,15 @@ func (o *CreateVMRequest) HasNet26() bool {
 	return false
 }
 
-// SetNet26 gets a reference to the given GetVMConfig200ResponseDataNet0 and assigns it to the Net26 field.
-func (o *CreateVMRequest) SetNet26(v GetVMConfig200ResponseDataNet0) {
+// SetNet26 gets a reference to the given CreateVMRequestNet0 and assigns it to the Net26 field.
+func (o *CreateVMRequest) SetNet26(v CreateVMRequestNet0) {
 	o.Net26 = &v
 }
 
 // GetNet27 returns the Net27 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetNet27() GetVMConfig200ResponseDataNet0 {
+func (o *CreateVMRequest) GetNet27() CreateVMRequestNet0 {
 	if o == nil || IsNil(o.Net27) {
-		var ret GetVMConfig200ResponseDataNet0
+		var ret CreateVMRequestNet0
 		return ret
 	}
 	return *o.Net27
@@ -4738,7 +4699,7 @@ func (o *CreateVMRequest) GetNet27() GetVMConfig200ResponseDataNet0 {
 
 // GetNet27Ok returns a tuple with the Net27 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetNet27Ok() (*GetVMConfig200ResponseDataNet0, bool) {
+func (o *CreateVMRequest) GetNet27Ok() (*CreateVMRequestNet0, bool) {
 	if o == nil || IsNil(o.Net27) {
 		return nil, false
 	}
@@ -4754,15 +4715,15 @@ func (o *CreateVMRequest) HasNet27() bool {
 	return false
 }
 
-// SetNet27 gets a reference to the given GetVMConfig200ResponseDataNet0 and assigns it to the Net27 field.
-func (o *CreateVMRequest) SetNet27(v GetVMConfig200ResponseDataNet0) {
+// SetNet27 gets a reference to the given CreateVMRequestNet0 and assigns it to the Net27 field.
+func (o *CreateVMRequest) SetNet27(v CreateVMRequestNet0) {
 	o.Net27 = &v
 }
 
 // GetNet28 returns the Net28 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetNet28() GetVMConfig200ResponseDataNet0 {
+func (o *CreateVMRequest) GetNet28() CreateVMRequestNet0 {
 	if o == nil || IsNil(o.Net28) {
-		var ret GetVMConfig200ResponseDataNet0
+		var ret CreateVMRequestNet0
 		return ret
 	}
 	return *o.Net28
@@ -4770,7 +4731,7 @@ func (o *CreateVMRequest) GetNet28() GetVMConfig200ResponseDataNet0 {
 
 // GetNet28Ok returns a tuple with the Net28 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetNet28Ok() (*GetVMConfig200ResponseDataNet0, bool) {
+func (o *CreateVMRequest) GetNet28Ok() (*CreateVMRequestNet0, bool) {
 	if o == nil || IsNil(o.Net28) {
 		return nil, false
 	}
@@ -4786,15 +4747,15 @@ func (o *CreateVMRequest) HasNet28() bool {
 	return false
 }
 
-// SetNet28 gets a reference to the given GetVMConfig200ResponseDataNet0 and assigns it to the Net28 field.
-func (o *CreateVMRequest) SetNet28(v GetVMConfig200ResponseDataNet0) {
+// SetNet28 gets a reference to the given CreateVMRequestNet0 and assigns it to the Net28 field.
+func (o *CreateVMRequest) SetNet28(v CreateVMRequestNet0) {
 	o.Net28 = &v
 }
 
 // GetNet29 returns the Net29 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetNet29() GetVMConfig200ResponseDataNet0 {
+func (o *CreateVMRequest) GetNet29() CreateVMRequestNet0 {
 	if o == nil || IsNil(o.Net29) {
-		var ret GetVMConfig200ResponseDataNet0
+		var ret CreateVMRequestNet0
 		return ret
 	}
 	return *o.Net29
@@ -4802,7 +4763,7 @@ func (o *CreateVMRequest) GetNet29() GetVMConfig200ResponseDataNet0 {
 
 // GetNet29Ok returns a tuple with the Net29 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetNet29Ok() (*GetVMConfig200ResponseDataNet0, bool) {
+func (o *CreateVMRequest) GetNet29Ok() (*CreateVMRequestNet0, bool) {
 	if o == nil || IsNil(o.Net29) {
 		return nil, false
 	}
@@ -4818,15 +4779,15 @@ func (o *CreateVMRequest) HasNet29() bool {
 	return false
 }
 
-// SetNet29 gets a reference to the given GetVMConfig200ResponseDataNet0 and assigns it to the Net29 field.
-func (o *CreateVMRequest) SetNet29(v GetVMConfig200ResponseDataNet0) {
+// SetNet29 gets a reference to the given CreateVMRequestNet0 and assigns it to the Net29 field.
+func (o *CreateVMRequest) SetNet29(v CreateVMRequestNet0) {
 	o.Net29 = &v
 }
 
 // GetNet30 returns the Net30 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetNet30() GetVMConfig200ResponseDataNet0 {
+func (o *CreateVMRequest) GetNet30() CreateVMRequestNet0 {
 	if o == nil || IsNil(o.Net30) {
-		var ret GetVMConfig200ResponseDataNet0
+		var ret CreateVMRequestNet0
 		return ret
 	}
 	return *o.Net30
@@ -4834,7 +4795,7 @@ func (o *CreateVMRequest) GetNet30() GetVMConfig200ResponseDataNet0 {
 
 // GetNet30Ok returns a tuple with the Net30 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetNet30Ok() (*GetVMConfig200ResponseDataNet0, bool) {
+func (o *CreateVMRequest) GetNet30Ok() (*CreateVMRequestNet0, bool) {
 	if o == nil || IsNil(o.Net30) {
 		return nil, false
 	}
@@ -4850,15 +4811,15 @@ func (o *CreateVMRequest) HasNet30() bool {
 	return false
 }
 
-// SetNet30 gets a reference to the given GetVMConfig200ResponseDataNet0 and assigns it to the Net30 field.
-func (o *CreateVMRequest) SetNet30(v GetVMConfig200ResponseDataNet0) {
+// SetNet30 gets a reference to the given CreateVMRequestNet0 and assigns it to the Net30 field.
+func (o *CreateVMRequest) SetNet30(v CreateVMRequestNet0) {
 	o.Net30 = &v
 }
 
 // GetNet31 returns the Net31 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetNet31() GetVMConfig200ResponseDataNet0 {
+func (o *CreateVMRequest) GetNet31() CreateVMRequestNet0 {
 	if o == nil || IsNil(o.Net31) {
-		var ret GetVMConfig200ResponseDataNet0
+		var ret CreateVMRequestNet0
 		return ret
 	}
 	return *o.Net31
@@ -4866,7 +4827,7 @@ func (o *CreateVMRequest) GetNet31() GetVMConfig200ResponseDataNet0 {
 
 // GetNet31Ok returns a tuple with the Net31 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetNet31Ok() (*GetVMConfig200ResponseDataNet0, bool) {
+func (o *CreateVMRequest) GetNet31Ok() (*CreateVMRequestNet0, bool) {
 	if o == nil || IsNil(o.Net31) {
 		return nil, false
 	}
@@ -4882,8 +4843,8 @@ func (o *CreateVMRequest) HasNet31() bool {
 	return false
 }
 
-// SetNet31 gets a reference to the given GetVMConfig200ResponseDataNet0 and assigns it to the Net31 field.
-func (o *CreateVMRequest) SetNet31(v GetVMConfig200ResponseDataNet0) {
+// SetNet31 gets a reference to the given CreateVMRequestNet0 and assigns it to the Net31 field.
+func (o *CreateVMRequest) SetNet31(v CreateVMRequestNet0) {
 	o.Net31 = &v
 }
 
@@ -4920,9 +4881,9 @@ func (o *CreateVMRequest) SetNuma(v bool) {
 }
 
 // GetNuma0 returns the Numa0 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetNuma0() GetVMConfig200ResponseDataNuma0 {
+func (o *CreateVMRequest) GetNuma0() CreateVMRequestNuma0 {
 	if o == nil || IsNil(o.Numa0) {
-		var ret GetVMConfig200ResponseDataNuma0
+		var ret CreateVMRequestNuma0
 		return ret
 	}
 	return *o.Numa0
@@ -4930,7 +4891,7 @@ func (o *CreateVMRequest) GetNuma0() GetVMConfig200ResponseDataNuma0 {
 
 // GetNuma0Ok returns a tuple with the Numa0 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetNuma0Ok() (*GetVMConfig200ResponseDataNuma0, bool) {
+func (o *CreateVMRequest) GetNuma0Ok() (*CreateVMRequestNuma0, bool) {
 	if o == nil || IsNil(o.Numa0) {
 		return nil, false
 	}
@@ -4946,15 +4907,15 @@ func (o *CreateVMRequest) HasNuma0() bool {
 	return false
 }
 
-// SetNuma0 gets a reference to the given GetVMConfig200ResponseDataNuma0 and assigns it to the Numa0 field.
-func (o *CreateVMRequest) SetNuma0(v GetVMConfig200ResponseDataNuma0) {
+// SetNuma0 gets a reference to the given CreateVMRequestNuma0 and assigns it to the Numa0 field.
+func (o *CreateVMRequest) SetNuma0(v CreateVMRequestNuma0) {
 	o.Numa0 = &v
 }
 
 // GetNuma1 returns the Numa1 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetNuma1() GetVMConfig200ResponseDataNuma0 {
+func (o *CreateVMRequest) GetNuma1() CreateVMRequestNuma0 {
 	if o == nil || IsNil(o.Numa1) {
-		var ret GetVMConfig200ResponseDataNuma0
+		var ret CreateVMRequestNuma0
 		return ret
 	}
 	return *o.Numa1
@@ -4962,7 +4923,7 @@ func (o *CreateVMRequest) GetNuma1() GetVMConfig200ResponseDataNuma0 {
 
 // GetNuma1Ok returns a tuple with the Numa1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetNuma1Ok() (*GetVMConfig200ResponseDataNuma0, bool) {
+func (o *CreateVMRequest) GetNuma1Ok() (*CreateVMRequestNuma0, bool) {
 	if o == nil || IsNil(o.Numa1) {
 		return nil, false
 	}
@@ -4978,15 +4939,15 @@ func (o *CreateVMRequest) HasNuma1() bool {
 	return false
 }
 
-// SetNuma1 gets a reference to the given GetVMConfig200ResponseDataNuma0 and assigns it to the Numa1 field.
-func (o *CreateVMRequest) SetNuma1(v GetVMConfig200ResponseDataNuma0) {
+// SetNuma1 gets a reference to the given CreateVMRequestNuma0 and assigns it to the Numa1 field.
+func (o *CreateVMRequest) SetNuma1(v CreateVMRequestNuma0) {
 	o.Numa1 = &v
 }
 
 // GetNuma2 returns the Numa2 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetNuma2() GetVMConfig200ResponseDataNuma0 {
+func (o *CreateVMRequest) GetNuma2() CreateVMRequestNuma0 {
 	if o == nil || IsNil(o.Numa2) {
-		var ret GetVMConfig200ResponseDataNuma0
+		var ret CreateVMRequestNuma0
 		return ret
 	}
 	return *o.Numa2
@@ -4994,7 +4955,7 @@ func (o *CreateVMRequest) GetNuma2() GetVMConfig200ResponseDataNuma0 {
 
 // GetNuma2Ok returns a tuple with the Numa2 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetNuma2Ok() (*GetVMConfig200ResponseDataNuma0, bool) {
+func (o *CreateVMRequest) GetNuma2Ok() (*CreateVMRequestNuma0, bool) {
 	if o == nil || IsNil(o.Numa2) {
 		return nil, false
 	}
@@ -5010,15 +4971,15 @@ func (o *CreateVMRequest) HasNuma2() bool {
 	return false
 }
 
-// SetNuma2 gets a reference to the given GetVMConfig200ResponseDataNuma0 and assigns it to the Numa2 field.
-func (o *CreateVMRequest) SetNuma2(v GetVMConfig200ResponseDataNuma0) {
+// SetNuma2 gets a reference to the given CreateVMRequestNuma0 and assigns it to the Numa2 field.
+func (o *CreateVMRequest) SetNuma2(v CreateVMRequestNuma0) {
 	o.Numa2 = &v
 }
 
 // GetNuma3 returns the Numa3 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetNuma3() GetVMConfig200ResponseDataNuma0 {
+func (o *CreateVMRequest) GetNuma3() CreateVMRequestNuma0 {
 	if o == nil || IsNil(o.Numa3) {
-		var ret GetVMConfig200ResponseDataNuma0
+		var ret CreateVMRequestNuma0
 		return ret
 	}
 	return *o.Numa3
@@ -5026,7 +4987,7 @@ func (o *CreateVMRequest) GetNuma3() GetVMConfig200ResponseDataNuma0 {
 
 // GetNuma3Ok returns a tuple with the Numa3 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetNuma3Ok() (*GetVMConfig200ResponseDataNuma0, bool) {
+func (o *CreateVMRequest) GetNuma3Ok() (*CreateVMRequestNuma0, bool) {
 	if o == nil || IsNil(o.Numa3) {
 		return nil, false
 	}
@@ -5042,15 +5003,15 @@ func (o *CreateVMRequest) HasNuma3() bool {
 	return false
 }
 
-// SetNuma3 gets a reference to the given GetVMConfig200ResponseDataNuma0 and assigns it to the Numa3 field.
-func (o *CreateVMRequest) SetNuma3(v GetVMConfig200ResponseDataNuma0) {
+// SetNuma3 gets a reference to the given CreateVMRequestNuma0 and assigns it to the Numa3 field.
+func (o *CreateVMRequest) SetNuma3(v CreateVMRequestNuma0) {
 	o.Numa3 = &v
 }
 
 // GetNuma4 returns the Numa4 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetNuma4() GetVMConfig200ResponseDataNuma0 {
+func (o *CreateVMRequest) GetNuma4() CreateVMRequestNuma0 {
 	if o == nil || IsNil(o.Numa4) {
-		var ret GetVMConfig200ResponseDataNuma0
+		var ret CreateVMRequestNuma0
 		return ret
 	}
 	return *o.Numa4
@@ -5058,7 +5019,7 @@ func (o *CreateVMRequest) GetNuma4() GetVMConfig200ResponseDataNuma0 {
 
 // GetNuma4Ok returns a tuple with the Numa4 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetNuma4Ok() (*GetVMConfig200ResponseDataNuma0, bool) {
+func (o *CreateVMRequest) GetNuma4Ok() (*CreateVMRequestNuma0, bool) {
 	if o == nil || IsNil(o.Numa4) {
 		return nil, false
 	}
@@ -5074,15 +5035,15 @@ func (o *CreateVMRequest) HasNuma4() bool {
 	return false
 }
 
-// SetNuma4 gets a reference to the given GetVMConfig200ResponseDataNuma0 and assigns it to the Numa4 field.
-func (o *CreateVMRequest) SetNuma4(v GetVMConfig200ResponseDataNuma0) {
+// SetNuma4 gets a reference to the given CreateVMRequestNuma0 and assigns it to the Numa4 field.
+func (o *CreateVMRequest) SetNuma4(v CreateVMRequestNuma0) {
 	o.Numa4 = &v
 }
 
 // GetNuma5 returns the Numa5 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetNuma5() GetVMConfig200ResponseDataNuma0 {
+func (o *CreateVMRequest) GetNuma5() CreateVMRequestNuma0 {
 	if o == nil || IsNil(o.Numa5) {
-		var ret GetVMConfig200ResponseDataNuma0
+		var ret CreateVMRequestNuma0
 		return ret
 	}
 	return *o.Numa5
@@ -5090,7 +5051,7 @@ func (o *CreateVMRequest) GetNuma5() GetVMConfig200ResponseDataNuma0 {
 
 // GetNuma5Ok returns a tuple with the Numa5 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetNuma5Ok() (*GetVMConfig200ResponseDataNuma0, bool) {
+func (o *CreateVMRequest) GetNuma5Ok() (*CreateVMRequestNuma0, bool) {
 	if o == nil || IsNil(o.Numa5) {
 		return nil, false
 	}
@@ -5106,15 +5067,15 @@ func (o *CreateVMRequest) HasNuma5() bool {
 	return false
 }
 
-// SetNuma5 gets a reference to the given GetVMConfig200ResponseDataNuma0 and assigns it to the Numa5 field.
-func (o *CreateVMRequest) SetNuma5(v GetVMConfig200ResponseDataNuma0) {
+// SetNuma5 gets a reference to the given CreateVMRequestNuma0 and assigns it to the Numa5 field.
+func (o *CreateVMRequest) SetNuma5(v CreateVMRequestNuma0) {
 	o.Numa5 = &v
 }
 
 // GetNuma6 returns the Numa6 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetNuma6() GetVMConfig200ResponseDataNuma0 {
+func (o *CreateVMRequest) GetNuma6() CreateVMRequestNuma0 {
 	if o == nil || IsNil(o.Numa6) {
-		var ret GetVMConfig200ResponseDataNuma0
+		var ret CreateVMRequestNuma0
 		return ret
 	}
 	return *o.Numa6
@@ -5122,7 +5083,7 @@ func (o *CreateVMRequest) GetNuma6() GetVMConfig200ResponseDataNuma0 {
 
 // GetNuma6Ok returns a tuple with the Numa6 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetNuma6Ok() (*GetVMConfig200ResponseDataNuma0, bool) {
+func (o *CreateVMRequest) GetNuma6Ok() (*CreateVMRequestNuma0, bool) {
 	if o == nil || IsNil(o.Numa6) {
 		return nil, false
 	}
@@ -5138,15 +5099,15 @@ func (o *CreateVMRequest) HasNuma6() bool {
 	return false
 }
 
-// SetNuma6 gets a reference to the given GetVMConfig200ResponseDataNuma0 and assigns it to the Numa6 field.
-func (o *CreateVMRequest) SetNuma6(v GetVMConfig200ResponseDataNuma0) {
+// SetNuma6 gets a reference to the given CreateVMRequestNuma0 and assigns it to the Numa6 field.
+func (o *CreateVMRequest) SetNuma6(v CreateVMRequestNuma0) {
 	o.Numa6 = &v
 }
 
 // GetNuma7 returns the Numa7 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetNuma7() GetVMConfig200ResponseDataNuma0 {
+func (o *CreateVMRequest) GetNuma7() CreateVMRequestNuma0 {
 	if o == nil || IsNil(o.Numa7) {
-		var ret GetVMConfig200ResponseDataNuma0
+		var ret CreateVMRequestNuma0
 		return ret
 	}
 	return *o.Numa7
@@ -5154,7 +5115,7 @@ func (o *CreateVMRequest) GetNuma7() GetVMConfig200ResponseDataNuma0 {
 
 // GetNuma7Ok returns a tuple with the Numa7 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetNuma7Ok() (*GetVMConfig200ResponseDataNuma0, bool) {
+func (o *CreateVMRequest) GetNuma7Ok() (*CreateVMRequestNuma0, bool) {
 	if o == nil || IsNil(o.Numa7) {
 		return nil, false
 	}
@@ -5170,15 +5131,15 @@ func (o *CreateVMRequest) HasNuma7() bool {
 	return false
 }
 
-// SetNuma7 gets a reference to the given GetVMConfig200ResponseDataNuma0 and assigns it to the Numa7 field.
-func (o *CreateVMRequest) SetNuma7(v GetVMConfig200ResponseDataNuma0) {
+// SetNuma7 gets a reference to the given CreateVMRequestNuma0 and assigns it to the Numa7 field.
+func (o *CreateVMRequest) SetNuma7(v CreateVMRequestNuma0) {
 	o.Numa7 = &v
 }
 
 // GetNuma8 returns the Numa8 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetNuma8() GetVMConfig200ResponseDataNuma0 {
+func (o *CreateVMRequest) GetNuma8() CreateVMRequestNuma0 {
 	if o == nil || IsNil(o.Numa8) {
-		var ret GetVMConfig200ResponseDataNuma0
+		var ret CreateVMRequestNuma0
 		return ret
 	}
 	return *o.Numa8
@@ -5186,7 +5147,7 @@ func (o *CreateVMRequest) GetNuma8() GetVMConfig200ResponseDataNuma0 {
 
 // GetNuma8Ok returns a tuple with the Numa8 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetNuma8Ok() (*GetVMConfig200ResponseDataNuma0, bool) {
+func (o *CreateVMRequest) GetNuma8Ok() (*CreateVMRequestNuma0, bool) {
 	if o == nil || IsNil(o.Numa8) {
 		return nil, false
 	}
@@ -5202,15 +5163,15 @@ func (o *CreateVMRequest) HasNuma8() bool {
 	return false
 }
 
-// SetNuma8 gets a reference to the given GetVMConfig200ResponseDataNuma0 and assigns it to the Numa8 field.
-func (o *CreateVMRequest) SetNuma8(v GetVMConfig200ResponseDataNuma0) {
+// SetNuma8 gets a reference to the given CreateVMRequestNuma0 and assigns it to the Numa8 field.
+func (o *CreateVMRequest) SetNuma8(v CreateVMRequestNuma0) {
 	o.Numa8 = &v
 }
 
 // GetNuma9 returns the Numa9 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetNuma9() GetVMConfig200ResponseDataNuma0 {
+func (o *CreateVMRequest) GetNuma9() CreateVMRequestNuma0 {
 	if o == nil || IsNil(o.Numa9) {
-		var ret GetVMConfig200ResponseDataNuma0
+		var ret CreateVMRequestNuma0
 		return ret
 	}
 	return *o.Numa9
@@ -5218,7 +5179,7 @@ func (o *CreateVMRequest) GetNuma9() GetVMConfig200ResponseDataNuma0 {
 
 // GetNuma9Ok returns a tuple with the Numa9 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetNuma9Ok() (*GetVMConfig200ResponseDataNuma0, bool) {
+func (o *CreateVMRequest) GetNuma9Ok() (*CreateVMRequestNuma0, bool) {
 	if o == nil || IsNil(o.Numa9) {
 		return nil, false
 	}
@@ -5234,15 +5195,15 @@ func (o *CreateVMRequest) HasNuma9() bool {
 	return false
 }
 
-// SetNuma9 gets a reference to the given GetVMConfig200ResponseDataNuma0 and assigns it to the Numa9 field.
-func (o *CreateVMRequest) SetNuma9(v GetVMConfig200ResponseDataNuma0) {
+// SetNuma9 gets a reference to the given CreateVMRequestNuma0 and assigns it to the Numa9 field.
+func (o *CreateVMRequest) SetNuma9(v CreateVMRequestNuma0) {
 	o.Numa9 = &v
 }
 
 // GetNuma10 returns the Numa10 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetNuma10() GetVMConfig200ResponseDataNuma0 {
+func (o *CreateVMRequest) GetNuma10() CreateVMRequestNuma0 {
 	if o == nil || IsNil(o.Numa10) {
-		var ret GetVMConfig200ResponseDataNuma0
+		var ret CreateVMRequestNuma0
 		return ret
 	}
 	return *o.Numa10
@@ -5250,7 +5211,7 @@ func (o *CreateVMRequest) GetNuma10() GetVMConfig200ResponseDataNuma0 {
 
 // GetNuma10Ok returns a tuple with the Numa10 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetNuma10Ok() (*GetVMConfig200ResponseDataNuma0, bool) {
+func (o *CreateVMRequest) GetNuma10Ok() (*CreateVMRequestNuma0, bool) {
 	if o == nil || IsNil(o.Numa10) {
 		return nil, false
 	}
@@ -5266,15 +5227,15 @@ func (o *CreateVMRequest) HasNuma10() bool {
 	return false
 }
 
-// SetNuma10 gets a reference to the given GetVMConfig200ResponseDataNuma0 and assigns it to the Numa10 field.
-func (o *CreateVMRequest) SetNuma10(v GetVMConfig200ResponseDataNuma0) {
+// SetNuma10 gets a reference to the given CreateVMRequestNuma0 and assigns it to the Numa10 field.
+func (o *CreateVMRequest) SetNuma10(v CreateVMRequestNuma0) {
 	o.Numa10 = &v
 }
 
 // GetNuma11 returns the Numa11 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetNuma11() GetVMConfig200ResponseDataNuma0 {
+func (o *CreateVMRequest) GetNuma11() CreateVMRequestNuma0 {
 	if o == nil || IsNil(o.Numa11) {
-		var ret GetVMConfig200ResponseDataNuma0
+		var ret CreateVMRequestNuma0
 		return ret
 	}
 	return *o.Numa11
@@ -5282,7 +5243,7 @@ func (o *CreateVMRequest) GetNuma11() GetVMConfig200ResponseDataNuma0 {
 
 // GetNuma11Ok returns a tuple with the Numa11 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetNuma11Ok() (*GetVMConfig200ResponseDataNuma0, bool) {
+func (o *CreateVMRequest) GetNuma11Ok() (*CreateVMRequestNuma0, bool) {
 	if o == nil || IsNil(o.Numa11) {
 		return nil, false
 	}
@@ -5298,15 +5259,15 @@ func (o *CreateVMRequest) HasNuma11() bool {
 	return false
 }
 
-// SetNuma11 gets a reference to the given GetVMConfig200ResponseDataNuma0 and assigns it to the Numa11 field.
-func (o *CreateVMRequest) SetNuma11(v GetVMConfig200ResponseDataNuma0) {
+// SetNuma11 gets a reference to the given CreateVMRequestNuma0 and assigns it to the Numa11 field.
+func (o *CreateVMRequest) SetNuma11(v CreateVMRequestNuma0) {
 	o.Numa11 = &v
 }
 
 // GetNuma12 returns the Numa12 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetNuma12() GetVMConfig200ResponseDataNuma0 {
+func (o *CreateVMRequest) GetNuma12() CreateVMRequestNuma0 {
 	if o == nil || IsNil(o.Numa12) {
-		var ret GetVMConfig200ResponseDataNuma0
+		var ret CreateVMRequestNuma0
 		return ret
 	}
 	return *o.Numa12
@@ -5314,7 +5275,7 @@ func (o *CreateVMRequest) GetNuma12() GetVMConfig200ResponseDataNuma0 {
 
 // GetNuma12Ok returns a tuple with the Numa12 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetNuma12Ok() (*GetVMConfig200ResponseDataNuma0, bool) {
+func (o *CreateVMRequest) GetNuma12Ok() (*CreateVMRequestNuma0, bool) {
 	if o == nil || IsNil(o.Numa12) {
 		return nil, false
 	}
@@ -5330,15 +5291,15 @@ func (o *CreateVMRequest) HasNuma12() bool {
 	return false
 }
 
-// SetNuma12 gets a reference to the given GetVMConfig200ResponseDataNuma0 and assigns it to the Numa12 field.
-func (o *CreateVMRequest) SetNuma12(v GetVMConfig200ResponseDataNuma0) {
+// SetNuma12 gets a reference to the given CreateVMRequestNuma0 and assigns it to the Numa12 field.
+func (o *CreateVMRequest) SetNuma12(v CreateVMRequestNuma0) {
 	o.Numa12 = &v
 }
 
 // GetNuma13 returns the Numa13 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetNuma13() GetVMConfig200ResponseDataNuma0 {
+func (o *CreateVMRequest) GetNuma13() CreateVMRequestNuma0 {
 	if o == nil || IsNil(o.Numa13) {
-		var ret GetVMConfig200ResponseDataNuma0
+		var ret CreateVMRequestNuma0
 		return ret
 	}
 	return *o.Numa13
@@ -5346,7 +5307,7 @@ func (o *CreateVMRequest) GetNuma13() GetVMConfig200ResponseDataNuma0 {
 
 // GetNuma13Ok returns a tuple with the Numa13 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetNuma13Ok() (*GetVMConfig200ResponseDataNuma0, bool) {
+func (o *CreateVMRequest) GetNuma13Ok() (*CreateVMRequestNuma0, bool) {
 	if o == nil || IsNil(o.Numa13) {
 		return nil, false
 	}
@@ -5362,15 +5323,15 @@ func (o *CreateVMRequest) HasNuma13() bool {
 	return false
 }
 
-// SetNuma13 gets a reference to the given GetVMConfig200ResponseDataNuma0 and assigns it to the Numa13 field.
-func (o *CreateVMRequest) SetNuma13(v GetVMConfig200ResponseDataNuma0) {
+// SetNuma13 gets a reference to the given CreateVMRequestNuma0 and assigns it to the Numa13 field.
+func (o *CreateVMRequest) SetNuma13(v CreateVMRequestNuma0) {
 	o.Numa13 = &v
 }
 
 // GetNuma14 returns the Numa14 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetNuma14() GetVMConfig200ResponseDataNuma0 {
+func (o *CreateVMRequest) GetNuma14() CreateVMRequestNuma0 {
 	if o == nil || IsNil(o.Numa14) {
-		var ret GetVMConfig200ResponseDataNuma0
+		var ret CreateVMRequestNuma0
 		return ret
 	}
 	return *o.Numa14
@@ -5378,7 +5339,7 @@ func (o *CreateVMRequest) GetNuma14() GetVMConfig200ResponseDataNuma0 {
 
 // GetNuma14Ok returns a tuple with the Numa14 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetNuma14Ok() (*GetVMConfig200ResponseDataNuma0, bool) {
+func (o *CreateVMRequest) GetNuma14Ok() (*CreateVMRequestNuma0, bool) {
 	if o == nil || IsNil(o.Numa14) {
 		return nil, false
 	}
@@ -5394,15 +5355,15 @@ func (o *CreateVMRequest) HasNuma14() bool {
 	return false
 }
 
-// SetNuma14 gets a reference to the given GetVMConfig200ResponseDataNuma0 and assigns it to the Numa14 field.
-func (o *CreateVMRequest) SetNuma14(v GetVMConfig200ResponseDataNuma0) {
+// SetNuma14 gets a reference to the given CreateVMRequestNuma0 and assigns it to the Numa14 field.
+func (o *CreateVMRequest) SetNuma14(v CreateVMRequestNuma0) {
 	o.Numa14 = &v
 }
 
 // GetNuma15 returns the Numa15 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetNuma15() GetVMConfig200ResponseDataNuma0 {
+func (o *CreateVMRequest) GetNuma15() CreateVMRequestNuma0 {
 	if o == nil || IsNil(o.Numa15) {
-		var ret GetVMConfig200ResponseDataNuma0
+		var ret CreateVMRequestNuma0
 		return ret
 	}
 	return *o.Numa15
@@ -5410,7 +5371,7 @@ func (o *CreateVMRequest) GetNuma15() GetVMConfig200ResponseDataNuma0 {
 
 // GetNuma15Ok returns a tuple with the Numa15 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetNuma15Ok() (*GetVMConfig200ResponseDataNuma0, bool) {
+func (o *CreateVMRequest) GetNuma15Ok() (*CreateVMRequestNuma0, bool) {
 	if o == nil || IsNil(o.Numa15) {
 		return nil, false
 	}
@@ -5426,15 +5387,15 @@ func (o *CreateVMRequest) HasNuma15() bool {
 	return false
 }
 
-// SetNuma15 gets a reference to the given GetVMConfig200ResponseDataNuma0 and assigns it to the Numa15 field.
-func (o *CreateVMRequest) SetNuma15(v GetVMConfig200ResponseDataNuma0) {
+// SetNuma15 gets a reference to the given CreateVMRequestNuma0 and assigns it to the Numa15 field.
+func (o *CreateVMRequest) SetNuma15(v CreateVMRequestNuma0) {
 	o.Numa15 = &v
 }
 
 // GetNuma16 returns the Numa16 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetNuma16() GetVMConfig200ResponseDataNuma0 {
+func (o *CreateVMRequest) GetNuma16() CreateVMRequestNuma0 {
 	if o == nil || IsNil(o.Numa16) {
-		var ret GetVMConfig200ResponseDataNuma0
+		var ret CreateVMRequestNuma0
 		return ret
 	}
 	return *o.Numa16
@@ -5442,7 +5403,7 @@ func (o *CreateVMRequest) GetNuma16() GetVMConfig200ResponseDataNuma0 {
 
 // GetNuma16Ok returns a tuple with the Numa16 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetNuma16Ok() (*GetVMConfig200ResponseDataNuma0, bool) {
+func (o *CreateVMRequest) GetNuma16Ok() (*CreateVMRequestNuma0, bool) {
 	if o == nil || IsNil(o.Numa16) {
 		return nil, false
 	}
@@ -5458,15 +5419,15 @@ func (o *CreateVMRequest) HasNuma16() bool {
 	return false
 }
 
-// SetNuma16 gets a reference to the given GetVMConfig200ResponseDataNuma0 and assigns it to the Numa16 field.
-func (o *CreateVMRequest) SetNuma16(v GetVMConfig200ResponseDataNuma0) {
+// SetNuma16 gets a reference to the given CreateVMRequestNuma0 and assigns it to the Numa16 field.
+func (o *CreateVMRequest) SetNuma16(v CreateVMRequestNuma0) {
 	o.Numa16 = &v
 }
 
 // GetNuma17 returns the Numa17 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetNuma17() GetVMConfig200ResponseDataNuma0 {
+func (o *CreateVMRequest) GetNuma17() CreateVMRequestNuma0 {
 	if o == nil || IsNil(o.Numa17) {
-		var ret GetVMConfig200ResponseDataNuma0
+		var ret CreateVMRequestNuma0
 		return ret
 	}
 	return *o.Numa17
@@ -5474,7 +5435,7 @@ func (o *CreateVMRequest) GetNuma17() GetVMConfig200ResponseDataNuma0 {
 
 // GetNuma17Ok returns a tuple with the Numa17 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetNuma17Ok() (*GetVMConfig200ResponseDataNuma0, bool) {
+func (o *CreateVMRequest) GetNuma17Ok() (*CreateVMRequestNuma0, bool) {
 	if o == nil || IsNil(o.Numa17) {
 		return nil, false
 	}
@@ -5490,15 +5451,15 @@ func (o *CreateVMRequest) HasNuma17() bool {
 	return false
 }
 
-// SetNuma17 gets a reference to the given GetVMConfig200ResponseDataNuma0 and assigns it to the Numa17 field.
-func (o *CreateVMRequest) SetNuma17(v GetVMConfig200ResponseDataNuma0) {
+// SetNuma17 gets a reference to the given CreateVMRequestNuma0 and assigns it to the Numa17 field.
+func (o *CreateVMRequest) SetNuma17(v CreateVMRequestNuma0) {
 	o.Numa17 = &v
 }
 
 // GetNuma18 returns the Numa18 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetNuma18() GetVMConfig200ResponseDataNuma0 {
+func (o *CreateVMRequest) GetNuma18() CreateVMRequestNuma0 {
 	if o == nil || IsNil(o.Numa18) {
-		var ret GetVMConfig200ResponseDataNuma0
+		var ret CreateVMRequestNuma0
 		return ret
 	}
 	return *o.Numa18
@@ -5506,7 +5467,7 @@ func (o *CreateVMRequest) GetNuma18() GetVMConfig200ResponseDataNuma0 {
 
 // GetNuma18Ok returns a tuple with the Numa18 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetNuma18Ok() (*GetVMConfig200ResponseDataNuma0, bool) {
+func (o *CreateVMRequest) GetNuma18Ok() (*CreateVMRequestNuma0, bool) {
 	if o == nil || IsNil(o.Numa18) {
 		return nil, false
 	}
@@ -5522,15 +5483,15 @@ func (o *CreateVMRequest) HasNuma18() bool {
 	return false
 }
 
-// SetNuma18 gets a reference to the given GetVMConfig200ResponseDataNuma0 and assigns it to the Numa18 field.
-func (o *CreateVMRequest) SetNuma18(v GetVMConfig200ResponseDataNuma0) {
+// SetNuma18 gets a reference to the given CreateVMRequestNuma0 and assigns it to the Numa18 field.
+func (o *CreateVMRequest) SetNuma18(v CreateVMRequestNuma0) {
 	o.Numa18 = &v
 }
 
 // GetNuma19 returns the Numa19 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetNuma19() GetVMConfig200ResponseDataNuma0 {
+func (o *CreateVMRequest) GetNuma19() CreateVMRequestNuma0 {
 	if o == nil || IsNil(o.Numa19) {
-		var ret GetVMConfig200ResponseDataNuma0
+		var ret CreateVMRequestNuma0
 		return ret
 	}
 	return *o.Numa19
@@ -5538,7 +5499,7 @@ func (o *CreateVMRequest) GetNuma19() GetVMConfig200ResponseDataNuma0 {
 
 // GetNuma19Ok returns a tuple with the Numa19 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetNuma19Ok() (*GetVMConfig200ResponseDataNuma0, bool) {
+func (o *CreateVMRequest) GetNuma19Ok() (*CreateVMRequestNuma0, bool) {
 	if o == nil || IsNil(o.Numa19) {
 		return nil, false
 	}
@@ -5554,15 +5515,15 @@ func (o *CreateVMRequest) HasNuma19() bool {
 	return false
 }
 
-// SetNuma19 gets a reference to the given GetVMConfig200ResponseDataNuma0 and assigns it to the Numa19 field.
-func (o *CreateVMRequest) SetNuma19(v GetVMConfig200ResponseDataNuma0) {
+// SetNuma19 gets a reference to the given CreateVMRequestNuma0 and assigns it to the Numa19 field.
+func (o *CreateVMRequest) SetNuma19(v CreateVMRequestNuma0) {
 	o.Numa19 = &v
 }
 
 // GetNuma20 returns the Numa20 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetNuma20() GetVMConfig200ResponseDataNuma0 {
+func (o *CreateVMRequest) GetNuma20() CreateVMRequestNuma0 {
 	if o == nil || IsNil(o.Numa20) {
-		var ret GetVMConfig200ResponseDataNuma0
+		var ret CreateVMRequestNuma0
 		return ret
 	}
 	return *o.Numa20
@@ -5570,7 +5531,7 @@ func (o *CreateVMRequest) GetNuma20() GetVMConfig200ResponseDataNuma0 {
 
 // GetNuma20Ok returns a tuple with the Numa20 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetNuma20Ok() (*GetVMConfig200ResponseDataNuma0, bool) {
+func (o *CreateVMRequest) GetNuma20Ok() (*CreateVMRequestNuma0, bool) {
 	if o == nil || IsNil(o.Numa20) {
 		return nil, false
 	}
@@ -5586,15 +5547,15 @@ func (o *CreateVMRequest) HasNuma20() bool {
 	return false
 }
 
-// SetNuma20 gets a reference to the given GetVMConfig200ResponseDataNuma0 and assigns it to the Numa20 field.
-func (o *CreateVMRequest) SetNuma20(v GetVMConfig200ResponseDataNuma0) {
+// SetNuma20 gets a reference to the given CreateVMRequestNuma0 and assigns it to the Numa20 field.
+func (o *CreateVMRequest) SetNuma20(v CreateVMRequestNuma0) {
 	o.Numa20 = &v
 }
 
 // GetNuma21 returns the Numa21 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetNuma21() GetVMConfig200ResponseDataNuma0 {
+func (o *CreateVMRequest) GetNuma21() CreateVMRequestNuma0 {
 	if o == nil || IsNil(o.Numa21) {
-		var ret GetVMConfig200ResponseDataNuma0
+		var ret CreateVMRequestNuma0
 		return ret
 	}
 	return *o.Numa21
@@ -5602,7 +5563,7 @@ func (o *CreateVMRequest) GetNuma21() GetVMConfig200ResponseDataNuma0 {
 
 // GetNuma21Ok returns a tuple with the Numa21 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetNuma21Ok() (*GetVMConfig200ResponseDataNuma0, bool) {
+func (o *CreateVMRequest) GetNuma21Ok() (*CreateVMRequestNuma0, bool) {
 	if o == nil || IsNil(o.Numa21) {
 		return nil, false
 	}
@@ -5618,15 +5579,15 @@ func (o *CreateVMRequest) HasNuma21() bool {
 	return false
 }
 
-// SetNuma21 gets a reference to the given GetVMConfig200ResponseDataNuma0 and assigns it to the Numa21 field.
-func (o *CreateVMRequest) SetNuma21(v GetVMConfig200ResponseDataNuma0) {
+// SetNuma21 gets a reference to the given CreateVMRequestNuma0 and assigns it to the Numa21 field.
+func (o *CreateVMRequest) SetNuma21(v CreateVMRequestNuma0) {
 	o.Numa21 = &v
 }
 
 // GetNuma22 returns the Numa22 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetNuma22() GetVMConfig200ResponseDataNuma0 {
+func (o *CreateVMRequest) GetNuma22() CreateVMRequestNuma0 {
 	if o == nil || IsNil(o.Numa22) {
-		var ret GetVMConfig200ResponseDataNuma0
+		var ret CreateVMRequestNuma0
 		return ret
 	}
 	return *o.Numa22
@@ -5634,7 +5595,7 @@ func (o *CreateVMRequest) GetNuma22() GetVMConfig200ResponseDataNuma0 {
 
 // GetNuma22Ok returns a tuple with the Numa22 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetNuma22Ok() (*GetVMConfig200ResponseDataNuma0, bool) {
+func (o *CreateVMRequest) GetNuma22Ok() (*CreateVMRequestNuma0, bool) {
 	if o == nil || IsNil(o.Numa22) {
 		return nil, false
 	}
@@ -5650,15 +5611,15 @@ func (o *CreateVMRequest) HasNuma22() bool {
 	return false
 }
 
-// SetNuma22 gets a reference to the given GetVMConfig200ResponseDataNuma0 and assigns it to the Numa22 field.
-func (o *CreateVMRequest) SetNuma22(v GetVMConfig200ResponseDataNuma0) {
+// SetNuma22 gets a reference to the given CreateVMRequestNuma0 and assigns it to the Numa22 field.
+func (o *CreateVMRequest) SetNuma22(v CreateVMRequestNuma0) {
 	o.Numa22 = &v
 }
 
 // GetNuma23 returns the Numa23 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetNuma23() GetVMConfig200ResponseDataNuma0 {
+func (o *CreateVMRequest) GetNuma23() CreateVMRequestNuma0 {
 	if o == nil || IsNil(o.Numa23) {
-		var ret GetVMConfig200ResponseDataNuma0
+		var ret CreateVMRequestNuma0
 		return ret
 	}
 	return *o.Numa23
@@ -5666,7 +5627,7 @@ func (o *CreateVMRequest) GetNuma23() GetVMConfig200ResponseDataNuma0 {
 
 // GetNuma23Ok returns a tuple with the Numa23 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetNuma23Ok() (*GetVMConfig200ResponseDataNuma0, bool) {
+func (o *CreateVMRequest) GetNuma23Ok() (*CreateVMRequestNuma0, bool) {
 	if o == nil || IsNil(o.Numa23) {
 		return nil, false
 	}
@@ -5682,15 +5643,15 @@ func (o *CreateVMRequest) HasNuma23() bool {
 	return false
 }
 
-// SetNuma23 gets a reference to the given GetVMConfig200ResponseDataNuma0 and assigns it to the Numa23 field.
-func (o *CreateVMRequest) SetNuma23(v GetVMConfig200ResponseDataNuma0) {
+// SetNuma23 gets a reference to the given CreateVMRequestNuma0 and assigns it to the Numa23 field.
+func (o *CreateVMRequest) SetNuma23(v CreateVMRequestNuma0) {
 	o.Numa23 = &v
 }
 
 // GetNuma24 returns the Numa24 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetNuma24() GetVMConfig200ResponseDataNuma0 {
+func (o *CreateVMRequest) GetNuma24() CreateVMRequestNuma0 {
 	if o == nil || IsNil(o.Numa24) {
-		var ret GetVMConfig200ResponseDataNuma0
+		var ret CreateVMRequestNuma0
 		return ret
 	}
 	return *o.Numa24
@@ -5698,7 +5659,7 @@ func (o *CreateVMRequest) GetNuma24() GetVMConfig200ResponseDataNuma0 {
 
 // GetNuma24Ok returns a tuple with the Numa24 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetNuma24Ok() (*GetVMConfig200ResponseDataNuma0, bool) {
+func (o *CreateVMRequest) GetNuma24Ok() (*CreateVMRequestNuma0, bool) {
 	if o == nil || IsNil(o.Numa24) {
 		return nil, false
 	}
@@ -5714,15 +5675,15 @@ func (o *CreateVMRequest) HasNuma24() bool {
 	return false
 }
 
-// SetNuma24 gets a reference to the given GetVMConfig200ResponseDataNuma0 and assigns it to the Numa24 field.
-func (o *CreateVMRequest) SetNuma24(v GetVMConfig200ResponseDataNuma0) {
+// SetNuma24 gets a reference to the given CreateVMRequestNuma0 and assigns it to the Numa24 field.
+func (o *CreateVMRequest) SetNuma24(v CreateVMRequestNuma0) {
 	o.Numa24 = &v
 }
 
 // GetNuma25 returns the Numa25 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetNuma25() GetVMConfig200ResponseDataNuma0 {
+func (o *CreateVMRequest) GetNuma25() CreateVMRequestNuma0 {
 	if o == nil || IsNil(o.Numa25) {
-		var ret GetVMConfig200ResponseDataNuma0
+		var ret CreateVMRequestNuma0
 		return ret
 	}
 	return *o.Numa25
@@ -5730,7 +5691,7 @@ func (o *CreateVMRequest) GetNuma25() GetVMConfig200ResponseDataNuma0 {
 
 // GetNuma25Ok returns a tuple with the Numa25 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetNuma25Ok() (*GetVMConfig200ResponseDataNuma0, bool) {
+func (o *CreateVMRequest) GetNuma25Ok() (*CreateVMRequestNuma0, bool) {
 	if o == nil || IsNil(o.Numa25) {
 		return nil, false
 	}
@@ -5746,15 +5707,15 @@ func (o *CreateVMRequest) HasNuma25() bool {
 	return false
 }
 
-// SetNuma25 gets a reference to the given GetVMConfig200ResponseDataNuma0 and assigns it to the Numa25 field.
-func (o *CreateVMRequest) SetNuma25(v GetVMConfig200ResponseDataNuma0) {
+// SetNuma25 gets a reference to the given CreateVMRequestNuma0 and assigns it to the Numa25 field.
+func (o *CreateVMRequest) SetNuma25(v CreateVMRequestNuma0) {
 	o.Numa25 = &v
 }
 
 // GetNuma26 returns the Numa26 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetNuma26() GetVMConfig200ResponseDataNuma0 {
+func (o *CreateVMRequest) GetNuma26() CreateVMRequestNuma0 {
 	if o == nil || IsNil(o.Numa26) {
-		var ret GetVMConfig200ResponseDataNuma0
+		var ret CreateVMRequestNuma0
 		return ret
 	}
 	return *o.Numa26
@@ -5762,7 +5723,7 @@ func (o *CreateVMRequest) GetNuma26() GetVMConfig200ResponseDataNuma0 {
 
 // GetNuma26Ok returns a tuple with the Numa26 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetNuma26Ok() (*GetVMConfig200ResponseDataNuma0, bool) {
+func (o *CreateVMRequest) GetNuma26Ok() (*CreateVMRequestNuma0, bool) {
 	if o == nil || IsNil(o.Numa26) {
 		return nil, false
 	}
@@ -5778,15 +5739,15 @@ func (o *CreateVMRequest) HasNuma26() bool {
 	return false
 }
 
-// SetNuma26 gets a reference to the given GetVMConfig200ResponseDataNuma0 and assigns it to the Numa26 field.
-func (o *CreateVMRequest) SetNuma26(v GetVMConfig200ResponseDataNuma0) {
+// SetNuma26 gets a reference to the given CreateVMRequestNuma0 and assigns it to the Numa26 field.
+func (o *CreateVMRequest) SetNuma26(v CreateVMRequestNuma0) {
 	o.Numa26 = &v
 }
 
 // GetNuma27 returns the Numa27 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetNuma27() GetVMConfig200ResponseDataNuma0 {
+func (o *CreateVMRequest) GetNuma27() CreateVMRequestNuma0 {
 	if o == nil || IsNil(o.Numa27) {
-		var ret GetVMConfig200ResponseDataNuma0
+		var ret CreateVMRequestNuma0
 		return ret
 	}
 	return *o.Numa27
@@ -5794,7 +5755,7 @@ func (o *CreateVMRequest) GetNuma27() GetVMConfig200ResponseDataNuma0 {
 
 // GetNuma27Ok returns a tuple with the Numa27 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetNuma27Ok() (*GetVMConfig200ResponseDataNuma0, bool) {
+func (o *CreateVMRequest) GetNuma27Ok() (*CreateVMRequestNuma0, bool) {
 	if o == nil || IsNil(o.Numa27) {
 		return nil, false
 	}
@@ -5810,15 +5771,15 @@ func (o *CreateVMRequest) HasNuma27() bool {
 	return false
 }
 
-// SetNuma27 gets a reference to the given GetVMConfig200ResponseDataNuma0 and assigns it to the Numa27 field.
-func (o *CreateVMRequest) SetNuma27(v GetVMConfig200ResponseDataNuma0) {
+// SetNuma27 gets a reference to the given CreateVMRequestNuma0 and assigns it to the Numa27 field.
+func (o *CreateVMRequest) SetNuma27(v CreateVMRequestNuma0) {
 	o.Numa27 = &v
 }
 
 // GetNuma28 returns the Numa28 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetNuma28() GetVMConfig200ResponseDataNuma0 {
+func (o *CreateVMRequest) GetNuma28() CreateVMRequestNuma0 {
 	if o == nil || IsNil(o.Numa28) {
-		var ret GetVMConfig200ResponseDataNuma0
+		var ret CreateVMRequestNuma0
 		return ret
 	}
 	return *o.Numa28
@@ -5826,7 +5787,7 @@ func (o *CreateVMRequest) GetNuma28() GetVMConfig200ResponseDataNuma0 {
 
 // GetNuma28Ok returns a tuple with the Numa28 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetNuma28Ok() (*GetVMConfig200ResponseDataNuma0, bool) {
+func (o *CreateVMRequest) GetNuma28Ok() (*CreateVMRequestNuma0, bool) {
 	if o == nil || IsNil(o.Numa28) {
 		return nil, false
 	}
@@ -5842,15 +5803,15 @@ func (o *CreateVMRequest) HasNuma28() bool {
 	return false
 }
 
-// SetNuma28 gets a reference to the given GetVMConfig200ResponseDataNuma0 and assigns it to the Numa28 field.
-func (o *CreateVMRequest) SetNuma28(v GetVMConfig200ResponseDataNuma0) {
+// SetNuma28 gets a reference to the given CreateVMRequestNuma0 and assigns it to the Numa28 field.
+func (o *CreateVMRequest) SetNuma28(v CreateVMRequestNuma0) {
 	o.Numa28 = &v
 }
 
 // GetNuma29 returns the Numa29 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetNuma29() GetVMConfig200ResponseDataNuma0 {
+func (o *CreateVMRequest) GetNuma29() CreateVMRequestNuma0 {
 	if o == nil || IsNil(o.Numa29) {
-		var ret GetVMConfig200ResponseDataNuma0
+		var ret CreateVMRequestNuma0
 		return ret
 	}
 	return *o.Numa29
@@ -5858,7 +5819,7 @@ func (o *CreateVMRequest) GetNuma29() GetVMConfig200ResponseDataNuma0 {
 
 // GetNuma29Ok returns a tuple with the Numa29 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetNuma29Ok() (*GetVMConfig200ResponseDataNuma0, bool) {
+func (o *CreateVMRequest) GetNuma29Ok() (*CreateVMRequestNuma0, bool) {
 	if o == nil || IsNil(o.Numa29) {
 		return nil, false
 	}
@@ -5874,8 +5835,8 @@ func (o *CreateVMRequest) HasNuma29() bool {
 	return false
 }
 
-// SetNuma29 gets a reference to the given GetVMConfig200ResponseDataNuma0 and assigns it to the Numa29 field.
-func (o *CreateVMRequest) SetNuma29(v GetVMConfig200ResponseDataNuma0) {
+// SetNuma29 gets a reference to the given CreateVMRequestNuma0 and assigns it to the Numa29 field.
+func (o *CreateVMRequest) SetNuma29(v CreateVMRequestNuma0) {
 	o.Numa29 = &v
 }
 
@@ -6168,9 +6129,9 @@ func (o *CreateVMRequest) SetReboot(v bool) {
 }
 
 // GetRng0 returns the Rng0 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetRng0() GetVMConfig200ResponseDataRng0 {
+func (o *CreateVMRequest) GetRng0() CreateVMRequestRng0 {
 	if o == nil || IsNil(o.Rng0) {
-		var ret GetVMConfig200ResponseDataRng0
+		var ret CreateVMRequestRng0
 		return ret
 	}
 	return *o.Rng0
@@ -6178,7 +6139,7 @@ func (o *CreateVMRequest) GetRng0() GetVMConfig200ResponseDataRng0 {
 
 // GetRng0Ok returns a tuple with the Rng0 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetRng0Ok() (*GetVMConfig200ResponseDataRng0, bool) {
+func (o *CreateVMRequest) GetRng0Ok() (*CreateVMRequestRng0, bool) {
 	if o == nil || IsNil(o.Rng0) {
 		return nil, false
 	}
@@ -6194,8 +6155,8 @@ func (o *CreateVMRequest) HasRng0() bool {
 	return false
 }
 
-// SetRng0 gets a reference to the given GetVMConfig200ResponseDataRng0 and assigns it to the Rng0 field.
-func (o *CreateVMRequest) SetRng0(v GetVMConfig200ResponseDataRng0) {
+// SetRng0 gets a reference to the given CreateVMRequestRng0 and assigns it to the Rng0 field.
+func (o *CreateVMRequest) SetRng0(v CreateVMRequestRng0) {
 	o.Rng0 = &v
 }
 
@@ -7672,9 +7633,9 @@ func (o *CreateVMRequest) SetSockets(v int64) {
 }
 
 // GetSpiceEnhancements returns the SpiceEnhancements field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetSpiceEnhancements() GetVMConfig200ResponseDataSpiceEnhancements {
+func (o *CreateVMRequest) GetSpiceEnhancements() CreateVMRequestSpiceEnhancements {
 	if o == nil || IsNil(o.SpiceEnhancements) {
-		var ret GetVMConfig200ResponseDataSpiceEnhancements
+		var ret CreateVMRequestSpiceEnhancements
 		return ret
 	}
 	return *o.SpiceEnhancements
@@ -7682,7 +7643,7 @@ func (o *CreateVMRequest) GetSpiceEnhancements() GetVMConfig200ResponseDataSpice
 
 // GetSpiceEnhancementsOk returns a tuple with the SpiceEnhancements field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetSpiceEnhancementsOk() (*GetVMConfig200ResponseDataSpiceEnhancements, bool) {
+func (o *CreateVMRequest) GetSpiceEnhancementsOk() (*CreateVMRequestSpiceEnhancements, bool) {
 	if o == nil || IsNil(o.SpiceEnhancements) {
 		return nil, false
 	}
@@ -7698,8 +7659,8 @@ func (o *CreateVMRequest) HasSpiceEnhancements() bool {
 	return false
 }
 
-// SetSpiceEnhancements gets a reference to the given GetVMConfig200ResponseDataSpiceEnhancements and assigns it to the SpiceEnhancements field.
-func (o *CreateVMRequest) SetSpiceEnhancements(v GetVMConfig200ResponseDataSpiceEnhancements) {
+// SetSpiceEnhancements gets a reference to the given CreateVMRequestSpiceEnhancements and assigns it to the SpiceEnhancements field.
+func (o *CreateVMRequest) SetSpiceEnhancements(v CreateVMRequestSpiceEnhancements) {
 	o.SpiceEnhancements = &v
 }
 
@@ -8056,9 +8017,9 @@ func (o *CreateVMRequest) SetUnique(v bool) {
 }
 
 // GetUnused0 returns the Unused0 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetUnused0() GetVMConfig200ResponseDataUnused0 {
+func (o *CreateVMRequest) GetUnused0() CreateVMRequestUnused0 {
 	if o == nil || IsNil(o.Unused0) {
-		var ret GetVMConfig200ResponseDataUnused0
+		var ret CreateVMRequestUnused0
 		return ret
 	}
 	return *o.Unused0
@@ -8066,7 +8027,7 @@ func (o *CreateVMRequest) GetUnused0() GetVMConfig200ResponseDataUnused0 {
 
 // GetUnused0Ok returns a tuple with the Unused0 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetUnused0Ok() (*GetVMConfig200ResponseDataUnused0, bool) {
+func (o *CreateVMRequest) GetUnused0Ok() (*CreateVMRequestUnused0, bool) {
 	if o == nil || IsNil(o.Unused0) {
 		return nil, false
 	}
@@ -8082,15 +8043,15 @@ func (o *CreateVMRequest) HasUnused0() bool {
 	return false
 }
 
-// SetUnused0 gets a reference to the given GetVMConfig200ResponseDataUnused0 and assigns it to the Unused0 field.
-func (o *CreateVMRequest) SetUnused0(v GetVMConfig200ResponseDataUnused0) {
+// SetUnused0 gets a reference to the given CreateVMRequestUnused0 and assigns it to the Unused0 field.
+func (o *CreateVMRequest) SetUnused0(v CreateVMRequestUnused0) {
 	o.Unused0 = &v
 }
 
 // GetUnused1 returns the Unused1 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetUnused1() GetVMConfig200ResponseDataUnused0 {
+func (o *CreateVMRequest) GetUnused1() CreateVMRequestUnused0 {
 	if o == nil || IsNil(o.Unused1) {
-		var ret GetVMConfig200ResponseDataUnused0
+		var ret CreateVMRequestUnused0
 		return ret
 	}
 	return *o.Unused1
@@ -8098,7 +8059,7 @@ func (o *CreateVMRequest) GetUnused1() GetVMConfig200ResponseDataUnused0 {
 
 // GetUnused1Ok returns a tuple with the Unused1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetUnused1Ok() (*GetVMConfig200ResponseDataUnused0, bool) {
+func (o *CreateVMRequest) GetUnused1Ok() (*CreateVMRequestUnused0, bool) {
 	if o == nil || IsNil(o.Unused1) {
 		return nil, false
 	}
@@ -8114,15 +8075,15 @@ func (o *CreateVMRequest) HasUnused1() bool {
 	return false
 }
 
-// SetUnused1 gets a reference to the given GetVMConfig200ResponseDataUnused0 and assigns it to the Unused1 field.
-func (o *CreateVMRequest) SetUnused1(v GetVMConfig200ResponseDataUnused0) {
+// SetUnused1 gets a reference to the given CreateVMRequestUnused0 and assigns it to the Unused1 field.
+func (o *CreateVMRequest) SetUnused1(v CreateVMRequestUnused0) {
 	o.Unused1 = &v
 }
 
 // GetUnused2 returns the Unused2 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetUnused2() GetVMConfig200ResponseDataUnused0 {
+func (o *CreateVMRequest) GetUnused2() CreateVMRequestUnused0 {
 	if o == nil || IsNil(o.Unused2) {
-		var ret GetVMConfig200ResponseDataUnused0
+		var ret CreateVMRequestUnused0
 		return ret
 	}
 	return *o.Unused2
@@ -8130,7 +8091,7 @@ func (o *CreateVMRequest) GetUnused2() GetVMConfig200ResponseDataUnused0 {
 
 // GetUnused2Ok returns a tuple with the Unused2 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetUnused2Ok() (*GetVMConfig200ResponseDataUnused0, bool) {
+func (o *CreateVMRequest) GetUnused2Ok() (*CreateVMRequestUnused0, bool) {
 	if o == nil || IsNil(o.Unused2) {
 		return nil, false
 	}
@@ -8146,15 +8107,15 @@ func (o *CreateVMRequest) HasUnused2() bool {
 	return false
 }
 
-// SetUnused2 gets a reference to the given GetVMConfig200ResponseDataUnused0 and assigns it to the Unused2 field.
-func (o *CreateVMRequest) SetUnused2(v GetVMConfig200ResponseDataUnused0) {
+// SetUnused2 gets a reference to the given CreateVMRequestUnused0 and assigns it to the Unused2 field.
+func (o *CreateVMRequest) SetUnused2(v CreateVMRequestUnused0) {
 	o.Unused2 = &v
 }
 
 // GetUnused3 returns the Unused3 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetUnused3() GetVMConfig200ResponseDataUnused0 {
+func (o *CreateVMRequest) GetUnused3() CreateVMRequestUnused0 {
 	if o == nil || IsNil(o.Unused3) {
-		var ret GetVMConfig200ResponseDataUnused0
+		var ret CreateVMRequestUnused0
 		return ret
 	}
 	return *o.Unused3
@@ -8162,7 +8123,7 @@ func (o *CreateVMRequest) GetUnused3() GetVMConfig200ResponseDataUnused0 {
 
 // GetUnused3Ok returns a tuple with the Unused3 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetUnused3Ok() (*GetVMConfig200ResponseDataUnused0, bool) {
+func (o *CreateVMRequest) GetUnused3Ok() (*CreateVMRequestUnused0, bool) {
 	if o == nil || IsNil(o.Unused3) {
 		return nil, false
 	}
@@ -8178,15 +8139,15 @@ func (o *CreateVMRequest) HasUnused3() bool {
 	return false
 }
 
-// SetUnused3 gets a reference to the given GetVMConfig200ResponseDataUnused0 and assigns it to the Unused3 field.
-func (o *CreateVMRequest) SetUnused3(v GetVMConfig200ResponseDataUnused0) {
+// SetUnused3 gets a reference to the given CreateVMRequestUnused0 and assigns it to the Unused3 field.
+func (o *CreateVMRequest) SetUnused3(v CreateVMRequestUnused0) {
 	o.Unused3 = &v
 }
 
 // GetUnused4 returns the Unused4 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetUnused4() GetVMConfig200ResponseDataUnused0 {
+func (o *CreateVMRequest) GetUnused4() CreateVMRequestUnused0 {
 	if o == nil || IsNil(o.Unused4) {
-		var ret GetVMConfig200ResponseDataUnused0
+		var ret CreateVMRequestUnused0
 		return ret
 	}
 	return *o.Unused4
@@ -8194,7 +8155,7 @@ func (o *CreateVMRequest) GetUnused4() GetVMConfig200ResponseDataUnused0 {
 
 // GetUnused4Ok returns a tuple with the Unused4 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetUnused4Ok() (*GetVMConfig200ResponseDataUnused0, bool) {
+func (o *CreateVMRequest) GetUnused4Ok() (*CreateVMRequestUnused0, bool) {
 	if o == nil || IsNil(o.Unused4) {
 		return nil, false
 	}
@@ -8210,15 +8171,15 @@ func (o *CreateVMRequest) HasUnused4() bool {
 	return false
 }
 
-// SetUnused4 gets a reference to the given GetVMConfig200ResponseDataUnused0 and assigns it to the Unused4 field.
-func (o *CreateVMRequest) SetUnused4(v GetVMConfig200ResponseDataUnused0) {
+// SetUnused4 gets a reference to the given CreateVMRequestUnused0 and assigns it to the Unused4 field.
+func (o *CreateVMRequest) SetUnused4(v CreateVMRequestUnused0) {
 	o.Unused4 = &v
 }
 
 // GetUnused5 returns the Unused5 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetUnused5() GetVMConfig200ResponseDataUnused0 {
+func (o *CreateVMRequest) GetUnused5() CreateVMRequestUnused0 {
 	if o == nil || IsNil(o.Unused5) {
-		var ret GetVMConfig200ResponseDataUnused0
+		var ret CreateVMRequestUnused0
 		return ret
 	}
 	return *o.Unused5
@@ -8226,7 +8187,7 @@ func (o *CreateVMRequest) GetUnused5() GetVMConfig200ResponseDataUnused0 {
 
 // GetUnused5Ok returns a tuple with the Unused5 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetUnused5Ok() (*GetVMConfig200ResponseDataUnused0, bool) {
+func (o *CreateVMRequest) GetUnused5Ok() (*CreateVMRequestUnused0, bool) {
 	if o == nil || IsNil(o.Unused5) {
 		return nil, false
 	}
@@ -8242,15 +8203,15 @@ func (o *CreateVMRequest) HasUnused5() bool {
 	return false
 }
 
-// SetUnused5 gets a reference to the given GetVMConfig200ResponseDataUnused0 and assigns it to the Unused5 field.
-func (o *CreateVMRequest) SetUnused5(v GetVMConfig200ResponseDataUnused0) {
+// SetUnused5 gets a reference to the given CreateVMRequestUnused0 and assigns it to the Unused5 field.
+func (o *CreateVMRequest) SetUnused5(v CreateVMRequestUnused0) {
 	o.Unused5 = &v
 }
 
 // GetUnused6 returns the Unused6 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetUnused6() GetVMConfig200ResponseDataUnused0 {
+func (o *CreateVMRequest) GetUnused6() CreateVMRequestUnused0 {
 	if o == nil || IsNil(o.Unused6) {
-		var ret GetVMConfig200ResponseDataUnused0
+		var ret CreateVMRequestUnused0
 		return ret
 	}
 	return *o.Unused6
@@ -8258,7 +8219,7 @@ func (o *CreateVMRequest) GetUnused6() GetVMConfig200ResponseDataUnused0 {
 
 // GetUnused6Ok returns a tuple with the Unused6 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetUnused6Ok() (*GetVMConfig200ResponseDataUnused0, bool) {
+func (o *CreateVMRequest) GetUnused6Ok() (*CreateVMRequestUnused0, bool) {
 	if o == nil || IsNil(o.Unused6) {
 		return nil, false
 	}
@@ -8274,15 +8235,15 @@ func (o *CreateVMRequest) HasUnused6() bool {
 	return false
 }
 
-// SetUnused6 gets a reference to the given GetVMConfig200ResponseDataUnused0 and assigns it to the Unused6 field.
-func (o *CreateVMRequest) SetUnused6(v GetVMConfig200ResponseDataUnused0) {
+// SetUnused6 gets a reference to the given CreateVMRequestUnused0 and assigns it to the Unused6 field.
+func (o *CreateVMRequest) SetUnused6(v CreateVMRequestUnused0) {
 	o.Unused6 = &v
 }
 
 // GetUnused7 returns the Unused7 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetUnused7() GetVMConfig200ResponseDataUnused0 {
+func (o *CreateVMRequest) GetUnused7() CreateVMRequestUnused0 {
 	if o == nil || IsNil(o.Unused7) {
-		var ret GetVMConfig200ResponseDataUnused0
+		var ret CreateVMRequestUnused0
 		return ret
 	}
 	return *o.Unused7
@@ -8290,7 +8251,7 @@ func (o *CreateVMRequest) GetUnused7() GetVMConfig200ResponseDataUnused0 {
 
 // GetUnused7Ok returns a tuple with the Unused7 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetUnused7Ok() (*GetVMConfig200ResponseDataUnused0, bool) {
+func (o *CreateVMRequest) GetUnused7Ok() (*CreateVMRequestUnused0, bool) {
 	if o == nil || IsNil(o.Unused7) {
 		return nil, false
 	}
@@ -8306,15 +8267,15 @@ func (o *CreateVMRequest) HasUnused7() bool {
 	return false
 }
 
-// SetUnused7 gets a reference to the given GetVMConfig200ResponseDataUnused0 and assigns it to the Unused7 field.
-func (o *CreateVMRequest) SetUnused7(v GetVMConfig200ResponseDataUnused0) {
+// SetUnused7 gets a reference to the given CreateVMRequestUnused0 and assigns it to the Unused7 field.
+func (o *CreateVMRequest) SetUnused7(v CreateVMRequestUnused0) {
 	o.Unused7 = &v
 }
 
 // GetUnused8 returns the Unused8 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetUnused8() GetVMConfig200ResponseDataUnused0 {
+func (o *CreateVMRequest) GetUnused8() CreateVMRequestUnused0 {
 	if o == nil || IsNil(o.Unused8) {
-		var ret GetVMConfig200ResponseDataUnused0
+		var ret CreateVMRequestUnused0
 		return ret
 	}
 	return *o.Unused8
@@ -8322,7 +8283,7 @@ func (o *CreateVMRequest) GetUnused8() GetVMConfig200ResponseDataUnused0 {
 
 // GetUnused8Ok returns a tuple with the Unused8 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetUnused8Ok() (*GetVMConfig200ResponseDataUnused0, bool) {
+func (o *CreateVMRequest) GetUnused8Ok() (*CreateVMRequestUnused0, bool) {
 	if o == nil || IsNil(o.Unused8) {
 		return nil, false
 	}
@@ -8338,15 +8299,15 @@ func (o *CreateVMRequest) HasUnused8() bool {
 	return false
 }
 
-// SetUnused8 gets a reference to the given GetVMConfig200ResponseDataUnused0 and assigns it to the Unused8 field.
-func (o *CreateVMRequest) SetUnused8(v GetVMConfig200ResponseDataUnused0) {
+// SetUnused8 gets a reference to the given CreateVMRequestUnused0 and assigns it to the Unused8 field.
+func (o *CreateVMRequest) SetUnused8(v CreateVMRequestUnused0) {
 	o.Unused8 = &v
 }
 
 // GetUnused9 returns the Unused9 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetUnused9() GetVMConfig200ResponseDataUnused0 {
+func (o *CreateVMRequest) GetUnused9() CreateVMRequestUnused0 {
 	if o == nil || IsNil(o.Unused9) {
-		var ret GetVMConfig200ResponseDataUnused0
+		var ret CreateVMRequestUnused0
 		return ret
 	}
 	return *o.Unused9
@@ -8354,7 +8315,7 @@ func (o *CreateVMRequest) GetUnused9() GetVMConfig200ResponseDataUnused0 {
 
 // GetUnused9Ok returns a tuple with the Unused9 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetUnused9Ok() (*GetVMConfig200ResponseDataUnused0, bool) {
+func (o *CreateVMRequest) GetUnused9Ok() (*CreateVMRequestUnused0, bool) {
 	if o == nil || IsNil(o.Unused9) {
 		return nil, false
 	}
@@ -8370,15 +8331,15 @@ func (o *CreateVMRequest) HasUnused9() bool {
 	return false
 }
 
-// SetUnused9 gets a reference to the given GetVMConfig200ResponseDataUnused0 and assigns it to the Unused9 field.
-func (o *CreateVMRequest) SetUnused9(v GetVMConfig200ResponseDataUnused0) {
+// SetUnused9 gets a reference to the given CreateVMRequestUnused0 and assigns it to the Unused9 field.
+func (o *CreateVMRequest) SetUnused9(v CreateVMRequestUnused0) {
 	o.Unused9 = &v
 }
 
 // GetUnused10 returns the Unused10 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetUnused10() GetVMConfig200ResponseDataUnused0 {
+func (o *CreateVMRequest) GetUnused10() CreateVMRequestUnused0 {
 	if o == nil || IsNil(o.Unused10) {
-		var ret GetVMConfig200ResponseDataUnused0
+		var ret CreateVMRequestUnused0
 		return ret
 	}
 	return *o.Unused10
@@ -8386,7 +8347,7 @@ func (o *CreateVMRequest) GetUnused10() GetVMConfig200ResponseDataUnused0 {
 
 // GetUnused10Ok returns a tuple with the Unused10 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetUnused10Ok() (*GetVMConfig200ResponseDataUnused0, bool) {
+func (o *CreateVMRequest) GetUnused10Ok() (*CreateVMRequestUnused0, bool) {
 	if o == nil || IsNil(o.Unused10) {
 		return nil, false
 	}
@@ -8402,15 +8363,15 @@ func (o *CreateVMRequest) HasUnused10() bool {
 	return false
 }
 
-// SetUnused10 gets a reference to the given GetVMConfig200ResponseDataUnused0 and assigns it to the Unused10 field.
-func (o *CreateVMRequest) SetUnused10(v GetVMConfig200ResponseDataUnused0) {
+// SetUnused10 gets a reference to the given CreateVMRequestUnused0 and assigns it to the Unused10 field.
+func (o *CreateVMRequest) SetUnused10(v CreateVMRequestUnused0) {
 	o.Unused10 = &v
 }
 
 // GetUnused11 returns the Unused11 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetUnused11() GetVMConfig200ResponseDataUnused0 {
+func (o *CreateVMRequest) GetUnused11() CreateVMRequestUnused0 {
 	if o == nil || IsNil(o.Unused11) {
-		var ret GetVMConfig200ResponseDataUnused0
+		var ret CreateVMRequestUnused0
 		return ret
 	}
 	return *o.Unused11
@@ -8418,7 +8379,7 @@ func (o *CreateVMRequest) GetUnused11() GetVMConfig200ResponseDataUnused0 {
 
 // GetUnused11Ok returns a tuple with the Unused11 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetUnused11Ok() (*GetVMConfig200ResponseDataUnused0, bool) {
+func (o *CreateVMRequest) GetUnused11Ok() (*CreateVMRequestUnused0, bool) {
 	if o == nil || IsNil(o.Unused11) {
 		return nil, false
 	}
@@ -8434,15 +8395,15 @@ func (o *CreateVMRequest) HasUnused11() bool {
 	return false
 }
 
-// SetUnused11 gets a reference to the given GetVMConfig200ResponseDataUnused0 and assigns it to the Unused11 field.
-func (o *CreateVMRequest) SetUnused11(v GetVMConfig200ResponseDataUnused0) {
+// SetUnused11 gets a reference to the given CreateVMRequestUnused0 and assigns it to the Unused11 field.
+func (o *CreateVMRequest) SetUnused11(v CreateVMRequestUnused0) {
 	o.Unused11 = &v
 }
 
 // GetUnused12 returns the Unused12 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetUnused12() GetVMConfig200ResponseDataUnused0 {
+func (o *CreateVMRequest) GetUnused12() CreateVMRequestUnused0 {
 	if o == nil || IsNil(o.Unused12) {
-		var ret GetVMConfig200ResponseDataUnused0
+		var ret CreateVMRequestUnused0
 		return ret
 	}
 	return *o.Unused12
@@ -8450,7 +8411,7 @@ func (o *CreateVMRequest) GetUnused12() GetVMConfig200ResponseDataUnused0 {
 
 // GetUnused12Ok returns a tuple with the Unused12 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetUnused12Ok() (*GetVMConfig200ResponseDataUnused0, bool) {
+func (o *CreateVMRequest) GetUnused12Ok() (*CreateVMRequestUnused0, bool) {
 	if o == nil || IsNil(o.Unused12) {
 		return nil, false
 	}
@@ -8466,15 +8427,15 @@ func (o *CreateVMRequest) HasUnused12() bool {
 	return false
 }
 
-// SetUnused12 gets a reference to the given GetVMConfig200ResponseDataUnused0 and assigns it to the Unused12 field.
-func (o *CreateVMRequest) SetUnused12(v GetVMConfig200ResponseDataUnused0) {
+// SetUnused12 gets a reference to the given CreateVMRequestUnused0 and assigns it to the Unused12 field.
+func (o *CreateVMRequest) SetUnused12(v CreateVMRequestUnused0) {
 	o.Unused12 = &v
 }
 
 // GetUnused13 returns the Unused13 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetUnused13() GetVMConfig200ResponseDataUnused0 {
+func (o *CreateVMRequest) GetUnused13() CreateVMRequestUnused0 {
 	if o == nil || IsNil(o.Unused13) {
-		var ret GetVMConfig200ResponseDataUnused0
+		var ret CreateVMRequestUnused0
 		return ret
 	}
 	return *o.Unused13
@@ -8482,7 +8443,7 @@ func (o *CreateVMRequest) GetUnused13() GetVMConfig200ResponseDataUnused0 {
 
 // GetUnused13Ok returns a tuple with the Unused13 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetUnused13Ok() (*GetVMConfig200ResponseDataUnused0, bool) {
+func (o *CreateVMRequest) GetUnused13Ok() (*CreateVMRequestUnused0, bool) {
 	if o == nil || IsNil(o.Unused13) {
 		return nil, false
 	}
@@ -8498,15 +8459,15 @@ func (o *CreateVMRequest) HasUnused13() bool {
 	return false
 }
 
-// SetUnused13 gets a reference to the given GetVMConfig200ResponseDataUnused0 and assigns it to the Unused13 field.
-func (o *CreateVMRequest) SetUnused13(v GetVMConfig200ResponseDataUnused0) {
+// SetUnused13 gets a reference to the given CreateVMRequestUnused0 and assigns it to the Unused13 field.
+func (o *CreateVMRequest) SetUnused13(v CreateVMRequestUnused0) {
 	o.Unused13 = &v
 }
 
 // GetUnused14 returns the Unused14 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetUnused14() GetVMConfig200ResponseDataUnused0 {
+func (o *CreateVMRequest) GetUnused14() CreateVMRequestUnused0 {
 	if o == nil || IsNil(o.Unused14) {
-		var ret GetVMConfig200ResponseDataUnused0
+		var ret CreateVMRequestUnused0
 		return ret
 	}
 	return *o.Unused14
@@ -8514,7 +8475,7 @@ func (o *CreateVMRequest) GetUnused14() GetVMConfig200ResponseDataUnused0 {
 
 // GetUnused14Ok returns a tuple with the Unused14 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetUnused14Ok() (*GetVMConfig200ResponseDataUnused0, bool) {
+func (o *CreateVMRequest) GetUnused14Ok() (*CreateVMRequestUnused0, bool) {
 	if o == nil || IsNil(o.Unused14) {
 		return nil, false
 	}
@@ -8530,15 +8491,15 @@ func (o *CreateVMRequest) HasUnused14() bool {
 	return false
 }
 
-// SetUnused14 gets a reference to the given GetVMConfig200ResponseDataUnused0 and assigns it to the Unused14 field.
-func (o *CreateVMRequest) SetUnused14(v GetVMConfig200ResponseDataUnused0) {
+// SetUnused14 gets a reference to the given CreateVMRequestUnused0 and assigns it to the Unused14 field.
+func (o *CreateVMRequest) SetUnused14(v CreateVMRequestUnused0) {
 	o.Unused14 = &v
 }
 
 // GetUnused15 returns the Unused15 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetUnused15() GetVMConfig200ResponseDataUnused0 {
+func (o *CreateVMRequest) GetUnused15() CreateVMRequestUnused0 {
 	if o == nil || IsNil(o.Unused15) {
-		var ret GetVMConfig200ResponseDataUnused0
+		var ret CreateVMRequestUnused0
 		return ret
 	}
 	return *o.Unused15
@@ -8546,7 +8507,7 @@ func (o *CreateVMRequest) GetUnused15() GetVMConfig200ResponseDataUnused0 {
 
 // GetUnused15Ok returns a tuple with the Unused15 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetUnused15Ok() (*GetVMConfig200ResponseDataUnused0, bool) {
+func (o *CreateVMRequest) GetUnused15Ok() (*CreateVMRequestUnused0, bool) {
 	if o == nil || IsNil(o.Unused15) {
 		return nil, false
 	}
@@ -8562,15 +8523,15 @@ func (o *CreateVMRequest) HasUnused15() bool {
 	return false
 }
 
-// SetUnused15 gets a reference to the given GetVMConfig200ResponseDataUnused0 and assigns it to the Unused15 field.
-func (o *CreateVMRequest) SetUnused15(v GetVMConfig200ResponseDataUnused0) {
+// SetUnused15 gets a reference to the given CreateVMRequestUnused0 and assigns it to the Unused15 field.
+func (o *CreateVMRequest) SetUnused15(v CreateVMRequestUnused0) {
 	o.Unused15 = &v
 }
 
 // GetUnused16 returns the Unused16 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetUnused16() GetVMConfig200ResponseDataUnused0 {
+func (o *CreateVMRequest) GetUnused16() CreateVMRequestUnused0 {
 	if o == nil || IsNil(o.Unused16) {
-		var ret GetVMConfig200ResponseDataUnused0
+		var ret CreateVMRequestUnused0
 		return ret
 	}
 	return *o.Unused16
@@ -8578,7 +8539,7 @@ func (o *CreateVMRequest) GetUnused16() GetVMConfig200ResponseDataUnused0 {
 
 // GetUnused16Ok returns a tuple with the Unused16 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetUnused16Ok() (*GetVMConfig200ResponseDataUnused0, bool) {
+func (o *CreateVMRequest) GetUnused16Ok() (*CreateVMRequestUnused0, bool) {
 	if o == nil || IsNil(o.Unused16) {
 		return nil, false
 	}
@@ -8594,15 +8555,15 @@ func (o *CreateVMRequest) HasUnused16() bool {
 	return false
 }
 
-// SetUnused16 gets a reference to the given GetVMConfig200ResponseDataUnused0 and assigns it to the Unused16 field.
-func (o *CreateVMRequest) SetUnused16(v GetVMConfig200ResponseDataUnused0) {
+// SetUnused16 gets a reference to the given CreateVMRequestUnused0 and assigns it to the Unused16 field.
+func (o *CreateVMRequest) SetUnused16(v CreateVMRequestUnused0) {
 	o.Unused16 = &v
 }
 
 // GetUnused17 returns the Unused17 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetUnused17() GetVMConfig200ResponseDataUnused0 {
+func (o *CreateVMRequest) GetUnused17() CreateVMRequestUnused0 {
 	if o == nil || IsNil(o.Unused17) {
-		var ret GetVMConfig200ResponseDataUnused0
+		var ret CreateVMRequestUnused0
 		return ret
 	}
 	return *o.Unused17
@@ -8610,7 +8571,7 @@ func (o *CreateVMRequest) GetUnused17() GetVMConfig200ResponseDataUnused0 {
 
 // GetUnused17Ok returns a tuple with the Unused17 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetUnused17Ok() (*GetVMConfig200ResponseDataUnused0, bool) {
+func (o *CreateVMRequest) GetUnused17Ok() (*CreateVMRequestUnused0, bool) {
 	if o == nil || IsNil(o.Unused17) {
 		return nil, false
 	}
@@ -8626,15 +8587,15 @@ func (o *CreateVMRequest) HasUnused17() bool {
 	return false
 }
 
-// SetUnused17 gets a reference to the given GetVMConfig200ResponseDataUnused0 and assigns it to the Unused17 field.
-func (o *CreateVMRequest) SetUnused17(v GetVMConfig200ResponseDataUnused0) {
+// SetUnused17 gets a reference to the given CreateVMRequestUnused0 and assigns it to the Unused17 field.
+func (o *CreateVMRequest) SetUnused17(v CreateVMRequestUnused0) {
 	o.Unused17 = &v
 }
 
 // GetUnused18 returns the Unused18 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetUnused18() GetVMConfig200ResponseDataUnused0 {
+func (o *CreateVMRequest) GetUnused18() CreateVMRequestUnused0 {
 	if o == nil || IsNil(o.Unused18) {
-		var ret GetVMConfig200ResponseDataUnused0
+		var ret CreateVMRequestUnused0
 		return ret
 	}
 	return *o.Unused18
@@ -8642,7 +8603,7 @@ func (o *CreateVMRequest) GetUnused18() GetVMConfig200ResponseDataUnused0 {
 
 // GetUnused18Ok returns a tuple with the Unused18 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetUnused18Ok() (*GetVMConfig200ResponseDataUnused0, bool) {
+func (o *CreateVMRequest) GetUnused18Ok() (*CreateVMRequestUnused0, bool) {
 	if o == nil || IsNil(o.Unused18) {
 		return nil, false
 	}
@@ -8658,15 +8619,15 @@ func (o *CreateVMRequest) HasUnused18() bool {
 	return false
 }
 
-// SetUnused18 gets a reference to the given GetVMConfig200ResponseDataUnused0 and assigns it to the Unused18 field.
-func (o *CreateVMRequest) SetUnused18(v GetVMConfig200ResponseDataUnused0) {
+// SetUnused18 gets a reference to the given CreateVMRequestUnused0 and assigns it to the Unused18 field.
+func (o *CreateVMRequest) SetUnused18(v CreateVMRequestUnused0) {
 	o.Unused18 = &v
 }
 
 // GetUnused19 returns the Unused19 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetUnused19() GetVMConfig200ResponseDataUnused0 {
+func (o *CreateVMRequest) GetUnused19() CreateVMRequestUnused0 {
 	if o == nil || IsNil(o.Unused19) {
-		var ret GetVMConfig200ResponseDataUnused0
+		var ret CreateVMRequestUnused0
 		return ret
 	}
 	return *o.Unused19
@@ -8674,7 +8635,7 @@ func (o *CreateVMRequest) GetUnused19() GetVMConfig200ResponseDataUnused0 {
 
 // GetUnused19Ok returns a tuple with the Unused19 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetUnused19Ok() (*GetVMConfig200ResponseDataUnused0, bool) {
+func (o *CreateVMRequest) GetUnused19Ok() (*CreateVMRequestUnused0, bool) {
 	if o == nil || IsNil(o.Unused19) {
 		return nil, false
 	}
@@ -8690,15 +8651,15 @@ func (o *CreateVMRequest) HasUnused19() bool {
 	return false
 }
 
-// SetUnused19 gets a reference to the given GetVMConfig200ResponseDataUnused0 and assigns it to the Unused19 field.
-func (o *CreateVMRequest) SetUnused19(v GetVMConfig200ResponseDataUnused0) {
+// SetUnused19 gets a reference to the given CreateVMRequestUnused0 and assigns it to the Unused19 field.
+func (o *CreateVMRequest) SetUnused19(v CreateVMRequestUnused0) {
 	o.Unused19 = &v
 }
 
 // GetUnused20 returns the Unused20 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetUnused20() GetVMConfig200ResponseDataUnused0 {
+func (o *CreateVMRequest) GetUnused20() CreateVMRequestUnused0 {
 	if o == nil || IsNil(o.Unused20) {
-		var ret GetVMConfig200ResponseDataUnused0
+		var ret CreateVMRequestUnused0
 		return ret
 	}
 	return *o.Unused20
@@ -8706,7 +8667,7 @@ func (o *CreateVMRequest) GetUnused20() GetVMConfig200ResponseDataUnused0 {
 
 // GetUnused20Ok returns a tuple with the Unused20 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetUnused20Ok() (*GetVMConfig200ResponseDataUnused0, bool) {
+func (o *CreateVMRequest) GetUnused20Ok() (*CreateVMRequestUnused0, bool) {
 	if o == nil || IsNil(o.Unused20) {
 		return nil, false
 	}
@@ -8722,15 +8683,15 @@ func (o *CreateVMRequest) HasUnused20() bool {
 	return false
 }
 
-// SetUnused20 gets a reference to the given GetVMConfig200ResponseDataUnused0 and assigns it to the Unused20 field.
-func (o *CreateVMRequest) SetUnused20(v GetVMConfig200ResponseDataUnused0) {
+// SetUnused20 gets a reference to the given CreateVMRequestUnused0 and assigns it to the Unused20 field.
+func (o *CreateVMRequest) SetUnused20(v CreateVMRequestUnused0) {
 	o.Unused20 = &v
 }
 
 // GetUnused21 returns the Unused21 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetUnused21() GetVMConfig200ResponseDataUnused0 {
+func (o *CreateVMRequest) GetUnused21() CreateVMRequestUnused0 {
 	if o == nil || IsNil(o.Unused21) {
-		var ret GetVMConfig200ResponseDataUnused0
+		var ret CreateVMRequestUnused0
 		return ret
 	}
 	return *o.Unused21
@@ -8738,7 +8699,7 @@ func (o *CreateVMRequest) GetUnused21() GetVMConfig200ResponseDataUnused0 {
 
 // GetUnused21Ok returns a tuple with the Unused21 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetUnused21Ok() (*GetVMConfig200ResponseDataUnused0, bool) {
+func (o *CreateVMRequest) GetUnused21Ok() (*CreateVMRequestUnused0, bool) {
 	if o == nil || IsNil(o.Unused21) {
 		return nil, false
 	}
@@ -8754,15 +8715,15 @@ func (o *CreateVMRequest) HasUnused21() bool {
 	return false
 }
 
-// SetUnused21 gets a reference to the given GetVMConfig200ResponseDataUnused0 and assigns it to the Unused21 field.
-func (o *CreateVMRequest) SetUnused21(v GetVMConfig200ResponseDataUnused0) {
+// SetUnused21 gets a reference to the given CreateVMRequestUnused0 and assigns it to the Unused21 field.
+func (o *CreateVMRequest) SetUnused21(v CreateVMRequestUnused0) {
 	o.Unused21 = &v
 }
 
 // GetUnused22 returns the Unused22 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetUnused22() GetVMConfig200ResponseDataUnused0 {
+func (o *CreateVMRequest) GetUnused22() CreateVMRequestUnused0 {
 	if o == nil || IsNil(o.Unused22) {
-		var ret GetVMConfig200ResponseDataUnused0
+		var ret CreateVMRequestUnused0
 		return ret
 	}
 	return *o.Unused22
@@ -8770,7 +8731,7 @@ func (o *CreateVMRequest) GetUnused22() GetVMConfig200ResponseDataUnused0 {
 
 // GetUnused22Ok returns a tuple with the Unused22 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetUnused22Ok() (*GetVMConfig200ResponseDataUnused0, bool) {
+func (o *CreateVMRequest) GetUnused22Ok() (*CreateVMRequestUnused0, bool) {
 	if o == nil || IsNil(o.Unused22) {
 		return nil, false
 	}
@@ -8786,15 +8747,15 @@ func (o *CreateVMRequest) HasUnused22() bool {
 	return false
 }
 
-// SetUnused22 gets a reference to the given GetVMConfig200ResponseDataUnused0 and assigns it to the Unused22 field.
-func (o *CreateVMRequest) SetUnused22(v GetVMConfig200ResponseDataUnused0) {
+// SetUnused22 gets a reference to the given CreateVMRequestUnused0 and assigns it to the Unused22 field.
+func (o *CreateVMRequest) SetUnused22(v CreateVMRequestUnused0) {
 	o.Unused22 = &v
 }
 
 // GetUnused23 returns the Unused23 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetUnused23() GetVMConfig200ResponseDataUnused0 {
+func (o *CreateVMRequest) GetUnused23() CreateVMRequestUnused0 {
 	if o == nil || IsNil(o.Unused23) {
-		var ret GetVMConfig200ResponseDataUnused0
+		var ret CreateVMRequestUnused0
 		return ret
 	}
 	return *o.Unused23
@@ -8802,7 +8763,7 @@ func (o *CreateVMRequest) GetUnused23() GetVMConfig200ResponseDataUnused0 {
 
 // GetUnused23Ok returns a tuple with the Unused23 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetUnused23Ok() (*GetVMConfig200ResponseDataUnused0, bool) {
+func (o *CreateVMRequest) GetUnused23Ok() (*CreateVMRequestUnused0, bool) {
 	if o == nil || IsNil(o.Unused23) {
 		return nil, false
 	}
@@ -8818,15 +8779,15 @@ func (o *CreateVMRequest) HasUnused23() bool {
 	return false
 }
 
-// SetUnused23 gets a reference to the given GetVMConfig200ResponseDataUnused0 and assigns it to the Unused23 field.
-func (o *CreateVMRequest) SetUnused23(v GetVMConfig200ResponseDataUnused0) {
+// SetUnused23 gets a reference to the given CreateVMRequestUnused0 and assigns it to the Unused23 field.
+func (o *CreateVMRequest) SetUnused23(v CreateVMRequestUnused0) {
 	o.Unused23 = &v
 }
 
 // GetUnused24 returns the Unused24 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetUnused24() GetVMConfig200ResponseDataUnused0 {
+func (o *CreateVMRequest) GetUnused24() CreateVMRequestUnused0 {
 	if o == nil || IsNil(o.Unused24) {
-		var ret GetVMConfig200ResponseDataUnused0
+		var ret CreateVMRequestUnused0
 		return ret
 	}
 	return *o.Unused24
@@ -8834,7 +8795,7 @@ func (o *CreateVMRequest) GetUnused24() GetVMConfig200ResponseDataUnused0 {
 
 // GetUnused24Ok returns a tuple with the Unused24 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetUnused24Ok() (*GetVMConfig200ResponseDataUnused0, bool) {
+func (o *CreateVMRequest) GetUnused24Ok() (*CreateVMRequestUnused0, bool) {
 	if o == nil || IsNil(o.Unused24) {
 		return nil, false
 	}
@@ -8850,15 +8811,15 @@ func (o *CreateVMRequest) HasUnused24() bool {
 	return false
 }
 
-// SetUnused24 gets a reference to the given GetVMConfig200ResponseDataUnused0 and assigns it to the Unused24 field.
-func (o *CreateVMRequest) SetUnused24(v GetVMConfig200ResponseDataUnused0) {
+// SetUnused24 gets a reference to the given CreateVMRequestUnused0 and assigns it to the Unused24 field.
+func (o *CreateVMRequest) SetUnused24(v CreateVMRequestUnused0) {
 	o.Unused24 = &v
 }
 
 // GetUnused25 returns the Unused25 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetUnused25() GetVMConfig200ResponseDataUnused0 {
+func (o *CreateVMRequest) GetUnused25() CreateVMRequestUnused0 {
 	if o == nil || IsNil(o.Unused25) {
-		var ret GetVMConfig200ResponseDataUnused0
+		var ret CreateVMRequestUnused0
 		return ret
 	}
 	return *o.Unused25
@@ -8866,7 +8827,7 @@ func (o *CreateVMRequest) GetUnused25() GetVMConfig200ResponseDataUnused0 {
 
 // GetUnused25Ok returns a tuple with the Unused25 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetUnused25Ok() (*GetVMConfig200ResponseDataUnused0, bool) {
+func (o *CreateVMRequest) GetUnused25Ok() (*CreateVMRequestUnused0, bool) {
 	if o == nil || IsNil(o.Unused25) {
 		return nil, false
 	}
@@ -8882,15 +8843,15 @@ func (o *CreateVMRequest) HasUnused25() bool {
 	return false
 }
 
-// SetUnused25 gets a reference to the given GetVMConfig200ResponseDataUnused0 and assigns it to the Unused25 field.
-func (o *CreateVMRequest) SetUnused25(v GetVMConfig200ResponseDataUnused0) {
+// SetUnused25 gets a reference to the given CreateVMRequestUnused0 and assigns it to the Unused25 field.
+func (o *CreateVMRequest) SetUnused25(v CreateVMRequestUnused0) {
 	o.Unused25 = &v
 }
 
 // GetUnused26 returns the Unused26 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetUnused26() GetVMConfig200ResponseDataUnused0 {
+func (o *CreateVMRequest) GetUnused26() CreateVMRequestUnused0 {
 	if o == nil || IsNil(o.Unused26) {
-		var ret GetVMConfig200ResponseDataUnused0
+		var ret CreateVMRequestUnused0
 		return ret
 	}
 	return *o.Unused26
@@ -8898,7 +8859,7 @@ func (o *CreateVMRequest) GetUnused26() GetVMConfig200ResponseDataUnused0 {
 
 // GetUnused26Ok returns a tuple with the Unused26 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetUnused26Ok() (*GetVMConfig200ResponseDataUnused0, bool) {
+func (o *CreateVMRequest) GetUnused26Ok() (*CreateVMRequestUnused0, bool) {
 	if o == nil || IsNil(o.Unused26) {
 		return nil, false
 	}
@@ -8914,15 +8875,15 @@ func (o *CreateVMRequest) HasUnused26() bool {
 	return false
 }
 
-// SetUnused26 gets a reference to the given GetVMConfig200ResponseDataUnused0 and assigns it to the Unused26 field.
-func (o *CreateVMRequest) SetUnused26(v GetVMConfig200ResponseDataUnused0) {
+// SetUnused26 gets a reference to the given CreateVMRequestUnused0 and assigns it to the Unused26 field.
+func (o *CreateVMRequest) SetUnused26(v CreateVMRequestUnused0) {
 	o.Unused26 = &v
 }
 
 // GetUnused27 returns the Unused27 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetUnused27() GetVMConfig200ResponseDataUnused0 {
+func (o *CreateVMRequest) GetUnused27() CreateVMRequestUnused0 {
 	if o == nil || IsNil(o.Unused27) {
-		var ret GetVMConfig200ResponseDataUnused0
+		var ret CreateVMRequestUnused0
 		return ret
 	}
 	return *o.Unused27
@@ -8930,7 +8891,7 @@ func (o *CreateVMRequest) GetUnused27() GetVMConfig200ResponseDataUnused0 {
 
 // GetUnused27Ok returns a tuple with the Unused27 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetUnused27Ok() (*GetVMConfig200ResponseDataUnused0, bool) {
+func (o *CreateVMRequest) GetUnused27Ok() (*CreateVMRequestUnused0, bool) {
 	if o == nil || IsNil(o.Unused27) {
 		return nil, false
 	}
@@ -8946,15 +8907,15 @@ func (o *CreateVMRequest) HasUnused27() bool {
 	return false
 }
 
-// SetUnused27 gets a reference to the given GetVMConfig200ResponseDataUnused0 and assigns it to the Unused27 field.
-func (o *CreateVMRequest) SetUnused27(v GetVMConfig200ResponseDataUnused0) {
+// SetUnused27 gets a reference to the given CreateVMRequestUnused0 and assigns it to the Unused27 field.
+func (o *CreateVMRequest) SetUnused27(v CreateVMRequestUnused0) {
 	o.Unused27 = &v
 }
 
 // GetUnused28 returns the Unused28 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetUnused28() GetVMConfig200ResponseDataUnused0 {
+func (o *CreateVMRequest) GetUnused28() CreateVMRequestUnused0 {
 	if o == nil || IsNil(o.Unused28) {
-		var ret GetVMConfig200ResponseDataUnused0
+		var ret CreateVMRequestUnused0
 		return ret
 	}
 	return *o.Unused28
@@ -8962,7 +8923,7 @@ func (o *CreateVMRequest) GetUnused28() GetVMConfig200ResponseDataUnused0 {
 
 // GetUnused28Ok returns a tuple with the Unused28 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetUnused28Ok() (*GetVMConfig200ResponseDataUnused0, bool) {
+func (o *CreateVMRequest) GetUnused28Ok() (*CreateVMRequestUnused0, bool) {
 	if o == nil || IsNil(o.Unused28) {
 		return nil, false
 	}
@@ -8978,15 +8939,15 @@ func (o *CreateVMRequest) HasUnused28() bool {
 	return false
 }
 
-// SetUnused28 gets a reference to the given GetVMConfig200ResponseDataUnused0 and assigns it to the Unused28 field.
-func (o *CreateVMRequest) SetUnused28(v GetVMConfig200ResponseDataUnused0) {
+// SetUnused28 gets a reference to the given CreateVMRequestUnused0 and assigns it to the Unused28 field.
+func (o *CreateVMRequest) SetUnused28(v CreateVMRequestUnused0) {
 	o.Unused28 = &v
 }
 
 // GetUnused29 returns the Unused29 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetUnused29() GetVMConfig200ResponseDataUnused0 {
+func (o *CreateVMRequest) GetUnused29() CreateVMRequestUnused0 {
 	if o == nil || IsNil(o.Unused29) {
-		var ret GetVMConfig200ResponseDataUnused0
+		var ret CreateVMRequestUnused0
 		return ret
 	}
 	return *o.Unused29
@@ -8994,7 +8955,7 @@ func (o *CreateVMRequest) GetUnused29() GetVMConfig200ResponseDataUnused0 {
 
 // GetUnused29Ok returns a tuple with the Unused29 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetUnused29Ok() (*GetVMConfig200ResponseDataUnused0, bool) {
+func (o *CreateVMRequest) GetUnused29Ok() (*CreateVMRequestUnused0, bool) {
 	if o == nil || IsNil(o.Unused29) {
 		return nil, false
 	}
@@ -9010,15 +8971,15 @@ func (o *CreateVMRequest) HasUnused29() bool {
 	return false
 }
 
-// SetUnused29 gets a reference to the given GetVMConfig200ResponseDataUnused0 and assigns it to the Unused29 field.
-func (o *CreateVMRequest) SetUnused29(v GetVMConfig200ResponseDataUnused0) {
+// SetUnused29 gets a reference to the given CreateVMRequestUnused0 and assigns it to the Unused29 field.
+func (o *CreateVMRequest) SetUnused29(v CreateVMRequestUnused0) {
 	o.Unused29 = &v
 }
 
 // GetUsb0 returns the Usb0 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetUsb0() GetVMConfig200ResponseDataUsb0 {
+func (o *CreateVMRequest) GetUsb0() CreateVMRequestUsb0 {
 	if o == nil || IsNil(o.Usb0) {
-		var ret GetVMConfig200ResponseDataUsb0
+		var ret CreateVMRequestUsb0
 		return ret
 	}
 	return *o.Usb0
@@ -9026,7 +8987,7 @@ func (o *CreateVMRequest) GetUsb0() GetVMConfig200ResponseDataUsb0 {
 
 // GetUsb0Ok returns a tuple with the Usb0 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetUsb0Ok() (*GetVMConfig200ResponseDataUsb0, bool) {
+func (o *CreateVMRequest) GetUsb0Ok() (*CreateVMRequestUsb0, bool) {
 	if o == nil || IsNil(o.Usb0) {
 		return nil, false
 	}
@@ -9042,15 +9003,15 @@ func (o *CreateVMRequest) HasUsb0() bool {
 	return false
 }
 
-// SetUsb0 gets a reference to the given GetVMConfig200ResponseDataUsb0 and assigns it to the Usb0 field.
-func (o *CreateVMRequest) SetUsb0(v GetVMConfig200ResponseDataUsb0) {
+// SetUsb0 gets a reference to the given CreateVMRequestUsb0 and assigns it to the Usb0 field.
+func (o *CreateVMRequest) SetUsb0(v CreateVMRequestUsb0) {
 	o.Usb0 = &v
 }
 
 // GetUsb1 returns the Usb1 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetUsb1() GetVMConfig200ResponseDataUsb0 {
+func (o *CreateVMRequest) GetUsb1() CreateVMRequestUsb0 {
 	if o == nil || IsNil(o.Usb1) {
-		var ret GetVMConfig200ResponseDataUsb0
+		var ret CreateVMRequestUsb0
 		return ret
 	}
 	return *o.Usb1
@@ -9058,7 +9019,7 @@ func (o *CreateVMRequest) GetUsb1() GetVMConfig200ResponseDataUsb0 {
 
 // GetUsb1Ok returns a tuple with the Usb1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetUsb1Ok() (*GetVMConfig200ResponseDataUsb0, bool) {
+func (o *CreateVMRequest) GetUsb1Ok() (*CreateVMRequestUsb0, bool) {
 	if o == nil || IsNil(o.Usb1) {
 		return nil, false
 	}
@@ -9074,15 +9035,15 @@ func (o *CreateVMRequest) HasUsb1() bool {
 	return false
 }
 
-// SetUsb1 gets a reference to the given GetVMConfig200ResponseDataUsb0 and assigns it to the Usb1 field.
-func (o *CreateVMRequest) SetUsb1(v GetVMConfig200ResponseDataUsb0) {
+// SetUsb1 gets a reference to the given CreateVMRequestUsb0 and assigns it to the Usb1 field.
+func (o *CreateVMRequest) SetUsb1(v CreateVMRequestUsb0) {
 	o.Usb1 = &v
 }
 
 // GetUsb2 returns the Usb2 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetUsb2() GetVMConfig200ResponseDataUsb0 {
+func (o *CreateVMRequest) GetUsb2() CreateVMRequestUsb0 {
 	if o == nil || IsNil(o.Usb2) {
-		var ret GetVMConfig200ResponseDataUsb0
+		var ret CreateVMRequestUsb0
 		return ret
 	}
 	return *o.Usb2
@@ -9090,7 +9051,7 @@ func (o *CreateVMRequest) GetUsb2() GetVMConfig200ResponseDataUsb0 {
 
 // GetUsb2Ok returns a tuple with the Usb2 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetUsb2Ok() (*GetVMConfig200ResponseDataUsb0, bool) {
+func (o *CreateVMRequest) GetUsb2Ok() (*CreateVMRequestUsb0, bool) {
 	if o == nil || IsNil(o.Usb2) {
 		return nil, false
 	}
@@ -9106,15 +9067,15 @@ func (o *CreateVMRequest) HasUsb2() bool {
 	return false
 }
 
-// SetUsb2 gets a reference to the given GetVMConfig200ResponseDataUsb0 and assigns it to the Usb2 field.
-func (o *CreateVMRequest) SetUsb2(v GetVMConfig200ResponseDataUsb0) {
+// SetUsb2 gets a reference to the given CreateVMRequestUsb0 and assigns it to the Usb2 field.
+func (o *CreateVMRequest) SetUsb2(v CreateVMRequestUsb0) {
 	o.Usb2 = &v
 }
 
 // GetUsb3 returns the Usb3 field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetUsb3() GetVMConfig200ResponseDataUsb0 {
+func (o *CreateVMRequest) GetUsb3() CreateVMRequestUsb0 {
 	if o == nil || IsNil(o.Usb3) {
-		var ret GetVMConfig200ResponseDataUsb0
+		var ret CreateVMRequestUsb0
 		return ret
 	}
 	return *o.Usb3
@@ -9122,7 +9083,7 @@ func (o *CreateVMRequest) GetUsb3() GetVMConfig200ResponseDataUsb0 {
 
 // GetUsb3Ok returns a tuple with the Usb3 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetUsb3Ok() (*GetVMConfig200ResponseDataUsb0, bool) {
+func (o *CreateVMRequest) GetUsb3Ok() (*CreateVMRequestUsb0, bool) {
 	if o == nil || IsNil(o.Usb3) {
 		return nil, false
 	}
@@ -9138,8 +9099,8 @@ func (o *CreateVMRequest) HasUsb3() bool {
 	return false
 }
 
-// SetUsb3 gets a reference to the given GetVMConfig200ResponseDataUsb0 and assigns it to the Usb3 field.
-func (o *CreateVMRequest) SetUsb3(v GetVMConfig200ResponseDataUsb0) {
+// SetUsb3 gets a reference to the given CreateVMRequestUsb0 and assigns it to the Usb3 field.
+func (o *CreateVMRequest) SetUsb3(v CreateVMRequestUsb0) {
 	o.Usb3 = &v
 }
 
@@ -9176,9 +9137,9 @@ func (o *CreateVMRequest) SetVcpus(v int64) {
 }
 
 // GetVga returns the Vga field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetVga() GetVMConfig200ResponseDataVga {
+func (o *CreateVMRequest) GetVga() CreateVMRequestVga {
 	if o == nil || IsNil(o.Vga) {
-		var ret GetVMConfig200ResponseDataVga
+		var ret CreateVMRequestVga
 		return ret
 	}
 	return *o.Vga
@@ -9186,7 +9147,7 @@ func (o *CreateVMRequest) GetVga() GetVMConfig200ResponseDataVga {
 
 // GetVgaOk returns a tuple with the Vga field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetVgaOk() (*GetVMConfig200ResponseDataVga, bool) {
+func (o *CreateVMRequest) GetVgaOk() (*CreateVMRequestVga, bool) {
 	if o == nil || IsNil(o.Vga) {
 		return nil, false
 	}
@@ -9202,8 +9163,8 @@ func (o *CreateVMRequest) HasVga() bool {
 	return false
 }
 
-// SetVga gets a reference to the given GetVMConfig200ResponseDataVga and assigns it to the Vga field.
-func (o *CreateVMRequest) SetVga(v GetVMConfig200ResponseDataVga) {
+// SetVga gets a reference to the given CreateVMRequestVga and assigns it to the Vga field.
+func (o *CreateVMRequest) SetVga(v CreateVMRequestVga) {
 	o.Vga = &v
 }
 
@@ -9808,9 +9769,9 @@ func (o *CreateVMRequest) SetVmstatestorage(v string) {
 }
 
 // GetWatchdog returns the Watchdog field value if set, zero value otherwise.
-func (o *CreateVMRequest) GetWatchdog() GetVMConfig200ResponseDataWatchdog {
+func (o *CreateVMRequest) GetWatchdog() CreateVMRequestWatchdog {
 	if o == nil || IsNil(o.Watchdog) {
-		var ret GetVMConfig200ResponseDataWatchdog
+		var ret CreateVMRequestWatchdog
 		return ret
 	}
 	return *o.Watchdog
@@ -9818,7 +9779,7 @@ func (o *CreateVMRequest) GetWatchdog() GetVMConfig200ResponseDataWatchdog {
 
 // GetWatchdogOk returns a tuple with the Watchdog field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVMRequest) GetWatchdogOk() (*GetVMConfig200ResponseDataWatchdog, bool) {
+func (o *CreateVMRequest) GetWatchdogOk() (*CreateVMRequestWatchdog, bool) {
 	if o == nil || IsNil(o.Watchdog) {
 		return nil, false
 	}
@@ -9834,8 +9795,8 @@ func (o *CreateVMRequest) HasWatchdog() bool {
 	return false
 }
 
-// SetWatchdog gets a reference to the given GetVMConfig200ResponseDataWatchdog and assigns it to the Watchdog field.
-func (o *CreateVMRequest) SetWatchdog(v GetVMConfig200ResponseDataWatchdog) {
+// SetWatchdog gets a reference to the given CreateVMRequestWatchdog and assigns it to the Watchdog field.
+func (o *CreateVMRequest) SetWatchdog(v CreateVMRequestWatchdog) {
 	o.Watchdog = &v
 }
 
@@ -9857,6 +9818,9 @@ func (o CreateVMRequest) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Agent) {
 		toSerialize["agent"] = o.Agent
+	}
+	if !IsNil(o.AmdSev) {
+		toSerialize["amd-sev"] = o.AmdSev
 	}
 	if !IsNil(o.Arch) {
 		toSerialize["arch"] = o.Arch
@@ -10040,6 +10004,9 @@ func (o CreateVMRequest) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Ide3) {
 		toSerialize["ide3"] = o.Ide3
+	}
+	if !IsNil(o.ImportWorkingStorage) {
+		toSerialize["import-working-storage"] = o.ImportWorkingStorage
 	}
 	if !IsNil(o.Ipconfig0) {
 		toSerialize["ipconfig0"] = o.Ipconfig0
@@ -10730,41 +10697,6 @@ func (o CreateVMRequest) ToMap() (map[string]interface{}, error) {
 		toSerialize["watchdog"] = o.Watchdog
 	}
 	return toSerialize, nil
-}
-
-func (o *CreateVMRequest) UnmarshalJSON(bytes []byte) (err error) {
-    // This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"vmid",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(bytes, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varCreateVMRequest := _CreateVMRequest{}
-
-	err = json.Unmarshal(bytes, &varCreateVMRequest)
-
-	if err != nil {
-		return err
-	}
-
-	*o = CreateVMRequest(varCreateVMRequest)
-
-	return err
 }
 
 type NullableCreateVMRequest struct {

@@ -3,7 +3,7 @@ ProxMox VE API
 
 ProxMox VE API
 
-API version: 8.0
+API version: 8.3
 Contact: baldur@email.de
 */
 
@@ -20,7 +20,6 @@ var _ MappedNullable = &RollbackContainerSnapshotRequest{}
 
 // RollbackContainerSnapshotRequest struct for RollbackContainerSnapshotRequest
 type RollbackContainerSnapshotRequest struct {
-	// Whether the container should get started after rolling back successfully
 	Start *bool `json:"start,omitempty"`
 }
 

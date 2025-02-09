@@ -3,7 +3,7 @@ ProxMox VE API
 
 ProxMox VE API
 
-API version: 8.0
+API version: 8.3
 Contact: baldur@email.de
 */
 
@@ -20,96 +20,48 @@ var _ MappedNullable = &CreateVMRequestVirtio0{}
 
 // CreateVMRequestVirtio0 struct for CreateVMRequestVirtio0
 type CreateVMRequestVirtio0 struct {
-	// AIO type to use.
 	Aio *string `json:"aio,omitempty"`
-	// Whether the drive should be included when making backups.
 	Backup *bool `json:"backup,omitempty"`
-	// Maximum r/w speed in bytes per second.
 	Bps *int64 `json:"bps,omitempty"`
-	// Maximum length of I/O bursts in seconds.
 	BpsMaxLength *int64 `json:"bps_max_length,omitempty"`
-	// Maximum read speed in bytes per second.
 	BpsRd *int64 `json:"bps_rd,omitempty"`
-	BpsRdLength *string `json:"bps_rd_length,omitempty"`
-	// Maximum length of read I/O bursts in seconds.
 	BpsRdMaxLength *int64 `json:"bps_rd_max_length,omitempty"`
-	// Maximum write speed in bytes per second.
 	BpsWr *int64 `json:"bps_wr,omitempty"`
-	BpsWrLength *string `json:"bps_wr_length,omitempty"`
-	// Maximum length of write I/O bursts in seconds.
 	BpsWrMaxLength *int64 `json:"bps_wr_max_length,omitempty"`
-	// The drive's cache mode
 	Cache *string `json:"cache,omitempty"`
-	// Force the drive's physical geometry to have a specific cylinder count.
 	Cyls *int64 `json:"cyls,omitempty"`
-	// Controls whether to detect and try to optimize writes of zeroes.
 	DetectZeroes *bool `json:"detect_zeroes,omitempty"`
-	// Controls whether to pass discard/trim requests to the underlying storage.
 	Discard *string `json:"discard,omitempty"`
-	// The drive's backing volume.
-	File *string `json:"file,omitempty"`
-	// The drive's backing file's data format.
+	File string `json:"file"`
 	Format *string `json:"format,omitempty"`
-	// Force the drive's physical geometry to have a specific head count.
 	Heads *int64 `json:"heads,omitempty"`
-	// Create a new disk, importing from this source (volume ID or absolute path). When an absolute path is specified, it's up to you to ensure that the source is not actively used by another process during the import!
 	ImportFrom *string `json:"import-from,omitempty"`
-	// Maximum r/w I/O in operations per second.
 	Iops *int64 `json:"iops,omitempty"`
-	// Maximum unthrottled r/w I/O pool in operations per second.
 	IopsMax *int64 `json:"iops_max,omitempty"`
-	// Maximum length of I/O bursts in seconds.
 	IopsMaxLength *int64 `json:"iops_max_length,omitempty"`
-	// Maximum read I/O in operations per second.
 	IopsRd *int64 `json:"iops_rd,omitempty"`
-	IopsRdLength *string `json:"iops_rd_length,omitempty"`
-	// Maximum unthrottled read I/O pool in operations per second.
 	IopsRdMax *int64 `json:"iops_rd_max,omitempty"`
-	// Maximum length of read I/O bursts in seconds.
 	IopsRdMaxLength *int64 `json:"iops_rd_max_length,omitempty"`
-	// Maximum write I/O in operations per second.
 	IopsWr *int64 `json:"iops_wr,omitempty"`
-	IopsWrLength *string `json:"iops_wr_length,omitempty"`
-	// Maximum unthrottled write I/O pool in operations per second.
 	IopsWrMax *int64 `json:"iops_wr_max,omitempty"`
-	// Maximum length of write I/O bursts in seconds.
 	IopsWrMaxLength *int64 `json:"iops_wr_max_length,omitempty"`
-	// Whether to use iothreads for this drive
 	Iothread *bool `json:"iothread,omitempty"`
-	// Maximum r/w speed in megabytes per second.
 	Mbps *float32 `json:"mbps,omitempty"`
-	// Maximum unthrottled r/w pool in megabytes per second.
 	MbpsMax *float32 `json:"mbps_max,omitempty"`
-	// Maximum read speed in megabytes per second.
 	MbpsRd *float32 `json:"mbps_rd,omitempty"`
-	// Maximum unthrottled read pool in megabytes per second.
 	MbpsRdMax *float32 `json:"mbps_rd_max,omitempty"`
-	// Maximum write speed in megabytes per second.
 	MbpsWr *float32 `json:"mbps_wr,omitempty"`
-	// Maximum unthrottled write pool in megabytes per second.
 	MbpsWrMax *float32 `json:"mbps_wr_max,omitempty"`
-	// The drive's media type.
 	Media *string `json:"media,omitempty"`
-	// Whether the drive should considered for replication jobs.
 	Replicate *bool `json:"replicate,omitempty"`
-	// Read error action.
 	Rerror *string `json:"rerror,omitempty"`
-	// Whether the drive is read-only.
 	Ro *bool `json:"ro,omitempty"`
-	// Force the drive's physical geometry to have a specific sector count.
 	Secs *int64 `json:"secs,omitempty"`
-	// The drive's reported serial number, url-encoded, up to 20 bytes long.
 	Serial *string `json:"serial,omitempty"`
-	// Mark this locally-managed volume as available on all nodes
 	Shared *bool `json:"shared,omitempty"`
-	// Disk size. This is purely informational and has no effect.
 	Size *string `json:"size,omitempty"`
-	// Controls qemu's snapshot mode feature. If activated, changes made to the disk are temporary and will be discarded when the VM is shutdown.
 	Snapshot *bool `json:"snapshot,omitempty"`
-	// Force disk geometry bios translation mode.
 	Trans *string `json:"trans,omitempty"`
-	Volume *string `json:"volume,omitempty"`
-	// Write error action.
 	Werror *string `json:"werror,omitempty"`
 }
 
@@ -117,8 +69,9 @@ type CreateVMRequestVirtio0 struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateVMRequestVirtio0() *CreateVMRequestVirtio0 {
+func NewCreateVMRequestVirtio0(file string) *CreateVMRequestVirtio0 {
 	this := CreateVMRequestVirtio0{}
+	this.File = file
 	return &this
 }
 
@@ -290,38 +243,6 @@ func (o *CreateVMRequestVirtio0) SetBpsRd(v int64) {
 	o.BpsRd = &v
 }
 
-// GetBpsRdLength returns the BpsRdLength field value if set, zero value otherwise.
-func (o *CreateVMRequestVirtio0) GetBpsRdLength() string {
-	if o == nil || IsNil(o.BpsRdLength) {
-		var ret string
-		return ret
-	}
-	return *o.BpsRdLength
-}
-
-// GetBpsRdLengthOk returns a tuple with the BpsRdLength field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateVMRequestVirtio0) GetBpsRdLengthOk() (*string, bool) {
-	if o == nil || IsNil(o.BpsRdLength) {
-		return nil, false
-	}
-	return o.BpsRdLength, true
-}
-
-// HasBpsRdLength returns a boolean if a field has been set.
-func (o *CreateVMRequestVirtio0) HasBpsRdLength() bool {
-	if o != nil && !IsNil(o.BpsRdLength) {
-		return true
-	}
-
-	return false
-}
-
-// SetBpsRdLength gets a reference to the given string and assigns it to the BpsRdLength field.
-func (o *CreateVMRequestVirtio0) SetBpsRdLength(v string) {
-	o.BpsRdLength = &v
-}
-
 // GetBpsRdMaxLength returns the BpsRdMaxLength field value if set, zero value otherwise.
 func (o *CreateVMRequestVirtio0) GetBpsRdMaxLength() int64 {
 	if o == nil || IsNil(o.BpsRdMaxLength) {
@@ -384,38 +305,6 @@ func (o *CreateVMRequestVirtio0) HasBpsWr() bool {
 // SetBpsWr gets a reference to the given int64 and assigns it to the BpsWr field.
 func (o *CreateVMRequestVirtio0) SetBpsWr(v int64) {
 	o.BpsWr = &v
-}
-
-// GetBpsWrLength returns the BpsWrLength field value if set, zero value otherwise.
-func (o *CreateVMRequestVirtio0) GetBpsWrLength() string {
-	if o == nil || IsNil(o.BpsWrLength) {
-		var ret string
-		return ret
-	}
-	return *o.BpsWrLength
-}
-
-// GetBpsWrLengthOk returns a tuple with the BpsWrLength field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateVMRequestVirtio0) GetBpsWrLengthOk() (*string, bool) {
-	if o == nil || IsNil(o.BpsWrLength) {
-		return nil, false
-	}
-	return o.BpsWrLength, true
-}
-
-// HasBpsWrLength returns a boolean if a field has been set.
-func (o *CreateVMRequestVirtio0) HasBpsWrLength() bool {
-	if o != nil && !IsNil(o.BpsWrLength) {
-		return true
-	}
-
-	return false
-}
-
-// SetBpsWrLength gets a reference to the given string and assigns it to the BpsWrLength field.
-func (o *CreateVMRequestVirtio0) SetBpsWrLength(v string) {
-	o.BpsWrLength = &v
 }
 
 // GetBpsWrMaxLength returns the BpsWrMaxLength field value if set, zero value otherwise.
@@ -578,36 +467,28 @@ func (o *CreateVMRequestVirtio0) SetDiscard(v string) {
 	o.Discard = &v
 }
 
-// GetFile returns the File field value if set, zero value otherwise.
+// GetFile returns the File field value
 func (o *CreateVMRequestVirtio0) GetFile() string {
-	if o == nil || IsNil(o.File) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.File
+
+	return o.File
 }
 
-// GetFileOk returns a tuple with the File field value if set, nil otherwise
+// GetFileOk returns a tuple with the File field value
 // and a boolean to check if the value has been set.
 func (o *CreateVMRequestVirtio0) GetFileOk() (*string, bool) {
-	if o == nil || IsNil(o.File) {
+	if o == nil {
 		return nil, false
 	}
-	return o.File, true
+	return &o.File, true
 }
 
-// HasFile returns a boolean if a field has been set.
-func (o *CreateVMRequestVirtio0) HasFile() bool {
-	if o != nil && !IsNil(o.File) {
-		return true
-	}
-
-	return false
-}
-
-// SetFile gets a reference to the given string and assigns it to the File field.
+// SetFile sets field value
 func (o *CreateVMRequestVirtio0) SetFile(v string) {
-	o.File = &v
+	o.File = v
 }
 
 // GetFormat returns the Format field value if set, zero value otherwise.
@@ -834,38 +715,6 @@ func (o *CreateVMRequestVirtio0) SetIopsRd(v int64) {
 	o.IopsRd = &v
 }
 
-// GetIopsRdLength returns the IopsRdLength field value if set, zero value otherwise.
-func (o *CreateVMRequestVirtio0) GetIopsRdLength() string {
-	if o == nil || IsNil(o.IopsRdLength) {
-		var ret string
-		return ret
-	}
-	return *o.IopsRdLength
-}
-
-// GetIopsRdLengthOk returns a tuple with the IopsRdLength field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateVMRequestVirtio0) GetIopsRdLengthOk() (*string, bool) {
-	if o == nil || IsNil(o.IopsRdLength) {
-		return nil, false
-	}
-	return o.IopsRdLength, true
-}
-
-// HasIopsRdLength returns a boolean if a field has been set.
-func (o *CreateVMRequestVirtio0) HasIopsRdLength() bool {
-	if o != nil && !IsNil(o.IopsRdLength) {
-		return true
-	}
-
-	return false
-}
-
-// SetIopsRdLength gets a reference to the given string and assigns it to the IopsRdLength field.
-func (o *CreateVMRequestVirtio0) SetIopsRdLength(v string) {
-	o.IopsRdLength = &v
-}
-
 // GetIopsRdMax returns the IopsRdMax field value if set, zero value otherwise.
 func (o *CreateVMRequestVirtio0) GetIopsRdMax() int64 {
 	if o == nil || IsNil(o.IopsRdMax) {
@@ -960,38 +809,6 @@ func (o *CreateVMRequestVirtio0) HasIopsWr() bool {
 // SetIopsWr gets a reference to the given int64 and assigns it to the IopsWr field.
 func (o *CreateVMRequestVirtio0) SetIopsWr(v int64) {
 	o.IopsWr = &v
-}
-
-// GetIopsWrLength returns the IopsWrLength field value if set, zero value otherwise.
-func (o *CreateVMRequestVirtio0) GetIopsWrLength() string {
-	if o == nil || IsNil(o.IopsWrLength) {
-		var ret string
-		return ret
-	}
-	return *o.IopsWrLength
-}
-
-// GetIopsWrLengthOk returns a tuple with the IopsWrLength field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateVMRequestVirtio0) GetIopsWrLengthOk() (*string, bool) {
-	if o == nil || IsNil(o.IopsWrLength) {
-		return nil, false
-	}
-	return o.IopsWrLength, true
-}
-
-// HasIopsWrLength returns a boolean if a field has been set.
-func (o *CreateVMRequestVirtio0) HasIopsWrLength() bool {
-	if o != nil && !IsNil(o.IopsWrLength) {
-		return true
-	}
-
-	return false
-}
-
-// SetIopsWrLength gets a reference to the given string and assigns it to the IopsWrLength field.
-func (o *CreateVMRequestVirtio0) SetIopsWrLength(v string) {
-	o.IopsWrLength = &v
 }
 
 // GetIopsWrMax returns the IopsWrMax field value if set, zero value otherwise.
@@ -1602,38 +1419,6 @@ func (o *CreateVMRequestVirtio0) SetTrans(v string) {
 	o.Trans = &v
 }
 
-// GetVolume returns the Volume field value if set, zero value otherwise.
-func (o *CreateVMRequestVirtio0) GetVolume() string {
-	if o == nil || IsNil(o.Volume) {
-		var ret string
-		return ret
-	}
-	return *o.Volume
-}
-
-// GetVolumeOk returns a tuple with the Volume field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateVMRequestVirtio0) GetVolumeOk() (*string, bool) {
-	if o == nil || IsNil(o.Volume) {
-		return nil, false
-	}
-	return o.Volume, true
-}
-
-// HasVolume returns a boolean if a field has been set.
-func (o *CreateVMRequestVirtio0) HasVolume() bool {
-	if o != nil && !IsNil(o.Volume) {
-		return true
-	}
-
-	return false
-}
-
-// SetVolume gets a reference to the given string and assigns it to the Volume field.
-func (o *CreateVMRequestVirtio0) SetVolume(v string) {
-	o.Volume = &v
-}
-
 // GetWerror returns the Werror field value if set, zero value otherwise.
 func (o *CreateVMRequestVirtio0) GetWerror() string {
 	if o == nil || IsNil(o.Werror) {
@@ -1691,17 +1476,11 @@ func (o CreateVMRequestVirtio0) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.BpsRd) {
 		toSerialize["bps_rd"] = o.BpsRd
 	}
-	if !IsNil(o.BpsRdLength) {
-		toSerialize["bps_rd_length"] = o.BpsRdLength
-	}
 	if !IsNil(o.BpsRdMaxLength) {
 		toSerialize["bps_rd_max_length"] = o.BpsRdMaxLength
 	}
 	if !IsNil(o.BpsWr) {
 		toSerialize["bps_wr"] = o.BpsWr
-	}
-	if !IsNil(o.BpsWrLength) {
-		toSerialize["bps_wr_length"] = o.BpsWrLength
 	}
 	if !IsNil(o.BpsWrMaxLength) {
 		toSerialize["bps_wr_max_length"] = o.BpsWrMaxLength
@@ -1718,9 +1497,7 @@ func (o CreateVMRequestVirtio0) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Discard) {
 		toSerialize["discard"] = o.Discard
 	}
-	if !IsNil(o.File) {
-		toSerialize["file"] = o.File
-	}
+	toSerialize["file"] = o.File
 	if !IsNil(o.Format) {
 		toSerialize["format"] = o.Format
 	}
@@ -1742,9 +1519,6 @@ func (o CreateVMRequestVirtio0) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.IopsRd) {
 		toSerialize["iops_rd"] = o.IopsRd
 	}
-	if !IsNil(o.IopsRdLength) {
-		toSerialize["iops_rd_length"] = o.IopsRdLength
-	}
 	if !IsNil(o.IopsRdMax) {
 		toSerialize["iops_rd_max"] = o.IopsRdMax
 	}
@@ -1753,9 +1527,6 @@ func (o CreateVMRequestVirtio0) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.IopsWr) {
 		toSerialize["iops_wr"] = o.IopsWr
-	}
-	if !IsNil(o.IopsWrLength) {
-		toSerialize["iops_wr_length"] = o.IopsWrLength
 	}
 	if !IsNil(o.IopsWrMax) {
 		toSerialize["iops_wr_max"] = o.IopsWrMax
@@ -1813,9 +1584,6 @@ func (o CreateVMRequestVirtio0) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Trans) {
 		toSerialize["trans"] = o.Trans
-	}
-	if !IsNil(o.Volume) {
-		toSerialize["volume"] = o.Volume
 	}
 	if !IsNil(o.Werror) {
 		toSerialize["werror"] = o.Werror

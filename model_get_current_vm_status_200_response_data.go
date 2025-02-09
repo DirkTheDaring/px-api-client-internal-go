@@ -3,7 +3,7 @@ ProxMox VE API
 
 ProxMox VE API
 
-API version: 8.0
+API version: 8.3
 Contact: baldur@email.de
 */
 
@@ -18,14 +18,18 @@ import (
 // checks if the GetCurrentVMStatus200ResponseData type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &GetCurrentVMStatus200ResponseData{}
 
-// GetCurrentVMStatus200ResponseData struct for GetCurrentVMStatus200ResponseData
+// GetCurrentVMStatus200ResponseData 
 type GetCurrentVMStatus200ResponseData struct {
 	// QEMU Guest Agent is enabled in config.
-	Agent *bool `json:"agent,omitempty"`
+	Agent *int32 `json:"agent,omitempty"`
 	// Enable a specific clipboard. If not set, depending on the display type the SPICE one will be added.
 	Clipboard *string `json:"clipboard,omitempty"`
 	// Maximum usable CPUs.
 	Cpus *float32 `json:"cpus,omitempty"`
+	// The amount of bytes the guest read from it's block devices since the guest was started. (Note: This info is not available for all storage types.)
+	Diskread *int64 `json:"diskread,omitempty"`
+	// The amount of bytes the guest wrote from it's block devices since the guest was started. (Note: This info is not available for all storage types.)
+	Diskwrite *int64 `json:"diskwrite,omitempty"`
 	// HA manager service status.
 	Ha map[string]interface{} `json:"ha,omitempty"`
 	// The current config lock, if any.
@@ -34,23 +38,29 @@ type GetCurrentVMStatus200ResponseData struct {
 	Maxdisk *int64 `json:"maxdisk,omitempty"`
 	// Maximum memory in bytes.
 	Maxmem *int64 `json:"maxmem,omitempty"`
-	// VM name.
+	// VM (host)name.
 	Name *string `json:"name,omitempty"`
-	// PID of running qemu process.
+	// The amount of traffic in bytes that was sent to the guest over the network since it was started.
+	Netin *int64 `json:"netin,omitempty"`
+	// The amount of traffic in bytes that was sent from the guest over the network since it was started.
+	Netout *int64 `json:"netout,omitempty"`
+	// PID of the QEMU process, if the VM is running.
 	Pid *int64 `json:"pid,omitempty"`
 	// VM run state from the 'query-status' QMP monitor command.
 	Qmpstatus *string `json:"qmpstatus,omitempty"`
 	// The currently running machine type (if running).
 	RunningMachine *string `json:"running-machine,omitempty"`
-	// The currently running QEMU version (if running).
+	// The QEMU version the VM is currently using (if running).
 	RunningQemu *string `json:"running-qemu,omitempty"`
 	// QEMU VGA configuration supports spice.
-	Spice *bool `json:"spice,omitempty"`
+	Spice *int32 `json:"spice,omitempty"`
 	// QEMU process status.
 	Status *string `json:"status,omitempty"`
 	// The current configured tags, if any
 	Tags *string `json:"tags,omitempty"`
-	// Uptime.
+	// Determines if the guest is a template.
+	Template *int32 `json:"template,omitempty"`
+	// Uptime in seconds.
 	Uptime *int64 `json:"uptime,omitempty"`
 	// The (unique) ID of the VM.
 	Vmid *int64 `json:"vmid,omitempty"`
@@ -74,9 +84,9 @@ func NewGetCurrentVMStatus200ResponseDataWithDefaults() *GetCurrentVMStatus200Re
 }
 
 // GetAgent returns the Agent field value if set, zero value otherwise.
-func (o *GetCurrentVMStatus200ResponseData) GetAgent() bool {
+func (o *GetCurrentVMStatus200ResponseData) GetAgent() int32 {
 	if o == nil || IsNil(o.Agent) {
-		var ret bool
+		var ret int32
 		return ret
 	}
 	return *o.Agent
@@ -84,7 +94,7 @@ func (o *GetCurrentVMStatus200ResponseData) GetAgent() bool {
 
 // GetAgentOk returns a tuple with the Agent field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetCurrentVMStatus200ResponseData) GetAgentOk() (*bool, bool) {
+func (o *GetCurrentVMStatus200ResponseData) GetAgentOk() (*int32, bool) {
 	if o == nil || IsNil(o.Agent) {
 		return nil, false
 	}
@@ -100,8 +110,8 @@ func (o *GetCurrentVMStatus200ResponseData) HasAgent() bool {
 	return false
 }
 
-// SetAgent gets a reference to the given bool and assigns it to the Agent field.
-func (o *GetCurrentVMStatus200ResponseData) SetAgent(v bool) {
+// SetAgent gets a reference to the given int32 and assigns it to the Agent field.
+func (o *GetCurrentVMStatus200ResponseData) SetAgent(v int32) {
 	o.Agent = &v
 }
 
@@ -167,6 +177,70 @@ func (o *GetCurrentVMStatus200ResponseData) HasCpus() bool {
 // SetCpus gets a reference to the given float32 and assigns it to the Cpus field.
 func (o *GetCurrentVMStatus200ResponseData) SetCpus(v float32) {
 	o.Cpus = &v
+}
+
+// GetDiskread returns the Diskread field value if set, zero value otherwise.
+func (o *GetCurrentVMStatus200ResponseData) GetDiskread() int64 {
+	if o == nil || IsNil(o.Diskread) {
+		var ret int64
+		return ret
+	}
+	return *o.Diskread
+}
+
+// GetDiskreadOk returns a tuple with the Diskread field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetCurrentVMStatus200ResponseData) GetDiskreadOk() (*int64, bool) {
+	if o == nil || IsNil(o.Diskread) {
+		return nil, false
+	}
+	return o.Diskread, true
+}
+
+// HasDiskread returns a boolean if a field has been set.
+func (o *GetCurrentVMStatus200ResponseData) HasDiskread() bool {
+	if o != nil && !IsNil(o.Diskread) {
+		return true
+	}
+
+	return false
+}
+
+// SetDiskread gets a reference to the given int64 and assigns it to the Diskread field.
+func (o *GetCurrentVMStatus200ResponseData) SetDiskread(v int64) {
+	o.Diskread = &v
+}
+
+// GetDiskwrite returns the Diskwrite field value if set, zero value otherwise.
+func (o *GetCurrentVMStatus200ResponseData) GetDiskwrite() int64 {
+	if o == nil || IsNil(o.Diskwrite) {
+		var ret int64
+		return ret
+	}
+	return *o.Diskwrite
+}
+
+// GetDiskwriteOk returns a tuple with the Diskwrite field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetCurrentVMStatus200ResponseData) GetDiskwriteOk() (*int64, bool) {
+	if o == nil || IsNil(o.Diskwrite) {
+		return nil, false
+	}
+	return o.Diskwrite, true
+}
+
+// HasDiskwrite returns a boolean if a field has been set.
+func (o *GetCurrentVMStatus200ResponseData) HasDiskwrite() bool {
+	if o != nil && !IsNil(o.Diskwrite) {
+		return true
+	}
+
+	return false
+}
+
+// SetDiskwrite gets a reference to the given int64 and assigns it to the Diskwrite field.
+func (o *GetCurrentVMStatus200ResponseData) SetDiskwrite(v int64) {
+	o.Diskwrite = &v
 }
 
 // GetHa returns the Ha field value if set, zero value otherwise.
@@ -329,6 +403,70 @@ func (o *GetCurrentVMStatus200ResponseData) SetName(v string) {
 	o.Name = &v
 }
 
+// GetNetin returns the Netin field value if set, zero value otherwise.
+func (o *GetCurrentVMStatus200ResponseData) GetNetin() int64 {
+	if o == nil || IsNil(o.Netin) {
+		var ret int64
+		return ret
+	}
+	return *o.Netin
+}
+
+// GetNetinOk returns a tuple with the Netin field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetCurrentVMStatus200ResponseData) GetNetinOk() (*int64, bool) {
+	if o == nil || IsNil(o.Netin) {
+		return nil, false
+	}
+	return o.Netin, true
+}
+
+// HasNetin returns a boolean if a field has been set.
+func (o *GetCurrentVMStatus200ResponseData) HasNetin() bool {
+	if o != nil && !IsNil(o.Netin) {
+		return true
+	}
+
+	return false
+}
+
+// SetNetin gets a reference to the given int64 and assigns it to the Netin field.
+func (o *GetCurrentVMStatus200ResponseData) SetNetin(v int64) {
+	o.Netin = &v
+}
+
+// GetNetout returns the Netout field value if set, zero value otherwise.
+func (o *GetCurrentVMStatus200ResponseData) GetNetout() int64 {
+	if o == nil || IsNil(o.Netout) {
+		var ret int64
+		return ret
+	}
+	return *o.Netout
+}
+
+// GetNetoutOk returns a tuple with the Netout field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetCurrentVMStatus200ResponseData) GetNetoutOk() (*int64, bool) {
+	if o == nil || IsNil(o.Netout) {
+		return nil, false
+	}
+	return o.Netout, true
+}
+
+// HasNetout returns a boolean if a field has been set.
+func (o *GetCurrentVMStatus200ResponseData) HasNetout() bool {
+	if o != nil && !IsNil(o.Netout) {
+		return true
+	}
+
+	return false
+}
+
+// SetNetout gets a reference to the given int64 and assigns it to the Netout field.
+func (o *GetCurrentVMStatus200ResponseData) SetNetout(v int64) {
+	o.Netout = &v
+}
+
 // GetPid returns the Pid field value if set, zero value otherwise.
 func (o *GetCurrentVMStatus200ResponseData) GetPid() int64 {
 	if o == nil || IsNil(o.Pid) {
@@ -458,9 +596,9 @@ func (o *GetCurrentVMStatus200ResponseData) SetRunningQemu(v string) {
 }
 
 // GetSpice returns the Spice field value if set, zero value otherwise.
-func (o *GetCurrentVMStatus200ResponseData) GetSpice() bool {
+func (o *GetCurrentVMStatus200ResponseData) GetSpice() int32 {
 	if o == nil || IsNil(o.Spice) {
-		var ret bool
+		var ret int32
 		return ret
 	}
 	return *o.Spice
@@ -468,7 +606,7 @@ func (o *GetCurrentVMStatus200ResponseData) GetSpice() bool {
 
 // GetSpiceOk returns a tuple with the Spice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetCurrentVMStatus200ResponseData) GetSpiceOk() (*bool, bool) {
+func (o *GetCurrentVMStatus200ResponseData) GetSpiceOk() (*int32, bool) {
 	if o == nil || IsNil(o.Spice) {
 		return nil, false
 	}
@@ -484,8 +622,8 @@ func (o *GetCurrentVMStatus200ResponseData) HasSpice() bool {
 	return false
 }
 
-// SetSpice gets a reference to the given bool and assigns it to the Spice field.
-func (o *GetCurrentVMStatus200ResponseData) SetSpice(v bool) {
+// SetSpice gets a reference to the given int32 and assigns it to the Spice field.
+func (o *GetCurrentVMStatus200ResponseData) SetSpice(v int32) {
 	o.Spice = &v
 }
 
@@ -551,6 +689,38 @@ func (o *GetCurrentVMStatus200ResponseData) HasTags() bool {
 // SetTags gets a reference to the given string and assigns it to the Tags field.
 func (o *GetCurrentVMStatus200ResponseData) SetTags(v string) {
 	o.Tags = &v
+}
+
+// GetTemplate returns the Template field value if set, zero value otherwise.
+func (o *GetCurrentVMStatus200ResponseData) GetTemplate() int32 {
+	if o == nil || IsNil(o.Template) {
+		var ret int32
+		return ret
+	}
+	return *o.Template
+}
+
+// GetTemplateOk returns a tuple with the Template field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetCurrentVMStatus200ResponseData) GetTemplateOk() (*int32, bool) {
+	if o == nil || IsNil(o.Template) {
+		return nil, false
+	}
+	return o.Template, true
+}
+
+// HasTemplate returns a boolean if a field has been set.
+func (o *GetCurrentVMStatus200ResponseData) HasTemplate() bool {
+	if o != nil && !IsNil(o.Template) {
+		return true
+	}
+
+	return false
+}
+
+// SetTemplate gets a reference to the given int32 and assigns it to the Template field.
+func (o *GetCurrentVMStatus200ResponseData) SetTemplate(v int32) {
+	o.Template = &v
 }
 
 // GetUptime returns the Uptime field value if set, zero value otherwise.
@@ -636,6 +806,12 @@ func (o GetCurrentVMStatus200ResponseData) ToMap() (map[string]interface{}, erro
 	if !IsNil(o.Cpus) {
 		toSerialize["cpus"] = o.Cpus
 	}
+	if !IsNil(o.Diskread) {
+		toSerialize["diskread"] = o.Diskread
+	}
+	if !IsNil(o.Diskwrite) {
+		toSerialize["diskwrite"] = o.Diskwrite
+	}
 	if !IsNil(o.Ha) {
 		toSerialize["ha"] = o.Ha
 	}
@@ -650,6 +826,12 @@ func (o GetCurrentVMStatus200ResponseData) ToMap() (map[string]interface{}, erro
 	}
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Netin) {
+		toSerialize["netin"] = o.Netin
+	}
+	if !IsNil(o.Netout) {
+		toSerialize["netout"] = o.Netout
 	}
 	if !IsNil(o.Pid) {
 		toSerialize["pid"] = o.Pid
@@ -671,6 +853,9 @@ func (o GetCurrentVMStatus200ResponseData) ToMap() (map[string]interface{}, erro
 	}
 	if !IsNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
+	}
+	if !IsNil(o.Template) {
+		toSerialize["template"] = o.Template
 	}
 	if !IsNil(o.Uptime) {
 		toSerialize["uptime"] = o.Uptime

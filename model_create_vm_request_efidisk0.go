@@ -3,7 +3,7 @@ ProxMox VE API
 
 ProxMox VE API
 
-API version: 8.0
+API version: 8.3
 Contact: baldur@email.de
 */
 
@@ -20,27 +20,21 @@ var _ MappedNullable = &CreateVMRequestEfidisk0{}
 
 // CreateVMRequestEfidisk0 struct for CreateVMRequestEfidisk0
 type CreateVMRequestEfidisk0 struct {
-	// Size and type of the OVMF EFI vars. '4m' is newer and recommended, and required for Secure Boot. For backwards compatibility, '2m' is used if not otherwise specified. Ignored for VMs with arch=aarch64 (ARM).
 	Efitype *string `json:"efitype,omitempty"`
-	// The drive's backing volume.
-	File *string `json:"file,omitempty"`
-	// The drive's backing file's data format.
+	File string `json:"file"`
 	Format *string `json:"format,omitempty"`
-	// Create a new disk, importing from this source (volume ID or absolute path). When an absolute path is specified, it's up to you to ensure that the source is not actively used by another process during the import!
 	ImportFrom *string `json:"import-from,omitempty"`
-	// Use am EFI vars template with distribution-specific and Microsoft Standard keys enrolled, if used with 'efitype=4m'. Note that this will enable Secure Boot by default, though it can still be turned off from within the VM.
 	PreEnrolledKeys *bool `json:"pre-enrolled-keys,omitempty"`
-	// Disk size. This is purely informational and has no effect.
 	Size *string `json:"size,omitempty"`
-	Volume *string `json:"volume,omitempty"`
 }
 
 // NewCreateVMRequestEfidisk0 instantiates a new CreateVMRequestEfidisk0 object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateVMRequestEfidisk0() *CreateVMRequestEfidisk0 {
+func NewCreateVMRequestEfidisk0(file string) *CreateVMRequestEfidisk0 {
 	this := CreateVMRequestEfidisk0{}
+	this.File = file
 	return &this
 }
 
@@ -84,36 +78,28 @@ func (o *CreateVMRequestEfidisk0) SetEfitype(v string) {
 	o.Efitype = &v
 }
 
-// GetFile returns the File field value if set, zero value otherwise.
+// GetFile returns the File field value
 func (o *CreateVMRequestEfidisk0) GetFile() string {
-	if o == nil || IsNil(o.File) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.File
+
+	return o.File
 }
 
-// GetFileOk returns a tuple with the File field value if set, nil otherwise
+// GetFileOk returns a tuple with the File field value
 // and a boolean to check if the value has been set.
 func (o *CreateVMRequestEfidisk0) GetFileOk() (*string, bool) {
-	if o == nil || IsNil(o.File) {
+	if o == nil {
 		return nil, false
 	}
-	return o.File, true
+	return &o.File, true
 }
 
-// HasFile returns a boolean if a field has been set.
-func (o *CreateVMRequestEfidisk0) HasFile() bool {
-	if o != nil && !IsNil(o.File) {
-		return true
-	}
-
-	return false
-}
-
-// SetFile gets a reference to the given string and assigns it to the File field.
+// SetFile sets field value
 func (o *CreateVMRequestEfidisk0) SetFile(v string) {
-	o.File = &v
+	o.File = v
 }
 
 // GetFormat returns the Format field value if set, zero value otherwise.
@@ -244,38 +230,6 @@ func (o *CreateVMRequestEfidisk0) SetSize(v string) {
 	o.Size = &v
 }
 
-// GetVolume returns the Volume field value if set, zero value otherwise.
-func (o *CreateVMRequestEfidisk0) GetVolume() string {
-	if o == nil || IsNil(o.Volume) {
-		var ret string
-		return ret
-	}
-	return *o.Volume
-}
-
-// GetVolumeOk returns a tuple with the Volume field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateVMRequestEfidisk0) GetVolumeOk() (*string, bool) {
-	if o == nil || IsNil(o.Volume) {
-		return nil, false
-	}
-	return o.Volume, true
-}
-
-// HasVolume returns a boolean if a field has been set.
-func (o *CreateVMRequestEfidisk0) HasVolume() bool {
-	if o != nil && !IsNil(o.Volume) {
-		return true
-	}
-
-	return false
-}
-
-// SetVolume gets a reference to the given string and assigns it to the Volume field.
-func (o *CreateVMRequestEfidisk0) SetVolume(v string) {
-	o.Volume = &v
-}
-
 func (o CreateVMRequestEfidisk0) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -289,9 +243,7 @@ func (o CreateVMRequestEfidisk0) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Efitype) {
 		toSerialize["efitype"] = o.Efitype
 	}
-	if !IsNil(o.File) {
-		toSerialize["file"] = o.File
-	}
+	toSerialize["file"] = o.File
 	if !IsNil(o.Format) {
 		toSerialize["format"] = o.Format
 	}
@@ -303,9 +255,6 @@ func (o CreateVMRequestEfidisk0) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Size) {
 		toSerialize["size"] = o.Size
-	}
-	if !IsNil(o.Volume) {
-		toSerialize["volume"] = o.Volume
 	}
 	return toSerialize, nil
 }

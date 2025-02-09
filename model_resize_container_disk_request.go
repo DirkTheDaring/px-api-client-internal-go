@@ -3,7 +3,7 @@ ProxMox VE API
 
 ProxMox VE API
 
-API version: 8.0
+API version: 8.3
 Contact: baldur@email.de
 */
 
@@ -13,7 +13,6 @@ package pxapiobject
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the ResizeContainerDiskRequest type satisfies the MappedNullable interface at compile time
@@ -21,15 +20,10 @@ var _ MappedNullable = &ResizeContainerDiskRequest{}
 
 // ResizeContainerDiskRequest struct for ResizeContainerDiskRequest
 type ResizeContainerDiskRequest struct {
-	// Prevent changes if current configuration file has different SHA1 digest. This can be used to prevent concurrent modifications.
 	Digest *string `json:"digest,omitempty"`
-	// The disk you want to resize.
 	Disk string `json:"disk"`
-	// The new size. With the '+' sign the value is added to the actual size of the volume and without it, the value is taken as an absolute one. Shrinking disk size is not supported.
 	Size string `json:"size"`
 }
-
-type _ResizeContainerDiskRequest ResizeContainerDiskRequest
 
 // NewResizeContainerDiskRequest instantiates a new ResizeContainerDiskRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -146,42 +140,6 @@ func (o ResizeContainerDiskRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize["disk"] = o.Disk
 	toSerialize["size"] = o.Size
 	return toSerialize, nil
-}
-
-func (o *ResizeContainerDiskRequest) UnmarshalJSON(bytes []byte) (err error) {
-    // This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"disk",
-		"size",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(bytes, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varResizeContainerDiskRequest := _ResizeContainerDiskRequest{}
-
-	err = json.Unmarshal(bytes, &varResizeContainerDiskRequest)
-
-	if err != nil {
-		return err
-	}
-
-	*o = ResizeContainerDiskRequest(varResizeContainerDiskRequest)
-
-	return err
 }
 
 type NullableResizeContainerDiskRequest struct {

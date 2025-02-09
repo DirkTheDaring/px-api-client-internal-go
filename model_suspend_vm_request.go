@@ -3,7 +3,7 @@ ProxMox VE API
 
 ProxMox VE API
 
-API version: 8.0
+API version: 8.3
 Contact: baldur@email.de
 */
 
@@ -20,11 +20,8 @@ var _ MappedNullable = &SuspendVMRequest{}
 
 // SuspendVMRequest struct for SuspendVMRequest
 type SuspendVMRequest struct {
-	// Ignore locks - only root is allowed to use this option.
 	Skiplock *bool `json:"skiplock,omitempty"`
-	// The storage for the VM state
 	Statestorage *string `json:"statestorage,omitempty"`
-	// If set, suspends the VM to disk. Will be resumed on next VM start.
 	Todisk *bool `json:"todisk,omitempty"`
 }
 

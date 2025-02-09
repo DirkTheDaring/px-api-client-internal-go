@@ -5,14 +5,20 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Cpus** | Pointer to **float32** | Maximum usable CPUs. | [optional] 
+**Disk** | Pointer to **int64** | Root disk image space-usage in bytes. | [optional] 
+**Diskread** | Pointer to **int64** | The amount of bytes the guest read from it&#39;s block devices since the guest was started. (Note: This info is not available for all storage types.) | [optional] 
+**Diskwrite** | Pointer to **int64** | The amount of bytes the guest wrote from it&#39;s block devices since the guest was started. (Note: This info is not available for all storage types.) | [optional] 
 **Lock** | Pointer to **string** | The current config lock, if any. | [optional] 
-**Maxdisk** | Pointer to **int64** | Root disk size in bytes. | [optional] 
+**Maxdisk** | Pointer to **int64** | Root disk image size in bytes. | [optional] 
 **Maxmem** | Pointer to **int64** | Maximum memory in bytes. | [optional] 
 **Maxswap** | Pointer to **int64** | Maximum SWAP memory in bytes. | [optional] 
 **Name** | Pointer to **string** | Container name. | [optional] 
+**Netin** | Pointer to **int64** | The amount of traffic in bytes that was sent to the guest over the network since it was started. | [optional] 
+**Netout** | Pointer to **int64** | The amount of traffic in bytes that was sent from the guest over the network since it was started. | [optional] 
 **Status** | Pointer to **string** | LXC Container status. | [optional] 
 **Tags** | Pointer to **string** | The current configured tags, if any. | [optional] 
-**Uptime** | Pointer to **int64** | Uptime. | [optional] 
+**Template** | Pointer to **int32** | Determines if the guest is a template. | [optional] 
+**Uptime** | Pointer to **int64** | Uptime in seconds. | [optional] 
 **Vmid** | Pointer to **int64** | The (unique) ID of the VM. | [optional] 
 
 ## Methods
@@ -58,6 +64,81 @@ SetCpus sets Cpus field to given value.
 `func (o *GetContainers200ResponseDataInner) HasCpus() bool`
 
 HasCpus returns a boolean if a field has been set.
+
+### GetDisk
+
+`func (o *GetContainers200ResponseDataInner) GetDisk() int64`
+
+GetDisk returns the Disk field if non-nil, zero value otherwise.
+
+### GetDiskOk
+
+`func (o *GetContainers200ResponseDataInner) GetDiskOk() (*int64, bool)`
+
+GetDiskOk returns a tuple with the Disk field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDisk
+
+`func (o *GetContainers200ResponseDataInner) SetDisk(v int64)`
+
+SetDisk sets Disk field to given value.
+
+### HasDisk
+
+`func (o *GetContainers200ResponseDataInner) HasDisk() bool`
+
+HasDisk returns a boolean if a field has been set.
+
+### GetDiskread
+
+`func (o *GetContainers200ResponseDataInner) GetDiskread() int64`
+
+GetDiskread returns the Diskread field if non-nil, zero value otherwise.
+
+### GetDiskreadOk
+
+`func (o *GetContainers200ResponseDataInner) GetDiskreadOk() (*int64, bool)`
+
+GetDiskreadOk returns a tuple with the Diskread field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDiskread
+
+`func (o *GetContainers200ResponseDataInner) SetDiskread(v int64)`
+
+SetDiskread sets Diskread field to given value.
+
+### HasDiskread
+
+`func (o *GetContainers200ResponseDataInner) HasDiskread() bool`
+
+HasDiskread returns a boolean if a field has been set.
+
+### GetDiskwrite
+
+`func (o *GetContainers200ResponseDataInner) GetDiskwrite() int64`
+
+GetDiskwrite returns the Diskwrite field if non-nil, zero value otherwise.
+
+### GetDiskwriteOk
+
+`func (o *GetContainers200ResponseDataInner) GetDiskwriteOk() (*int64, bool)`
+
+GetDiskwriteOk returns a tuple with the Diskwrite field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDiskwrite
+
+`func (o *GetContainers200ResponseDataInner) SetDiskwrite(v int64)`
+
+SetDiskwrite sets Diskwrite field to given value.
+
+### HasDiskwrite
+
+`func (o *GetContainers200ResponseDataInner) HasDiskwrite() bool`
+
+HasDiskwrite returns a boolean if a field has been set.
 
 ### GetLock
 
@@ -184,6 +265,56 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
+### GetNetin
+
+`func (o *GetContainers200ResponseDataInner) GetNetin() int64`
+
+GetNetin returns the Netin field if non-nil, zero value otherwise.
+
+### GetNetinOk
+
+`func (o *GetContainers200ResponseDataInner) GetNetinOk() (*int64, bool)`
+
+GetNetinOk returns a tuple with the Netin field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNetin
+
+`func (o *GetContainers200ResponseDataInner) SetNetin(v int64)`
+
+SetNetin sets Netin field to given value.
+
+### HasNetin
+
+`func (o *GetContainers200ResponseDataInner) HasNetin() bool`
+
+HasNetin returns a boolean if a field has been set.
+
+### GetNetout
+
+`func (o *GetContainers200ResponseDataInner) GetNetout() int64`
+
+GetNetout returns the Netout field if non-nil, zero value otherwise.
+
+### GetNetoutOk
+
+`func (o *GetContainers200ResponseDataInner) GetNetoutOk() (*int64, bool)`
+
+GetNetoutOk returns a tuple with the Netout field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNetout
+
+`func (o *GetContainers200ResponseDataInner) SetNetout(v int64)`
+
+SetNetout sets Netout field to given value.
+
+### HasNetout
+
+`func (o *GetContainers200ResponseDataInner) HasNetout() bool`
+
+HasNetout returns a boolean if a field has been set.
+
 ### GetStatus
 
 `func (o *GetContainers200ResponseDataInner) GetStatus() string`
@@ -233,6 +364,31 @@ SetTags sets Tags field to given value.
 `func (o *GetContainers200ResponseDataInner) HasTags() bool`
 
 HasTags returns a boolean if a field has been set.
+
+### GetTemplate
+
+`func (o *GetContainers200ResponseDataInner) GetTemplate() int32`
+
+GetTemplate returns the Template field if non-nil, zero value otherwise.
+
+### GetTemplateOk
+
+`func (o *GetContainers200ResponseDataInner) GetTemplateOk() (*int32, bool)`
+
+GetTemplateOk returns a tuple with the Template field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTemplate
+
+`func (o *GetContainers200ResponseDataInner) SetTemplate(v int32)`
+
+SetTemplate sets Template field to given value.
+
+### HasTemplate
+
+`func (o *GetContainers200ResponseDataInner) HasTemplate() bool`
+
+HasTemplate returns a boolean if a field has been set.
 
 ### GetUptime
 

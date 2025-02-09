@@ -3,7 +3,7 @@ ProxMox VE API
 
 ProxMox VE API
 
-API version: 8.0
+API version: 8.3
 Contact: baldur@email.de
 */
 
@@ -20,13 +20,9 @@ var _ MappedNullable = &ShutdownVMRequest{}
 
 // ShutdownVMRequest struct for ShutdownVMRequest
 type ShutdownVMRequest struct {
-	// Make sure the VM stops.
 	ForceStop *bool `json:"forceStop,omitempty"`
-	// Do not deactivate storage volumes.
 	KeepActive *bool `json:"keepActive,omitempty"`
-	// Ignore locks - only root is allowed to use this option.
 	Skiplock *bool `json:"skiplock,omitempty"`
-	// Wait maximal timeout seconds.
 	Timeout *int64 `json:"timeout,omitempty"`
 }
 

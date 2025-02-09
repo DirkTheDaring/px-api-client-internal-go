@@ -3,7 +3,7 @@ ProxMox VE API
 
 ProxMox VE API
 
-API version: 8.0
+API version: 8.3
 Contact: baldur@email.de
 */
 
@@ -21,22 +21,27 @@ var _ MappedNullable = &GetVMConfig200ResponseData{}
 // GetVMConfig200ResponseData The VM configuration.
 type GetVMConfig200ResponseData struct {
 	// Enable/disable ACPI.
-	Acpi *bool `json:"acpi,omitempty"`
+	Acpi *int32 `json:"acpi,omitempty"`
 	// List of host cores used to execute guest processes, for example: 0,5,8-11
 	Affinity *string `json:"affinity,omitempty"`
-	Agent *GetVMConfig200ResponseDataAgent `json:"agent,omitempty"`
+	// Enable/disable communication with the QEMU Guest Agent and its properties.
+	Agent *string `json:"agent,omitempty"`
+	// Secure Encrypted Virtualization (SEV) features by AMD CPUs
+	AmdSev *string `json:"amd-sev,omitempty"`
 	// Virtual processor architecture. Defaults to the host.
 	Arch *string `json:"arch,omitempty"`
 	// Arbitrary arguments passed to kvm.
 	Args *string `json:"args,omitempty"`
-	Audio0 *GetVMConfig200ResponseDataAudio0 `json:"audio0,omitempty"`
+	// Configure a audio device, useful in combination with QXL/Spice.
+	Audio0 *string `json:"audio0,omitempty"`
 	// Automatic restart after crash (currently ignored).
-	Autostart *bool `json:"autostart,omitempty"`
+	Autostart *int32 `json:"autostart,omitempty"`
 	// Amount of target RAM for the VM in MiB. Using zero disables the ballon driver.
 	Balloon *int64 `json:"balloon,omitempty"`
 	// Select BIOS implementation.
 	Bios *string `json:"bios,omitempty"`
-	Boot *GetVMConfig200ResponseDataBoot `json:"boot,omitempty"`
+	// Specify guest boot order. Use the 'order=' sub-property as usage with no key or 'legacy=' is deprecated.
+	Boot *string `json:"boot,omitempty"`
 	// Enable booting from specified disk. Deprecated: Use 'boot: order=foo;bar' instead.
 	Bootdisk *string `json:"bootdisk,omitempty"`
 	// This is an alias for option -ide2
@@ -48,7 +53,7 @@ type GetVMConfig200ResponseData struct {
 	// Specifies the cloud-init configuration format. The default depends on the configured operating system type (`ostype`. We use the `nocloud` format for Linux, and `configdrive2` for windows.
 	Citype *string `json:"citype,omitempty"`
 	// cloud-init: do an automatic package upgrade after the first boot.
-	Ciupgrade *bool `json:"ciupgrade,omitempty"`
+	Ciupgrade *int32 `json:"ciupgrade,omitempty"`
 	// cloud-init: User name to change ssh keys and password for instead of the image's configured default user.
 	Ciuser *string `json:"ciuser,omitempty"`
 	// The number of cores per socket.
@@ -63,9 +68,10 @@ type GetVMConfig200ResponseData struct {
 	Description *string `json:"description,omitempty"`
 	// SHA1 digest of configuration file. This can be used to prevent concurrent modifications.
 	Digest *string `json:"digest,omitempty"`
-	Efidisk0 *GetVMConfig200ResponseDataEfidisk0 `json:"efidisk0,omitempty"`
+	// Configure a disk for storing EFI vars.
+	Efidisk0 *string `json:"efidisk0,omitempty"`
 	// Freeze CPU at startup (use 'c' monitor command to start execution).
-	Freeze *bool `json:"freeze,omitempty"`
+	Freeze *int32 `json:"freeze,omitempty"`
 	// Script that will be executed during various steps in the vms lifetime.
 	Hookscript *string `json:"hookscript,omitempty"`
 	// Map host PCI devices into guest.
@@ -132,56 +138,91 @@ type GetVMConfig200ResponseData struct {
 	Hotplug *string `json:"hotplug,omitempty"`
 	// Enable/disable hugepages memory.
 	Hugepages *string `json:"hugepages,omitempty"`
-	Ide0 *GetVMConfig200ResponseDataIde0 `json:"ide0,omitempty"`
-	Ide1 *GetVMConfig200ResponseDataIde0 `json:"ide1,omitempty"`
-	Ide2 *GetVMConfig200ResponseDataIde0 `json:"ide2,omitempty"`
-	Ide3 *GetVMConfig200ResponseDataIde0 `json:"ide3,omitempty"`
-	Ipconfig0 *GetVMConfig200ResponseDataIpconfig0 `json:"ipconfig0,omitempty"`
-	Ipconfig1 *GetVMConfig200ResponseDataIpconfig0 `json:"ipconfig1,omitempty"`
-	Ipconfig2 *GetVMConfig200ResponseDataIpconfig0 `json:"ipconfig2,omitempty"`
-	Ipconfig3 *GetVMConfig200ResponseDataIpconfig0 `json:"ipconfig3,omitempty"`
-	Ipconfig4 *GetVMConfig200ResponseDataIpconfig0 `json:"ipconfig4,omitempty"`
-	Ipconfig5 *GetVMConfig200ResponseDataIpconfig0 `json:"ipconfig5,omitempty"`
-	Ipconfig6 *GetVMConfig200ResponseDataIpconfig0 `json:"ipconfig6,omitempty"`
-	Ipconfig7 *GetVMConfig200ResponseDataIpconfig0 `json:"ipconfig7,omitempty"`
-	Ipconfig8 *GetVMConfig200ResponseDataIpconfig0 `json:"ipconfig8,omitempty"`
-	Ipconfig9 *GetVMConfig200ResponseDataIpconfig0 `json:"ipconfig9,omitempty"`
-	Ipconfig10 *GetVMConfig200ResponseDataIpconfig0 `json:"ipconfig10,omitempty"`
-	Ipconfig11 *GetVMConfig200ResponseDataIpconfig0 `json:"ipconfig11,omitempty"`
-	Ipconfig12 *GetVMConfig200ResponseDataIpconfig0 `json:"ipconfig12,omitempty"`
-	Ipconfig13 *GetVMConfig200ResponseDataIpconfig0 `json:"ipconfig13,omitempty"`
-	Ipconfig14 *GetVMConfig200ResponseDataIpconfig0 `json:"ipconfig14,omitempty"`
-	Ipconfig15 *GetVMConfig200ResponseDataIpconfig0 `json:"ipconfig15,omitempty"`
-	Ipconfig16 *GetVMConfig200ResponseDataIpconfig0 `json:"ipconfig16,omitempty"`
-	Ipconfig17 *GetVMConfig200ResponseDataIpconfig0 `json:"ipconfig17,omitempty"`
-	Ipconfig18 *GetVMConfig200ResponseDataIpconfig0 `json:"ipconfig18,omitempty"`
-	Ipconfig19 *GetVMConfig200ResponseDataIpconfig0 `json:"ipconfig19,omitempty"`
-	Ipconfig20 *GetVMConfig200ResponseDataIpconfig0 `json:"ipconfig20,omitempty"`
-	Ipconfig21 *GetVMConfig200ResponseDataIpconfig0 `json:"ipconfig21,omitempty"`
-	Ipconfig22 *GetVMConfig200ResponseDataIpconfig0 `json:"ipconfig22,omitempty"`
-	Ipconfig23 *GetVMConfig200ResponseDataIpconfig0 `json:"ipconfig23,omitempty"`
-	Ipconfig24 *GetVMConfig200ResponseDataIpconfig0 `json:"ipconfig24,omitempty"`
-	Ipconfig25 *GetVMConfig200ResponseDataIpconfig0 `json:"ipconfig25,omitempty"`
-	Ipconfig26 *GetVMConfig200ResponseDataIpconfig0 `json:"ipconfig26,omitempty"`
-	Ipconfig27 *GetVMConfig200ResponseDataIpconfig0 `json:"ipconfig27,omitempty"`
-	Ipconfig28 *GetVMConfig200ResponseDataIpconfig0 `json:"ipconfig28,omitempty"`
-	Ipconfig29 *GetVMConfig200ResponseDataIpconfig0 `json:"ipconfig29,omitempty"`
-	Ivshmem *GetVMConfig200ResponseDataIvshmem `json:"ivshmem,omitempty"`
+	// Use volume as IDE hard disk or CD-ROM (n is 0 to 3).
+	Ide0 *string `json:"ide0,omitempty"`
+	// Use volume as IDE hard disk or CD-ROM (n is 0 to 3).
+	Ide1 *string `json:"ide1,omitempty"`
+	// Use volume as IDE hard disk or CD-ROM (n is 0 to 3).
+	Ide2 *string `json:"ide2,omitempty"`
+	// Use volume as IDE hard disk or CD-ROM (n is 0 to 3).
+	Ide3 *string `json:"ide3,omitempty"`
+	// cloud-init: Specify IP addresses and gateways for the corresponding interface.  IP addresses use CIDR notation, gateways are optional but need an IP of the same type specified.  The special string 'dhcp' can be used for IP addresses to use DHCP, in which case no explicit gateway should be provided. For IPv6 the special string 'auto' can be used to use stateless autoconfiguration. This requires cloud-init 19.4 or newer.  If cloud-init is enabled and neither an IPv4 nor an IPv6 address is specified, it defaults to using dhcp on IPv4. 
+	Ipconfig0 *string `json:"ipconfig0,omitempty"`
+	// cloud-init: Specify IP addresses and gateways for the corresponding interface.  IP addresses use CIDR notation, gateways are optional but need an IP of the same type specified.  The special string 'dhcp' can be used for IP addresses to use DHCP, in which case no explicit gateway should be provided. For IPv6 the special string 'auto' can be used to use stateless autoconfiguration. This requires cloud-init 19.4 or newer.  If cloud-init is enabled and neither an IPv4 nor an IPv6 address is specified, it defaults to using dhcp on IPv4. 
+	Ipconfig1 *string `json:"ipconfig1,omitempty"`
+	// cloud-init: Specify IP addresses and gateways for the corresponding interface.  IP addresses use CIDR notation, gateways are optional but need an IP of the same type specified.  The special string 'dhcp' can be used for IP addresses to use DHCP, in which case no explicit gateway should be provided. For IPv6 the special string 'auto' can be used to use stateless autoconfiguration. This requires cloud-init 19.4 or newer.  If cloud-init is enabled and neither an IPv4 nor an IPv6 address is specified, it defaults to using dhcp on IPv4. 
+	Ipconfig2 *string `json:"ipconfig2,omitempty"`
+	// cloud-init: Specify IP addresses and gateways for the corresponding interface.  IP addresses use CIDR notation, gateways are optional but need an IP of the same type specified.  The special string 'dhcp' can be used for IP addresses to use DHCP, in which case no explicit gateway should be provided. For IPv6 the special string 'auto' can be used to use stateless autoconfiguration. This requires cloud-init 19.4 or newer.  If cloud-init is enabled and neither an IPv4 nor an IPv6 address is specified, it defaults to using dhcp on IPv4. 
+	Ipconfig3 *string `json:"ipconfig3,omitempty"`
+	// cloud-init: Specify IP addresses and gateways for the corresponding interface.  IP addresses use CIDR notation, gateways are optional but need an IP of the same type specified.  The special string 'dhcp' can be used for IP addresses to use DHCP, in which case no explicit gateway should be provided. For IPv6 the special string 'auto' can be used to use stateless autoconfiguration. This requires cloud-init 19.4 or newer.  If cloud-init is enabled and neither an IPv4 nor an IPv6 address is specified, it defaults to using dhcp on IPv4. 
+	Ipconfig4 *string `json:"ipconfig4,omitempty"`
+	// cloud-init: Specify IP addresses and gateways for the corresponding interface.  IP addresses use CIDR notation, gateways are optional but need an IP of the same type specified.  The special string 'dhcp' can be used for IP addresses to use DHCP, in which case no explicit gateway should be provided. For IPv6 the special string 'auto' can be used to use stateless autoconfiguration. This requires cloud-init 19.4 or newer.  If cloud-init is enabled and neither an IPv4 nor an IPv6 address is specified, it defaults to using dhcp on IPv4. 
+	Ipconfig5 *string `json:"ipconfig5,omitempty"`
+	// cloud-init: Specify IP addresses and gateways for the corresponding interface.  IP addresses use CIDR notation, gateways are optional but need an IP of the same type specified.  The special string 'dhcp' can be used for IP addresses to use DHCP, in which case no explicit gateway should be provided. For IPv6 the special string 'auto' can be used to use stateless autoconfiguration. This requires cloud-init 19.4 or newer.  If cloud-init is enabled and neither an IPv4 nor an IPv6 address is specified, it defaults to using dhcp on IPv4. 
+	Ipconfig6 *string `json:"ipconfig6,omitempty"`
+	// cloud-init: Specify IP addresses and gateways for the corresponding interface.  IP addresses use CIDR notation, gateways are optional but need an IP of the same type specified.  The special string 'dhcp' can be used for IP addresses to use DHCP, in which case no explicit gateway should be provided. For IPv6 the special string 'auto' can be used to use stateless autoconfiguration. This requires cloud-init 19.4 or newer.  If cloud-init is enabled and neither an IPv4 nor an IPv6 address is specified, it defaults to using dhcp on IPv4. 
+	Ipconfig7 *string `json:"ipconfig7,omitempty"`
+	// cloud-init: Specify IP addresses and gateways for the corresponding interface.  IP addresses use CIDR notation, gateways are optional but need an IP of the same type specified.  The special string 'dhcp' can be used for IP addresses to use DHCP, in which case no explicit gateway should be provided. For IPv6 the special string 'auto' can be used to use stateless autoconfiguration. This requires cloud-init 19.4 or newer.  If cloud-init is enabled and neither an IPv4 nor an IPv6 address is specified, it defaults to using dhcp on IPv4. 
+	Ipconfig8 *string `json:"ipconfig8,omitempty"`
+	// cloud-init: Specify IP addresses and gateways for the corresponding interface.  IP addresses use CIDR notation, gateways are optional but need an IP of the same type specified.  The special string 'dhcp' can be used for IP addresses to use DHCP, in which case no explicit gateway should be provided. For IPv6 the special string 'auto' can be used to use stateless autoconfiguration. This requires cloud-init 19.4 or newer.  If cloud-init is enabled and neither an IPv4 nor an IPv6 address is specified, it defaults to using dhcp on IPv4. 
+	Ipconfig9 *string `json:"ipconfig9,omitempty"`
+	// cloud-init: Specify IP addresses and gateways for the corresponding interface.  IP addresses use CIDR notation, gateways are optional but need an IP of the same type specified.  The special string 'dhcp' can be used for IP addresses to use DHCP, in which case no explicit gateway should be provided. For IPv6 the special string 'auto' can be used to use stateless autoconfiguration. This requires cloud-init 19.4 or newer.  If cloud-init is enabled and neither an IPv4 nor an IPv6 address is specified, it defaults to using dhcp on IPv4. 
+	Ipconfig10 *string `json:"ipconfig10,omitempty"`
+	// cloud-init: Specify IP addresses and gateways for the corresponding interface.  IP addresses use CIDR notation, gateways are optional but need an IP of the same type specified.  The special string 'dhcp' can be used for IP addresses to use DHCP, in which case no explicit gateway should be provided. For IPv6 the special string 'auto' can be used to use stateless autoconfiguration. This requires cloud-init 19.4 or newer.  If cloud-init is enabled and neither an IPv4 nor an IPv6 address is specified, it defaults to using dhcp on IPv4. 
+	Ipconfig11 *string `json:"ipconfig11,omitempty"`
+	// cloud-init: Specify IP addresses and gateways for the corresponding interface.  IP addresses use CIDR notation, gateways are optional but need an IP of the same type specified.  The special string 'dhcp' can be used for IP addresses to use DHCP, in which case no explicit gateway should be provided. For IPv6 the special string 'auto' can be used to use stateless autoconfiguration. This requires cloud-init 19.4 or newer.  If cloud-init is enabled and neither an IPv4 nor an IPv6 address is specified, it defaults to using dhcp on IPv4. 
+	Ipconfig12 *string `json:"ipconfig12,omitempty"`
+	// cloud-init: Specify IP addresses and gateways for the corresponding interface.  IP addresses use CIDR notation, gateways are optional but need an IP of the same type specified.  The special string 'dhcp' can be used for IP addresses to use DHCP, in which case no explicit gateway should be provided. For IPv6 the special string 'auto' can be used to use stateless autoconfiguration. This requires cloud-init 19.4 or newer.  If cloud-init is enabled and neither an IPv4 nor an IPv6 address is specified, it defaults to using dhcp on IPv4. 
+	Ipconfig13 *string `json:"ipconfig13,omitempty"`
+	// cloud-init: Specify IP addresses and gateways for the corresponding interface.  IP addresses use CIDR notation, gateways are optional but need an IP of the same type specified.  The special string 'dhcp' can be used for IP addresses to use DHCP, in which case no explicit gateway should be provided. For IPv6 the special string 'auto' can be used to use stateless autoconfiguration. This requires cloud-init 19.4 or newer.  If cloud-init is enabled and neither an IPv4 nor an IPv6 address is specified, it defaults to using dhcp on IPv4. 
+	Ipconfig14 *string `json:"ipconfig14,omitempty"`
+	// cloud-init: Specify IP addresses and gateways for the corresponding interface.  IP addresses use CIDR notation, gateways are optional but need an IP of the same type specified.  The special string 'dhcp' can be used for IP addresses to use DHCP, in which case no explicit gateway should be provided. For IPv6 the special string 'auto' can be used to use stateless autoconfiguration. This requires cloud-init 19.4 or newer.  If cloud-init is enabled and neither an IPv4 nor an IPv6 address is specified, it defaults to using dhcp on IPv4. 
+	Ipconfig15 *string `json:"ipconfig15,omitempty"`
+	// cloud-init: Specify IP addresses and gateways for the corresponding interface.  IP addresses use CIDR notation, gateways are optional but need an IP of the same type specified.  The special string 'dhcp' can be used for IP addresses to use DHCP, in which case no explicit gateway should be provided. For IPv6 the special string 'auto' can be used to use stateless autoconfiguration. This requires cloud-init 19.4 or newer.  If cloud-init is enabled and neither an IPv4 nor an IPv6 address is specified, it defaults to using dhcp on IPv4. 
+	Ipconfig16 *string `json:"ipconfig16,omitempty"`
+	// cloud-init: Specify IP addresses and gateways for the corresponding interface.  IP addresses use CIDR notation, gateways are optional but need an IP of the same type specified.  The special string 'dhcp' can be used for IP addresses to use DHCP, in which case no explicit gateway should be provided. For IPv6 the special string 'auto' can be used to use stateless autoconfiguration. This requires cloud-init 19.4 or newer.  If cloud-init is enabled and neither an IPv4 nor an IPv6 address is specified, it defaults to using dhcp on IPv4. 
+	Ipconfig17 *string `json:"ipconfig17,omitempty"`
+	// cloud-init: Specify IP addresses and gateways for the corresponding interface.  IP addresses use CIDR notation, gateways are optional but need an IP of the same type specified.  The special string 'dhcp' can be used for IP addresses to use DHCP, in which case no explicit gateway should be provided. For IPv6 the special string 'auto' can be used to use stateless autoconfiguration. This requires cloud-init 19.4 or newer.  If cloud-init is enabled and neither an IPv4 nor an IPv6 address is specified, it defaults to using dhcp on IPv4. 
+	Ipconfig18 *string `json:"ipconfig18,omitempty"`
+	// cloud-init: Specify IP addresses and gateways for the corresponding interface.  IP addresses use CIDR notation, gateways are optional but need an IP of the same type specified.  The special string 'dhcp' can be used for IP addresses to use DHCP, in which case no explicit gateway should be provided. For IPv6 the special string 'auto' can be used to use stateless autoconfiguration. This requires cloud-init 19.4 or newer.  If cloud-init is enabled and neither an IPv4 nor an IPv6 address is specified, it defaults to using dhcp on IPv4. 
+	Ipconfig19 *string `json:"ipconfig19,omitempty"`
+	// cloud-init: Specify IP addresses and gateways for the corresponding interface.  IP addresses use CIDR notation, gateways are optional but need an IP of the same type specified.  The special string 'dhcp' can be used for IP addresses to use DHCP, in which case no explicit gateway should be provided. For IPv6 the special string 'auto' can be used to use stateless autoconfiguration. This requires cloud-init 19.4 or newer.  If cloud-init is enabled and neither an IPv4 nor an IPv6 address is specified, it defaults to using dhcp on IPv4. 
+	Ipconfig20 *string `json:"ipconfig20,omitempty"`
+	// cloud-init: Specify IP addresses and gateways for the corresponding interface.  IP addresses use CIDR notation, gateways are optional but need an IP of the same type specified.  The special string 'dhcp' can be used for IP addresses to use DHCP, in which case no explicit gateway should be provided. For IPv6 the special string 'auto' can be used to use stateless autoconfiguration. This requires cloud-init 19.4 or newer.  If cloud-init is enabled and neither an IPv4 nor an IPv6 address is specified, it defaults to using dhcp on IPv4. 
+	Ipconfig21 *string `json:"ipconfig21,omitempty"`
+	// cloud-init: Specify IP addresses and gateways for the corresponding interface.  IP addresses use CIDR notation, gateways are optional but need an IP of the same type specified.  The special string 'dhcp' can be used for IP addresses to use DHCP, in which case no explicit gateway should be provided. For IPv6 the special string 'auto' can be used to use stateless autoconfiguration. This requires cloud-init 19.4 or newer.  If cloud-init is enabled and neither an IPv4 nor an IPv6 address is specified, it defaults to using dhcp on IPv4. 
+	Ipconfig22 *string `json:"ipconfig22,omitempty"`
+	// cloud-init: Specify IP addresses and gateways for the corresponding interface.  IP addresses use CIDR notation, gateways are optional but need an IP of the same type specified.  The special string 'dhcp' can be used for IP addresses to use DHCP, in which case no explicit gateway should be provided. For IPv6 the special string 'auto' can be used to use stateless autoconfiguration. This requires cloud-init 19.4 or newer.  If cloud-init is enabled and neither an IPv4 nor an IPv6 address is specified, it defaults to using dhcp on IPv4. 
+	Ipconfig23 *string `json:"ipconfig23,omitempty"`
+	// cloud-init: Specify IP addresses and gateways for the corresponding interface.  IP addresses use CIDR notation, gateways are optional but need an IP of the same type specified.  The special string 'dhcp' can be used for IP addresses to use DHCP, in which case no explicit gateway should be provided. For IPv6 the special string 'auto' can be used to use stateless autoconfiguration. This requires cloud-init 19.4 or newer.  If cloud-init is enabled and neither an IPv4 nor an IPv6 address is specified, it defaults to using dhcp on IPv4. 
+	Ipconfig24 *string `json:"ipconfig24,omitempty"`
+	// cloud-init: Specify IP addresses and gateways for the corresponding interface.  IP addresses use CIDR notation, gateways are optional but need an IP of the same type specified.  The special string 'dhcp' can be used for IP addresses to use DHCP, in which case no explicit gateway should be provided. For IPv6 the special string 'auto' can be used to use stateless autoconfiguration. This requires cloud-init 19.4 or newer.  If cloud-init is enabled and neither an IPv4 nor an IPv6 address is specified, it defaults to using dhcp on IPv4. 
+	Ipconfig25 *string `json:"ipconfig25,omitempty"`
+	// cloud-init: Specify IP addresses and gateways for the corresponding interface.  IP addresses use CIDR notation, gateways are optional but need an IP of the same type specified.  The special string 'dhcp' can be used for IP addresses to use DHCP, in which case no explicit gateway should be provided. For IPv6 the special string 'auto' can be used to use stateless autoconfiguration. This requires cloud-init 19.4 or newer.  If cloud-init is enabled and neither an IPv4 nor an IPv6 address is specified, it defaults to using dhcp on IPv4. 
+	Ipconfig26 *string `json:"ipconfig26,omitempty"`
+	// cloud-init: Specify IP addresses and gateways for the corresponding interface.  IP addresses use CIDR notation, gateways are optional but need an IP of the same type specified.  The special string 'dhcp' can be used for IP addresses to use DHCP, in which case no explicit gateway should be provided. For IPv6 the special string 'auto' can be used to use stateless autoconfiguration. This requires cloud-init 19.4 or newer.  If cloud-init is enabled and neither an IPv4 nor an IPv6 address is specified, it defaults to using dhcp on IPv4. 
+	Ipconfig27 *string `json:"ipconfig27,omitempty"`
+	// cloud-init: Specify IP addresses and gateways for the corresponding interface.  IP addresses use CIDR notation, gateways are optional but need an IP of the same type specified.  The special string 'dhcp' can be used for IP addresses to use DHCP, in which case no explicit gateway should be provided. For IPv6 the special string 'auto' can be used to use stateless autoconfiguration. This requires cloud-init 19.4 or newer.  If cloud-init is enabled and neither an IPv4 nor an IPv6 address is specified, it defaults to using dhcp on IPv4. 
+	Ipconfig28 *string `json:"ipconfig28,omitempty"`
+	// cloud-init: Specify IP addresses and gateways for the corresponding interface.  IP addresses use CIDR notation, gateways are optional but need an IP of the same type specified.  The special string 'dhcp' can be used for IP addresses to use DHCP, in which case no explicit gateway should be provided. For IPv6 the special string 'auto' can be used to use stateless autoconfiguration. This requires cloud-init 19.4 or newer.  If cloud-init is enabled and neither an IPv4 nor an IPv6 address is specified, it defaults to using dhcp on IPv4. 
+	Ipconfig29 *string `json:"ipconfig29,omitempty"`
+	// Inter-VM shared memory. Useful for direct communication between VMs, or to the host.
+	Ivshmem *string `json:"ivshmem,omitempty"`
 	// Use together with hugepages. If enabled, hugepages will not not be deleted after VM shutdown and can be used for subsequent starts.
-	Keephugepages *bool `json:"keephugepages,omitempty"`
+	Keephugepages *int32 `json:"keephugepages,omitempty"`
 	// Keyboard layout for VNC server. This option is generally not required and is often better handled from within the guest OS.
 	Keyboard *string `json:"keyboard,omitempty"`
 	// Enable/disable KVM hardware virtualization.
-	Kvm *bool `json:"kvm,omitempty"`
+	Kvm *int32 `json:"kvm,omitempty"`
 	// Set the real time clock (RTC) to local time. This is enabled by default if the `ostype` indicates a Microsoft Windows OS.
-	Localtime *bool `json:"localtime,omitempty"`
+	Localtime *int32 `json:"localtime,omitempty"`
 	// Lock/unlock the VM.
 	Lock *string `json:"lock,omitempty"`
-	// Specifies the QEMU machine type.
+	// Specify the QEMU machine.
 	Machine *string `json:"machine,omitempty"`
-	// Memory
+	// Memory properties.
 	Memory *string `json:"memory,omitempty"`
-	// Set maximum tolerated downtime (in seconds) for migrations.
+	// Set maximum tolerated downtime (in seconds) for migrations. Should the migration not be able to converge in the very end, because too much newly dirtied RAM needs to be transferred, the limit will be increased automatically step-by-step until migration can converge.
 	MigrateDowntime *float32 `json:"migrate_downtime,omitempty"`
 	// Set maximum speed (in MB/s) for migrations. Value 0 is no limit.
 	MigrateSpeed *int64 `json:"migrate_speed,omitempty"`
@@ -189,72 +230,134 @@ type GetVMConfig200ResponseData struct {
 	Name *string `json:"name,omitempty"`
 	// cloud-init: Sets DNS server IP address for a container. Create will automatically use the setting from the host if neither searchdomain nor nameserver are set.
 	Nameserver *string `json:"nameserver,omitempty"`
-	Net0 *GetVMConfig200ResponseDataNet0 `json:"net0,omitempty"`
-	Net1 *GetVMConfig200ResponseDataNet0 `json:"net1,omitempty"`
-	Net2 *GetVMConfig200ResponseDataNet0 `json:"net2,omitempty"`
-	Net3 *GetVMConfig200ResponseDataNet0 `json:"net3,omitempty"`
-	Net4 *GetVMConfig200ResponseDataNet0 `json:"net4,omitempty"`
-	Net5 *GetVMConfig200ResponseDataNet0 `json:"net5,omitempty"`
-	Net6 *GetVMConfig200ResponseDataNet0 `json:"net6,omitempty"`
-	Net7 *GetVMConfig200ResponseDataNet0 `json:"net7,omitempty"`
-	Net8 *GetVMConfig200ResponseDataNet0 `json:"net8,omitempty"`
-	Net9 *GetVMConfig200ResponseDataNet0 `json:"net9,omitempty"`
-	Net10 *GetVMConfig200ResponseDataNet0 `json:"net10,omitempty"`
-	Net11 *GetVMConfig200ResponseDataNet0 `json:"net11,omitempty"`
-	Net12 *GetVMConfig200ResponseDataNet0 `json:"net12,omitempty"`
-	Net13 *GetVMConfig200ResponseDataNet0 `json:"net13,omitempty"`
-	Net14 *GetVMConfig200ResponseDataNet0 `json:"net14,omitempty"`
-	Net15 *GetVMConfig200ResponseDataNet0 `json:"net15,omitempty"`
-	Net16 *GetVMConfig200ResponseDataNet0 `json:"net16,omitempty"`
-	Net17 *GetVMConfig200ResponseDataNet0 `json:"net17,omitempty"`
-	Net18 *GetVMConfig200ResponseDataNet0 `json:"net18,omitempty"`
-	Net19 *GetVMConfig200ResponseDataNet0 `json:"net19,omitempty"`
-	Net20 *GetVMConfig200ResponseDataNet0 `json:"net20,omitempty"`
-	Net21 *GetVMConfig200ResponseDataNet0 `json:"net21,omitempty"`
-	Net22 *GetVMConfig200ResponseDataNet0 `json:"net22,omitempty"`
-	Net23 *GetVMConfig200ResponseDataNet0 `json:"net23,omitempty"`
-	Net24 *GetVMConfig200ResponseDataNet0 `json:"net24,omitempty"`
-	Net25 *GetVMConfig200ResponseDataNet0 `json:"net25,omitempty"`
-	Net26 *GetVMConfig200ResponseDataNet0 `json:"net26,omitempty"`
-	Net27 *GetVMConfig200ResponseDataNet0 `json:"net27,omitempty"`
-	Net28 *GetVMConfig200ResponseDataNet0 `json:"net28,omitempty"`
-	Net29 *GetVMConfig200ResponseDataNet0 `json:"net29,omitempty"`
-	Net30 *GetVMConfig200ResponseDataNet0 `json:"net30,omitempty"`
-	Net31 *GetVMConfig200ResponseDataNet0 `json:"net31,omitempty"`
+	// Specify network devices.
+	Net0 *string `json:"net0,omitempty"`
+	// Specify network devices.
+	Net1 *string `json:"net1,omitempty"`
+	// Specify network devices.
+	Net2 *string `json:"net2,omitempty"`
+	// Specify network devices.
+	Net3 *string `json:"net3,omitempty"`
+	// Specify network devices.
+	Net4 *string `json:"net4,omitempty"`
+	// Specify network devices.
+	Net5 *string `json:"net5,omitempty"`
+	// Specify network devices.
+	Net6 *string `json:"net6,omitempty"`
+	// Specify network devices.
+	Net7 *string `json:"net7,omitempty"`
+	// Specify network devices.
+	Net8 *string `json:"net8,omitempty"`
+	// Specify network devices.
+	Net9 *string `json:"net9,omitempty"`
+	// Specify network devices.
+	Net10 *string `json:"net10,omitempty"`
+	// Specify network devices.
+	Net11 *string `json:"net11,omitempty"`
+	// Specify network devices.
+	Net12 *string `json:"net12,omitempty"`
+	// Specify network devices.
+	Net13 *string `json:"net13,omitempty"`
+	// Specify network devices.
+	Net14 *string `json:"net14,omitempty"`
+	// Specify network devices.
+	Net15 *string `json:"net15,omitempty"`
+	// Specify network devices.
+	Net16 *string `json:"net16,omitempty"`
+	// Specify network devices.
+	Net17 *string `json:"net17,omitempty"`
+	// Specify network devices.
+	Net18 *string `json:"net18,omitempty"`
+	// Specify network devices.
+	Net19 *string `json:"net19,omitempty"`
+	// Specify network devices.
+	Net20 *string `json:"net20,omitempty"`
+	// Specify network devices.
+	Net21 *string `json:"net21,omitempty"`
+	// Specify network devices.
+	Net22 *string `json:"net22,omitempty"`
+	// Specify network devices.
+	Net23 *string `json:"net23,omitempty"`
+	// Specify network devices.
+	Net24 *string `json:"net24,omitempty"`
+	// Specify network devices.
+	Net25 *string `json:"net25,omitempty"`
+	// Specify network devices.
+	Net26 *string `json:"net26,omitempty"`
+	// Specify network devices.
+	Net27 *string `json:"net27,omitempty"`
+	// Specify network devices.
+	Net28 *string `json:"net28,omitempty"`
+	// Specify network devices.
+	Net29 *string `json:"net29,omitempty"`
+	// Specify network devices.
+	Net30 *string `json:"net30,omitempty"`
+	// Specify network devices.
+	Net31 *string `json:"net31,omitempty"`
 	// Enable/disable NUMA.
-	Numa *bool `json:"numa,omitempty"`
-	Numa0 *GetVMConfig200ResponseDataNuma0 `json:"numa0,omitempty"`
-	Numa1 *GetVMConfig200ResponseDataNuma0 `json:"numa1,omitempty"`
-	Numa2 *GetVMConfig200ResponseDataNuma0 `json:"numa2,omitempty"`
-	Numa3 *GetVMConfig200ResponseDataNuma0 `json:"numa3,omitempty"`
-	Numa4 *GetVMConfig200ResponseDataNuma0 `json:"numa4,omitempty"`
-	Numa5 *GetVMConfig200ResponseDataNuma0 `json:"numa5,omitempty"`
-	Numa6 *GetVMConfig200ResponseDataNuma0 `json:"numa6,omitempty"`
-	Numa7 *GetVMConfig200ResponseDataNuma0 `json:"numa7,omitempty"`
-	Numa8 *GetVMConfig200ResponseDataNuma0 `json:"numa8,omitempty"`
-	Numa9 *GetVMConfig200ResponseDataNuma0 `json:"numa9,omitempty"`
-	Numa10 *GetVMConfig200ResponseDataNuma0 `json:"numa10,omitempty"`
-	Numa11 *GetVMConfig200ResponseDataNuma0 `json:"numa11,omitempty"`
-	Numa12 *GetVMConfig200ResponseDataNuma0 `json:"numa12,omitempty"`
-	Numa13 *GetVMConfig200ResponseDataNuma0 `json:"numa13,omitempty"`
-	Numa14 *GetVMConfig200ResponseDataNuma0 `json:"numa14,omitempty"`
-	Numa15 *GetVMConfig200ResponseDataNuma0 `json:"numa15,omitempty"`
-	Numa16 *GetVMConfig200ResponseDataNuma0 `json:"numa16,omitempty"`
-	Numa17 *GetVMConfig200ResponseDataNuma0 `json:"numa17,omitempty"`
-	Numa18 *GetVMConfig200ResponseDataNuma0 `json:"numa18,omitempty"`
-	Numa19 *GetVMConfig200ResponseDataNuma0 `json:"numa19,omitempty"`
-	Numa20 *GetVMConfig200ResponseDataNuma0 `json:"numa20,omitempty"`
-	Numa21 *GetVMConfig200ResponseDataNuma0 `json:"numa21,omitempty"`
-	Numa22 *GetVMConfig200ResponseDataNuma0 `json:"numa22,omitempty"`
-	Numa23 *GetVMConfig200ResponseDataNuma0 `json:"numa23,omitempty"`
-	Numa24 *GetVMConfig200ResponseDataNuma0 `json:"numa24,omitempty"`
-	Numa25 *GetVMConfig200ResponseDataNuma0 `json:"numa25,omitempty"`
-	Numa26 *GetVMConfig200ResponseDataNuma0 `json:"numa26,omitempty"`
-	Numa27 *GetVMConfig200ResponseDataNuma0 `json:"numa27,omitempty"`
-	Numa28 *GetVMConfig200ResponseDataNuma0 `json:"numa28,omitempty"`
-	Numa29 *GetVMConfig200ResponseDataNuma0 `json:"numa29,omitempty"`
+	Numa *int32 `json:"numa,omitempty"`
+	// NUMA topology.
+	Numa0 *string `json:"numa0,omitempty"`
+	// NUMA topology.
+	Numa1 *string `json:"numa1,omitempty"`
+	// NUMA topology.
+	Numa2 *string `json:"numa2,omitempty"`
+	// NUMA topology.
+	Numa3 *string `json:"numa3,omitempty"`
+	// NUMA topology.
+	Numa4 *string `json:"numa4,omitempty"`
+	// NUMA topology.
+	Numa5 *string `json:"numa5,omitempty"`
+	// NUMA topology.
+	Numa6 *string `json:"numa6,omitempty"`
+	// NUMA topology.
+	Numa7 *string `json:"numa7,omitempty"`
+	// NUMA topology.
+	Numa8 *string `json:"numa8,omitempty"`
+	// NUMA topology.
+	Numa9 *string `json:"numa9,omitempty"`
+	// NUMA topology.
+	Numa10 *string `json:"numa10,omitempty"`
+	// NUMA topology.
+	Numa11 *string `json:"numa11,omitempty"`
+	// NUMA topology.
+	Numa12 *string `json:"numa12,omitempty"`
+	// NUMA topology.
+	Numa13 *string `json:"numa13,omitempty"`
+	// NUMA topology.
+	Numa14 *string `json:"numa14,omitempty"`
+	// NUMA topology.
+	Numa15 *string `json:"numa15,omitempty"`
+	// NUMA topology.
+	Numa16 *string `json:"numa16,omitempty"`
+	// NUMA topology.
+	Numa17 *string `json:"numa17,omitempty"`
+	// NUMA topology.
+	Numa18 *string `json:"numa18,omitempty"`
+	// NUMA topology.
+	Numa19 *string `json:"numa19,omitempty"`
+	// NUMA topology.
+	Numa20 *string `json:"numa20,omitempty"`
+	// NUMA topology.
+	Numa21 *string `json:"numa21,omitempty"`
+	// NUMA topology.
+	Numa22 *string `json:"numa22,omitempty"`
+	// NUMA topology.
+	Numa23 *string `json:"numa23,omitempty"`
+	// NUMA topology.
+	Numa24 *string `json:"numa24,omitempty"`
+	// NUMA topology.
+	Numa25 *string `json:"numa25,omitempty"`
+	// NUMA topology.
+	Numa26 *string `json:"numa26,omitempty"`
+	// NUMA topology.
+	Numa27 *string `json:"numa27,omitempty"`
+	// NUMA topology.
+	Numa28 *string `json:"numa28,omitempty"`
+	// NUMA topology.
+	Numa29 *string `json:"numa29,omitempty"`
 	// Specifies whether a VM will be started during system bootup.
-	Onboot *bool `json:"onboot,omitempty"`
+	Onboot *int32 `json:"onboot,omitempty"`
 	// Specify guest operating system.
 	Ostype *string `json:"ostype,omitempty"`
 	// Map host parallel devices (n is 0 to 2).
@@ -266,46 +369,83 @@ type GetVMConfig200ResponseData struct {
 	// Map host parallel devices (n is 0 to 2).
 	Parallel3 *string `json:"parallel3,omitempty"`
 	// Sets the protection flag of the VM. This will disable the remove VM and remove disk operations.
-	Protection *bool `json:"protection,omitempty"`
+	Protection *int32 `json:"protection,omitempty"`
 	// Allow reboot. If set to '0' the VM exit on reboot.
-	Reboot *bool `json:"reboot,omitempty"`
-	Rng0 *GetVMConfig200ResponseDataRng0 `json:"rng0,omitempty"`
-	Sata0 *GetVMConfig200ResponseDataSata0 `json:"sata0,omitempty"`
-	Sata1 *GetVMConfig200ResponseDataSata0 `json:"sata1,omitempty"`
-	Sata2 *GetVMConfig200ResponseDataSata0 `json:"sata2,omitempty"`
-	Sata3 *GetVMConfig200ResponseDataSata0 `json:"sata3,omitempty"`
-	Sata4 *GetVMConfig200ResponseDataSata0 `json:"sata4,omitempty"`
-	Sata5 *GetVMConfig200ResponseDataSata0 `json:"sata5,omitempty"`
-	Scsi0 *GetVMConfig200ResponseDataScsi0 `json:"scsi0,omitempty"`
-	Scsi1 *GetVMConfig200ResponseDataScsi0 `json:"scsi1,omitempty"`
-	Scsi2 *GetVMConfig200ResponseDataScsi0 `json:"scsi2,omitempty"`
-	Scsi3 *GetVMConfig200ResponseDataScsi0 `json:"scsi3,omitempty"`
-	Scsi4 *GetVMConfig200ResponseDataScsi0 `json:"scsi4,omitempty"`
-	Scsi5 *GetVMConfig200ResponseDataScsi0 `json:"scsi5,omitempty"`
-	Scsi6 *GetVMConfig200ResponseDataScsi0 `json:"scsi6,omitempty"`
-	Scsi7 *GetVMConfig200ResponseDataScsi0 `json:"scsi7,omitempty"`
-	Scsi8 *GetVMConfig200ResponseDataScsi0 `json:"scsi8,omitempty"`
-	Scsi9 *GetVMConfig200ResponseDataScsi0 `json:"scsi9,omitempty"`
-	Scsi10 *GetVMConfig200ResponseDataScsi0 `json:"scsi10,omitempty"`
-	Scsi11 *GetVMConfig200ResponseDataScsi0 `json:"scsi11,omitempty"`
-	Scsi12 *GetVMConfig200ResponseDataScsi0 `json:"scsi12,omitempty"`
-	Scsi13 *GetVMConfig200ResponseDataScsi0 `json:"scsi13,omitempty"`
-	Scsi14 *GetVMConfig200ResponseDataScsi0 `json:"scsi14,omitempty"`
-	Scsi15 *GetVMConfig200ResponseDataScsi0 `json:"scsi15,omitempty"`
-	Scsi16 *GetVMConfig200ResponseDataScsi0 `json:"scsi16,omitempty"`
-	Scsi17 *GetVMConfig200ResponseDataScsi0 `json:"scsi17,omitempty"`
-	Scsi18 *GetVMConfig200ResponseDataScsi0 `json:"scsi18,omitempty"`
-	Scsi19 *GetVMConfig200ResponseDataScsi0 `json:"scsi19,omitempty"`
-	Scsi20 *GetVMConfig200ResponseDataScsi0 `json:"scsi20,omitempty"`
-	Scsi21 *GetVMConfig200ResponseDataScsi0 `json:"scsi21,omitempty"`
-	Scsi22 *GetVMConfig200ResponseDataScsi0 `json:"scsi22,omitempty"`
-	Scsi23 *GetVMConfig200ResponseDataScsi0 `json:"scsi23,omitempty"`
-	Scsi24 *GetVMConfig200ResponseDataScsi0 `json:"scsi24,omitempty"`
-	Scsi25 *GetVMConfig200ResponseDataScsi0 `json:"scsi25,omitempty"`
-	Scsi26 *GetVMConfig200ResponseDataScsi0 `json:"scsi26,omitempty"`
-	Scsi27 *GetVMConfig200ResponseDataScsi0 `json:"scsi27,omitempty"`
-	Scsi28 *GetVMConfig200ResponseDataScsi0 `json:"scsi28,omitempty"`
-	Scsi29 *GetVMConfig200ResponseDataScsi0 `json:"scsi29,omitempty"`
+	Reboot *int32 `json:"reboot,omitempty"`
+	// Configure a VirtIO-based Random Number Generator.
+	Rng0 *string `json:"rng0,omitempty"`
+	// Use volume as SATA hard disk or CD-ROM (n is 0 to 5).
+	Sata0 *string `json:"sata0,omitempty"`
+	// Use volume as SATA hard disk or CD-ROM (n is 0 to 5).
+	Sata1 *string `json:"sata1,omitempty"`
+	// Use volume as SATA hard disk or CD-ROM (n is 0 to 5).
+	Sata2 *string `json:"sata2,omitempty"`
+	// Use volume as SATA hard disk or CD-ROM (n is 0 to 5).
+	Sata3 *string `json:"sata3,omitempty"`
+	// Use volume as SATA hard disk or CD-ROM (n is 0 to 5).
+	Sata4 *string `json:"sata4,omitempty"`
+	// Use volume as SATA hard disk or CD-ROM (n is 0 to 5).
+	Sata5 *string `json:"sata5,omitempty"`
+	// Use volume as SCSI hard disk or CD-ROM (n is 0 to 30).
+	Scsi0 *string `json:"scsi0,omitempty"`
+	// Use volume as SCSI hard disk or CD-ROM (n is 0 to 30).
+	Scsi1 *string `json:"scsi1,omitempty"`
+	// Use volume as SCSI hard disk or CD-ROM (n is 0 to 30).
+	Scsi2 *string `json:"scsi2,omitempty"`
+	// Use volume as SCSI hard disk or CD-ROM (n is 0 to 30).
+	Scsi3 *string `json:"scsi3,omitempty"`
+	// Use volume as SCSI hard disk or CD-ROM (n is 0 to 30).
+	Scsi4 *string `json:"scsi4,omitempty"`
+	// Use volume as SCSI hard disk or CD-ROM (n is 0 to 30).
+	Scsi5 *string `json:"scsi5,omitempty"`
+	// Use volume as SCSI hard disk or CD-ROM (n is 0 to 30).
+	Scsi6 *string `json:"scsi6,omitempty"`
+	// Use volume as SCSI hard disk or CD-ROM (n is 0 to 30).
+	Scsi7 *string `json:"scsi7,omitempty"`
+	// Use volume as SCSI hard disk or CD-ROM (n is 0 to 30).
+	Scsi8 *string `json:"scsi8,omitempty"`
+	// Use volume as SCSI hard disk or CD-ROM (n is 0 to 30).
+	Scsi9 *string `json:"scsi9,omitempty"`
+	// Use volume as SCSI hard disk or CD-ROM (n is 0 to 30).
+	Scsi10 *string `json:"scsi10,omitempty"`
+	// Use volume as SCSI hard disk or CD-ROM (n is 0 to 30).
+	Scsi11 *string `json:"scsi11,omitempty"`
+	// Use volume as SCSI hard disk or CD-ROM (n is 0 to 30).
+	Scsi12 *string `json:"scsi12,omitempty"`
+	// Use volume as SCSI hard disk or CD-ROM (n is 0 to 30).
+	Scsi13 *string `json:"scsi13,omitempty"`
+	// Use volume as SCSI hard disk or CD-ROM (n is 0 to 30).
+	Scsi14 *string `json:"scsi14,omitempty"`
+	// Use volume as SCSI hard disk or CD-ROM (n is 0 to 30).
+	Scsi15 *string `json:"scsi15,omitempty"`
+	// Use volume as SCSI hard disk or CD-ROM (n is 0 to 30).
+	Scsi16 *string `json:"scsi16,omitempty"`
+	// Use volume as SCSI hard disk or CD-ROM (n is 0 to 30).
+	Scsi17 *string `json:"scsi17,omitempty"`
+	// Use volume as SCSI hard disk or CD-ROM (n is 0 to 30).
+	Scsi18 *string `json:"scsi18,omitempty"`
+	// Use volume as SCSI hard disk or CD-ROM (n is 0 to 30).
+	Scsi19 *string `json:"scsi19,omitempty"`
+	// Use volume as SCSI hard disk or CD-ROM (n is 0 to 30).
+	Scsi20 *string `json:"scsi20,omitempty"`
+	// Use volume as SCSI hard disk or CD-ROM (n is 0 to 30).
+	Scsi21 *string `json:"scsi21,omitempty"`
+	// Use volume as SCSI hard disk or CD-ROM (n is 0 to 30).
+	Scsi22 *string `json:"scsi22,omitempty"`
+	// Use volume as SCSI hard disk or CD-ROM (n is 0 to 30).
+	Scsi23 *string `json:"scsi23,omitempty"`
+	// Use volume as SCSI hard disk or CD-ROM (n is 0 to 30).
+	Scsi24 *string `json:"scsi24,omitempty"`
+	// Use volume as SCSI hard disk or CD-ROM (n is 0 to 30).
+	Scsi25 *string `json:"scsi25,omitempty"`
+	// Use volume as SCSI hard disk or CD-ROM (n is 0 to 30).
+	Scsi26 *string `json:"scsi26,omitempty"`
+	// Use volume as SCSI hard disk or CD-ROM (n is 0 to 30).
+	Scsi27 *string `json:"scsi27,omitempty"`
+	// Use volume as SCSI hard disk or CD-ROM (n is 0 to 30).
+	Scsi28 *string `json:"scsi28,omitempty"`
+	// Use volume as SCSI hard disk or CD-ROM (n is 0 to 30).
+	Scsi29 *string `json:"scsi29,omitempty"`
 	// SCSI controller model
 	Scsihw *string `json:"scsihw,omitempty"`
 	// cloud-init: Sets DNS search domains for a container. Create will automatically use the setting from the host if neither searchdomain nor nameserver are set.
@@ -326,7 +466,8 @@ type GetVMConfig200ResponseData struct {
 	Smp *int64 `json:"smp,omitempty"`
 	// The number of CPU sockets.
 	Sockets *int64 `json:"sockets,omitempty"`
-	SpiceEnhancements *GetVMConfig200ResponseDataSpiceEnhancements `json:"spice_enhancements,omitempty"`
+	// Configure additional enhancements for SPICE.
+	SpiceEnhancements *string `json:"spice_enhancements,omitempty"`
 	// cloud-init: Setup public SSH keys (one key per line, OpenSSH format).
 	Sshkeys *string `json:"sshkeys,omitempty"`
 	// Set the initial date of the real time clock. Valid format for date are:'now' or '2006-06-17T16:01:21' or '2006-06-17'.
@@ -334,72 +475,125 @@ type GetVMConfig200ResponseData struct {
 	// Startup and shutdown behavior. Order is a non-negative number defining the general startup order. Shutdown in done with reverse ordering. Additionally you can set the 'up' or 'down' delay in seconds, which specifies a delay to wait before the next VM is started or stopped.
 	Startup *string `json:"startup,omitempty"`
 	// Enable/disable the USB tablet device.
-	Tablet *bool `json:"tablet,omitempty"`
+	Tablet *int32 `json:"tablet,omitempty"`
 	// Tags of the VM. This is only meta information.
 	Tags *string `json:"tags,omitempty"`
 	// Enable/disable time drift fix.
-	Tdf *bool `json:"tdf,omitempty"`
+	Tdf *int32 `json:"tdf,omitempty"`
 	// Enable/disable Template.
-	Template *bool `json:"template,omitempty"`
-	Tpmstate0 *GetVMConfig200ResponseDataTpmstate0 `json:"tpmstate0,omitempty"`
-	Unused0 *GetVMConfig200ResponseDataUnused0 `json:"unused0,omitempty"`
-	Unused1 *GetVMConfig200ResponseDataUnused0 `json:"unused1,omitempty"`
-	Unused2 *GetVMConfig200ResponseDataUnused0 `json:"unused2,omitempty"`
-	Unused3 *GetVMConfig200ResponseDataUnused0 `json:"unused3,omitempty"`
-	Unused4 *GetVMConfig200ResponseDataUnused0 `json:"unused4,omitempty"`
-	Unused5 *GetVMConfig200ResponseDataUnused0 `json:"unused5,omitempty"`
-	Unused6 *GetVMConfig200ResponseDataUnused0 `json:"unused6,omitempty"`
-	Unused7 *GetVMConfig200ResponseDataUnused0 `json:"unused7,omitempty"`
-	Unused8 *GetVMConfig200ResponseDataUnused0 `json:"unused8,omitempty"`
-	Unused9 *GetVMConfig200ResponseDataUnused0 `json:"unused9,omitempty"`
-	Unused10 *GetVMConfig200ResponseDataUnused0 `json:"unused10,omitempty"`
-	Unused11 *GetVMConfig200ResponseDataUnused0 `json:"unused11,omitempty"`
-	Unused12 *GetVMConfig200ResponseDataUnused0 `json:"unused12,omitempty"`
-	Unused13 *GetVMConfig200ResponseDataUnused0 `json:"unused13,omitempty"`
-	Unused14 *GetVMConfig200ResponseDataUnused0 `json:"unused14,omitempty"`
-	Unused15 *GetVMConfig200ResponseDataUnused0 `json:"unused15,omitempty"`
-	Unused16 *GetVMConfig200ResponseDataUnused0 `json:"unused16,omitempty"`
-	Unused17 *GetVMConfig200ResponseDataUnused0 `json:"unused17,omitempty"`
-	Unused18 *GetVMConfig200ResponseDataUnused0 `json:"unused18,omitempty"`
-	Unused19 *GetVMConfig200ResponseDataUnused0 `json:"unused19,omitempty"`
-	Unused20 *GetVMConfig200ResponseDataUnused0 `json:"unused20,omitempty"`
-	Unused21 *GetVMConfig200ResponseDataUnused0 `json:"unused21,omitempty"`
-	Unused22 *GetVMConfig200ResponseDataUnused0 `json:"unused22,omitempty"`
-	Unused23 *GetVMConfig200ResponseDataUnused0 `json:"unused23,omitempty"`
-	Unused24 *GetVMConfig200ResponseDataUnused0 `json:"unused24,omitempty"`
-	Unused25 *GetVMConfig200ResponseDataUnused0 `json:"unused25,omitempty"`
-	Unused26 *GetVMConfig200ResponseDataUnused0 `json:"unused26,omitempty"`
-	Unused27 *GetVMConfig200ResponseDataUnused0 `json:"unused27,omitempty"`
-	Unused28 *GetVMConfig200ResponseDataUnused0 `json:"unused28,omitempty"`
-	Unused29 *GetVMConfig200ResponseDataUnused0 `json:"unused29,omitempty"`
-	Usb0 *GetVMConfig200ResponseDataUsb0 `json:"usb0,omitempty"`
-	Usb1 *GetVMConfig200ResponseDataUsb0 `json:"usb1,omitempty"`
-	Usb2 *GetVMConfig200ResponseDataUsb0 `json:"usb2,omitempty"`
-	Usb3 *GetVMConfig200ResponseDataUsb0 `json:"usb3,omitempty"`
+	Template *int32 `json:"template,omitempty"`
+	// Configure a Disk for storing TPM state. The format is fixed to 'raw'.
+	Tpmstate0 *string `json:"tpmstate0,omitempty"`
+	// Reference to unused volumes. This is used internally, and should not be modified manually.
+	Unused0 *string `json:"unused0,omitempty"`
+	// Reference to unused volumes. This is used internally, and should not be modified manually.
+	Unused1 *string `json:"unused1,omitempty"`
+	// Reference to unused volumes. This is used internally, and should not be modified manually.
+	Unused2 *string `json:"unused2,omitempty"`
+	// Reference to unused volumes. This is used internally, and should not be modified manually.
+	Unused3 *string `json:"unused3,omitempty"`
+	// Reference to unused volumes. This is used internally, and should not be modified manually.
+	Unused4 *string `json:"unused4,omitempty"`
+	// Reference to unused volumes. This is used internally, and should not be modified manually.
+	Unused5 *string `json:"unused5,omitempty"`
+	// Reference to unused volumes. This is used internally, and should not be modified manually.
+	Unused6 *string `json:"unused6,omitempty"`
+	// Reference to unused volumes. This is used internally, and should not be modified manually.
+	Unused7 *string `json:"unused7,omitempty"`
+	// Reference to unused volumes. This is used internally, and should not be modified manually.
+	Unused8 *string `json:"unused8,omitempty"`
+	// Reference to unused volumes. This is used internally, and should not be modified manually.
+	Unused9 *string `json:"unused9,omitempty"`
+	// Reference to unused volumes. This is used internally, and should not be modified manually.
+	Unused10 *string `json:"unused10,omitempty"`
+	// Reference to unused volumes. This is used internally, and should not be modified manually.
+	Unused11 *string `json:"unused11,omitempty"`
+	// Reference to unused volumes. This is used internally, and should not be modified manually.
+	Unused12 *string `json:"unused12,omitempty"`
+	// Reference to unused volumes. This is used internally, and should not be modified manually.
+	Unused13 *string `json:"unused13,omitempty"`
+	// Reference to unused volumes. This is used internally, and should not be modified manually.
+	Unused14 *string `json:"unused14,omitempty"`
+	// Reference to unused volumes. This is used internally, and should not be modified manually.
+	Unused15 *string `json:"unused15,omitempty"`
+	// Reference to unused volumes. This is used internally, and should not be modified manually.
+	Unused16 *string `json:"unused16,omitempty"`
+	// Reference to unused volumes. This is used internally, and should not be modified manually.
+	Unused17 *string `json:"unused17,omitempty"`
+	// Reference to unused volumes. This is used internally, and should not be modified manually.
+	Unused18 *string `json:"unused18,omitempty"`
+	// Reference to unused volumes. This is used internally, and should not be modified manually.
+	Unused19 *string `json:"unused19,omitempty"`
+	// Reference to unused volumes. This is used internally, and should not be modified manually.
+	Unused20 *string `json:"unused20,omitempty"`
+	// Reference to unused volumes. This is used internally, and should not be modified manually.
+	Unused21 *string `json:"unused21,omitempty"`
+	// Reference to unused volumes. This is used internally, and should not be modified manually.
+	Unused22 *string `json:"unused22,omitempty"`
+	// Reference to unused volumes. This is used internally, and should not be modified manually.
+	Unused23 *string `json:"unused23,omitempty"`
+	// Reference to unused volumes. This is used internally, and should not be modified manually.
+	Unused24 *string `json:"unused24,omitempty"`
+	// Reference to unused volumes. This is used internally, and should not be modified manually.
+	Unused25 *string `json:"unused25,omitempty"`
+	// Reference to unused volumes. This is used internally, and should not be modified manually.
+	Unused26 *string `json:"unused26,omitempty"`
+	// Reference to unused volumes. This is used internally, and should not be modified manually.
+	Unused27 *string `json:"unused27,omitempty"`
+	// Reference to unused volumes. This is used internally, and should not be modified manually.
+	Unused28 *string `json:"unused28,omitempty"`
+	// Reference to unused volumes. This is used internally, and should not be modified manually.
+	Unused29 *string `json:"unused29,omitempty"`
+	// Configure an USB device (n is 0 to 4, for machine version >= 7.1 and ostype l26 or windows > 7, n can be up to 14).
+	Usb0 *string `json:"usb0,omitempty"`
+	// Configure an USB device (n is 0 to 4, for machine version >= 7.1 and ostype l26 or windows > 7, n can be up to 14).
+	Usb1 *string `json:"usb1,omitempty"`
+	// Configure an USB device (n is 0 to 4, for machine version >= 7.1 and ostype l26 or windows > 7, n can be up to 14).
+	Usb2 *string `json:"usb2,omitempty"`
+	// Configure an USB device (n is 0 to 4, for machine version >= 7.1 and ostype l26 or windows > 7, n can be up to 14).
+	Usb3 *string `json:"usb3,omitempty"`
 	// Number of hotplugged vcpus.
 	Vcpus *int64 `json:"vcpus,omitempty"`
-	Vga *GetVMConfig200ResponseDataVga `json:"vga,omitempty"`
-	Virtio0 *GetVMConfig200ResponseDataVirtio0 `json:"virtio0,omitempty"`
-	Virtio1 *GetVMConfig200ResponseDataVirtio0 `json:"virtio1,omitempty"`
-	Virtio2 *GetVMConfig200ResponseDataVirtio0 `json:"virtio2,omitempty"`
-	Virtio3 *GetVMConfig200ResponseDataVirtio0 `json:"virtio3,omitempty"`
-	Virtio4 *GetVMConfig200ResponseDataVirtio0 `json:"virtio4,omitempty"`
-	Virtio5 *GetVMConfig200ResponseDataVirtio0 `json:"virtio5,omitempty"`
-	Virtio6 *GetVMConfig200ResponseDataVirtio0 `json:"virtio6,omitempty"`
-	Virtio7 *GetVMConfig200ResponseDataVirtio0 `json:"virtio7,omitempty"`
-	Virtio8 *GetVMConfig200ResponseDataVirtio0 `json:"virtio8,omitempty"`
-	Virtio9 *GetVMConfig200ResponseDataVirtio0 `json:"virtio9,omitempty"`
-	Virtio10 *GetVMConfig200ResponseDataVirtio0 `json:"virtio10,omitempty"`
-	Virtio11 *GetVMConfig200ResponseDataVirtio0 `json:"virtio11,omitempty"`
-	Virtio12 *GetVMConfig200ResponseDataVirtio0 `json:"virtio12,omitempty"`
-	Virtio13 *GetVMConfig200ResponseDataVirtio0 `json:"virtio13,omitempty"`
-	Virtio14 *GetVMConfig200ResponseDataVirtio0 `json:"virtio14,omitempty"`
-	Virtio15 *GetVMConfig200ResponseDataVirtio0 `json:"virtio15,omitempty"`
+	// Configure the VGA hardware.
+	Vga *string `json:"vga,omitempty"`
+	// Use volume as VIRTIO hard disk (n is 0 to 15).
+	Virtio0 *string `json:"virtio0,omitempty"`
+	// Use volume as VIRTIO hard disk (n is 0 to 15).
+	Virtio1 *string `json:"virtio1,omitempty"`
+	// Use volume as VIRTIO hard disk (n is 0 to 15).
+	Virtio2 *string `json:"virtio2,omitempty"`
+	// Use volume as VIRTIO hard disk (n is 0 to 15).
+	Virtio3 *string `json:"virtio3,omitempty"`
+	// Use volume as VIRTIO hard disk (n is 0 to 15).
+	Virtio4 *string `json:"virtio4,omitempty"`
+	// Use volume as VIRTIO hard disk (n is 0 to 15).
+	Virtio5 *string `json:"virtio5,omitempty"`
+	// Use volume as VIRTIO hard disk (n is 0 to 15).
+	Virtio6 *string `json:"virtio6,omitempty"`
+	// Use volume as VIRTIO hard disk (n is 0 to 15).
+	Virtio7 *string `json:"virtio7,omitempty"`
+	// Use volume as VIRTIO hard disk (n is 0 to 15).
+	Virtio8 *string `json:"virtio8,omitempty"`
+	// Use volume as VIRTIO hard disk (n is 0 to 15).
+	Virtio9 *string `json:"virtio9,omitempty"`
+	// Use volume as VIRTIO hard disk (n is 0 to 15).
+	Virtio10 *string `json:"virtio10,omitempty"`
+	// Use volume as VIRTIO hard disk (n is 0 to 15).
+	Virtio11 *string `json:"virtio11,omitempty"`
+	// Use volume as VIRTIO hard disk (n is 0 to 15).
+	Virtio12 *string `json:"virtio12,omitempty"`
+	// Use volume as VIRTIO hard disk (n is 0 to 15).
+	Virtio13 *string `json:"virtio13,omitempty"`
+	// Use volume as VIRTIO hard disk (n is 0 to 15).
+	Virtio14 *string `json:"virtio14,omitempty"`
+	// Use volume as VIRTIO hard disk (n is 0 to 15).
+	Virtio15 *string `json:"virtio15,omitempty"`
 	// Set VM Generation ID. Use '1' to autogenerate on create or update, pass '0' to disable explicitly.
 	Vmgenid *string `json:"vmgenid,omitempty"`
 	// Default storage for VM state volumes/files.
 	Vmstatestorage *string `json:"vmstatestorage,omitempty"`
-	Watchdog *GetVMConfig200ResponseDataWatchdog `json:"watchdog,omitempty"`
+	// Create a virtual hardware watchdog device.
+	Watchdog *string `json:"watchdog,omitempty"`
 }
 
 // NewGetVMConfig200ResponseData instantiates a new GetVMConfig200ResponseData object
@@ -420,9 +614,9 @@ func NewGetVMConfig200ResponseDataWithDefaults() *GetVMConfig200ResponseData {
 }
 
 // GetAcpi returns the Acpi field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetAcpi() bool {
+func (o *GetVMConfig200ResponseData) GetAcpi() int32 {
 	if o == nil || IsNil(o.Acpi) {
-		var ret bool
+		var ret int32
 		return ret
 	}
 	return *o.Acpi
@@ -430,7 +624,7 @@ func (o *GetVMConfig200ResponseData) GetAcpi() bool {
 
 // GetAcpiOk returns a tuple with the Acpi field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetAcpiOk() (*bool, bool) {
+func (o *GetVMConfig200ResponseData) GetAcpiOk() (*int32, bool) {
 	if o == nil || IsNil(o.Acpi) {
 		return nil, false
 	}
@@ -446,8 +640,8 @@ func (o *GetVMConfig200ResponseData) HasAcpi() bool {
 	return false
 }
 
-// SetAcpi gets a reference to the given bool and assigns it to the Acpi field.
-func (o *GetVMConfig200ResponseData) SetAcpi(v bool) {
+// SetAcpi gets a reference to the given int32 and assigns it to the Acpi field.
+func (o *GetVMConfig200ResponseData) SetAcpi(v int32) {
 	o.Acpi = &v
 }
 
@@ -484,9 +678,9 @@ func (o *GetVMConfig200ResponseData) SetAffinity(v string) {
 }
 
 // GetAgent returns the Agent field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetAgent() GetVMConfig200ResponseDataAgent {
+func (o *GetVMConfig200ResponseData) GetAgent() string {
 	if o == nil || IsNil(o.Agent) {
-		var ret GetVMConfig200ResponseDataAgent
+		var ret string
 		return ret
 	}
 	return *o.Agent
@@ -494,7 +688,7 @@ func (o *GetVMConfig200ResponseData) GetAgent() GetVMConfig200ResponseDataAgent 
 
 // GetAgentOk returns a tuple with the Agent field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetAgentOk() (*GetVMConfig200ResponseDataAgent, bool) {
+func (o *GetVMConfig200ResponseData) GetAgentOk() (*string, bool) {
 	if o == nil || IsNil(o.Agent) {
 		return nil, false
 	}
@@ -510,9 +704,41 @@ func (o *GetVMConfig200ResponseData) HasAgent() bool {
 	return false
 }
 
-// SetAgent gets a reference to the given GetVMConfig200ResponseDataAgent and assigns it to the Agent field.
-func (o *GetVMConfig200ResponseData) SetAgent(v GetVMConfig200ResponseDataAgent) {
+// SetAgent gets a reference to the given string and assigns it to the Agent field.
+func (o *GetVMConfig200ResponseData) SetAgent(v string) {
 	o.Agent = &v
+}
+
+// GetAmdSev returns the AmdSev field value if set, zero value otherwise.
+func (o *GetVMConfig200ResponseData) GetAmdSev() string {
+	if o == nil || IsNil(o.AmdSev) {
+		var ret string
+		return ret
+	}
+	return *o.AmdSev
+}
+
+// GetAmdSevOk returns a tuple with the AmdSev field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetVMConfig200ResponseData) GetAmdSevOk() (*string, bool) {
+	if o == nil || IsNil(o.AmdSev) {
+		return nil, false
+	}
+	return o.AmdSev, true
+}
+
+// HasAmdSev returns a boolean if a field has been set.
+func (o *GetVMConfig200ResponseData) HasAmdSev() bool {
+	if o != nil && !IsNil(o.AmdSev) {
+		return true
+	}
+
+	return false
+}
+
+// SetAmdSev gets a reference to the given string and assigns it to the AmdSev field.
+func (o *GetVMConfig200ResponseData) SetAmdSev(v string) {
+	o.AmdSev = &v
 }
 
 // GetArch returns the Arch field value if set, zero value otherwise.
@@ -580,9 +806,9 @@ func (o *GetVMConfig200ResponseData) SetArgs(v string) {
 }
 
 // GetAudio0 returns the Audio0 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetAudio0() GetVMConfig200ResponseDataAudio0 {
+func (o *GetVMConfig200ResponseData) GetAudio0() string {
 	if o == nil || IsNil(o.Audio0) {
-		var ret GetVMConfig200ResponseDataAudio0
+		var ret string
 		return ret
 	}
 	return *o.Audio0
@@ -590,7 +816,7 @@ func (o *GetVMConfig200ResponseData) GetAudio0() GetVMConfig200ResponseDataAudio
 
 // GetAudio0Ok returns a tuple with the Audio0 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetAudio0Ok() (*GetVMConfig200ResponseDataAudio0, bool) {
+func (o *GetVMConfig200ResponseData) GetAudio0Ok() (*string, bool) {
 	if o == nil || IsNil(o.Audio0) {
 		return nil, false
 	}
@@ -606,15 +832,15 @@ func (o *GetVMConfig200ResponseData) HasAudio0() bool {
 	return false
 }
 
-// SetAudio0 gets a reference to the given GetVMConfig200ResponseDataAudio0 and assigns it to the Audio0 field.
-func (o *GetVMConfig200ResponseData) SetAudio0(v GetVMConfig200ResponseDataAudio0) {
+// SetAudio0 gets a reference to the given string and assigns it to the Audio0 field.
+func (o *GetVMConfig200ResponseData) SetAudio0(v string) {
 	o.Audio0 = &v
 }
 
 // GetAutostart returns the Autostart field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetAutostart() bool {
+func (o *GetVMConfig200ResponseData) GetAutostart() int32 {
 	if o == nil || IsNil(o.Autostart) {
-		var ret bool
+		var ret int32
 		return ret
 	}
 	return *o.Autostart
@@ -622,7 +848,7 @@ func (o *GetVMConfig200ResponseData) GetAutostart() bool {
 
 // GetAutostartOk returns a tuple with the Autostart field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetAutostartOk() (*bool, bool) {
+func (o *GetVMConfig200ResponseData) GetAutostartOk() (*int32, bool) {
 	if o == nil || IsNil(o.Autostart) {
 		return nil, false
 	}
@@ -638,8 +864,8 @@ func (o *GetVMConfig200ResponseData) HasAutostart() bool {
 	return false
 }
 
-// SetAutostart gets a reference to the given bool and assigns it to the Autostart field.
-func (o *GetVMConfig200ResponseData) SetAutostart(v bool) {
+// SetAutostart gets a reference to the given int32 and assigns it to the Autostart field.
+func (o *GetVMConfig200ResponseData) SetAutostart(v int32) {
 	o.Autostart = &v
 }
 
@@ -708,9 +934,9 @@ func (o *GetVMConfig200ResponseData) SetBios(v string) {
 }
 
 // GetBoot returns the Boot field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetBoot() GetVMConfig200ResponseDataBoot {
+func (o *GetVMConfig200ResponseData) GetBoot() string {
 	if o == nil || IsNil(o.Boot) {
-		var ret GetVMConfig200ResponseDataBoot
+		var ret string
 		return ret
 	}
 	return *o.Boot
@@ -718,7 +944,7 @@ func (o *GetVMConfig200ResponseData) GetBoot() GetVMConfig200ResponseDataBoot {
 
 // GetBootOk returns a tuple with the Boot field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetBootOk() (*GetVMConfig200ResponseDataBoot, bool) {
+func (o *GetVMConfig200ResponseData) GetBootOk() (*string, bool) {
 	if o == nil || IsNil(o.Boot) {
 		return nil, false
 	}
@@ -734,8 +960,8 @@ func (o *GetVMConfig200ResponseData) HasBoot() bool {
 	return false
 }
 
-// SetBoot gets a reference to the given GetVMConfig200ResponseDataBoot and assigns it to the Boot field.
-func (o *GetVMConfig200ResponseData) SetBoot(v GetVMConfig200ResponseDataBoot) {
+// SetBoot gets a reference to the given string and assigns it to the Boot field.
+func (o *GetVMConfig200ResponseData) SetBoot(v string) {
 	o.Boot = &v
 }
 
@@ -900,9 +1126,9 @@ func (o *GetVMConfig200ResponseData) SetCitype(v string) {
 }
 
 // GetCiupgrade returns the Ciupgrade field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetCiupgrade() bool {
+func (o *GetVMConfig200ResponseData) GetCiupgrade() int32 {
 	if o == nil || IsNil(o.Ciupgrade) {
-		var ret bool
+		var ret int32
 		return ret
 	}
 	return *o.Ciupgrade
@@ -910,7 +1136,7 @@ func (o *GetVMConfig200ResponseData) GetCiupgrade() bool {
 
 // GetCiupgradeOk returns a tuple with the Ciupgrade field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetCiupgradeOk() (*bool, bool) {
+func (o *GetVMConfig200ResponseData) GetCiupgradeOk() (*int32, bool) {
 	if o == nil || IsNil(o.Ciupgrade) {
 		return nil, false
 	}
@@ -926,8 +1152,8 @@ func (o *GetVMConfig200ResponseData) HasCiupgrade() bool {
 	return false
 }
 
-// SetCiupgrade gets a reference to the given bool and assigns it to the Ciupgrade field.
-func (o *GetVMConfig200ResponseData) SetCiupgrade(v bool) {
+// SetCiupgrade gets a reference to the given int32 and assigns it to the Ciupgrade field.
+func (o *GetVMConfig200ResponseData) SetCiupgrade(v int32) {
 	o.Ciupgrade = &v
 }
 
@@ -1156,9 +1382,9 @@ func (o *GetVMConfig200ResponseData) SetDigest(v string) {
 }
 
 // GetEfidisk0 returns the Efidisk0 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetEfidisk0() GetVMConfig200ResponseDataEfidisk0 {
+func (o *GetVMConfig200ResponseData) GetEfidisk0() string {
 	if o == nil || IsNil(o.Efidisk0) {
-		var ret GetVMConfig200ResponseDataEfidisk0
+		var ret string
 		return ret
 	}
 	return *o.Efidisk0
@@ -1166,7 +1392,7 @@ func (o *GetVMConfig200ResponseData) GetEfidisk0() GetVMConfig200ResponseDataEfi
 
 // GetEfidisk0Ok returns a tuple with the Efidisk0 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetEfidisk0Ok() (*GetVMConfig200ResponseDataEfidisk0, bool) {
+func (o *GetVMConfig200ResponseData) GetEfidisk0Ok() (*string, bool) {
 	if o == nil || IsNil(o.Efidisk0) {
 		return nil, false
 	}
@@ -1182,15 +1408,15 @@ func (o *GetVMConfig200ResponseData) HasEfidisk0() bool {
 	return false
 }
 
-// SetEfidisk0 gets a reference to the given GetVMConfig200ResponseDataEfidisk0 and assigns it to the Efidisk0 field.
-func (o *GetVMConfig200ResponseData) SetEfidisk0(v GetVMConfig200ResponseDataEfidisk0) {
+// SetEfidisk0 gets a reference to the given string and assigns it to the Efidisk0 field.
+func (o *GetVMConfig200ResponseData) SetEfidisk0(v string) {
 	o.Efidisk0 = &v
 }
 
 // GetFreeze returns the Freeze field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetFreeze() bool {
+func (o *GetVMConfig200ResponseData) GetFreeze() int32 {
 	if o == nil || IsNil(o.Freeze) {
-		var ret bool
+		var ret int32
 		return ret
 	}
 	return *o.Freeze
@@ -1198,7 +1424,7 @@ func (o *GetVMConfig200ResponseData) GetFreeze() bool {
 
 // GetFreezeOk returns a tuple with the Freeze field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetFreezeOk() (*bool, bool) {
+func (o *GetVMConfig200ResponseData) GetFreezeOk() (*int32, bool) {
 	if o == nil || IsNil(o.Freeze) {
 		return nil, false
 	}
@@ -1214,8 +1440,8 @@ func (o *GetVMConfig200ResponseData) HasFreeze() bool {
 	return false
 }
 
-// SetFreeze gets a reference to the given bool and assigns it to the Freeze field.
-func (o *GetVMConfig200ResponseData) SetFreeze(v bool) {
+// SetFreeze gets a reference to the given int32 and assigns it to the Freeze field.
+func (o *GetVMConfig200ResponseData) SetFreeze(v int32) {
 	o.Freeze = &v
 }
 
@@ -2276,9 +2502,9 @@ func (o *GetVMConfig200ResponseData) SetHugepages(v string) {
 }
 
 // GetIde0 returns the Ide0 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetIde0() GetVMConfig200ResponseDataIde0 {
+func (o *GetVMConfig200ResponseData) GetIde0() string {
 	if o == nil || IsNil(o.Ide0) {
-		var ret GetVMConfig200ResponseDataIde0
+		var ret string
 		return ret
 	}
 	return *o.Ide0
@@ -2286,7 +2512,7 @@ func (o *GetVMConfig200ResponseData) GetIde0() GetVMConfig200ResponseDataIde0 {
 
 // GetIde0Ok returns a tuple with the Ide0 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetIde0Ok() (*GetVMConfig200ResponseDataIde0, bool) {
+func (o *GetVMConfig200ResponseData) GetIde0Ok() (*string, bool) {
 	if o == nil || IsNil(o.Ide0) {
 		return nil, false
 	}
@@ -2302,15 +2528,15 @@ func (o *GetVMConfig200ResponseData) HasIde0() bool {
 	return false
 }
 
-// SetIde0 gets a reference to the given GetVMConfig200ResponseDataIde0 and assigns it to the Ide0 field.
-func (o *GetVMConfig200ResponseData) SetIde0(v GetVMConfig200ResponseDataIde0) {
+// SetIde0 gets a reference to the given string and assigns it to the Ide0 field.
+func (o *GetVMConfig200ResponseData) SetIde0(v string) {
 	o.Ide0 = &v
 }
 
 // GetIde1 returns the Ide1 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetIde1() GetVMConfig200ResponseDataIde0 {
+func (o *GetVMConfig200ResponseData) GetIde1() string {
 	if o == nil || IsNil(o.Ide1) {
-		var ret GetVMConfig200ResponseDataIde0
+		var ret string
 		return ret
 	}
 	return *o.Ide1
@@ -2318,7 +2544,7 @@ func (o *GetVMConfig200ResponseData) GetIde1() GetVMConfig200ResponseDataIde0 {
 
 // GetIde1Ok returns a tuple with the Ide1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetIde1Ok() (*GetVMConfig200ResponseDataIde0, bool) {
+func (o *GetVMConfig200ResponseData) GetIde1Ok() (*string, bool) {
 	if o == nil || IsNil(o.Ide1) {
 		return nil, false
 	}
@@ -2334,15 +2560,15 @@ func (o *GetVMConfig200ResponseData) HasIde1() bool {
 	return false
 }
 
-// SetIde1 gets a reference to the given GetVMConfig200ResponseDataIde0 and assigns it to the Ide1 field.
-func (o *GetVMConfig200ResponseData) SetIde1(v GetVMConfig200ResponseDataIde0) {
+// SetIde1 gets a reference to the given string and assigns it to the Ide1 field.
+func (o *GetVMConfig200ResponseData) SetIde1(v string) {
 	o.Ide1 = &v
 }
 
 // GetIde2 returns the Ide2 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetIde2() GetVMConfig200ResponseDataIde0 {
+func (o *GetVMConfig200ResponseData) GetIde2() string {
 	if o == nil || IsNil(o.Ide2) {
-		var ret GetVMConfig200ResponseDataIde0
+		var ret string
 		return ret
 	}
 	return *o.Ide2
@@ -2350,7 +2576,7 @@ func (o *GetVMConfig200ResponseData) GetIde2() GetVMConfig200ResponseDataIde0 {
 
 // GetIde2Ok returns a tuple with the Ide2 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetIde2Ok() (*GetVMConfig200ResponseDataIde0, bool) {
+func (o *GetVMConfig200ResponseData) GetIde2Ok() (*string, bool) {
 	if o == nil || IsNil(o.Ide2) {
 		return nil, false
 	}
@@ -2366,15 +2592,15 @@ func (o *GetVMConfig200ResponseData) HasIde2() bool {
 	return false
 }
 
-// SetIde2 gets a reference to the given GetVMConfig200ResponseDataIde0 and assigns it to the Ide2 field.
-func (o *GetVMConfig200ResponseData) SetIde2(v GetVMConfig200ResponseDataIde0) {
+// SetIde2 gets a reference to the given string and assigns it to the Ide2 field.
+func (o *GetVMConfig200ResponseData) SetIde2(v string) {
 	o.Ide2 = &v
 }
 
 // GetIde3 returns the Ide3 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetIde3() GetVMConfig200ResponseDataIde0 {
+func (o *GetVMConfig200ResponseData) GetIde3() string {
 	if o == nil || IsNil(o.Ide3) {
-		var ret GetVMConfig200ResponseDataIde0
+		var ret string
 		return ret
 	}
 	return *o.Ide3
@@ -2382,7 +2608,7 @@ func (o *GetVMConfig200ResponseData) GetIde3() GetVMConfig200ResponseDataIde0 {
 
 // GetIde3Ok returns a tuple with the Ide3 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetIde3Ok() (*GetVMConfig200ResponseDataIde0, bool) {
+func (o *GetVMConfig200ResponseData) GetIde3Ok() (*string, bool) {
 	if o == nil || IsNil(o.Ide3) {
 		return nil, false
 	}
@@ -2398,15 +2624,15 @@ func (o *GetVMConfig200ResponseData) HasIde3() bool {
 	return false
 }
 
-// SetIde3 gets a reference to the given GetVMConfig200ResponseDataIde0 and assigns it to the Ide3 field.
-func (o *GetVMConfig200ResponseData) SetIde3(v GetVMConfig200ResponseDataIde0) {
+// SetIde3 gets a reference to the given string and assigns it to the Ide3 field.
+func (o *GetVMConfig200ResponseData) SetIde3(v string) {
 	o.Ide3 = &v
 }
 
 // GetIpconfig0 returns the Ipconfig0 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetIpconfig0() GetVMConfig200ResponseDataIpconfig0 {
+func (o *GetVMConfig200ResponseData) GetIpconfig0() string {
 	if o == nil || IsNil(o.Ipconfig0) {
-		var ret GetVMConfig200ResponseDataIpconfig0
+		var ret string
 		return ret
 	}
 	return *o.Ipconfig0
@@ -2414,7 +2640,7 @@ func (o *GetVMConfig200ResponseData) GetIpconfig0() GetVMConfig200ResponseDataIp
 
 // GetIpconfig0Ok returns a tuple with the Ipconfig0 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetIpconfig0Ok() (*GetVMConfig200ResponseDataIpconfig0, bool) {
+func (o *GetVMConfig200ResponseData) GetIpconfig0Ok() (*string, bool) {
 	if o == nil || IsNil(o.Ipconfig0) {
 		return nil, false
 	}
@@ -2430,15 +2656,15 @@ func (o *GetVMConfig200ResponseData) HasIpconfig0() bool {
 	return false
 }
 
-// SetIpconfig0 gets a reference to the given GetVMConfig200ResponseDataIpconfig0 and assigns it to the Ipconfig0 field.
-func (o *GetVMConfig200ResponseData) SetIpconfig0(v GetVMConfig200ResponseDataIpconfig0) {
+// SetIpconfig0 gets a reference to the given string and assigns it to the Ipconfig0 field.
+func (o *GetVMConfig200ResponseData) SetIpconfig0(v string) {
 	o.Ipconfig0 = &v
 }
 
 // GetIpconfig1 returns the Ipconfig1 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetIpconfig1() GetVMConfig200ResponseDataIpconfig0 {
+func (o *GetVMConfig200ResponseData) GetIpconfig1() string {
 	if o == nil || IsNil(o.Ipconfig1) {
-		var ret GetVMConfig200ResponseDataIpconfig0
+		var ret string
 		return ret
 	}
 	return *o.Ipconfig1
@@ -2446,7 +2672,7 @@ func (o *GetVMConfig200ResponseData) GetIpconfig1() GetVMConfig200ResponseDataIp
 
 // GetIpconfig1Ok returns a tuple with the Ipconfig1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetIpconfig1Ok() (*GetVMConfig200ResponseDataIpconfig0, bool) {
+func (o *GetVMConfig200ResponseData) GetIpconfig1Ok() (*string, bool) {
 	if o == nil || IsNil(o.Ipconfig1) {
 		return nil, false
 	}
@@ -2462,15 +2688,15 @@ func (o *GetVMConfig200ResponseData) HasIpconfig1() bool {
 	return false
 }
 
-// SetIpconfig1 gets a reference to the given GetVMConfig200ResponseDataIpconfig0 and assigns it to the Ipconfig1 field.
-func (o *GetVMConfig200ResponseData) SetIpconfig1(v GetVMConfig200ResponseDataIpconfig0) {
+// SetIpconfig1 gets a reference to the given string and assigns it to the Ipconfig1 field.
+func (o *GetVMConfig200ResponseData) SetIpconfig1(v string) {
 	o.Ipconfig1 = &v
 }
 
 // GetIpconfig2 returns the Ipconfig2 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetIpconfig2() GetVMConfig200ResponseDataIpconfig0 {
+func (o *GetVMConfig200ResponseData) GetIpconfig2() string {
 	if o == nil || IsNil(o.Ipconfig2) {
-		var ret GetVMConfig200ResponseDataIpconfig0
+		var ret string
 		return ret
 	}
 	return *o.Ipconfig2
@@ -2478,7 +2704,7 @@ func (o *GetVMConfig200ResponseData) GetIpconfig2() GetVMConfig200ResponseDataIp
 
 // GetIpconfig2Ok returns a tuple with the Ipconfig2 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetIpconfig2Ok() (*GetVMConfig200ResponseDataIpconfig0, bool) {
+func (o *GetVMConfig200ResponseData) GetIpconfig2Ok() (*string, bool) {
 	if o == nil || IsNil(o.Ipconfig2) {
 		return nil, false
 	}
@@ -2494,15 +2720,15 @@ func (o *GetVMConfig200ResponseData) HasIpconfig2() bool {
 	return false
 }
 
-// SetIpconfig2 gets a reference to the given GetVMConfig200ResponseDataIpconfig0 and assigns it to the Ipconfig2 field.
-func (o *GetVMConfig200ResponseData) SetIpconfig2(v GetVMConfig200ResponseDataIpconfig0) {
+// SetIpconfig2 gets a reference to the given string and assigns it to the Ipconfig2 field.
+func (o *GetVMConfig200ResponseData) SetIpconfig2(v string) {
 	o.Ipconfig2 = &v
 }
 
 // GetIpconfig3 returns the Ipconfig3 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetIpconfig3() GetVMConfig200ResponseDataIpconfig0 {
+func (o *GetVMConfig200ResponseData) GetIpconfig3() string {
 	if o == nil || IsNil(o.Ipconfig3) {
-		var ret GetVMConfig200ResponseDataIpconfig0
+		var ret string
 		return ret
 	}
 	return *o.Ipconfig3
@@ -2510,7 +2736,7 @@ func (o *GetVMConfig200ResponseData) GetIpconfig3() GetVMConfig200ResponseDataIp
 
 // GetIpconfig3Ok returns a tuple with the Ipconfig3 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetIpconfig3Ok() (*GetVMConfig200ResponseDataIpconfig0, bool) {
+func (o *GetVMConfig200ResponseData) GetIpconfig3Ok() (*string, bool) {
 	if o == nil || IsNil(o.Ipconfig3) {
 		return nil, false
 	}
@@ -2526,15 +2752,15 @@ func (o *GetVMConfig200ResponseData) HasIpconfig3() bool {
 	return false
 }
 
-// SetIpconfig3 gets a reference to the given GetVMConfig200ResponseDataIpconfig0 and assigns it to the Ipconfig3 field.
-func (o *GetVMConfig200ResponseData) SetIpconfig3(v GetVMConfig200ResponseDataIpconfig0) {
+// SetIpconfig3 gets a reference to the given string and assigns it to the Ipconfig3 field.
+func (o *GetVMConfig200ResponseData) SetIpconfig3(v string) {
 	o.Ipconfig3 = &v
 }
 
 // GetIpconfig4 returns the Ipconfig4 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetIpconfig4() GetVMConfig200ResponseDataIpconfig0 {
+func (o *GetVMConfig200ResponseData) GetIpconfig4() string {
 	if o == nil || IsNil(o.Ipconfig4) {
-		var ret GetVMConfig200ResponseDataIpconfig0
+		var ret string
 		return ret
 	}
 	return *o.Ipconfig4
@@ -2542,7 +2768,7 @@ func (o *GetVMConfig200ResponseData) GetIpconfig4() GetVMConfig200ResponseDataIp
 
 // GetIpconfig4Ok returns a tuple with the Ipconfig4 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetIpconfig4Ok() (*GetVMConfig200ResponseDataIpconfig0, bool) {
+func (o *GetVMConfig200ResponseData) GetIpconfig4Ok() (*string, bool) {
 	if o == nil || IsNil(o.Ipconfig4) {
 		return nil, false
 	}
@@ -2558,15 +2784,15 @@ func (o *GetVMConfig200ResponseData) HasIpconfig4() bool {
 	return false
 }
 
-// SetIpconfig4 gets a reference to the given GetVMConfig200ResponseDataIpconfig0 and assigns it to the Ipconfig4 field.
-func (o *GetVMConfig200ResponseData) SetIpconfig4(v GetVMConfig200ResponseDataIpconfig0) {
+// SetIpconfig4 gets a reference to the given string and assigns it to the Ipconfig4 field.
+func (o *GetVMConfig200ResponseData) SetIpconfig4(v string) {
 	o.Ipconfig4 = &v
 }
 
 // GetIpconfig5 returns the Ipconfig5 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetIpconfig5() GetVMConfig200ResponseDataIpconfig0 {
+func (o *GetVMConfig200ResponseData) GetIpconfig5() string {
 	if o == nil || IsNil(o.Ipconfig5) {
-		var ret GetVMConfig200ResponseDataIpconfig0
+		var ret string
 		return ret
 	}
 	return *o.Ipconfig5
@@ -2574,7 +2800,7 @@ func (o *GetVMConfig200ResponseData) GetIpconfig5() GetVMConfig200ResponseDataIp
 
 // GetIpconfig5Ok returns a tuple with the Ipconfig5 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetIpconfig5Ok() (*GetVMConfig200ResponseDataIpconfig0, bool) {
+func (o *GetVMConfig200ResponseData) GetIpconfig5Ok() (*string, bool) {
 	if o == nil || IsNil(o.Ipconfig5) {
 		return nil, false
 	}
@@ -2590,15 +2816,15 @@ func (o *GetVMConfig200ResponseData) HasIpconfig5() bool {
 	return false
 }
 
-// SetIpconfig5 gets a reference to the given GetVMConfig200ResponseDataIpconfig0 and assigns it to the Ipconfig5 field.
-func (o *GetVMConfig200ResponseData) SetIpconfig5(v GetVMConfig200ResponseDataIpconfig0) {
+// SetIpconfig5 gets a reference to the given string and assigns it to the Ipconfig5 field.
+func (o *GetVMConfig200ResponseData) SetIpconfig5(v string) {
 	o.Ipconfig5 = &v
 }
 
 // GetIpconfig6 returns the Ipconfig6 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetIpconfig6() GetVMConfig200ResponseDataIpconfig0 {
+func (o *GetVMConfig200ResponseData) GetIpconfig6() string {
 	if o == nil || IsNil(o.Ipconfig6) {
-		var ret GetVMConfig200ResponseDataIpconfig0
+		var ret string
 		return ret
 	}
 	return *o.Ipconfig6
@@ -2606,7 +2832,7 @@ func (o *GetVMConfig200ResponseData) GetIpconfig6() GetVMConfig200ResponseDataIp
 
 // GetIpconfig6Ok returns a tuple with the Ipconfig6 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetIpconfig6Ok() (*GetVMConfig200ResponseDataIpconfig0, bool) {
+func (o *GetVMConfig200ResponseData) GetIpconfig6Ok() (*string, bool) {
 	if o == nil || IsNil(o.Ipconfig6) {
 		return nil, false
 	}
@@ -2622,15 +2848,15 @@ func (o *GetVMConfig200ResponseData) HasIpconfig6() bool {
 	return false
 }
 
-// SetIpconfig6 gets a reference to the given GetVMConfig200ResponseDataIpconfig0 and assigns it to the Ipconfig6 field.
-func (o *GetVMConfig200ResponseData) SetIpconfig6(v GetVMConfig200ResponseDataIpconfig0) {
+// SetIpconfig6 gets a reference to the given string and assigns it to the Ipconfig6 field.
+func (o *GetVMConfig200ResponseData) SetIpconfig6(v string) {
 	o.Ipconfig6 = &v
 }
 
 // GetIpconfig7 returns the Ipconfig7 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetIpconfig7() GetVMConfig200ResponseDataIpconfig0 {
+func (o *GetVMConfig200ResponseData) GetIpconfig7() string {
 	if o == nil || IsNil(o.Ipconfig7) {
-		var ret GetVMConfig200ResponseDataIpconfig0
+		var ret string
 		return ret
 	}
 	return *o.Ipconfig7
@@ -2638,7 +2864,7 @@ func (o *GetVMConfig200ResponseData) GetIpconfig7() GetVMConfig200ResponseDataIp
 
 // GetIpconfig7Ok returns a tuple with the Ipconfig7 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetIpconfig7Ok() (*GetVMConfig200ResponseDataIpconfig0, bool) {
+func (o *GetVMConfig200ResponseData) GetIpconfig7Ok() (*string, bool) {
 	if o == nil || IsNil(o.Ipconfig7) {
 		return nil, false
 	}
@@ -2654,15 +2880,15 @@ func (o *GetVMConfig200ResponseData) HasIpconfig7() bool {
 	return false
 }
 
-// SetIpconfig7 gets a reference to the given GetVMConfig200ResponseDataIpconfig0 and assigns it to the Ipconfig7 field.
-func (o *GetVMConfig200ResponseData) SetIpconfig7(v GetVMConfig200ResponseDataIpconfig0) {
+// SetIpconfig7 gets a reference to the given string and assigns it to the Ipconfig7 field.
+func (o *GetVMConfig200ResponseData) SetIpconfig7(v string) {
 	o.Ipconfig7 = &v
 }
 
 // GetIpconfig8 returns the Ipconfig8 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetIpconfig8() GetVMConfig200ResponseDataIpconfig0 {
+func (o *GetVMConfig200ResponseData) GetIpconfig8() string {
 	if o == nil || IsNil(o.Ipconfig8) {
-		var ret GetVMConfig200ResponseDataIpconfig0
+		var ret string
 		return ret
 	}
 	return *o.Ipconfig8
@@ -2670,7 +2896,7 @@ func (o *GetVMConfig200ResponseData) GetIpconfig8() GetVMConfig200ResponseDataIp
 
 // GetIpconfig8Ok returns a tuple with the Ipconfig8 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetIpconfig8Ok() (*GetVMConfig200ResponseDataIpconfig0, bool) {
+func (o *GetVMConfig200ResponseData) GetIpconfig8Ok() (*string, bool) {
 	if o == nil || IsNil(o.Ipconfig8) {
 		return nil, false
 	}
@@ -2686,15 +2912,15 @@ func (o *GetVMConfig200ResponseData) HasIpconfig8() bool {
 	return false
 }
 
-// SetIpconfig8 gets a reference to the given GetVMConfig200ResponseDataIpconfig0 and assigns it to the Ipconfig8 field.
-func (o *GetVMConfig200ResponseData) SetIpconfig8(v GetVMConfig200ResponseDataIpconfig0) {
+// SetIpconfig8 gets a reference to the given string and assigns it to the Ipconfig8 field.
+func (o *GetVMConfig200ResponseData) SetIpconfig8(v string) {
 	o.Ipconfig8 = &v
 }
 
 // GetIpconfig9 returns the Ipconfig9 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetIpconfig9() GetVMConfig200ResponseDataIpconfig0 {
+func (o *GetVMConfig200ResponseData) GetIpconfig9() string {
 	if o == nil || IsNil(o.Ipconfig9) {
-		var ret GetVMConfig200ResponseDataIpconfig0
+		var ret string
 		return ret
 	}
 	return *o.Ipconfig9
@@ -2702,7 +2928,7 @@ func (o *GetVMConfig200ResponseData) GetIpconfig9() GetVMConfig200ResponseDataIp
 
 // GetIpconfig9Ok returns a tuple with the Ipconfig9 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetIpconfig9Ok() (*GetVMConfig200ResponseDataIpconfig0, bool) {
+func (o *GetVMConfig200ResponseData) GetIpconfig9Ok() (*string, bool) {
 	if o == nil || IsNil(o.Ipconfig9) {
 		return nil, false
 	}
@@ -2718,15 +2944,15 @@ func (o *GetVMConfig200ResponseData) HasIpconfig9() bool {
 	return false
 }
 
-// SetIpconfig9 gets a reference to the given GetVMConfig200ResponseDataIpconfig0 and assigns it to the Ipconfig9 field.
-func (o *GetVMConfig200ResponseData) SetIpconfig9(v GetVMConfig200ResponseDataIpconfig0) {
+// SetIpconfig9 gets a reference to the given string and assigns it to the Ipconfig9 field.
+func (o *GetVMConfig200ResponseData) SetIpconfig9(v string) {
 	o.Ipconfig9 = &v
 }
 
 // GetIpconfig10 returns the Ipconfig10 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetIpconfig10() GetVMConfig200ResponseDataIpconfig0 {
+func (o *GetVMConfig200ResponseData) GetIpconfig10() string {
 	if o == nil || IsNil(o.Ipconfig10) {
-		var ret GetVMConfig200ResponseDataIpconfig0
+		var ret string
 		return ret
 	}
 	return *o.Ipconfig10
@@ -2734,7 +2960,7 @@ func (o *GetVMConfig200ResponseData) GetIpconfig10() GetVMConfig200ResponseDataI
 
 // GetIpconfig10Ok returns a tuple with the Ipconfig10 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetIpconfig10Ok() (*GetVMConfig200ResponseDataIpconfig0, bool) {
+func (o *GetVMConfig200ResponseData) GetIpconfig10Ok() (*string, bool) {
 	if o == nil || IsNil(o.Ipconfig10) {
 		return nil, false
 	}
@@ -2750,15 +2976,15 @@ func (o *GetVMConfig200ResponseData) HasIpconfig10() bool {
 	return false
 }
 
-// SetIpconfig10 gets a reference to the given GetVMConfig200ResponseDataIpconfig0 and assigns it to the Ipconfig10 field.
-func (o *GetVMConfig200ResponseData) SetIpconfig10(v GetVMConfig200ResponseDataIpconfig0) {
+// SetIpconfig10 gets a reference to the given string and assigns it to the Ipconfig10 field.
+func (o *GetVMConfig200ResponseData) SetIpconfig10(v string) {
 	o.Ipconfig10 = &v
 }
 
 // GetIpconfig11 returns the Ipconfig11 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetIpconfig11() GetVMConfig200ResponseDataIpconfig0 {
+func (o *GetVMConfig200ResponseData) GetIpconfig11() string {
 	if o == nil || IsNil(o.Ipconfig11) {
-		var ret GetVMConfig200ResponseDataIpconfig0
+		var ret string
 		return ret
 	}
 	return *o.Ipconfig11
@@ -2766,7 +2992,7 @@ func (o *GetVMConfig200ResponseData) GetIpconfig11() GetVMConfig200ResponseDataI
 
 // GetIpconfig11Ok returns a tuple with the Ipconfig11 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetIpconfig11Ok() (*GetVMConfig200ResponseDataIpconfig0, bool) {
+func (o *GetVMConfig200ResponseData) GetIpconfig11Ok() (*string, bool) {
 	if o == nil || IsNil(o.Ipconfig11) {
 		return nil, false
 	}
@@ -2782,15 +3008,15 @@ func (o *GetVMConfig200ResponseData) HasIpconfig11() bool {
 	return false
 }
 
-// SetIpconfig11 gets a reference to the given GetVMConfig200ResponseDataIpconfig0 and assigns it to the Ipconfig11 field.
-func (o *GetVMConfig200ResponseData) SetIpconfig11(v GetVMConfig200ResponseDataIpconfig0) {
+// SetIpconfig11 gets a reference to the given string and assigns it to the Ipconfig11 field.
+func (o *GetVMConfig200ResponseData) SetIpconfig11(v string) {
 	o.Ipconfig11 = &v
 }
 
 // GetIpconfig12 returns the Ipconfig12 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetIpconfig12() GetVMConfig200ResponseDataIpconfig0 {
+func (o *GetVMConfig200ResponseData) GetIpconfig12() string {
 	if o == nil || IsNil(o.Ipconfig12) {
-		var ret GetVMConfig200ResponseDataIpconfig0
+		var ret string
 		return ret
 	}
 	return *o.Ipconfig12
@@ -2798,7 +3024,7 @@ func (o *GetVMConfig200ResponseData) GetIpconfig12() GetVMConfig200ResponseDataI
 
 // GetIpconfig12Ok returns a tuple with the Ipconfig12 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetIpconfig12Ok() (*GetVMConfig200ResponseDataIpconfig0, bool) {
+func (o *GetVMConfig200ResponseData) GetIpconfig12Ok() (*string, bool) {
 	if o == nil || IsNil(o.Ipconfig12) {
 		return nil, false
 	}
@@ -2814,15 +3040,15 @@ func (o *GetVMConfig200ResponseData) HasIpconfig12() bool {
 	return false
 }
 
-// SetIpconfig12 gets a reference to the given GetVMConfig200ResponseDataIpconfig0 and assigns it to the Ipconfig12 field.
-func (o *GetVMConfig200ResponseData) SetIpconfig12(v GetVMConfig200ResponseDataIpconfig0) {
+// SetIpconfig12 gets a reference to the given string and assigns it to the Ipconfig12 field.
+func (o *GetVMConfig200ResponseData) SetIpconfig12(v string) {
 	o.Ipconfig12 = &v
 }
 
 // GetIpconfig13 returns the Ipconfig13 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetIpconfig13() GetVMConfig200ResponseDataIpconfig0 {
+func (o *GetVMConfig200ResponseData) GetIpconfig13() string {
 	if o == nil || IsNil(o.Ipconfig13) {
-		var ret GetVMConfig200ResponseDataIpconfig0
+		var ret string
 		return ret
 	}
 	return *o.Ipconfig13
@@ -2830,7 +3056,7 @@ func (o *GetVMConfig200ResponseData) GetIpconfig13() GetVMConfig200ResponseDataI
 
 // GetIpconfig13Ok returns a tuple with the Ipconfig13 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetIpconfig13Ok() (*GetVMConfig200ResponseDataIpconfig0, bool) {
+func (o *GetVMConfig200ResponseData) GetIpconfig13Ok() (*string, bool) {
 	if o == nil || IsNil(o.Ipconfig13) {
 		return nil, false
 	}
@@ -2846,15 +3072,15 @@ func (o *GetVMConfig200ResponseData) HasIpconfig13() bool {
 	return false
 }
 
-// SetIpconfig13 gets a reference to the given GetVMConfig200ResponseDataIpconfig0 and assigns it to the Ipconfig13 field.
-func (o *GetVMConfig200ResponseData) SetIpconfig13(v GetVMConfig200ResponseDataIpconfig0) {
+// SetIpconfig13 gets a reference to the given string and assigns it to the Ipconfig13 field.
+func (o *GetVMConfig200ResponseData) SetIpconfig13(v string) {
 	o.Ipconfig13 = &v
 }
 
 // GetIpconfig14 returns the Ipconfig14 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetIpconfig14() GetVMConfig200ResponseDataIpconfig0 {
+func (o *GetVMConfig200ResponseData) GetIpconfig14() string {
 	if o == nil || IsNil(o.Ipconfig14) {
-		var ret GetVMConfig200ResponseDataIpconfig0
+		var ret string
 		return ret
 	}
 	return *o.Ipconfig14
@@ -2862,7 +3088,7 @@ func (o *GetVMConfig200ResponseData) GetIpconfig14() GetVMConfig200ResponseDataI
 
 // GetIpconfig14Ok returns a tuple with the Ipconfig14 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetIpconfig14Ok() (*GetVMConfig200ResponseDataIpconfig0, bool) {
+func (o *GetVMConfig200ResponseData) GetIpconfig14Ok() (*string, bool) {
 	if o == nil || IsNil(o.Ipconfig14) {
 		return nil, false
 	}
@@ -2878,15 +3104,15 @@ func (o *GetVMConfig200ResponseData) HasIpconfig14() bool {
 	return false
 }
 
-// SetIpconfig14 gets a reference to the given GetVMConfig200ResponseDataIpconfig0 and assigns it to the Ipconfig14 field.
-func (o *GetVMConfig200ResponseData) SetIpconfig14(v GetVMConfig200ResponseDataIpconfig0) {
+// SetIpconfig14 gets a reference to the given string and assigns it to the Ipconfig14 field.
+func (o *GetVMConfig200ResponseData) SetIpconfig14(v string) {
 	o.Ipconfig14 = &v
 }
 
 // GetIpconfig15 returns the Ipconfig15 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetIpconfig15() GetVMConfig200ResponseDataIpconfig0 {
+func (o *GetVMConfig200ResponseData) GetIpconfig15() string {
 	if o == nil || IsNil(o.Ipconfig15) {
-		var ret GetVMConfig200ResponseDataIpconfig0
+		var ret string
 		return ret
 	}
 	return *o.Ipconfig15
@@ -2894,7 +3120,7 @@ func (o *GetVMConfig200ResponseData) GetIpconfig15() GetVMConfig200ResponseDataI
 
 // GetIpconfig15Ok returns a tuple with the Ipconfig15 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetIpconfig15Ok() (*GetVMConfig200ResponseDataIpconfig0, bool) {
+func (o *GetVMConfig200ResponseData) GetIpconfig15Ok() (*string, bool) {
 	if o == nil || IsNil(o.Ipconfig15) {
 		return nil, false
 	}
@@ -2910,15 +3136,15 @@ func (o *GetVMConfig200ResponseData) HasIpconfig15() bool {
 	return false
 }
 
-// SetIpconfig15 gets a reference to the given GetVMConfig200ResponseDataIpconfig0 and assigns it to the Ipconfig15 field.
-func (o *GetVMConfig200ResponseData) SetIpconfig15(v GetVMConfig200ResponseDataIpconfig0) {
+// SetIpconfig15 gets a reference to the given string and assigns it to the Ipconfig15 field.
+func (o *GetVMConfig200ResponseData) SetIpconfig15(v string) {
 	o.Ipconfig15 = &v
 }
 
 // GetIpconfig16 returns the Ipconfig16 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetIpconfig16() GetVMConfig200ResponseDataIpconfig0 {
+func (o *GetVMConfig200ResponseData) GetIpconfig16() string {
 	if o == nil || IsNil(o.Ipconfig16) {
-		var ret GetVMConfig200ResponseDataIpconfig0
+		var ret string
 		return ret
 	}
 	return *o.Ipconfig16
@@ -2926,7 +3152,7 @@ func (o *GetVMConfig200ResponseData) GetIpconfig16() GetVMConfig200ResponseDataI
 
 // GetIpconfig16Ok returns a tuple with the Ipconfig16 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetIpconfig16Ok() (*GetVMConfig200ResponseDataIpconfig0, bool) {
+func (o *GetVMConfig200ResponseData) GetIpconfig16Ok() (*string, bool) {
 	if o == nil || IsNil(o.Ipconfig16) {
 		return nil, false
 	}
@@ -2942,15 +3168,15 @@ func (o *GetVMConfig200ResponseData) HasIpconfig16() bool {
 	return false
 }
 
-// SetIpconfig16 gets a reference to the given GetVMConfig200ResponseDataIpconfig0 and assigns it to the Ipconfig16 field.
-func (o *GetVMConfig200ResponseData) SetIpconfig16(v GetVMConfig200ResponseDataIpconfig0) {
+// SetIpconfig16 gets a reference to the given string and assigns it to the Ipconfig16 field.
+func (o *GetVMConfig200ResponseData) SetIpconfig16(v string) {
 	o.Ipconfig16 = &v
 }
 
 // GetIpconfig17 returns the Ipconfig17 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetIpconfig17() GetVMConfig200ResponseDataIpconfig0 {
+func (o *GetVMConfig200ResponseData) GetIpconfig17() string {
 	if o == nil || IsNil(o.Ipconfig17) {
-		var ret GetVMConfig200ResponseDataIpconfig0
+		var ret string
 		return ret
 	}
 	return *o.Ipconfig17
@@ -2958,7 +3184,7 @@ func (o *GetVMConfig200ResponseData) GetIpconfig17() GetVMConfig200ResponseDataI
 
 // GetIpconfig17Ok returns a tuple with the Ipconfig17 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetIpconfig17Ok() (*GetVMConfig200ResponseDataIpconfig0, bool) {
+func (o *GetVMConfig200ResponseData) GetIpconfig17Ok() (*string, bool) {
 	if o == nil || IsNil(o.Ipconfig17) {
 		return nil, false
 	}
@@ -2974,15 +3200,15 @@ func (o *GetVMConfig200ResponseData) HasIpconfig17() bool {
 	return false
 }
 
-// SetIpconfig17 gets a reference to the given GetVMConfig200ResponseDataIpconfig0 and assigns it to the Ipconfig17 field.
-func (o *GetVMConfig200ResponseData) SetIpconfig17(v GetVMConfig200ResponseDataIpconfig0) {
+// SetIpconfig17 gets a reference to the given string and assigns it to the Ipconfig17 field.
+func (o *GetVMConfig200ResponseData) SetIpconfig17(v string) {
 	o.Ipconfig17 = &v
 }
 
 // GetIpconfig18 returns the Ipconfig18 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetIpconfig18() GetVMConfig200ResponseDataIpconfig0 {
+func (o *GetVMConfig200ResponseData) GetIpconfig18() string {
 	if o == nil || IsNil(o.Ipconfig18) {
-		var ret GetVMConfig200ResponseDataIpconfig0
+		var ret string
 		return ret
 	}
 	return *o.Ipconfig18
@@ -2990,7 +3216,7 @@ func (o *GetVMConfig200ResponseData) GetIpconfig18() GetVMConfig200ResponseDataI
 
 // GetIpconfig18Ok returns a tuple with the Ipconfig18 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetIpconfig18Ok() (*GetVMConfig200ResponseDataIpconfig0, bool) {
+func (o *GetVMConfig200ResponseData) GetIpconfig18Ok() (*string, bool) {
 	if o == nil || IsNil(o.Ipconfig18) {
 		return nil, false
 	}
@@ -3006,15 +3232,15 @@ func (o *GetVMConfig200ResponseData) HasIpconfig18() bool {
 	return false
 }
 
-// SetIpconfig18 gets a reference to the given GetVMConfig200ResponseDataIpconfig0 and assigns it to the Ipconfig18 field.
-func (o *GetVMConfig200ResponseData) SetIpconfig18(v GetVMConfig200ResponseDataIpconfig0) {
+// SetIpconfig18 gets a reference to the given string and assigns it to the Ipconfig18 field.
+func (o *GetVMConfig200ResponseData) SetIpconfig18(v string) {
 	o.Ipconfig18 = &v
 }
 
 // GetIpconfig19 returns the Ipconfig19 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetIpconfig19() GetVMConfig200ResponseDataIpconfig0 {
+func (o *GetVMConfig200ResponseData) GetIpconfig19() string {
 	if o == nil || IsNil(o.Ipconfig19) {
-		var ret GetVMConfig200ResponseDataIpconfig0
+		var ret string
 		return ret
 	}
 	return *o.Ipconfig19
@@ -3022,7 +3248,7 @@ func (o *GetVMConfig200ResponseData) GetIpconfig19() GetVMConfig200ResponseDataI
 
 // GetIpconfig19Ok returns a tuple with the Ipconfig19 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetIpconfig19Ok() (*GetVMConfig200ResponseDataIpconfig0, bool) {
+func (o *GetVMConfig200ResponseData) GetIpconfig19Ok() (*string, bool) {
 	if o == nil || IsNil(o.Ipconfig19) {
 		return nil, false
 	}
@@ -3038,15 +3264,15 @@ func (o *GetVMConfig200ResponseData) HasIpconfig19() bool {
 	return false
 }
 
-// SetIpconfig19 gets a reference to the given GetVMConfig200ResponseDataIpconfig0 and assigns it to the Ipconfig19 field.
-func (o *GetVMConfig200ResponseData) SetIpconfig19(v GetVMConfig200ResponseDataIpconfig0) {
+// SetIpconfig19 gets a reference to the given string and assigns it to the Ipconfig19 field.
+func (o *GetVMConfig200ResponseData) SetIpconfig19(v string) {
 	o.Ipconfig19 = &v
 }
 
 // GetIpconfig20 returns the Ipconfig20 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetIpconfig20() GetVMConfig200ResponseDataIpconfig0 {
+func (o *GetVMConfig200ResponseData) GetIpconfig20() string {
 	if o == nil || IsNil(o.Ipconfig20) {
-		var ret GetVMConfig200ResponseDataIpconfig0
+		var ret string
 		return ret
 	}
 	return *o.Ipconfig20
@@ -3054,7 +3280,7 @@ func (o *GetVMConfig200ResponseData) GetIpconfig20() GetVMConfig200ResponseDataI
 
 // GetIpconfig20Ok returns a tuple with the Ipconfig20 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetIpconfig20Ok() (*GetVMConfig200ResponseDataIpconfig0, bool) {
+func (o *GetVMConfig200ResponseData) GetIpconfig20Ok() (*string, bool) {
 	if o == nil || IsNil(o.Ipconfig20) {
 		return nil, false
 	}
@@ -3070,15 +3296,15 @@ func (o *GetVMConfig200ResponseData) HasIpconfig20() bool {
 	return false
 }
 
-// SetIpconfig20 gets a reference to the given GetVMConfig200ResponseDataIpconfig0 and assigns it to the Ipconfig20 field.
-func (o *GetVMConfig200ResponseData) SetIpconfig20(v GetVMConfig200ResponseDataIpconfig0) {
+// SetIpconfig20 gets a reference to the given string and assigns it to the Ipconfig20 field.
+func (o *GetVMConfig200ResponseData) SetIpconfig20(v string) {
 	o.Ipconfig20 = &v
 }
 
 // GetIpconfig21 returns the Ipconfig21 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetIpconfig21() GetVMConfig200ResponseDataIpconfig0 {
+func (o *GetVMConfig200ResponseData) GetIpconfig21() string {
 	if o == nil || IsNil(o.Ipconfig21) {
-		var ret GetVMConfig200ResponseDataIpconfig0
+		var ret string
 		return ret
 	}
 	return *o.Ipconfig21
@@ -3086,7 +3312,7 @@ func (o *GetVMConfig200ResponseData) GetIpconfig21() GetVMConfig200ResponseDataI
 
 // GetIpconfig21Ok returns a tuple with the Ipconfig21 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetIpconfig21Ok() (*GetVMConfig200ResponseDataIpconfig0, bool) {
+func (o *GetVMConfig200ResponseData) GetIpconfig21Ok() (*string, bool) {
 	if o == nil || IsNil(o.Ipconfig21) {
 		return nil, false
 	}
@@ -3102,15 +3328,15 @@ func (o *GetVMConfig200ResponseData) HasIpconfig21() bool {
 	return false
 }
 
-// SetIpconfig21 gets a reference to the given GetVMConfig200ResponseDataIpconfig0 and assigns it to the Ipconfig21 field.
-func (o *GetVMConfig200ResponseData) SetIpconfig21(v GetVMConfig200ResponseDataIpconfig0) {
+// SetIpconfig21 gets a reference to the given string and assigns it to the Ipconfig21 field.
+func (o *GetVMConfig200ResponseData) SetIpconfig21(v string) {
 	o.Ipconfig21 = &v
 }
 
 // GetIpconfig22 returns the Ipconfig22 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetIpconfig22() GetVMConfig200ResponseDataIpconfig0 {
+func (o *GetVMConfig200ResponseData) GetIpconfig22() string {
 	if o == nil || IsNil(o.Ipconfig22) {
-		var ret GetVMConfig200ResponseDataIpconfig0
+		var ret string
 		return ret
 	}
 	return *o.Ipconfig22
@@ -3118,7 +3344,7 @@ func (o *GetVMConfig200ResponseData) GetIpconfig22() GetVMConfig200ResponseDataI
 
 // GetIpconfig22Ok returns a tuple with the Ipconfig22 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetIpconfig22Ok() (*GetVMConfig200ResponseDataIpconfig0, bool) {
+func (o *GetVMConfig200ResponseData) GetIpconfig22Ok() (*string, bool) {
 	if o == nil || IsNil(o.Ipconfig22) {
 		return nil, false
 	}
@@ -3134,15 +3360,15 @@ func (o *GetVMConfig200ResponseData) HasIpconfig22() bool {
 	return false
 }
 
-// SetIpconfig22 gets a reference to the given GetVMConfig200ResponseDataIpconfig0 and assigns it to the Ipconfig22 field.
-func (o *GetVMConfig200ResponseData) SetIpconfig22(v GetVMConfig200ResponseDataIpconfig0) {
+// SetIpconfig22 gets a reference to the given string and assigns it to the Ipconfig22 field.
+func (o *GetVMConfig200ResponseData) SetIpconfig22(v string) {
 	o.Ipconfig22 = &v
 }
 
 // GetIpconfig23 returns the Ipconfig23 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetIpconfig23() GetVMConfig200ResponseDataIpconfig0 {
+func (o *GetVMConfig200ResponseData) GetIpconfig23() string {
 	if o == nil || IsNil(o.Ipconfig23) {
-		var ret GetVMConfig200ResponseDataIpconfig0
+		var ret string
 		return ret
 	}
 	return *o.Ipconfig23
@@ -3150,7 +3376,7 @@ func (o *GetVMConfig200ResponseData) GetIpconfig23() GetVMConfig200ResponseDataI
 
 // GetIpconfig23Ok returns a tuple with the Ipconfig23 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetIpconfig23Ok() (*GetVMConfig200ResponseDataIpconfig0, bool) {
+func (o *GetVMConfig200ResponseData) GetIpconfig23Ok() (*string, bool) {
 	if o == nil || IsNil(o.Ipconfig23) {
 		return nil, false
 	}
@@ -3166,15 +3392,15 @@ func (o *GetVMConfig200ResponseData) HasIpconfig23() bool {
 	return false
 }
 
-// SetIpconfig23 gets a reference to the given GetVMConfig200ResponseDataIpconfig0 and assigns it to the Ipconfig23 field.
-func (o *GetVMConfig200ResponseData) SetIpconfig23(v GetVMConfig200ResponseDataIpconfig0) {
+// SetIpconfig23 gets a reference to the given string and assigns it to the Ipconfig23 field.
+func (o *GetVMConfig200ResponseData) SetIpconfig23(v string) {
 	o.Ipconfig23 = &v
 }
 
 // GetIpconfig24 returns the Ipconfig24 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetIpconfig24() GetVMConfig200ResponseDataIpconfig0 {
+func (o *GetVMConfig200ResponseData) GetIpconfig24() string {
 	if o == nil || IsNil(o.Ipconfig24) {
-		var ret GetVMConfig200ResponseDataIpconfig0
+		var ret string
 		return ret
 	}
 	return *o.Ipconfig24
@@ -3182,7 +3408,7 @@ func (o *GetVMConfig200ResponseData) GetIpconfig24() GetVMConfig200ResponseDataI
 
 // GetIpconfig24Ok returns a tuple with the Ipconfig24 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetIpconfig24Ok() (*GetVMConfig200ResponseDataIpconfig0, bool) {
+func (o *GetVMConfig200ResponseData) GetIpconfig24Ok() (*string, bool) {
 	if o == nil || IsNil(o.Ipconfig24) {
 		return nil, false
 	}
@@ -3198,15 +3424,15 @@ func (o *GetVMConfig200ResponseData) HasIpconfig24() bool {
 	return false
 }
 
-// SetIpconfig24 gets a reference to the given GetVMConfig200ResponseDataIpconfig0 and assigns it to the Ipconfig24 field.
-func (o *GetVMConfig200ResponseData) SetIpconfig24(v GetVMConfig200ResponseDataIpconfig0) {
+// SetIpconfig24 gets a reference to the given string and assigns it to the Ipconfig24 field.
+func (o *GetVMConfig200ResponseData) SetIpconfig24(v string) {
 	o.Ipconfig24 = &v
 }
 
 // GetIpconfig25 returns the Ipconfig25 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetIpconfig25() GetVMConfig200ResponseDataIpconfig0 {
+func (o *GetVMConfig200ResponseData) GetIpconfig25() string {
 	if o == nil || IsNil(o.Ipconfig25) {
-		var ret GetVMConfig200ResponseDataIpconfig0
+		var ret string
 		return ret
 	}
 	return *o.Ipconfig25
@@ -3214,7 +3440,7 @@ func (o *GetVMConfig200ResponseData) GetIpconfig25() GetVMConfig200ResponseDataI
 
 // GetIpconfig25Ok returns a tuple with the Ipconfig25 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetIpconfig25Ok() (*GetVMConfig200ResponseDataIpconfig0, bool) {
+func (o *GetVMConfig200ResponseData) GetIpconfig25Ok() (*string, bool) {
 	if o == nil || IsNil(o.Ipconfig25) {
 		return nil, false
 	}
@@ -3230,15 +3456,15 @@ func (o *GetVMConfig200ResponseData) HasIpconfig25() bool {
 	return false
 }
 
-// SetIpconfig25 gets a reference to the given GetVMConfig200ResponseDataIpconfig0 and assigns it to the Ipconfig25 field.
-func (o *GetVMConfig200ResponseData) SetIpconfig25(v GetVMConfig200ResponseDataIpconfig0) {
+// SetIpconfig25 gets a reference to the given string and assigns it to the Ipconfig25 field.
+func (o *GetVMConfig200ResponseData) SetIpconfig25(v string) {
 	o.Ipconfig25 = &v
 }
 
 // GetIpconfig26 returns the Ipconfig26 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetIpconfig26() GetVMConfig200ResponseDataIpconfig0 {
+func (o *GetVMConfig200ResponseData) GetIpconfig26() string {
 	if o == nil || IsNil(o.Ipconfig26) {
-		var ret GetVMConfig200ResponseDataIpconfig0
+		var ret string
 		return ret
 	}
 	return *o.Ipconfig26
@@ -3246,7 +3472,7 @@ func (o *GetVMConfig200ResponseData) GetIpconfig26() GetVMConfig200ResponseDataI
 
 // GetIpconfig26Ok returns a tuple with the Ipconfig26 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetIpconfig26Ok() (*GetVMConfig200ResponseDataIpconfig0, bool) {
+func (o *GetVMConfig200ResponseData) GetIpconfig26Ok() (*string, bool) {
 	if o == nil || IsNil(o.Ipconfig26) {
 		return nil, false
 	}
@@ -3262,15 +3488,15 @@ func (o *GetVMConfig200ResponseData) HasIpconfig26() bool {
 	return false
 }
 
-// SetIpconfig26 gets a reference to the given GetVMConfig200ResponseDataIpconfig0 and assigns it to the Ipconfig26 field.
-func (o *GetVMConfig200ResponseData) SetIpconfig26(v GetVMConfig200ResponseDataIpconfig0) {
+// SetIpconfig26 gets a reference to the given string and assigns it to the Ipconfig26 field.
+func (o *GetVMConfig200ResponseData) SetIpconfig26(v string) {
 	o.Ipconfig26 = &v
 }
 
 // GetIpconfig27 returns the Ipconfig27 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetIpconfig27() GetVMConfig200ResponseDataIpconfig0 {
+func (o *GetVMConfig200ResponseData) GetIpconfig27() string {
 	if o == nil || IsNil(o.Ipconfig27) {
-		var ret GetVMConfig200ResponseDataIpconfig0
+		var ret string
 		return ret
 	}
 	return *o.Ipconfig27
@@ -3278,7 +3504,7 @@ func (o *GetVMConfig200ResponseData) GetIpconfig27() GetVMConfig200ResponseDataI
 
 // GetIpconfig27Ok returns a tuple with the Ipconfig27 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetIpconfig27Ok() (*GetVMConfig200ResponseDataIpconfig0, bool) {
+func (o *GetVMConfig200ResponseData) GetIpconfig27Ok() (*string, bool) {
 	if o == nil || IsNil(o.Ipconfig27) {
 		return nil, false
 	}
@@ -3294,15 +3520,15 @@ func (o *GetVMConfig200ResponseData) HasIpconfig27() bool {
 	return false
 }
 
-// SetIpconfig27 gets a reference to the given GetVMConfig200ResponseDataIpconfig0 and assigns it to the Ipconfig27 field.
-func (o *GetVMConfig200ResponseData) SetIpconfig27(v GetVMConfig200ResponseDataIpconfig0) {
+// SetIpconfig27 gets a reference to the given string and assigns it to the Ipconfig27 field.
+func (o *GetVMConfig200ResponseData) SetIpconfig27(v string) {
 	o.Ipconfig27 = &v
 }
 
 // GetIpconfig28 returns the Ipconfig28 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetIpconfig28() GetVMConfig200ResponseDataIpconfig0 {
+func (o *GetVMConfig200ResponseData) GetIpconfig28() string {
 	if o == nil || IsNil(o.Ipconfig28) {
-		var ret GetVMConfig200ResponseDataIpconfig0
+		var ret string
 		return ret
 	}
 	return *o.Ipconfig28
@@ -3310,7 +3536,7 @@ func (o *GetVMConfig200ResponseData) GetIpconfig28() GetVMConfig200ResponseDataI
 
 // GetIpconfig28Ok returns a tuple with the Ipconfig28 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetIpconfig28Ok() (*GetVMConfig200ResponseDataIpconfig0, bool) {
+func (o *GetVMConfig200ResponseData) GetIpconfig28Ok() (*string, bool) {
 	if o == nil || IsNil(o.Ipconfig28) {
 		return nil, false
 	}
@@ -3326,15 +3552,15 @@ func (o *GetVMConfig200ResponseData) HasIpconfig28() bool {
 	return false
 }
 
-// SetIpconfig28 gets a reference to the given GetVMConfig200ResponseDataIpconfig0 and assigns it to the Ipconfig28 field.
-func (o *GetVMConfig200ResponseData) SetIpconfig28(v GetVMConfig200ResponseDataIpconfig0) {
+// SetIpconfig28 gets a reference to the given string and assigns it to the Ipconfig28 field.
+func (o *GetVMConfig200ResponseData) SetIpconfig28(v string) {
 	o.Ipconfig28 = &v
 }
 
 // GetIpconfig29 returns the Ipconfig29 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetIpconfig29() GetVMConfig200ResponseDataIpconfig0 {
+func (o *GetVMConfig200ResponseData) GetIpconfig29() string {
 	if o == nil || IsNil(o.Ipconfig29) {
-		var ret GetVMConfig200ResponseDataIpconfig0
+		var ret string
 		return ret
 	}
 	return *o.Ipconfig29
@@ -3342,7 +3568,7 @@ func (o *GetVMConfig200ResponseData) GetIpconfig29() GetVMConfig200ResponseDataI
 
 // GetIpconfig29Ok returns a tuple with the Ipconfig29 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetIpconfig29Ok() (*GetVMConfig200ResponseDataIpconfig0, bool) {
+func (o *GetVMConfig200ResponseData) GetIpconfig29Ok() (*string, bool) {
 	if o == nil || IsNil(o.Ipconfig29) {
 		return nil, false
 	}
@@ -3358,15 +3584,15 @@ func (o *GetVMConfig200ResponseData) HasIpconfig29() bool {
 	return false
 }
 
-// SetIpconfig29 gets a reference to the given GetVMConfig200ResponseDataIpconfig0 and assigns it to the Ipconfig29 field.
-func (o *GetVMConfig200ResponseData) SetIpconfig29(v GetVMConfig200ResponseDataIpconfig0) {
+// SetIpconfig29 gets a reference to the given string and assigns it to the Ipconfig29 field.
+func (o *GetVMConfig200ResponseData) SetIpconfig29(v string) {
 	o.Ipconfig29 = &v
 }
 
 // GetIvshmem returns the Ivshmem field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetIvshmem() GetVMConfig200ResponseDataIvshmem {
+func (o *GetVMConfig200ResponseData) GetIvshmem() string {
 	if o == nil || IsNil(o.Ivshmem) {
-		var ret GetVMConfig200ResponseDataIvshmem
+		var ret string
 		return ret
 	}
 	return *o.Ivshmem
@@ -3374,7 +3600,7 @@ func (o *GetVMConfig200ResponseData) GetIvshmem() GetVMConfig200ResponseDataIvsh
 
 // GetIvshmemOk returns a tuple with the Ivshmem field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetIvshmemOk() (*GetVMConfig200ResponseDataIvshmem, bool) {
+func (o *GetVMConfig200ResponseData) GetIvshmemOk() (*string, bool) {
 	if o == nil || IsNil(o.Ivshmem) {
 		return nil, false
 	}
@@ -3390,15 +3616,15 @@ func (o *GetVMConfig200ResponseData) HasIvshmem() bool {
 	return false
 }
 
-// SetIvshmem gets a reference to the given GetVMConfig200ResponseDataIvshmem and assigns it to the Ivshmem field.
-func (o *GetVMConfig200ResponseData) SetIvshmem(v GetVMConfig200ResponseDataIvshmem) {
+// SetIvshmem gets a reference to the given string and assigns it to the Ivshmem field.
+func (o *GetVMConfig200ResponseData) SetIvshmem(v string) {
 	o.Ivshmem = &v
 }
 
 // GetKeephugepages returns the Keephugepages field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetKeephugepages() bool {
+func (o *GetVMConfig200ResponseData) GetKeephugepages() int32 {
 	if o == nil || IsNil(o.Keephugepages) {
-		var ret bool
+		var ret int32
 		return ret
 	}
 	return *o.Keephugepages
@@ -3406,7 +3632,7 @@ func (o *GetVMConfig200ResponseData) GetKeephugepages() bool {
 
 // GetKeephugepagesOk returns a tuple with the Keephugepages field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetKeephugepagesOk() (*bool, bool) {
+func (o *GetVMConfig200ResponseData) GetKeephugepagesOk() (*int32, bool) {
 	if o == nil || IsNil(o.Keephugepages) {
 		return nil, false
 	}
@@ -3422,8 +3648,8 @@ func (o *GetVMConfig200ResponseData) HasKeephugepages() bool {
 	return false
 }
 
-// SetKeephugepages gets a reference to the given bool and assigns it to the Keephugepages field.
-func (o *GetVMConfig200ResponseData) SetKeephugepages(v bool) {
+// SetKeephugepages gets a reference to the given int32 and assigns it to the Keephugepages field.
+func (o *GetVMConfig200ResponseData) SetKeephugepages(v int32) {
 	o.Keephugepages = &v
 }
 
@@ -3460,9 +3686,9 @@ func (o *GetVMConfig200ResponseData) SetKeyboard(v string) {
 }
 
 // GetKvm returns the Kvm field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetKvm() bool {
+func (o *GetVMConfig200ResponseData) GetKvm() int32 {
 	if o == nil || IsNil(o.Kvm) {
-		var ret bool
+		var ret int32
 		return ret
 	}
 	return *o.Kvm
@@ -3470,7 +3696,7 @@ func (o *GetVMConfig200ResponseData) GetKvm() bool {
 
 // GetKvmOk returns a tuple with the Kvm field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetKvmOk() (*bool, bool) {
+func (o *GetVMConfig200ResponseData) GetKvmOk() (*int32, bool) {
 	if o == nil || IsNil(o.Kvm) {
 		return nil, false
 	}
@@ -3486,15 +3712,15 @@ func (o *GetVMConfig200ResponseData) HasKvm() bool {
 	return false
 }
 
-// SetKvm gets a reference to the given bool and assigns it to the Kvm field.
-func (o *GetVMConfig200ResponseData) SetKvm(v bool) {
+// SetKvm gets a reference to the given int32 and assigns it to the Kvm field.
+func (o *GetVMConfig200ResponseData) SetKvm(v int32) {
 	o.Kvm = &v
 }
 
 // GetLocaltime returns the Localtime field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetLocaltime() bool {
+func (o *GetVMConfig200ResponseData) GetLocaltime() int32 {
 	if o == nil || IsNil(o.Localtime) {
-		var ret bool
+		var ret int32
 		return ret
 	}
 	return *o.Localtime
@@ -3502,7 +3728,7 @@ func (o *GetVMConfig200ResponseData) GetLocaltime() bool {
 
 // GetLocaltimeOk returns a tuple with the Localtime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetLocaltimeOk() (*bool, bool) {
+func (o *GetVMConfig200ResponseData) GetLocaltimeOk() (*int32, bool) {
 	if o == nil || IsNil(o.Localtime) {
 		return nil, false
 	}
@@ -3518,8 +3744,8 @@ func (o *GetVMConfig200ResponseData) HasLocaltime() bool {
 	return false
 }
 
-// SetLocaltime gets a reference to the given bool and assigns it to the Localtime field.
-func (o *GetVMConfig200ResponseData) SetLocaltime(v bool) {
+// SetLocaltime gets a reference to the given int32 and assigns it to the Localtime field.
+func (o *GetVMConfig200ResponseData) SetLocaltime(v int32) {
 	o.Localtime = &v
 }
 
@@ -3748,9 +3974,9 @@ func (o *GetVMConfig200ResponseData) SetNameserver(v string) {
 }
 
 // GetNet0 returns the Net0 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetNet0() GetVMConfig200ResponseDataNet0 {
+func (o *GetVMConfig200ResponseData) GetNet0() string {
 	if o == nil || IsNil(o.Net0) {
-		var ret GetVMConfig200ResponseDataNet0
+		var ret string
 		return ret
 	}
 	return *o.Net0
@@ -3758,7 +3984,7 @@ func (o *GetVMConfig200ResponseData) GetNet0() GetVMConfig200ResponseDataNet0 {
 
 // GetNet0Ok returns a tuple with the Net0 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetNet0Ok() (*GetVMConfig200ResponseDataNet0, bool) {
+func (o *GetVMConfig200ResponseData) GetNet0Ok() (*string, bool) {
 	if o == nil || IsNil(o.Net0) {
 		return nil, false
 	}
@@ -3774,15 +4000,15 @@ func (o *GetVMConfig200ResponseData) HasNet0() bool {
 	return false
 }
 
-// SetNet0 gets a reference to the given GetVMConfig200ResponseDataNet0 and assigns it to the Net0 field.
-func (o *GetVMConfig200ResponseData) SetNet0(v GetVMConfig200ResponseDataNet0) {
+// SetNet0 gets a reference to the given string and assigns it to the Net0 field.
+func (o *GetVMConfig200ResponseData) SetNet0(v string) {
 	o.Net0 = &v
 }
 
 // GetNet1 returns the Net1 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetNet1() GetVMConfig200ResponseDataNet0 {
+func (o *GetVMConfig200ResponseData) GetNet1() string {
 	if o == nil || IsNil(o.Net1) {
-		var ret GetVMConfig200ResponseDataNet0
+		var ret string
 		return ret
 	}
 	return *o.Net1
@@ -3790,7 +4016,7 @@ func (o *GetVMConfig200ResponseData) GetNet1() GetVMConfig200ResponseDataNet0 {
 
 // GetNet1Ok returns a tuple with the Net1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetNet1Ok() (*GetVMConfig200ResponseDataNet0, bool) {
+func (o *GetVMConfig200ResponseData) GetNet1Ok() (*string, bool) {
 	if o == nil || IsNil(o.Net1) {
 		return nil, false
 	}
@@ -3806,15 +4032,15 @@ func (o *GetVMConfig200ResponseData) HasNet1() bool {
 	return false
 }
 
-// SetNet1 gets a reference to the given GetVMConfig200ResponseDataNet0 and assigns it to the Net1 field.
-func (o *GetVMConfig200ResponseData) SetNet1(v GetVMConfig200ResponseDataNet0) {
+// SetNet1 gets a reference to the given string and assigns it to the Net1 field.
+func (o *GetVMConfig200ResponseData) SetNet1(v string) {
 	o.Net1 = &v
 }
 
 // GetNet2 returns the Net2 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetNet2() GetVMConfig200ResponseDataNet0 {
+func (o *GetVMConfig200ResponseData) GetNet2() string {
 	if o == nil || IsNil(o.Net2) {
-		var ret GetVMConfig200ResponseDataNet0
+		var ret string
 		return ret
 	}
 	return *o.Net2
@@ -3822,7 +4048,7 @@ func (o *GetVMConfig200ResponseData) GetNet2() GetVMConfig200ResponseDataNet0 {
 
 // GetNet2Ok returns a tuple with the Net2 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetNet2Ok() (*GetVMConfig200ResponseDataNet0, bool) {
+func (o *GetVMConfig200ResponseData) GetNet2Ok() (*string, bool) {
 	if o == nil || IsNil(o.Net2) {
 		return nil, false
 	}
@@ -3838,15 +4064,15 @@ func (o *GetVMConfig200ResponseData) HasNet2() bool {
 	return false
 }
 
-// SetNet2 gets a reference to the given GetVMConfig200ResponseDataNet0 and assigns it to the Net2 field.
-func (o *GetVMConfig200ResponseData) SetNet2(v GetVMConfig200ResponseDataNet0) {
+// SetNet2 gets a reference to the given string and assigns it to the Net2 field.
+func (o *GetVMConfig200ResponseData) SetNet2(v string) {
 	o.Net2 = &v
 }
 
 // GetNet3 returns the Net3 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetNet3() GetVMConfig200ResponseDataNet0 {
+func (o *GetVMConfig200ResponseData) GetNet3() string {
 	if o == nil || IsNil(o.Net3) {
-		var ret GetVMConfig200ResponseDataNet0
+		var ret string
 		return ret
 	}
 	return *o.Net3
@@ -3854,7 +4080,7 @@ func (o *GetVMConfig200ResponseData) GetNet3() GetVMConfig200ResponseDataNet0 {
 
 // GetNet3Ok returns a tuple with the Net3 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetNet3Ok() (*GetVMConfig200ResponseDataNet0, bool) {
+func (o *GetVMConfig200ResponseData) GetNet3Ok() (*string, bool) {
 	if o == nil || IsNil(o.Net3) {
 		return nil, false
 	}
@@ -3870,15 +4096,15 @@ func (o *GetVMConfig200ResponseData) HasNet3() bool {
 	return false
 }
 
-// SetNet3 gets a reference to the given GetVMConfig200ResponseDataNet0 and assigns it to the Net3 field.
-func (o *GetVMConfig200ResponseData) SetNet3(v GetVMConfig200ResponseDataNet0) {
+// SetNet3 gets a reference to the given string and assigns it to the Net3 field.
+func (o *GetVMConfig200ResponseData) SetNet3(v string) {
 	o.Net3 = &v
 }
 
 // GetNet4 returns the Net4 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetNet4() GetVMConfig200ResponseDataNet0 {
+func (o *GetVMConfig200ResponseData) GetNet4() string {
 	if o == nil || IsNil(o.Net4) {
-		var ret GetVMConfig200ResponseDataNet0
+		var ret string
 		return ret
 	}
 	return *o.Net4
@@ -3886,7 +4112,7 @@ func (o *GetVMConfig200ResponseData) GetNet4() GetVMConfig200ResponseDataNet0 {
 
 // GetNet4Ok returns a tuple with the Net4 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetNet4Ok() (*GetVMConfig200ResponseDataNet0, bool) {
+func (o *GetVMConfig200ResponseData) GetNet4Ok() (*string, bool) {
 	if o == nil || IsNil(o.Net4) {
 		return nil, false
 	}
@@ -3902,15 +4128,15 @@ func (o *GetVMConfig200ResponseData) HasNet4() bool {
 	return false
 }
 
-// SetNet4 gets a reference to the given GetVMConfig200ResponseDataNet0 and assigns it to the Net4 field.
-func (o *GetVMConfig200ResponseData) SetNet4(v GetVMConfig200ResponseDataNet0) {
+// SetNet4 gets a reference to the given string and assigns it to the Net4 field.
+func (o *GetVMConfig200ResponseData) SetNet4(v string) {
 	o.Net4 = &v
 }
 
 // GetNet5 returns the Net5 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetNet5() GetVMConfig200ResponseDataNet0 {
+func (o *GetVMConfig200ResponseData) GetNet5() string {
 	if o == nil || IsNil(o.Net5) {
-		var ret GetVMConfig200ResponseDataNet0
+		var ret string
 		return ret
 	}
 	return *o.Net5
@@ -3918,7 +4144,7 @@ func (o *GetVMConfig200ResponseData) GetNet5() GetVMConfig200ResponseDataNet0 {
 
 // GetNet5Ok returns a tuple with the Net5 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetNet5Ok() (*GetVMConfig200ResponseDataNet0, bool) {
+func (o *GetVMConfig200ResponseData) GetNet5Ok() (*string, bool) {
 	if o == nil || IsNil(o.Net5) {
 		return nil, false
 	}
@@ -3934,15 +4160,15 @@ func (o *GetVMConfig200ResponseData) HasNet5() bool {
 	return false
 }
 
-// SetNet5 gets a reference to the given GetVMConfig200ResponseDataNet0 and assigns it to the Net5 field.
-func (o *GetVMConfig200ResponseData) SetNet5(v GetVMConfig200ResponseDataNet0) {
+// SetNet5 gets a reference to the given string and assigns it to the Net5 field.
+func (o *GetVMConfig200ResponseData) SetNet5(v string) {
 	o.Net5 = &v
 }
 
 // GetNet6 returns the Net6 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetNet6() GetVMConfig200ResponseDataNet0 {
+func (o *GetVMConfig200ResponseData) GetNet6() string {
 	if o == nil || IsNil(o.Net6) {
-		var ret GetVMConfig200ResponseDataNet0
+		var ret string
 		return ret
 	}
 	return *o.Net6
@@ -3950,7 +4176,7 @@ func (o *GetVMConfig200ResponseData) GetNet6() GetVMConfig200ResponseDataNet0 {
 
 // GetNet6Ok returns a tuple with the Net6 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetNet6Ok() (*GetVMConfig200ResponseDataNet0, bool) {
+func (o *GetVMConfig200ResponseData) GetNet6Ok() (*string, bool) {
 	if o == nil || IsNil(o.Net6) {
 		return nil, false
 	}
@@ -3966,15 +4192,15 @@ func (o *GetVMConfig200ResponseData) HasNet6() bool {
 	return false
 }
 
-// SetNet6 gets a reference to the given GetVMConfig200ResponseDataNet0 and assigns it to the Net6 field.
-func (o *GetVMConfig200ResponseData) SetNet6(v GetVMConfig200ResponseDataNet0) {
+// SetNet6 gets a reference to the given string and assigns it to the Net6 field.
+func (o *GetVMConfig200ResponseData) SetNet6(v string) {
 	o.Net6 = &v
 }
 
 // GetNet7 returns the Net7 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetNet7() GetVMConfig200ResponseDataNet0 {
+func (o *GetVMConfig200ResponseData) GetNet7() string {
 	if o == nil || IsNil(o.Net7) {
-		var ret GetVMConfig200ResponseDataNet0
+		var ret string
 		return ret
 	}
 	return *o.Net7
@@ -3982,7 +4208,7 @@ func (o *GetVMConfig200ResponseData) GetNet7() GetVMConfig200ResponseDataNet0 {
 
 // GetNet7Ok returns a tuple with the Net7 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetNet7Ok() (*GetVMConfig200ResponseDataNet0, bool) {
+func (o *GetVMConfig200ResponseData) GetNet7Ok() (*string, bool) {
 	if o == nil || IsNil(o.Net7) {
 		return nil, false
 	}
@@ -3998,15 +4224,15 @@ func (o *GetVMConfig200ResponseData) HasNet7() bool {
 	return false
 }
 
-// SetNet7 gets a reference to the given GetVMConfig200ResponseDataNet0 and assigns it to the Net7 field.
-func (o *GetVMConfig200ResponseData) SetNet7(v GetVMConfig200ResponseDataNet0) {
+// SetNet7 gets a reference to the given string and assigns it to the Net7 field.
+func (o *GetVMConfig200ResponseData) SetNet7(v string) {
 	o.Net7 = &v
 }
 
 // GetNet8 returns the Net8 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetNet8() GetVMConfig200ResponseDataNet0 {
+func (o *GetVMConfig200ResponseData) GetNet8() string {
 	if o == nil || IsNil(o.Net8) {
-		var ret GetVMConfig200ResponseDataNet0
+		var ret string
 		return ret
 	}
 	return *o.Net8
@@ -4014,7 +4240,7 @@ func (o *GetVMConfig200ResponseData) GetNet8() GetVMConfig200ResponseDataNet0 {
 
 // GetNet8Ok returns a tuple with the Net8 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetNet8Ok() (*GetVMConfig200ResponseDataNet0, bool) {
+func (o *GetVMConfig200ResponseData) GetNet8Ok() (*string, bool) {
 	if o == nil || IsNil(o.Net8) {
 		return nil, false
 	}
@@ -4030,15 +4256,15 @@ func (o *GetVMConfig200ResponseData) HasNet8() bool {
 	return false
 }
 
-// SetNet8 gets a reference to the given GetVMConfig200ResponseDataNet0 and assigns it to the Net8 field.
-func (o *GetVMConfig200ResponseData) SetNet8(v GetVMConfig200ResponseDataNet0) {
+// SetNet8 gets a reference to the given string and assigns it to the Net8 field.
+func (o *GetVMConfig200ResponseData) SetNet8(v string) {
 	o.Net8 = &v
 }
 
 // GetNet9 returns the Net9 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetNet9() GetVMConfig200ResponseDataNet0 {
+func (o *GetVMConfig200ResponseData) GetNet9() string {
 	if o == nil || IsNil(o.Net9) {
-		var ret GetVMConfig200ResponseDataNet0
+		var ret string
 		return ret
 	}
 	return *o.Net9
@@ -4046,7 +4272,7 @@ func (o *GetVMConfig200ResponseData) GetNet9() GetVMConfig200ResponseDataNet0 {
 
 // GetNet9Ok returns a tuple with the Net9 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetNet9Ok() (*GetVMConfig200ResponseDataNet0, bool) {
+func (o *GetVMConfig200ResponseData) GetNet9Ok() (*string, bool) {
 	if o == nil || IsNil(o.Net9) {
 		return nil, false
 	}
@@ -4062,15 +4288,15 @@ func (o *GetVMConfig200ResponseData) HasNet9() bool {
 	return false
 }
 
-// SetNet9 gets a reference to the given GetVMConfig200ResponseDataNet0 and assigns it to the Net9 field.
-func (o *GetVMConfig200ResponseData) SetNet9(v GetVMConfig200ResponseDataNet0) {
+// SetNet9 gets a reference to the given string and assigns it to the Net9 field.
+func (o *GetVMConfig200ResponseData) SetNet9(v string) {
 	o.Net9 = &v
 }
 
 // GetNet10 returns the Net10 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetNet10() GetVMConfig200ResponseDataNet0 {
+func (o *GetVMConfig200ResponseData) GetNet10() string {
 	if o == nil || IsNil(o.Net10) {
-		var ret GetVMConfig200ResponseDataNet0
+		var ret string
 		return ret
 	}
 	return *o.Net10
@@ -4078,7 +4304,7 @@ func (o *GetVMConfig200ResponseData) GetNet10() GetVMConfig200ResponseDataNet0 {
 
 // GetNet10Ok returns a tuple with the Net10 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetNet10Ok() (*GetVMConfig200ResponseDataNet0, bool) {
+func (o *GetVMConfig200ResponseData) GetNet10Ok() (*string, bool) {
 	if o == nil || IsNil(o.Net10) {
 		return nil, false
 	}
@@ -4094,15 +4320,15 @@ func (o *GetVMConfig200ResponseData) HasNet10() bool {
 	return false
 }
 
-// SetNet10 gets a reference to the given GetVMConfig200ResponseDataNet0 and assigns it to the Net10 field.
-func (o *GetVMConfig200ResponseData) SetNet10(v GetVMConfig200ResponseDataNet0) {
+// SetNet10 gets a reference to the given string and assigns it to the Net10 field.
+func (o *GetVMConfig200ResponseData) SetNet10(v string) {
 	o.Net10 = &v
 }
 
 // GetNet11 returns the Net11 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetNet11() GetVMConfig200ResponseDataNet0 {
+func (o *GetVMConfig200ResponseData) GetNet11() string {
 	if o == nil || IsNil(o.Net11) {
-		var ret GetVMConfig200ResponseDataNet0
+		var ret string
 		return ret
 	}
 	return *o.Net11
@@ -4110,7 +4336,7 @@ func (o *GetVMConfig200ResponseData) GetNet11() GetVMConfig200ResponseDataNet0 {
 
 // GetNet11Ok returns a tuple with the Net11 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetNet11Ok() (*GetVMConfig200ResponseDataNet0, bool) {
+func (o *GetVMConfig200ResponseData) GetNet11Ok() (*string, bool) {
 	if o == nil || IsNil(o.Net11) {
 		return nil, false
 	}
@@ -4126,15 +4352,15 @@ func (o *GetVMConfig200ResponseData) HasNet11() bool {
 	return false
 }
 
-// SetNet11 gets a reference to the given GetVMConfig200ResponseDataNet0 and assigns it to the Net11 field.
-func (o *GetVMConfig200ResponseData) SetNet11(v GetVMConfig200ResponseDataNet0) {
+// SetNet11 gets a reference to the given string and assigns it to the Net11 field.
+func (o *GetVMConfig200ResponseData) SetNet11(v string) {
 	o.Net11 = &v
 }
 
 // GetNet12 returns the Net12 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetNet12() GetVMConfig200ResponseDataNet0 {
+func (o *GetVMConfig200ResponseData) GetNet12() string {
 	if o == nil || IsNil(o.Net12) {
-		var ret GetVMConfig200ResponseDataNet0
+		var ret string
 		return ret
 	}
 	return *o.Net12
@@ -4142,7 +4368,7 @@ func (o *GetVMConfig200ResponseData) GetNet12() GetVMConfig200ResponseDataNet0 {
 
 // GetNet12Ok returns a tuple with the Net12 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetNet12Ok() (*GetVMConfig200ResponseDataNet0, bool) {
+func (o *GetVMConfig200ResponseData) GetNet12Ok() (*string, bool) {
 	if o == nil || IsNil(o.Net12) {
 		return nil, false
 	}
@@ -4158,15 +4384,15 @@ func (o *GetVMConfig200ResponseData) HasNet12() bool {
 	return false
 }
 
-// SetNet12 gets a reference to the given GetVMConfig200ResponseDataNet0 and assigns it to the Net12 field.
-func (o *GetVMConfig200ResponseData) SetNet12(v GetVMConfig200ResponseDataNet0) {
+// SetNet12 gets a reference to the given string and assigns it to the Net12 field.
+func (o *GetVMConfig200ResponseData) SetNet12(v string) {
 	o.Net12 = &v
 }
 
 // GetNet13 returns the Net13 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetNet13() GetVMConfig200ResponseDataNet0 {
+func (o *GetVMConfig200ResponseData) GetNet13() string {
 	if o == nil || IsNil(o.Net13) {
-		var ret GetVMConfig200ResponseDataNet0
+		var ret string
 		return ret
 	}
 	return *o.Net13
@@ -4174,7 +4400,7 @@ func (o *GetVMConfig200ResponseData) GetNet13() GetVMConfig200ResponseDataNet0 {
 
 // GetNet13Ok returns a tuple with the Net13 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetNet13Ok() (*GetVMConfig200ResponseDataNet0, bool) {
+func (o *GetVMConfig200ResponseData) GetNet13Ok() (*string, bool) {
 	if o == nil || IsNil(o.Net13) {
 		return nil, false
 	}
@@ -4190,15 +4416,15 @@ func (o *GetVMConfig200ResponseData) HasNet13() bool {
 	return false
 }
 
-// SetNet13 gets a reference to the given GetVMConfig200ResponseDataNet0 and assigns it to the Net13 field.
-func (o *GetVMConfig200ResponseData) SetNet13(v GetVMConfig200ResponseDataNet0) {
+// SetNet13 gets a reference to the given string and assigns it to the Net13 field.
+func (o *GetVMConfig200ResponseData) SetNet13(v string) {
 	o.Net13 = &v
 }
 
 // GetNet14 returns the Net14 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetNet14() GetVMConfig200ResponseDataNet0 {
+func (o *GetVMConfig200ResponseData) GetNet14() string {
 	if o == nil || IsNil(o.Net14) {
-		var ret GetVMConfig200ResponseDataNet0
+		var ret string
 		return ret
 	}
 	return *o.Net14
@@ -4206,7 +4432,7 @@ func (o *GetVMConfig200ResponseData) GetNet14() GetVMConfig200ResponseDataNet0 {
 
 // GetNet14Ok returns a tuple with the Net14 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetNet14Ok() (*GetVMConfig200ResponseDataNet0, bool) {
+func (o *GetVMConfig200ResponseData) GetNet14Ok() (*string, bool) {
 	if o == nil || IsNil(o.Net14) {
 		return nil, false
 	}
@@ -4222,15 +4448,15 @@ func (o *GetVMConfig200ResponseData) HasNet14() bool {
 	return false
 }
 
-// SetNet14 gets a reference to the given GetVMConfig200ResponseDataNet0 and assigns it to the Net14 field.
-func (o *GetVMConfig200ResponseData) SetNet14(v GetVMConfig200ResponseDataNet0) {
+// SetNet14 gets a reference to the given string and assigns it to the Net14 field.
+func (o *GetVMConfig200ResponseData) SetNet14(v string) {
 	o.Net14 = &v
 }
 
 // GetNet15 returns the Net15 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetNet15() GetVMConfig200ResponseDataNet0 {
+func (o *GetVMConfig200ResponseData) GetNet15() string {
 	if o == nil || IsNil(o.Net15) {
-		var ret GetVMConfig200ResponseDataNet0
+		var ret string
 		return ret
 	}
 	return *o.Net15
@@ -4238,7 +4464,7 @@ func (o *GetVMConfig200ResponseData) GetNet15() GetVMConfig200ResponseDataNet0 {
 
 // GetNet15Ok returns a tuple with the Net15 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetNet15Ok() (*GetVMConfig200ResponseDataNet0, bool) {
+func (o *GetVMConfig200ResponseData) GetNet15Ok() (*string, bool) {
 	if o == nil || IsNil(o.Net15) {
 		return nil, false
 	}
@@ -4254,15 +4480,15 @@ func (o *GetVMConfig200ResponseData) HasNet15() bool {
 	return false
 }
 
-// SetNet15 gets a reference to the given GetVMConfig200ResponseDataNet0 and assigns it to the Net15 field.
-func (o *GetVMConfig200ResponseData) SetNet15(v GetVMConfig200ResponseDataNet0) {
+// SetNet15 gets a reference to the given string and assigns it to the Net15 field.
+func (o *GetVMConfig200ResponseData) SetNet15(v string) {
 	o.Net15 = &v
 }
 
 // GetNet16 returns the Net16 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetNet16() GetVMConfig200ResponseDataNet0 {
+func (o *GetVMConfig200ResponseData) GetNet16() string {
 	if o == nil || IsNil(o.Net16) {
-		var ret GetVMConfig200ResponseDataNet0
+		var ret string
 		return ret
 	}
 	return *o.Net16
@@ -4270,7 +4496,7 @@ func (o *GetVMConfig200ResponseData) GetNet16() GetVMConfig200ResponseDataNet0 {
 
 // GetNet16Ok returns a tuple with the Net16 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetNet16Ok() (*GetVMConfig200ResponseDataNet0, bool) {
+func (o *GetVMConfig200ResponseData) GetNet16Ok() (*string, bool) {
 	if o == nil || IsNil(o.Net16) {
 		return nil, false
 	}
@@ -4286,15 +4512,15 @@ func (o *GetVMConfig200ResponseData) HasNet16() bool {
 	return false
 }
 
-// SetNet16 gets a reference to the given GetVMConfig200ResponseDataNet0 and assigns it to the Net16 field.
-func (o *GetVMConfig200ResponseData) SetNet16(v GetVMConfig200ResponseDataNet0) {
+// SetNet16 gets a reference to the given string and assigns it to the Net16 field.
+func (o *GetVMConfig200ResponseData) SetNet16(v string) {
 	o.Net16 = &v
 }
 
 // GetNet17 returns the Net17 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetNet17() GetVMConfig200ResponseDataNet0 {
+func (o *GetVMConfig200ResponseData) GetNet17() string {
 	if o == nil || IsNil(o.Net17) {
-		var ret GetVMConfig200ResponseDataNet0
+		var ret string
 		return ret
 	}
 	return *o.Net17
@@ -4302,7 +4528,7 @@ func (o *GetVMConfig200ResponseData) GetNet17() GetVMConfig200ResponseDataNet0 {
 
 // GetNet17Ok returns a tuple with the Net17 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetNet17Ok() (*GetVMConfig200ResponseDataNet0, bool) {
+func (o *GetVMConfig200ResponseData) GetNet17Ok() (*string, bool) {
 	if o == nil || IsNil(o.Net17) {
 		return nil, false
 	}
@@ -4318,15 +4544,15 @@ func (o *GetVMConfig200ResponseData) HasNet17() bool {
 	return false
 }
 
-// SetNet17 gets a reference to the given GetVMConfig200ResponseDataNet0 and assigns it to the Net17 field.
-func (o *GetVMConfig200ResponseData) SetNet17(v GetVMConfig200ResponseDataNet0) {
+// SetNet17 gets a reference to the given string and assigns it to the Net17 field.
+func (o *GetVMConfig200ResponseData) SetNet17(v string) {
 	o.Net17 = &v
 }
 
 // GetNet18 returns the Net18 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetNet18() GetVMConfig200ResponseDataNet0 {
+func (o *GetVMConfig200ResponseData) GetNet18() string {
 	if o == nil || IsNil(o.Net18) {
-		var ret GetVMConfig200ResponseDataNet0
+		var ret string
 		return ret
 	}
 	return *o.Net18
@@ -4334,7 +4560,7 @@ func (o *GetVMConfig200ResponseData) GetNet18() GetVMConfig200ResponseDataNet0 {
 
 // GetNet18Ok returns a tuple with the Net18 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetNet18Ok() (*GetVMConfig200ResponseDataNet0, bool) {
+func (o *GetVMConfig200ResponseData) GetNet18Ok() (*string, bool) {
 	if o == nil || IsNil(o.Net18) {
 		return nil, false
 	}
@@ -4350,15 +4576,15 @@ func (o *GetVMConfig200ResponseData) HasNet18() bool {
 	return false
 }
 
-// SetNet18 gets a reference to the given GetVMConfig200ResponseDataNet0 and assigns it to the Net18 field.
-func (o *GetVMConfig200ResponseData) SetNet18(v GetVMConfig200ResponseDataNet0) {
+// SetNet18 gets a reference to the given string and assigns it to the Net18 field.
+func (o *GetVMConfig200ResponseData) SetNet18(v string) {
 	o.Net18 = &v
 }
 
 // GetNet19 returns the Net19 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetNet19() GetVMConfig200ResponseDataNet0 {
+func (o *GetVMConfig200ResponseData) GetNet19() string {
 	if o == nil || IsNil(o.Net19) {
-		var ret GetVMConfig200ResponseDataNet0
+		var ret string
 		return ret
 	}
 	return *o.Net19
@@ -4366,7 +4592,7 @@ func (o *GetVMConfig200ResponseData) GetNet19() GetVMConfig200ResponseDataNet0 {
 
 // GetNet19Ok returns a tuple with the Net19 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetNet19Ok() (*GetVMConfig200ResponseDataNet0, bool) {
+func (o *GetVMConfig200ResponseData) GetNet19Ok() (*string, bool) {
 	if o == nil || IsNil(o.Net19) {
 		return nil, false
 	}
@@ -4382,15 +4608,15 @@ func (o *GetVMConfig200ResponseData) HasNet19() bool {
 	return false
 }
 
-// SetNet19 gets a reference to the given GetVMConfig200ResponseDataNet0 and assigns it to the Net19 field.
-func (o *GetVMConfig200ResponseData) SetNet19(v GetVMConfig200ResponseDataNet0) {
+// SetNet19 gets a reference to the given string and assigns it to the Net19 field.
+func (o *GetVMConfig200ResponseData) SetNet19(v string) {
 	o.Net19 = &v
 }
 
 // GetNet20 returns the Net20 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetNet20() GetVMConfig200ResponseDataNet0 {
+func (o *GetVMConfig200ResponseData) GetNet20() string {
 	if o == nil || IsNil(o.Net20) {
-		var ret GetVMConfig200ResponseDataNet0
+		var ret string
 		return ret
 	}
 	return *o.Net20
@@ -4398,7 +4624,7 @@ func (o *GetVMConfig200ResponseData) GetNet20() GetVMConfig200ResponseDataNet0 {
 
 // GetNet20Ok returns a tuple with the Net20 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetNet20Ok() (*GetVMConfig200ResponseDataNet0, bool) {
+func (o *GetVMConfig200ResponseData) GetNet20Ok() (*string, bool) {
 	if o == nil || IsNil(o.Net20) {
 		return nil, false
 	}
@@ -4414,15 +4640,15 @@ func (o *GetVMConfig200ResponseData) HasNet20() bool {
 	return false
 }
 
-// SetNet20 gets a reference to the given GetVMConfig200ResponseDataNet0 and assigns it to the Net20 field.
-func (o *GetVMConfig200ResponseData) SetNet20(v GetVMConfig200ResponseDataNet0) {
+// SetNet20 gets a reference to the given string and assigns it to the Net20 field.
+func (o *GetVMConfig200ResponseData) SetNet20(v string) {
 	o.Net20 = &v
 }
 
 // GetNet21 returns the Net21 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetNet21() GetVMConfig200ResponseDataNet0 {
+func (o *GetVMConfig200ResponseData) GetNet21() string {
 	if o == nil || IsNil(o.Net21) {
-		var ret GetVMConfig200ResponseDataNet0
+		var ret string
 		return ret
 	}
 	return *o.Net21
@@ -4430,7 +4656,7 @@ func (o *GetVMConfig200ResponseData) GetNet21() GetVMConfig200ResponseDataNet0 {
 
 // GetNet21Ok returns a tuple with the Net21 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetNet21Ok() (*GetVMConfig200ResponseDataNet0, bool) {
+func (o *GetVMConfig200ResponseData) GetNet21Ok() (*string, bool) {
 	if o == nil || IsNil(o.Net21) {
 		return nil, false
 	}
@@ -4446,15 +4672,15 @@ func (o *GetVMConfig200ResponseData) HasNet21() bool {
 	return false
 }
 
-// SetNet21 gets a reference to the given GetVMConfig200ResponseDataNet0 and assigns it to the Net21 field.
-func (o *GetVMConfig200ResponseData) SetNet21(v GetVMConfig200ResponseDataNet0) {
+// SetNet21 gets a reference to the given string and assigns it to the Net21 field.
+func (o *GetVMConfig200ResponseData) SetNet21(v string) {
 	o.Net21 = &v
 }
 
 // GetNet22 returns the Net22 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetNet22() GetVMConfig200ResponseDataNet0 {
+func (o *GetVMConfig200ResponseData) GetNet22() string {
 	if o == nil || IsNil(o.Net22) {
-		var ret GetVMConfig200ResponseDataNet0
+		var ret string
 		return ret
 	}
 	return *o.Net22
@@ -4462,7 +4688,7 @@ func (o *GetVMConfig200ResponseData) GetNet22() GetVMConfig200ResponseDataNet0 {
 
 // GetNet22Ok returns a tuple with the Net22 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetNet22Ok() (*GetVMConfig200ResponseDataNet0, bool) {
+func (o *GetVMConfig200ResponseData) GetNet22Ok() (*string, bool) {
 	if o == nil || IsNil(o.Net22) {
 		return nil, false
 	}
@@ -4478,15 +4704,15 @@ func (o *GetVMConfig200ResponseData) HasNet22() bool {
 	return false
 }
 
-// SetNet22 gets a reference to the given GetVMConfig200ResponseDataNet0 and assigns it to the Net22 field.
-func (o *GetVMConfig200ResponseData) SetNet22(v GetVMConfig200ResponseDataNet0) {
+// SetNet22 gets a reference to the given string and assigns it to the Net22 field.
+func (o *GetVMConfig200ResponseData) SetNet22(v string) {
 	o.Net22 = &v
 }
 
 // GetNet23 returns the Net23 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetNet23() GetVMConfig200ResponseDataNet0 {
+func (o *GetVMConfig200ResponseData) GetNet23() string {
 	if o == nil || IsNil(o.Net23) {
-		var ret GetVMConfig200ResponseDataNet0
+		var ret string
 		return ret
 	}
 	return *o.Net23
@@ -4494,7 +4720,7 @@ func (o *GetVMConfig200ResponseData) GetNet23() GetVMConfig200ResponseDataNet0 {
 
 // GetNet23Ok returns a tuple with the Net23 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetNet23Ok() (*GetVMConfig200ResponseDataNet0, bool) {
+func (o *GetVMConfig200ResponseData) GetNet23Ok() (*string, bool) {
 	if o == nil || IsNil(o.Net23) {
 		return nil, false
 	}
@@ -4510,15 +4736,15 @@ func (o *GetVMConfig200ResponseData) HasNet23() bool {
 	return false
 }
 
-// SetNet23 gets a reference to the given GetVMConfig200ResponseDataNet0 and assigns it to the Net23 field.
-func (o *GetVMConfig200ResponseData) SetNet23(v GetVMConfig200ResponseDataNet0) {
+// SetNet23 gets a reference to the given string and assigns it to the Net23 field.
+func (o *GetVMConfig200ResponseData) SetNet23(v string) {
 	o.Net23 = &v
 }
 
 // GetNet24 returns the Net24 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetNet24() GetVMConfig200ResponseDataNet0 {
+func (o *GetVMConfig200ResponseData) GetNet24() string {
 	if o == nil || IsNil(o.Net24) {
-		var ret GetVMConfig200ResponseDataNet0
+		var ret string
 		return ret
 	}
 	return *o.Net24
@@ -4526,7 +4752,7 @@ func (o *GetVMConfig200ResponseData) GetNet24() GetVMConfig200ResponseDataNet0 {
 
 // GetNet24Ok returns a tuple with the Net24 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetNet24Ok() (*GetVMConfig200ResponseDataNet0, bool) {
+func (o *GetVMConfig200ResponseData) GetNet24Ok() (*string, bool) {
 	if o == nil || IsNil(o.Net24) {
 		return nil, false
 	}
@@ -4542,15 +4768,15 @@ func (o *GetVMConfig200ResponseData) HasNet24() bool {
 	return false
 }
 
-// SetNet24 gets a reference to the given GetVMConfig200ResponseDataNet0 and assigns it to the Net24 field.
-func (o *GetVMConfig200ResponseData) SetNet24(v GetVMConfig200ResponseDataNet0) {
+// SetNet24 gets a reference to the given string and assigns it to the Net24 field.
+func (o *GetVMConfig200ResponseData) SetNet24(v string) {
 	o.Net24 = &v
 }
 
 // GetNet25 returns the Net25 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetNet25() GetVMConfig200ResponseDataNet0 {
+func (o *GetVMConfig200ResponseData) GetNet25() string {
 	if o == nil || IsNil(o.Net25) {
-		var ret GetVMConfig200ResponseDataNet0
+		var ret string
 		return ret
 	}
 	return *o.Net25
@@ -4558,7 +4784,7 @@ func (o *GetVMConfig200ResponseData) GetNet25() GetVMConfig200ResponseDataNet0 {
 
 // GetNet25Ok returns a tuple with the Net25 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetNet25Ok() (*GetVMConfig200ResponseDataNet0, bool) {
+func (o *GetVMConfig200ResponseData) GetNet25Ok() (*string, bool) {
 	if o == nil || IsNil(o.Net25) {
 		return nil, false
 	}
@@ -4574,15 +4800,15 @@ func (o *GetVMConfig200ResponseData) HasNet25() bool {
 	return false
 }
 
-// SetNet25 gets a reference to the given GetVMConfig200ResponseDataNet0 and assigns it to the Net25 field.
-func (o *GetVMConfig200ResponseData) SetNet25(v GetVMConfig200ResponseDataNet0) {
+// SetNet25 gets a reference to the given string and assigns it to the Net25 field.
+func (o *GetVMConfig200ResponseData) SetNet25(v string) {
 	o.Net25 = &v
 }
 
 // GetNet26 returns the Net26 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetNet26() GetVMConfig200ResponseDataNet0 {
+func (o *GetVMConfig200ResponseData) GetNet26() string {
 	if o == nil || IsNil(o.Net26) {
-		var ret GetVMConfig200ResponseDataNet0
+		var ret string
 		return ret
 	}
 	return *o.Net26
@@ -4590,7 +4816,7 @@ func (o *GetVMConfig200ResponseData) GetNet26() GetVMConfig200ResponseDataNet0 {
 
 // GetNet26Ok returns a tuple with the Net26 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetNet26Ok() (*GetVMConfig200ResponseDataNet0, bool) {
+func (o *GetVMConfig200ResponseData) GetNet26Ok() (*string, bool) {
 	if o == nil || IsNil(o.Net26) {
 		return nil, false
 	}
@@ -4606,15 +4832,15 @@ func (o *GetVMConfig200ResponseData) HasNet26() bool {
 	return false
 }
 
-// SetNet26 gets a reference to the given GetVMConfig200ResponseDataNet0 and assigns it to the Net26 field.
-func (o *GetVMConfig200ResponseData) SetNet26(v GetVMConfig200ResponseDataNet0) {
+// SetNet26 gets a reference to the given string and assigns it to the Net26 field.
+func (o *GetVMConfig200ResponseData) SetNet26(v string) {
 	o.Net26 = &v
 }
 
 // GetNet27 returns the Net27 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetNet27() GetVMConfig200ResponseDataNet0 {
+func (o *GetVMConfig200ResponseData) GetNet27() string {
 	if o == nil || IsNil(o.Net27) {
-		var ret GetVMConfig200ResponseDataNet0
+		var ret string
 		return ret
 	}
 	return *o.Net27
@@ -4622,7 +4848,7 @@ func (o *GetVMConfig200ResponseData) GetNet27() GetVMConfig200ResponseDataNet0 {
 
 // GetNet27Ok returns a tuple with the Net27 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetNet27Ok() (*GetVMConfig200ResponseDataNet0, bool) {
+func (o *GetVMConfig200ResponseData) GetNet27Ok() (*string, bool) {
 	if o == nil || IsNil(o.Net27) {
 		return nil, false
 	}
@@ -4638,15 +4864,15 @@ func (o *GetVMConfig200ResponseData) HasNet27() bool {
 	return false
 }
 
-// SetNet27 gets a reference to the given GetVMConfig200ResponseDataNet0 and assigns it to the Net27 field.
-func (o *GetVMConfig200ResponseData) SetNet27(v GetVMConfig200ResponseDataNet0) {
+// SetNet27 gets a reference to the given string and assigns it to the Net27 field.
+func (o *GetVMConfig200ResponseData) SetNet27(v string) {
 	o.Net27 = &v
 }
 
 // GetNet28 returns the Net28 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetNet28() GetVMConfig200ResponseDataNet0 {
+func (o *GetVMConfig200ResponseData) GetNet28() string {
 	if o == nil || IsNil(o.Net28) {
-		var ret GetVMConfig200ResponseDataNet0
+		var ret string
 		return ret
 	}
 	return *o.Net28
@@ -4654,7 +4880,7 @@ func (o *GetVMConfig200ResponseData) GetNet28() GetVMConfig200ResponseDataNet0 {
 
 // GetNet28Ok returns a tuple with the Net28 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetNet28Ok() (*GetVMConfig200ResponseDataNet0, bool) {
+func (o *GetVMConfig200ResponseData) GetNet28Ok() (*string, bool) {
 	if o == nil || IsNil(o.Net28) {
 		return nil, false
 	}
@@ -4670,15 +4896,15 @@ func (o *GetVMConfig200ResponseData) HasNet28() bool {
 	return false
 }
 
-// SetNet28 gets a reference to the given GetVMConfig200ResponseDataNet0 and assigns it to the Net28 field.
-func (o *GetVMConfig200ResponseData) SetNet28(v GetVMConfig200ResponseDataNet0) {
+// SetNet28 gets a reference to the given string and assigns it to the Net28 field.
+func (o *GetVMConfig200ResponseData) SetNet28(v string) {
 	o.Net28 = &v
 }
 
 // GetNet29 returns the Net29 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetNet29() GetVMConfig200ResponseDataNet0 {
+func (o *GetVMConfig200ResponseData) GetNet29() string {
 	if o == nil || IsNil(o.Net29) {
-		var ret GetVMConfig200ResponseDataNet0
+		var ret string
 		return ret
 	}
 	return *o.Net29
@@ -4686,7 +4912,7 @@ func (o *GetVMConfig200ResponseData) GetNet29() GetVMConfig200ResponseDataNet0 {
 
 // GetNet29Ok returns a tuple with the Net29 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetNet29Ok() (*GetVMConfig200ResponseDataNet0, bool) {
+func (o *GetVMConfig200ResponseData) GetNet29Ok() (*string, bool) {
 	if o == nil || IsNil(o.Net29) {
 		return nil, false
 	}
@@ -4702,15 +4928,15 @@ func (o *GetVMConfig200ResponseData) HasNet29() bool {
 	return false
 }
 
-// SetNet29 gets a reference to the given GetVMConfig200ResponseDataNet0 and assigns it to the Net29 field.
-func (o *GetVMConfig200ResponseData) SetNet29(v GetVMConfig200ResponseDataNet0) {
+// SetNet29 gets a reference to the given string and assigns it to the Net29 field.
+func (o *GetVMConfig200ResponseData) SetNet29(v string) {
 	o.Net29 = &v
 }
 
 // GetNet30 returns the Net30 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetNet30() GetVMConfig200ResponseDataNet0 {
+func (o *GetVMConfig200ResponseData) GetNet30() string {
 	if o == nil || IsNil(o.Net30) {
-		var ret GetVMConfig200ResponseDataNet0
+		var ret string
 		return ret
 	}
 	return *o.Net30
@@ -4718,7 +4944,7 @@ func (o *GetVMConfig200ResponseData) GetNet30() GetVMConfig200ResponseDataNet0 {
 
 // GetNet30Ok returns a tuple with the Net30 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetNet30Ok() (*GetVMConfig200ResponseDataNet0, bool) {
+func (o *GetVMConfig200ResponseData) GetNet30Ok() (*string, bool) {
 	if o == nil || IsNil(o.Net30) {
 		return nil, false
 	}
@@ -4734,15 +4960,15 @@ func (o *GetVMConfig200ResponseData) HasNet30() bool {
 	return false
 }
 
-// SetNet30 gets a reference to the given GetVMConfig200ResponseDataNet0 and assigns it to the Net30 field.
-func (o *GetVMConfig200ResponseData) SetNet30(v GetVMConfig200ResponseDataNet0) {
+// SetNet30 gets a reference to the given string and assigns it to the Net30 field.
+func (o *GetVMConfig200ResponseData) SetNet30(v string) {
 	o.Net30 = &v
 }
 
 // GetNet31 returns the Net31 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetNet31() GetVMConfig200ResponseDataNet0 {
+func (o *GetVMConfig200ResponseData) GetNet31() string {
 	if o == nil || IsNil(o.Net31) {
-		var ret GetVMConfig200ResponseDataNet0
+		var ret string
 		return ret
 	}
 	return *o.Net31
@@ -4750,7 +4976,7 @@ func (o *GetVMConfig200ResponseData) GetNet31() GetVMConfig200ResponseDataNet0 {
 
 // GetNet31Ok returns a tuple with the Net31 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetNet31Ok() (*GetVMConfig200ResponseDataNet0, bool) {
+func (o *GetVMConfig200ResponseData) GetNet31Ok() (*string, bool) {
 	if o == nil || IsNil(o.Net31) {
 		return nil, false
 	}
@@ -4766,15 +4992,15 @@ func (o *GetVMConfig200ResponseData) HasNet31() bool {
 	return false
 }
 
-// SetNet31 gets a reference to the given GetVMConfig200ResponseDataNet0 and assigns it to the Net31 field.
-func (o *GetVMConfig200ResponseData) SetNet31(v GetVMConfig200ResponseDataNet0) {
+// SetNet31 gets a reference to the given string and assigns it to the Net31 field.
+func (o *GetVMConfig200ResponseData) SetNet31(v string) {
 	o.Net31 = &v
 }
 
 // GetNuma returns the Numa field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetNuma() bool {
+func (o *GetVMConfig200ResponseData) GetNuma() int32 {
 	if o == nil || IsNil(o.Numa) {
-		var ret bool
+		var ret int32
 		return ret
 	}
 	return *o.Numa
@@ -4782,7 +5008,7 @@ func (o *GetVMConfig200ResponseData) GetNuma() bool {
 
 // GetNumaOk returns a tuple with the Numa field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetNumaOk() (*bool, bool) {
+func (o *GetVMConfig200ResponseData) GetNumaOk() (*int32, bool) {
 	if o == nil || IsNil(o.Numa) {
 		return nil, false
 	}
@@ -4798,15 +5024,15 @@ func (o *GetVMConfig200ResponseData) HasNuma() bool {
 	return false
 }
 
-// SetNuma gets a reference to the given bool and assigns it to the Numa field.
-func (o *GetVMConfig200ResponseData) SetNuma(v bool) {
+// SetNuma gets a reference to the given int32 and assigns it to the Numa field.
+func (o *GetVMConfig200ResponseData) SetNuma(v int32) {
 	o.Numa = &v
 }
 
 // GetNuma0 returns the Numa0 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetNuma0() GetVMConfig200ResponseDataNuma0 {
+func (o *GetVMConfig200ResponseData) GetNuma0() string {
 	if o == nil || IsNil(o.Numa0) {
-		var ret GetVMConfig200ResponseDataNuma0
+		var ret string
 		return ret
 	}
 	return *o.Numa0
@@ -4814,7 +5040,7 @@ func (o *GetVMConfig200ResponseData) GetNuma0() GetVMConfig200ResponseDataNuma0 
 
 // GetNuma0Ok returns a tuple with the Numa0 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetNuma0Ok() (*GetVMConfig200ResponseDataNuma0, bool) {
+func (o *GetVMConfig200ResponseData) GetNuma0Ok() (*string, bool) {
 	if o == nil || IsNil(o.Numa0) {
 		return nil, false
 	}
@@ -4830,15 +5056,15 @@ func (o *GetVMConfig200ResponseData) HasNuma0() bool {
 	return false
 }
 
-// SetNuma0 gets a reference to the given GetVMConfig200ResponseDataNuma0 and assigns it to the Numa0 field.
-func (o *GetVMConfig200ResponseData) SetNuma0(v GetVMConfig200ResponseDataNuma0) {
+// SetNuma0 gets a reference to the given string and assigns it to the Numa0 field.
+func (o *GetVMConfig200ResponseData) SetNuma0(v string) {
 	o.Numa0 = &v
 }
 
 // GetNuma1 returns the Numa1 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetNuma1() GetVMConfig200ResponseDataNuma0 {
+func (o *GetVMConfig200ResponseData) GetNuma1() string {
 	if o == nil || IsNil(o.Numa1) {
-		var ret GetVMConfig200ResponseDataNuma0
+		var ret string
 		return ret
 	}
 	return *o.Numa1
@@ -4846,7 +5072,7 @@ func (o *GetVMConfig200ResponseData) GetNuma1() GetVMConfig200ResponseDataNuma0 
 
 // GetNuma1Ok returns a tuple with the Numa1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetNuma1Ok() (*GetVMConfig200ResponseDataNuma0, bool) {
+func (o *GetVMConfig200ResponseData) GetNuma1Ok() (*string, bool) {
 	if o == nil || IsNil(o.Numa1) {
 		return nil, false
 	}
@@ -4862,15 +5088,15 @@ func (o *GetVMConfig200ResponseData) HasNuma1() bool {
 	return false
 }
 
-// SetNuma1 gets a reference to the given GetVMConfig200ResponseDataNuma0 and assigns it to the Numa1 field.
-func (o *GetVMConfig200ResponseData) SetNuma1(v GetVMConfig200ResponseDataNuma0) {
+// SetNuma1 gets a reference to the given string and assigns it to the Numa1 field.
+func (o *GetVMConfig200ResponseData) SetNuma1(v string) {
 	o.Numa1 = &v
 }
 
 // GetNuma2 returns the Numa2 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetNuma2() GetVMConfig200ResponseDataNuma0 {
+func (o *GetVMConfig200ResponseData) GetNuma2() string {
 	if o == nil || IsNil(o.Numa2) {
-		var ret GetVMConfig200ResponseDataNuma0
+		var ret string
 		return ret
 	}
 	return *o.Numa2
@@ -4878,7 +5104,7 @@ func (o *GetVMConfig200ResponseData) GetNuma2() GetVMConfig200ResponseDataNuma0 
 
 // GetNuma2Ok returns a tuple with the Numa2 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetNuma2Ok() (*GetVMConfig200ResponseDataNuma0, bool) {
+func (o *GetVMConfig200ResponseData) GetNuma2Ok() (*string, bool) {
 	if o == nil || IsNil(o.Numa2) {
 		return nil, false
 	}
@@ -4894,15 +5120,15 @@ func (o *GetVMConfig200ResponseData) HasNuma2() bool {
 	return false
 }
 
-// SetNuma2 gets a reference to the given GetVMConfig200ResponseDataNuma0 and assigns it to the Numa2 field.
-func (o *GetVMConfig200ResponseData) SetNuma2(v GetVMConfig200ResponseDataNuma0) {
+// SetNuma2 gets a reference to the given string and assigns it to the Numa2 field.
+func (o *GetVMConfig200ResponseData) SetNuma2(v string) {
 	o.Numa2 = &v
 }
 
 // GetNuma3 returns the Numa3 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetNuma3() GetVMConfig200ResponseDataNuma0 {
+func (o *GetVMConfig200ResponseData) GetNuma3() string {
 	if o == nil || IsNil(o.Numa3) {
-		var ret GetVMConfig200ResponseDataNuma0
+		var ret string
 		return ret
 	}
 	return *o.Numa3
@@ -4910,7 +5136,7 @@ func (o *GetVMConfig200ResponseData) GetNuma3() GetVMConfig200ResponseDataNuma0 
 
 // GetNuma3Ok returns a tuple with the Numa3 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetNuma3Ok() (*GetVMConfig200ResponseDataNuma0, bool) {
+func (o *GetVMConfig200ResponseData) GetNuma3Ok() (*string, bool) {
 	if o == nil || IsNil(o.Numa3) {
 		return nil, false
 	}
@@ -4926,15 +5152,15 @@ func (o *GetVMConfig200ResponseData) HasNuma3() bool {
 	return false
 }
 
-// SetNuma3 gets a reference to the given GetVMConfig200ResponseDataNuma0 and assigns it to the Numa3 field.
-func (o *GetVMConfig200ResponseData) SetNuma3(v GetVMConfig200ResponseDataNuma0) {
+// SetNuma3 gets a reference to the given string and assigns it to the Numa3 field.
+func (o *GetVMConfig200ResponseData) SetNuma3(v string) {
 	o.Numa3 = &v
 }
 
 // GetNuma4 returns the Numa4 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetNuma4() GetVMConfig200ResponseDataNuma0 {
+func (o *GetVMConfig200ResponseData) GetNuma4() string {
 	if o == nil || IsNil(o.Numa4) {
-		var ret GetVMConfig200ResponseDataNuma0
+		var ret string
 		return ret
 	}
 	return *o.Numa4
@@ -4942,7 +5168,7 @@ func (o *GetVMConfig200ResponseData) GetNuma4() GetVMConfig200ResponseDataNuma0 
 
 // GetNuma4Ok returns a tuple with the Numa4 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetNuma4Ok() (*GetVMConfig200ResponseDataNuma0, bool) {
+func (o *GetVMConfig200ResponseData) GetNuma4Ok() (*string, bool) {
 	if o == nil || IsNil(o.Numa4) {
 		return nil, false
 	}
@@ -4958,15 +5184,15 @@ func (o *GetVMConfig200ResponseData) HasNuma4() bool {
 	return false
 }
 
-// SetNuma4 gets a reference to the given GetVMConfig200ResponseDataNuma0 and assigns it to the Numa4 field.
-func (o *GetVMConfig200ResponseData) SetNuma4(v GetVMConfig200ResponseDataNuma0) {
+// SetNuma4 gets a reference to the given string and assigns it to the Numa4 field.
+func (o *GetVMConfig200ResponseData) SetNuma4(v string) {
 	o.Numa4 = &v
 }
 
 // GetNuma5 returns the Numa5 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetNuma5() GetVMConfig200ResponseDataNuma0 {
+func (o *GetVMConfig200ResponseData) GetNuma5() string {
 	if o == nil || IsNil(o.Numa5) {
-		var ret GetVMConfig200ResponseDataNuma0
+		var ret string
 		return ret
 	}
 	return *o.Numa5
@@ -4974,7 +5200,7 @@ func (o *GetVMConfig200ResponseData) GetNuma5() GetVMConfig200ResponseDataNuma0 
 
 // GetNuma5Ok returns a tuple with the Numa5 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetNuma5Ok() (*GetVMConfig200ResponseDataNuma0, bool) {
+func (o *GetVMConfig200ResponseData) GetNuma5Ok() (*string, bool) {
 	if o == nil || IsNil(o.Numa5) {
 		return nil, false
 	}
@@ -4990,15 +5216,15 @@ func (o *GetVMConfig200ResponseData) HasNuma5() bool {
 	return false
 }
 
-// SetNuma5 gets a reference to the given GetVMConfig200ResponseDataNuma0 and assigns it to the Numa5 field.
-func (o *GetVMConfig200ResponseData) SetNuma5(v GetVMConfig200ResponseDataNuma0) {
+// SetNuma5 gets a reference to the given string and assigns it to the Numa5 field.
+func (o *GetVMConfig200ResponseData) SetNuma5(v string) {
 	o.Numa5 = &v
 }
 
 // GetNuma6 returns the Numa6 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetNuma6() GetVMConfig200ResponseDataNuma0 {
+func (o *GetVMConfig200ResponseData) GetNuma6() string {
 	if o == nil || IsNil(o.Numa6) {
-		var ret GetVMConfig200ResponseDataNuma0
+		var ret string
 		return ret
 	}
 	return *o.Numa6
@@ -5006,7 +5232,7 @@ func (o *GetVMConfig200ResponseData) GetNuma6() GetVMConfig200ResponseDataNuma0 
 
 // GetNuma6Ok returns a tuple with the Numa6 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetNuma6Ok() (*GetVMConfig200ResponseDataNuma0, bool) {
+func (o *GetVMConfig200ResponseData) GetNuma6Ok() (*string, bool) {
 	if o == nil || IsNil(o.Numa6) {
 		return nil, false
 	}
@@ -5022,15 +5248,15 @@ func (o *GetVMConfig200ResponseData) HasNuma6() bool {
 	return false
 }
 
-// SetNuma6 gets a reference to the given GetVMConfig200ResponseDataNuma0 and assigns it to the Numa6 field.
-func (o *GetVMConfig200ResponseData) SetNuma6(v GetVMConfig200ResponseDataNuma0) {
+// SetNuma6 gets a reference to the given string and assigns it to the Numa6 field.
+func (o *GetVMConfig200ResponseData) SetNuma6(v string) {
 	o.Numa6 = &v
 }
 
 // GetNuma7 returns the Numa7 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetNuma7() GetVMConfig200ResponseDataNuma0 {
+func (o *GetVMConfig200ResponseData) GetNuma7() string {
 	if o == nil || IsNil(o.Numa7) {
-		var ret GetVMConfig200ResponseDataNuma0
+		var ret string
 		return ret
 	}
 	return *o.Numa7
@@ -5038,7 +5264,7 @@ func (o *GetVMConfig200ResponseData) GetNuma7() GetVMConfig200ResponseDataNuma0 
 
 // GetNuma7Ok returns a tuple with the Numa7 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetNuma7Ok() (*GetVMConfig200ResponseDataNuma0, bool) {
+func (o *GetVMConfig200ResponseData) GetNuma7Ok() (*string, bool) {
 	if o == nil || IsNil(o.Numa7) {
 		return nil, false
 	}
@@ -5054,15 +5280,15 @@ func (o *GetVMConfig200ResponseData) HasNuma7() bool {
 	return false
 }
 
-// SetNuma7 gets a reference to the given GetVMConfig200ResponseDataNuma0 and assigns it to the Numa7 field.
-func (o *GetVMConfig200ResponseData) SetNuma7(v GetVMConfig200ResponseDataNuma0) {
+// SetNuma7 gets a reference to the given string and assigns it to the Numa7 field.
+func (o *GetVMConfig200ResponseData) SetNuma7(v string) {
 	o.Numa7 = &v
 }
 
 // GetNuma8 returns the Numa8 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetNuma8() GetVMConfig200ResponseDataNuma0 {
+func (o *GetVMConfig200ResponseData) GetNuma8() string {
 	if o == nil || IsNil(o.Numa8) {
-		var ret GetVMConfig200ResponseDataNuma0
+		var ret string
 		return ret
 	}
 	return *o.Numa8
@@ -5070,7 +5296,7 @@ func (o *GetVMConfig200ResponseData) GetNuma8() GetVMConfig200ResponseDataNuma0 
 
 // GetNuma8Ok returns a tuple with the Numa8 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetNuma8Ok() (*GetVMConfig200ResponseDataNuma0, bool) {
+func (o *GetVMConfig200ResponseData) GetNuma8Ok() (*string, bool) {
 	if o == nil || IsNil(o.Numa8) {
 		return nil, false
 	}
@@ -5086,15 +5312,15 @@ func (o *GetVMConfig200ResponseData) HasNuma8() bool {
 	return false
 }
 
-// SetNuma8 gets a reference to the given GetVMConfig200ResponseDataNuma0 and assigns it to the Numa8 field.
-func (o *GetVMConfig200ResponseData) SetNuma8(v GetVMConfig200ResponseDataNuma0) {
+// SetNuma8 gets a reference to the given string and assigns it to the Numa8 field.
+func (o *GetVMConfig200ResponseData) SetNuma8(v string) {
 	o.Numa8 = &v
 }
 
 // GetNuma9 returns the Numa9 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetNuma9() GetVMConfig200ResponseDataNuma0 {
+func (o *GetVMConfig200ResponseData) GetNuma9() string {
 	if o == nil || IsNil(o.Numa9) {
-		var ret GetVMConfig200ResponseDataNuma0
+		var ret string
 		return ret
 	}
 	return *o.Numa9
@@ -5102,7 +5328,7 @@ func (o *GetVMConfig200ResponseData) GetNuma9() GetVMConfig200ResponseDataNuma0 
 
 // GetNuma9Ok returns a tuple with the Numa9 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetNuma9Ok() (*GetVMConfig200ResponseDataNuma0, bool) {
+func (o *GetVMConfig200ResponseData) GetNuma9Ok() (*string, bool) {
 	if o == nil || IsNil(o.Numa9) {
 		return nil, false
 	}
@@ -5118,15 +5344,15 @@ func (o *GetVMConfig200ResponseData) HasNuma9() bool {
 	return false
 }
 
-// SetNuma9 gets a reference to the given GetVMConfig200ResponseDataNuma0 and assigns it to the Numa9 field.
-func (o *GetVMConfig200ResponseData) SetNuma9(v GetVMConfig200ResponseDataNuma0) {
+// SetNuma9 gets a reference to the given string and assigns it to the Numa9 field.
+func (o *GetVMConfig200ResponseData) SetNuma9(v string) {
 	o.Numa9 = &v
 }
 
 // GetNuma10 returns the Numa10 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetNuma10() GetVMConfig200ResponseDataNuma0 {
+func (o *GetVMConfig200ResponseData) GetNuma10() string {
 	if o == nil || IsNil(o.Numa10) {
-		var ret GetVMConfig200ResponseDataNuma0
+		var ret string
 		return ret
 	}
 	return *o.Numa10
@@ -5134,7 +5360,7 @@ func (o *GetVMConfig200ResponseData) GetNuma10() GetVMConfig200ResponseDataNuma0
 
 // GetNuma10Ok returns a tuple with the Numa10 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetNuma10Ok() (*GetVMConfig200ResponseDataNuma0, bool) {
+func (o *GetVMConfig200ResponseData) GetNuma10Ok() (*string, bool) {
 	if o == nil || IsNil(o.Numa10) {
 		return nil, false
 	}
@@ -5150,15 +5376,15 @@ func (o *GetVMConfig200ResponseData) HasNuma10() bool {
 	return false
 }
 
-// SetNuma10 gets a reference to the given GetVMConfig200ResponseDataNuma0 and assigns it to the Numa10 field.
-func (o *GetVMConfig200ResponseData) SetNuma10(v GetVMConfig200ResponseDataNuma0) {
+// SetNuma10 gets a reference to the given string and assigns it to the Numa10 field.
+func (o *GetVMConfig200ResponseData) SetNuma10(v string) {
 	o.Numa10 = &v
 }
 
 // GetNuma11 returns the Numa11 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetNuma11() GetVMConfig200ResponseDataNuma0 {
+func (o *GetVMConfig200ResponseData) GetNuma11() string {
 	if o == nil || IsNil(o.Numa11) {
-		var ret GetVMConfig200ResponseDataNuma0
+		var ret string
 		return ret
 	}
 	return *o.Numa11
@@ -5166,7 +5392,7 @@ func (o *GetVMConfig200ResponseData) GetNuma11() GetVMConfig200ResponseDataNuma0
 
 // GetNuma11Ok returns a tuple with the Numa11 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetNuma11Ok() (*GetVMConfig200ResponseDataNuma0, bool) {
+func (o *GetVMConfig200ResponseData) GetNuma11Ok() (*string, bool) {
 	if o == nil || IsNil(o.Numa11) {
 		return nil, false
 	}
@@ -5182,15 +5408,15 @@ func (o *GetVMConfig200ResponseData) HasNuma11() bool {
 	return false
 }
 
-// SetNuma11 gets a reference to the given GetVMConfig200ResponseDataNuma0 and assigns it to the Numa11 field.
-func (o *GetVMConfig200ResponseData) SetNuma11(v GetVMConfig200ResponseDataNuma0) {
+// SetNuma11 gets a reference to the given string and assigns it to the Numa11 field.
+func (o *GetVMConfig200ResponseData) SetNuma11(v string) {
 	o.Numa11 = &v
 }
 
 // GetNuma12 returns the Numa12 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetNuma12() GetVMConfig200ResponseDataNuma0 {
+func (o *GetVMConfig200ResponseData) GetNuma12() string {
 	if o == nil || IsNil(o.Numa12) {
-		var ret GetVMConfig200ResponseDataNuma0
+		var ret string
 		return ret
 	}
 	return *o.Numa12
@@ -5198,7 +5424,7 @@ func (o *GetVMConfig200ResponseData) GetNuma12() GetVMConfig200ResponseDataNuma0
 
 // GetNuma12Ok returns a tuple with the Numa12 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetNuma12Ok() (*GetVMConfig200ResponseDataNuma0, bool) {
+func (o *GetVMConfig200ResponseData) GetNuma12Ok() (*string, bool) {
 	if o == nil || IsNil(o.Numa12) {
 		return nil, false
 	}
@@ -5214,15 +5440,15 @@ func (o *GetVMConfig200ResponseData) HasNuma12() bool {
 	return false
 }
 
-// SetNuma12 gets a reference to the given GetVMConfig200ResponseDataNuma0 and assigns it to the Numa12 field.
-func (o *GetVMConfig200ResponseData) SetNuma12(v GetVMConfig200ResponseDataNuma0) {
+// SetNuma12 gets a reference to the given string and assigns it to the Numa12 field.
+func (o *GetVMConfig200ResponseData) SetNuma12(v string) {
 	o.Numa12 = &v
 }
 
 // GetNuma13 returns the Numa13 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetNuma13() GetVMConfig200ResponseDataNuma0 {
+func (o *GetVMConfig200ResponseData) GetNuma13() string {
 	if o == nil || IsNil(o.Numa13) {
-		var ret GetVMConfig200ResponseDataNuma0
+		var ret string
 		return ret
 	}
 	return *o.Numa13
@@ -5230,7 +5456,7 @@ func (o *GetVMConfig200ResponseData) GetNuma13() GetVMConfig200ResponseDataNuma0
 
 // GetNuma13Ok returns a tuple with the Numa13 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetNuma13Ok() (*GetVMConfig200ResponseDataNuma0, bool) {
+func (o *GetVMConfig200ResponseData) GetNuma13Ok() (*string, bool) {
 	if o == nil || IsNil(o.Numa13) {
 		return nil, false
 	}
@@ -5246,15 +5472,15 @@ func (o *GetVMConfig200ResponseData) HasNuma13() bool {
 	return false
 }
 
-// SetNuma13 gets a reference to the given GetVMConfig200ResponseDataNuma0 and assigns it to the Numa13 field.
-func (o *GetVMConfig200ResponseData) SetNuma13(v GetVMConfig200ResponseDataNuma0) {
+// SetNuma13 gets a reference to the given string and assigns it to the Numa13 field.
+func (o *GetVMConfig200ResponseData) SetNuma13(v string) {
 	o.Numa13 = &v
 }
 
 // GetNuma14 returns the Numa14 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetNuma14() GetVMConfig200ResponseDataNuma0 {
+func (o *GetVMConfig200ResponseData) GetNuma14() string {
 	if o == nil || IsNil(o.Numa14) {
-		var ret GetVMConfig200ResponseDataNuma0
+		var ret string
 		return ret
 	}
 	return *o.Numa14
@@ -5262,7 +5488,7 @@ func (o *GetVMConfig200ResponseData) GetNuma14() GetVMConfig200ResponseDataNuma0
 
 // GetNuma14Ok returns a tuple with the Numa14 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetNuma14Ok() (*GetVMConfig200ResponseDataNuma0, bool) {
+func (o *GetVMConfig200ResponseData) GetNuma14Ok() (*string, bool) {
 	if o == nil || IsNil(o.Numa14) {
 		return nil, false
 	}
@@ -5278,15 +5504,15 @@ func (o *GetVMConfig200ResponseData) HasNuma14() bool {
 	return false
 }
 
-// SetNuma14 gets a reference to the given GetVMConfig200ResponseDataNuma0 and assigns it to the Numa14 field.
-func (o *GetVMConfig200ResponseData) SetNuma14(v GetVMConfig200ResponseDataNuma0) {
+// SetNuma14 gets a reference to the given string and assigns it to the Numa14 field.
+func (o *GetVMConfig200ResponseData) SetNuma14(v string) {
 	o.Numa14 = &v
 }
 
 // GetNuma15 returns the Numa15 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetNuma15() GetVMConfig200ResponseDataNuma0 {
+func (o *GetVMConfig200ResponseData) GetNuma15() string {
 	if o == nil || IsNil(o.Numa15) {
-		var ret GetVMConfig200ResponseDataNuma0
+		var ret string
 		return ret
 	}
 	return *o.Numa15
@@ -5294,7 +5520,7 @@ func (o *GetVMConfig200ResponseData) GetNuma15() GetVMConfig200ResponseDataNuma0
 
 // GetNuma15Ok returns a tuple with the Numa15 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetNuma15Ok() (*GetVMConfig200ResponseDataNuma0, bool) {
+func (o *GetVMConfig200ResponseData) GetNuma15Ok() (*string, bool) {
 	if o == nil || IsNil(o.Numa15) {
 		return nil, false
 	}
@@ -5310,15 +5536,15 @@ func (o *GetVMConfig200ResponseData) HasNuma15() bool {
 	return false
 }
 
-// SetNuma15 gets a reference to the given GetVMConfig200ResponseDataNuma0 and assigns it to the Numa15 field.
-func (o *GetVMConfig200ResponseData) SetNuma15(v GetVMConfig200ResponseDataNuma0) {
+// SetNuma15 gets a reference to the given string and assigns it to the Numa15 field.
+func (o *GetVMConfig200ResponseData) SetNuma15(v string) {
 	o.Numa15 = &v
 }
 
 // GetNuma16 returns the Numa16 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetNuma16() GetVMConfig200ResponseDataNuma0 {
+func (o *GetVMConfig200ResponseData) GetNuma16() string {
 	if o == nil || IsNil(o.Numa16) {
-		var ret GetVMConfig200ResponseDataNuma0
+		var ret string
 		return ret
 	}
 	return *o.Numa16
@@ -5326,7 +5552,7 @@ func (o *GetVMConfig200ResponseData) GetNuma16() GetVMConfig200ResponseDataNuma0
 
 // GetNuma16Ok returns a tuple with the Numa16 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetNuma16Ok() (*GetVMConfig200ResponseDataNuma0, bool) {
+func (o *GetVMConfig200ResponseData) GetNuma16Ok() (*string, bool) {
 	if o == nil || IsNil(o.Numa16) {
 		return nil, false
 	}
@@ -5342,15 +5568,15 @@ func (o *GetVMConfig200ResponseData) HasNuma16() bool {
 	return false
 }
 
-// SetNuma16 gets a reference to the given GetVMConfig200ResponseDataNuma0 and assigns it to the Numa16 field.
-func (o *GetVMConfig200ResponseData) SetNuma16(v GetVMConfig200ResponseDataNuma0) {
+// SetNuma16 gets a reference to the given string and assigns it to the Numa16 field.
+func (o *GetVMConfig200ResponseData) SetNuma16(v string) {
 	o.Numa16 = &v
 }
 
 // GetNuma17 returns the Numa17 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetNuma17() GetVMConfig200ResponseDataNuma0 {
+func (o *GetVMConfig200ResponseData) GetNuma17() string {
 	if o == nil || IsNil(o.Numa17) {
-		var ret GetVMConfig200ResponseDataNuma0
+		var ret string
 		return ret
 	}
 	return *o.Numa17
@@ -5358,7 +5584,7 @@ func (o *GetVMConfig200ResponseData) GetNuma17() GetVMConfig200ResponseDataNuma0
 
 // GetNuma17Ok returns a tuple with the Numa17 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetNuma17Ok() (*GetVMConfig200ResponseDataNuma0, bool) {
+func (o *GetVMConfig200ResponseData) GetNuma17Ok() (*string, bool) {
 	if o == nil || IsNil(o.Numa17) {
 		return nil, false
 	}
@@ -5374,15 +5600,15 @@ func (o *GetVMConfig200ResponseData) HasNuma17() bool {
 	return false
 }
 
-// SetNuma17 gets a reference to the given GetVMConfig200ResponseDataNuma0 and assigns it to the Numa17 field.
-func (o *GetVMConfig200ResponseData) SetNuma17(v GetVMConfig200ResponseDataNuma0) {
+// SetNuma17 gets a reference to the given string and assigns it to the Numa17 field.
+func (o *GetVMConfig200ResponseData) SetNuma17(v string) {
 	o.Numa17 = &v
 }
 
 // GetNuma18 returns the Numa18 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetNuma18() GetVMConfig200ResponseDataNuma0 {
+func (o *GetVMConfig200ResponseData) GetNuma18() string {
 	if o == nil || IsNil(o.Numa18) {
-		var ret GetVMConfig200ResponseDataNuma0
+		var ret string
 		return ret
 	}
 	return *o.Numa18
@@ -5390,7 +5616,7 @@ func (o *GetVMConfig200ResponseData) GetNuma18() GetVMConfig200ResponseDataNuma0
 
 // GetNuma18Ok returns a tuple with the Numa18 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetNuma18Ok() (*GetVMConfig200ResponseDataNuma0, bool) {
+func (o *GetVMConfig200ResponseData) GetNuma18Ok() (*string, bool) {
 	if o == nil || IsNil(o.Numa18) {
 		return nil, false
 	}
@@ -5406,15 +5632,15 @@ func (o *GetVMConfig200ResponseData) HasNuma18() bool {
 	return false
 }
 
-// SetNuma18 gets a reference to the given GetVMConfig200ResponseDataNuma0 and assigns it to the Numa18 field.
-func (o *GetVMConfig200ResponseData) SetNuma18(v GetVMConfig200ResponseDataNuma0) {
+// SetNuma18 gets a reference to the given string and assigns it to the Numa18 field.
+func (o *GetVMConfig200ResponseData) SetNuma18(v string) {
 	o.Numa18 = &v
 }
 
 // GetNuma19 returns the Numa19 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetNuma19() GetVMConfig200ResponseDataNuma0 {
+func (o *GetVMConfig200ResponseData) GetNuma19() string {
 	if o == nil || IsNil(o.Numa19) {
-		var ret GetVMConfig200ResponseDataNuma0
+		var ret string
 		return ret
 	}
 	return *o.Numa19
@@ -5422,7 +5648,7 @@ func (o *GetVMConfig200ResponseData) GetNuma19() GetVMConfig200ResponseDataNuma0
 
 // GetNuma19Ok returns a tuple with the Numa19 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetNuma19Ok() (*GetVMConfig200ResponseDataNuma0, bool) {
+func (o *GetVMConfig200ResponseData) GetNuma19Ok() (*string, bool) {
 	if o == nil || IsNil(o.Numa19) {
 		return nil, false
 	}
@@ -5438,15 +5664,15 @@ func (o *GetVMConfig200ResponseData) HasNuma19() bool {
 	return false
 }
 
-// SetNuma19 gets a reference to the given GetVMConfig200ResponseDataNuma0 and assigns it to the Numa19 field.
-func (o *GetVMConfig200ResponseData) SetNuma19(v GetVMConfig200ResponseDataNuma0) {
+// SetNuma19 gets a reference to the given string and assigns it to the Numa19 field.
+func (o *GetVMConfig200ResponseData) SetNuma19(v string) {
 	o.Numa19 = &v
 }
 
 // GetNuma20 returns the Numa20 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetNuma20() GetVMConfig200ResponseDataNuma0 {
+func (o *GetVMConfig200ResponseData) GetNuma20() string {
 	if o == nil || IsNil(o.Numa20) {
-		var ret GetVMConfig200ResponseDataNuma0
+		var ret string
 		return ret
 	}
 	return *o.Numa20
@@ -5454,7 +5680,7 @@ func (o *GetVMConfig200ResponseData) GetNuma20() GetVMConfig200ResponseDataNuma0
 
 // GetNuma20Ok returns a tuple with the Numa20 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetNuma20Ok() (*GetVMConfig200ResponseDataNuma0, bool) {
+func (o *GetVMConfig200ResponseData) GetNuma20Ok() (*string, bool) {
 	if o == nil || IsNil(o.Numa20) {
 		return nil, false
 	}
@@ -5470,15 +5696,15 @@ func (o *GetVMConfig200ResponseData) HasNuma20() bool {
 	return false
 }
 
-// SetNuma20 gets a reference to the given GetVMConfig200ResponseDataNuma0 and assigns it to the Numa20 field.
-func (o *GetVMConfig200ResponseData) SetNuma20(v GetVMConfig200ResponseDataNuma0) {
+// SetNuma20 gets a reference to the given string and assigns it to the Numa20 field.
+func (o *GetVMConfig200ResponseData) SetNuma20(v string) {
 	o.Numa20 = &v
 }
 
 // GetNuma21 returns the Numa21 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetNuma21() GetVMConfig200ResponseDataNuma0 {
+func (o *GetVMConfig200ResponseData) GetNuma21() string {
 	if o == nil || IsNil(o.Numa21) {
-		var ret GetVMConfig200ResponseDataNuma0
+		var ret string
 		return ret
 	}
 	return *o.Numa21
@@ -5486,7 +5712,7 @@ func (o *GetVMConfig200ResponseData) GetNuma21() GetVMConfig200ResponseDataNuma0
 
 // GetNuma21Ok returns a tuple with the Numa21 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetNuma21Ok() (*GetVMConfig200ResponseDataNuma0, bool) {
+func (o *GetVMConfig200ResponseData) GetNuma21Ok() (*string, bool) {
 	if o == nil || IsNil(o.Numa21) {
 		return nil, false
 	}
@@ -5502,15 +5728,15 @@ func (o *GetVMConfig200ResponseData) HasNuma21() bool {
 	return false
 }
 
-// SetNuma21 gets a reference to the given GetVMConfig200ResponseDataNuma0 and assigns it to the Numa21 field.
-func (o *GetVMConfig200ResponseData) SetNuma21(v GetVMConfig200ResponseDataNuma0) {
+// SetNuma21 gets a reference to the given string and assigns it to the Numa21 field.
+func (o *GetVMConfig200ResponseData) SetNuma21(v string) {
 	o.Numa21 = &v
 }
 
 // GetNuma22 returns the Numa22 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetNuma22() GetVMConfig200ResponseDataNuma0 {
+func (o *GetVMConfig200ResponseData) GetNuma22() string {
 	if o == nil || IsNil(o.Numa22) {
-		var ret GetVMConfig200ResponseDataNuma0
+		var ret string
 		return ret
 	}
 	return *o.Numa22
@@ -5518,7 +5744,7 @@ func (o *GetVMConfig200ResponseData) GetNuma22() GetVMConfig200ResponseDataNuma0
 
 // GetNuma22Ok returns a tuple with the Numa22 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetNuma22Ok() (*GetVMConfig200ResponseDataNuma0, bool) {
+func (o *GetVMConfig200ResponseData) GetNuma22Ok() (*string, bool) {
 	if o == nil || IsNil(o.Numa22) {
 		return nil, false
 	}
@@ -5534,15 +5760,15 @@ func (o *GetVMConfig200ResponseData) HasNuma22() bool {
 	return false
 }
 
-// SetNuma22 gets a reference to the given GetVMConfig200ResponseDataNuma0 and assigns it to the Numa22 field.
-func (o *GetVMConfig200ResponseData) SetNuma22(v GetVMConfig200ResponseDataNuma0) {
+// SetNuma22 gets a reference to the given string and assigns it to the Numa22 field.
+func (o *GetVMConfig200ResponseData) SetNuma22(v string) {
 	o.Numa22 = &v
 }
 
 // GetNuma23 returns the Numa23 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetNuma23() GetVMConfig200ResponseDataNuma0 {
+func (o *GetVMConfig200ResponseData) GetNuma23() string {
 	if o == nil || IsNil(o.Numa23) {
-		var ret GetVMConfig200ResponseDataNuma0
+		var ret string
 		return ret
 	}
 	return *o.Numa23
@@ -5550,7 +5776,7 @@ func (o *GetVMConfig200ResponseData) GetNuma23() GetVMConfig200ResponseDataNuma0
 
 // GetNuma23Ok returns a tuple with the Numa23 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetNuma23Ok() (*GetVMConfig200ResponseDataNuma0, bool) {
+func (o *GetVMConfig200ResponseData) GetNuma23Ok() (*string, bool) {
 	if o == nil || IsNil(o.Numa23) {
 		return nil, false
 	}
@@ -5566,15 +5792,15 @@ func (o *GetVMConfig200ResponseData) HasNuma23() bool {
 	return false
 }
 
-// SetNuma23 gets a reference to the given GetVMConfig200ResponseDataNuma0 and assigns it to the Numa23 field.
-func (o *GetVMConfig200ResponseData) SetNuma23(v GetVMConfig200ResponseDataNuma0) {
+// SetNuma23 gets a reference to the given string and assigns it to the Numa23 field.
+func (o *GetVMConfig200ResponseData) SetNuma23(v string) {
 	o.Numa23 = &v
 }
 
 // GetNuma24 returns the Numa24 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetNuma24() GetVMConfig200ResponseDataNuma0 {
+func (o *GetVMConfig200ResponseData) GetNuma24() string {
 	if o == nil || IsNil(o.Numa24) {
-		var ret GetVMConfig200ResponseDataNuma0
+		var ret string
 		return ret
 	}
 	return *o.Numa24
@@ -5582,7 +5808,7 @@ func (o *GetVMConfig200ResponseData) GetNuma24() GetVMConfig200ResponseDataNuma0
 
 // GetNuma24Ok returns a tuple with the Numa24 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetNuma24Ok() (*GetVMConfig200ResponseDataNuma0, bool) {
+func (o *GetVMConfig200ResponseData) GetNuma24Ok() (*string, bool) {
 	if o == nil || IsNil(o.Numa24) {
 		return nil, false
 	}
@@ -5598,15 +5824,15 @@ func (o *GetVMConfig200ResponseData) HasNuma24() bool {
 	return false
 }
 
-// SetNuma24 gets a reference to the given GetVMConfig200ResponseDataNuma0 and assigns it to the Numa24 field.
-func (o *GetVMConfig200ResponseData) SetNuma24(v GetVMConfig200ResponseDataNuma0) {
+// SetNuma24 gets a reference to the given string and assigns it to the Numa24 field.
+func (o *GetVMConfig200ResponseData) SetNuma24(v string) {
 	o.Numa24 = &v
 }
 
 // GetNuma25 returns the Numa25 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetNuma25() GetVMConfig200ResponseDataNuma0 {
+func (o *GetVMConfig200ResponseData) GetNuma25() string {
 	if o == nil || IsNil(o.Numa25) {
-		var ret GetVMConfig200ResponseDataNuma0
+		var ret string
 		return ret
 	}
 	return *o.Numa25
@@ -5614,7 +5840,7 @@ func (o *GetVMConfig200ResponseData) GetNuma25() GetVMConfig200ResponseDataNuma0
 
 // GetNuma25Ok returns a tuple with the Numa25 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetNuma25Ok() (*GetVMConfig200ResponseDataNuma0, bool) {
+func (o *GetVMConfig200ResponseData) GetNuma25Ok() (*string, bool) {
 	if o == nil || IsNil(o.Numa25) {
 		return nil, false
 	}
@@ -5630,15 +5856,15 @@ func (o *GetVMConfig200ResponseData) HasNuma25() bool {
 	return false
 }
 
-// SetNuma25 gets a reference to the given GetVMConfig200ResponseDataNuma0 and assigns it to the Numa25 field.
-func (o *GetVMConfig200ResponseData) SetNuma25(v GetVMConfig200ResponseDataNuma0) {
+// SetNuma25 gets a reference to the given string and assigns it to the Numa25 field.
+func (o *GetVMConfig200ResponseData) SetNuma25(v string) {
 	o.Numa25 = &v
 }
 
 // GetNuma26 returns the Numa26 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetNuma26() GetVMConfig200ResponseDataNuma0 {
+func (o *GetVMConfig200ResponseData) GetNuma26() string {
 	if o == nil || IsNil(o.Numa26) {
-		var ret GetVMConfig200ResponseDataNuma0
+		var ret string
 		return ret
 	}
 	return *o.Numa26
@@ -5646,7 +5872,7 @@ func (o *GetVMConfig200ResponseData) GetNuma26() GetVMConfig200ResponseDataNuma0
 
 // GetNuma26Ok returns a tuple with the Numa26 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetNuma26Ok() (*GetVMConfig200ResponseDataNuma0, bool) {
+func (o *GetVMConfig200ResponseData) GetNuma26Ok() (*string, bool) {
 	if o == nil || IsNil(o.Numa26) {
 		return nil, false
 	}
@@ -5662,15 +5888,15 @@ func (o *GetVMConfig200ResponseData) HasNuma26() bool {
 	return false
 }
 
-// SetNuma26 gets a reference to the given GetVMConfig200ResponseDataNuma0 and assigns it to the Numa26 field.
-func (o *GetVMConfig200ResponseData) SetNuma26(v GetVMConfig200ResponseDataNuma0) {
+// SetNuma26 gets a reference to the given string and assigns it to the Numa26 field.
+func (o *GetVMConfig200ResponseData) SetNuma26(v string) {
 	o.Numa26 = &v
 }
 
 // GetNuma27 returns the Numa27 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetNuma27() GetVMConfig200ResponseDataNuma0 {
+func (o *GetVMConfig200ResponseData) GetNuma27() string {
 	if o == nil || IsNil(o.Numa27) {
-		var ret GetVMConfig200ResponseDataNuma0
+		var ret string
 		return ret
 	}
 	return *o.Numa27
@@ -5678,7 +5904,7 @@ func (o *GetVMConfig200ResponseData) GetNuma27() GetVMConfig200ResponseDataNuma0
 
 // GetNuma27Ok returns a tuple with the Numa27 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetNuma27Ok() (*GetVMConfig200ResponseDataNuma0, bool) {
+func (o *GetVMConfig200ResponseData) GetNuma27Ok() (*string, bool) {
 	if o == nil || IsNil(o.Numa27) {
 		return nil, false
 	}
@@ -5694,15 +5920,15 @@ func (o *GetVMConfig200ResponseData) HasNuma27() bool {
 	return false
 }
 
-// SetNuma27 gets a reference to the given GetVMConfig200ResponseDataNuma0 and assigns it to the Numa27 field.
-func (o *GetVMConfig200ResponseData) SetNuma27(v GetVMConfig200ResponseDataNuma0) {
+// SetNuma27 gets a reference to the given string and assigns it to the Numa27 field.
+func (o *GetVMConfig200ResponseData) SetNuma27(v string) {
 	o.Numa27 = &v
 }
 
 // GetNuma28 returns the Numa28 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetNuma28() GetVMConfig200ResponseDataNuma0 {
+func (o *GetVMConfig200ResponseData) GetNuma28() string {
 	if o == nil || IsNil(o.Numa28) {
-		var ret GetVMConfig200ResponseDataNuma0
+		var ret string
 		return ret
 	}
 	return *o.Numa28
@@ -5710,7 +5936,7 @@ func (o *GetVMConfig200ResponseData) GetNuma28() GetVMConfig200ResponseDataNuma0
 
 // GetNuma28Ok returns a tuple with the Numa28 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetNuma28Ok() (*GetVMConfig200ResponseDataNuma0, bool) {
+func (o *GetVMConfig200ResponseData) GetNuma28Ok() (*string, bool) {
 	if o == nil || IsNil(o.Numa28) {
 		return nil, false
 	}
@@ -5726,15 +5952,15 @@ func (o *GetVMConfig200ResponseData) HasNuma28() bool {
 	return false
 }
 
-// SetNuma28 gets a reference to the given GetVMConfig200ResponseDataNuma0 and assigns it to the Numa28 field.
-func (o *GetVMConfig200ResponseData) SetNuma28(v GetVMConfig200ResponseDataNuma0) {
+// SetNuma28 gets a reference to the given string and assigns it to the Numa28 field.
+func (o *GetVMConfig200ResponseData) SetNuma28(v string) {
 	o.Numa28 = &v
 }
 
 // GetNuma29 returns the Numa29 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetNuma29() GetVMConfig200ResponseDataNuma0 {
+func (o *GetVMConfig200ResponseData) GetNuma29() string {
 	if o == nil || IsNil(o.Numa29) {
-		var ret GetVMConfig200ResponseDataNuma0
+		var ret string
 		return ret
 	}
 	return *o.Numa29
@@ -5742,7 +5968,7 @@ func (o *GetVMConfig200ResponseData) GetNuma29() GetVMConfig200ResponseDataNuma0
 
 // GetNuma29Ok returns a tuple with the Numa29 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetNuma29Ok() (*GetVMConfig200ResponseDataNuma0, bool) {
+func (o *GetVMConfig200ResponseData) GetNuma29Ok() (*string, bool) {
 	if o == nil || IsNil(o.Numa29) {
 		return nil, false
 	}
@@ -5758,15 +5984,15 @@ func (o *GetVMConfig200ResponseData) HasNuma29() bool {
 	return false
 }
 
-// SetNuma29 gets a reference to the given GetVMConfig200ResponseDataNuma0 and assigns it to the Numa29 field.
-func (o *GetVMConfig200ResponseData) SetNuma29(v GetVMConfig200ResponseDataNuma0) {
+// SetNuma29 gets a reference to the given string and assigns it to the Numa29 field.
+func (o *GetVMConfig200ResponseData) SetNuma29(v string) {
 	o.Numa29 = &v
 }
 
 // GetOnboot returns the Onboot field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetOnboot() bool {
+func (o *GetVMConfig200ResponseData) GetOnboot() int32 {
 	if o == nil || IsNil(o.Onboot) {
-		var ret bool
+		var ret int32
 		return ret
 	}
 	return *o.Onboot
@@ -5774,7 +6000,7 @@ func (o *GetVMConfig200ResponseData) GetOnboot() bool {
 
 // GetOnbootOk returns a tuple with the Onboot field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetOnbootOk() (*bool, bool) {
+func (o *GetVMConfig200ResponseData) GetOnbootOk() (*int32, bool) {
 	if o == nil || IsNil(o.Onboot) {
 		return nil, false
 	}
@@ -5790,8 +6016,8 @@ func (o *GetVMConfig200ResponseData) HasOnboot() bool {
 	return false
 }
 
-// SetOnboot gets a reference to the given bool and assigns it to the Onboot field.
-func (o *GetVMConfig200ResponseData) SetOnboot(v bool) {
+// SetOnboot gets a reference to the given int32 and assigns it to the Onboot field.
+func (o *GetVMConfig200ResponseData) SetOnboot(v int32) {
 	o.Onboot = &v
 }
 
@@ -5956,9 +6182,9 @@ func (o *GetVMConfig200ResponseData) SetParallel3(v string) {
 }
 
 // GetProtection returns the Protection field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetProtection() bool {
+func (o *GetVMConfig200ResponseData) GetProtection() int32 {
 	if o == nil || IsNil(o.Protection) {
-		var ret bool
+		var ret int32
 		return ret
 	}
 	return *o.Protection
@@ -5966,7 +6192,7 @@ func (o *GetVMConfig200ResponseData) GetProtection() bool {
 
 // GetProtectionOk returns a tuple with the Protection field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetProtectionOk() (*bool, bool) {
+func (o *GetVMConfig200ResponseData) GetProtectionOk() (*int32, bool) {
 	if o == nil || IsNil(o.Protection) {
 		return nil, false
 	}
@@ -5982,15 +6208,15 @@ func (o *GetVMConfig200ResponseData) HasProtection() bool {
 	return false
 }
 
-// SetProtection gets a reference to the given bool and assigns it to the Protection field.
-func (o *GetVMConfig200ResponseData) SetProtection(v bool) {
+// SetProtection gets a reference to the given int32 and assigns it to the Protection field.
+func (o *GetVMConfig200ResponseData) SetProtection(v int32) {
 	o.Protection = &v
 }
 
 // GetReboot returns the Reboot field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetReboot() bool {
+func (o *GetVMConfig200ResponseData) GetReboot() int32 {
 	if o == nil || IsNil(o.Reboot) {
-		var ret bool
+		var ret int32
 		return ret
 	}
 	return *o.Reboot
@@ -5998,7 +6224,7 @@ func (o *GetVMConfig200ResponseData) GetReboot() bool {
 
 // GetRebootOk returns a tuple with the Reboot field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetRebootOk() (*bool, bool) {
+func (o *GetVMConfig200ResponseData) GetRebootOk() (*int32, bool) {
 	if o == nil || IsNil(o.Reboot) {
 		return nil, false
 	}
@@ -6014,15 +6240,15 @@ func (o *GetVMConfig200ResponseData) HasReboot() bool {
 	return false
 }
 
-// SetReboot gets a reference to the given bool and assigns it to the Reboot field.
-func (o *GetVMConfig200ResponseData) SetReboot(v bool) {
+// SetReboot gets a reference to the given int32 and assigns it to the Reboot field.
+func (o *GetVMConfig200ResponseData) SetReboot(v int32) {
 	o.Reboot = &v
 }
 
 // GetRng0 returns the Rng0 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetRng0() GetVMConfig200ResponseDataRng0 {
+func (o *GetVMConfig200ResponseData) GetRng0() string {
 	if o == nil || IsNil(o.Rng0) {
-		var ret GetVMConfig200ResponseDataRng0
+		var ret string
 		return ret
 	}
 	return *o.Rng0
@@ -6030,7 +6256,7 @@ func (o *GetVMConfig200ResponseData) GetRng0() GetVMConfig200ResponseDataRng0 {
 
 // GetRng0Ok returns a tuple with the Rng0 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetRng0Ok() (*GetVMConfig200ResponseDataRng0, bool) {
+func (o *GetVMConfig200ResponseData) GetRng0Ok() (*string, bool) {
 	if o == nil || IsNil(o.Rng0) {
 		return nil, false
 	}
@@ -6046,15 +6272,15 @@ func (o *GetVMConfig200ResponseData) HasRng0() bool {
 	return false
 }
 
-// SetRng0 gets a reference to the given GetVMConfig200ResponseDataRng0 and assigns it to the Rng0 field.
-func (o *GetVMConfig200ResponseData) SetRng0(v GetVMConfig200ResponseDataRng0) {
+// SetRng0 gets a reference to the given string and assigns it to the Rng0 field.
+func (o *GetVMConfig200ResponseData) SetRng0(v string) {
 	o.Rng0 = &v
 }
 
 // GetSata0 returns the Sata0 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetSata0() GetVMConfig200ResponseDataSata0 {
+func (o *GetVMConfig200ResponseData) GetSata0() string {
 	if o == nil || IsNil(o.Sata0) {
-		var ret GetVMConfig200ResponseDataSata0
+		var ret string
 		return ret
 	}
 	return *o.Sata0
@@ -6062,7 +6288,7 @@ func (o *GetVMConfig200ResponseData) GetSata0() GetVMConfig200ResponseDataSata0 
 
 // GetSata0Ok returns a tuple with the Sata0 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetSata0Ok() (*GetVMConfig200ResponseDataSata0, bool) {
+func (o *GetVMConfig200ResponseData) GetSata0Ok() (*string, bool) {
 	if o == nil || IsNil(o.Sata0) {
 		return nil, false
 	}
@@ -6078,15 +6304,15 @@ func (o *GetVMConfig200ResponseData) HasSata0() bool {
 	return false
 }
 
-// SetSata0 gets a reference to the given GetVMConfig200ResponseDataSata0 and assigns it to the Sata0 field.
-func (o *GetVMConfig200ResponseData) SetSata0(v GetVMConfig200ResponseDataSata0) {
+// SetSata0 gets a reference to the given string and assigns it to the Sata0 field.
+func (o *GetVMConfig200ResponseData) SetSata0(v string) {
 	o.Sata0 = &v
 }
 
 // GetSata1 returns the Sata1 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetSata1() GetVMConfig200ResponseDataSata0 {
+func (o *GetVMConfig200ResponseData) GetSata1() string {
 	if o == nil || IsNil(o.Sata1) {
-		var ret GetVMConfig200ResponseDataSata0
+		var ret string
 		return ret
 	}
 	return *o.Sata1
@@ -6094,7 +6320,7 @@ func (o *GetVMConfig200ResponseData) GetSata1() GetVMConfig200ResponseDataSata0 
 
 // GetSata1Ok returns a tuple with the Sata1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetSata1Ok() (*GetVMConfig200ResponseDataSata0, bool) {
+func (o *GetVMConfig200ResponseData) GetSata1Ok() (*string, bool) {
 	if o == nil || IsNil(o.Sata1) {
 		return nil, false
 	}
@@ -6110,15 +6336,15 @@ func (o *GetVMConfig200ResponseData) HasSata1() bool {
 	return false
 }
 
-// SetSata1 gets a reference to the given GetVMConfig200ResponseDataSata0 and assigns it to the Sata1 field.
-func (o *GetVMConfig200ResponseData) SetSata1(v GetVMConfig200ResponseDataSata0) {
+// SetSata1 gets a reference to the given string and assigns it to the Sata1 field.
+func (o *GetVMConfig200ResponseData) SetSata1(v string) {
 	o.Sata1 = &v
 }
 
 // GetSata2 returns the Sata2 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetSata2() GetVMConfig200ResponseDataSata0 {
+func (o *GetVMConfig200ResponseData) GetSata2() string {
 	if o == nil || IsNil(o.Sata2) {
-		var ret GetVMConfig200ResponseDataSata0
+		var ret string
 		return ret
 	}
 	return *o.Sata2
@@ -6126,7 +6352,7 @@ func (o *GetVMConfig200ResponseData) GetSata2() GetVMConfig200ResponseDataSata0 
 
 // GetSata2Ok returns a tuple with the Sata2 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetSata2Ok() (*GetVMConfig200ResponseDataSata0, bool) {
+func (o *GetVMConfig200ResponseData) GetSata2Ok() (*string, bool) {
 	if o == nil || IsNil(o.Sata2) {
 		return nil, false
 	}
@@ -6142,15 +6368,15 @@ func (o *GetVMConfig200ResponseData) HasSata2() bool {
 	return false
 }
 
-// SetSata2 gets a reference to the given GetVMConfig200ResponseDataSata0 and assigns it to the Sata2 field.
-func (o *GetVMConfig200ResponseData) SetSata2(v GetVMConfig200ResponseDataSata0) {
+// SetSata2 gets a reference to the given string and assigns it to the Sata2 field.
+func (o *GetVMConfig200ResponseData) SetSata2(v string) {
 	o.Sata2 = &v
 }
 
 // GetSata3 returns the Sata3 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetSata3() GetVMConfig200ResponseDataSata0 {
+func (o *GetVMConfig200ResponseData) GetSata3() string {
 	if o == nil || IsNil(o.Sata3) {
-		var ret GetVMConfig200ResponseDataSata0
+		var ret string
 		return ret
 	}
 	return *o.Sata3
@@ -6158,7 +6384,7 @@ func (o *GetVMConfig200ResponseData) GetSata3() GetVMConfig200ResponseDataSata0 
 
 // GetSata3Ok returns a tuple with the Sata3 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetSata3Ok() (*GetVMConfig200ResponseDataSata0, bool) {
+func (o *GetVMConfig200ResponseData) GetSata3Ok() (*string, bool) {
 	if o == nil || IsNil(o.Sata3) {
 		return nil, false
 	}
@@ -6174,15 +6400,15 @@ func (o *GetVMConfig200ResponseData) HasSata3() bool {
 	return false
 }
 
-// SetSata3 gets a reference to the given GetVMConfig200ResponseDataSata0 and assigns it to the Sata3 field.
-func (o *GetVMConfig200ResponseData) SetSata3(v GetVMConfig200ResponseDataSata0) {
+// SetSata3 gets a reference to the given string and assigns it to the Sata3 field.
+func (o *GetVMConfig200ResponseData) SetSata3(v string) {
 	o.Sata3 = &v
 }
 
 // GetSata4 returns the Sata4 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetSata4() GetVMConfig200ResponseDataSata0 {
+func (o *GetVMConfig200ResponseData) GetSata4() string {
 	if o == nil || IsNil(o.Sata4) {
-		var ret GetVMConfig200ResponseDataSata0
+		var ret string
 		return ret
 	}
 	return *o.Sata4
@@ -6190,7 +6416,7 @@ func (o *GetVMConfig200ResponseData) GetSata4() GetVMConfig200ResponseDataSata0 
 
 // GetSata4Ok returns a tuple with the Sata4 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetSata4Ok() (*GetVMConfig200ResponseDataSata0, bool) {
+func (o *GetVMConfig200ResponseData) GetSata4Ok() (*string, bool) {
 	if o == nil || IsNil(o.Sata4) {
 		return nil, false
 	}
@@ -6206,15 +6432,15 @@ func (o *GetVMConfig200ResponseData) HasSata4() bool {
 	return false
 }
 
-// SetSata4 gets a reference to the given GetVMConfig200ResponseDataSata0 and assigns it to the Sata4 field.
-func (o *GetVMConfig200ResponseData) SetSata4(v GetVMConfig200ResponseDataSata0) {
+// SetSata4 gets a reference to the given string and assigns it to the Sata4 field.
+func (o *GetVMConfig200ResponseData) SetSata4(v string) {
 	o.Sata4 = &v
 }
 
 // GetSata5 returns the Sata5 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetSata5() GetVMConfig200ResponseDataSata0 {
+func (o *GetVMConfig200ResponseData) GetSata5() string {
 	if o == nil || IsNil(o.Sata5) {
-		var ret GetVMConfig200ResponseDataSata0
+		var ret string
 		return ret
 	}
 	return *o.Sata5
@@ -6222,7 +6448,7 @@ func (o *GetVMConfig200ResponseData) GetSata5() GetVMConfig200ResponseDataSata0 
 
 // GetSata5Ok returns a tuple with the Sata5 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetSata5Ok() (*GetVMConfig200ResponseDataSata0, bool) {
+func (o *GetVMConfig200ResponseData) GetSata5Ok() (*string, bool) {
 	if o == nil || IsNil(o.Sata5) {
 		return nil, false
 	}
@@ -6238,15 +6464,15 @@ func (o *GetVMConfig200ResponseData) HasSata5() bool {
 	return false
 }
 
-// SetSata5 gets a reference to the given GetVMConfig200ResponseDataSata0 and assigns it to the Sata5 field.
-func (o *GetVMConfig200ResponseData) SetSata5(v GetVMConfig200ResponseDataSata0) {
+// SetSata5 gets a reference to the given string and assigns it to the Sata5 field.
+func (o *GetVMConfig200ResponseData) SetSata5(v string) {
 	o.Sata5 = &v
 }
 
 // GetScsi0 returns the Scsi0 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetScsi0() GetVMConfig200ResponseDataScsi0 {
+func (o *GetVMConfig200ResponseData) GetScsi0() string {
 	if o == nil || IsNil(o.Scsi0) {
-		var ret GetVMConfig200ResponseDataScsi0
+		var ret string
 		return ret
 	}
 	return *o.Scsi0
@@ -6254,7 +6480,7 @@ func (o *GetVMConfig200ResponseData) GetScsi0() GetVMConfig200ResponseDataScsi0 
 
 // GetScsi0Ok returns a tuple with the Scsi0 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetScsi0Ok() (*GetVMConfig200ResponseDataScsi0, bool) {
+func (o *GetVMConfig200ResponseData) GetScsi0Ok() (*string, bool) {
 	if o == nil || IsNil(o.Scsi0) {
 		return nil, false
 	}
@@ -6270,15 +6496,15 @@ func (o *GetVMConfig200ResponseData) HasScsi0() bool {
 	return false
 }
 
-// SetScsi0 gets a reference to the given GetVMConfig200ResponseDataScsi0 and assigns it to the Scsi0 field.
-func (o *GetVMConfig200ResponseData) SetScsi0(v GetVMConfig200ResponseDataScsi0) {
+// SetScsi0 gets a reference to the given string and assigns it to the Scsi0 field.
+func (o *GetVMConfig200ResponseData) SetScsi0(v string) {
 	o.Scsi0 = &v
 }
 
 // GetScsi1 returns the Scsi1 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetScsi1() GetVMConfig200ResponseDataScsi0 {
+func (o *GetVMConfig200ResponseData) GetScsi1() string {
 	if o == nil || IsNil(o.Scsi1) {
-		var ret GetVMConfig200ResponseDataScsi0
+		var ret string
 		return ret
 	}
 	return *o.Scsi1
@@ -6286,7 +6512,7 @@ func (o *GetVMConfig200ResponseData) GetScsi1() GetVMConfig200ResponseDataScsi0 
 
 // GetScsi1Ok returns a tuple with the Scsi1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetScsi1Ok() (*GetVMConfig200ResponseDataScsi0, bool) {
+func (o *GetVMConfig200ResponseData) GetScsi1Ok() (*string, bool) {
 	if o == nil || IsNil(o.Scsi1) {
 		return nil, false
 	}
@@ -6302,15 +6528,15 @@ func (o *GetVMConfig200ResponseData) HasScsi1() bool {
 	return false
 }
 
-// SetScsi1 gets a reference to the given GetVMConfig200ResponseDataScsi0 and assigns it to the Scsi1 field.
-func (o *GetVMConfig200ResponseData) SetScsi1(v GetVMConfig200ResponseDataScsi0) {
+// SetScsi1 gets a reference to the given string and assigns it to the Scsi1 field.
+func (o *GetVMConfig200ResponseData) SetScsi1(v string) {
 	o.Scsi1 = &v
 }
 
 // GetScsi2 returns the Scsi2 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetScsi2() GetVMConfig200ResponseDataScsi0 {
+func (o *GetVMConfig200ResponseData) GetScsi2() string {
 	if o == nil || IsNil(o.Scsi2) {
-		var ret GetVMConfig200ResponseDataScsi0
+		var ret string
 		return ret
 	}
 	return *o.Scsi2
@@ -6318,7 +6544,7 @@ func (o *GetVMConfig200ResponseData) GetScsi2() GetVMConfig200ResponseDataScsi0 
 
 // GetScsi2Ok returns a tuple with the Scsi2 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetScsi2Ok() (*GetVMConfig200ResponseDataScsi0, bool) {
+func (o *GetVMConfig200ResponseData) GetScsi2Ok() (*string, bool) {
 	if o == nil || IsNil(o.Scsi2) {
 		return nil, false
 	}
@@ -6334,15 +6560,15 @@ func (o *GetVMConfig200ResponseData) HasScsi2() bool {
 	return false
 }
 
-// SetScsi2 gets a reference to the given GetVMConfig200ResponseDataScsi0 and assigns it to the Scsi2 field.
-func (o *GetVMConfig200ResponseData) SetScsi2(v GetVMConfig200ResponseDataScsi0) {
+// SetScsi2 gets a reference to the given string and assigns it to the Scsi2 field.
+func (o *GetVMConfig200ResponseData) SetScsi2(v string) {
 	o.Scsi2 = &v
 }
 
 // GetScsi3 returns the Scsi3 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetScsi3() GetVMConfig200ResponseDataScsi0 {
+func (o *GetVMConfig200ResponseData) GetScsi3() string {
 	if o == nil || IsNil(o.Scsi3) {
-		var ret GetVMConfig200ResponseDataScsi0
+		var ret string
 		return ret
 	}
 	return *o.Scsi3
@@ -6350,7 +6576,7 @@ func (o *GetVMConfig200ResponseData) GetScsi3() GetVMConfig200ResponseDataScsi0 
 
 // GetScsi3Ok returns a tuple with the Scsi3 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetScsi3Ok() (*GetVMConfig200ResponseDataScsi0, bool) {
+func (o *GetVMConfig200ResponseData) GetScsi3Ok() (*string, bool) {
 	if o == nil || IsNil(o.Scsi3) {
 		return nil, false
 	}
@@ -6366,15 +6592,15 @@ func (o *GetVMConfig200ResponseData) HasScsi3() bool {
 	return false
 }
 
-// SetScsi3 gets a reference to the given GetVMConfig200ResponseDataScsi0 and assigns it to the Scsi3 field.
-func (o *GetVMConfig200ResponseData) SetScsi3(v GetVMConfig200ResponseDataScsi0) {
+// SetScsi3 gets a reference to the given string and assigns it to the Scsi3 field.
+func (o *GetVMConfig200ResponseData) SetScsi3(v string) {
 	o.Scsi3 = &v
 }
 
 // GetScsi4 returns the Scsi4 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetScsi4() GetVMConfig200ResponseDataScsi0 {
+func (o *GetVMConfig200ResponseData) GetScsi4() string {
 	if o == nil || IsNil(o.Scsi4) {
-		var ret GetVMConfig200ResponseDataScsi0
+		var ret string
 		return ret
 	}
 	return *o.Scsi4
@@ -6382,7 +6608,7 @@ func (o *GetVMConfig200ResponseData) GetScsi4() GetVMConfig200ResponseDataScsi0 
 
 // GetScsi4Ok returns a tuple with the Scsi4 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetScsi4Ok() (*GetVMConfig200ResponseDataScsi0, bool) {
+func (o *GetVMConfig200ResponseData) GetScsi4Ok() (*string, bool) {
 	if o == nil || IsNil(o.Scsi4) {
 		return nil, false
 	}
@@ -6398,15 +6624,15 @@ func (o *GetVMConfig200ResponseData) HasScsi4() bool {
 	return false
 }
 
-// SetScsi4 gets a reference to the given GetVMConfig200ResponseDataScsi0 and assigns it to the Scsi4 field.
-func (o *GetVMConfig200ResponseData) SetScsi4(v GetVMConfig200ResponseDataScsi0) {
+// SetScsi4 gets a reference to the given string and assigns it to the Scsi4 field.
+func (o *GetVMConfig200ResponseData) SetScsi4(v string) {
 	o.Scsi4 = &v
 }
 
 // GetScsi5 returns the Scsi5 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetScsi5() GetVMConfig200ResponseDataScsi0 {
+func (o *GetVMConfig200ResponseData) GetScsi5() string {
 	if o == nil || IsNil(o.Scsi5) {
-		var ret GetVMConfig200ResponseDataScsi0
+		var ret string
 		return ret
 	}
 	return *o.Scsi5
@@ -6414,7 +6640,7 @@ func (o *GetVMConfig200ResponseData) GetScsi5() GetVMConfig200ResponseDataScsi0 
 
 // GetScsi5Ok returns a tuple with the Scsi5 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetScsi5Ok() (*GetVMConfig200ResponseDataScsi0, bool) {
+func (o *GetVMConfig200ResponseData) GetScsi5Ok() (*string, bool) {
 	if o == nil || IsNil(o.Scsi5) {
 		return nil, false
 	}
@@ -6430,15 +6656,15 @@ func (o *GetVMConfig200ResponseData) HasScsi5() bool {
 	return false
 }
 
-// SetScsi5 gets a reference to the given GetVMConfig200ResponseDataScsi0 and assigns it to the Scsi5 field.
-func (o *GetVMConfig200ResponseData) SetScsi5(v GetVMConfig200ResponseDataScsi0) {
+// SetScsi5 gets a reference to the given string and assigns it to the Scsi5 field.
+func (o *GetVMConfig200ResponseData) SetScsi5(v string) {
 	o.Scsi5 = &v
 }
 
 // GetScsi6 returns the Scsi6 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetScsi6() GetVMConfig200ResponseDataScsi0 {
+func (o *GetVMConfig200ResponseData) GetScsi6() string {
 	if o == nil || IsNil(o.Scsi6) {
-		var ret GetVMConfig200ResponseDataScsi0
+		var ret string
 		return ret
 	}
 	return *o.Scsi6
@@ -6446,7 +6672,7 @@ func (o *GetVMConfig200ResponseData) GetScsi6() GetVMConfig200ResponseDataScsi0 
 
 // GetScsi6Ok returns a tuple with the Scsi6 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetScsi6Ok() (*GetVMConfig200ResponseDataScsi0, bool) {
+func (o *GetVMConfig200ResponseData) GetScsi6Ok() (*string, bool) {
 	if o == nil || IsNil(o.Scsi6) {
 		return nil, false
 	}
@@ -6462,15 +6688,15 @@ func (o *GetVMConfig200ResponseData) HasScsi6() bool {
 	return false
 }
 
-// SetScsi6 gets a reference to the given GetVMConfig200ResponseDataScsi0 and assigns it to the Scsi6 field.
-func (o *GetVMConfig200ResponseData) SetScsi6(v GetVMConfig200ResponseDataScsi0) {
+// SetScsi6 gets a reference to the given string and assigns it to the Scsi6 field.
+func (o *GetVMConfig200ResponseData) SetScsi6(v string) {
 	o.Scsi6 = &v
 }
 
 // GetScsi7 returns the Scsi7 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetScsi7() GetVMConfig200ResponseDataScsi0 {
+func (o *GetVMConfig200ResponseData) GetScsi7() string {
 	if o == nil || IsNil(o.Scsi7) {
-		var ret GetVMConfig200ResponseDataScsi0
+		var ret string
 		return ret
 	}
 	return *o.Scsi7
@@ -6478,7 +6704,7 @@ func (o *GetVMConfig200ResponseData) GetScsi7() GetVMConfig200ResponseDataScsi0 
 
 // GetScsi7Ok returns a tuple with the Scsi7 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetScsi7Ok() (*GetVMConfig200ResponseDataScsi0, bool) {
+func (o *GetVMConfig200ResponseData) GetScsi7Ok() (*string, bool) {
 	if o == nil || IsNil(o.Scsi7) {
 		return nil, false
 	}
@@ -6494,15 +6720,15 @@ func (o *GetVMConfig200ResponseData) HasScsi7() bool {
 	return false
 }
 
-// SetScsi7 gets a reference to the given GetVMConfig200ResponseDataScsi0 and assigns it to the Scsi7 field.
-func (o *GetVMConfig200ResponseData) SetScsi7(v GetVMConfig200ResponseDataScsi0) {
+// SetScsi7 gets a reference to the given string and assigns it to the Scsi7 field.
+func (o *GetVMConfig200ResponseData) SetScsi7(v string) {
 	o.Scsi7 = &v
 }
 
 // GetScsi8 returns the Scsi8 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetScsi8() GetVMConfig200ResponseDataScsi0 {
+func (o *GetVMConfig200ResponseData) GetScsi8() string {
 	if o == nil || IsNil(o.Scsi8) {
-		var ret GetVMConfig200ResponseDataScsi0
+		var ret string
 		return ret
 	}
 	return *o.Scsi8
@@ -6510,7 +6736,7 @@ func (o *GetVMConfig200ResponseData) GetScsi8() GetVMConfig200ResponseDataScsi0 
 
 // GetScsi8Ok returns a tuple with the Scsi8 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetScsi8Ok() (*GetVMConfig200ResponseDataScsi0, bool) {
+func (o *GetVMConfig200ResponseData) GetScsi8Ok() (*string, bool) {
 	if o == nil || IsNil(o.Scsi8) {
 		return nil, false
 	}
@@ -6526,15 +6752,15 @@ func (o *GetVMConfig200ResponseData) HasScsi8() bool {
 	return false
 }
 
-// SetScsi8 gets a reference to the given GetVMConfig200ResponseDataScsi0 and assigns it to the Scsi8 field.
-func (o *GetVMConfig200ResponseData) SetScsi8(v GetVMConfig200ResponseDataScsi0) {
+// SetScsi8 gets a reference to the given string and assigns it to the Scsi8 field.
+func (o *GetVMConfig200ResponseData) SetScsi8(v string) {
 	o.Scsi8 = &v
 }
 
 // GetScsi9 returns the Scsi9 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetScsi9() GetVMConfig200ResponseDataScsi0 {
+func (o *GetVMConfig200ResponseData) GetScsi9() string {
 	if o == nil || IsNil(o.Scsi9) {
-		var ret GetVMConfig200ResponseDataScsi0
+		var ret string
 		return ret
 	}
 	return *o.Scsi9
@@ -6542,7 +6768,7 @@ func (o *GetVMConfig200ResponseData) GetScsi9() GetVMConfig200ResponseDataScsi0 
 
 // GetScsi9Ok returns a tuple with the Scsi9 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetScsi9Ok() (*GetVMConfig200ResponseDataScsi0, bool) {
+func (o *GetVMConfig200ResponseData) GetScsi9Ok() (*string, bool) {
 	if o == nil || IsNil(o.Scsi9) {
 		return nil, false
 	}
@@ -6558,15 +6784,15 @@ func (o *GetVMConfig200ResponseData) HasScsi9() bool {
 	return false
 }
 
-// SetScsi9 gets a reference to the given GetVMConfig200ResponseDataScsi0 and assigns it to the Scsi9 field.
-func (o *GetVMConfig200ResponseData) SetScsi9(v GetVMConfig200ResponseDataScsi0) {
+// SetScsi9 gets a reference to the given string and assigns it to the Scsi9 field.
+func (o *GetVMConfig200ResponseData) SetScsi9(v string) {
 	o.Scsi9 = &v
 }
 
 // GetScsi10 returns the Scsi10 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetScsi10() GetVMConfig200ResponseDataScsi0 {
+func (o *GetVMConfig200ResponseData) GetScsi10() string {
 	if o == nil || IsNil(o.Scsi10) {
-		var ret GetVMConfig200ResponseDataScsi0
+		var ret string
 		return ret
 	}
 	return *o.Scsi10
@@ -6574,7 +6800,7 @@ func (o *GetVMConfig200ResponseData) GetScsi10() GetVMConfig200ResponseDataScsi0
 
 // GetScsi10Ok returns a tuple with the Scsi10 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetScsi10Ok() (*GetVMConfig200ResponseDataScsi0, bool) {
+func (o *GetVMConfig200ResponseData) GetScsi10Ok() (*string, bool) {
 	if o == nil || IsNil(o.Scsi10) {
 		return nil, false
 	}
@@ -6590,15 +6816,15 @@ func (o *GetVMConfig200ResponseData) HasScsi10() bool {
 	return false
 }
 
-// SetScsi10 gets a reference to the given GetVMConfig200ResponseDataScsi0 and assigns it to the Scsi10 field.
-func (o *GetVMConfig200ResponseData) SetScsi10(v GetVMConfig200ResponseDataScsi0) {
+// SetScsi10 gets a reference to the given string and assigns it to the Scsi10 field.
+func (o *GetVMConfig200ResponseData) SetScsi10(v string) {
 	o.Scsi10 = &v
 }
 
 // GetScsi11 returns the Scsi11 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetScsi11() GetVMConfig200ResponseDataScsi0 {
+func (o *GetVMConfig200ResponseData) GetScsi11() string {
 	if o == nil || IsNil(o.Scsi11) {
-		var ret GetVMConfig200ResponseDataScsi0
+		var ret string
 		return ret
 	}
 	return *o.Scsi11
@@ -6606,7 +6832,7 @@ func (o *GetVMConfig200ResponseData) GetScsi11() GetVMConfig200ResponseDataScsi0
 
 // GetScsi11Ok returns a tuple with the Scsi11 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetScsi11Ok() (*GetVMConfig200ResponseDataScsi0, bool) {
+func (o *GetVMConfig200ResponseData) GetScsi11Ok() (*string, bool) {
 	if o == nil || IsNil(o.Scsi11) {
 		return nil, false
 	}
@@ -6622,15 +6848,15 @@ func (o *GetVMConfig200ResponseData) HasScsi11() bool {
 	return false
 }
 
-// SetScsi11 gets a reference to the given GetVMConfig200ResponseDataScsi0 and assigns it to the Scsi11 field.
-func (o *GetVMConfig200ResponseData) SetScsi11(v GetVMConfig200ResponseDataScsi0) {
+// SetScsi11 gets a reference to the given string and assigns it to the Scsi11 field.
+func (o *GetVMConfig200ResponseData) SetScsi11(v string) {
 	o.Scsi11 = &v
 }
 
 // GetScsi12 returns the Scsi12 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetScsi12() GetVMConfig200ResponseDataScsi0 {
+func (o *GetVMConfig200ResponseData) GetScsi12() string {
 	if o == nil || IsNil(o.Scsi12) {
-		var ret GetVMConfig200ResponseDataScsi0
+		var ret string
 		return ret
 	}
 	return *o.Scsi12
@@ -6638,7 +6864,7 @@ func (o *GetVMConfig200ResponseData) GetScsi12() GetVMConfig200ResponseDataScsi0
 
 // GetScsi12Ok returns a tuple with the Scsi12 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetScsi12Ok() (*GetVMConfig200ResponseDataScsi0, bool) {
+func (o *GetVMConfig200ResponseData) GetScsi12Ok() (*string, bool) {
 	if o == nil || IsNil(o.Scsi12) {
 		return nil, false
 	}
@@ -6654,15 +6880,15 @@ func (o *GetVMConfig200ResponseData) HasScsi12() bool {
 	return false
 }
 
-// SetScsi12 gets a reference to the given GetVMConfig200ResponseDataScsi0 and assigns it to the Scsi12 field.
-func (o *GetVMConfig200ResponseData) SetScsi12(v GetVMConfig200ResponseDataScsi0) {
+// SetScsi12 gets a reference to the given string and assigns it to the Scsi12 field.
+func (o *GetVMConfig200ResponseData) SetScsi12(v string) {
 	o.Scsi12 = &v
 }
 
 // GetScsi13 returns the Scsi13 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetScsi13() GetVMConfig200ResponseDataScsi0 {
+func (o *GetVMConfig200ResponseData) GetScsi13() string {
 	if o == nil || IsNil(o.Scsi13) {
-		var ret GetVMConfig200ResponseDataScsi0
+		var ret string
 		return ret
 	}
 	return *o.Scsi13
@@ -6670,7 +6896,7 @@ func (o *GetVMConfig200ResponseData) GetScsi13() GetVMConfig200ResponseDataScsi0
 
 // GetScsi13Ok returns a tuple with the Scsi13 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetScsi13Ok() (*GetVMConfig200ResponseDataScsi0, bool) {
+func (o *GetVMConfig200ResponseData) GetScsi13Ok() (*string, bool) {
 	if o == nil || IsNil(o.Scsi13) {
 		return nil, false
 	}
@@ -6686,15 +6912,15 @@ func (o *GetVMConfig200ResponseData) HasScsi13() bool {
 	return false
 }
 
-// SetScsi13 gets a reference to the given GetVMConfig200ResponseDataScsi0 and assigns it to the Scsi13 field.
-func (o *GetVMConfig200ResponseData) SetScsi13(v GetVMConfig200ResponseDataScsi0) {
+// SetScsi13 gets a reference to the given string and assigns it to the Scsi13 field.
+func (o *GetVMConfig200ResponseData) SetScsi13(v string) {
 	o.Scsi13 = &v
 }
 
 // GetScsi14 returns the Scsi14 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetScsi14() GetVMConfig200ResponseDataScsi0 {
+func (o *GetVMConfig200ResponseData) GetScsi14() string {
 	if o == nil || IsNil(o.Scsi14) {
-		var ret GetVMConfig200ResponseDataScsi0
+		var ret string
 		return ret
 	}
 	return *o.Scsi14
@@ -6702,7 +6928,7 @@ func (o *GetVMConfig200ResponseData) GetScsi14() GetVMConfig200ResponseDataScsi0
 
 // GetScsi14Ok returns a tuple with the Scsi14 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetScsi14Ok() (*GetVMConfig200ResponseDataScsi0, bool) {
+func (o *GetVMConfig200ResponseData) GetScsi14Ok() (*string, bool) {
 	if o == nil || IsNil(o.Scsi14) {
 		return nil, false
 	}
@@ -6718,15 +6944,15 @@ func (o *GetVMConfig200ResponseData) HasScsi14() bool {
 	return false
 }
 
-// SetScsi14 gets a reference to the given GetVMConfig200ResponseDataScsi0 and assigns it to the Scsi14 field.
-func (o *GetVMConfig200ResponseData) SetScsi14(v GetVMConfig200ResponseDataScsi0) {
+// SetScsi14 gets a reference to the given string and assigns it to the Scsi14 field.
+func (o *GetVMConfig200ResponseData) SetScsi14(v string) {
 	o.Scsi14 = &v
 }
 
 // GetScsi15 returns the Scsi15 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetScsi15() GetVMConfig200ResponseDataScsi0 {
+func (o *GetVMConfig200ResponseData) GetScsi15() string {
 	if o == nil || IsNil(o.Scsi15) {
-		var ret GetVMConfig200ResponseDataScsi0
+		var ret string
 		return ret
 	}
 	return *o.Scsi15
@@ -6734,7 +6960,7 @@ func (o *GetVMConfig200ResponseData) GetScsi15() GetVMConfig200ResponseDataScsi0
 
 // GetScsi15Ok returns a tuple with the Scsi15 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetScsi15Ok() (*GetVMConfig200ResponseDataScsi0, bool) {
+func (o *GetVMConfig200ResponseData) GetScsi15Ok() (*string, bool) {
 	if o == nil || IsNil(o.Scsi15) {
 		return nil, false
 	}
@@ -6750,15 +6976,15 @@ func (o *GetVMConfig200ResponseData) HasScsi15() bool {
 	return false
 }
 
-// SetScsi15 gets a reference to the given GetVMConfig200ResponseDataScsi0 and assigns it to the Scsi15 field.
-func (o *GetVMConfig200ResponseData) SetScsi15(v GetVMConfig200ResponseDataScsi0) {
+// SetScsi15 gets a reference to the given string and assigns it to the Scsi15 field.
+func (o *GetVMConfig200ResponseData) SetScsi15(v string) {
 	o.Scsi15 = &v
 }
 
 // GetScsi16 returns the Scsi16 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetScsi16() GetVMConfig200ResponseDataScsi0 {
+func (o *GetVMConfig200ResponseData) GetScsi16() string {
 	if o == nil || IsNil(o.Scsi16) {
-		var ret GetVMConfig200ResponseDataScsi0
+		var ret string
 		return ret
 	}
 	return *o.Scsi16
@@ -6766,7 +6992,7 @@ func (o *GetVMConfig200ResponseData) GetScsi16() GetVMConfig200ResponseDataScsi0
 
 // GetScsi16Ok returns a tuple with the Scsi16 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetScsi16Ok() (*GetVMConfig200ResponseDataScsi0, bool) {
+func (o *GetVMConfig200ResponseData) GetScsi16Ok() (*string, bool) {
 	if o == nil || IsNil(o.Scsi16) {
 		return nil, false
 	}
@@ -6782,15 +7008,15 @@ func (o *GetVMConfig200ResponseData) HasScsi16() bool {
 	return false
 }
 
-// SetScsi16 gets a reference to the given GetVMConfig200ResponseDataScsi0 and assigns it to the Scsi16 field.
-func (o *GetVMConfig200ResponseData) SetScsi16(v GetVMConfig200ResponseDataScsi0) {
+// SetScsi16 gets a reference to the given string and assigns it to the Scsi16 field.
+func (o *GetVMConfig200ResponseData) SetScsi16(v string) {
 	o.Scsi16 = &v
 }
 
 // GetScsi17 returns the Scsi17 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetScsi17() GetVMConfig200ResponseDataScsi0 {
+func (o *GetVMConfig200ResponseData) GetScsi17() string {
 	if o == nil || IsNil(o.Scsi17) {
-		var ret GetVMConfig200ResponseDataScsi0
+		var ret string
 		return ret
 	}
 	return *o.Scsi17
@@ -6798,7 +7024,7 @@ func (o *GetVMConfig200ResponseData) GetScsi17() GetVMConfig200ResponseDataScsi0
 
 // GetScsi17Ok returns a tuple with the Scsi17 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetScsi17Ok() (*GetVMConfig200ResponseDataScsi0, bool) {
+func (o *GetVMConfig200ResponseData) GetScsi17Ok() (*string, bool) {
 	if o == nil || IsNil(o.Scsi17) {
 		return nil, false
 	}
@@ -6814,15 +7040,15 @@ func (o *GetVMConfig200ResponseData) HasScsi17() bool {
 	return false
 }
 
-// SetScsi17 gets a reference to the given GetVMConfig200ResponseDataScsi0 and assigns it to the Scsi17 field.
-func (o *GetVMConfig200ResponseData) SetScsi17(v GetVMConfig200ResponseDataScsi0) {
+// SetScsi17 gets a reference to the given string and assigns it to the Scsi17 field.
+func (o *GetVMConfig200ResponseData) SetScsi17(v string) {
 	o.Scsi17 = &v
 }
 
 // GetScsi18 returns the Scsi18 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetScsi18() GetVMConfig200ResponseDataScsi0 {
+func (o *GetVMConfig200ResponseData) GetScsi18() string {
 	if o == nil || IsNil(o.Scsi18) {
-		var ret GetVMConfig200ResponseDataScsi0
+		var ret string
 		return ret
 	}
 	return *o.Scsi18
@@ -6830,7 +7056,7 @@ func (o *GetVMConfig200ResponseData) GetScsi18() GetVMConfig200ResponseDataScsi0
 
 // GetScsi18Ok returns a tuple with the Scsi18 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetScsi18Ok() (*GetVMConfig200ResponseDataScsi0, bool) {
+func (o *GetVMConfig200ResponseData) GetScsi18Ok() (*string, bool) {
 	if o == nil || IsNil(o.Scsi18) {
 		return nil, false
 	}
@@ -6846,15 +7072,15 @@ func (o *GetVMConfig200ResponseData) HasScsi18() bool {
 	return false
 }
 
-// SetScsi18 gets a reference to the given GetVMConfig200ResponseDataScsi0 and assigns it to the Scsi18 field.
-func (o *GetVMConfig200ResponseData) SetScsi18(v GetVMConfig200ResponseDataScsi0) {
+// SetScsi18 gets a reference to the given string and assigns it to the Scsi18 field.
+func (o *GetVMConfig200ResponseData) SetScsi18(v string) {
 	o.Scsi18 = &v
 }
 
 // GetScsi19 returns the Scsi19 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetScsi19() GetVMConfig200ResponseDataScsi0 {
+func (o *GetVMConfig200ResponseData) GetScsi19() string {
 	if o == nil || IsNil(o.Scsi19) {
-		var ret GetVMConfig200ResponseDataScsi0
+		var ret string
 		return ret
 	}
 	return *o.Scsi19
@@ -6862,7 +7088,7 @@ func (o *GetVMConfig200ResponseData) GetScsi19() GetVMConfig200ResponseDataScsi0
 
 // GetScsi19Ok returns a tuple with the Scsi19 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetScsi19Ok() (*GetVMConfig200ResponseDataScsi0, bool) {
+func (o *GetVMConfig200ResponseData) GetScsi19Ok() (*string, bool) {
 	if o == nil || IsNil(o.Scsi19) {
 		return nil, false
 	}
@@ -6878,15 +7104,15 @@ func (o *GetVMConfig200ResponseData) HasScsi19() bool {
 	return false
 }
 
-// SetScsi19 gets a reference to the given GetVMConfig200ResponseDataScsi0 and assigns it to the Scsi19 field.
-func (o *GetVMConfig200ResponseData) SetScsi19(v GetVMConfig200ResponseDataScsi0) {
+// SetScsi19 gets a reference to the given string and assigns it to the Scsi19 field.
+func (o *GetVMConfig200ResponseData) SetScsi19(v string) {
 	o.Scsi19 = &v
 }
 
 // GetScsi20 returns the Scsi20 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetScsi20() GetVMConfig200ResponseDataScsi0 {
+func (o *GetVMConfig200ResponseData) GetScsi20() string {
 	if o == nil || IsNil(o.Scsi20) {
-		var ret GetVMConfig200ResponseDataScsi0
+		var ret string
 		return ret
 	}
 	return *o.Scsi20
@@ -6894,7 +7120,7 @@ func (o *GetVMConfig200ResponseData) GetScsi20() GetVMConfig200ResponseDataScsi0
 
 // GetScsi20Ok returns a tuple with the Scsi20 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetScsi20Ok() (*GetVMConfig200ResponseDataScsi0, bool) {
+func (o *GetVMConfig200ResponseData) GetScsi20Ok() (*string, bool) {
 	if o == nil || IsNil(o.Scsi20) {
 		return nil, false
 	}
@@ -6910,15 +7136,15 @@ func (o *GetVMConfig200ResponseData) HasScsi20() bool {
 	return false
 }
 
-// SetScsi20 gets a reference to the given GetVMConfig200ResponseDataScsi0 and assigns it to the Scsi20 field.
-func (o *GetVMConfig200ResponseData) SetScsi20(v GetVMConfig200ResponseDataScsi0) {
+// SetScsi20 gets a reference to the given string and assigns it to the Scsi20 field.
+func (o *GetVMConfig200ResponseData) SetScsi20(v string) {
 	o.Scsi20 = &v
 }
 
 // GetScsi21 returns the Scsi21 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetScsi21() GetVMConfig200ResponseDataScsi0 {
+func (o *GetVMConfig200ResponseData) GetScsi21() string {
 	if o == nil || IsNil(o.Scsi21) {
-		var ret GetVMConfig200ResponseDataScsi0
+		var ret string
 		return ret
 	}
 	return *o.Scsi21
@@ -6926,7 +7152,7 @@ func (o *GetVMConfig200ResponseData) GetScsi21() GetVMConfig200ResponseDataScsi0
 
 // GetScsi21Ok returns a tuple with the Scsi21 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetScsi21Ok() (*GetVMConfig200ResponseDataScsi0, bool) {
+func (o *GetVMConfig200ResponseData) GetScsi21Ok() (*string, bool) {
 	if o == nil || IsNil(o.Scsi21) {
 		return nil, false
 	}
@@ -6942,15 +7168,15 @@ func (o *GetVMConfig200ResponseData) HasScsi21() bool {
 	return false
 }
 
-// SetScsi21 gets a reference to the given GetVMConfig200ResponseDataScsi0 and assigns it to the Scsi21 field.
-func (o *GetVMConfig200ResponseData) SetScsi21(v GetVMConfig200ResponseDataScsi0) {
+// SetScsi21 gets a reference to the given string and assigns it to the Scsi21 field.
+func (o *GetVMConfig200ResponseData) SetScsi21(v string) {
 	o.Scsi21 = &v
 }
 
 // GetScsi22 returns the Scsi22 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetScsi22() GetVMConfig200ResponseDataScsi0 {
+func (o *GetVMConfig200ResponseData) GetScsi22() string {
 	if o == nil || IsNil(o.Scsi22) {
-		var ret GetVMConfig200ResponseDataScsi0
+		var ret string
 		return ret
 	}
 	return *o.Scsi22
@@ -6958,7 +7184,7 @@ func (o *GetVMConfig200ResponseData) GetScsi22() GetVMConfig200ResponseDataScsi0
 
 // GetScsi22Ok returns a tuple with the Scsi22 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetScsi22Ok() (*GetVMConfig200ResponseDataScsi0, bool) {
+func (o *GetVMConfig200ResponseData) GetScsi22Ok() (*string, bool) {
 	if o == nil || IsNil(o.Scsi22) {
 		return nil, false
 	}
@@ -6974,15 +7200,15 @@ func (o *GetVMConfig200ResponseData) HasScsi22() bool {
 	return false
 }
 
-// SetScsi22 gets a reference to the given GetVMConfig200ResponseDataScsi0 and assigns it to the Scsi22 field.
-func (o *GetVMConfig200ResponseData) SetScsi22(v GetVMConfig200ResponseDataScsi0) {
+// SetScsi22 gets a reference to the given string and assigns it to the Scsi22 field.
+func (o *GetVMConfig200ResponseData) SetScsi22(v string) {
 	o.Scsi22 = &v
 }
 
 // GetScsi23 returns the Scsi23 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetScsi23() GetVMConfig200ResponseDataScsi0 {
+func (o *GetVMConfig200ResponseData) GetScsi23() string {
 	if o == nil || IsNil(o.Scsi23) {
-		var ret GetVMConfig200ResponseDataScsi0
+		var ret string
 		return ret
 	}
 	return *o.Scsi23
@@ -6990,7 +7216,7 @@ func (o *GetVMConfig200ResponseData) GetScsi23() GetVMConfig200ResponseDataScsi0
 
 // GetScsi23Ok returns a tuple with the Scsi23 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetScsi23Ok() (*GetVMConfig200ResponseDataScsi0, bool) {
+func (o *GetVMConfig200ResponseData) GetScsi23Ok() (*string, bool) {
 	if o == nil || IsNil(o.Scsi23) {
 		return nil, false
 	}
@@ -7006,15 +7232,15 @@ func (o *GetVMConfig200ResponseData) HasScsi23() bool {
 	return false
 }
 
-// SetScsi23 gets a reference to the given GetVMConfig200ResponseDataScsi0 and assigns it to the Scsi23 field.
-func (o *GetVMConfig200ResponseData) SetScsi23(v GetVMConfig200ResponseDataScsi0) {
+// SetScsi23 gets a reference to the given string and assigns it to the Scsi23 field.
+func (o *GetVMConfig200ResponseData) SetScsi23(v string) {
 	o.Scsi23 = &v
 }
 
 // GetScsi24 returns the Scsi24 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetScsi24() GetVMConfig200ResponseDataScsi0 {
+func (o *GetVMConfig200ResponseData) GetScsi24() string {
 	if o == nil || IsNil(o.Scsi24) {
-		var ret GetVMConfig200ResponseDataScsi0
+		var ret string
 		return ret
 	}
 	return *o.Scsi24
@@ -7022,7 +7248,7 @@ func (o *GetVMConfig200ResponseData) GetScsi24() GetVMConfig200ResponseDataScsi0
 
 // GetScsi24Ok returns a tuple with the Scsi24 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetScsi24Ok() (*GetVMConfig200ResponseDataScsi0, bool) {
+func (o *GetVMConfig200ResponseData) GetScsi24Ok() (*string, bool) {
 	if o == nil || IsNil(o.Scsi24) {
 		return nil, false
 	}
@@ -7038,15 +7264,15 @@ func (o *GetVMConfig200ResponseData) HasScsi24() bool {
 	return false
 }
 
-// SetScsi24 gets a reference to the given GetVMConfig200ResponseDataScsi0 and assigns it to the Scsi24 field.
-func (o *GetVMConfig200ResponseData) SetScsi24(v GetVMConfig200ResponseDataScsi0) {
+// SetScsi24 gets a reference to the given string and assigns it to the Scsi24 field.
+func (o *GetVMConfig200ResponseData) SetScsi24(v string) {
 	o.Scsi24 = &v
 }
 
 // GetScsi25 returns the Scsi25 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetScsi25() GetVMConfig200ResponseDataScsi0 {
+func (o *GetVMConfig200ResponseData) GetScsi25() string {
 	if o == nil || IsNil(o.Scsi25) {
-		var ret GetVMConfig200ResponseDataScsi0
+		var ret string
 		return ret
 	}
 	return *o.Scsi25
@@ -7054,7 +7280,7 @@ func (o *GetVMConfig200ResponseData) GetScsi25() GetVMConfig200ResponseDataScsi0
 
 // GetScsi25Ok returns a tuple with the Scsi25 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetScsi25Ok() (*GetVMConfig200ResponseDataScsi0, bool) {
+func (o *GetVMConfig200ResponseData) GetScsi25Ok() (*string, bool) {
 	if o == nil || IsNil(o.Scsi25) {
 		return nil, false
 	}
@@ -7070,15 +7296,15 @@ func (o *GetVMConfig200ResponseData) HasScsi25() bool {
 	return false
 }
 
-// SetScsi25 gets a reference to the given GetVMConfig200ResponseDataScsi0 and assigns it to the Scsi25 field.
-func (o *GetVMConfig200ResponseData) SetScsi25(v GetVMConfig200ResponseDataScsi0) {
+// SetScsi25 gets a reference to the given string and assigns it to the Scsi25 field.
+func (o *GetVMConfig200ResponseData) SetScsi25(v string) {
 	o.Scsi25 = &v
 }
 
 // GetScsi26 returns the Scsi26 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetScsi26() GetVMConfig200ResponseDataScsi0 {
+func (o *GetVMConfig200ResponseData) GetScsi26() string {
 	if o == nil || IsNil(o.Scsi26) {
-		var ret GetVMConfig200ResponseDataScsi0
+		var ret string
 		return ret
 	}
 	return *o.Scsi26
@@ -7086,7 +7312,7 @@ func (o *GetVMConfig200ResponseData) GetScsi26() GetVMConfig200ResponseDataScsi0
 
 // GetScsi26Ok returns a tuple with the Scsi26 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetScsi26Ok() (*GetVMConfig200ResponseDataScsi0, bool) {
+func (o *GetVMConfig200ResponseData) GetScsi26Ok() (*string, bool) {
 	if o == nil || IsNil(o.Scsi26) {
 		return nil, false
 	}
@@ -7102,15 +7328,15 @@ func (o *GetVMConfig200ResponseData) HasScsi26() bool {
 	return false
 }
 
-// SetScsi26 gets a reference to the given GetVMConfig200ResponseDataScsi0 and assigns it to the Scsi26 field.
-func (o *GetVMConfig200ResponseData) SetScsi26(v GetVMConfig200ResponseDataScsi0) {
+// SetScsi26 gets a reference to the given string and assigns it to the Scsi26 field.
+func (o *GetVMConfig200ResponseData) SetScsi26(v string) {
 	o.Scsi26 = &v
 }
 
 // GetScsi27 returns the Scsi27 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetScsi27() GetVMConfig200ResponseDataScsi0 {
+func (o *GetVMConfig200ResponseData) GetScsi27() string {
 	if o == nil || IsNil(o.Scsi27) {
-		var ret GetVMConfig200ResponseDataScsi0
+		var ret string
 		return ret
 	}
 	return *o.Scsi27
@@ -7118,7 +7344,7 @@ func (o *GetVMConfig200ResponseData) GetScsi27() GetVMConfig200ResponseDataScsi0
 
 // GetScsi27Ok returns a tuple with the Scsi27 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetScsi27Ok() (*GetVMConfig200ResponseDataScsi0, bool) {
+func (o *GetVMConfig200ResponseData) GetScsi27Ok() (*string, bool) {
 	if o == nil || IsNil(o.Scsi27) {
 		return nil, false
 	}
@@ -7134,15 +7360,15 @@ func (o *GetVMConfig200ResponseData) HasScsi27() bool {
 	return false
 }
 
-// SetScsi27 gets a reference to the given GetVMConfig200ResponseDataScsi0 and assigns it to the Scsi27 field.
-func (o *GetVMConfig200ResponseData) SetScsi27(v GetVMConfig200ResponseDataScsi0) {
+// SetScsi27 gets a reference to the given string and assigns it to the Scsi27 field.
+func (o *GetVMConfig200ResponseData) SetScsi27(v string) {
 	o.Scsi27 = &v
 }
 
 // GetScsi28 returns the Scsi28 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetScsi28() GetVMConfig200ResponseDataScsi0 {
+func (o *GetVMConfig200ResponseData) GetScsi28() string {
 	if o == nil || IsNil(o.Scsi28) {
-		var ret GetVMConfig200ResponseDataScsi0
+		var ret string
 		return ret
 	}
 	return *o.Scsi28
@@ -7150,7 +7376,7 @@ func (o *GetVMConfig200ResponseData) GetScsi28() GetVMConfig200ResponseDataScsi0
 
 // GetScsi28Ok returns a tuple with the Scsi28 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetScsi28Ok() (*GetVMConfig200ResponseDataScsi0, bool) {
+func (o *GetVMConfig200ResponseData) GetScsi28Ok() (*string, bool) {
 	if o == nil || IsNil(o.Scsi28) {
 		return nil, false
 	}
@@ -7166,15 +7392,15 @@ func (o *GetVMConfig200ResponseData) HasScsi28() bool {
 	return false
 }
 
-// SetScsi28 gets a reference to the given GetVMConfig200ResponseDataScsi0 and assigns it to the Scsi28 field.
-func (o *GetVMConfig200ResponseData) SetScsi28(v GetVMConfig200ResponseDataScsi0) {
+// SetScsi28 gets a reference to the given string and assigns it to the Scsi28 field.
+func (o *GetVMConfig200ResponseData) SetScsi28(v string) {
 	o.Scsi28 = &v
 }
 
 // GetScsi29 returns the Scsi29 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetScsi29() GetVMConfig200ResponseDataScsi0 {
+func (o *GetVMConfig200ResponseData) GetScsi29() string {
 	if o == nil || IsNil(o.Scsi29) {
-		var ret GetVMConfig200ResponseDataScsi0
+		var ret string
 		return ret
 	}
 	return *o.Scsi29
@@ -7182,7 +7408,7 @@ func (o *GetVMConfig200ResponseData) GetScsi29() GetVMConfig200ResponseDataScsi0
 
 // GetScsi29Ok returns a tuple with the Scsi29 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetScsi29Ok() (*GetVMConfig200ResponseDataScsi0, bool) {
+func (o *GetVMConfig200ResponseData) GetScsi29Ok() (*string, bool) {
 	if o == nil || IsNil(o.Scsi29) {
 		return nil, false
 	}
@@ -7198,8 +7424,8 @@ func (o *GetVMConfig200ResponseData) HasScsi29() bool {
 	return false
 }
 
-// SetScsi29 gets a reference to the given GetVMConfig200ResponseDataScsi0 and assigns it to the Scsi29 field.
-func (o *GetVMConfig200ResponseData) SetScsi29(v GetVMConfig200ResponseDataScsi0) {
+// SetScsi29 gets a reference to the given string and assigns it to the Scsi29 field.
+func (o *GetVMConfig200ResponseData) SetScsi29(v string) {
 	o.Scsi29 = &v
 }
 
@@ -7524,9 +7750,9 @@ func (o *GetVMConfig200ResponseData) SetSockets(v int64) {
 }
 
 // GetSpiceEnhancements returns the SpiceEnhancements field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetSpiceEnhancements() GetVMConfig200ResponseDataSpiceEnhancements {
+func (o *GetVMConfig200ResponseData) GetSpiceEnhancements() string {
 	if o == nil || IsNil(o.SpiceEnhancements) {
-		var ret GetVMConfig200ResponseDataSpiceEnhancements
+		var ret string
 		return ret
 	}
 	return *o.SpiceEnhancements
@@ -7534,7 +7760,7 @@ func (o *GetVMConfig200ResponseData) GetSpiceEnhancements() GetVMConfig200Respon
 
 // GetSpiceEnhancementsOk returns a tuple with the SpiceEnhancements field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetSpiceEnhancementsOk() (*GetVMConfig200ResponseDataSpiceEnhancements, bool) {
+func (o *GetVMConfig200ResponseData) GetSpiceEnhancementsOk() (*string, bool) {
 	if o == nil || IsNil(o.SpiceEnhancements) {
 		return nil, false
 	}
@@ -7550,8 +7776,8 @@ func (o *GetVMConfig200ResponseData) HasSpiceEnhancements() bool {
 	return false
 }
 
-// SetSpiceEnhancements gets a reference to the given GetVMConfig200ResponseDataSpiceEnhancements and assigns it to the SpiceEnhancements field.
-func (o *GetVMConfig200ResponseData) SetSpiceEnhancements(v GetVMConfig200ResponseDataSpiceEnhancements) {
+// SetSpiceEnhancements gets a reference to the given string and assigns it to the SpiceEnhancements field.
+func (o *GetVMConfig200ResponseData) SetSpiceEnhancements(v string) {
 	o.SpiceEnhancements = &v
 }
 
@@ -7652,9 +7878,9 @@ func (o *GetVMConfig200ResponseData) SetStartup(v string) {
 }
 
 // GetTablet returns the Tablet field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetTablet() bool {
+func (o *GetVMConfig200ResponseData) GetTablet() int32 {
 	if o == nil || IsNil(o.Tablet) {
-		var ret bool
+		var ret int32
 		return ret
 	}
 	return *o.Tablet
@@ -7662,7 +7888,7 @@ func (o *GetVMConfig200ResponseData) GetTablet() bool {
 
 // GetTabletOk returns a tuple with the Tablet field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetTabletOk() (*bool, bool) {
+func (o *GetVMConfig200ResponseData) GetTabletOk() (*int32, bool) {
 	if o == nil || IsNil(o.Tablet) {
 		return nil, false
 	}
@@ -7678,8 +7904,8 @@ func (o *GetVMConfig200ResponseData) HasTablet() bool {
 	return false
 }
 
-// SetTablet gets a reference to the given bool and assigns it to the Tablet field.
-func (o *GetVMConfig200ResponseData) SetTablet(v bool) {
+// SetTablet gets a reference to the given int32 and assigns it to the Tablet field.
+func (o *GetVMConfig200ResponseData) SetTablet(v int32) {
 	o.Tablet = &v
 }
 
@@ -7716,9 +7942,9 @@ func (o *GetVMConfig200ResponseData) SetTags(v string) {
 }
 
 // GetTdf returns the Tdf field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetTdf() bool {
+func (o *GetVMConfig200ResponseData) GetTdf() int32 {
 	if o == nil || IsNil(o.Tdf) {
-		var ret bool
+		var ret int32
 		return ret
 	}
 	return *o.Tdf
@@ -7726,7 +7952,7 @@ func (o *GetVMConfig200ResponseData) GetTdf() bool {
 
 // GetTdfOk returns a tuple with the Tdf field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetTdfOk() (*bool, bool) {
+func (o *GetVMConfig200ResponseData) GetTdfOk() (*int32, bool) {
 	if o == nil || IsNil(o.Tdf) {
 		return nil, false
 	}
@@ -7742,15 +7968,15 @@ func (o *GetVMConfig200ResponseData) HasTdf() bool {
 	return false
 }
 
-// SetTdf gets a reference to the given bool and assigns it to the Tdf field.
-func (o *GetVMConfig200ResponseData) SetTdf(v bool) {
+// SetTdf gets a reference to the given int32 and assigns it to the Tdf field.
+func (o *GetVMConfig200ResponseData) SetTdf(v int32) {
 	o.Tdf = &v
 }
 
 // GetTemplate returns the Template field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetTemplate() bool {
+func (o *GetVMConfig200ResponseData) GetTemplate() int32 {
 	if o == nil || IsNil(o.Template) {
-		var ret bool
+		var ret int32
 		return ret
 	}
 	return *o.Template
@@ -7758,7 +7984,7 @@ func (o *GetVMConfig200ResponseData) GetTemplate() bool {
 
 // GetTemplateOk returns a tuple with the Template field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetTemplateOk() (*bool, bool) {
+func (o *GetVMConfig200ResponseData) GetTemplateOk() (*int32, bool) {
 	if o == nil || IsNil(o.Template) {
 		return nil, false
 	}
@@ -7774,15 +8000,15 @@ func (o *GetVMConfig200ResponseData) HasTemplate() bool {
 	return false
 }
 
-// SetTemplate gets a reference to the given bool and assigns it to the Template field.
-func (o *GetVMConfig200ResponseData) SetTemplate(v bool) {
+// SetTemplate gets a reference to the given int32 and assigns it to the Template field.
+func (o *GetVMConfig200ResponseData) SetTemplate(v int32) {
 	o.Template = &v
 }
 
 // GetTpmstate0 returns the Tpmstate0 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetTpmstate0() GetVMConfig200ResponseDataTpmstate0 {
+func (o *GetVMConfig200ResponseData) GetTpmstate0() string {
 	if o == nil || IsNil(o.Tpmstate0) {
-		var ret GetVMConfig200ResponseDataTpmstate0
+		var ret string
 		return ret
 	}
 	return *o.Tpmstate0
@@ -7790,7 +8016,7 @@ func (o *GetVMConfig200ResponseData) GetTpmstate0() GetVMConfig200ResponseDataTp
 
 // GetTpmstate0Ok returns a tuple with the Tpmstate0 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetTpmstate0Ok() (*GetVMConfig200ResponseDataTpmstate0, bool) {
+func (o *GetVMConfig200ResponseData) GetTpmstate0Ok() (*string, bool) {
 	if o == nil || IsNil(o.Tpmstate0) {
 		return nil, false
 	}
@@ -7806,15 +8032,15 @@ func (o *GetVMConfig200ResponseData) HasTpmstate0() bool {
 	return false
 }
 
-// SetTpmstate0 gets a reference to the given GetVMConfig200ResponseDataTpmstate0 and assigns it to the Tpmstate0 field.
-func (o *GetVMConfig200ResponseData) SetTpmstate0(v GetVMConfig200ResponseDataTpmstate0) {
+// SetTpmstate0 gets a reference to the given string and assigns it to the Tpmstate0 field.
+func (o *GetVMConfig200ResponseData) SetTpmstate0(v string) {
 	o.Tpmstate0 = &v
 }
 
 // GetUnused0 returns the Unused0 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetUnused0() GetVMConfig200ResponseDataUnused0 {
+func (o *GetVMConfig200ResponseData) GetUnused0() string {
 	if o == nil || IsNil(o.Unused0) {
-		var ret GetVMConfig200ResponseDataUnused0
+		var ret string
 		return ret
 	}
 	return *o.Unused0
@@ -7822,7 +8048,7 @@ func (o *GetVMConfig200ResponseData) GetUnused0() GetVMConfig200ResponseDataUnus
 
 // GetUnused0Ok returns a tuple with the Unused0 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetUnused0Ok() (*GetVMConfig200ResponseDataUnused0, bool) {
+func (o *GetVMConfig200ResponseData) GetUnused0Ok() (*string, bool) {
 	if o == nil || IsNil(o.Unused0) {
 		return nil, false
 	}
@@ -7838,15 +8064,15 @@ func (o *GetVMConfig200ResponseData) HasUnused0() bool {
 	return false
 }
 
-// SetUnused0 gets a reference to the given GetVMConfig200ResponseDataUnused0 and assigns it to the Unused0 field.
-func (o *GetVMConfig200ResponseData) SetUnused0(v GetVMConfig200ResponseDataUnused0) {
+// SetUnused0 gets a reference to the given string and assigns it to the Unused0 field.
+func (o *GetVMConfig200ResponseData) SetUnused0(v string) {
 	o.Unused0 = &v
 }
 
 // GetUnused1 returns the Unused1 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetUnused1() GetVMConfig200ResponseDataUnused0 {
+func (o *GetVMConfig200ResponseData) GetUnused1() string {
 	if o == nil || IsNil(o.Unused1) {
-		var ret GetVMConfig200ResponseDataUnused0
+		var ret string
 		return ret
 	}
 	return *o.Unused1
@@ -7854,7 +8080,7 @@ func (o *GetVMConfig200ResponseData) GetUnused1() GetVMConfig200ResponseDataUnus
 
 // GetUnused1Ok returns a tuple with the Unused1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetUnused1Ok() (*GetVMConfig200ResponseDataUnused0, bool) {
+func (o *GetVMConfig200ResponseData) GetUnused1Ok() (*string, bool) {
 	if o == nil || IsNil(o.Unused1) {
 		return nil, false
 	}
@@ -7870,15 +8096,15 @@ func (o *GetVMConfig200ResponseData) HasUnused1() bool {
 	return false
 }
 
-// SetUnused1 gets a reference to the given GetVMConfig200ResponseDataUnused0 and assigns it to the Unused1 field.
-func (o *GetVMConfig200ResponseData) SetUnused1(v GetVMConfig200ResponseDataUnused0) {
+// SetUnused1 gets a reference to the given string and assigns it to the Unused1 field.
+func (o *GetVMConfig200ResponseData) SetUnused1(v string) {
 	o.Unused1 = &v
 }
 
 // GetUnused2 returns the Unused2 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetUnused2() GetVMConfig200ResponseDataUnused0 {
+func (o *GetVMConfig200ResponseData) GetUnused2() string {
 	if o == nil || IsNil(o.Unused2) {
-		var ret GetVMConfig200ResponseDataUnused0
+		var ret string
 		return ret
 	}
 	return *o.Unused2
@@ -7886,7 +8112,7 @@ func (o *GetVMConfig200ResponseData) GetUnused2() GetVMConfig200ResponseDataUnus
 
 // GetUnused2Ok returns a tuple with the Unused2 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetUnused2Ok() (*GetVMConfig200ResponseDataUnused0, bool) {
+func (o *GetVMConfig200ResponseData) GetUnused2Ok() (*string, bool) {
 	if o == nil || IsNil(o.Unused2) {
 		return nil, false
 	}
@@ -7902,15 +8128,15 @@ func (o *GetVMConfig200ResponseData) HasUnused2() bool {
 	return false
 }
 
-// SetUnused2 gets a reference to the given GetVMConfig200ResponseDataUnused0 and assigns it to the Unused2 field.
-func (o *GetVMConfig200ResponseData) SetUnused2(v GetVMConfig200ResponseDataUnused0) {
+// SetUnused2 gets a reference to the given string and assigns it to the Unused2 field.
+func (o *GetVMConfig200ResponseData) SetUnused2(v string) {
 	o.Unused2 = &v
 }
 
 // GetUnused3 returns the Unused3 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetUnused3() GetVMConfig200ResponseDataUnused0 {
+func (o *GetVMConfig200ResponseData) GetUnused3() string {
 	if o == nil || IsNil(o.Unused3) {
-		var ret GetVMConfig200ResponseDataUnused0
+		var ret string
 		return ret
 	}
 	return *o.Unused3
@@ -7918,7 +8144,7 @@ func (o *GetVMConfig200ResponseData) GetUnused3() GetVMConfig200ResponseDataUnus
 
 // GetUnused3Ok returns a tuple with the Unused3 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetUnused3Ok() (*GetVMConfig200ResponseDataUnused0, bool) {
+func (o *GetVMConfig200ResponseData) GetUnused3Ok() (*string, bool) {
 	if o == nil || IsNil(o.Unused3) {
 		return nil, false
 	}
@@ -7934,15 +8160,15 @@ func (o *GetVMConfig200ResponseData) HasUnused3() bool {
 	return false
 }
 
-// SetUnused3 gets a reference to the given GetVMConfig200ResponseDataUnused0 and assigns it to the Unused3 field.
-func (o *GetVMConfig200ResponseData) SetUnused3(v GetVMConfig200ResponseDataUnused0) {
+// SetUnused3 gets a reference to the given string and assigns it to the Unused3 field.
+func (o *GetVMConfig200ResponseData) SetUnused3(v string) {
 	o.Unused3 = &v
 }
 
 // GetUnused4 returns the Unused4 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetUnused4() GetVMConfig200ResponseDataUnused0 {
+func (o *GetVMConfig200ResponseData) GetUnused4() string {
 	if o == nil || IsNil(o.Unused4) {
-		var ret GetVMConfig200ResponseDataUnused0
+		var ret string
 		return ret
 	}
 	return *o.Unused4
@@ -7950,7 +8176,7 @@ func (o *GetVMConfig200ResponseData) GetUnused4() GetVMConfig200ResponseDataUnus
 
 // GetUnused4Ok returns a tuple with the Unused4 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetUnused4Ok() (*GetVMConfig200ResponseDataUnused0, bool) {
+func (o *GetVMConfig200ResponseData) GetUnused4Ok() (*string, bool) {
 	if o == nil || IsNil(o.Unused4) {
 		return nil, false
 	}
@@ -7966,15 +8192,15 @@ func (o *GetVMConfig200ResponseData) HasUnused4() bool {
 	return false
 }
 
-// SetUnused4 gets a reference to the given GetVMConfig200ResponseDataUnused0 and assigns it to the Unused4 field.
-func (o *GetVMConfig200ResponseData) SetUnused4(v GetVMConfig200ResponseDataUnused0) {
+// SetUnused4 gets a reference to the given string and assigns it to the Unused4 field.
+func (o *GetVMConfig200ResponseData) SetUnused4(v string) {
 	o.Unused4 = &v
 }
 
 // GetUnused5 returns the Unused5 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetUnused5() GetVMConfig200ResponseDataUnused0 {
+func (o *GetVMConfig200ResponseData) GetUnused5() string {
 	if o == nil || IsNil(o.Unused5) {
-		var ret GetVMConfig200ResponseDataUnused0
+		var ret string
 		return ret
 	}
 	return *o.Unused5
@@ -7982,7 +8208,7 @@ func (o *GetVMConfig200ResponseData) GetUnused5() GetVMConfig200ResponseDataUnus
 
 // GetUnused5Ok returns a tuple with the Unused5 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetUnused5Ok() (*GetVMConfig200ResponseDataUnused0, bool) {
+func (o *GetVMConfig200ResponseData) GetUnused5Ok() (*string, bool) {
 	if o == nil || IsNil(o.Unused5) {
 		return nil, false
 	}
@@ -7998,15 +8224,15 @@ func (o *GetVMConfig200ResponseData) HasUnused5() bool {
 	return false
 }
 
-// SetUnused5 gets a reference to the given GetVMConfig200ResponseDataUnused0 and assigns it to the Unused5 field.
-func (o *GetVMConfig200ResponseData) SetUnused5(v GetVMConfig200ResponseDataUnused0) {
+// SetUnused5 gets a reference to the given string and assigns it to the Unused5 field.
+func (o *GetVMConfig200ResponseData) SetUnused5(v string) {
 	o.Unused5 = &v
 }
 
 // GetUnused6 returns the Unused6 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetUnused6() GetVMConfig200ResponseDataUnused0 {
+func (o *GetVMConfig200ResponseData) GetUnused6() string {
 	if o == nil || IsNil(o.Unused6) {
-		var ret GetVMConfig200ResponseDataUnused0
+		var ret string
 		return ret
 	}
 	return *o.Unused6
@@ -8014,7 +8240,7 @@ func (o *GetVMConfig200ResponseData) GetUnused6() GetVMConfig200ResponseDataUnus
 
 // GetUnused6Ok returns a tuple with the Unused6 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetUnused6Ok() (*GetVMConfig200ResponseDataUnused0, bool) {
+func (o *GetVMConfig200ResponseData) GetUnused6Ok() (*string, bool) {
 	if o == nil || IsNil(o.Unused6) {
 		return nil, false
 	}
@@ -8030,15 +8256,15 @@ func (o *GetVMConfig200ResponseData) HasUnused6() bool {
 	return false
 }
 
-// SetUnused6 gets a reference to the given GetVMConfig200ResponseDataUnused0 and assigns it to the Unused6 field.
-func (o *GetVMConfig200ResponseData) SetUnused6(v GetVMConfig200ResponseDataUnused0) {
+// SetUnused6 gets a reference to the given string and assigns it to the Unused6 field.
+func (o *GetVMConfig200ResponseData) SetUnused6(v string) {
 	o.Unused6 = &v
 }
 
 // GetUnused7 returns the Unused7 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetUnused7() GetVMConfig200ResponseDataUnused0 {
+func (o *GetVMConfig200ResponseData) GetUnused7() string {
 	if o == nil || IsNil(o.Unused7) {
-		var ret GetVMConfig200ResponseDataUnused0
+		var ret string
 		return ret
 	}
 	return *o.Unused7
@@ -8046,7 +8272,7 @@ func (o *GetVMConfig200ResponseData) GetUnused7() GetVMConfig200ResponseDataUnus
 
 // GetUnused7Ok returns a tuple with the Unused7 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetUnused7Ok() (*GetVMConfig200ResponseDataUnused0, bool) {
+func (o *GetVMConfig200ResponseData) GetUnused7Ok() (*string, bool) {
 	if o == nil || IsNil(o.Unused7) {
 		return nil, false
 	}
@@ -8062,15 +8288,15 @@ func (o *GetVMConfig200ResponseData) HasUnused7() bool {
 	return false
 }
 
-// SetUnused7 gets a reference to the given GetVMConfig200ResponseDataUnused0 and assigns it to the Unused7 field.
-func (o *GetVMConfig200ResponseData) SetUnused7(v GetVMConfig200ResponseDataUnused0) {
+// SetUnused7 gets a reference to the given string and assigns it to the Unused7 field.
+func (o *GetVMConfig200ResponseData) SetUnused7(v string) {
 	o.Unused7 = &v
 }
 
 // GetUnused8 returns the Unused8 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetUnused8() GetVMConfig200ResponseDataUnused0 {
+func (o *GetVMConfig200ResponseData) GetUnused8() string {
 	if o == nil || IsNil(o.Unused8) {
-		var ret GetVMConfig200ResponseDataUnused0
+		var ret string
 		return ret
 	}
 	return *o.Unused8
@@ -8078,7 +8304,7 @@ func (o *GetVMConfig200ResponseData) GetUnused8() GetVMConfig200ResponseDataUnus
 
 // GetUnused8Ok returns a tuple with the Unused8 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetUnused8Ok() (*GetVMConfig200ResponseDataUnused0, bool) {
+func (o *GetVMConfig200ResponseData) GetUnused8Ok() (*string, bool) {
 	if o == nil || IsNil(o.Unused8) {
 		return nil, false
 	}
@@ -8094,15 +8320,15 @@ func (o *GetVMConfig200ResponseData) HasUnused8() bool {
 	return false
 }
 
-// SetUnused8 gets a reference to the given GetVMConfig200ResponseDataUnused0 and assigns it to the Unused8 field.
-func (o *GetVMConfig200ResponseData) SetUnused8(v GetVMConfig200ResponseDataUnused0) {
+// SetUnused8 gets a reference to the given string and assigns it to the Unused8 field.
+func (o *GetVMConfig200ResponseData) SetUnused8(v string) {
 	o.Unused8 = &v
 }
 
 // GetUnused9 returns the Unused9 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetUnused9() GetVMConfig200ResponseDataUnused0 {
+func (o *GetVMConfig200ResponseData) GetUnused9() string {
 	if o == nil || IsNil(o.Unused9) {
-		var ret GetVMConfig200ResponseDataUnused0
+		var ret string
 		return ret
 	}
 	return *o.Unused9
@@ -8110,7 +8336,7 @@ func (o *GetVMConfig200ResponseData) GetUnused9() GetVMConfig200ResponseDataUnus
 
 // GetUnused9Ok returns a tuple with the Unused9 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetUnused9Ok() (*GetVMConfig200ResponseDataUnused0, bool) {
+func (o *GetVMConfig200ResponseData) GetUnused9Ok() (*string, bool) {
 	if o == nil || IsNil(o.Unused9) {
 		return nil, false
 	}
@@ -8126,15 +8352,15 @@ func (o *GetVMConfig200ResponseData) HasUnused9() bool {
 	return false
 }
 
-// SetUnused9 gets a reference to the given GetVMConfig200ResponseDataUnused0 and assigns it to the Unused9 field.
-func (o *GetVMConfig200ResponseData) SetUnused9(v GetVMConfig200ResponseDataUnused0) {
+// SetUnused9 gets a reference to the given string and assigns it to the Unused9 field.
+func (o *GetVMConfig200ResponseData) SetUnused9(v string) {
 	o.Unused9 = &v
 }
 
 // GetUnused10 returns the Unused10 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetUnused10() GetVMConfig200ResponseDataUnused0 {
+func (o *GetVMConfig200ResponseData) GetUnused10() string {
 	if o == nil || IsNil(o.Unused10) {
-		var ret GetVMConfig200ResponseDataUnused0
+		var ret string
 		return ret
 	}
 	return *o.Unused10
@@ -8142,7 +8368,7 @@ func (o *GetVMConfig200ResponseData) GetUnused10() GetVMConfig200ResponseDataUnu
 
 // GetUnused10Ok returns a tuple with the Unused10 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetUnused10Ok() (*GetVMConfig200ResponseDataUnused0, bool) {
+func (o *GetVMConfig200ResponseData) GetUnused10Ok() (*string, bool) {
 	if o == nil || IsNil(o.Unused10) {
 		return nil, false
 	}
@@ -8158,15 +8384,15 @@ func (o *GetVMConfig200ResponseData) HasUnused10() bool {
 	return false
 }
 
-// SetUnused10 gets a reference to the given GetVMConfig200ResponseDataUnused0 and assigns it to the Unused10 field.
-func (o *GetVMConfig200ResponseData) SetUnused10(v GetVMConfig200ResponseDataUnused0) {
+// SetUnused10 gets a reference to the given string and assigns it to the Unused10 field.
+func (o *GetVMConfig200ResponseData) SetUnused10(v string) {
 	o.Unused10 = &v
 }
 
 // GetUnused11 returns the Unused11 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetUnused11() GetVMConfig200ResponseDataUnused0 {
+func (o *GetVMConfig200ResponseData) GetUnused11() string {
 	if o == nil || IsNil(o.Unused11) {
-		var ret GetVMConfig200ResponseDataUnused0
+		var ret string
 		return ret
 	}
 	return *o.Unused11
@@ -8174,7 +8400,7 @@ func (o *GetVMConfig200ResponseData) GetUnused11() GetVMConfig200ResponseDataUnu
 
 // GetUnused11Ok returns a tuple with the Unused11 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetUnused11Ok() (*GetVMConfig200ResponseDataUnused0, bool) {
+func (o *GetVMConfig200ResponseData) GetUnused11Ok() (*string, bool) {
 	if o == nil || IsNil(o.Unused11) {
 		return nil, false
 	}
@@ -8190,15 +8416,15 @@ func (o *GetVMConfig200ResponseData) HasUnused11() bool {
 	return false
 }
 
-// SetUnused11 gets a reference to the given GetVMConfig200ResponseDataUnused0 and assigns it to the Unused11 field.
-func (o *GetVMConfig200ResponseData) SetUnused11(v GetVMConfig200ResponseDataUnused0) {
+// SetUnused11 gets a reference to the given string and assigns it to the Unused11 field.
+func (o *GetVMConfig200ResponseData) SetUnused11(v string) {
 	o.Unused11 = &v
 }
 
 // GetUnused12 returns the Unused12 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetUnused12() GetVMConfig200ResponseDataUnused0 {
+func (o *GetVMConfig200ResponseData) GetUnused12() string {
 	if o == nil || IsNil(o.Unused12) {
-		var ret GetVMConfig200ResponseDataUnused0
+		var ret string
 		return ret
 	}
 	return *o.Unused12
@@ -8206,7 +8432,7 @@ func (o *GetVMConfig200ResponseData) GetUnused12() GetVMConfig200ResponseDataUnu
 
 // GetUnused12Ok returns a tuple with the Unused12 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetUnused12Ok() (*GetVMConfig200ResponseDataUnused0, bool) {
+func (o *GetVMConfig200ResponseData) GetUnused12Ok() (*string, bool) {
 	if o == nil || IsNil(o.Unused12) {
 		return nil, false
 	}
@@ -8222,15 +8448,15 @@ func (o *GetVMConfig200ResponseData) HasUnused12() bool {
 	return false
 }
 
-// SetUnused12 gets a reference to the given GetVMConfig200ResponseDataUnused0 and assigns it to the Unused12 field.
-func (o *GetVMConfig200ResponseData) SetUnused12(v GetVMConfig200ResponseDataUnused0) {
+// SetUnused12 gets a reference to the given string and assigns it to the Unused12 field.
+func (o *GetVMConfig200ResponseData) SetUnused12(v string) {
 	o.Unused12 = &v
 }
 
 // GetUnused13 returns the Unused13 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetUnused13() GetVMConfig200ResponseDataUnused0 {
+func (o *GetVMConfig200ResponseData) GetUnused13() string {
 	if o == nil || IsNil(o.Unused13) {
-		var ret GetVMConfig200ResponseDataUnused0
+		var ret string
 		return ret
 	}
 	return *o.Unused13
@@ -8238,7 +8464,7 @@ func (o *GetVMConfig200ResponseData) GetUnused13() GetVMConfig200ResponseDataUnu
 
 // GetUnused13Ok returns a tuple with the Unused13 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetUnused13Ok() (*GetVMConfig200ResponseDataUnused0, bool) {
+func (o *GetVMConfig200ResponseData) GetUnused13Ok() (*string, bool) {
 	if o == nil || IsNil(o.Unused13) {
 		return nil, false
 	}
@@ -8254,15 +8480,15 @@ func (o *GetVMConfig200ResponseData) HasUnused13() bool {
 	return false
 }
 
-// SetUnused13 gets a reference to the given GetVMConfig200ResponseDataUnused0 and assigns it to the Unused13 field.
-func (o *GetVMConfig200ResponseData) SetUnused13(v GetVMConfig200ResponseDataUnused0) {
+// SetUnused13 gets a reference to the given string and assigns it to the Unused13 field.
+func (o *GetVMConfig200ResponseData) SetUnused13(v string) {
 	o.Unused13 = &v
 }
 
 // GetUnused14 returns the Unused14 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetUnused14() GetVMConfig200ResponseDataUnused0 {
+func (o *GetVMConfig200ResponseData) GetUnused14() string {
 	if o == nil || IsNil(o.Unused14) {
-		var ret GetVMConfig200ResponseDataUnused0
+		var ret string
 		return ret
 	}
 	return *o.Unused14
@@ -8270,7 +8496,7 @@ func (o *GetVMConfig200ResponseData) GetUnused14() GetVMConfig200ResponseDataUnu
 
 // GetUnused14Ok returns a tuple with the Unused14 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetUnused14Ok() (*GetVMConfig200ResponseDataUnused0, bool) {
+func (o *GetVMConfig200ResponseData) GetUnused14Ok() (*string, bool) {
 	if o == nil || IsNil(o.Unused14) {
 		return nil, false
 	}
@@ -8286,15 +8512,15 @@ func (o *GetVMConfig200ResponseData) HasUnused14() bool {
 	return false
 }
 
-// SetUnused14 gets a reference to the given GetVMConfig200ResponseDataUnused0 and assigns it to the Unused14 field.
-func (o *GetVMConfig200ResponseData) SetUnused14(v GetVMConfig200ResponseDataUnused0) {
+// SetUnused14 gets a reference to the given string and assigns it to the Unused14 field.
+func (o *GetVMConfig200ResponseData) SetUnused14(v string) {
 	o.Unused14 = &v
 }
 
 // GetUnused15 returns the Unused15 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetUnused15() GetVMConfig200ResponseDataUnused0 {
+func (o *GetVMConfig200ResponseData) GetUnused15() string {
 	if o == nil || IsNil(o.Unused15) {
-		var ret GetVMConfig200ResponseDataUnused0
+		var ret string
 		return ret
 	}
 	return *o.Unused15
@@ -8302,7 +8528,7 @@ func (o *GetVMConfig200ResponseData) GetUnused15() GetVMConfig200ResponseDataUnu
 
 // GetUnused15Ok returns a tuple with the Unused15 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetUnused15Ok() (*GetVMConfig200ResponseDataUnused0, bool) {
+func (o *GetVMConfig200ResponseData) GetUnused15Ok() (*string, bool) {
 	if o == nil || IsNil(o.Unused15) {
 		return nil, false
 	}
@@ -8318,15 +8544,15 @@ func (o *GetVMConfig200ResponseData) HasUnused15() bool {
 	return false
 }
 
-// SetUnused15 gets a reference to the given GetVMConfig200ResponseDataUnused0 and assigns it to the Unused15 field.
-func (o *GetVMConfig200ResponseData) SetUnused15(v GetVMConfig200ResponseDataUnused0) {
+// SetUnused15 gets a reference to the given string and assigns it to the Unused15 field.
+func (o *GetVMConfig200ResponseData) SetUnused15(v string) {
 	o.Unused15 = &v
 }
 
 // GetUnused16 returns the Unused16 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetUnused16() GetVMConfig200ResponseDataUnused0 {
+func (o *GetVMConfig200ResponseData) GetUnused16() string {
 	if o == nil || IsNil(o.Unused16) {
-		var ret GetVMConfig200ResponseDataUnused0
+		var ret string
 		return ret
 	}
 	return *o.Unused16
@@ -8334,7 +8560,7 @@ func (o *GetVMConfig200ResponseData) GetUnused16() GetVMConfig200ResponseDataUnu
 
 // GetUnused16Ok returns a tuple with the Unused16 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetUnused16Ok() (*GetVMConfig200ResponseDataUnused0, bool) {
+func (o *GetVMConfig200ResponseData) GetUnused16Ok() (*string, bool) {
 	if o == nil || IsNil(o.Unused16) {
 		return nil, false
 	}
@@ -8350,15 +8576,15 @@ func (o *GetVMConfig200ResponseData) HasUnused16() bool {
 	return false
 }
 
-// SetUnused16 gets a reference to the given GetVMConfig200ResponseDataUnused0 and assigns it to the Unused16 field.
-func (o *GetVMConfig200ResponseData) SetUnused16(v GetVMConfig200ResponseDataUnused0) {
+// SetUnused16 gets a reference to the given string and assigns it to the Unused16 field.
+func (o *GetVMConfig200ResponseData) SetUnused16(v string) {
 	o.Unused16 = &v
 }
 
 // GetUnused17 returns the Unused17 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetUnused17() GetVMConfig200ResponseDataUnused0 {
+func (o *GetVMConfig200ResponseData) GetUnused17() string {
 	if o == nil || IsNil(o.Unused17) {
-		var ret GetVMConfig200ResponseDataUnused0
+		var ret string
 		return ret
 	}
 	return *o.Unused17
@@ -8366,7 +8592,7 @@ func (o *GetVMConfig200ResponseData) GetUnused17() GetVMConfig200ResponseDataUnu
 
 // GetUnused17Ok returns a tuple with the Unused17 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetUnused17Ok() (*GetVMConfig200ResponseDataUnused0, bool) {
+func (o *GetVMConfig200ResponseData) GetUnused17Ok() (*string, bool) {
 	if o == nil || IsNil(o.Unused17) {
 		return nil, false
 	}
@@ -8382,15 +8608,15 @@ func (o *GetVMConfig200ResponseData) HasUnused17() bool {
 	return false
 }
 
-// SetUnused17 gets a reference to the given GetVMConfig200ResponseDataUnused0 and assigns it to the Unused17 field.
-func (o *GetVMConfig200ResponseData) SetUnused17(v GetVMConfig200ResponseDataUnused0) {
+// SetUnused17 gets a reference to the given string and assigns it to the Unused17 field.
+func (o *GetVMConfig200ResponseData) SetUnused17(v string) {
 	o.Unused17 = &v
 }
 
 // GetUnused18 returns the Unused18 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetUnused18() GetVMConfig200ResponseDataUnused0 {
+func (o *GetVMConfig200ResponseData) GetUnused18() string {
 	if o == nil || IsNil(o.Unused18) {
-		var ret GetVMConfig200ResponseDataUnused0
+		var ret string
 		return ret
 	}
 	return *o.Unused18
@@ -8398,7 +8624,7 @@ func (o *GetVMConfig200ResponseData) GetUnused18() GetVMConfig200ResponseDataUnu
 
 // GetUnused18Ok returns a tuple with the Unused18 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetUnused18Ok() (*GetVMConfig200ResponseDataUnused0, bool) {
+func (o *GetVMConfig200ResponseData) GetUnused18Ok() (*string, bool) {
 	if o == nil || IsNil(o.Unused18) {
 		return nil, false
 	}
@@ -8414,15 +8640,15 @@ func (o *GetVMConfig200ResponseData) HasUnused18() bool {
 	return false
 }
 
-// SetUnused18 gets a reference to the given GetVMConfig200ResponseDataUnused0 and assigns it to the Unused18 field.
-func (o *GetVMConfig200ResponseData) SetUnused18(v GetVMConfig200ResponseDataUnused0) {
+// SetUnused18 gets a reference to the given string and assigns it to the Unused18 field.
+func (o *GetVMConfig200ResponseData) SetUnused18(v string) {
 	o.Unused18 = &v
 }
 
 // GetUnused19 returns the Unused19 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetUnused19() GetVMConfig200ResponseDataUnused0 {
+func (o *GetVMConfig200ResponseData) GetUnused19() string {
 	if o == nil || IsNil(o.Unused19) {
-		var ret GetVMConfig200ResponseDataUnused0
+		var ret string
 		return ret
 	}
 	return *o.Unused19
@@ -8430,7 +8656,7 @@ func (o *GetVMConfig200ResponseData) GetUnused19() GetVMConfig200ResponseDataUnu
 
 // GetUnused19Ok returns a tuple with the Unused19 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetUnused19Ok() (*GetVMConfig200ResponseDataUnused0, bool) {
+func (o *GetVMConfig200ResponseData) GetUnused19Ok() (*string, bool) {
 	if o == nil || IsNil(o.Unused19) {
 		return nil, false
 	}
@@ -8446,15 +8672,15 @@ func (o *GetVMConfig200ResponseData) HasUnused19() bool {
 	return false
 }
 
-// SetUnused19 gets a reference to the given GetVMConfig200ResponseDataUnused0 and assigns it to the Unused19 field.
-func (o *GetVMConfig200ResponseData) SetUnused19(v GetVMConfig200ResponseDataUnused0) {
+// SetUnused19 gets a reference to the given string and assigns it to the Unused19 field.
+func (o *GetVMConfig200ResponseData) SetUnused19(v string) {
 	o.Unused19 = &v
 }
 
 // GetUnused20 returns the Unused20 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetUnused20() GetVMConfig200ResponseDataUnused0 {
+func (o *GetVMConfig200ResponseData) GetUnused20() string {
 	if o == nil || IsNil(o.Unused20) {
-		var ret GetVMConfig200ResponseDataUnused0
+		var ret string
 		return ret
 	}
 	return *o.Unused20
@@ -8462,7 +8688,7 @@ func (o *GetVMConfig200ResponseData) GetUnused20() GetVMConfig200ResponseDataUnu
 
 // GetUnused20Ok returns a tuple with the Unused20 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetUnused20Ok() (*GetVMConfig200ResponseDataUnused0, bool) {
+func (o *GetVMConfig200ResponseData) GetUnused20Ok() (*string, bool) {
 	if o == nil || IsNil(o.Unused20) {
 		return nil, false
 	}
@@ -8478,15 +8704,15 @@ func (o *GetVMConfig200ResponseData) HasUnused20() bool {
 	return false
 }
 
-// SetUnused20 gets a reference to the given GetVMConfig200ResponseDataUnused0 and assigns it to the Unused20 field.
-func (o *GetVMConfig200ResponseData) SetUnused20(v GetVMConfig200ResponseDataUnused0) {
+// SetUnused20 gets a reference to the given string and assigns it to the Unused20 field.
+func (o *GetVMConfig200ResponseData) SetUnused20(v string) {
 	o.Unused20 = &v
 }
 
 // GetUnused21 returns the Unused21 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetUnused21() GetVMConfig200ResponseDataUnused0 {
+func (o *GetVMConfig200ResponseData) GetUnused21() string {
 	if o == nil || IsNil(o.Unused21) {
-		var ret GetVMConfig200ResponseDataUnused0
+		var ret string
 		return ret
 	}
 	return *o.Unused21
@@ -8494,7 +8720,7 @@ func (o *GetVMConfig200ResponseData) GetUnused21() GetVMConfig200ResponseDataUnu
 
 // GetUnused21Ok returns a tuple with the Unused21 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetUnused21Ok() (*GetVMConfig200ResponseDataUnused0, bool) {
+func (o *GetVMConfig200ResponseData) GetUnused21Ok() (*string, bool) {
 	if o == nil || IsNil(o.Unused21) {
 		return nil, false
 	}
@@ -8510,15 +8736,15 @@ func (o *GetVMConfig200ResponseData) HasUnused21() bool {
 	return false
 }
 
-// SetUnused21 gets a reference to the given GetVMConfig200ResponseDataUnused0 and assigns it to the Unused21 field.
-func (o *GetVMConfig200ResponseData) SetUnused21(v GetVMConfig200ResponseDataUnused0) {
+// SetUnused21 gets a reference to the given string and assigns it to the Unused21 field.
+func (o *GetVMConfig200ResponseData) SetUnused21(v string) {
 	o.Unused21 = &v
 }
 
 // GetUnused22 returns the Unused22 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetUnused22() GetVMConfig200ResponseDataUnused0 {
+func (o *GetVMConfig200ResponseData) GetUnused22() string {
 	if o == nil || IsNil(o.Unused22) {
-		var ret GetVMConfig200ResponseDataUnused0
+		var ret string
 		return ret
 	}
 	return *o.Unused22
@@ -8526,7 +8752,7 @@ func (o *GetVMConfig200ResponseData) GetUnused22() GetVMConfig200ResponseDataUnu
 
 // GetUnused22Ok returns a tuple with the Unused22 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetUnused22Ok() (*GetVMConfig200ResponseDataUnused0, bool) {
+func (o *GetVMConfig200ResponseData) GetUnused22Ok() (*string, bool) {
 	if o == nil || IsNil(o.Unused22) {
 		return nil, false
 	}
@@ -8542,15 +8768,15 @@ func (o *GetVMConfig200ResponseData) HasUnused22() bool {
 	return false
 }
 
-// SetUnused22 gets a reference to the given GetVMConfig200ResponseDataUnused0 and assigns it to the Unused22 field.
-func (o *GetVMConfig200ResponseData) SetUnused22(v GetVMConfig200ResponseDataUnused0) {
+// SetUnused22 gets a reference to the given string and assigns it to the Unused22 field.
+func (o *GetVMConfig200ResponseData) SetUnused22(v string) {
 	o.Unused22 = &v
 }
 
 // GetUnused23 returns the Unused23 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetUnused23() GetVMConfig200ResponseDataUnused0 {
+func (o *GetVMConfig200ResponseData) GetUnused23() string {
 	if o == nil || IsNil(o.Unused23) {
-		var ret GetVMConfig200ResponseDataUnused0
+		var ret string
 		return ret
 	}
 	return *o.Unused23
@@ -8558,7 +8784,7 @@ func (o *GetVMConfig200ResponseData) GetUnused23() GetVMConfig200ResponseDataUnu
 
 // GetUnused23Ok returns a tuple with the Unused23 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetUnused23Ok() (*GetVMConfig200ResponseDataUnused0, bool) {
+func (o *GetVMConfig200ResponseData) GetUnused23Ok() (*string, bool) {
 	if o == nil || IsNil(o.Unused23) {
 		return nil, false
 	}
@@ -8574,15 +8800,15 @@ func (o *GetVMConfig200ResponseData) HasUnused23() bool {
 	return false
 }
 
-// SetUnused23 gets a reference to the given GetVMConfig200ResponseDataUnused0 and assigns it to the Unused23 field.
-func (o *GetVMConfig200ResponseData) SetUnused23(v GetVMConfig200ResponseDataUnused0) {
+// SetUnused23 gets a reference to the given string and assigns it to the Unused23 field.
+func (o *GetVMConfig200ResponseData) SetUnused23(v string) {
 	o.Unused23 = &v
 }
 
 // GetUnused24 returns the Unused24 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetUnused24() GetVMConfig200ResponseDataUnused0 {
+func (o *GetVMConfig200ResponseData) GetUnused24() string {
 	if o == nil || IsNil(o.Unused24) {
-		var ret GetVMConfig200ResponseDataUnused0
+		var ret string
 		return ret
 	}
 	return *o.Unused24
@@ -8590,7 +8816,7 @@ func (o *GetVMConfig200ResponseData) GetUnused24() GetVMConfig200ResponseDataUnu
 
 // GetUnused24Ok returns a tuple with the Unused24 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetUnused24Ok() (*GetVMConfig200ResponseDataUnused0, bool) {
+func (o *GetVMConfig200ResponseData) GetUnused24Ok() (*string, bool) {
 	if o == nil || IsNil(o.Unused24) {
 		return nil, false
 	}
@@ -8606,15 +8832,15 @@ func (o *GetVMConfig200ResponseData) HasUnused24() bool {
 	return false
 }
 
-// SetUnused24 gets a reference to the given GetVMConfig200ResponseDataUnused0 and assigns it to the Unused24 field.
-func (o *GetVMConfig200ResponseData) SetUnused24(v GetVMConfig200ResponseDataUnused0) {
+// SetUnused24 gets a reference to the given string and assigns it to the Unused24 field.
+func (o *GetVMConfig200ResponseData) SetUnused24(v string) {
 	o.Unused24 = &v
 }
 
 // GetUnused25 returns the Unused25 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetUnused25() GetVMConfig200ResponseDataUnused0 {
+func (o *GetVMConfig200ResponseData) GetUnused25() string {
 	if o == nil || IsNil(o.Unused25) {
-		var ret GetVMConfig200ResponseDataUnused0
+		var ret string
 		return ret
 	}
 	return *o.Unused25
@@ -8622,7 +8848,7 @@ func (o *GetVMConfig200ResponseData) GetUnused25() GetVMConfig200ResponseDataUnu
 
 // GetUnused25Ok returns a tuple with the Unused25 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetUnused25Ok() (*GetVMConfig200ResponseDataUnused0, bool) {
+func (o *GetVMConfig200ResponseData) GetUnused25Ok() (*string, bool) {
 	if o == nil || IsNil(o.Unused25) {
 		return nil, false
 	}
@@ -8638,15 +8864,15 @@ func (o *GetVMConfig200ResponseData) HasUnused25() bool {
 	return false
 }
 
-// SetUnused25 gets a reference to the given GetVMConfig200ResponseDataUnused0 and assigns it to the Unused25 field.
-func (o *GetVMConfig200ResponseData) SetUnused25(v GetVMConfig200ResponseDataUnused0) {
+// SetUnused25 gets a reference to the given string and assigns it to the Unused25 field.
+func (o *GetVMConfig200ResponseData) SetUnused25(v string) {
 	o.Unused25 = &v
 }
 
 // GetUnused26 returns the Unused26 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetUnused26() GetVMConfig200ResponseDataUnused0 {
+func (o *GetVMConfig200ResponseData) GetUnused26() string {
 	if o == nil || IsNil(o.Unused26) {
-		var ret GetVMConfig200ResponseDataUnused0
+		var ret string
 		return ret
 	}
 	return *o.Unused26
@@ -8654,7 +8880,7 @@ func (o *GetVMConfig200ResponseData) GetUnused26() GetVMConfig200ResponseDataUnu
 
 // GetUnused26Ok returns a tuple with the Unused26 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetUnused26Ok() (*GetVMConfig200ResponseDataUnused0, bool) {
+func (o *GetVMConfig200ResponseData) GetUnused26Ok() (*string, bool) {
 	if o == nil || IsNil(o.Unused26) {
 		return nil, false
 	}
@@ -8670,15 +8896,15 @@ func (o *GetVMConfig200ResponseData) HasUnused26() bool {
 	return false
 }
 
-// SetUnused26 gets a reference to the given GetVMConfig200ResponseDataUnused0 and assigns it to the Unused26 field.
-func (o *GetVMConfig200ResponseData) SetUnused26(v GetVMConfig200ResponseDataUnused0) {
+// SetUnused26 gets a reference to the given string and assigns it to the Unused26 field.
+func (o *GetVMConfig200ResponseData) SetUnused26(v string) {
 	o.Unused26 = &v
 }
 
 // GetUnused27 returns the Unused27 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetUnused27() GetVMConfig200ResponseDataUnused0 {
+func (o *GetVMConfig200ResponseData) GetUnused27() string {
 	if o == nil || IsNil(o.Unused27) {
-		var ret GetVMConfig200ResponseDataUnused0
+		var ret string
 		return ret
 	}
 	return *o.Unused27
@@ -8686,7 +8912,7 @@ func (o *GetVMConfig200ResponseData) GetUnused27() GetVMConfig200ResponseDataUnu
 
 // GetUnused27Ok returns a tuple with the Unused27 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetUnused27Ok() (*GetVMConfig200ResponseDataUnused0, bool) {
+func (o *GetVMConfig200ResponseData) GetUnused27Ok() (*string, bool) {
 	if o == nil || IsNil(o.Unused27) {
 		return nil, false
 	}
@@ -8702,15 +8928,15 @@ func (o *GetVMConfig200ResponseData) HasUnused27() bool {
 	return false
 }
 
-// SetUnused27 gets a reference to the given GetVMConfig200ResponseDataUnused0 and assigns it to the Unused27 field.
-func (o *GetVMConfig200ResponseData) SetUnused27(v GetVMConfig200ResponseDataUnused0) {
+// SetUnused27 gets a reference to the given string and assigns it to the Unused27 field.
+func (o *GetVMConfig200ResponseData) SetUnused27(v string) {
 	o.Unused27 = &v
 }
 
 // GetUnused28 returns the Unused28 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetUnused28() GetVMConfig200ResponseDataUnused0 {
+func (o *GetVMConfig200ResponseData) GetUnused28() string {
 	if o == nil || IsNil(o.Unused28) {
-		var ret GetVMConfig200ResponseDataUnused0
+		var ret string
 		return ret
 	}
 	return *o.Unused28
@@ -8718,7 +8944,7 @@ func (o *GetVMConfig200ResponseData) GetUnused28() GetVMConfig200ResponseDataUnu
 
 // GetUnused28Ok returns a tuple with the Unused28 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetUnused28Ok() (*GetVMConfig200ResponseDataUnused0, bool) {
+func (o *GetVMConfig200ResponseData) GetUnused28Ok() (*string, bool) {
 	if o == nil || IsNil(o.Unused28) {
 		return nil, false
 	}
@@ -8734,15 +8960,15 @@ func (o *GetVMConfig200ResponseData) HasUnused28() bool {
 	return false
 }
 
-// SetUnused28 gets a reference to the given GetVMConfig200ResponseDataUnused0 and assigns it to the Unused28 field.
-func (o *GetVMConfig200ResponseData) SetUnused28(v GetVMConfig200ResponseDataUnused0) {
+// SetUnused28 gets a reference to the given string and assigns it to the Unused28 field.
+func (o *GetVMConfig200ResponseData) SetUnused28(v string) {
 	o.Unused28 = &v
 }
 
 // GetUnused29 returns the Unused29 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetUnused29() GetVMConfig200ResponseDataUnused0 {
+func (o *GetVMConfig200ResponseData) GetUnused29() string {
 	if o == nil || IsNil(o.Unused29) {
-		var ret GetVMConfig200ResponseDataUnused0
+		var ret string
 		return ret
 	}
 	return *o.Unused29
@@ -8750,7 +8976,7 @@ func (o *GetVMConfig200ResponseData) GetUnused29() GetVMConfig200ResponseDataUnu
 
 // GetUnused29Ok returns a tuple with the Unused29 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetUnused29Ok() (*GetVMConfig200ResponseDataUnused0, bool) {
+func (o *GetVMConfig200ResponseData) GetUnused29Ok() (*string, bool) {
 	if o == nil || IsNil(o.Unused29) {
 		return nil, false
 	}
@@ -8766,15 +8992,15 @@ func (o *GetVMConfig200ResponseData) HasUnused29() bool {
 	return false
 }
 
-// SetUnused29 gets a reference to the given GetVMConfig200ResponseDataUnused0 and assigns it to the Unused29 field.
-func (o *GetVMConfig200ResponseData) SetUnused29(v GetVMConfig200ResponseDataUnused0) {
+// SetUnused29 gets a reference to the given string and assigns it to the Unused29 field.
+func (o *GetVMConfig200ResponseData) SetUnused29(v string) {
 	o.Unused29 = &v
 }
 
 // GetUsb0 returns the Usb0 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetUsb0() GetVMConfig200ResponseDataUsb0 {
+func (o *GetVMConfig200ResponseData) GetUsb0() string {
 	if o == nil || IsNil(o.Usb0) {
-		var ret GetVMConfig200ResponseDataUsb0
+		var ret string
 		return ret
 	}
 	return *o.Usb0
@@ -8782,7 +9008,7 @@ func (o *GetVMConfig200ResponseData) GetUsb0() GetVMConfig200ResponseDataUsb0 {
 
 // GetUsb0Ok returns a tuple with the Usb0 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetUsb0Ok() (*GetVMConfig200ResponseDataUsb0, bool) {
+func (o *GetVMConfig200ResponseData) GetUsb0Ok() (*string, bool) {
 	if o == nil || IsNil(o.Usb0) {
 		return nil, false
 	}
@@ -8798,15 +9024,15 @@ func (o *GetVMConfig200ResponseData) HasUsb0() bool {
 	return false
 }
 
-// SetUsb0 gets a reference to the given GetVMConfig200ResponseDataUsb0 and assigns it to the Usb0 field.
-func (o *GetVMConfig200ResponseData) SetUsb0(v GetVMConfig200ResponseDataUsb0) {
+// SetUsb0 gets a reference to the given string and assigns it to the Usb0 field.
+func (o *GetVMConfig200ResponseData) SetUsb0(v string) {
 	o.Usb0 = &v
 }
 
 // GetUsb1 returns the Usb1 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetUsb1() GetVMConfig200ResponseDataUsb0 {
+func (o *GetVMConfig200ResponseData) GetUsb1() string {
 	if o == nil || IsNil(o.Usb1) {
-		var ret GetVMConfig200ResponseDataUsb0
+		var ret string
 		return ret
 	}
 	return *o.Usb1
@@ -8814,7 +9040,7 @@ func (o *GetVMConfig200ResponseData) GetUsb1() GetVMConfig200ResponseDataUsb0 {
 
 // GetUsb1Ok returns a tuple with the Usb1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetUsb1Ok() (*GetVMConfig200ResponseDataUsb0, bool) {
+func (o *GetVMConfig200ResponseData) GetUsb1Ok() (*string, bool) {
 	if o == nil || IsNil(o.Usb1) {
 		return nil, false
 	}
@@ -8830,15 +9056,15 @@ func (o *GetVMConfig200ResponseData) HasUsb1() bool {
 	return false
 }
 
-// SetUsb1 gets a reference to the given GetVMConfig200ResponseDataUsb0 and assigns it to the Usb1 field.
-func (o *GetVMConfig200ResponseData) SetUsb1(v GetVMConfig200ResponseDataUsb0) {
+// SetUsb1 gets a reference to the given string and assigns it to the Usb1 field.
+func (o *GetVMConfig200ResponseData) SetUsb1(v string) {
 	o.Usb1 = &v
 }
 
 // GetUsb2 returns the Usb2 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetUsb2() GetVMConfig200ResponseDataUsb0 {
+func (o *GetVMConfig200ResponseData) GetUsb2() string {
 	if o == nil || IsNil(o.Usb2) {
-		var ret GetVMConfig200ResponseDataUsb0
+		var ret string
 		return ret
 	}
 	return *o.Usb2
@@ -8846,7 +9072,7 @@ func (o *GetVMConfig200ResponseData) GetUsb2() GetVMConfig200ResponseDataUsb0 {
 
 // GetUsb2Ok returns a tuple with the Usb2 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetUsb2Ok() (*GetVMConfig200ResponseDataUsb0, bool) {
+func (o *GetVMConfig200ResponseData) GetUsb2Ok() (*string, bool) {
 	if o == nil || IsNil(o.Usb2) {
 		return nil, false
 	}
@@ -8862,15 +9088,15 @@ func (o *GetVMConfig200ResponseData) HasUsb2() bool {
 	return false
 }
 
-// SetUsb2 gets a reference to the given GetVMConfig200ResponseDataUsb0 and assigns it to the Usb2 field.
-func (o *GetVMConfig200ResponseData) SetUsb2(v GetVMConfig200ResponseDataUsb0) {
+// SetUsb2 gets a reference to the given string and assigns it to the Usb2 field.
+func (o *GetVMConfig200ResponseData) SetUsb2(v string) {
 	o.Usb2 = &v
 }
 
 // GetUsb3 returns the Usb3 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetUsb3() GetVMConfig200ResponseDataUsb0 {
+func (o *GetVMConfig200ResponseData) GetUsb3() string {
 	if o == nil || IsNil(o.Usb3) {
-		var ret GetVMConfig200ResponseDataUsb0
+		var ret string
 		return ret
 	}
 	return *o.Usb3
@@ -8878,7 +9104,7 @@ func (o *GetVMConfig200ResponseData) GetUsb3() GetVMConfig200ResponseDataUsb0 {
 
 // GetUsb3Ok returns a tuple with the Usb3 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetUsb3Ok() (*GetVMConfig200ResponseDataUsb0, bool) {
+func (o *GetVMConfig200ResponseData) GetUsb3Ok() (*string, bool) {
 	if o == nil || IsNil(o.Usb3) {
 		return nil, false
 	}
@@ -8894,8 +9120,8 @@ func (o *GetVMConfig200ResponseData) HasUsb3() bool {
 	return false
 }
 
-// SetUsb3 gets a reference to the given GetVMConfig200ResponseDataUsb0 and assigns it to the Usb3 field.
-func (o *GetVMConfig200ResponseData) SetUsb3(v GetVMConfig200ResponseDataUsb0) {
+// SetUsb3 gets a reference to the given string and assigns it to the Usb3 field.
+func (o *GetVMConfig200ResponseData) SetUsb3(v string) {
 	o.Usb3 = &v
 }
 
@@ -8932,9 +9158,9 @@ func (o *GetVMConfig200ResponseData) SetVcpus(v int64) {
 }
 
 // GetVga returns the Vga field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetVga() GetVMConfig200ResponseDataVga {
+func (o *GetVMConfig200ResponseData) GetVga() string {
 	if o == nil || IsNil(o.Vga) {
-		var ret GetVMConfig200ResponseDataVga
+		var ret string
 		return ret
 	}
 	return *o.Vga
@@ -8942,7 +9168,7 @@ func (o *GetVMConfig200ResponseData) GetVga() GetVMConfig200ResponseDataVga {
 
 // GetVgaOk returns a tuple with the Vga field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetVgaOk() (*GetVMConfig200ResponseDataVga, bool) {
+func (o *GetVMConfig200ResponseData) GetVgaOk() (*string, bool) {
 	if o == nil || IsNil(o.Vga) {
 		return nil, false
 	}
@@ -8958,15 +9184,15 @@ func (o *GetVMConfig200ResponseData) HasVga() bool {
 	return false
 }
 
-// SetVga gets a reference to the given GetVMConfig200ResponseDataVga and assigns it to the Vga field.
-func (o *GetVMConfig200ResponseData) SetVga(v GetVMConfig200ResponseDataVga) {
+// SetVga gets a reference to the given string and assigns it to the Vga field.
+func (o *GetVMConfig200ResponseData) SetVga(v string) {
 	o.Vga = &v
 }
 
 // GetVirtio0 returns the Virtio0 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetVirtio0() GetVMConfig200ResponseDataVirtio0 {
+func (o *GetVMConfig200ResponseData) GetVirtio0() string {
 	if o == nil || IsNil(o.Virtio0) {
-		var ret GetVMConfig200ResponseDataVirtio0
+		var ret string
 		return ret
 	}
 	return *o.Virtio0
@@ -8974,7 +9200,7 @@ func (o *GetVMConfig200ResponseData) GetVirtio0() GetVMConfig200ResponseDataVirt
 
 // GetVirtio0Ok returns a tuple with the Virtio0 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetVirtio0Ok() (*GetVMConfig200ResponseDataVirtio0, bool) {
+func (o *GetVMConfig200ResponseData) GetVirtio0Ok() (*string, bool) {
 	if o == nil || IsNil(o.Virtio0) {
 		return nil, false
 	}
@@ -8990,15 +9216,15 @@ func (o *GetVMConfig200ResponseData) HasVirtio0() bool {
 	return false
 }
 
-// SetVirtio0 gets a reference to the given GetVMConfig200ResponseDataVirtio0 and assigns it to the Virtio0 field.
-func (o *GetVMConfig200ResponseData) SetVirtio0(v GetVMConfig200ResponseDataVirtio0) {
+// SetVirtio0 gets a reference to the given string and assigns it to the Virtio0 field.
+func (o *GetVMConfig200ResponseData) SetVirtio0(v string) {
 	o.Virtio0 = &v
 }
 
 // GetVirtio1 returns the Virtio1 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetVirtio1() GetVMConfig200ResponseDataVirtio0 {
+func (o *GetVMConfig200ResponseData) GetVirtio1() string {
 	if o == nil || IsNil(o.Virtio1) {
-		var ret GetVMConfig200ResponseDataVirtio0
+		var ret string
 		return ret
 	}
 	return *o.Virtio1
@@ -9006,7 +9232,7 @@ func (o *GetVMConfig200ResponseData) GetVirtio1() GetVMConfig200ResponseDataVirt
 
 // GetVirtio1Ok returns a tuple with the Virtio1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetVirtio1Ok() (*GetVMConfig200ResponseDataVirtio0, bool) {
+func (o *GetVMConfig200ResponseData) GetVirtio1Ok() (*string, bool) {
 	if o == nil || IsNil(o.Virtio1) {
 		return nil, false
 	}
@@ -9022,15 +9248,15 @@ func (o *GetVMConfig200ResponseData) HasVirtio1() bool {
 	return false
 }
 
-// SetVirtio1 gets a reference to the given GetVMConfig200ResponseDataVirtio0 and assigns it to the Virtio1 field.
-func (o *GetVMConfig200ResponseData) SetVirtio1(v GetVMConfig200ResponseDataVirtio0) {
+// SetVirtio1 gets a reference to the given string and assigns it to the Virtio1 field.
+func (o *GetVMConfig200ResponseData) SetVirtio1(v string) {
 	o.Virtio1 = &v
 }
 
 // GetVirtio2 returns the Virtio2 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetVirtio2() GetVMConfig200ResponseDataVirtio0 {
+func (o *GetVMConfig200ResponseData) GetVirtio2() string {
 	if o == nil || IsNil(o.Virtio2) {
-		var ret GetVMConfig200ResponseDataVirtio0
+		var ret string
 		return ret
 	}
 	return *o.Virtio2
@@ -9038,7 +9264,7 @@ func (o *GetVMConfig200ResponseData) GetVirtio2() GetVMConfig200ResponseDataVirt
 
 // GetVirtio2Ok returns a tuple with the Virtio2 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetVirtio2Ok() (*GetVMConfig200ResponseDataVirtio0, bool) {
+func (o *GetVMConfig200ResponseData) GetVirtio2Ok() (*string, bool) {
 	if o == nil || IsNil(o.Virtio2) {
 		return nil, false
 	}
@@ -9054,15 +9280,15 @@ func (o *GetVMConfig200ResponseData) HasVirtio2() bool {
 	return false
 }
 
-// SetVirtio2 gets a reference to the given GetVMConfig200ResponseDataVirtio0 and assigns it to the Virtio2 field.
-func (o *GetVMConfig200ResponseData) SetVirtio2(v GetVMConfig200ResponseDataVirtio0) {
+// SetVirtio2 gets a reference to the given string and assigns it to the Virtio2 field.
+func (o *GetVMConfig200ResponseData) SetVirtio2(v string) {
 	o.Virtio2 = &v
 }
 
 // GetVirtio3 returns the Virtio3 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetVirtio3() GetVMConfig200ResponseDataVirtio0 {
+func (o *GetVMConfig200ResponseData) GetVirtio3() string {
 	if o == nil || IsNil(o.Virtio3) {
-		var ret GetVMConfig200ResponseDataVirtio0
+		var ret string
 		return ret
 	}
 	return *o.Virtio3
@@ -9070,7 +9296,7 @@ func (o *GetVMConfig200ResponseData) GetVirtio3() GetVMConfig200ResponseDataVirt
 
 // GetVirtio3Ok returns a tuple with the Virtio3 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetVirtio3Ok() (*GetVMConfig200ResponseDataVirtio0, bool) {
+func (o *GetVMConfig200ResponseData) GetVirtio3Ok() (*string, bool) {
 	if o == nil || IsNil(o.Virtio3) {
 		return nil, false
 	}
@@ -9086,15 +9312,15 @@ func (o *GetVMConfig200ResponseData) HasVirtio3() bool {
 	return false
 }
 
-// SetVirtio3 gets a reference to the given GetVMConfig200ResponseDataVirtio0 and assigns it to the Virtio3 field.
-func (o *GetVMConfig200ResponseData) SetVirtio3(v GetVMConfig200ResponseDataVirtio0) {
+// SetVirtio3 gets a reference to the given string and assigns it to the Virtio3 field.
+func (o *GetVMConfig200ResponseData) SetVirtio3(v string) {
 	o.Virtio3 = &v
 }
 
 // GetVirtio4 returns the Virtio4 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetVirtio4() GetVMConfig200ResponseDataVirtio0 {
+func (o *GetVMConfig200ResponseData) GetVirtio4() string {
 	if o == nil || IsNil(o.Virtio4) {
-		var ret GetVMConfig200ResponseDataVirtio0
+		var ret string
 		return ret
 	}
 	return *o.Virtio4
@@ -9102,7 +9328,7 @@ func (o *GetVMConfig200ResponseData) GetVirtio4() GetVMConfig200ResponseDataVirt
 
 // GetVirtio4Ok returns a tuple with the Virtio4 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetVirtio4Ok() (*GetVMConfig200ResponseDataVirtio0, bool) {
+func (o *GetVMConfig200ResponseData) GetVirtio4Ok() (*string, bool) {
 	if o == nil || IsNil(o.Virtio4) {
 		return nil, false
 	}
@@ -9118,15 +9344,15 @@ func (o *GetVMConfig200ResponseData) HasVirtio4() bool {
 	return false
 }
 
-// SetVirtio4 gets a reference to the given GetVMConfig200ResponseDataVirtio0 and assigns it to the Virtio4 field.
-func (o *GetVMConfig200ResponseData) SetVirtio4(v GetVMConfig200ResponseDataVirtio0) {
+// SetVirtio4 gets a reference to the given string and assigns it to the Virtio4 field.
+func (o *GetVMConfig200ResponseData) SetVirtio4(v string) {
 	o.Virtio4 = &v
 }
 
 // GetVirtio5 returns the Virtio5 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetVirtio5() GetVMConfig200ResponseDataVirtio0 {
+func (o *GetVMConfig200ResponseData) GetVirtio5() string {
 	if o == nil || IsNil(o.Virtio5) {
-		var ret GetVMConfig200ResponseDataVirtio0
+		var ret string
 		return ret
 	}
 	return *o.Virtio5
@@ -9134,7 +9360,7 @@ func (o *GetVMConfig200ResponseData) GetVirtio5() GetVMConfig200ResponseDataVirt
 
 // GetVirtio5Ok returns a tuple with the Virtio5 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetVirtio5Ok() (*GetVMConfig200ResponseDataVirtio0, bool) {
+func (o *GetVMConfig200ResponseData) GetVirtio5Ok() (*string, bool) {
 	if o == nil || IsNil(o.Virtio5) {
 		return nil, false
 	}
@@ -9150,15 +9376,15 @@ func (o *GetVMConfig200ResponseData) HasVirtio5() bool {
 	return false
 }
 
-// SetVirtio5 gets a reference to the given GetVMConfig200ResponseDataVirtio0 and assigns it to the Virtio5 field.
-func (o *GetVMConfig200ResponseData) SetVirtio5(v GetVMConfig200ResponseDataVirtio0) {
+// SetVirtio5 gets a reference to the given string and assigns it to the Virtio5 field.
+func (o *GetVMConfig200ResponseData) SetVirtio5(v string) {
 	o.Virtio5 = &v
 }
 
 // GetVirtio6 returns the Virtio6 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetVirtio6() GetVMConfig200ResponseDataVirtio0 {
+func (o *GetVMConfig200ResponseData) GetVirtio6() string {
 	if o == nil || IsNil(o.Virtio6) {
-		var ret GetVMConfig200ResponseDataVirtio0
+		var ret string
 		return ret
 	}
 	return *o.Virtio6
@@ -9166,7 +9392,7 @@ func (o *GetVMConfig200ResponseData) GetVirtio6() GetVMConfig200ResponseDataVirt
 
 // GetVirtio6Ok returns a tuple with the Virtio6 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetVirtio6Ok() (*GetVMConfig200ResponseDataVirtio0, bool) {
+func (o *GetVMConfig200ResponseData) GetVirtio6Ok() (*string, bool) {
 	if o == nil || IsNil(o.Virtio6) {
 		return nil, false
 	}
@@ -9182,15 +9408,15 @@ func (o *GetVMConfig200ResponseData) HasVirtio6() bool {
 	return false
 }
 
-// SetVirtio6 gets a reference to the given GetVMConfig200ResponseDataVirtio0 and assigns it to the Virtio6 field.
-func (o *GetVMConfig200ResponseData) SetVirtio6(v GetVMConfig200ResponseDataVirtio0) {
+// SetVirtio6 gets a reference to the given string and assigns it to the Virtio6 field.
+func (o *GetVMConfig200ResponseData) SetVirtio6(v string) {
 	o.Virtio6 = &v
 }
 
 // GetVirtio7 returns the Virtio7 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetVirtio7() GetVMConfig200ResponseDataVirtio0 {
+func (o *GetVMConfig200ResponseData) GetVirtio7() string {
 	if o == nil || IsNil(o.Virtio7) {
-		var ret GetVMConfig200ResponseDataVirtio0
+		var ret string
 		return ret
 	}
 	return *o.Virtio7
@@ -9198,7 +9424,7 @@ func (o *GetVMConfig200ResponseData) GetVirtio7() GetVMConfig200ResponseDataVirt
 
 // GetVirtio7Ok returns a tuple with the Virtio7 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetVirtio7Ok() (*GetVMConfig200ResponseDataVirtio0, bool) {
+func (o *GetVMConfig200ResponseData) GetVirtio7Ok() (*string, bool) {
 	if o == nil || IsNil(o.Virtio7) {
 		return nil, false
 	}
@@ -9214,15 +9440,15 @@ func (o *GetVMConfig200ResponseData) HasVirtio7() bool {
 	return false
 }
 
-// SetVirtio7 gets a reference to the given GetVMConfig200ResponseDataVirtio0 and assigns it to the Virtio7 field.
-func (o *GetVMConfig200ResponseData) SetVirtio7(v GetVMConfig200ResponseDataVirtio0) {
+// SetVirtio7 gets a reference to the given string and assigns it to the Virtio7 field.
+func (o *GetVMConfig200ResponseData) SetVirtio7(v string) {
 	o.Virtio7 = &v
 }
 
 // GetVirtio8 returns the Virtio8 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetVirtio8() GetVMConfig200ResponseDataVirtio0 {
+func (o *GetVMConfig200ResponseData) GetVirtio8() string {
 	if o == nil || IsNil(o.Virtio8) {
-		var ret GetVMConfig200ResponseDataVirtio0
+		var ret string
 		return ret
 	}
 	return *o.Virtio8
@@ -9230,7 +9456,7 @@ func (o *GetVMConfig200ResponseData) GetVirtio8() GetVMConfig200ResponseDataVirt
 
 // GetVirtio8Ok returns a tuple with the Virtio8 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetVirtio8Ok() (*GetVMConfig200ResponseDataVirtio0, bool) {
+func (o *GetVMConfig200ResponseData) GetVirtio8Ok() (*string, bool) {
 	if o == nil || IsNil(o.Virtio8) {
 		return nil, false
 	}
@@ -9246,15 +9472,15 @@ func (o *GetVMConfig200ResponseData) HasVirtio8() bool {
 	return false
 }
 
-// SetVirtio8 gets a reference to the given GetVMConfig200ResponseDataVirtio0 and assigns it to the Virtio8 field.
-func (o *GetVMConfig200ResponseData) SetVirtio8(v GetVMConfig200ResponseDataVirtio0) {
+// SetVirtio8 gets a reference to the given string and assigns it to the Virtio8 field.
+func (o *GetVMConfig200ResponseData) SetVirtio8(v string) {
 	o.Virtio8 = &v
 }
 
 // GetVirtio9 returns the Virtio9 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetVirtio9() GetVMConfig200ResponseDataVirtio0 {
+func (o *GetVMConfig200ResponseData) GetVirtio9() string {
 	if o == nil || IsNil(o.Virtio9) {
-		var ret GetVMConfig200ResponseDataVirtio0
+		var ret string
 		return ret
 	}
 	return *o.Virtio9
@@ -9262,7 +9488,7 @@ func (o *GetVMConfig200ResponseData) GetVirtio9() GetVMConfig200ResponseDataVirt
 
 // GetVirtio9Ok returns a tuple with the Virtio9 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetVirtio9Ok() (*GetVMConfig200ResponseDataVirtio0, bool) {
+func (o *GetVMConfig200ResponseData) GetVirtio9Ok() (*string, bool) {
 	if o == nil || IsNil(o.Virtio9) {
 		return nil, false
 	}
@@ -9278,15 +9504,15 @@ func (o *GetVMConfig200ResponseData) HasVirtio9() bool {
 	return false
 }
 
-// SetVirtio9 gets a reference to the given GetVMConfig200ResponseDataVirtio0 and assigns it to the Virtio9 field.
-func (o *GetVMConfig200ResponseData) SetVirtio9(v GetVMConfig200ResponseDataVirtio0) {
+// SetVirtio9 gets a reference to the given string and assigns it to the Virtio9 field.
+func (o *GetVMConfig200ResponseData) SetVirtio9(v string) {
 	o.Virtio9 = &v
 }
 
 // GetVirtio10 returns the Virtio10 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetVirtio10() GetVMConfig200ResponseDataVirtio0 {
+func (o *GetVMConfig200ResponseData) GetVirtio10() string {
 	if o == nil || IsNil(o.Virtio10) {
-		var ret GetVMConfig200ResponseDataVirtio0
+		var ret string
 		return ret
 	}
 	return *o.Virtio10
@@ -9294,7 +9520,7 @@ func (o *GetVMConfig200ResponseData) GetVirtio10() GetVMConfig200ResponseDataVir
 
 // GetVirtio10Ok returns a tuple with the Virtio10 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetVirtio10Ok() (*GetVMConfig200ResponseDataVirtio0, bool) {
+func (o *GetVMConfig200ResponseData) GetVirtio10Ok() (*string, bool) {
 	if o == nil || IsNil(o.Virtio10) {
 		return nil, false
 	}
@@ -9310,15 +9536,15 @@ func (o *GetVMConfig200ResponseData) HasVirtio10() bool {
 	return false
 }
 
-// SetVirtio10 gets a reference to the given GetVMConfig200ResponseDataVirtio0 and assigns it to the Virtio10 field.
-func (o *GetVMConfig200ResponseData) SetVirtio10(v GetVMConfig200ResponseDataVirtio0) {
+// SetVirtio10 gets a reference to the given string and assigns it to the Virtio10 field.
+func (o *GetVMConfig200ResponseData) SetVirtio10(v string) {
 	o.Virtio10 = &v
 }
 
 // GetVirtio11 returns the Virtio11 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetVirtio11() GetVMConfig200ResponseDataVirtio0 {
+func (o *GetVMConfig200ResponseData) GetVirtio11() string {
 	if o == nil || IsNil(o.Virtio11) {
-		var ret GetVMConfig200ResponseDataVirtio0
+		var ret string
 		return ret
 	}
 	return *o.Virtio11
@@ -9326,7 +9552,7 @@ func (o *GetVMConfig200ResponseData) GetVirtio11() GetVMConfig200ResponseDataVir
 
 // GetVirtio11Ok returns a tuple with the Virtio11 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetVirtio11Ok() (*GetVMConfig200ResponseDataVirtio0, bool) {
+func (o *GetVMConfig200ResponseData) GetVirtio11Ok() (*string, bool) {
 	if o == nil || IsNil(o.Virtio11) {
 		return nil, false
 	}
@@ -9342,15 +9568,15 @@ func (o *GetVMConfig200ResponseData) HasVirtio11() bool {
 	return false
 }
 
-// SetVirtio11 gets a reference to the given GetVMConfig200ResponseDataVirtio0 and assigns it to the Virtio11 field.
-func (o *GetVMConfig200ResponseData) SetVirtio11(v GetVMConfig200ResponseDataVirtio0) {
+// SetVirtio11 gets a reference to the given string and assigns it to the Virtio11 field.
+func (o *GetVMConfig200ResponseData) SetVirtio11(v string) {
 	o.Virtio11 = &v
 }
 
 // GetVirtio12 returns the Virtio12 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetVirtio12() GetVMConfig200ResponseDataVirtio0 {
+func (o *GetVMConfig200ResponseData) GetVirtio12() string {
 	if o == nil || IsNil(o.Virtio12) {
-		var ret GetVMConfig200ResponseDataVirtio0
+		var ret string
 		return ret
 	}
 	return *o.Virtio12
@@ -9358,7 +9584,7 @@ func (o *GetVMConfig200ResponseData) GetVirtio12() GetVMConfig200ResponseDataVir
 
 // GetVirtio12Ok returns a tuple with the Virtio12 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetVirtio12Ok() (*GetVMConfig200ResponseDataVirtio0, bool) {
+func (o *GetVMConfig200ResponseData) GetVirtio12Ok() (*string, bool) {
 	if o == nil || IsNil(o.Virtio12) {
 		return nil, false
 	}
@@ -9374,15 +9600,15 @@ func (o *GetVMConfig200ResponseData) HasVirtio12() bool {
 	return false
 }
 
-// SetVirtio12 gets a reference to the given GetVMConfig200ResponseDataVirtio0 and assigns it to the Virtio12 field.
-func (o *GetVMConfig200ResponseData) SetVirtio12(v GetVMConfig200ResponseDataVirtio0) {
+// SetVirtio12 gets a reference to the given string and assigns it to the Virtio12 field.
+func (o *GetVMConfig200ResponseData) SetVirtio12(v string) {
 	o.Virtio12 = &v
 }
 
 // GetVirtio13 returns the Virtio13 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetVirtio13() GetVMConfig200ResponseDataVirtio0 {
+func (o *GetVMConfig200ResponseData) GetVirtio13() string {
 	if o == nil || IsNil(o.Virtio13) {
-		var ret GetVMConfig200ResponseDataVirtio0
+		var ret string
 		return ret
 	}
 	return *o.Virtio13
@@ -9390,7 +9616,7 @@ func (o *GetVMConfig200ResponseData) GetVirtio13() GetVMConfig200ResponseDataVir
 
 // GetVirtio13Ok returns a tuple with the Virtio13 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetVirtio13Ok() (*GetVMConfig200ResponseDataVirtio0, bool) {
+func (o *GetVMConfig200ResponseData) GetVirtio13Ok() (*string, bool) {
 	if o == nil || IsNil(o.Virtio13) {
 		return nil, false
 	}
@@ -9406,15 +9632,15 @@ func (o *GetVMConfig200ResponseData) HasVirtio13() bool {
 	return false
 }
 
-// SetVirtio13 gets a reference to the given GetVMConfig200ResponseDataVirtio0 and assigns it to the Virtio13 field.
-func (o *GetVMConfig200ResponseData) SetVirtio13(v GetVMConfig200ResponseDataVirtio0) {
+// SetVirtio13 gets a reference to the given string and assigns it to the Virtio13 field.
+func (o *GetVMConfig200ResponseData) SetVirtio13(v string) {
 	o.Virtio13 = &v
 }
 
 // GetVirtio14 returns the Virtio14 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetVirtio14() GetVMConfig200ResponseDataVirtio0 {
+func (o *GetVMConfig200ResponseData) GetVirtio14() string {
 	if o == nil || IsNil(o.Virtio14) {
-		var ret GetVMConfig200ResponseDataVirtio0
+		var ret string
 		return ret
 	}
 	return *o.Virtio14
@@ -9422,7 +9648,7 @@ func (o *GetVMConfig200ResponseData) GetVirtio14() GetVMConfig200ResponseDataVir
 
 // GetVirtio14Ok returns a tuple with the Virtio14 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetVirtio14Ok() (*GetVMConfig200ResponseDataVirtio0, bool) {
+func (o *GetVMConfig200ResponseData) GetVirtio14Ok() (*string, bool) {
 	if o == nil || IsNil(o.Virtio14) {
 		return nil, false
 	}
@@ -9438,15 +9664,15 @@ func (o *GetVMConfig200ResponseData) HasVirtio14() bool {
 	return false
 }
 
-// SetVirtio14 gets a reference to the given GetVMConfig200ResponseDataVirtio0 and assigns it to the Virtio14 field.
-func (o *GetVMConfig200ResponseData) SetVirtio14(v GetVMConfig200ResponseDataVirtio0) {
+// SetVirtio14 gets a reference to the given string and assigns it to the Virtio14 field.
+func (o *GetVMConfig200ResponseData) SetVirtio14(v string) {
 	o.Virtio14 = &v
 }
 
 // GetVirtio15 returns the Virtio15 field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetVirtio15() GetVMConfig200ResponseDataVirtio0 {
+func (o *GetVMConfig200ResponseData) GetVirtio15() string {
 	if o == nil || IsNil(o.Virtio15) {
-		var ret GetVMConfig200ResponseDataVirtio0
+		var ret string
 		return ret
 	}
 	return *o.Virtio15
@@ -9454,7 +9680,7 @@ func (o *GetVMConfig200ResponseData) GetVirtio15() GetVMConfig200ResponseDataVir
 
 // GetVirtio15Ok returns a tuple with the Virtio15 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetVirtio15Ok() (*GetVMConfig200ResponseDataVirtio0, bool) {
+func (o *GetVMConfig200ResponseData) GetVirtio15Ok() (*string, bool) {
 	if o == nil || IsNil(o.Virtio15) {
 		return nil, false
 	}
@@ -9470,8 +9696,8 @@ func (o *GetVMConfig200ResponseData) HasVirtio15() bool {
 	return false
 }
 
-// SetVirtio15 gets a reference to the given GetVMConfig200ResponseDataVirtio0 and assigns it to the Virtio15 field.
-func (o *GetVMConfig200ResponseData) SetVirtio15(v GetVMConfig200ResponseDataVirtio0) {
+// SetVirtio15 gets a reference to the given string and assigns it to the Virtio15 field.
+func (o *GetVMConfig200ResponseData) SetVirtio15(v string) {
 	o.Virtio15 = &v
 }
 
@@ -9540,9 +9766,9 @@ func (o *GetVMConfig200ResponseData) SetVmstatestorage(v string) {
 }
 
 // GetWatchdog returns the Watchdog field value if set, zero value otherwise.
-func (o *GetVMConfig200ResponseData) GetWatchdog() GetVMConfig200ResponseDataWatchdog {
+func (o *GetVMConfig200ResponseData) GetWatchdog() string {
 	if o == nil || IsNil(o.Watchdog) {
-		var ret GetVMConfig200ResponseDataWatchdog
+		var ret string
 		return ret
 	}
 	return *o.Watchdog
@@ -9550,7 +9776,7 @@ func (o *GetVMConfig200ResponseData) GetWatchdog() GetVMConfig200ResponseDataWat
 
 // GetWatchdogOk returns a tuple with the Watchdog field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMConfig200ResponseData) GetWatchdogOk() (*GetVMConfig200ResponseDataWatchdog, bool) {
+func (o *GetVMConfig200ResponseData) GetWatchdogOk() (*string, bool) {
 	if o == nil || IsNil(o.Watchdog) {
 		return nil, false
 	}
@@ -9566,8 +9792,8 @@ func (o *GetVMConfig200ResponseData) HasWatchdog() bool {
 	return false
 }
 
-// SetWatchdog gets a reference to the given GetVMConfig200ResponseDataWatchdog and assigns it to the Watchdog field.
-func (o *GetVMConfig200ResponseData) SetWatchdog(v GetVMConfig200ResponseDataWatchdog) {
+// SetWatchdog gets a reference to the given string and assigns it to the Watchdog field.
+func (o *GetVMConfig200ResponseData) SetWatchdog(v string) {
 	o.Watchdog = &v
 }
 
@@ -9589,6 +9815,9 @@ func (o GetVMConfig200ResponseData) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Agent) {
 		toSerialize["agent"] = o.Agent
+	}
+	if !IsNil(o.AmdSev) {
+		toSerialize["amd-sev"] = o.AmdSev
 	}
 	if !IsNil(o.Arch) {
 		toSerialize["arch"] = o.Arch

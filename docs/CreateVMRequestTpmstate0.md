@@ -4,17 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**File** | Pointer to **string** | The drive&#39;s backing volume. | [optional] 
-**ImportFrom** | Pointer to **string** | Create a new disk, importing from this source (volume ID or absolute path). When an absolute path is specified, it&#39;s up to you to ensure that the source is not actively used by another process during the import! | [optional] 
-**Size** | Pointer to **string** | Disk size. This is purely informational and has no effect. | [optional] 
-**Version** | Pointer to **string** | The TPM interface version. v2.0 is newer and should be preferred. Note that this cannot be changed later on. | [optional] 
-**Volume** | Pointer to **string** |  | [optional] 
+**File** | **string** |  | 
+**ImportFrom** | Pointer to **string** |  | [optional] 
+**Size** | Pointer to **string** |  | [optional] 
+**Version** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
 ### NewCreateVMRequestTpmstate0
 
-`func NewCreateVMRequestTpmstate0() *CreateVMRequestTpmstate0`
+`func NewCreateVMRequestTpmstate0(file string, ) *CreateVMRequestTpmstate0`
 
 NewCreateVMRequestTpmstate0 instantiates a new CreateVMRequestTpmstate0 object
 This constructor will assign default values to properties that have it defined,
@@ -48,11 +47,6 @@ and a boolean to check if the value has been set.
 
 SetFile sets File field to given value.
 
-### HasFile
-
-`func (o *CreateVMRequestTpmstate0) HasFile() bool`
-
-HasFile returns a boolean if a field has been set.
 
 ### GetImportFrom
 
@@ -128,31 +122,6 @@ SetVersion sets Version field to given value.
 `func (o *CreateVMRequestTpmstate0) HasVersion() bool`
 
 HasVersion returns a boolean if a field has been set.
-
-### GetVolume
-
-`func (o *CreateVMRequestTpmstate0) GetVolume() string`
-
-GetVolume returns the Volume field if non-nil, zero value otherwise.
-
-### GetVolumeOk
-
-`func (o *CreateVMRequestTpmstate0) GetVolumeOk() (*string, bool)`
-
-GetVolumeOk returns a tuple with the Volume field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetVolume
-
-`func (o *CreateVMRequestTpmstate0) SetVolume(v string)`
-
-SetVolume sets Volume field to given value.
-
-### HasVolume
-
-`func (o *CreateVMRequestTpmstate0) HasVolume() bool`
-
-HasVolume returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

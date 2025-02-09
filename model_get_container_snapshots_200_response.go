@@ -3,7 +3,7 @@ ProxMox VE API
 
 ProxMox VE API
 
-API version: 8.0
+API version: 8.3
 Contact: baldur@email.de
 */
 
@@ -20,6 +20,7 @@ var _ MappedNullable = &GetContainerSnapshots200Response{}
 
 // GetContainerSnapshots200Response struct for GetContainerSnapshots200Response
 type GetContainerSnapshots200Response struct {
+	// 
 	Data []GetContainerSnapshots200ResponseDataInner `json:"data,omitempty"`
 	Errors []string `json:"errors,omitempty"`
 }

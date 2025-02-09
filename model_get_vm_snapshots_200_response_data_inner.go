@@ -3,7 +3,7 @@ ProxMox VE API
 
 ProxMox VE API
 
-API version: 8.0
+API version: 8.3
 Contact: baldur@email.de
 */
 
@@ -18,7 +18,7 @@ import (
 // checks if the GetVMSnapshots200ResponseDataInner type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &GetVMSnapshots200ResponseDataInner{}
 
-// GetVMSnapshots200ResponseDataInner struct for GetVMSnapshots200ResponseDataInner
+// GetVMSnapshots200ResponseDataInner 
 type GetVMSnapshots200ResponseDataInner struct {
 	// Snapshot description.
 	Description *string `json:"description,omitempty"`
@@ -29,7 +29,7 @@ type GetVMSnapshots200ResponseDataInner struct {
 	// Snapshot creation time
 	Snaptime *int64 `json:"snaptime,omitempty"`
 	// Snapshot includes RAM.
-	Vmstate *bool `json:"vmstate,omitempty"`
+	Vmstate *int32 `json:"vmstate,omitempty"`
 }
 
 // NewGetVMSnapshots200ResponseDataInner instantiates a new GetVMSnapshots200ResponseDataInner object
@@ -178,9 +178,9 @@ func (o *GetVMSnapshots200ResponseDataInner) SetSnaptime(v int64) {
 }
 
 // GetVmstate returns the Vmstate field value if set, zero value otherwise.
-func (o *GetVMSnapshots200ResponseDataInner) GetVmstate() bool {
+func (o *GetVMSnapshots200ResponseDataInner) GetVmstate() int32 {
 	if o == nil || IsNil(o.Vmstate) {
-		var ret bool
+		var ret int32
 		return ret
 	}
 	return *o.Vmstate
@@ -188,7 +188,7 @@ func (o *GetVMSnapshots200ResponseDataInner) GetVmstate() bool {
 
 // GetVmstateOk returns a tuple with the Vmstate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVMSnapshots200ResponseDataInner) GetVmstateOk() (*bool, bool) {
+func (o *GetVMSnapshots200ResponseDataInner) GetVmstateOk() (*int32, bool) {
 	if o == nil || IsNil(o.Vmstate) {
 		return nil, false
 	}
@@ -204,8 +204,8 @@ func (o *GetVMSnapshots200ResponseDataInner) HasVmstate() bool {
 	return false
 }
 
-// SetVmstate gets a reference to the given bool and assigns it to the Vmstate field.
-func (o *GetVMSnapshots200ResponseDataInner) SetVmstate(v bool) {
+// SetVmstate gets a reference to the given int32 and assigns it to the Vmstate field.
+func (o *GetVMSnapshots200ResponseDataInner) SetVmstate(v int32) {
 	o.Vmstate = &v
 }
 

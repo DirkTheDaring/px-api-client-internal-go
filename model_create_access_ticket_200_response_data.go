@@ -3,7 +3,7 @@ ProxMox VE API
 
 ProxMox VE API
 
-API version: 8.0
+API version: 8.3
 Contact: baldur@email.de
 */
 
@@ -18,11 +18,15 @@ import (
 // checks if the CreateAccessTicket200ResponseData type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CreateAccessTicket200ResponseData{}
 
-// CreateAccessTicket200ResponseData struct for CreateAccessTicket200ResponseData
+// CreateAccessTicket200ResponseData 
 type CreateAccessTicket200ResponseData struct {
+	// 
 	CSRFPreventionToken *string `json:"CSRFPreventionToken,omitempty"`
+	// 
 	Clustername *string `json:"clustername,omitempty"`
+	// 
 	Ticket *string `json:"ticket,omitempty"`
+	// 
 	Username *string `json:"username,omitempty"`
 }
 

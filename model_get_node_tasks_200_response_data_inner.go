@@ -3,7 +3,7 @@ ProxMox VE API
 
 ProxMox VE API
 
-API version: 8.0
+API version: 8.3
 Contact: baldur@email.de
 */
 
@@ -18,17 +18,27 @@ import (
 // checks if the GetNodeTasks200ResponseDataInner type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &GetNodeTasks200ResponseDataInner{}
 
-// GetNodeTasks200ResponseDataInner struct for GetNodeTasks200ResponseDataInner
+// GetNodeTasks200ResponseDataInner 
 type GetNodeTasks200ResponseDataInner struct {
+	// 
 	Endtime *int64 `json:"endtime,omitempty"`
+	// 
 	Id *string `json:"id,omitempty"`
+	// 
 	Node *string `json:"node,omitempty"`
+	// 
 	Pid *int64 `json:"pid,omitempty"`
+	// 
 	Pstart *int64 `json:"pstart,omitempty"`
+	// 
 	Starttime *int64 `json:"starttime,omitempty"`
+	// 
 	Status *string `json:"status,omitempty"`
+	// 
 	Type *string `json:"type,omitempty"`
+	// 
 	Upid *string `json:"upid,omitempty"`
+	// 
 	User *string `json:"user,omitempty"`
 }
 

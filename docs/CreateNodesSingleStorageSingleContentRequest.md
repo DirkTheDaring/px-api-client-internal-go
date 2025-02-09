@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Filename** | ***os.File** | The name of the file to create. | 
+**Filename** | ***os.File** |  | 
 **Format** | Pointer to **string** |  | [optional] 
-**Size** | **string** | Size in kilobyte (1024 bytes). Optional suffixes &#39;M&#39; (megabyte, 1024K) and &#39;G&#39; (gigabyte, 1024M) | 
-**Vmid** | **int64** | Specify owner VM | 
+**Size** | **string** |  | 
+**Vmid** | **int64** |  | 
 
 ## Methods
 

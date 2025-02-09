@@ -5,17 +5,22 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Cpus** | Pointer to **float32** | Maximum usable CPUs. | [optional] 
+**Diskread** | Pointer to **int64** | The amount of bytes the guest read from it&#39;s block devices since the guest was started. (Note: This info is not available for all storage types.) | [optional] 
+**Diskwrite** | Pointer to **int64** | The amount of bytes the guest wrote from it&#39;s block devices since the guest was started. (Note: This info is not available for all storage types.) | [optional] 
 **Lock** | Pointer to **string** | The current config lock, if any. | [optional] 
 **Maxdisk** | Pointer to **int64** | Root disk size in bytes. | [optional] 
 **Maxmem** | Pointer to **int64** | Maximum memory in bytes. | [optional] 
-**Name** | Pointer to **string** | VM name. | [optional] 
-**Pid** | Pointer to **int64** | PID of running qemu process. | [optional] 
+**Name** | Pointer to **string** | VM (host)name. | [optional] 
+**Netin** | Pointer to **int64** | The amount of traffic in bytes that was sent to the guest over the network since it was started. | [optional] 
+**Netout** | Pointer to **int64** | The amount of traffic in bytes that was sent from the guest over the network since it was started. | [optional] 
+**Pid** | Pointer to **int64** | PID of the QEMU process, if the VM is running. | [optional] 
 **Qmpstatus** | Pointer to **string** | VM run state from the &#39;query-status&#39; QMP monitor command. | [optional] 
 **RunningMachine** | Pointer to **string** | The currently running machine type (if running). | [optional] 
-**RunningQemu** | Pointer to **string** | The currently running QEMU version (if running). | [optional] 
+**RunningQemu** | Pointer to **string** | The QEMU version the VM is currently using (if running). | [optional] 
 **Status** | Pointer to **string** | QEMU process status. | [optional] 
 **Tags** | Pointer to **string** | The current configured tags, if any | [optional] 
-**Uptime** | Pointer to **int64** | Uptime. | [optional] 
+**Template** | Pointer to **int32** | Determines if the guest is a template. | [optional] 
+**Uptime** | Pointer to **int64** | Uptime in seconds. | [optional] 
 **Vmid** | Pointer to **int64** | The (unique) ID of the VM. | [optional] 
 
 ## Methods
@@ -61,6 +66,56 @@ SetCpus sets Cpus field to given value.
 `func (o *GetVMs200ResponseDataInner) HasCpus() bool`
 
 HasCpus returns a boolean if a field has been set.
+
+### GetDiskread
+
+`func (o *GetVMs200ResponseDataInner) GetDiskread() int64`
+
+GetDiskread returns the Diskread field if non-nil, zero value otherwise.
+
+### GetDiskreadOk
+
+`func (o *GetVMs200ResponseDataInner) GetDiskreadOk() (*int64, bool)`
+
+GetDiskreadOk returns a tuple with the Diskread field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDiskread
+
+`func (o *GetVMs200ResponseDataInner) SetDiskread(v int64)`
+
+SetDiskread sets Diskread field to given value.
+
+### HasDiskread
+
+`func (o *GetVMs200ResponseDataInner) HasDiskread() bool`
+
+HasDiskread returns a boolean if a field has been set.
+
+### GetDiskwrite
+
+`func (o *GetVMs200ResponseDataInner) GetDiskwrite() int64`
+
+GetDiskwrite returns the Diskwrite field if non-nil, zero value otherwise.
+
+### GetDiskwriteOk
+
+`func (o *GetVMs200ResponseDataInner) GetDiskwriteOk() (*int64, bool)`
+
+GetDiskwriteOk returns a tuple with the Diskwrite field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDiskwrite
+
+`func (o *GetVMs200ResponseDataInner) SetDiskwrite(v int64)`
+
+SetDiskwrite sets Diskwrite field to given value.
+
+### HasDiskwrite
+
+`func (o *GetVMs200ResponseDataInner) HasDiskwrite() bool`
+
+HasDiskwrite returns a boolean if a field has been set.
 
 ### GetLock
 
@@ -161,6 +216,56 @@ SetName sets Name field to given value.
 `func (o *GetVMs200ResponseDataInner) HasName() bool`
 
 HasName returns a boolean if a field has been set.
+
+### GetNetin
+
+`func (o *GetVMs200ResponseDataInner) GetNetin() int64`
+
+GetNetin returns the Netin field if non-nil, zero value otherwise.
+
+### GetNetinOk
+
+`func (o *GetVMs200ResponseDataInner) GetNetinOk() (*int64, bool)`
+
+GetNetinOk returns a tuple with the Netin field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNetin
+
+`func (o *GetVMs200ResponseDataInner) SetNetin(v int64)`
+
+SetNetin sets Netin field to given value.
+
+### HasNetin
+
+`func (o *GetVMs200ResponseDataInner) HasNetin() bool`
+
+HasNetin returns a boolean if a field has been set.
+
+### GetNetout
+
+`func (o *GetVMs200ResponseDataInner) GetNetout() int64`
+
+GetNetout returns the Netout field if non-nil, zero value otherwise.
+
+### GetNetoutOk
+
+`func (o *GetVMs200ResponseDataInner) GetNetoutOk() (*int64, bool)`
+
+GetNetoutOk returns a tuple with the Netout field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNetout
+
+`func (o *GetVMs200ResponseDataInner) SetNetout(v int64)`
+
+SetNetout sets Netout field to given value.
+
+### HasNetout
+
+`func (o *GetVMs200ResponseDataInner) HasNetout() bool`
+
+HasNetout returns a boolean if a field has been set.
 
 ### GetPid
 
@@ -311,6 +416,31 @@ SetTags sets Tags field to given value.
 `func (o *GetVMs200ResponseDataInner) HasTags() bool`
 
 HasTags returns a boolean if a field has been set.
+
+### GetTemplate
+
+`func (o *GetVMs200ResponseDataInner) GetTemplate() int32`
+
+GetTemplate returns the Template field if non-nil, zero value otherwise.
+
+### GetTemplateOk
+
+`func (o *GetVMs200ResponseDataInner) GetTemplateOk() (*int32, bool)`
+
+GetTemplateOk returns a tuple with the Template field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTemplate
+
+`func (o *GetVMs200ResponseDataInner) SetTemplate(v int32)`
+
+SetTemplate sets Template field to given value.
+
+### HasTemplate
+
+`func (o *GetVMs200ResponseDataInner) HasTemplate() bool`
+
+HasTemplate returns a boolean if a field has been set.
 
 ### GetUptime
 

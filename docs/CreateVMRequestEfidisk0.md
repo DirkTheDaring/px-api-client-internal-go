@@ -4,19 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Efitype** | Pointer to **string** | Size and type of the OVMF EFI vars. &#39;4m&#39; is newer and recommended, and required for Secure Boot. For backwards compatibility, &#39;2m&#39; is used if not otherwise specified. Ignored for VMs with arch&#x3D;aarch64 (ARM). | [optional] 
-**File** | Pointer to **string** | The drive&#39;s backing volume. | [optional] 
-**Format** | Pointer to **string** | The drive&#39;s backing file&#39;s data format. | [optional] 
-**ImportFrom** | Pointer to **string** | Create a new disk, importing from this source (volume ID or absolute path). When an absolute path is specified, it&#39;s up to you to ensure that the source is not actively used by another process during the import! | [optional] 
-**PreEnrolledKeys** | Pointer to **bool** | Use am EFI vars template with distribution-specific and Microsoft Standard keys enrolled, if used with &#39;efitype&#x3D;4m&#39;. Note that this will enable Secure Boot by default, though it can still be turned off from within the VM. | [optional] 
-**Size** | Pointer to **string** | Disk size. This is purely informational and has no effect. | [optional] 
-**Volume** | Pointer to **string** |  | [optional] 
+**Efitype** | Pointer to **string** |  | [optional] 
+**File** | **string** |  | 
+**Format** | Pointer to **string** |  | [optional] 
+**ImportFrom** | Pointer to **string** |  | [optional] 
+**PreEnrolledKeys** | Pointer to **bool** |  | [optional] 
+**Size** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
 ### NewCreateVMRequestEfidisk0
 
-`func NewCreateVMRequestEfidisk0() *CreateVMRequestEfidisk0`
+`func NewCreateVMRequestEfidisk0(file string, ) *CreateVMRequestEfidisk0`
 
 NewCreateVMRequestEfidisk0 instantiates a new CreateVMRequestEfidisk0 object
 This constructor will assign default values to properties that have it defined,
@@ -75,11 +74,6 @@ and a boolean to check if the value has been set.
 
 SetFile sets File field to given value.
 
-### HasFile
-
-`func (o *CreateVMRequestEfidisk0) HasFile() bool`
-
-HasFile returns a boolean if a field has been set.
 
 ### GetFormat
 
@@ -180,31 +174,6 @@ SetSize sets Size field to given value.
 `func (o *CreateVMRequestEfidisk0) HasSize() bool`
 
 HasSize returns a boolean if a field has been set.
-
-### GetVolume
-
-`func (o *CreateVMRequestEfidisk0) GetVolume() string`
-
-GetVolume returns the Volume field if non-nil, zero value otherwise.
-
-### GetVolumeOk
-
-`func (o *CreateVMRequestEfidisk0) GetVolumeOk() (*string, bool)`
-
-GetVolumeOk returns a tuple with the Volume field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetVolume
-
-`func (o *CreateVMRequestEfidisk0) SetVolume(v string)`
-
-SetVolume sets Volume field to given value.
-
-### HasVolume
-
-`func (o *CreateVMRequestEfidisk0) HasVolume() bool`
-
-HasVolume returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

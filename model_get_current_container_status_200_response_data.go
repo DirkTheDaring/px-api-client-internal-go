@@ -3,7 +3,7 @@ ProxMox VE API
 
 ProxMox VE API
 
-API version: 8.0
+API version: 8.3
 Contact: baldur@email.de
 */
 
@@ -18,15 +18,21 @@ import (
 // checks if the GetCurrentContainerStatus200ResponseData type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &GetCurrentContainerStatus200ResponseData{}
 
-// GetCurrentContainerStatus200ResponseData struct for GetCurrentContainerStatus200ResponseData
+// GetCurrentContainerStatus200ResponseData 
 type GetCurrentContainerStatus200ResponseData struct {
 	// Maximum usable CPUs.
 	Cpus *float32 `json:"cpus,omitempty"`
+	// Root disk image space-usage in bytes.
+	Disk *int64 `json:"disk,omitempty"`
+	// The amount of bytes the guest read from it's block devices since the guest was started. (Note: This info is not available for all storage types.)
+	Diskread *int64 `json:"diskread,omitempty"`
+	// The amount of bytes the guest wrote from it's block devices since the guest was started. (Note: This info is not available for all storage types.)
+	Diskwrite *int64 `json:"diskwrite,omitempty"`
 	// HA manager service status.
 	Ha map[string]interface{} `json:"ha,omitempty"`
 	// The current config lock, if any.
 	Lock *string `json:"lock,omitempty"`
-	// Root disk size in bytes.
+	// Root disk image size in bytes.
 	Maxdisk *int64 `json:"maxdisk,omitempty"`
 	// Maximum memory in bytes.
 	Maxmem *int64 `json:"maxmem,omitempty"`
@@ -34,11 +40,17 @@ type GetCurrentContainerStatus200ResponseData struct {
 	Maxswap *int64 `json:"maxswap,omitempty"`
 	// Container name.
 	Name *string `json:"name,omitempty"`
+	// The amount of traffic in bytes that was sent to the guest over the network since it was started.
+	Netin *int64 `json:"netin,omitempty"`
+	// The amount of traffic in bytes that was sent from the guest over the network since it was started.
+	Netout *int64 `json:"netout,omitempty"`
 	// LXC Container status.
 	Status *string `json:"status,omitempty"`
 	// The current configured tags, if any.
 	Tags *string `json:"tags,omitempty"`
-	// Uptime.
+	// Determines if the guest is a template.
+	Template *int32 `json:"template,omitempty"`
+	// Uptime in seconds.
 	Uptime *int64 `json:"uptime,omitempty"`
 	// The (unique) ID of the VM.
 	Vmid *int64 `json:"vmid,omitempty"`
@@ -91,6 +103,102 @@ func (o *GetCurrentContainerStatus200ResponseData) HasCpus() bool {
 // SetCpus gets a reference to the given float32 and assigns it to the Cpus field.
 func (o *GetCurrentContainerStatus200ResponseData) SetCpus(v float32) {
 	o.Cpus = &v
+}
+
+// GetDisk returns the Disk field value if set, zero value otherwise.
+func (o *GetCurrentContainerStatus200ResponseData) GetDisk() int64 {
+	if o == nil || IsNil(o.Disk) {
+		var ret int64
+		return ret
+	}
+	return *o.Disk
+}
+
+// GetDiskOk returns a tuple with the Disk field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetCurrentContainerStatus200ResponseData) GetDiskOk() (*int64, bool) {
+	if o == nil || IsNil(o.Disk) {
+		return nil, false
+	}
+	return o.Disk, true
+}
+
+// HasDisk returns a boolean if a field has been set.
+func (o *GetCurrentContainerStatus200ResponseData) HasDisk() bool {
+	if o != nil && !IsNil(o.Disk) {
+		return true
+	}
+
+	return false
+}
+
+// SetDisk gets a reference to the given int64 and assigns it to the Disk field.
+func (o *GetCurrentContainerStatus200ResponseData) SetDisk(v int64) {
+	o.Disk = &v
+}
+
+// GetDiskread returns the Diskread field value if set, zero value otherwise.
+func (o *GetCurrentContainerStatus200ResponseData) GetDiskread() int64 {
+	if o == nil || IsNil(o.Diskread) {
+		var ret int64
+		return ret
+	}
+	return *o.Diskread
+}
+
+// GetDiskreadOk returns a tuple with the Diskread field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetCurrentContainerStatus200ResponseData) GetDiskreadOk() (*int64, bool) {
+	if o == nil || IsNil(o.Diskread) {
+		return nil, false
+	}
+	return o.Diskread, true
+}
+
+// HasDiskread returns a boolean if a field has been set.
+func (o *GetCurrentContainerStatus200ResponseData) HasDiskread() bool {
+	if o != nil && !IsNil(o.Diskread) {
+		return true
+	}
+
+	return false
+}
+
+// SetDiskread gets a reference to the given int64 and assigns it to the Diskread field.
+func (o *GetCurrentContainerStatus200ResponseData) SetDiskread(v int64) {
+	o.Diskread = &v
+}
+
+// GetDiskwrite returns the Diskwrite field value if set, zero value otherwise.
+func (o *GetCurrentContainerStatus200ResponseData) GetDiskwrite() int64 {
+	if o == nil || IsNil(o.Diskwrite) {
+		var ret int64
+		return ret
+	}
+	return *o.Diskwrite
+}
+
+// GetDiskwriteOk returns a tuple with the Diskwrite field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetCurrentContainerStatus200ResponseData) GetDiskwriteOk() (*int64, bool) {
+	if o == nil || IsNil(o.Diskwrite) {
+		return nil, false
+	}
+	return o.Diskwrite, true
+}
+
+// HasDiskwrite returns a boolean if a field has been set.
+func (o *GetCurrentContainerStatus200ResponseData) HasDiskwrite() bool {
+	if o != nil && !IsNil(o.Diskwrite) {
+		return true
+	}
+
+	return false
+}
+
+// SetDiskwrite gets a reference to the given int64 and assigns it to the Diskwrite field.
+func (o *GetCurrentContainerStatus200ResponseData) SetDiskwrite(v int64) {
+	o.Diskwrite = &v
 }
 
 // GetHa returns the Ha field value if set, zero value otherwise.
@@ -285,6 +393,70 @@ func (o *GetCurrentContainerStatus200ResponseData) SetName(v string) {
 	o.Name = &v
 }
 
+// GetNetin returns the Netin field value if set, zero value otherwise.
+func (o *GetCurrentContainerStatus200ResponseData) GetNetin() int64 {
+	if o == nil || IsNil(o.Netin) {
+		var ret int64
+		return ret
+	}
+	return *o.Netin
+}
+
+// GetNetinOk returns a tuple with the Netin field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetCurrentContainerStatus200ResponseData) GetNetinOk() (*int64, bool) {
+	if o == nil || IsNil(o.Netin) {
+		return nil, false
+	}
+	return o.Netin, true
+}
+
+// HasNetin returns a boolean if a field has been set.
+func (o *GetCurrentContainerStatus200ResponseData) HasNetin() bool {
+	if o != nil && !IsNil(o.Netin) {
+		return true
+	}
+
+	return false
+}
+
+// SetNetin gets a reference to the given int64 and assigns it to the Netin field.
+func (o *GetCurrentContainerStatus200ResponseData) SetNetin(v int64) {
+	o.Netin = &v
+}
+
+// GetNetout returns the Netout field value if set, zero value otherwise.
+func (o *GetCurrentContainerStatus200ResponseData) GetNetout() int64 {
+	if o == nil || IsNil(o.Netout) {
+		var ret int64
+		return ret
+	}
+	return *o.Netout
+}
+
+// GetNetoutOk returns a tuple with the Netout field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetCurrentContainerStatus200ResponseData) GetNetoutOk() (*int64, bool) {
+	if o == nil || IsNil(o.Netout) {
+		return nil, false
+	}
+	return o.Netout, true
+}
+
+// HasNetout returns a boolean if a field has been set.
+func (o *GetCurrentContainerStatus200ResponseData) HasNetout() bool {
+	if o != nil && !IsNil(o.Netout) {
+		return true
+	}
+
+	return false
+}
+
+// SetNetout gets a reference to the given int64 and assigns it to the Netout field.
+func (o *GetCurrentContainerStatus200ResponseData) SetNetout(v int64) {
+	o.Netout = &v
+}
+
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *GetCurrentContainerStatus200ResponseData) GetStatus() string {
 	if o == nil || IsNil(o.Status) {
@@ -347,6 +519,38 @@ func (o *GetCurrentContainerStatus200ResponseData) HasTags() bool {
 // SetTags gets a reference to the given string and assigns it to the Tags field.
 func (o *GetCurrentContainerStatus200ResponseData) SetTags(v string) {
 	o.Tags = &v
+}
+
+// GetTemplate returns the Template field value if set, zero value otherwise.
+func (o *GetCurrentContainerStatus200ResponseData) GetTemplate() int32 {
+	if o == nil || IsNil(o.Template) {
+		var ret int32
+		return ret
+	}
+	return *o.Template
+}
+
+// GetTemplateOk returns a tuple with the Template field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetCurrentContainerStatus200ResponseData) GetTemplateOk() (*int32, bool) {
+	if o == nil || IsNil(o.Template) {
+		return nil, false
+	}
+	return o.Template, true
+}
+
+// HasTemplate returns a boolean if a field has been set.
+func (o *GetCurrentContainerStatus200ResponseData) HasTemplate() bool {
+	if o != nil && !IsNil(o.Template) {
+		return true
+	}
+
+	return false
+}
+
+// SetTemplate gets a reference to the given int32 and assigns it to the Template field.
+func (o *GetCurrentContainerStatus200ResponseData) SetTemplate(v int32) {
+	o.Template = &v
 }
 
 // GetUptime returns the Uptime field value if set, zero value otherwise.
@@ -426,6 +630,15 @@ func (o GetCurrentContainerStatus200ResponseData) ToMap() (map[string]interface{
 	if !IsNil(o.Cpus) {
 		toSerialize["cpus"] = o.Cpus
 	}
+	if !IsNil(o.Disk) {
+		toSerialize["disk"] = o.Disk
+	}
+	if !IsNil(o.Diskread) {
+		toSerialize["diskread"] = o.Diskread
+	}
+	if !IsNil(o.Diskwrite) {
+		toSerialize["diskwrite"] = o.Diskwrite
+	}
 	if !IsNil(o.Ha) {
 		toSerialize["ha"] = o.Ha
 	}
@@ -444,11 +657,20 @@ func (o GetCurrentContainerStatus200ResponseData) ToMap() (map[string]interface{
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
+	if !IsNil(o.Netin) {
+		toSerialize["netin"] = o.Netin
+	}
+	if !IsNil(o.Netout) {
+		toSerialize["netout"] = o.Netout
+	}
 	if !IsNil(o.Status) {
 		toSerialize["status"] = o.Status
 	}
 	if !IsNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
+	}
+	if !IsNil(o.Template) {
+		toSerialize["template"] = o.Template
 	}
 	if !IsNil(o.Uptime) {
 		toSerialize["uptime"] = o.Uptime

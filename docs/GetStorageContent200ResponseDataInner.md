@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **Format** | Pointer to **string** | Format identifier (&#39;raw&#39;, &#39;qcow2&#39;, &#39;subvol&#39;, &#39;iso&#39;, &#39;tgz&#39; ...) | [optional] 
 **Notes** | Pointer to **string** | Optional notes. If they contain multiple lines, only the first one is returned here. | [optional] 
 **Parent** | Pointer to **string** | Volume identifier of parent (for linked cloned). | [optional] 
-**Protected** | Pointer to **bool** | Protection status. Currently only supported for backups. | [optional] 
+**Protected** | Pointer to **int32** | Protection status. Currently only supported for backups. | [optional] 
 **Size** | Pointer to **int64** | Volume size in bytes. | [optional] 
 **Used** | Pointer to **int64** | Used space. Please note that most storage plugins do not report anything useful here. | [optional] 
 **Verification** | Pointer to [**GetStorageContent200ResponseDataInnerVerification**](GetStorageContent200ResponseDataInnerVerification.md) |  | [optional] 
@@ -162,20 +162,20 @@ HasParent returns a boolean if a field has been set.
 
 ### GetProtected
 
-`func (o *GetStorageContent200ResponseDataInner) GetProtected() bool`
+`func (o *GetStorageContent200ResponseDataInner) GetProtected() int32`
 
 GetProtected returns the Protected field if non-nil, zero value otherwise.
 
 ### GetProtectedOk
 
-`func (o *GetStorageContent200ResponseDataInner) GetProtectedOk() (*bool, bool)`
+`func (o *GetStorageContent200ResponseDataInner) GetProtectedOk() (*int32, bool)`
 
 GetProtectedOk returns a tuple with the Protected field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProtected
 
-`func (o *GetStorageContent200ResponseDataInner) SetProtected(v bool)`
+`func (o *GetStorageContent200ResponseDataInner) SetProtected(v int32)`
 
 SetProtected sets Protected field to given value.
 

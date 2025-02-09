@@ -3,7 +3,7 @@ ProxMox VE API
 
 ProxMox VE API
 
-API version: 8.0
+API version: 8.3
 Contact: baldur@email.de
 */
 
@@ -21,7 +21,6 @@ var _ MappedNullable = &ResumeVMRequest{}
 // ResumeVMRequest struct for ResumeVMRequest
 type ResumeVMRequest struct {
 	Nocheck *bool `json:"nocheck,omitempty"`
-	// Ignore locks - only root is allowed to use this option.
 	Skiplock *bool `json:"skiplock,omitempty"`
 }
 

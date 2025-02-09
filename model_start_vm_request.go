@@ -3,7 +3,7 @@ ProxMox VE API
 
 ProxMox VE API
 
-API version: 8.0
+API version: 8.3
 Contact: baldur@email.de
 */
 
@@ -20,23 +20,14 @@ var _ MappedNullable = &StartVMRequest{}
 
 // StartVMRequest struct for StartVMRequest
 type StartVMRequest struct {
-	// Override QEMU's -cpu argument with the given string.
 	ForceCpu *string `json:"force-cpu,omitempty"`
-	// Specifies the QEMU machine type.
-	Machine *string `json:"machine,omitempty"`
-	// The cluster node name.
+	Machine *CreateVMRequestMachine `json:"machine,omitempty"`
 	Migratedfrom *string `json:"migratedfrom,omitempty"`
-	// CIDR of the (sub) network that is used for migration.
 	MigrationNetwork *string `json:"migration_network,omitempty"`
-	// Migration traffic is encrypted using an SSH tunnel by default. On secure, completely private networks this can be disabled to increase performance.
 	MigrationType *string `json:"migration_type,omitempty"`
-	// Ignore locks - only root is allowed to use this option.
 	Skiplock *bool `json:"skiplock,omitempty"`
-	// Some command save/restore state from this location.
 	Stateuri *string `json:"stateuri,omitempty"`
-	// Mapping from source to target storages. Providing only a single storage ID maps all source storages to that storage. Providing the special value '1' will map each source storage to itself.
 	Targetstorage *string `json:"targetstorage,omitempty"`
-	// Wait maximal timeout seconds.
 	Timeout *int64 `json:"timeout,omitempty"`
 }
 
@@ -90,9 +81,9 @@ func (o *StartVMRequest) SetForceCpu(v string) {
 }
 
 // GetMachine returns the Machine field value if set, zero value otherwise.
-func (o *StartVMRequest) GetMachine() string {
+func (o *StartVMRequest) GetMachine() CreateVMRequestMachine {
 	if o == nil || IsNil(o.Machine) {
-		var ret string
+		var ret CreateVMRequestMachine
 		return ret
 	}
 	return *o.Machine
@@ -100,7 +91,7 @@ func (o *StartVMRequest) GetMachine() string {
 
 // GetMachineOk returns a tuple with the Machine field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *StartVMRequest) GetMachineOk() (*string, bool) {
+func (o *StartVMRequest) GetMachineOk() (*CreateVMRequestMachine, bool) {
 	if o == nil || IsNil(o.Machine) {
 		return nil, false
 	}
@@ -116,8 +107,8 @@ func (o *StartVMRequest) HasMachine() bool {
 	return false
 }
 
-// SetMachine gets a reference to the given string and assigns it to the Machine field.
-func (o *StartVMRequest) SetMachine(v string) {
+// SetMachine gets a reference to the given CreateVMRequestMachine and assigns it to the Machine field.
+func (o *StartVMRequest) SetMachine(v CreateVMRequestMachine) {
 	o.Machine = &v
 }
 

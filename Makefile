@@ -14,7 +14,7 @@ VERSION=$(file < VERSION.txt)
 GITHUB_TOKEN=$(file < .token)
 
 # Build the binary
-build:
+build:	init
 	@echo "Building $(BINARY_NAME)..."
 	@mkdir -p $(BUILD_DIR)
 	#$(GO) build -o $(BUILD_DIR)/$(BINARY_NAME) $(SRC_DIR)
@@ -39,6 +39,9 @@ publish: release
 	github-release upload -u $(GITHUB_USERNAME) -r $(REPO) -t v$(VERSION) -n "$(BINARY_NAME)_$(VERSION)_darwin_amd64" -f $(RELEASE_DIR)/$(BINARY_NAME)_$(VERSION)_darwin_amd64
 	github-release upload -u $(GITHUB_USERNAME) -r $(REPO) -t v$(VERSION) -n "$(BINARY_NAME)_$(VERSION)_windows_amd64.exe" -f $(RELEASE_DIR)/$(BINARY_NAME)_$(VERSION)_windows_amd64.exe
 
+init:
+	test -f go.mod || touch go.mod
+	go mod edit -module=github.com/DirkTheDaring/px-api-client-internal-go
 
 distclean:
 	rm -rf $(BUILD_DIR)

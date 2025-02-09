@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Clone** | Pointer to **float32** | bandwidth limit in KiB/s for cloning disks | [optional] 
-**Default** | Pointer to **float32** | default bandwidth limit in KiB/s | [optional] 
-**Migration** | Pointer to **float32** | bandwidth limit in KiB/s for migrating guests (including moving local disks) | [optional] 
-**Move** | Pointer to **float32** | bandwidth limit in KiB/s for moving disks | [optional] 
-**Restore** | Pointer to **float32** | bandwidth limit in KiB/s for restoring guests from backups | [optional] 
+**Clone** | Pointer to **float32** |  | [optional] 
+**Default** | Pointer to **float32** |  | [optional] 
+**Migration** | Pointer to **float32** |  | [optional] 
+**Move** | Pointer to **float32** |  | [optional] 
+**Restore** | Pointer to **float32** |  | [optional] 
 
 ## Methods
 

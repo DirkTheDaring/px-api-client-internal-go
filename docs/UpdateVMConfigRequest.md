@@ -4,186 +4,188 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Acpi** | Pointer to **bool** | Enable/disable ACPI. | [optional] 
-**Affinity** | Pointer to **string** | List of host cores used to execute guest processes, for example: 0,5,8-11 | [optional] 
-**Agent** | Pointer to [**GetVMConfig200ResponseDataAgent**](GetVMConfig200ResponseDataAgent.md) |  | [optional] 
-**Arch** | Pointer to **string** | Virtual processor architecture. Defaults to the host. | [optional] 
-**Args** | Pointer to **string** | Arbitrary arguments passed to kvm. | [optional] 
-**Audio0** | Pointer to [**GetVMConfig200ResponseDataAudio0**](GetVMConfig200ResponseDataAudio0.md) |  | [optional] 
-**Autostart** | Pointer to **bool** | Automatic restart after crash (currently ignored). | [optional] 
-**BackgroundDelay** | Pointer to **int64** | Time to wait for the task to finish. We return &#39;null&#39; if the task finish within that time. | [optional] 
-**Balloon** | Pointer to **int64** | Amount of target RAM for the VM in MiB. Using zero disables the ballon driver. | [optional] 
-**Bios** | Pointer to **string** | Select BIOS implementation. | [optional] 
-**Boot** | Pointer to [**GetVMConfig200ResponseDataBoot**](GetVMConfig200ResponseDataBoot.md) |  | [optional] 
-**Bootdisk** | Pointer to **string** | Enable booting from specified disk. Deprecated: Use &#39;boot: order&#x3D;foo;bar&#39; instead. | [optional] 
-**Cdrom** | Pointer to **string** | This is an alias for option -ide2 | [optional] 
-**Cicustom** | Pointer to **string** | cloud-init: Specify custom files to replace the automatically generated ones at start. | [optional] 
-**Cipassword** | Pointer to **string** | cloud-init: Password to assign the user. Using this is generally not recommended. Use ssh keys instead. Also note that older cloud-init versions do not support hashed passwords. | [optional] 
-**Citype** | Pointer to **string** | Specifies the cloud-init configuration format. The default depends on the configured operating system type (&#x60;ostype&#x60;. We use the &#x60;nocloud&#x60; format for Linux, and &#x60;configdrive2&#x60; for windows. | [optional] 
-**Ciupgrade** | Pointer to **bool** | cloud-init: do an automatic package upgrade after the first boot. | [optional] 
-**Ciuser** | Pointer to **string** | cloud-init: User name to change ssh keys and password for instead of the image&#39;s configured default user. | [optional] 
-**Cores** | Pointer to **int64** | The number of cores per socket. | [optional] 
-**Cpu** | Pointer to **string** | Emulated CPU type. | [optional] 
-**Cpulimit** | Pointer to **float32** | Limit of CPU usage. | [optional] 
-**Cpuunits** | Pointer to **int64** | CPU weight for a VM, will be clamped to [1, 10000] in cgroup v2. | [optional] 
-**Delete** | Pointer to **string** | A list of settings you want to delete. | [optional] 
-**Description** | Pointer to **string** | Description for the VM. Shown in the web-interface VM&#39;s summary. This is saved as comment inside the configuration file. | [optional] 
-**Digest** | Pointer to **string** | Prevent changes if current configuration file has different SHA1 digest. This can be used to prevent concurrent modifications. | [optional] 
+**Acpi** | Pointer to **bool** |  | [optional] 
+**Affinity** | Pointer to **string** |  | [optional] 
+**Agent** | Pointer to [**CreateVMRequestAgent**](CreateVMRequestAgent.md) |  | [optional] 
+**AmdSev** | Pointer to **string** |  | [optional] 
+**Arch** | Pointer to **string** |  | [optional] 
+**Args** | Pointer to **string** |  | [optional] 
+**Audio0** | Pointer to [**CreateVMRequestAudio0**](CreateVMRequestAudio0.md) |  | [optional] 
+**Autostart** | Pointer to **bool** |  | [optional] 
+**BackgroundDelay** | Pointer to **int64** |  | [optional] 
+**Balloon** | Pointer to **int64** |  | [optional] 
+**Bios** | Pointer to **string** |  | [optional] 
+**Boot** | Pointer to [**CreateVMRequestBoot**](CreateVMRequestBoot.md) |  | [optional] 
+**Bootdisk** | Pointer to **string** |  | [optional] 
+**Cdrom** | Pointer to **string** |  | [optional] 
+**Cicustom** | Pointer to **string** |  | [optional] 
+**Cipassword** | Pointer to **string** |  | [optional] 
+**Citype** | Pointer to **string** |  | [optional] 
+**Ciupgrade** | Pointer to **bool** |  | [optional] 
+**Ciuser** | Pointer to **string** |  | [optional] 
+**Cores** | Pointer to **int64** |  | [optional] 
+**Cpu** | Pointer to **string** |  | [optional] 
+**Cpulimit** | Pointer to **float32** |  | [optional] 
+**Cpuunits** | Pointer to **int64** |  | [optional] 
+**Delete** | Pointer to **string** |  | [optional] 
+**Description** | Pointer to **string** |  | [optional] 
+**Digest** | Pointer to **string** |  | [optional] 
 **Efidisk0** | Pointer to [**CreateVMRequestEfidisk0**](CreateVMRequestEfidisk0.md) |  | [optional] 
-**Force** | Pointer to **bool** | Force physical removal. Without this, we simple remove the disk from the config file and create an additional configuration entry called &#39;unused[n]&#39;, which contains the volume ID. Unlink of unused[n] always cause physical removal. | [optional] 
-**Freeze** | Pointer to **bool** | Freeze CPU at startup (use &#39;c&#39; monitor command to start execution). | [optional] 
-**Hookscript** | Pointer to **string** | Script that will be executed during various steps in the vms lifetime. | [optional] 
-**Hostpci0** | Pointer to **string** | Map host PCI devices into guest. | [optional] 
-**Hostpci1** | Pointer to **string** | Map host PCI devices into guest. | [optional] 
-**Hostpci2** | Pointer to **string** | Map host PCI devices into guest. | [optional] 
-**Hostpci3** | Pointer to **string** | Map host PCI devices into guest. | [optional] 
-**Hostpci4** | Pointer to **string** | Map host PCI devices into guest. | [optional] 
-**Hostpci5** | Pointer to **string** | Map host PCI devices into guest. | [optional] 
-**Hostpci6** | Pointer to **string** | Map host PCI devices into guest. | [optional] 
-**Hostpci7** | Pointer to **string** | Map host PCI devices into guest. | [optional] 
-**Hostpci8** | Pointer to **string** | Map host PCI devices into guest. | [optional] 
-**Hostpci9** | Pointer to **string** | Map host PCI devices into guest. | [optional] 
-**Hostpci10** | Pointer to **string** | Map host PCI devices into guest. | [optional] 
-**Hostpci11** | Pointer to **string** | Map host PCI devices into guest. | [optional] 
-**Hostpci12** | Pointer to **string** | Map host PCI devices into guest. | [optional] 
-**Hostpci13** | Pointer to **string** | Map host PCI devices into guest. | [optional] 
-**Hostpci14** | Pointer to **string** | Map host PCI devices into guest. | [optional] 
-**Hostpci15** | Pointer to **string** | Map host PCI devices into guest. | [optional] 
-**Hostpci16** | Pointer to **string** | Map host PCI devices into guest. | [optional] 
-**Hostpci17** | Pointer to **string** | Map host PCI devices into guest. | [optional] 
-**Hostpci18** | Pointer to **string** | Map host PCI devices into guest. | [optional] 
-**Hostpci19** | Pointer to **string** | Map host PCI devices into guest. | [optional] 
-**Hostpci20** | Pointer to **string** | Map host PCI devices into guest. | [optional] 
-**Hostpci21** | Pointer to **string** | Map host PCI devices into guest. | [optional] 
-**Hostpci22** | Pointer to **string** | Map host PCI devices into guest. | [optional] 
-**Hostpci23** | Pointer to **string** | Map host PCI devices into guest. | [optional] 
-**Hostpci24** | Pointer to **string** | Map host PCI devices into guest. | [optional] 
-**Hostpci25** | Pointer to **string** | Map host PCI devices into guest. | [optional] 
-**Hostpci26** | Pointer to **string** | Map host PCI devices into guest. | [optional] 
-**Hostpci27** | Pointer to **string** | Map host PCI devices into guest. | [optional] 
-**Hostpci28** | Pointer to **string** | Map host PCI devices into guest. | [optional] 
-**Hostpci29** | Pointer to **string** | Map host PCI devices into guest. | [optional] 
-**Hotplug** | Pointer to **string** | Selectively enable hotplug features. This is a comma separated list of hotplug features: &#39;network&#39;, &#39;disk&#39;, &#39;cpu&#39;, &#39;memory&#39;, &#39;usb&#39; and &#39;cloudinit&#39;. Use &#39;0&#39; to disable hotplug completely. Using &#39;1&#39; as value is an alias for the default &#x60;network,disk,usb&#x60;. USB hotplugging is possible for guests with machine version &gt;&#x3D; 7.1 and ostype l26 or windows &gt; 7. | [optional] 
-**Hugepages** | Pointer to **string** | Enable/disable hugepages memory. | [optional] 
+**Force** | Pointer to **bool** |  | [optional] 
+**Freeze** | Pointer to **bool** |  | [optional] 
+**Hookscript** | Pointer to **string** |  | [optional] 
+**Hostpci0** | Pointer to **string** |  | [optional] 
+**Hostpci1** | Pointer to **string** |  | [optional] 
+**Hostpci2** | Pointer to **string** |  | [optional] 
+**Hostpci3** | Pointer to **string** |  | [optional] 
+**Hostpci4** | Pointer to **string** |  | [optional] 
+**Hostpci5** | Pointer to **string** |  | [optional] 
+**Hostpci6** | Pointer to **string** |  | [optional] 
+**Hostpci7** | Pointer to **string** |  | [optional] 
+**Hostpci8** | Pointer to **string** |  | [optional] 
+**Hostpci9** | Pointer to **string** |  | [optional] 
+**Hostpci10** | Pointer to **string** |  | [optional] 
+**Hostpci11** | Pointer to **string** |  | [optional] 
+**Hostpci12** | Pointer to **string** |  | [optional] 
+**Hostpci13** | Pointer to **string** |  | [optional] 
+**Hostpci14** | Pointer to **string** |  | [optional] 
+**Hostpci15** | Pointer to **string** |  | [optional] 
+**Hostpci16** | Pointer to **string** |  | [optional] 
+**Hostpci17** | Pointer to **string** |  | [optional] 
+**Hostpci18** | Pointer to **string** |  | [optional] 
+**Hostpci19** | Pointer to **string** |  | [optional] 
+**Hostpci20** | Pointer to **string** |  | [optional] 
+**Hostpci21** | Pointer to **string** |  | [optional] 
+**Hostpci22** | Pointer to **string** |  | [optional] 
+**Hostpci23** | Pointer to **string** |  | [optional] 
+**Hostpci24** | Pointer to **string** |  | [optional] 
+**Hostpci25** | Pointer to **string** |  | [optional] 
+**Hostpci26** | Pointer to **string** |  | [optional] 
+**Hostpci27** | Pointer to **string** |  | [optional] 
+**Hostpci28** | Pointer to **string** |  | [optional] 
+**Hostpci29** | Pointer to **string** |  | [optional] 
+**Hotplug** | Pointer to **string** |  | [optional] 
+**Hugepages** | Pointer to **string** |  | [optional] 
 **Ide0** | Pointer to [**CreateVMRequestIde0**](CreateVMRequestIde0.md) |  | [optional] 
 **Ide1** | Pointer to [**CreateVMRequestIde0**](CreateVMRequestIde0.md) |  | [optional] 
 **Ide2** | Pointer to [**CreateVMRequestIde0**](CreateVMRequestIde0.md) |  | [optional] 
 **Ide3** | Pointer to [**CreateVMRequestIde0**](CreateVMRequestIde0.md) |  | [optional] 
-**Ipconfig0** | Pointer to [**GetVMConfig200ResponseDataIpconfig0**](GetVMConfig200ResponseDataIpconfig0.md) |  | [optional] 
-**Ipconfig1** | Pointer to [**GetVMConfig200ResponseDataIpconfig0**](GetVMConfig200ResponseDataIpconfig0.md) |  | [optional] 
-**Ipconfig2** | Pointer to [**GetVMConfig200ResponseDataIpconfig0**](GetVMConfig200ResponseDataIpconfig0.md) |  | [optional] 
-**Ipconfig3** | Pointer to [**GetVMConfig200ResponseDataIpconfig0**](GetVMConfig200ResponseDataIpconfig0.md) |  | [optional] 
-**Ipconfig4** | Pointer to [**GetVMConfig200ResponseDataIpconfig0**](GetVMConfig200ResponseDataIpconfig0.md) |  | [optional] 
-**Ipconfig5** | Pointer to [**GetVMConfig200ResponseDataIpconfig0**](GetVMConfig200ResponseDataIpconfig0.md) |  | [optional] 
-**Ipconfig6** | Pointer to [**GetVMConfig200ResponseDataIpconfig0**](GetVMConfig200ResponseDataIpconfig0.md) |  | [optional] 
-**Ipconfig7** | Pointer to [**GetVMConfig200ResponseDataIpconfig0**](GetVMConfig200ResponseDataIpconfig0.md) |  | [optional] 
-**Ipconfig8** | Pointer to [**GetVMConfig200ResponseDataIpconfig0**](GetVMConfig200ResponseDataIpconfig0.md) |  | [optional] 
-**Ipconfig9** | Pointer to [**GetVMConfig200ResponseDataIpconfig0**](GetVMConfig200ResponseDataIpconfig0.md) |  | [optional] 
-**Ipconfig10** | Pointer to [**GetVMConfig200ResponseDataIpconfig0**](GetVMConfig200ResponseDataIpconfig0.md) |  | [optional] 
-**Ipconfig11** | Pointer to [**GetVMConfig200ResponseDataIpconfig0**](GetVMConfig200ResponseDataIpconfig0.md) |  | [optional] 
-**Ipconfig12** | Pointer to [**GetVMConfig200ResponseDataIpconfig0**](GetVMConfig200ResponseDataIpconfig0.md) |  | [optional] 
-**Ipconfig13** | Pointer to [**GetVMConfig200ResponseDataIpconfig0**](GetVMConfig200ResponseDataIpconfig0.md) |  | [optional] 
-**Ipconfig14** | Pointer to [**GetVMConfig200ResponseDataIpconfig0**](GetVMConfig200ResponseDataIpconfig0.md) |  | [optional] 
-**Ipconfig15** | Pointer to [**GetVMConfig200ResponseDataIpconfig0**](GetVMConfig200ResponseDataIpconfig0.md) |  | [optional] 
-**Ipconfig16** | Pointer to [**GetVMConfig200ResponseDataIpconfig0**](GetVMConfig200ResponseDataIpconfig0.md) |  | [optional] 
-**Ipconfig17** | Pointer to [**GetVMConfig200ResponseDataIpconfig0**](GetVMConfig200ResponseDataIpconfig0.md) |  | [optional] 
-**Ipconfig18** | Pointer to [**GetVMConfig200ResponseDataIpconfig0**](GetVMConfig200ResponseDataIpconfig0.md) |  | [optional] 
-**Ipconfig19** | Pointer to [**GetVMConfig200ResponseDataIpconfig0**](GetVMConfig200ResponseDataIpconfig0.md) |  | [optional] 
-**Ipconfig20** | Pointer to [**GetVMConfig200ResponseDataIpconfig0**](GetVMConfig200ResponseDataIpconfig0.md) |  | [optional] 
-**Ipconfig21** | Pointer to [**GetVMConfig200ResponseDataIpconfig0**](GetVMConfig200ResponseDataIpconfig0.md) |  | [optional] 
-**Ipconfig22** | Pointer to [**GetVMConfig200ResponseDataIpconfig0**](GetVMConfig200ResponseDataIpconfig0.md) |  | [optional] 
-**Ipconfig23** | Pointer to [**GetVMConfig200ResponseDataIpconfig0**](GetVMConfig200ResponseDataIpconfig0.md) |  | [optional] 
-**Ipconfig24** | Pointer to [**GetVMConfig200ResponseDataIpconfig0**](GetVMConfig200ResponseDataIpconfig0.md) |  | [optional] 
-**Ipconfig25** | Pointer to [**GetVMConfig200ResponseDataIpconfig0**](GetVMConfig200ResponseDataIpconfig0.md) |  | [optional] 
-**Ipconfig26** | Pointer to [**GetVMConfig200ResponseDataIpconfig0**](GetVMConfig200ResponseDataIpconfig0.md) |  | [optional] 
-**Ipconfig27** | Pointer to [**GetVMConfig200ResponseDataIpconfig0**](GetVMConfig200ResponseDataIpconfig0.md) |  | [optional] 
-**Ipconfig28** | Pointer to [**GetVMConfig200ResponseDataIpconfig0**](GetVMConfig200ResponseDataIpconfig0.md) |  | [optional] 
-**Ipconfig29** | Pointer to [**GetVMConfig200ResponseDataIpconfig0**](GetVMConfig200ResponseDataIpconfig0.md) |  | [optional] 
-**Ivshmem** | Pointer to [**GetVMConfig200ResponseDataIvshmem**](GetVMConfig200ResponseDataIvshmem.md) |  | [optional] 
-**Keephugepages** | Pointer to **bool** | Use together with hugepages. If enabled, hugepages will not not be deleted after VM shutdown and can be used for subsequent starts. | [optional] 
-**Keyboard** | Pointer to **string** | Keyboard layout for VNC server. This option is generally not required and is often better handled from within the guest OS. | [optional] 
-**Kvm** | Pointer to **bool** | Enable/disable KVM hardware virtualization. | [optional] 
-**Localtime** | Pointer to **bool** | Set the real time clock (RTC) to local time. This is enabled by default if the &#x60;ostype&#x60; indicates a Microsoft Windows OS. | [optional] 
-**Lock** | Pointer to **string** | Lock/unlock the VM. | [optional] 
-**Machine** | Pointer to **string** | Specifies the QEMU machine type. | [optional] 
-**Memory** | Pointer to **int64** | Memory | [optional] 
-**MigrateDowntime** | Pointer to **float32** | Set maximum tolerated downtime (in seconds) for migrations. | [optional] 
-**MigrateSpeed** | Pointer to **int64** | Set maximum speed (in MB/s) for migrations. Value 0 is no limit. | [optional] 
-**Name** | Pointer to **string** | Set a name for the VM. Only used on the configuration web interface. | [optional] 
-**Nameserver** | Pointer to **string** | cloud-init: Sets DNS server IP address for a container. Create will automatically use the setting from the host if neither searchdomain nor nameserver are set. | [optional] 
-**Net0** | Pointer to [**GetVMConfig200ResponseDataNet0**](GetVMConfig200ResponseDataNet0.md) |  | [optional] 
-**Net1** | Pointer to [**GetVMConfig200ResponseDataNet0**](GetVMConfig200ResponseDataNet0.md) |  | [optional] 
-**Net2** | Pointer to [**GetVMConfig200ResponseDataNet0**](GetVMConfig200ResponseDataNet0.md) |  | [optional] 
-**Net3** | Pointer to [**GetVMConfig200ResponseDataNet0**](GetVMConfig200ResponseDataNet0.md) |  | [optional] 
-**Net4** | Pointer to [**GetVMConfig200ResponseDataNet0**](GetVMConfig200ResponseDataNet0.md) |  | [optional] 
-**Net5** | Pointer to [**GetVMConfig200ResponseDataNet0**](GetVMConfig200ResponseDataNet0.md) |  | [optional] 
-**Net6** | Pointer to [**GetVMConfig200ResponseDataNet0**](GetVMConfig200ResponseDataNet0.md) |  | [optional] 
-**Net7** | Pointer to [**GetVMConfig200ResponseDataNet0**](GetVMConfig200ResponseDataNet0.md) |  | [optional] 
-**Net8** | Pointer to [**GetVMConfig200ResponseDataNet0**](GetVMConfig200ResponseDataNet0.md) |  | [optional] 
-**Net9** | Pointer to [**GetVMConfig200ResponseDataNet0**](GetVMConfig200ResponseDataNet0.md) |  | [optional] 
-**Net10** | Pointer to [**GetVMConfig200ResponseDataNet0**](GetVMConfig200ResponseDataNet0.md) |  | [optional] 
-**Net11** | Pointer to [**GetVMConfig200ResponseDataNet0**](GetVMConfig200ResponseDataNet0.md) |  | [optional] 
-**Net12** | Pointer to [**GetVMConfig200ResponseDataNet0**](GetVMConfig200ResponseDataNet0.md) |  | [optional] 
-**Net13** | Pointer to [**GetVMConfig200ResponseDataNet0**](GetVMConfig200ResponseDataNet0.md) |  | [optional] 
-**Net14** | Pointer to [**GetVMConfig200ResponseDataNet0**](GetVMConfig200ResponseDataNet0.md) |  | [optional] 
-**Net15** | Pointer to [**GetVMConfig200ResponseDataNet0**](GetVMConfig200ResponseDataNet0.md) |  | [optional] 
-**Net16** | Pointer to [**GetVMConfig200ResponseDataNet0**](GetVMConfig200ResponseDataNet0.md) |  | [optional] 
-**Net17** | Pointer to [**GetVMConfig200ResponseDataNet0**](GetVMConfig200ResponseDataNet0.md) |  | [optional] 
-**Net18** | Pointer to [**GetVMConfig200ResponseDataNet0**](GetVMConfig200ResponseDataNet0.md) |  | [optional] 
-**Net19** | Pointer to [**GetVMConfig200ResponseDataNet0**](GetVMConfig200ResponseDataNet0.md) |  | [optional] 
-**Net20** | Pointer to [**GetVMConfig200ResponseDataNet0**](GetVMConfig200ResponseDataNet0.md) |  | [optional] 
-**Net21** | Pointer to [**GetVMConfig200ResponseDataNet0**](GetVMConfig200ResponseDataNet0.md) |  | [optional] 
-**Net22** | Pointer to [**GetVMConfig200ResponseDataNet0**](GetVMConfig200ResponseDataNet0.md) |  | [optional] 
-**Net23** | Pointer to [**GetVMConfig200ResponseDataNet0**](GetVMConfig200ResponseDataNet0.md) |  | [optional] 
-**Net24** | Pointer to [**GetVMConfig200ResponseDataNet0**](GetVMConfig200ResponseDataNet0.md) |  | [optional] 
-**Net25** | Pointer to [**GetVMConfig200ResponseDataNet0**](GetVMConfig200ResponseDataNet0.md) |  | [optional] 
-**Net26** | Pointer to [**GetVMConfig200ResponseDataNet0**](GetVMConfig200ResponseDataNet0.md) |  | [optional] 
-**Net27** | Pointer to [**GetVMConfig200ResponseDataNet0**](GetVMConfig200ResponseDataNet0.md) |  | [optional] 
-**Net28** | Pointer to [**GetVMConfig200ResponseDataNet0**](GetVMConfig200ResponseDataNet0.md) |  | [optional] 
-**Net29** | Pointer to [**GetVMConfig200ResponseDataNet0**](GetVMConfig200ResponseDataNet0.md) |  | [optional] 
-**Net30** | Pointer to [**GetVMConfig200ResponseDataNet0**](GetVMConfig200ResponseDataNet0.md) |  | [optional] 
-**Net31** | Pointer to [**GetVMConfig200ResponseDataNet0**](GetVMConfig200ResponseDataNet0.md) |  | [optional] 
-**Numa** | Pointer to **bool** | Enable/disable NUMA. | [optional] 
-**Numa0** | Pointer to [**GetVMConfig200ResponseDataNuma0**](GetVMConfig200ResponseDataNuma0.md) |  | [optional] 
-**Numa1** | Pointer to [**GetVMConfig200ResponseDataNuma0**](GetVMConfig200ResponseDataNuma0.md) |  | [optional] 
-**Numa2** | Pointer to [**GetVMConfig200ResponseDataNuma0**](GetVMConfig200ResponseDataNuma0.md) |  | [optional] 
-**Numa3** | Pointer to [**GetVMConfig200ResponseDataNuma0**](GetVMConfig200ResponseDataNuma0.md) |  | [optional] 
-**Numa4** | Pointer to [**GetVMConfig200ResponseDataNuma0**](GetVMConfig200ResponseDataNuma0.md) |  | [optional] 
-**Numa5** | Pointer to [**GetVMConfig200ResponseDataNuma0**](GetVMConfig200ResponseDataNuma0.md) |  | [optional] 
-**Numa6** | Pointer to [**GetVMConfig200ResponseDataNuma0**](GetVMConfig200ResponseDataNuma0.md) |  | [optional] 
-**Numa7** | Pointer to [**GetVMConfig200ResponseDataNuma0**](GetVMConfig200ResponseDataNuma0.md) |  | [optional] 
-**Numa8** | Pointer to [**GetVMConfig200ResponseDataNuma0**](GetVMConfig200ResponseDataNuma0.md) |  | [optional] 
-**Numa9** | Pointer to [**GetVMConfig200ResponseDataNuma0**](GetVMConfig200ResponseDataNuma0.md) |  | [optional] 
-**Numa10** | Pointer to [**GetVMConfig200ResponseDataNuma0**](GetVMConfig200ResponseDataNuma0.md) |  | [optional] 
-**Numa11** | Pointer to [**GetVMConfig200ResponseDataNuma0**](GetVMConfig200ResponseDataNuma0.md) |  | [optional] 
-**Numa12** | Pointer to [**GetVMConfig200ResponseDataNuma0**](GetVMConfig200ResponseDataNuma0.md) |  | [optional] 
-**Numa13** | Pointer to [**GetVMConfig200ResponseDataNuma0**](GetVMConfig200ResponseDataNuma0.md) |  | [optional] 
-**Numa14** | Pointer to [**GetVMConfig200ResponseDataNuma0**](GetVMConfig200ResponseDataNuma0.md) |  | [optional] 
-**Numa15** | Pointer to [**GetVMConfig200ResponseDataNuma0**](GetVMConfig200ResponseDataNuma0.md) |  | [optional] 
-**Numa16** | Pointer to [**GetVMConfig200ResponseDataNuma0**](GetVMConfig200ResponseDataNuma0.md) |  | [optional] 
-**Numa17** | Pointer to [**GetVMConfig200ResponseDataNuma0**](GetVMConfig200ResponseDataNuma0.md) |  | [optional] 
-**Numa18** | Pointer to [**GetVMConfig200ResponseDataNuma0**](GetVMConfig200ResponseDataNuma0.md) |  | [optional] 
-**Numa19** | Pointer to [**GetVMConfig200ResponseDataNuma0**](GetVMConfig200ResponseDataNuma0.md) |  | [optional] 
-**Numa20** | Pointer to [**GetVMConfig200ResponseDataNuma0**](GetVMConfig200ResponseDataNuma0.md) |  | [optional] 
-**Numa21** | Pointer to [**GetVMConfig200ResponseDataNuma0**](GetVMConfig200ResponseDataNuma0.md) |  | [optional] 
-**Numa22** | Pointer to [**GetVMConfig200ResponseDataNuma0**](GetVMConfig200ResponseDataNuma0.md) |  | [optional] 
-**Numa23** | Pointer to [**GetVMConfig200ResponseDataNuma0**](GetVMConfig200ResponseDataNuma0.md) |  | [optional] 
-**Numa24** | Pointer to [**GetVMConfig200ResponseDataNuma0**](GetVMConfig200ResponseDataNuma0.md) |  | [optional] 
-**Numa25** | Pointer to [**GetVMConfig200ResponseDataNuma0**](GetVMConfig200ResponseDataNuma0.md) |  | [optional] 
-**Numa26** | Pointer to [**GetVMConfig200ResponseDataNuma0**](GetVMConfig200ResponseDataNuma0.md) |  | [optional] 
-**Numa27** | Pointer to [**GetVMConfig200ResponseDataNuma0**](GetVMConfig200ResponseDataNuma0.md) |  | [optional] 
-**Numa28** | Pointer to [**GetVMConfig200ResponseDataNuma0**](GetVMConfig200ResponseDataNuma0.md) |  | [optional] 
-**Numa29** | Pointer to [**GetVMConfig200ResponseDataNuma0**](GetVMConfig200ResponseDataNuma0.md) |  | [optional] 
-**Onboot** | Pointer to **bool** | Specifies whether a VM will be started during system bootup. | [optional] 
-**Ostype** | Pointer to **string** | Specify guest operating system. | [optional] 
-**Parallel0** | Pointer to **string** | Map host parallel devices (n is 0 to 2). | [optional] 
-**Parallel1** | Pointer to **string** | Map host parallel devices (n is 0 to 2). | [optional] 
-**Parallel2** | Pointer to **string** | Map host parallel devices (n is 0 to 2). | [optional] 
-**Parallel3** | Pointer to **string** | Map host parallel devices (n is 0 to 2). | [optional] 
-**Protection** | Pointer to **bool** | Sets the protection flag of the VM. This will disable the remove VM and remove disk operations. | [optional] 
-**Reboot** | Pointer to **bool** | Allow reboot. If set to &#39;0&#39; the VM exit on reboot. | [optional] 
-**Revert** | Pointer to **string** | Revert a pending change. | [optional] 
-**Rng0** | Pointer to [**GetVMConfig200ResponseDataRng0**](GetVMConfig200ResponseDataRng0.md) |  | [optional] 
+**ImportWorkingStorage** | Pointer to **string** |  | [optional] 
+**Ipconfig0** | Pointer to [**CreateVMRequestIpconfig0**](CreateVMRequestIpconfig0.md) |  | [optional] 
+**Ipconfig1** | Pointer to [**CreateVMRequestIpconfig0**](CreateVMRequestIpconfig0.md) |  | [optional] 
+**Ipconfig2** | Pointer to [**CreateVMRequestIpconfig0**](CreateVMRequestIpconfig0.md) |  | [optional] 
+**Ipconfig3** | Pointer to [**CreateVMRequestIpconfig0**](CreateVMRequestIpconfig0.md) |  | [optional] 
+**Ipconfig4** | Pointer to [**CreateVMRequestIpconfig0**](CreateVMRequestIpconfig0.md) |  | [optional] 
+**Ipconfig5** | Pointer to [**CreateVMRequestIpconfig0**](CreateVMRequestIpconfig0.md) |  | [optional] 
+**Ipconfig6** | Pointer to [**CreateVMRequestIpconfig0**](CreateVMRequestIpconfig0.md) |  | [optional] 
+**Ipconfig7** | Pointer to [**CreateVMRequestIpconfig0**](CreateVMRequestIpconfig0.md) |  | [optional] 
+**Ipconfig8** | Pointer to [**CreateVMRequestIpconfig0**](CreateVMRequestIpconfig0.md) |  | [optional] 
+**Ipconfig9** | Pointer to [**CreateVMRequestIpconfig0**](CreateVMRequestIpconfig0.md) |  | [optional] 
+**Ipconfig10** | Pointer to [**CreateVMRequestIpconfig0**](CreateVMRequestIpconfig0.md) |  | [optional] 
+**Ipconfig11** | Pointer to [**CreateVMRequestIpconfig0**](CreateVMRequestIpconfig0.md) |  | [optional] 
+**Ipconfig12** | Pointer to [**CreateVMRequestIpconfig0**](CreateVMRequestIpconfig0.md) |  | [optional] 
+**Ipconfig13** | Pointer to [**CreateVMRequestIpconfig0**](CreateVMRequestIpconfig0.md) |  | [optional] 
+**Ipconfig14** | Pointer to [**CreateVMRequestIpconfig0**](CreateVMRequestIpconfig0.md) |  | [optional] 
+**Ipconfig15** | Pointer to [**CreateVMRequestIpconfig0**](CreateVMRequestIpconfig0.md) |  | [optional] 
+**Ipconfig16** | Pointer to [**CreateVMRequestIpconfig0**](CreateVMRequestIpconfig0.md) |  | [optional] 
+**Ipconfig17** | Pointer to [**CreateVMRequestIpconfig0**](CreateVMRequestIpconfig0.md) |  | [optional] 
+**Ipconfig18** | Pointer to [**CreateVMRequestIpconfig0**](CreateVMRequestIpconfig0.md) |  | [optional] 
+**Ipconfig19** | Pointer to [**CreateVMRequestIpconfig0**](CreateVMRequestIpconfig0.md) |  | [optional] 
+**Ipconfig20** | Pointer to [**CreateVMRequestIpconfig0**](CreateVMRequestIpconfig0.md) |  | [optional] 
+**Ipconfig21** | Pointer to [**CreateVMRequestIpconfig0**](CreateVMRequestIpconfig0.md) |  | [optional] 
+**Ipconfig22** | Pointer to [**CreateVMRequestIpconfig0**](CreateVMRequestIpconfig0.md) |  | [optional] 
+**Ipconfig23** | Pointer to [**CreateVMRequestIpconfig0**](CreateVMRequestIpconfig0.md) |  | [optional] 
+**Ipconfig24** | Pointer to [**CreateVMRequestIpconfig0**](CreateVMRequestIpconfig0.md) |  | [optional] 
+**Ipconfig25** | Pointer to [**CreateVMRequestIpconfig0**](CreateVMRequestIpconfig0.md) |  | [optional] 
+**Ipconfig26** | Pointer to [**CreateVMRequestIpconfig0**](CreateVMRequestIpconfig0.md) |  | [optional] 
+**Ipconfig27** | Pointer to [**CreateVMRequestIpconfig0**](CreateVMRequestIpconfig0.md) |  | [optional] 
+**Ipconfig28** | Pointer to [**CreateVMRequestIpconfig0**](CreateVMRequestIpconfig0.md) |  | [optional] 
+**Ipconfig29** | Pointer to [**CreateVMRequestIpconfig0**](CreateVMRequestIpconfig0.md) |  | [optional] 
+**Ivshmem** | Pointer to [**CreateVMRequestIvshmem**](CreateVMRequestIvshmem.md) |  | [optional] 
+**Keephugepages** | Pointer to **bool** |  | [optional] 
+**Keyboard** | Pointer to **string** |  | [optional] 
+**Kvm** | Pointer to **bool** |  | [optional] 
+**Localtime** | Pointer to **bool** |  | [optional] 
+**Lock** | Pointer to **string** |  | [optional] 
+**Machine** | Pointer to [**CreateVMRequestMachine**](CreateVMRequestMachine.md) |  | [optional] 
+**Memory** | Pointer to [**CreateVMRequestMemory**](CreateVMRequestMemory.md) |  | [optional] 
+**MigrateDowntime** | Pointer to **float32** |  | [optional] 
+**MigrateSpeed** | Pointer to **int64** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**Nameserver** | Pointer to **string** |  | [optional] 
+**Net0** | Pointer to [**CreateVMRequestNet0**](CreateVMRequestNet0.md) |  | [optional] 
+**Net1** | Pointer to [**CreateVMRequestNet0**](CreateVMRequestNet0.md) |  | [optional] 
+**Net2** | Pointer to [**CreateVMRequestNet0**](CreateVMRequestNet0.md) |  | [optional] 
+**Net3** | Pointer to [**CreateVMRequestNet0**](CreateVMRequestNet0.md) |  | [optional] 
+**Net4** | Pointer to [**CreateVMRequestNet0**](CreateVMRequestNet0.md) |  | [optional] 
+**Net5** | Pointer to [**CreateVMRequestNet0**](CreateVMRequestNet0.md) |  | [optional] 
+**Net6** | Pointer to [**CreateVMRequestNet0**](CreateVMRequestNet0.md) |  | [optional] 
+**Net7** | Pointer to [**CreateVMRequestNet0**](CreateVMRequestNet0.md) |  | [optional] 
+**Net8** | Pointer to [**CreateVMRequestNet0**](CreateVMRequestNet0.md) |  | [optional] 
+**Net9** | Pointer to [**CreateVMRequestNet0**](CreateVMRequestNet0.md) |  | [optional] 
+**Net10** | Pointer to [**CreateVMRequestNet0**](CreateVMRequestNet0.md) |  | [optional] 
+**Net11** | Pointer to [**CreateVMRequestNet0**](CreateVMRequestNet0.md) |  | [optional] 
+**Net12** | Pointer to [**CreateVMRequestNet0**](CreateVMRequestNet0.md) |  | [optional] 
+**Net13** | Pointer to [**CreateVMRequestNet0**](CreateVMRequestNet0.md) |  | [optional] 
+**Net14** | Pointer to [**CreateVMRequestNet0**](CreateVMRequestNet0.md) |  | [optional] 
+**Net15** | Pointer to [**CreateVMRequestNet0**](CreateVMRequestNet0.md) |  | [optional] 
+**Net16** | Pointer to [**CreateVMRequestNet0**](CreateVMRequestNet0.md) |  | [optional] 
+**Net17** | Pointer to [**CreateVMRequestNet0**](CreateVMRequestNet0.md) |  | [optional] 
+**Net18** | Pointer to [**CreateVMRequestNet0**](CreateVMRequestNet0.md) |  | [optional] 
+**Net19** | Pointer to [**CreateVMRequestNet0**](CreateVMRequestNet0.md) |  | [optional] 
+**Net20** | Pointer to [**CreateVMRequestNet0**](CreateVMRequestNet0.md) |  | [optional] 
+**Net21** | Pointer to [**CreateVMRequestNet0**](CreateVMRequestNet0.md) |  | [optional] 
+**Net22** | Pointer to [**CreateVMRequestNet0**](CreateVMRequestNet0.md) |  | [optional] 
+**Net23** | Pointer to [**CreateVMRequestNet0**](CreateVMRequestNet0.md) |  | [optional] 
+**Net24** | Pointer to [**CreateVMRequestNet0**](CreateVMRequestNet0.md) |  | [optional] 
+**Net25** | Pointer to [**CreateVMRequestNet0**](CreateVMRequestNet0.md) |  | [optional] 
+**Net26** | Pointer to [**CreateVMRequestNet0**](CreateVMRequestNet0.md) |  | [optional] 
+**Net27** | Pointer to [**CreateVMRequestNet0**](CreateVMRequestNet0.md) |  | [optional] 
+**Net28** | Pointer to [**CreateVMRequestNet0**](CreateVMRequestNet0.md) |  | [optional] 
+**Net29** | Pointer to [**CreateVMRequestNet0**](CreateVMRequestNet0.md) |  | [optional] 
+**Net30** | Pointer to [**CreateVMRequestNet0**](CreateVMRequestNet0.md) |  | [optional] 
+**Net31** | Pointer to [**CreateVMRequestNet0**](CreateVMRequestNet0.md) |  | [optional] 
+**Numa** | Pointer to **bool** |  | [optional] 
+**Numa0** | Pointer to [**CreateVMRequestNuma0**](CreateVMRequestNuma0.md) |  | [optional] 
+**Numa1** | Pointer to [**CreateVMRequestNuma0**](CreateVMRequestNuma0.md) |  | [optional] 
+**Numa2** | Pointer to [**CreateVMRequestNuma0**](CreateVMRequestNuma0.md) |  | [optional] 
+**Numa3** | Pointer to [**CreateVMRequestNuma0**](CreateVMRequestNuma0.md) |  | [optional] 
+**Numa4** | Pointer to [**CreateVMRequestNuma0**](CreateVMRequestNuma0.md) |  | [optional] 
+**Numa5** | Pointer to [**CreateVMRequestNuma0**](CreateVMRequestNuma0.md) |  | [optional] 
+**Numa6** | Pointer to [**CreateVMRequestNuma0**](CreateVMRequestNuma0.md) |  | [optional] 
+**Numa7** | Pointer to [**CreateVMRequestNuma0**](CreateVMRequestNuma0.md) |  | [optional] 
+**Numa8** | Pointer to [**CreateVMRequestNuma0**](CreateVMRequestNuma0.md) |  | [optional] 
+**Numa9** | Pointer to [**CreateVMRequestNuma0**](CreateVMRequestNuma0.md) |  | [optional] 
+**Numa10** | Pointer to [**CreateVMRequestNuma0**](CreateVMRequestNuma0.md) |  | [optional] 
+**Numa11** | Pointer to [**CreateVMRequestNuma0**](CreateVMRequestNuma0.md) |  | [optional] 
+**Numa12** | Pointer to [**CreateVMRequestNuma0**](CreateVMRequestNuma0.md) |  | [optional] 
+**Numa13** | Pointer to [**CreateVMRequestNuma0**](CreateVMRequestNuma0.md) |  | [optional] 
+**Numa14** | Pointer to [**CreateVMRequestNuma0**](CreateVMRequestNuma0.md) |  | [optional] 
+**Numa15** | Pointer to [**CreateVMRequestNuma0**](CreateVMRequestNuma0.md) |  | [optional] 
+**Numa16** | Pointer to [**CreateVMRequestNuma0**](CreateVMRequestNuma0.md) |  | [optional] 
+**Numa17** | Pointer to [**CreateVMRequestNuma0**](CreateVMRequestNuma0.md) |  | [optional] 
+**Numa18** | Pointer to [**CreateVMRequestNuma0**](CreateVMRequestNuma0.md) |  | [optional] 
+**Numa19** | Pointer to [**CreateVMRequestNuma0**](CreateVMRequestNuma0.md) |  | [optional] 
+**Numa20** | Pointer to [**CreateVMRequestNuma0**](CreateVMRequestNuma0.md) |  | [optional] 
+**Numa21** | Pointer to [**CreateVMRequestNuma0**](CreateVMRequestNuma0.md) |  | [optional] 
+**Numa22** | Pointer to [**CreateVMRequestNuma0**](CreateVMRequestNuma0.md) |  | [optional] 
+**Numa23** | Pointer to [**CreateVMRequestNuma0**](CreateVMRequestNuma0.md) |  | [optional] 
+**Numa24** | Pointer to [**CreateVMRequestNuma0**](CreateVMRequestNuma0.md) |  | [optional] 
+**Numa25** | Pointer to [**CreateVMRequestNuma0**](CreateVMRequestNuma0.md) |  | [optional] 
+**Numa26** | Pointer to [**CreateVMRequestNuma0**](CreateVMRequestNuma0.md) |  | [optional] 
+**Numa27** | Pointer to [**CreateVMRequestNuma0**](CreateVMRequestNuma0.md) |  | [optional] 
+**Numa28** | Pointer to [**CreateVMRequestNuma0**](CreateVMRequestNuma0.md) |  | [optional] 
+**Numa29** | Pointer to [**CreateVMRequestNuma0**](CreateVMRequestNuma0.md) |  | [optional] 
+**Onboot** | Pointer to **bool** |  | [optional] 
+**Ostype** | Pointer to **string** |  | [optional] 
+**Parallel0** | Pointer to **string** |  | [optional] 
+**Parallel1** | Pointer to **string** |  | [optional] 
+**Parallel2** | Pointer to **string** |  | [optional] 
+**Parallel3** | Pointer to **string** |  | [optional] 
+**Protection** | Pointer to **bool** |  | [optional] 
+**Reboot** | Pointer to **bool** |  | [optional] 
+**Revert** | Pointer to **string** |  | [optional] 
+**Rng0** | Pointer to [**CreateVMRequestRng0**](CreateVMRequestRng0.md) |  | [optional] 
 **Sata0** | Pointer to [**CreateVMRequestSata0**](CreateVMRequestSata0.md) |  | [optional] 
 **Sata1** | Pointer to [**CreateVMRequestSata0**](CreateVMRequestSata0.md) |  | [optional] 
 **Sata2** | Pointer to [**CreateVMRequestSata0**](CreateVMRequestSata0.md) |  | [optional] 
@@ -220,62 +222,62 @@ Name | Type | Description | Notes
 **Scsi27** | Pointer to [**CreateVMRequestScsi0**](CreateVMRequestScsi0.md) |  | [optional] 
 **Scsi28** | Pointer to [**CreateVMRequestScsi0**](CreateVMRequestScsi0.md) |  | [optional] 
 **Scsi29** | Pointer to [**CreateVMRequestScsi0**](CreateVMRequestScsi0.md) |  | [optional] 
-**Scsihw** | Pointer to **string** | SCSI controller model | [optional] 
-**Searchdomain** | Pointer to **string** | cloud-init: Sets DNS search domains for a container. Create will automatically use the setting from the host if neither searchdomain nor nameserver are set. | [optional] 
-**Serial0** | Pointer to **string** | Create a serial device inside the VM (n is 0 to 3) | [optional] 
-**Serial1** | Pointer to **string** | Create a serial device inside the VM (n is 0 to 3) | [optional] 
-**Serial2** | Pointer to **string** | Create a serial device inside the VM (n is 0 to 3) | [optional] 
-**Serial3** | Pointer to **string** | Create a serial device inside the VM (n is 0 to 3) | [optional] 
-**Shares** | Pointer to **int64** | Amount of memory shares for auto-ballooning. The larger the number is, the more memory this VM gets. Number is relative to weights of all other running VMs. Using zero disables auto-ballooning. Auto-ballooning is done by pvestatd. | [optional] 
-**Skiplock** | Pointer to **bool** | Ignore locks - only root is allowed to use this option. | [optional] 
-**Smbios1** | Pointer to **string** | Specify SMBIOS type 1 fields. | [optional] 
-**Smp** | Pointer to **int64** | The number of CPUs. Please use option -sockets instead. | [optional] 
-**Sockets** | Pointer to **int64** | The number of CPU sockets. | [optional] 
-**SpiceEnhancements** | Pointer to [**GetVMConfig200ResponseDataSpiceEnhancements**](GetVMConfig200ResponseDataSpiceEnhancements.md) |  | [optional] 
-**Sshkeys** | Pointer to **string** | cloud-init: Setup public SSH keys (one key per line, OpenSSH format). | [optional] 
-**Startdate** | Pointer to **string** | Set the initial date of the real time clock. Valid format for date are:&#39;now&#39; or &#39;2006-06-17T16:01:21&#39; or &#39;2006-06-17&#39;. | [optional] 
-**Startup** | Pointer to **string** | Startup and shutdown behavior. Order is a non-negative number defining the general startup order. Shutdown in done with reverse ordering. Additionally you can set the &#39;up&#39; or &#39;down&#39; delay in seconds, which specifies a delay to wait before the next VM is started or stopped. | [optional] 
-**Tablet** | Pointer to **bool** | Enable/disable the USB tablet device. | [optional] 
-**Tags** | Pointer to **string** | Tags of the VM. This is only meta information. | [optional] 
-**Tdf** | Pointer to **bool** | Enable/disable time drift fix. | [optional] 
-**Template** | Pointer to **bool** | Enable/disable Template. | [optional] 
+**Scsihw** | Pointer to **string** |  | [optional] 
+**Searchdomain** | Pointer to **string** |  | [optional] 
+**Serial0** | Pointer to **string** |  | [optional] 
+**Serial1** | Pointer to **string** |  | [optional] 
+**Serial2** | Pointer to **string** |  | [optional] 
+**Serial3** | Pointer to **string** |  | [optional] 
+**Shares** | Pointer to **int64** |  | [optional] 
+**Skiplock** | Pointer to **bool** |  | [optional] 
+**Smbios1** | Pointer to **string** |  | [optional] 
+**Smp** | Pointer to **int64** |  | [optional] 
+**Sockets** | Pointer to **int64** |  | [optional] 
+**SpiceEnhancements** | Pointer to [**CreateVMRequestSpiceEnhancements**](CreateVMRequestSpiceEnhancements.md) |  | [optional] 
+**Sshkeys** | Pointer to **string** |  | [optional] 
+**Startdate** | Pointer to **string** |  | [optional] 
+**Startup** | Pointer to **string** |  | [optional] 
+**Tablet** | Pointer to **bool** |  | [optional] 
+**Tags** | Pointer to **string** |  | [optional] 
+**Tdf** | Pointer to **bool** |  | [optional] 
+**Template** | Pointer to **bool** |  | [optional] 
 **Tpmstate0** | Pointer to [**CreateVMRequestTpmstate0**](CreateVMRequestTpmstate0.md) |  | [optional] 
-**Unused0** | Pointer to [**GetVMConfig200ResponseDataUnused0**](GetVMConfig200ResponseDataUnused0.md) |  | [optional] 
-**Unused1** | Pointer to [**GetVMConfig200ResponseDataUnused0**](GetVMConfig200ResponseDataUnused0.md) |  | [optional] 
-**Unused2** | Pointer to [**GetVMConfig200ResponseDataUnused0**](GetVMConfig200ResponseDataUnused0.md) |  | [optional] 
-**Unused3** | Pointer to [**GetVMConfig200ResponseDataUnused0**](GetVMConfig200ResponseDataUnused0.md) |  | [optional] 
-**Unused4** | Pointer to [**GetVMConfig200ResponseDataUnused0**](GetVMConfig200ResponseDataUnused0.md) |  | [optional] 
-**Unused5** | Pointer to [**GetVMConfig200ResponseDataUnused0**](GetVMConfig200ResponseDataUnused0.md) |  | [optional] 
-**Unused6** | Pointer to [**GetVMConfig200ResponseDataUnused0**](GetVMConfig200ResponseDataUnused0.md) |  | [optional] 
-**Unused7** | Pointer to [**GetVMConfig200ResponseDataUnused0**](GetVMConfig200ResponseDataUnused0.md) |  | [optional] 
-**Unused8** | Pointer to [**GetVMConfig200ResponseDataUnused0**](GetVMConfig200ResponseDataUnused0.md) |  | [optional] 
-**Unused9** | Pointer to [**GetVMConfig200ResponseDataUnused0**](GetVMConfig200ResponseDataUnused0.md) |  | [optional] 
-**Unused10** | Pointer to [**GetVMConfig200ResponseDataUnused0**](GetVMConfig200ResponseDataUnused0.md) |  | [optional] 
-**Unused11** | Pointer to [**GetVMConfig200ResponseDataUnused0**](GetVMConfig200ResponseDataUnused0.md) |  | [optional] 
-**Unused12** | Pointer to [**GetVMConfig200ResponseDataUnused0**](GetVMConfig200ResponseDataUnused0.md) |  | [optional] 
-**Unused13** | Pointer to [**GetVMConfig200ResponseDataUnused0**](GetVMConfig200ResponseDataUnused0.md) |  | [optional] 
-**Unused14** | Pointer to [**GetVMConfig200ResponseDataUnused0**](GetVMConfig200ResponseDataUnused0.md) |  | [optional] 
-**Unused15** | Pointer to [**GetVMConfig200ResponseDataUnused0**](GetVMConfig200ResponseDataUnused0.md) |  | [optional] 
-**Unused16** | Pointer to [**GetVMConfig200ResponseDataUnused0**](GetVMConfig200ResponseDataUnused0.md) |  | [optional] 
-**Unused17** | Pointer to [**GetVMConfig200ResponseDataUnused0**](GetVMConfig200ResponseDataUnused0.md) |  | [optional] 
-**Unused18** | Pointer to [**GetVMConfig200ResponseDataUnused0**](GetVMConfig200ResponseDataUnused0.md) |  | [optional] 
-**Unused19** | Pointer to [**GetVMConfig200ResponseDataUnused0**](GetVMConfig200ResponseDataUnused0.md) |  | [optional] 
-**Unused20** | Pointer to [**GetVMConfig200ResponseDataUnused0**](GetVMConfig200ResponseDataUnused0.md) |  | [optional] 
-**Unused21** | Pointer to [**GetVMConfig200ResponseDataUnused0**](GetVMConfig200ResponseDataUnused0.md) |  | [optional] 
-**Unused22** | Pointer to [**GetVMConfig200ResponseDataUnused0**](GetVMConfig200ResponseDataUnused0.md) |  | [optional] 
-**Unused23** | Pointer to [**GetVMConfig200ResponseDataUnused0**](GetVMConfig200ResponseDataUnused0.md) |  | [optional] 
-**Unused24** | Pointer to [**GetVMConfig200ResponseDataUnused0**](GetVMConfig200ResponseDataUnused0.md) |  | [optional] 
-**Unused25** | Pointer to [**GetVMConfig200ResponseDataUnused0**](GetVMConfig200ResponseDataUnused0.md) |  | [optional] 
-**Unused26** | Pointer to [**GetVMConfig200ResponseDataUnused0**](GetVMConfig200ResponseDataUnused0.md) |  | [optional] 
-**Unused27** | Pointer to [**GetVMConfig200ResponseDataUnused0**](GetVMConfig200ResponseDataUnused0.md) |  | [optional] 
-**Unused28** | Pointer to [**GetVMConfig200ResponseDataUnused0**](GetVMConfig200ResponseDataUnused0.md) |  | [optional] 
-**Unused29** | Pointer to [**GetVMConfig200ResponseDataUnused0**](GetVMConfig200ResponseDataUnused0.md) |  | [optional] 
-**Usb0** | Pointer to [**GetVMConfig200ResponseDataUsb0**](GetVMConfig200ResponseDataUsb0.md) |  | [optional] 
-**Usb1** | Pointer to [**GetVMConfig200ResponseDataUsb0**](GetVMConfig200ResponseDataUsb0.md) |  | [optional] 
-**Usb2** | Pointer to [**GetVMConfig200ResponseDataUsb0**](GetVMConfig200ResponseDataUsb0.md) |  | [optional] 
-**Usb3** | Pointer to [**GetVMConfig200ResponseDataUsb0**](GetVMConfig200ResponseDataUsb0.md) |  | [optional] 
-**Vcpus** | Pointer to **int64** | Number of hotplugged vcpus. | [optional] 
-**Vga** | Pointer to [**GetVMConfig200ResponseDataVga**](GetVMConfig200ResponseDataVga.md) |  | [optional] 
+**Unused0** | Pointer to [**CreateVMRequestUnused0**](CreateVMRequestUnused0.md) |  | [optional] 
+**Unused1** | Pointer to [**CreateVMRequestUnused0**](CreateVMRequestUnused0.md) |  | [optional] 
+**Unused2** | Pointer to [**CreateVMRequestUnused0**](CreateVMRequestUnused0.md) |  | [optional] 
+**Unused3** | Pointer to [**CreateVMRequestUnused0**](CreateVMRequestUnused0.md) |  | [optional] 
+**Unused4** | Pointer to [**CreateVMRequestUnused0**](CreateVMRequestUnused0.md) |  | [optional] 
+**Unused5** | Pointer to [**CreateVMRequestUnused0**](CreateVMRequestUnused0.md) |  | [optional] 
+**Unused6** | Pointer to [**CreateVMRequestUnused0**](CreateVMRequestUnused0.md) |  | [optional] 
+**Unused7** | Pointer to [**CreateVMRequestUnused0**](CreateVMRequestUnused0.md) |  | [optional] 
+**Unused8** | Pointer to [**CreateVMRequestUnused0**](CreateVMRequestUnused0.md) |  | [optional] 
+**Unused9** | Pointer to [**CreateVMRequestUnused0**](CreateVMRequestUnused0.md) |  | [optional] 
+**Unused10** | Pointer to [**CreateVMRequestUnused0**](CreateVMRequestUnused0.md) |  | [optional] 
+**Unused11** | Pointer to [**CreateVMRequestUnused0**](CreateVMRequestUnused0.md) |  | [optional] 
+**Unused12** | Pointer to [**CreateVMRequestUnused0**](CreateVMRequestUnused0.md) |  | [optional] 
+**Unused13** | Pointer to [**CreateVMRequestUnused0**](CreateVMRequestUnused0.md) |  | [optional] 
+**Unused14** | Pointer to [**CreateVMRequestUnused0**](CreateVMRequestUnused0.md) |  | [optional] 
+**Unused15** | Pointer to [**CreateVMRequestUnused0**](CreateVMRequestUnused0.md) |  | [optional] 
+**Unused16** | Pointer to [**CreateVMRequestUnused0**](CreateVMRequestUnused0.md) |  | [optional] 
+**Unused17** | Pointer to [**CreateVMRequestUnused0**](CreateVMRequestUnused0.md) |  | [optional] 
+**Unused18** | Pointer to [**CreateVMRequestUnused0**](CreateVMRequestUnused0.md) |  | [optional] 
+**Unused19** | Pointer to [**CreateVMRequestUnused0**](CreateVMRequestUnused0.md) |  | [optional] 
+**Unused20** | Pointer to [**CreateVMRequestUnused0**](CreateVMRequestUnused0.md) |  | [optional] 
+**Unused21** | Pointer to [**CreateVMRequestUnused0**](CreateVMRequestUnused0.md) |  | [optional] 
+**Unused22** | Pointer to [**CreateVMRequestUnused0**](CreateVMRequestUnused0.md) |  | [optional] 
+**Unused23** | Pointer to [**CreateVMRequestUnused0**](CreateVMRequestUnused0.md) |  | [optional] 
+**Unused24** | Pointer to [**CreateVMRequestUnused0**](CreateVMRequestUnused0.md) |  | [optional] 
+**Unused25** | Pointer to [**CreateVMRequestUnused0**](CreateVMRequestUnused0.md) |  | [optional] 
+**Unused26** | Pointer to [**CreateVMRequestUnused0**](CreateVMRequestUnused0.md) |  | [optional] 
+**Unused27** | Pointer to [**CreateVMRequestUnused0**](CreateVMRequestUnused0.md) |  | [optional] 
+**Unused28** | Pointer to [**CreateVMRequestUnused0**](CreateVMRequestUnused0.md) |  | [optional] 
+**Unused29** | Pointer to [**CreateVMRequestUnused0**](CreateVMRequestUnused0.md) |  | [optional] 
+**Usb0** | Pointer to [**CreateVMRequestUsb0**](CreateVMRequestUsb0.md) |  | [optional] 
+**Usb1** | Pointer to [**CreateVMRequestUsb0**](CreateVMRequestUsb0.md) |  | [optional] 
+**Usb2** | Pointer to [**CreateVMRequestUsb0**](CreateVMRequestUsb0.md) |  | [optional] 
+**Usb3** | Pointer to [**CreateVMRequestUsb0**](CreateVMRequestUsb0.md) |  | [optional] 
+**Vcpus** | Pointer to **int64** |  | [optional] 
+**Vga** | Pointer to [**CreateVMRequestVga**](CreateVMRequestVga.md) |  | [optional] 
 **Virtio0** | Pointer to [**CreateVMRequestVirtio0**](CreateVMRequestVirtio0.md) |  | [optional] 
 **Virtio1** | Pointer to [**CreateVMRequestVirtio0**](CreateVMRequestVirtio0.md) |  | [optional] 
 **Virtio2** | Pointer to [**CreateVMRequestVirtio0**](CreateVMRequestVirtio0.md) |  | [optional] 
@@ -292,9 +294,9 @@ Name | Type | Description | Notes
 **Virtio13** | Pointer to [**CreateVMRequestVirtio0**](CreateVMRequestVirtio0.md) |  | [optional] 
 **Virtio14** | Pointer to [**CreateVMRequestVirtio0**](CreateVMRequestVirtio0.md) |  | [optional] 
 **Virtio15** | Pointer to [**CreateVMRequestVirtio0**](CreateVMRequestVirtio0.md) |  | [optional] 
-**Vmgenid** | Pointer to **string** | Set VM Generation ID. Use &#39;1&#39; to autogenerate on create or update, pass &#39;0&#39; to disable explicitly. | [optional] 
-**Vmstatestorage** | Pointer to **string** | Default storage for VM state volumes/files. | [optional] 
-**Watchdog** | Pointer to [**GetVMConfig200ResponseDataWatchdog**](GetVMConfig200ResponseDataWatchdog.md) |  | [optional] 
+**Vmgenid** | Pointer to **string** |  | [optional] 
+**Vmstatestorage** | Pointer to **string** |  | [optional] 
+**Watchdog** | Pointer to [**CreateVMRequestWatchdog**](CreateVMRequestWatchdog.md) |  | [optional] 
 
 ## Methods
 
@@ -367,20 +369,20 @@ HasAffinity returns a boolean if a field has been set.
 
 ### GetAgent
 
-`func (o *UpdateVMConfigRequest) GetAgent() GetVMConfig200ResponseDataAgent`
+`func (o *UpdateVMConfigRequest) GetAgent() CreateVMRequestAgent`
 
 GetAgent returns the Agent field if non-nil, zero value otherwise.
 
 ### GetAgentOk
 
-`func (o *UpdateVMConfigRequest) GetAgentOk() (*GetVMConfig200ResponseDataAgent, bool)`
+`func (o *UpdateVMConfigRequest) GetAgentOk() (*CreateVMRequestAgent, bool)`
 
 GetAgentOk returns a tuple with the Agent field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAgent
 
-`func (o *UpdateVMConfigRequest) SetAgent(v GetVMConfig200ResponseDataAgent)`
+`func (o *UpdateVMConfigRequest) SetAgent(v CreateVMRequestAgent)`
 
 SetAgent sets Agent field to given value.
 
@@ -389,6 +391,31 @@ SetAgent sets Agent field to given value.
 `func (o *UpdateVMConfigRequest) HasAgent() bool`
 
 HasAgent returns a boolean if a field has been set.
+
+### GetAmdSev
+
+`func (o *UpdateVMConfigRequest) GetAmdSev() string`
+
+GetAmdSev returns the AmdSev field if non-nil, zero value otherwise.
+
+### GetAmdSevOk
+
+`func (o *UpdateVMConfigRequest) GetAmdSevOk() (*string, bool)`
+
+GetAmdSevOk returns a tuple with the AmdSev field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAmdSev
+
+`func (o *UpdateVMConfigRequest) SetAmdSev(v string)`
+
+SetAmdSev sets AmdSev field to given value.
+
+### HasAmdSev
+
+`func (o *UpdateVMConfigRequest) HasAmdSev() bool`
+
+HasAmdSev returns a boolean if a field has been set.
 
 ### GetArch
 
@@ -442,20 +469,20 @@ HasArgs returns a boolean if a field has been set.
 
 ### GetAudio0
 
-`func (o *UpdateVMConfigRequest) GetAudio0() GetVMConfig200ResponseDataAudio0`
+`func (o *UpdateVMConfigRequest) GetAudio0() CreateVMRequestAudio0`
 
 GetAudio0 returns the Audio0 field if non-nil, zero value otherwise.
 
 ### GetAudio0Ok
 
-`func (o *UpdateVMConfigRequest) GetAudio0Ok() (*GetVMConfig200ResponseDataAudio0, bool)`
+`func (o *UpdateVMConfigRequest) GetAudio0Ok() (*CreateVMRequestAudio0, bool)`
 
 GetAudio0Ok returns a tuple with the Audio0 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAudio0
 
-`func (o *UpdateVMConfigRequest) SetAudio0(v GetVMConfig200ResponseDataAudio0)`
+`func (o *UpdateVMConfigRequest) SetAudio0(v CreateVMRequestAudio0)`
 
 SetAudio0 sets Audio0 field to given value.
 
@@ -567,20 +594,20 @@ HasBios returns a boolean if a field has been set.
 
 ### GetBoot
 
-`func (o *UpdateVMConfigRequest) GetBoot() GetVMConfig200ResponseDataBoot`
+`func (o *UpdateVMConfigRequest) GetBoot() CreateVMRequestBoot`
 
 GetBoot returns the Boot field if non-nil, zero value otherwise.
 
 ### GetBootOk
 
-`func (o *UpdateVMConfigRequest) GetBootOk() (*GetVMConfig200ResponseDataBoot, bool)`
+`func (o *UpdateVMConfigRequest) GetBootOk() (*CreateVMRequestBoot, bool)`
 
 GetBootOk returns a tuple with the Boot field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetBoot
 
-`func (o *UpdateVMConfigRequest) SetBoot(v GetVMConfig200ResponseDataBoot)`
+`func (o *UpdateVMConfigRequest) SetBoot(v CreateVMRequestBoot)`
 
 SetBoot sets Boot field to given value.
 
@@ -1940,22 +1967,47 @@ SetIde3 sets Ide3 field to given value.
 
 HasIde3 returns a boolean if a field has been set.
 
+### GetImportWorkingStorage
+
+`func (o *UpdateVMConfigRequest) GetImportWorkingStorage() string`
+
+GetImportWorkingStorage returns the ImportWorkingStorage field if non-nil, zero value otherwise.
+
+### GetImportWorkingStorageOk
+
+`func (o *UpdateVMConfigRequest) GetImportWorkingStorageOk() (*string, bool)`
+
+GetImportWorkingStorageOk returns a tuple with the ImportWorkingStorage field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetImportWorkingStorage
+
+`func (o *UpdateVMConfigRequest) SetImportWorkingStorage(v string)`
+
+SetImportWorkingStorage sets ImportWorkingStorage field to given value.
+
+### HasImportWorkingStorage
+
+`func (o *UpdateVMConfigRequest) HasImportWorkingStorage() bool`
+
+HasImportWorkingStorage returns a boolean if a field has been set.
+
 ### GetIpconfig0
 
-`func (o *UpdateVMConfigRequest) GetIpconfig0() GetVMConfig200ResponseDataIpconfig0`
+`func (o *UpdateVMConfigRequest) GetIpconfig0() CreateVMRequestIpconfig0`
 
 GetIpconfig0 returns the Ipconfig0 field if non-nil, zero value otherwise.
 
 ### GetIpconfig0Ok
 
-`func (o *UpdateVMConfigRequest) GetIpconfig0Ok() (*GetVMConfig200ResponseDataIpconfig0, bool)`
+`func (o *UpdateVMConfigRequest) GetIpconfig0Ok() (*CreateVMRequestIpconfig0, bool)`
 
 GetIpconfig0Ok returns a tuple with the Ipconfig0 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIpconfig0
 
-`func (o *UpdateVMConfigRequest) SetIpconfig0(v GetVMConfig200ResponseDataIpconfig0)`
+`func (o *UpdateVMConfigRequest) SetIpconfig0(v CreateVMRequestIpconfig0)`
 
 SetIpconfig0 sets Ipconfig0 field to given value.
 
@@ -1967,20 +2019,20 @@ HasIpconfig0 returns a boolean if a field has been set.
 
 ### GetIpconfig1
 
-`func (o *UpdateVMConfigRequest) GetIpconfig1() GetVMConfig200ResponseDataIpconfig0`
+`func (o *UpdateVMConfigRequest) GetIpconfig1() CreateVMRequestIpconfig0`
 
 GetIpconfig1 returns the Ipconfig1 field if non-nil, zero value otherwise.
 
 ### GetIpconfig1Ok
 
-`func (o *UpdateVMConfigRequest) GetIpconfig1Ok() (*GetVMConfig200ResponseDataIpconfig0, bool)`
+`func (o *UpdateVMConfigRequest) GetIpconfig1Ok() (*CreateVMRequestIpconfig0, bool)`
 
 GetIpconfig1Ok returns a tuple with the Ipconfig1 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIpconfig1
 
-`func (o *UpdateVMConfigRequest) SetIpconfig1(v GetVMConfig200ResponseDataIpconfig0)`
+`func (o *UpdateVMConfigRequest) SetIpconfig1(v CreateVMRequestIpconfig0)`
 
 SetIpconfig1 sets Ipconfig1 field to given value.
 
@@ -1992,20 +2044,20 @@ HasIpconfig1 returns a boolean if a field has been set.
 
 ### GetIpconfig2
 
-`func (o *UpdateVMConfigRequest) GetIpconfig2() GetVMConfig200ResponseDataIpconfig0`
+`func (o *UpdateVMConfigRequest) GetIpconfig2() CreateVMRequestIpconfig0`
 
 GetIpconfig2 returns the Ipconfig2 field if non-nil, zero value otherwise.
 
 ### GetIpconfig2Ok
 
-`func (o *UpdateVMConfigRequest) GetIpconfig2Ok() (*GetVMConfig200ResponseDataIpconfig0, bool)`
+`func (o *UpdateVMConfigRequest) GetIpconfig2Ok() (*CreateVMRequestIpconfig0, bool)`
 
 GetIpconfig2Ok returns a tuple with the Ipconfig2 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIpconfig2
 
-`func (o *UpdateVMConfigRequest) SetIpconfig2(v GetVMConfig200ResponseDataIpconfig0)`
+`func (o *UpdateVMConfigRequest) SetIpconfig2(v CreateVMRequestIpconfig0)`
 
 SetIpconfig2 sets Ipconfig2 field to given value.
 
@@ -2017,20 +2069,20 @@ HasIpconfig2 returns a boolean if a field has been set.
 
 ### GetIpconfig3
 
-`func (o *UpdateVMConfigRequest) GetIpconfig3() GetVMConfig200ResponseDataIpconfig0`
+`func (o *UpdateVMConfigRequest) GetIpconfig3() CreateVMRequestIpconfig0`
 
 GetIpconfig3 returns the Ipconfig3 field if non-nil, zero value otherwise.
 
 ### GetIpconfig3Ok
 
-`func (o *UpdateVMConfigRequest) GetIpconfig3Ok() (*GetVMConfig200ResponseDataIpconfig0, bool)`
+`func (o *UpdateVMConfigRequest) GetIpconfig3Ok() (*CreateVMRequestIpconfig0, bool)`
 
 GetIpconfig3Ok returns a tuple with the Ipconfig3 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIpconfig3
 
-`func (o *UpdateVMConfigRequest) SetIpconfig3(v GetVMConfig200ResponseDataIpconfig0)`
+`func (o *UpdateVMConfigRequest) SetIpconfig3(v CreateVMRequestIpconfig0)`
 
 SetIpconfig3 sets Ipconfig3 field to given value.
 
@@ -2042,20 +2094,20 @@ HasIpconfig3 returns a boolean if a field has been set.
 
 ### GetIpconfig4
 
-`func (o *UpdateVMConfigRequest) GetIpconfig4() GetVMConfig200ResponseDataIpconfig0`
+`func (o *UpdateVMConfigRequest) GetIpconfig4() CreateVMRequestIpconfig0`
 
 GetIpconfig4 returns the Ipconfig4 field if non-nil, zero value otherwise.
 
 ### GetIpconfig4Ok
 
-`func (o *UpdateVMConfigRequest) GetIpconfig4Ok() (*GetVMConfig200ResponseDataIpconfig0, bool)`
+`func (o *UpdateVMConfigRequest) GetIpconfig4Ok() (*CreateVMRequestIpconfig0, bool)`
 
 GetIpconfig4Ok returns a tuple with the Ipconfig4 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIpconfig4
 
-`func (o *UpdateVMConfigRequest) SetIpconfig4(v GetVMConfig200ResponseDataIpconfig0)`
+`func (o *UpdateVMConfigRequest) SetIpconfig4(v CreateVMRequestIpconfig0)`
 
 SetIpconfig4 sets Ipconfig4 field to given value.
 
@@ -2067,20 +2119,20 @@ HasIpconfig4 returns a boolean if a field has been set.
 
 ### GetIpconfig5
 
-`func (o *UpdateVMConfigRequest) GetIpconfig5() GetVMConfig200ResponseDataIpconfig0`
+`func (o *UpdateVMConfigRequest) GetIpconfig5() CreateVMRequestIpconfig0`
 
 GetIpconfig5 returns the Ipconfig5 field if non-nil, zero value otherwise.
 
 ### GetIpconfig5Ok
 
-`func (o *UpdateVMConfigRequest) GetIpconfig5Ok() (*GetVMConfig200ResponseDataIpconfig0, bool)`
+`func (o *UpdateVMConfigRequest) GetIpconfig5Ok() (*CreateVMRequestIpconfig0, bool)`
 
 GetIpconfig5Ok returns a tuple with the Ipconfig5 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIpconfig5
 
-`func (o *UpdateVMConfigRequest) SetIpconfig5(v GetVMConfig200ResponseDataIpconfig0)`
+`func (o *UpdateVMConfigRequest) SetIpconfig5(v CreateVMRequestIpconfig0)`
 
 SetIpconfig5 sets Ipconfig5 field to given value.
 
@@ -2092,20 +2144,20 @@ HasIpconfig5 returns a boolean if a field has been set.
 
 ### GetIpconfig6
 
-`func (o *UpdateVMConfigRequest) GetIpconfig6() GetVMConfig200ResponseDataIpconfig0`
+`func (o *UpdateVMConfigRequest) GetIpconfig6() CreateVMRequestIpconfig0`
 
 GetIpconfig6 returns the Ipconfig6 field if non-nil, zero value otherwise.
 
 ### GetIpconfig6Ok
 
-`func (o *UpdateVMConfigRequest) GetIpconfig6Ok() (*GetVMConfig200ResponseDataIpconfig0, bool)`
+`func (o *UpdateVMConfigRequest) GetIpconfig6Ok() (*CreateVMRequestIpconfig0, bool)`
 
 GetIpconfig6Ok returns a tuple with the Ipconfig6 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIpconfig6
 
-`func (o *UpdateVMConfigRequest) SetIpconfig6(v GetVMConfig200ResponseDataIpconfig0)`
+`func (o *UpdateVMConfigRequest) SetIpconfig6(v CreateVMRequestIpconfig0)`
 
 SetIpconfig6 sets Ipconfig6 field to given value.
 
@@ -2117,20 +2169,20 @@ HasIpconfig6 returns a boolean if a field has been set.
 
 ### GetIpconfig7
 
-`func (o *UpdateVMConfigRequest) GetIpconfig7() GetVMConfig200ResponseDataIpconfig0`
+`func (o *UpdateVMConfigRequest) GetIpconfig7() CreateVMRequestIpconfig0`
 
 GetIpconfig7 returns the Ipconfig7 field if non-nil, zero value otherwise.
 
 ### GetIpconfig7Ok
 
-`func (o *UpdateVMConfigRequest) GetIpconfig7Ok() (*GetVMConfig200ResponseDataIpconfig0, bool)`
+`func (o *UpdateVMConfigRequest) GetIpconfig7Ok() (*CreateVMRequestIpconfig0, bool)`
 
 GetIpconfig7Ok returns a tuple with the Ipconfig7 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIpconfig7
 
-`func (o *UpdateVMConfigRequest) SetIpconfig7(v GetVMConfig200ResponseDataIpconfig0)`
+`func (o *UpdateVMConfigRequest) SetIpconfig7(v CreateVMRequestIpconfig0)`
 
 SetIpconfig7 sets Ipconfig7 field to given value.
 
@@ -2142,20 +2194,20 @@ HasIpconfig7 returns a boolean if a field has been set.
 
 ### GetIpconfig8
 
-`func (o *UpdateVMConfigRequest) GetIpconfig8() GetVMConfig200ResponseDataIpconfig0`
+`func (o *UpdateVMConfigRequest) GetIpconfig8() CreateVMRequestIpconfig0`
 
 GetIpconfig8 returns the Ipconfig8 field if non-nil, zero value otherwise.
 
 ### GetIpconfig8Ok
 
-`func (o *UpdateVMConfigRequest) GetIpconfig8Ok() (*GetVMConfig200ResponseDataIpconfig0, bool)`
+`func (o *UpdateVMConfigRequest) GetIpconfig8Ok() (*CreateVMRequestIpconfig0, bool)`
 
 GetIpconfig8Ok returns a tuple with the Ipconfig8 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIpconfig8
 
-`func (o *UpdateVMConfigRequest) SetIpconfig8(v GetVMConfig200ResponseDataIpconfig0)`
+`func (o *UpdateVMConfigRequest) SetIpconfig8(v CreateVMRequestIpconfig0)`
 
 SetIpconfig8 sets Ipconfig8 field to given value.
 
@@ -2167,20 +2219,20 @@ HasIpconfig8 returns a boolean if a field has been set.
 
 ### GetIpconfig9
 
-`func (o *UpdateVMConfigRequest) GetIpconfig9() GetVMConfig200ResponseDataIpconfig0`
+`func (o *UpdateVMConfigRequest) GetIpconfig9() CreateVMRequestIpconfig0`
 
 GetIpconfig9 returns the Ipconfig9 field if non-nil, zero value otherwise.
 
 ### GetIpconfig9Ok
 
-`func (o *UpdateVMConfigRequest) GetIpconfig9Ok() (*GetVMConfig200ResponseDataIpconfig0, bool)`
+`func (o *UpdateVMConfigRequest) GetIpconfig9Ok() (*CreateVMRequestIpconfig0, bool)`
 
 GetIpconfig9Ok returns a tuple with the Ipconfig9 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIpconfig9
 
-`func (o *UpdateVMConfigRequest) SetIpconfig9(v GetVMConfig200ResponseDataIpconfig0)`
+`func (o *UpdateVMConfigRequest) SetIpconfig9(v CreateVMRequestIpconfig0)`
 
 SetIpconfig9 sets Ipconfig9 field to given value.
 
@@ -2192,20 +2244,20 @@ HasIpconfig9 returns a boolean if a field has been set.
 
 ### GetIpconfig10
 
-`func (o *UpdateVMConfigRequest) GetIpconfig10() GetVMConfig200ResponseDataIpconfig0`
+`func (o *UpdateVMConfigRequest) GetIpconfig10() CreateVMRequestIpconfig0`
 
 GetIpconfig10 returns the Ipconfig10 field if non-nil, zero value otherwise.
 
 ### GetIpconfig10Ok
 
-`func (o *UpdateVMConfigRequest) GetIpconfig10Ok() (*GetVMConfig200ResponseDataIpconfig0, bool)`
+`func (o *UpdateVMConfigRequest) GetIpconfig10Ok() (*CreateVMRequestIpconfig0, bool)`
 
 GetIpconfig10Ok returns a tuple with the Ipconfig10 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIpconfig10
 
-`func (o *UpdateVMConfigRequest) SetIpconfig10(v GetVMConfig200ResponseDataIpconfig0)`
+`func (o *UpdateVMConfigRequest) SetIpconfig10(v CreateVMRequestIpconfig0)`
 
 SetIpconfig10 sets Ipconfig10 field to given value.
 
@@ -2217,20 +2269,20 @@ HasIpconfig10 returns a boolean if a field has been set.
 
 ### GetIpconfig11
 
-`func (o *UpdateVMConfigRequest) GetIpconfig11() GetVMConfig200ResponseDataIpconfig0`
+`func (o *UpdateVMConfigRequest) GetIpconfig11() CreateVMRequestIpconfig0`
 
 GetIpconfig11 returns the Ipconfig11 field if non-nil, zero value otherwise.
 
 ### GetIpconfig11Ok
 
-`func (o *UpdateVMConfigRequest) GetIpconfig11Ok() (*GetVMConfig200ResponseDataIpconfig0, bool)`
+`func (o *UpdateVMConfigRequest) GetIpconfig11Ok() (*CreateVMRequestIpconfig0, bool)`
 
 GetIpconfig11Ok returns a tuple with the Ipconfig11 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIpconfig11
 
-`func (o *UpdateVMConfigRequest) SetIpconfig11(v GetVMConfig200ResponseDataIpconfig0)`
+`func (o *UpdateVMConfigRequest) SetIpconfig11(v CreateVMRequestIpconfig0)`
 
 SetIpconfig11 sets Ipconfig11 field to given value.
 
@@ -2242,20 +2294,20 @@ HasIpconfig11 returns a boolean if a field has been set.
 
 ### GetIpconfig12
 
-`func (o *UpdateVMConfigRequest) GetIpconfig12() GetVMConfig200ResponseDataIpconfig0`
+`func (o *UpdateVMConfigRequest) GetIpconfig12() CreateVMRequestIpconfig0`
 
 GetIpconfig12 returns the Ipconfig12 field if non-nil, zero value otherwise.
 
 ### GetIpconfig12Ok
 
-`func (o *UpdateVMConfigRequest) GetIpconfig12Ok() (*GetVMConfig200ResponseDataIpconfig0, bool)`
+`func (o *UpdateVMConfigRequest) GetIpconfig12Ok() (*CreateVMRequestIpconfig0, bool)`
 
 GetIpconfig12Ok returns a tuple with the Ipconfig12 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIpconfig12
 
-`func (o *UpdateVMConfigRequest) SetIpconfig12(v GetVMConfig200ResponseDataIpconfig0)`
+`func (o *UpdateVMConfigRequest) SetIpconfig12(v CreateVMRequestIpconfig0)`
 
 SetIpconfig12 sets Ipconfig12 field to given value.
 
@@ -2267,20 +2319,20 @@ HasIpconfig12 returns a boolean if a field has been set.
 
 ### GetIpconfig13
 
-`func (o *UpdateVMConfigRequest) GetIpconfig13() GetVMConfig200ResponseDataIpconfig0`
+`func (o *UpdateVMConfigRequest) GetIpconfig13() CreateVMRequestIpconfig0`
 
 GetIpconfig13 returns the Ipconfig13 field if non-nil, zero value otherwise.
 
 ### GetIpconfig13Ok
 
-`func (o *UpdateVMConfigRequest) GetIpconfig13Ok() (*GetVMConfig200ResponseDataIpconfig0, bool)`
+`func (o *UpdateVMConfigRequest) GetIpconfig13Ok() (*CreateVMRequestIpconfig0, bool)`
 
 GetIpconfig13Ok returns a tuple with the Ipconfig13 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIpconfig13
 
-`func (o *UpdateVMConfigRequest) SetIpconfig13(v GetVMConfig200ResponseDataIpconfig0)`
+`func (o *UpdateVMConfigRequest) SetIpconfig13(v CreateVMRequestIpconfig0)`
 
 SetIpconfig13 sets Ipconfig13 field to given value.
 
@@ -2292,20 +2344,20 @@ HasIpconfig13 returns a boolean if a field has been set.
 
 ### GetIpconfig14
 
-`func (o *UpdateVMConfigRequest) GetIpconfig14() GetVMConfig200ResponseDataIpconfig0`
+`func (o *UpdateVMConfigRequest) GetIpconfig14() CreateVMRequestIpconfig0`
 
 GetIpconfig14 returns the Ipconfig14 field if non-nil, zero value otherwise.
 
 ### GetIpconfig14Ok
 
-`func (o *UpdateVMConfigRequest) GetIpconfig14Ok() (*GetVMConfig200ResponseDataIpconfig0, bool)`
+`func (o *UpdateVMConfigRequest) GetIpconfig14Ok() (*CreateVMRequestIpconfig0, bool)`
 
 GetIpconfig14Ok returns a tuple with the Ipconfig14 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIpconfig14
 
-`func (o *UpdateVMConfigRequest) SetIpconfig14(v GetVMConfig200ResponseDataIpconfig0)`
+`func (o *UpdateVMConfigRequest) SetIpconfig14(v CreateVMRequestIpconfig0)`
 
 SetIpconfig14 sets Ipconfig14 field to given value.
 
@@ -2317,20 +2369,20 @@ HasIpconfig14 returns a boolean if a field has been set.
 
 ### GetIpconfig15
 
-`func (o *UpdateVMConfigRequest) GetIpconfig15() GetVMConfig200ResponseDataIpconfig0`
+`func (o *UpdateVMConfigRequest) GetIpconfig15() CreateVMRequestIpconfig0`
 
 GetIpconfig15 returns the Ipconfig15 field if non-nil, zero value otherwise.
 
 ### GetIpconfig15Ok
 
-`func (o *UpdateVMConfigRequest) GetIpconfig15Ok() (*GetVMConfig200ResponseDataIpconfig0, bool)`
+`func (o *UpdateVMConfigRequest) GetIpconfig15Ok() (*CreateVMRequestIpconfig0, bool)`
 
 GetIpconfig15Ok returns a tuple with the Ipconfig15 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIpconfig15
 
-`func (o *UpdateVMConfigRequest) SetIpconfig15(v GetVMConfig200ResponseDataIpconfig0)`
+`func (o *UpdateVMConfigRequest) SetIpconfig15(v CreateVMRequestIpconfig0)`
 
 SetIpconfig15 sets Ipconfig15 field to given value.
 
@@ -2342,20 +2394,20 @@ HasIpconfig15 returns a boolean if a field has been set.
 
 ### GetIpconfig16
 
-`func (o *UpdateVMConfigRequest) GetIpconfig16() GetVMConfig200ResponseDataIpconfig0`
+`func (o *UpdateVMConfigRequest) GetIpconfig16() CreateVMRequestIpconfig0`
 
 GetIpconfig16 returns the Ipconfig16 field if non-nil, zero value otherwise.
 
 ### GetIpconfig16Ok
 
-`func (o *UpdateVMConfigRequest) GetIpconfig16Ok() (*GetVMConfig200ResponseDataIpconfig0, bool)`
+`func (o *UpdateVMConfigRequest) GetIpconfig16Ok() (*CreateVMRequestIpconfig0, bool)`
 
 GetIpconfig16Ok returns a tuple with the Ipconfig16 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIpconfig16
 
-`func (o *UpdateVMConfigRequest) SetIpconfig16(v GetVMConfig200ResponseDataIpconfig0)`
+`func (o *UpdateVMConfigRequest) SetIpconfig16(v CreateVMRequestIpconfig0)`
 
 SetIpconfig16 sets Ipconfig16 field to given value.
 
@@ -2367,20 +2419,20 @@ HasIpconfig16 returns a boolean if a field has been set.
 
 ### GetIpconfig17
 
-`func (o *UpdateVMConfigRequest) GetIpconfig17() GetVMConfig200ResponseDataIpconfig0`
+`func (o *UpdateVMConfigRequest) GetIpconfig17() CreateVMRequestIpconfig0`
 
 GetIpconfig17 returns the Ipconfig17 field if non-nil, zero value otherwise.
 
 ### GetIpconfig17Ok
 
-`func (o *UpdateVMConfigRequest) GetIpconfig17Ok() (*GetVMConfig200ResponseDataIpconfig0, bool)`
+`func (o *UpdateVMConfigRequest) GetIpconfig17Ok() (*CreateVMRequestIpconfig0, bool)`
 
 GetIpconfig17Ok returns a tuple with the Ipconfig17 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIpconfig17
 
-`func (o *UpdateVMConfigRequest) SetIpconfig17(v GetVMConfig200ResponseDataIpconfig0)`
+`func (o *UpdateVMConfigRequest) SetIpconfig17(v CreateVMRequestIpconfig0)`
 
 SetIpconfig17 sets Ipconfig17 field to given value.
 
@@ -2392,20 +2444,20 @@ HasIpconfig17 returns a boolean if a field has been set.
 
 ### GetIpconfig18
 
-`func (o *UpdateVMConfigRequest) GetIpconfig18() GetVMConfig200ResponseDataIpconfig0`
+`func (o *UpdateVMConfigRequest) GetIpconfig18() CreateVMRequestIpconfig0`
 
 GetIpconfig18 returns the Ipconfig18 field if non-nil, zero value otherwise.
 
 ### GetIpconfig18Ok
 
-`func (o *UpdateVMConfigRequest) GetIpconfig18Ok() (*GetVMConfig200ResponseDataIpconfig0, bool)`
+`func (o *UpdateVMConfigRequest) GetIpconfig18Ok() (*CreateVMRequestIpconfig0, bool)`
 
 GetIpconfig18Ok returns a tuple with the Ipconfig18 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIpconfig18
 
-`func (o *UpdateVMConfigRequest) SetIpconfig18(v GetVMConfig200ResponseDataIpconfig0)`
+`func (o *UpdateVMConfigRequest) SetIpconfig18(v CreateVMRequestIpconfig0)`
 
 SetIpconfig18 sets Ipconfig18 field to given value.
 
@@ -2417,20 +2469,20 @@ HasIpconfig18 returns a boolean if a field has been set.
 
 ### GetIpconfig19
 
-`func (o *UpdateVMConfigRequest) GetIpconfig19() GetVMConfig200ResponseDataIpconfig0`
+`func (o *UpdateVMConfigRequest) GetIpconfig19() CreateVMRequestIpconfig0`
 
 GetIpconfig19 returns the Ipconfig19 field if non-nil, zero value otherwise.
 
 ### GetIpconfig19Ok
 
-`func (o *UpdateVMConfigRequest) GetIpconfig19Ok() (*GetVMConfig200ResponseDataIpconfig0, bool)`
+`func (o *UpdateVMConfigRequest) GetIpconfig19Ok() (*CreateVMRequestIpconfig0, bool)`
 
 GetIpconfig19Ok returns a tuple with the Ipconfig19 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIpconfig19
 
-`func (o *UpdateVMConfigRequest) SetIpconfig19(v GetVMConfig200ResponseDataIpconfig0)`
+`func (o *UpdateVMConfigRequest) SetIpconfig19(v CreateVMRequestIpconfig0)`
 
 SetIpconfig19 sets Ipconfig19 field to given value.
 
@@ -2442,20 +2494,20 @@ HasIpconfig19 returns a boolean if a field has been set.
 
 ### GetIpconfig20
 
-`func (o *UpdateVMConfigRequest) GetIpconfig20() GetVMConfig200ResponseDataIpconfig0`
+`func (o *UpdateVMConfigRequest) GetIpconfig20() CreateVMRequestIpconfig0`
 
 GetIpconfig20 returns the Ipconfig20 field if non-nil, zero value otherwise.
 
 ### GetIpconfig20Ok
 
-`func (o *UpdateVMConfigRequest) GetIpconfig20Ok() (*GetVMConfig200ResponseDataIpconfig0, bool)`
+`func (o *UpdateVMConfigRequest) GetIpconfig20Ok() (*CreateVMRequestIpconfig0, bool)`
 
 GetIpconfig20Ok returns a tuple with the Ipconfig20 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIpconfig20
 
-`func (o *UpdateVMConfigRequest) SetIpconfig20(v GetVMConfig200ResponseDataIpconfig0)`
+`func (o *UpdateVMConfigRequest) SetIpconfig20(v CreateVMRequestIpconfig0)`
 
 SetIpconfig20 sets Ipconfig20 field to given value.
 
@@ -2467,20 +2519,20 @@ HasIpconfig20 returns a boolean if a field has been set.
 
 ### GetIpconfig21
 
-`func (o *UpdateVMConfigRequest) GetIpconfig21() GetVMConfig200ResponseDataIpconfig0`
+`func (o *UpdateVMConfigRequest) GetIpconfig21() CreateVMRequestIpconfig0`
 
 GetIpconfig21 returns the Ipconfig21 field if non-nil, zero value otherwise.
 
 ### GetIpconfig21Ok
 
-`func (o *UpdateVMConfigRequest) GetIpconfig21Ok() (*GetVMConfig200ResponseDataIpconfig0, bool)`
+`func (o *UpdateVMConfigRequest) GetIpconfig21Ok() (*CreateVMRequestIpconfig0, bool)`
 
 GetIpconfig21Ok returns a tuple with the Ipconfig21 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIpconfig21
 
-`func (o *UpdateVMConfigRequest) SetIpconfig21(v GetVMConfig200ResponseDataIpconfig0)`
+`func (o *UpdateVMConfigRequest) SetIpconfig21(v CreateVMRequestIpconfig0)`
 
 SetIpconfig21 sets Ipconfig21 field to given value.
 
@@ -2492,20 +2544,20 @@ HasIpconfig21 returns a boolean if a field has been set.
 
 ### GetIpconfig22
 
-`func (o *UpdateVMConfigRequest) GetIpconfig22() GetVMConfig200ResponseDataIpconfig0`
+`func (o *UpdateVMConfigRequest) GetIpconfig22() CreateVMRequestIpconfig0`
 
 GetIpconfig22 returns the Ipconfig22 field if non-nil, zero value otherwise.
 
 ### GetIpconfig22Ok
 
-`func (o *UpdateVMConfigRequest) GetIpconfig22Ok() (*GetVMConfig200ResponseDataIpconfig0, bool)`
+`func (o *UpdateVMConfigRequest) GetIpconfig22Ok() (*CreateVMRequestIpconfig0, bool)`
 
 GetIpconfig22Ok returns a tuple with the Ipconfig22 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIpconfig22
 
-`func (o *UpdateVMConfigRequest) SetIpconfig22(v GetVMConfig200ResponseDataIpconfig0)`
+`func (o *UpdateVMConfigRequest) SetIpconfig22(v CreateVMRequestIpconfig0)`
 
 SetIpconfig22 sets Ipconfig22 field to given value.
 
@@ -2517,20 +2569,20 @@ HasIpconfig22 returns a boolean if a field has been set.
 
 ### GetIpconfig23
 
-`func (o *UpdateVMConfigRequest) GetIpconfig23() GetVMConfig200ResponseDataIpconfig0`
+`func (o *UpdateVMConfigRequest) GetIpconfig23() CreateVMRequestIpconfig0`
 
 GetIpconfig23 returns the Ipconfig23 field if non-nil, zero value otherwise.
 
 ### GetIpconfig23Ok
 
-`func (o *UpdateVMConfigRequest) GetIpconfig23Ok() (*GetVMConfig200ResponseDataIpconfig0, bool)`
+`func (o *UpdateVMConfigRequest) GetIpconfig23Ok() (*CreateVMRequestIpconfig0, bool)`
 
 GetIpconfig23Ok returns a tuple with the Ipconfig23 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIpconfig23
 
-`func (o *UpdateVMConfigRequest) SetIpconfig23(v GetVMConfig200ResponseDataIpconfig0)`
+`func (o *UpdateVMConfigRequest) SetIpconfig23(v CreateVMRequestIpconfig0)`
 
 SetIpconfig23 sets Ipconfig23 field to given value.
 
@@ -2542,20 +2594,20 @@ HasIpconfig23 returns a boolean if a field has been set.
 
 ### GetIpconfig24
 
-`func (o *UpdateVMConfigRequest) GetIpconfig24() GetVMConfig200ResponseDataIpconfig0`
+`func (o *UpdateVMConfigRequest) GetIpconfig24() CreateVMRequestIpconfig0`
 
 GetIpconfig24 returns the Ipconfig24 field if non-nil, zero value otherwise.
 
 ### GetIpconfig24Ok
 
-`func (o *UpdateVMConfigRequest) GetIpconfig24Ok() (*GetVMConfig200ResponseDataIpconfig0, bool)`
+`func (o *UpdateVMConfigRequest) GetIpconfig24Ok() (*CreateVMRequestIpconfig0, bool)`
 
 GetIpconfig24Ok returns a tuple with the Ipconfig24 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIpconfig24
 
-`func (o *UpdateVMConfigRequest) SetIpconfig24(v GetVMConfig200ResponseDataIpconfig0)`
+`func (o *UpdateVMConfigRequest) SetIpconfig24(v CreateVMRequestIpconfig0)`
 
 SetIpconfig24 sets Ipconfig24 field to given value.
 
@@ -2567,20 +2619,20 @@ HasIpconfig24 returns a boolean if a field has been set.
 
 ### GetIpconfig25
 
-`func (o *UpdateVMConfigRequest) GetIpconfig25() GetVMConfig200ResponseDataIpconfig0`
+`func (o *UpdateVMConfigRequest) GetIpconfig25() CreateVMRequestIpconfig0`
 
 GetIpconfig25 returns the Ipconfig25 field if non-nil, zero value otherwise.
 
 ### GetIpconfig25Ok
 
-`func (o *UpdateVMConfigRequest) GetIpconfig25Ok() (*GetVMConfig200ResponseDataIpconfig0, bool)`
+`func (o *UpdateVMConfigRequest) GetIpconfig25Ok() (*CreateVMRequestIpconfig0, bool)`
 
 GetIpconfig25Ok returns a tuple with the Ipconfig25 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIpconfig25
 
-`func (o *UpdateVMConfigRequest) SetIpconfig25(v GetVMConfig200ResponseDataIpconfig0)`
+`func (o *UpdateVMConfigRequest) SetIpconfig25(v CreateVMRequestIpconfig0)`
 
 SetIpconfig25 sets Ipconfig25 field to given value.
 
@@ -2592,20 +2644,20 @@ HasIpconfig25 returns a boolean if a field has been set.
 
 ### GetIpconfig26
 
-`func (o *UpdateVMConfigRequest) GetIpconfig26() GetVMConfig200ResponseDataIpconfig0`
+`func (o *UpdateVMConfigRequest) GetIpconfig26() CreateVMRequestIpconfig0`
 
 GetIpconfig26 returns the Ipconfig26 field if non-nil, zero value otherwise.
 
 ### GetIpconfig26Ok
 
-`func (o *UpdateVMConfigRequest) GetIpconfig26Ok() (*GetVMConfig200ResponseDataIpconfig0, bool)`
+`func (o *UpdateVMConfigRequest) GetIpconfig26Ok() (*CreateVMRequestIpconfig0, bool)`
 
 GetIpconfig26Ok returns a tuple with the Ipconfig26 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIpconfig26
 
-`func (o *UpdateVMConfigRequest) SetIpconfig26(v GetVMConfig200ResponseDataIpconfig0)`
+`func (o *UpdateVMConfigRequest) SetIpconfig26(v CreateVMRequestIpconfig0)`
 
 SetIpconfig26 sets Ipconfig26 field to given value.
 
@@ -2617,20 +2669,20 @@ HasIpconfig26 returns a boolean if a field has been set.
 
 ### GetIpconfig27
 
-`func (o *UpdateVMConfigRequest) GetIpconfig27() GetVMConfig200ResponseDataIpconfig0`
+`func (o *UpdateVMConfigRequest) GetIpconfig27() CreateVMRequestIpconfig0`
 
 GetIpconfig27 returns the Ipconfig27 field if non-nil, zero value otherwise.
 
 ### GetIpconfig27Ok
 
-`func (o *UpdateVMConfigRequest) GetIpconfig27Ok() (*GetVMConfig200ResponseDataIpconfig0, bool)`
+`func (o *UpdateVMConfigRequest) GetIpconfig27Ok() (*CreateVMRequestIpconfig0, bool)`
 
 GetIpconfig27Ok returns a tuple with the Ipconfig27 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIpconfig27
 
-`func (o *UpdateVMConfigRequest) SetIpconfig27(v GetVMConfig200ResponseDataIpconfig0)`
+`func (o *UpdateVMConfigRequest) SetIpconfig27(v CreateVMRequestIpconfig0)`
 
 SetIpconfig27 sets Ipconfig27 field to given value.
 
@@ -2642,20 +2694,20 @@ HasIpconfig27 returns a boolean if a field has been set.
 
 ### GetIpconfig28
 
-`func (o *UpdateVMConfigRequest) GetIpconfig28() GetVMConfig200ResponseDataIpconfig0`
+`func (o *UpdateVMConfigRequest) GetIpconfig28() CreateVMRequestIpconfig0`
 
 GetIpconfig28 returns the Ipconfig28 field if non-nil, zero value otherwise.
 
 ### GetIpconfig28Ok
 
-`func (o *UpdateVMConfigRequest) GetIpconfig28Ok() (*GetVMConfig200ResponseDataIpconfig0, bool)`
+`func (o *UpdateVMConfigRequest) GetIpconfig28Ok() (*CreateVMRequestIpconfig0, bool)`
 
 GetIpconfig28Ok returns a tuple with the Ipconfig28 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIpconfig28
 
-`func (o *UpdateVMConfigRequest) SetIpconfig28(v GetVMConfig200ResponseDataIpconfig0)`
+`func (o *UpdateVMConfigRequest) SetIpconfig28(v CreateVMRequestIpconfig0)`
 
 SetIpconfig28 sets Ipconfig28 field to given value.
 
@@ -2667,20 +2719,20 @@ HasIpconfig28 returns a boolean if a field has been set.
 
 ### GetIpconfig29
 
-`func (o *UpdateVMConfigRequest) GetIpconfig29() GetVMConfig200ResponseDataIpconfig0`
+`func (o *UpdateVMConfigRequest) GetIpconfig29() CreateVMRequestIpconfig0`
 
 GetIpconfig29 returns the Ipconfig29 field if non-nil, zero value otherwise.
 
 ### GetIpconfig29Ok
 
-`func (o *UpdateVMConfigRequest) GetIpconfig29Ok() (*GetVMConfig200ResponseDataIpconfig0, bool)`
+`func (o *UpdateVMConfigRequest) GetIpconfig29Ok() (*CreateVMRequestIpconfig0, bool)`
 
 GetIpconfig29Ok returns a tuple with the Ipconfig29 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIpconfig29
 
-`func (o *UpdateVMConfigRequest) SetIpconfig29(v GetVMConfig200ResponseDataIpconfig0)`
+`func (o *UpdateVMConfigRequest) SetIpconfig29(v CreateVMRequestIpconfig0)`
 
 SetIpconfig29 sets Ipconfig29 field to given value.
 
@@ -2692,20 +2744,20 @@ HasIpconfig29 returns a boolean if a field has been set.
 
 ### GetIvshmem
 
-`func (o *UpdateVMConfigRequest) GetIvshmem() GetVMConfig200ResponseDataIvshmem`
+`func (o *UpdateVMConfigRequest) GetIvshmem() CreateVMRequestIvshmem`
 
 GetIvshmem returns the Ivshmem field if non-nil, zero value otherwise.
 
 ### GetIvshmemOk
 
-`func (o *UpdateVMConfigRequest) GetIvshmemOk() (*GetVMConfig200ResponseDataIvshmem, bool)`
+`func (o *UpdateVMConfigRequest) GetIvshmemOk() (*CreateVMRequestIvshmem, bool)`
 
 GetIvshmemOk returns a tuple with the Ivshmem field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIvshmem
 
-`func (o *UpdateVMConfigRequest) SetIvshmem(v GetVMConfig200ResponseDataIvshmem)`
+`func (o *UpdateVMConfigRequest) SetIvshmem(v CreateVMRequestIvshmem)`
 
 SetIvshmem sets Ivshmem field to given value.
 
@@ -2842,20 +2894,20 @@ HasLock returns a boolean if a field has been set.
 
 ### GetMachine
 
-`func (o *UpdateVMConfigRequest) GetMachine() string`
+`func (o *UpdateVMConfigRequest) GetMachine() CreateVMRequestMachine`
 
 GetMachine returns the Machine field if non-nil, zero value otherwise.
 
 ### GetMachineOk
 
-`func (o *UpdateVMConfigRequest) GetMachineOk() (*string, bool)`
+`func (o *UpdateVMConfigRequest) GetMachineOk() (*CreateVMRequestMachine, bool)`
 
 GetMachineOk returns a tuple with the Machine field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMachine
 
-`func (o *UpdateVMConfigRequest) SetMachine(v string)`
+`func (o *UpdateVMConfigRequest) SetMachine(v CreateVMRequestMachine)`
 
 SetMachine sets Machine field to given value.
 
@@ -2867,20 +2919,20 @@ HasMachine returns a boolean if a field has been set.
 
 ### GetMemory
 
-`func (o *UpdateVMConfigRequest) GetMemory() int64`
+`func (o *UpdateVMConfigRequest) GetMemory() CreateVMRequestMemory`
 
 GetMemory returns the Memory field if non-nil, zero value otherwise.
 
 ### GetMemoryOk
 
-`func (o *UpdateVMConfigRequest) GetMemoryOk() (*int64, bool)`
+`func (o *UpdateVMConfigRequest) GetMemoryOk() (*CreateVMRequestMemory, bool)`
 
 GetMemoryOk returns a tuple with the Memory field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMemory
 
-`func (o *UpdateVMConfigRequest) SetMemory(v int64)`
+`func (o *UpdateVMConfigRequest) SetMemory(v CreateVMRequestMemory)`
 
 SetMemory sets Memory field to given value.
 
@@ -2992,20 +3044,20 @@ HasNameserver returns a boolean if a field has been set.
 
 ### GetNet0
 
-`func (o *UpdateVMConfigRequest) GetNet0() GetVMConfig200ResponseDataNet0`
+`func (o *UpdateVMConfigRequest) GetNet0() CreateVMRequestNet0`
 
 GetNet0 returns the Net0 field if non-nil, zero value otherwise.
 
 ### GetNet0Ok
 
-`func (o *UpdateVMConfigRequest) GetNet0Ok() (*GetVMConfig200ResponseDataNet0, bool)`
+`func (o *UpdateVMConfigRequest) GetNet0Ok() (*CreateVMRequestNet0, bool)`
 
 GetNet0Ok returns a tuple with the Net0 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNet0
 
-`func (o *UpdateVMConfigRequest) SetNet0(v GetVMConfig200ResponseDataNet0)`
+`func (o *UpdateVMConfigRequest) SetNet0(v CreateVMRequestNet0)`
 
 SetNet0 sets Net0 field to given value.
 
@@ -3017,20 +3069,20 @@ HasNet0 returns a boolean if a field has been set.
 
 ### GetNet1
 
-`func (o *UpdateVMConfigRequest) GetNet1() GetVMConfig200ResponseDataNet0`
+`func (o *UpdateVMConfigRequest) GetNet1() CreateVMRequestNet0`
 
 GetNet1 returns the Net1 field if non-nil, zero value otherwise.
 
 ### GetNet1Ok
 
-`func (o *UpdateVMConfigRequest) GetNet1Ok() (*GetVMConfig200ResponseDataNet0, bool)`
+`func (o *UpdateVMConfigRequest) GetNet1Ok() (*CreateVMRequestNet0, bool)`
 
 GetNet1Ok returns a tuple with the Net1 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNet1
 
-`func (o *UpdateVMConfigRequest) SetNet1(v GetVMConfig200ResponseDataNet0)`
+`func (o *UpdateVMConfigRequest) SetNet1(v CreateVMRequestNet0)`
 
 SetNet1 sets Net1 field to given value.
 
@@ -3042,20 +3094,20 @@ HasNet1 returns a boolean if a field has been set.
 
 ### GetNet2
 
-`func (o *UpdateVMConfigRequest) GetNet2() GetVMConfig200ResponseDataNet0`
+`func (o *UpdateVMConfigRequest) GetNet2() CreateVMRequestNet0`
 
 GetNet2 returns the Net2 field if non-nil, zero value otherwise.
 
 ### GetNet2Ok
 
-`func (o *UpdateVMConfigRequest) GetNet2Ok() (*GetVMConfig200ResponseDataNet0, bool)`
+`func (o *UpdateVMConfigRequest) GetNet2Ok() (*CreateVMRequestNet0, bool)`
 
 GetNet2Ok returns a tuple with the Net2 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNet2
 
-`func (o *UpdateVMConfigRequest) SetNet2(v GetVMConfig200ResponseDataNet0)`
+`func (o *UpdateVMConfigRequest) SetNet2(v CreateVMRequestNet0)`
 
 SetNet2 sets Net2 field to given value.
 
@@ -3067,20 +3119,20 @@ HasNet2 returns a boolean if a field has been set.
 
 ### GetNet3
 
-`func (o *UpdateVMConfigRequest) GetNet3() GetVMConfig200ResponseDataNet0`
+`func (o *UpdateVMConfigRequest) GetNet3() CreateVMRequestNet0`
 
 GetNet3 returns the Net3 field if non-nil, zero value otherwise.
 
 ### GetNet3Ok
 
-`func (o *UpdateVMConfigRequest) GetNet3Ok() (*GetVMConfig200ResponseDataNet0, bool)`
+`func (o *UpdateVMConfigRequest) GetNet3Ok() (*CreateVMRequestNet0, bool)`
 
 GetNet3Ok returns a tuple with the Net3 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNet3
 
-`func (o *UpdateVMConfigRequest) SetNet3(v GetVMConfig200ResponseDataNet0)`
+`func (o *UpdateVMConfigRequest) SetNet3(v CreateVMRequestNet0)`
 
 SetNet3 sets Net3 field to given value.
 
@@ -3092,20 +3144,20 @@ HasNet3 returns a boolean if a field has been set.
 
 ### GetNet4
 
-`func (o *UpdateVMConfigRequest) GetNet4() GetVMConfig200ResponseDataNet0`
+`func (o *UpdateVMConfigRequest) GetNet4() CreateVMRequestNet0`
 
 GetNet4 returns the Net4 field if non-nil, zero value otherwise.
 
 ### GetNet4Ok
 
-`func (o *UpdateVMConfigRequest) GetNet4Ok() (*GetVMConfig200ResponseDataNet0, bool)`
+`func (o *UpdateVMConfigRequest) GetNet4Ok() (*CreateVMRequestNet0, bool)`
 
 GetNet4Ok returns a tuple with the Net4 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNet4
 
-`func (o *UpdateVMConfigRequest) SetNet4(v GetVMConfig200ResponseDataNet0)`
+`func (o *UpdateVMConfigRequest) SetNet4(v CreateVMRequestNet0)`
 
 SetNet4 sets Net4 field to given value.
 
@@ -3117,20 +3169,20 @@ HasNet4 returns a boolean if a field has been set.
 
 ### GetNet5
 
-`func (o *UpdateVMConfigRequest) GetNet5() GetVMConfig200ResponseDataNet0`
+`func (o *UpdateVMConfigRequest) GetNet5() CreateVMRequestNet0`
 
 GetNet5 returns the Net5 field if non-nil, zero value otherwise.
 
 ### GetNet5Ok
 
-`func (o *UpdateVMConfigRequest) GetNet5Ok() (*GetVMConfig200ResponseDataNet0, bool)`
+`func (o *UpdateVMConfigRequest) GetNet5Ok() (*CreateVMRequestNet0, bool)`
 
 GetNet5Ok returns a tuple with the Net5 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNet5
 
-`func (o *UpdateVMConfigRequest) SetNet5(v GetVMConfig200ResponseDataNet0)`
+`func (o *UpdateVMConfigRequest) SetNet5(v CreateVMRequestNet0)`
 
 SetNet5 sets Net5 field to given value.
 
@@ -3142,20 +3194,20 @@ HasNet5 returns a boolean if a field has been set.
 
 ### GetNet6
 
-`func (o *UpdateVMConfigRequest) GetNet6() GetVMConfig200ResponseDataNet0`
+`func (o *UpdateVMConfigRequest) GetNet6() CreateVMRequestNet0`
 
 GetNet6 returns the Net6 field if non-nil, zero value otherwise.
 
 ### GetNet6Ok
 
-`func (o *UpdateVMConfigRequest) GetNet6Ok() (*GetVMConfig200ResponseDataNet0, bool)`
+`func (o *UpdateVMConfigRequest) GetNet6Ok() (*CreateVMRequestNet0, bool)`
 
 GetNet6Ok returns a tuple with the Net6 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNet6
 
-`func (o *UpdateVMConfigRequest) SetNet6(v GetVMConfig200ResponseDataNet0)`
+`func (o *UpdateVMConfigRequest) SetNet6(v CreateVMRequestNet0)`
 
 SetNet6 sets Net6 field to given value.
 
@@ -3167,20 +3219,20 @@ HasNet6 returns a boolean if a field has been set.
 
 ### GetNet7
 
-`func (o *UpdateVMConfigRequest) GetNet7() GetVMConfig200ResponseDataNet0`
+`func (o *UpdateVMConfigRequest) GetNet7() CreateVMRequestNet0`
 
 GetNet7 returns the Net7 field if non-nil, zero value otherwise.
 
 ### GetNet7Ok
 
-`func (o *UpdateVMConfigRequest) GetNet7Ok() (*GetVMConfig200ResponseDataNet0, bool)`
+`func (o *UpdateVMConfigRequest) GetNet7Ok() (*CreateVMRequestNet0, bool)`
 
 GetNet7Ok returns a tuple with the Net7 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNet7
 
-`func (o *UpdateVMConfigRequest) SetNet7(v GetVMConfig200ResponseDataNet0)`
+`func (o *UpdateVMConfigRequest) SetNet7(v CreateVMRequestNet0)`
 
 SetNet7 sets Net7 field to given value.
 
@@ -3192,20 +3244,20 @@ HasNet7 returns a boolean if a field has been set.
 
 ### GetNet8
 
-`func (o *UpdateVMConfigRequest) GetNet8() GetVMConfig200ResponseDataNet0`
+`func (o *UpdateVMConfigRequest) GetNet8() CreateVMRequestNet0`
 
 GetNet8 returns the Net8 field if non-nil, zero value otherwise.
 
 ### GetNet8Ok
 
-`func (o *UpdateVMConfigRequest) GetNet8Ok() (*GetVMConfig200ResponseDataNet0, bool)`
+`func (o *UpdateVMConfigRequest) GetNet8Ok() (*CreateVMRequestNet0, bool)`
 
 GetNet8Ok returns a tuple with the Net8 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNet8
 
-`func (o *UpdateVMConfigRequest) SetNet8(v GetVMConfig200ResponseDataNet0)`
+`func (o *UpdateVMConfigRequest) SetNet8(v CreateVMRequestNet0)`
 
 SetNet8 sets Net8 field to given value.
 
@@ -3217,20 +3269,20 @@ HasNet8 returns a boolean if a field has been set.
 
 ### GetNet9
 
-`func (o *UpdateVMConfigRequest) GetNet9() GetVMConfig200ResponseDataNet0`
+`func (o *UpdateVMConfigRequest) GetNet9() CreateVMRequestNet0`
 
 GetNet9 returns the Net9 field if non-nil, zero value otherwise.
 
 ### GetNet9Ok
 
-`func (o *UpdateVMConfigRequest) GetNet9Ok() (*GetVMConfig200ResponseDataNet0, bool)`
+`func (o *UpdateVMConfigRequest) GetNet9Ok() (*CreateVMRequestNet0, bool)`
 
 GetNet9Ok returns a tuple with the Net9 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNet9
 
-`func (o *UpdateVMConfigRequest) SetNet9(v GetVMConfig200ResponseDataNet0)`
+`func (o *UpdateVMConfigRequest) SetNet9(v CreateVMRequestNet0)`
 
 SetNet9 sets Net9 field to given value.
 
@@ -3242,20 +3294,20 @@ HasNet9 returns a boolean if a field has been set.
 
 ### GetNet10
 
-`func (o *UpdateVMConfigRequest) GetNet10() GetVMConfig200ResponseDataNet0`
+`func (o *UpdateVMConfigRequest) GetNet10() CreateVMRequestNet0`
 
 GetNet10 returns the Net10 field if non-nil, zero value otherwise.
 
 ### GetNet10Ok
 
-`func (o *UpdateVMConfigRequest) GetNet10Ok() (*GetVMConfig200ResponseDataNet0, bool)`
+`func (o *UpdateVMConfigRequest) GetNet10Ok() (*CreateVMRequestNet0, bool)`
 
 GetNet10Ok returns a tuple with the Net10 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNet10
 
-`func (o *UpdateVMConfigRequest) SetNet10(v GetVMConfig200ResponseDataNet0)`
+`func (o *UpdateVMConfigRequest) SetNet10(v CreateVMRequestNet0)`
 
 SetNet10 sets Net10 field to given value.
 
@@ -3267,20 +3319,20 @@ HasNet10 returns a boolean if a field has been set.
 
 ### GetNet11
 
-`func (o *UpdateVMConfigRequest) GetNet11() GetVMConfig200ResponseDataNet0`
+`func (o *UpdateVMConfigRequest) GetNet11() CreateVMRequestNet0`
 
 GetNet11 returns the Net11 field if non-nil, zero value otherwise.
 
 ### GetNet11Ok
 
-`func (o *UpdateVMConfigRequest) GetNet11Ok() (*GetVMConfig200ResponseDataNet0, bool)`
+`func (o *UpdateVMConfigRequest) GetNet11Ok() (*CreateVMRequestNet0, bool)`
 
 GetNet11Ok returns a tuple with the Net11 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNet11
 
-`func (o *UpdateVMConfigRequest) SetNet11(v GetVMConfig200ResponseDataNet0)`
+`func (o *UpdateVMConfigRequest) SetNet11(v CreateVMRequestNet0)`
 
 SetNet11 sets Net11 field to given value.
 
@@ -3292,20 +3344,20 @@ HasNet11 returns a boolean if a field has been set.
 
 ### GetNet12
 
-`func (o *UpdateVMConfigRequest) GetNet12() GetVMConfig200ResponseDataNet0`
+`func (o *UpdateVMConfigRequest) GetNet12() CreateVMRequestNet0`
 
 GetNet12 returns the Net12 field if non-nil, zero value otherwise.
 
 ### GetNet12Ok
 
-`func (o *UpdateVMConfigRequest) GetNet12Ok() (*GetVMConfig200ResponseDataNet0, bool)`
+`func (o *UpdateVMConfigRequest) GetNet12Ok() (*CreateVMRequestNet0, bool)`
 
 GetNet12Ok returns a tuple with the Net12 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNet12
 
-`func (o *UpdateVMConfigRequest) SetNet12(v GetVMConfig200ResponseDataNet0)`
+`func (o *UpdateVMConfigRequest) SetNet12(v CreateVMRequestNet0)`
 
 SetNet12 sets Net12 field to given value.
 
@@ -3317,20 +3369,20 @@ HasNet12 returns a boolean if a field has been set.
 
 ### GetNet13
 
-`func (o *UpdateVMConfigRequest) GetNet13() GetVMConfig200ResponseDataNet0`
+`func (o *UpdateVMConfigRequest) GetNet13() CreateVMRequestNet0`
 
 GetNet13 returns the Net13 field if non-nil, zero value otherwise.
 
 ### GetNet13Ok
 
-`func (o *UpdateVMConfigRequest) GetNet13Ok() (*GetVMConfig200ResponseDataNet0, bool)`
+`func (o *UpdateVMConfigRequest) GetNet13Ok() (*CreateVMRequestNet0, bool)`
 
 GetNet13Ok returns a tuple with the Net13 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNet13
 
-`func (o *UpdateVMConfigRequest) SetNet13(v GetVMConfig200ResponseDataNet0)`
+`func (o *UpdateVMConfigRequest) SetNet13(v CreateVMRequestNet0)`
 
 SetNet13 sets Net13 field to given value.
 
@@ -3342,20 +3394,20 @@ HasNet13 returns a boolean if a field has been set.
 
 ### GetNet14
 
-`func (o *UpdateVMConfigRequest) GetNet14() GetVMConfig200ResponseDataNet0`
+`func (o *UpdateVMConfigRequest) GetNet14() CreateVMRequestNet0`
 
 GetNet14 returns the Net14 field if non-nil, zero value otherwise.
 
 ### GetNet14Ok
 
-`func (o *UpdateVMConfigRequest) GetNet14Ok() (*GetVMConfig200ResponseDataNet0, bool)`
+`func (o *UpdateVMConfigRequest) GetNet14Ok() (*CreateVMRequestNet0, bool)`
 
 GetNet14Ok returns a tuple with the Net14 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNet14
 
-`func (o *UpdateVMConfigRequest) SetNet14(v GetVMConfig200ResponseDataNet0)`
+`func (o *UpdateVMConfigRequest) SetNet14(v CreateVMRequestNet0)`
 
 SetNet14 sets Net14 field to given value.
 
@@ -3367,20 +3419,20 @@ HasNet14 returns a boolean if a field has been set.
 
 ### GetNet15
 
-`func (o *UpdateVMConfigRequest) GetNet15() GetVMConfig200ResponseDataNet0`
+`func (o *UpdateVMConfigRequest) GetNet15() CreateVMRequestNet0`
 
 GetNet15 returns the Net15 field if non-nil, zero value otherwise.
 
 ### GetNet15Ok
 
-`func (o *UpdateVMConfigRequest) GetNet15Ok() (*GetVMConfig200ResponseDataNet0, bool)`
+`func (o *UpdateVMConfigRequest) GetNet15Ok() (*CreateVMRequestNet0, bool)`
 
 GetNet15Ok returns a tuple with the Net15 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNet15
 
-`func (o *UpdateVMConfigRequest) SetNet15(v GetVMConfig200ResponseDataNet0)`
+`func (o *UpdateVMConfigRequest) SetNet15(v CreateVMRequestNet0)`
 
 SetNet15 sets Net15 field to given value.
 
@@ -3392,20 +3444,20 @@ HasNet15 returns a boolean if a field has been set.
 
 ### GetNet16
 
-`func (o *UpdateVMConfigRequest) GetNet16() GetVMConfig200ResponseDataNet0`
+`func (o *UpdateVMConfigRequest) GetNet16() CreateVMRequestNet0`
 
 GetNet16 returns the Net16 field if non-nil, zero value otherwise.
 
 ### GetNet16Ok
 
-`func (o *UpdateVMConfigRequest) GetNet16Ok() (*GetVMConfig200ResponseDataNet0, bool)`
+`func (o *UpdateVMConfigRequest) GetNet16Ok() (*CreateVMRequestNet0, bool)`
 
 GetNet16Ok returns a tuple with the Net16 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNet16
 
-`func (o *UpdateVMConfigRequest) SetNet16(v GetVMConfig200ResponseDataNet0)`
+`func (o *UpdateVMConfigRequest) SetNet16(v CreateVMRequestNet0)`
 
 SetNet16 sets Net16 field to given value.
 
@@ -3417,20 +3469,20 @@ HasNet16 returns a boolean if a field has been set.
 
 ### GetNet17
 
-`func (o *UpdateVMConfigRequest) GetNet17() GetVMConfig200ResponseDataNet0`
+`func (o *UpdateVMConfigRequest) GetNet17() CreateVMRequestNet0`
 
 GetNet17 returns the Net17 field if non-nil, zero value otherwise.
 
 ### GetNet17Ok
 
-`func (o *UpdateVMConfigRequest) GetNet17Ok() (*GetVMConfig200ResponseDataNet0, bool)`
+`func (o *UpdateVMConfigRequest) GetNet17Ok() (*CreateVMRequestNet0, bool)`
 
 GetNet17Ok returns a tuple with the Net17 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNet17
 
-`func (o *UpdateVMConfigRequest) SetNet17(v GetVMConfig200ResponseDataNet0)`
+`func (o *UpdateVMConfigRequest) SetNet17(v CreateVMRequestNet0)`
 
 SetNet17 sets Net17 field to given value.
 
@@ -3442,20 +3494,20 @@ HasNet17 returns a boolean if a field has been set.
 
 ### GetNet18
 
-`func (o *UpdateVMConfigRequest) GetNet18() GetVMConfig200ResponseDataNet0`
+`func (o *UpdateVMConfigRequest) GetNet18() CreateVMRequestNet0`
 
 GetNet18 returns the Net18 field if non-nil, zero value otherwise.
 
 ### GetNet18Ok
 
-`func (o *UpdateVMConfigRequest) GetNet18Ok() (*GetVMConfig200ResponseDataNet0, bool)`
+`func (o *UpdateVMConfigRequest) GetNet18Ok() (*CreateVMRequestNet0, bool)`
 
 GetNet18Ok returns a tuple with the Net18 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNet18
 
-`func (o *UpdateVMConfigRequest) SetNet18(v GetVMConfig200ResponseDataNet0)`
+`func (o *UpdateVMConfigRequest) SetNet18(v CreateVMRequestNet0)`
 
 SetNet18 sets Net18 field to given value.
 
@@ -3467,20 +3519,20 @@ HasNet18 returns a boolean if a field has been set.
 
 ### GetNet19
 
-`func (o *UpdateVMConfigRequest) GetNet19() GetVMConfig200ResponseDataNet0`
+`func (o *UpdateVMConfigRequest) GetNet19() CreateVMRequestNet0`
 
 GetNet19 returns the Net19 field if non-nil, zero value otherwise.
 
 ### GetNet19Ok
 
-`func (o *UpdateVMConfigRequest) GetNet19Ok() (*GetVMConfig200ResponseDataNet0, bool)`
+`func (o *UpdateVMConfigRequest) GetNet19Ok() (*CreateVMRequestNet0, bool)`
 
 GetNet19Ok returns a tuple with the Net19 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNet19
 
-`func (o *UpdateVMConfigRequest) SetNet19(v GetVMConfig200ResponseDataNet0)`
+`func (o *UpdateVMConfigRequest) SetNet19(v CreateVMRequestNet0)`
 
 SetNet19 sets Net19 field to given value.
 
@@ -3492,20 +3544,20 @@ HasNet19 returns a boolean if a field has been set.
 
 ### GetNet20
 
-`func (o *UpdateVMConfigRequest) GetNet20() GetVMConfig200ResponseDataNet0`
+`func (o *UpdateVMConfigRequest) GetNet20() CreateVMRequestNet0`
 
 GetNet20 returns the Net20 field if non-nil, zero value otherwise.
 
 ### GetNet20Ok
 
-`func (o *UpdateVMConfigRequest) GetNet20Ok() (*GetVMConfig200ResponseDataNet0, bool)`
+`func (o *UpdateVMConfigRequest) GetNet20Ok() (*CreateVMRequestNet0, bool)`
 
 GetNet20Ok returns a tuple with the Net20 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNet20
 
-`func (o *UpdateVMConfigRequest) SetNet20(v GetVMConfig200ResponseDataNet0)`
+`func (o *UpdateVMConfigRequest) SetNet20(v CreateVMRequestNet0)`
 
 SetNet20 sets Net20 field to given value.
 
@@ -3517,20 +3569,20 @@ HasNet20 returns a boolean if a field has been set.
 
 ### GetNet21
 
-`func (o *UpdateVMConfigRequest) GetNet21() GetVMConfig200ResponseDataNet0`
+`func (o *UpdateVMConfigRequest) GetNet21() CreateVMRequestNet0`
 
 GetNet21 returns the Net21 field if non-nil, zero value otherwise.
 
 ### GetNet21Ok
 
-`func (o *UpdateVMConfigRequest) GetNet21Ok() (*GetVMConfig200ResponseDataNet0, bool)`
+`func (o *UpdateVMConfigRequest) GetNet21Ok() (*CreateVMRequestNet0, bool)`
 
 GetNet21Ok returns a tuple with the Net21 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNet21
 
-`func (o *UpdateVMConfigRequest) SetNet21(v GetVMConfig200ResponseDataNet0)`
+`func (o *UpdateVMConfigRequest) SetNet21(v CreateVMRequestNet0)`
 
 SetNet21 sets Net21 field to given value.
 
@@ -3542,20 +3594,20 @@ HasNet21 returns a boolean if a field has been set.
 
 ### GetNet22
 
-`func (o *UpdateVMConfigRequest) GetNet22() GetVMConfig200ResponseDataNet0`
+`func (o *UpdateVMConfigRequest) GetNet22() CreateVMRequestNet0`
 
 GetNet22 returns the Net22 field if non-nil, zero value otherwise.
 
 ### GetNet22Ok
 
-`func (o *UpdateVMConfigRequest) GetNet22Ok() (*GetVMConfig200ResponseDataNet0, bool)`
+`func (o *UpdateVMConfigRequest) GetNet22Ok() (*CreateVMRequestNet0, bool)`
 
 GetNet22Ok returns a tuple with the Net22 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNet22
 
-`func (o *UpdateVMConfigRequest) SetNet22(v GetVMConfig200ResponseDataNet0)`
+`func (o *UpdateVMConfigRequest) SetNet22(v CreateVMRequestNet0)`
 
 SetNet22 sets Net22 field to given value.
 
@@ -3567,20 +3619,20 @@ HasNet22 returns a boolean if a field has been set.
 
 ### GetNet23
 
-`func (o *UpdateVMConfigRequest) GetNet23() GetVMConfig200ResponseDataNet0`
+`func (o *UpdateVMConfigRequest) GetNet23() CreateVMRequestNet0`
 
 GetNet23 returns the Net23 field if non-nil, zero value otherwise.
 
 ### GetNet23Ok
 
-`func (o *UpdateVMConfigRequest) GetNet23Ok() (*GetVMConfig200ResponseDataNet0, bool)`
+`func (o *UpdateVMConfigRequest) GetNet23Ok() (*CreateVMRequestNet0, bool)`
 
 GetNet23Ok returns a tuple with the Net23 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNet23
 
-`func (o *UpdateVMConfigRequest) SetNet23(v GetVMConfig200ResponseDataNet0)`
+`func (o *UpdateVMConfigRequest) SetNet23(v CreateVMRequestNet0)`
 
 SetNet23 sets Net23 field to given value.
 
@@ -3592,20 +3644,20 @@ HasNet23 returns a boolean if a field has been set.
 
 ### GetNet24
 
-`func (o *UpdateVMConfigRequest) GetNet24() GetVMConfig200ResponseDataNet0`
+`func (o *UpdateVMConfigRequest) GetNet24() CreateVMRequestNet0`
 
 GetNet24 returns the Net24 field if non-nil, zero value otherwise.
 
 ### GetNet24Ok
 
-`func (o *UpdateVMConfigRequest) GetNet24Ok() (*GetVMConfig200ResponseDataNet0, bool)`
+`func (o *UpdateVMConfigRequest) GetNet24Ok() (*CreateVMRequestNet0, bool)`
 
 GetNet24Ok returns a tuple with the Net24 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNet24
 
-`func (o *UpdateVMConfigRequest) SetNet24(v GetVMConfig200ResponseDataNet0)`
+`func (o *UpdateVMConfigRequest) SetNet24(v CreateVMRequestNet0)`
 
 SetNet24 sets Net24 field to given value.
 
@@ -3617,20 +3669,20 @@ HasNet24 returns a boolean if a field has been set.
 
 ### GetNet25
 
-`func (o *UpdateVMConfigRequest) GetNet25() GetVMConfig200ResponseDataNet0`
+`func (o *UpdateVMConfigRequest) GetNet25() CreateVMRequestNet0`
 
 GetNet25 returns the Net25 field if non-nil, zero value otherwise.
 
 ### GetNet25Ok
 
-`func (o *UpdateVMConfigRequest) GetNet25Ok() (*GetVMConfig200ResponseDataNet0, bool)`
+`func (o *UpdateVMConfigRequest) GetNet25Ok() (*CreateVMRequestNet0, bool)`
 
 GetNet25Ok returns a tuple with the Net25 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNet25
 
-`func (o *UpdateVMConfigRequest) SetNet25(v GetVMConfig200ResponseDataNet0)`
+`func (o *UpdateVMConfigRequest) SetNet25(v CreateVMRequestNet0)`
 
 SetNet25 sets Net25 field to given value.
 
@@ -3642,20 +3694,20 @@ HasNet25 returns a boolean if a field has been set.
 
 ### GetNet26
 
-`func (o *UpdateVMConfigRequest) GetNet26() GetVMConfig200ResponseDataNet0`
+`func (o *UpdateVMConfigRequest) GetNet26() CreateVMRequestNet0`
 
 GetNet26 returns the Net26 field if non-nil, zero value otherwise.
 
 ### GetNet26Ok
 
-`func (o *UpdateVMConfigRequest) GetNet26Ok() (*GetVMConfig200ResponseDataNet0, bool)`
+`func (o *UpdateVMConfigRequest) GetNet26Ok() (*CreateVMRequestNet0, bool)`
 
 GetNet26Ok returns a tuple with the Net26 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNet26
 
-`func (o *UpdateVMConfigRequest) SetNet26(v GetVMConfig200ResponseDataNet0)`
+`func (o *UpdateVMConfigRequest) SetNet26(v CreateVMRequestNet0)`
 
 SetNet26 sets Net26 field to given value.
 
@@ -3667,20 +3719,20 @@ HasNet26 returns a boolean if a field has been set.
 
 ### GetNet27
 
-`func (o *UpdateVMConfigRequest) GetNet27() GetVMConfig200ResponseDataNet0`
+`func (o *UpdateVMConfigRequest) GetNet27() CreateVMRequestNet0`
 
 GetNet27 returns the Net27 field if non-nil, zero value otherwise.
 
 ### GetNet27Ok
 
-`func (o *UpdateVMConfigRequest) GetNet27Ok() (*GetVMConfig200ResponseDataNet0, bool)`
+`func (o *UpdateVMConfigRequest) GetNet27Ok() (*CreateVMRequestNet0, bool)`
 
 GetNet27Ok returns a tuple with the Net27 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNet27
 
-`func (o *UpdateVMConfigRequest) SetNet27(v GetVMConfig200ResponseDataNet0)`
+`func (o *UpdateVMConfigRequest) SetNet27(v CreateVMRequestNet0)`
 
 SetNet27 sets Net27 field to given value.
 
@@ -3692,20 +3744,20 @@ HasNet27 returns a boolean if a field has been set.
 
 ### GetNet28
 
-`func (o *UpdateVMConfigRequest) GetNet28() GetVMConfig200ResponseDataNet0`
+`func (o *UpdateVMConfigRequest) GetNet28() CreateVMRequestNet0`
 
 GetNet28 returns the Net28 field if non-nil, zero value otherwise.
 
 ### GetNet28Ok
 
-`func (o *UpdateVMConfigRequest) GetNet28Ok() (*GetVMConfig200ResponseDataNet0, bool)`
+`func (o *UpdateVMConfigRequest) GetNet28Ok() (*CreateVMRequestNet0, bool)`
 
 GetNet28Ok returns a tuple with the Net28 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNet28
 
-`func (o *UpdateVMConfigRequest) SetNet28(v GetVMConfig200ResponseDataNet0)`
+`func (o *UpdateVMConfigRequest) SetNet28(v CreateVMRequestNet0)`
 
 SetNet28 sets Net28 field to given value.
 
@@ -3717,20 +3769,20 @@ HasNet28 returns a boolean if a field has been set.
 
 ### GetNet29
 
-`func (o *UpdateVMConfigRequest) GetNet29() GetVMConfig200ResponseDataNet0`
+`func (o *UpdateVMConfigRequest) GetNet29() CreateVMRequestNet0`
 
 GetNet29 returns the Net29 field if non-nil, zero value otherwise.
 
 ### GetNet29Ok
 
-`func (o *UpdateVMConfigRequest) GetNet29Ok() (*GetVMConfig200ResponseDataNet0, bool)`
+`func (o *UpdateVMConfigRequest) GetNet29Ok() (*CreateVMRequestNet0, bool)`
 
 GetNet29Ok returns a tuple with the Net29 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNet29
 
-`func (o *UpdateVMConfigRequest) SetNet29(v GetVMConfig200ResponseDataNet0)`
+`func (o *UpdateVMConfigRequest) SetNet29(v CreateVMRequestNet0)`
 
 SetNet29 sets Net29 field to given value.
 
@@ -3742,20 +3794,20 @@ HasNet29 returns a boolean if a field has been set.
 
 ### GetNet30
 
-`func (o *UpdateVMConfigRequest) GetNet30() GetVMConfig200ResponseDataNet0`
+`func (o *UpdateVMConfigRequest) GetNet30() CreateVMRequestNet0`
 
 GetNet30 returns the Net30 field if non-nil, zero value otherwise.
 
 ### GetNet30Ok
 
-`func (o *UpdateVMConfigRequest) GetNet30Ok() (*GetVMConfig200ResponseDataNet0, bool)`
+`func (o *UpdateVMConfigRequest) GetNet30Ok() (*CreateVMRequestNet0, bool)`
 
 GetNet30Ok returns a tuple with the Net30 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNet30
 
-`func (o *UpdateVMConfigRequest) SetNet30(v GetVMConfig200ResponseDataNet0)`
+`func (o *UpdateVMConfigRequest) SetNet30(v CreateVMRequestNet0)`
 
 SetNet30 sets Net30 field to given value.
 
@@ -3767,20 +3819,20 @@ HasNet30 returns a boolean if a field has been set.
 
 ### GetNet31
 
-`func (o *UpdateVMConfigRequest) GetNet31() GetVMConfig200ResponseDataNet0`
+`func (o *UpdateVMConfigRequest) GetNet31() CreateVMRequestNet0`
 
 GetNet31 returns the Net31 field if non-nil, zero value otherwise.
 
 ### GetNet31Ok
 
-`func (o *UpdateVMConfigRequest) GetNet31Ok() (*GetVMConfig200ResponseDataNet0, bool)`
+`func (o *UpdateVMConfigRequest) GetNet31Ok() (*CreateVMRequestNet0, bool)`
 
 GetNet31Ok returns a tuple with the Net31 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNet31
 
-`func (o *UpdateVMConfigRequest) SetNet31(v GetVMConfig200ResponseDataNet0)`
+`func (o *UpdateVMConfigRequest) SetNet31(v CreateVMRequestNet0)`
 
 SetNet31 sets Net31 field to given value.
 
@@ -3817,20 +3869,20 @@ HasNuma returns a boolean if a field has been set.
 
 ### GetNuma0
 
-`func (o *UpdateVMConfigRequest) GetNuma0() GetVMConfig200ResponseDataNuma0`
+`func (o *UpdateVMConfigRequest) GetNuma0() CreateVMRequestNuma0`
 
 GetNuma0 returns the Numa0 field if non-nil, zero value otherwise.
 
 ### GetNuma0Ok
 
-`func (o *UpdateVMConfigRequest) GetNuma0Ok() (*GetVMConfig200ResponseDataNuma0, bool)`
+`func (o *UpdateVMConfigRequest) GetNuma0Ok() (*CreateVMRequestNuma0, bool)`
 
 GetNuma0Ok returns a tuple with the Numa0 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNuma0
 
-`func (o *UpdateVMConfigRequest) SetNuma0(v GetVMConfig200ResponseDataNuma0)`
+`func (o *UpdateVMConfigRequest) SetNuma0(v CreateVMRequestNuma0)`
 
 SetNuma0 sets Numa0 field to given value.
 
@@ -3842,20 +3894,20 @@ HasNuma0 returns a boolean if a field has been set.
 
 ### GetNuma1
 
-`func (o *UpdateVMConfigRequest) GetNuma1() GetVMConfig200ResponseDataNuma0`
+`func (o *UpdateVMConfigRequest) GetNuma1() CreateVMRequestNuma0`
 
 GetNuma1 returns the Numa1 field if non-nil, zero value otherwise.
 
 ### GetNuma1Ok
 
-`func (o *UpdateVMConfigRequest) GetNuma1Ok() (*GetVMConfig200ResponseDataNuma0, bool)`
+`func (o *UpdateVMConfigRequest) GetNuma1Ok() (*CreateVMRequestNuma0, bool)`
 
 GetNuma1Ok returns a tuple with the Numa1 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNuma1
 
-`func (o *UpdateVMConfigRequest) SetNuma1(v GetVMConfig200ResponseDataNuma0)`
+`func (o *UpdateVMConfigRequest) SetNuma1(v CreateVMRequestNuma0)`
 
 SetNuma1 sets Numa1 field to given value.
 
@@ -3867,20 +3919,20 @@ HasNuma1 returns a boolean if a field has been set.
 
 ### GetNuma2
 
-`func (o *UpdateVMConfigRequest) GetNuma2() GetVMConfig200ResponseDataNuma0`
+`func (o *UpdateVMConfigRequest) GetNuma2() CreateVMRequestNuma0`
 
 GetNuma2 returns the Numa2 field if non-nil, zero value otherwise.
 
 ### GetNuma2Ok
 
-`func (o *UpdateVMConfigRequest) GetNuma2Ok() (*GetVMConfig200ResponseDataNuma0, bool)`
+`func (o *UpdateVMConfigRequest) GetNuma2Ok() (*CreateVMRequestNuma0, bool)`
 
 GetNuma2Ok returns a tuple with the Numa2 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNuma2
 
-`func (o *UpdateVMConfigRequest) SetNuma2(v GetVMConfig200ResponseDataNuma0)`
+`func (o *UpdateVMConfigRequest) SetNuma2(v CreateVMRequestNuma0)`
 
 SetNuma2 sets Numa2 field to given value.
 
@@ -3892,20 +3944,20 @@ HasNuma2 returns a boolean if a field has been set.
 
 ### GetNuma3
 
-`func (o *UpdateVMConfigRequest) GetNuma3() GetVMConfig200ResponseDataNuma0`
+`func (o *UpdateVMConfigRequest) GetNuma3() CreateVMRequestNuma0`
 
 GetNuma3 returns the Numa3 field if non-nil, zero value otherwise.
 
 ### GetNuma3Ok
 
-`func (o *UpdateVMConfigRequest) GetNuma3Ok() (*GetVMConfig200ResponseDataNuma0, bool)`
+`func (o *UpdateVMConfigRequest) GetNuma3Ok() (*CreateVMRequestNuma0, bool)`
 
 GetNuma3Ok returns a tuple with the Numa3 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNuma3
 
-`func (o *UpdateVMConfigRequest) SetNuma3(v GetVMConfig200ResponseDataNuma0)`
+`func (o *UpdateVMConfigRequest) SetNuma3(v CreateVMRequestNuma0)`
 
 SetNuma3 sets Numa3 field to given value.
 
@@ -3917,20 +3969,20 @@ HasNuma3 returns a boolean if a field has been set.
 
 ### GetNuma4
 
-`func (o *UpdateVMConfigRequest) GetNuma4() GetVMConfig200ResponseDataNuma0`
+`func (o *UpdateVMConfigRequest) GetNuma4() CreateVMRequestNuma0`
 
 GetNuma4 returns the Numa4 field if non-nil, zero value otherwise.
 
 ### GetNuma4Ok
 
-`func (o *UpdateVMConfigRequest) GetNuma4Ok() (*GetVMConfig200ResponseDataNuma0, bool)`
+`func (o *UpdateVMConfigRequest) GetNuma4Ok() (*CreateVMRequestNuma0, bool)`
 
 GetNuma4Ok returns a tuple with the Numa4 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNuma4
 
-`func (o *UpdateVMConfigRequest) SetNuma4(v GetVMConfig200ResponseDataNuma0)`
+`func (o *UpdateVMConfigRequest) SetNuma4(v CreateVMRequestNuma0)`
 
 SetNuma4 sets Numa4 field to given value.
 
@@ -3942,20 +3994,20 @@ HasNuma4 returns a boolean if a field has been set.
 
 ### GetNuma5
 
-`func (o *UpdateVMConfigRequest) GetNuma5() GetVMConfig200ResponseDataNuma0`
+`func (o *UpdateVMConfigRequest) GetNuma5() CreateVMRequestNuma0`
 
 GetNuma5 returns the Numa5 field if non-nil, zero value otherwise.
 
 ### GetNuma5Ok
 
-`func (o *UpdateVMConfigRequest) GetNuma5Ok() (*GetVMConfig200ResponseDataNuma0, bool)`
+`func (o *UpdateVMConfigRequest) GetNuma5Ok() (*CreateVMRequestNuma0, bool)`
 
 GetNuma5Ok returns a tuple with the Numa5 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNuma5
 
-`func (o *UpdateVMConfigRequest) SetNuma5(v GetVMConfig200ResponseDataNuma0)`
+`func (o *UpdateVMConfigRequest) SetNuma5(v CreateVMRequestNuma0)`
 
 SetNuma5 sets Numa5 field to given value.
 
@@ -3967,20 +4019,20 @@ HasNuma5 returns a boolean if a field has been set.
 
 ### GetNuma6
 
-`func (o *UpdateVMConfigRequest) GetNuma6() GetVMConfig200ResponseDataNuma0`
+`func (o *UpdateVMConfigRequest) GetNuma6() CreateVMRequestNuma0`
 
 GetNuma6 returns the Numa6 field if non-nil, zero value otherwise.
 
 ### GetNuma6Ok
 
-`func (o *UpdateVMConfigRequest) GetNuma6Ok() (*GetVMConfig200ResponseDataNuma0, bool)`
+`func (o *UpdateVMConfigRequest) GetNuma6Ok() (*CreateVMRequestNuma0, bool)`
 
 GetNuma6Ok returns a tuple with the Numa6 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNuma6
 
-`func (o *UpdateVMConfigRequest) SetNuma6(v GetVMConfig200ResponseDataNuma0)`
+`func (o *UpdateVMConfigRequest) SetNuma6(v CreateVMRequestNuma0)`
 
 SetNuma6 sets Numa6 field to given value.
 
@@ -3992,20 +4044,20 @@ HasNuma6 returns a boolean if a field has been set.
 
 ### GetNuma7
 
-`func (o *UpdateVMConfigRequest) GetNuma7() GetVMConfig200ResponseDataNuma0`
+`func (o *UpdateVMConfigRequest) GetNuma7() CreateVMRequestNuma0`
 
 GetNuma7 returns the Numa7 field if non-nil, zero value otherwise.
 
 ### GetNuma7Ok
 
-`func (o *UpdateVMConfigRequest) GetNuma7Ok() (*GetVMConfig200ResponseDataNuma0, bool)`
+`func (o *UpdateVMConfigRequest) GetNuma7Ok() (*CreateVMRequestNuma0, bool)`
 
 GetNuma7Ok returns a tuple with the Numa7 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNuma7
 
-`func (o *UpdateVMConfigRequest) SetNuma7(v GetVMConfig200ResponseDataNuma0)`
+`func (o *UpdateVMConfigRequest) SetNuma7(v CreateVMRequestNuma0)`
 
 SetNuma7 sets Numa7 field to given value.
 
@@ -4017,20 +4069,20 @@ HasNuma7 returns a boolean if a field has been set.
 
 ### GetNuma8
 
-`func (o *UpdateVMConfigRequest) GetNuma8() GetVMConfig200ResponseDataNuma0`
+`func (o *UpdateVMConfigRequest) GetNuma8() CreateVMRequestNuma0`
 
 GetNuma8 returns the Numa8 field if non-nil, zero value otherwise.
 
 ### GetNuma8Ok
 
-`func (o *UpdateVMConfigRequest) GetNuma8Ok() (*GetVMConfig200ResponseDataNuma0, bool)`
+`func (o *UpdateVMConfigRequest) GetNuma8Ok() (*CreateVMRequestNuma0, bool)`
 
 GetNuma8Ok returns a tuple with the Numa8 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNuma8
 
-`func (o *UpdateVMConfigRequest) SetNuma8(v GetVMConfig200ResponseDataNuma0)`
+`func (o *UpdateVMConfigRequest) SetNuma8(v CreateVMRequestNuma0)`
 
 SetNuma8 sets Numa8 field to given value.
 
@@ -4042,20 +4094,20 @@ HasNuma8 returns a boolean if a field has been set.
 
 ### GetNuma9
 
-`func (o *UpdateVMConfigRequest) GetNuma9() GetVMConfig200ResponseDataNuma0`
+`func (o *UpdateVMConfigRequest) GetNuma9() CreateVMRequestNuma0`
 
 GetNuma9 returns the Numa9 field if non-nil, zero value otherwise.
 
 ### GetNuma9Ok
 
-`func (o *UpdateVMConfigRequest) GetNuma9Ok() (*GetVMConfig200ResponseDataNuma0, bool)`
+`func (o *UpdateVMConfigRequest) GetNuma9Ok() (*CreateVMRequestNuma0, bool)`
 
 GetNuma9Ok returns a tuple with the Numa9 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNuma9
 
-`func (o *UpdateVMConfigRequest) SetNuma9(v GetVMConfig200ResponseDataNuma0)`
+`func (o *UpdateVMConfigRequest) SetNuma9(v CreateVMRequestNuma0)`
 
 SetNuma9 sets Numa9 field to given value.
 
@@ -4067,20 +4119,20 @@ HasNuma9 returns a boolean if a field has been set.
 
 ### GetNuma10
 
-`func (o *UpdateVMConfigRequest) GetNuma10() GetVMConfig200ResponseDataNuma0`
+`func (o *UpdateVMConfigRequest) GetNuma10() CreateVMRequestNuma0`
 
 GetNuma10 returns the Numa10 field if non-nil, zero value otherwise.
 
 ### GetNuma10Ok
 
-`func (o *UpdateVMConfigRequest) GetNuma10Ok() (*GetVMConfig200ResponseDataNuma0, bool)`
+`func (o *UpdateVMConfigRequest) GetNuma10Ok() (*CreateVMRequestNuma0, bool)`
 
 GetNuma10Ok returns a tuple with the Numa10 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNuma10
 
-`func (o *UpdateVMConfigRequest) SetNuma10(v GetVMConfig200ResponseDataNuma0)`
+`func (o *UpdateVMConfigRequest) SetNuma10(v CreateVMRequestNuma0)`
 
 SetNuma10 sets Numa10 field to given value.
 
@@ -4092,20 +4144,20 @@ HasNuma10 returns a boolean if a field has been set.
 
 ### GetNuma11
 
-`func (o *UpdateVMConfigRequest) GetNuma11() GetVMConfig200ResponseDataNuma0`
+`func (o *UpdateVMConfigRequest) GetNuma11() CreateVMRequestNuma0`
 
 GetNuma11 returns the Numa11 field if non-nil, zero value otherwise.
 
 ### GetNuma11Ok
 
-`func (o *UpdateVMConfigRequest) GetNuma11Ok() (*GetVMConfig200ResponseDataNuma0, bool)`
+`func (o *UpdateVMConfigRequest) GetNuma11Ok() (*CreateVMRequestNuma0, bool)`
 
 GetNuma11Ok returns a tuple with the Numa11 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNuma11
 
-`func (o *UpdateVMConfigRequest) SetNuma11(v GetVMConfig200ResponseDataNuma0)`
+`func (o *UpdateVMConfigRequest) SetNuma11(v CreateVMRequestNuma0)`
 
 SetNuma11 sets Numa11 field to given value.
 
@@ -4117,20 +4169,20 @@ HasNuma11 returns a boolean if a field has been set.
 
 ### GetNuma12
 
-`func (o *UpdateVMConfigRequest) GetNuma12() GetVMConfig200ResponseDataNuma0`
+`func (o *UpdateVMConfigRequest) GetNuma12() CreateVMRequestNuma0`
 
 GetNuma12 returns the Numa12 field if non-nil, zero value otherwise.
 
 ### GetNuma12Ok
 
-`func (o *UpdateVMConfigRequest) GetNuma12Ok() (*GetVMConfig200ResponseDataNuma0, bool)`
+`func (o *UpdateVMConfigRequest) GetNuma12Ok() (*CreateVMRequestNuma0, bool)`
 
 GetNuma12Ok returns a tuple with the Numa12 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNuma12
 
-`func (o *UpdateVMConfigRequest) SetNuma12(v GetVMConfig200ResponseDataNuma0)`
+`func (o *UpdateVMConfigRequest) SetNuma12(v CreateVMRequestNuma0)`
 
 SetNuma12 sets Numa12 field to given value.
 
@@ -4142,20 +4194,20 @@ HasNuma12 returns a boolean if a field has been set.
 
 ### GetNuma13
 
-`func (o *UpdateVMConfigRequest) GetNuma13() GetVMConfig200ResponseDataNuma0`
+`func (o *UpdateVMConfigRequest) GetNuma13() CreateVMRequestNuma0`
 
 GetNuma13 returns the Numa13 field if non-nil, zero value otherwise.
 
 ### GetNuma13Ok
 
-`func (o *UpdateVMConfigRequest) GetNuma13Ok() (*GetVMConfig200ResponseDataNuma0, bool)`
+`func (o *UpdateVMConfigRequest) GetNuma13Ok() (*CreateVMRequestNuma0, bool)`
 
 GetNuma13Ok returns a tuple with the Numa13 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNuma13
 
-`func (o *UpdateVMConfigRequest) SetNuma13(v GetVMConfig200ResponseDataNuma0)`
+`func (o *UpdateVMConfigRequest) SetNuma13(v CreateVMRequestNuma0)`
 
 SetNuma13 sets Numa13 field to given value.
 
@@ -4167,20 +4219,20 @@ HasNuma13 returns a boolean if a field has been set.
 
 ### GetNuma14
 
-`func (o *UpdateVMConfigRequest) GetNuma14() GetVMConfig200ResponseDataNuma0`
+`func (o *UpdateVMConfigRequest) GetNuma14() CreateVMRequestNuma0`
 
 GetNuma14 returns the Numa14 field if non-nil, zero value otherwise.
 
 ### GetNuma14Ok
 
-`func (o *UpdateVMConfigRequest) GetNuma14Ok() (*GetVMConfig200ResponseDataNuma0, bool)`
+`func (o *UpdateVMConfigRequest) GetNuma14Ok() (*CreateVMRequestNuma0, bool)`
 
 GetNuma14Ok returns a tuple with the Numa14 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNuma14
 
-`func (o *UpdateVMConfigRequest) SetNuma14(v GetVMConfig200ResponseDataNuma0)`
+`func (o *UpdateVMConfigRequest) SetNuma14(v CreateVMRequestNuma0)`
 
 SetNuma14 sets Numa14 field to given value.
 
@@ -4192,20 +4244,20 @@ HasNuma14 returns a boolean if a field has been set.
 
 ### GetNuma15
 
-`func (o *UpdateVMConfigRequest) GetNuma15() GetVMConfig200ResponseDataNuma0`
+`func (o *UpdateVMConfigRequest) GetNuma15() CreateVMRequestNuma0`
 
 GetNuma15 returns the Numa15 field if non-nil, zero value otherwise.
 
 ### GetNuma15Ok
 
-`func (o *UpdateVMConfigRequest) GetNuma15Ok() (*GetVMConfig200ResponseDataNuma0, bool)`
+`func (o *UpdateVMConfigRequest) GetNuma15Ok() (*CreateVMRequestNuma0, bool)`
 
 GetNuma15Ok returns a tuple with the Numa15 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNuma15
 
-`func (o *UpdateVMConfigRequest) SetNuma15(v GetVMConfig200ResponseDataNuma0)`
+`func (o *UpdateVMConfigRequest) SetNuma15(v CreateVMRequestNuma0)`
 
 SetNuma15 sets Numa15 field to given value.
 
@@ -4217,20 +4269,20 @@ HasNuma15 returns a boolean if a field has been set.
 
 ### GetNuma16
 
-`func (o *UpdateVMConfigRequest) GetNuma16() GetVMConfig200ResponseDataNuma0`
+`func (o *UpdateVMConfigRequest) GetNuma16() CreateVMRequestNuma0`
 
 GetNuma16 returns the Numa16 field if non-nil, zero value otherwise.
 
 ### GetNuma16Ok
 
-`func (o *UpdateVMConfigRequest) GetNuma16Ok() (*GetVMConfig200ResponseDataNuma0, bool)`
+`func (o *UpdateVMConfigRequest) GetNuma16Ok() (*CreateVMRequestNuma0, bool)`
 
 GetNuma16Ok returns a tuple with the Numa16 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNuma16
 
-`func (o *UpdateVMConfigRequest) SetNuma16(v GetVMConfig200ResponseDataNuma0)`
+`func (o *UpdateVMConfigRequest) SetNuma16(v CreateVMRequestNuma0)`
 
 SetNuma16 sets Numa16 field to given value.
 
@@ -4242,20 +4294,20 @@ HasNuma16 returns a boolean if a field has been set.
 
 ### GetNuma17
 
-`func (o *UpdateVMConfigRequest) GetNuma17() GetVMConfig200ResponseDataNuma0`
+`func (o *UpdateVMConfigRequest) GetNuma17() CreateVMRequestNuma0`
 
 GetNuma17 returns the Numa17 field if non-nil, zero value otherwise.
 
 ### GetNuma17Ok
 
-`func (o *UpdateVMConfigRequest) GetNuma17Ok() (*GetVMConfig200ResponseDataNuma0, bool)`
+`func (o *UpdateVMConfigRequest) GetNuma17Ok() (*CreateVMRequestNuma0, bool)`
 
 GetNuma17Ok returns a tuple with the Numa17 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNuma17
 
-`func (o *UpdateVMConfigRequest) SetNuma17(v GetVMConfig200ResponseDataNuma0)`
+`func (o *UpdateVMConfigRequest) SetNuma17(v CreateVMRequestNuma0)`
 
 SetNuma17 sets Numa17 field to given value.
 
@@ -4267,20 +4319,20 @@ HasNuma17 returns a boolean if a field has been set.
 
 ### GetNuma18
 
-`func (o *UpdateVMConfigRequest) GetNuma18() GetVMConfig200ResponseDataNuma0`
+`func (o *UpdateVMConfigRequest) GetNuma18() CreateVMRequestNuma0`
 
 GetNuma18 returns the Numa18 field if non-nil, zero value otherwise.
 
 ### GetNuma18Ok
 
-`func (o *UpdateVMConfigRequest) GetNuma18Ok() (*GetVMConfig200ResponseDataNuma0, bool)`
+`func (o *UpdateVMConfigRequest) GetNuma18Ok() (*CreateVMRequestNuma0, bool)`
 
 GetNuma18Ok returns a tuple with the Numa18 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNuma18
 
-`func (o *UpdateVMConfigRequest) SetNuma18(v GetVMConfig200ResponseDataNuma0)`
+`func (o *UpdateVMConfigRequest) SetNuma18(v CreateVMRequestNuma0)`
 
 SetNuma18 sets Numa18 field to given value.
 
@@ -4292,20 +4344,20 @@ HasNuma18 returns a boolean if a field has been set.
 
 ### GetNuma19
 
-`func (o *UpdateVMConfigRequest) GetNuma19() GetVMConfig200ResponseDataNuma0`
+`func (o *UpdateVMConfigRequest) GetNuma19() CreateVMRequestNuma0`
 
 GetNuma19 returns the Numa19 field if non-nil, zero value otherwise.
 
 ### GetNuma19Ok
 
-`func (o *UpdateVMConfigRequest) GetNuma19Ok() (*GetVMConfig200ResponseDataNuma0, bool)`
+`func (o *UpdateVMConfigRequest) GetNuma19Ok() (*CreateVMRequestNuma0, bool)`
 
 GetNuma19Ok returns a tuple with the Numa19 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNuma19
 
-`func (o *UpdateVMConfigRequest) SetNuma19(v GetVMConfig200ResponseDataNuma0)`
+`func (o *UpdateVMConfigRequest) SetNuma19(v CreateVMRequestNuma0)`
 
 SetNuma19 sets Numa19 field to given value.
 
@@ -4317,20 +4369,20 @@ HasNuma19 returns a boolean if a field has been set.
 
 ### GetNuma20
 
-`func (o *UpdateVMConfigRequest) GetNuma20() GetVMConfig200ResponseDataNuma0`
+`func (o *UpdateVMConfigRequest) GetNuma20() CreateVMRequestNuma0`
 
 GetNuma20 returns the Numa20 field if non-nil, zero value otherwise.
 
 ### GetNuma20Ok
 
-`func (o *UpdateVMConfigRequest) GetNuma20Ok() (*GetVMConfig200ResponseDataNuma0, bool)`
+`func (o *UpdateVMConfigRequest) GetNuma20Ok() (*CreateVMRequestNuma0, bool)`
 
 GetNuma20Ok returns a tuple with the Numa20 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNuma20
 
-`func (o *UpdateVMConfigRequest) SetNuma20(v GetVMConfig200ResponseDataNuma0)`
+`func (o *UpdateVMConfigRequest) SetNuma20(v CreateVMRequestNuma0)`
 
 SetNuma20 sets Numa20 field to given value.
 
@@ -4342,20 +4394,20 @@ HasNuma20 returns a boolean if a field has been set.
 
 ### GetNuma21
 
-`func (o *UpdateVMConfigRequest) GetNuma21() GetVMConfig200ResponseDataNuma0`
+`func (o *UpdateVMConfigRequest) GetNuma21() CreateVMRequestNuma0`
 
 GetNuma21 returns the Numa21 field if non-nil, zero value otherwise.
 
 ### GetNuma21Ok
 
-`func (o *UpdateVMConfigRequest) GetNuma21Ok() (*GetVMConfig200ResponseDataNuma0, bool)`
+`func (o *UpdateVMConfigRequest) GetNuma21Ok() (*CreateVMRequestNuma0, bool)`
 
 GetNuma21Ok returns a tuple with the Numa21 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNuma21
 
-`func (o *UpdateVMConfigRequest) SetNuma21(v GetVMConfig200ResponseDataNuma0)`
+`func (o *UpdateVMConfigRequest) SetNuma21(v CreateVMRequestNuma0)`
 
 SetNuma21 sets Numa21 field to given value.
 
@@ -4367,20 +4419,20 @@ HasNuma21 returns a boolean if a field has been set.
 
 ### GetNuma22
 
-`func (o *UpdateVMConfigRequest) GetNuma22() GetVMConfig200ResponseDataNuma0`
+`func (o *UpdateVMConfigRequest) GetNuma22() CreateVMRequestNuma0`
 
 GetNuma22 returns the Numa22 field if non-nil, zero value otherwise.
 
 ### GetNuma22Ok
 
-`func (o *UpdateVMConfigRequest) GetNuma22Ok() (*GetVMConfig200ResponseDataNuma0, bool)`
+`func (o *UpdateVMConfigRequest) GetNuma22Ok() (*CreateVMRequestNuma0, bool)`
 
 GetNuma22Ok returns a tuple with the Numa22 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNuma22
 
-`func (o *UpdateVMConfigRequest) SetNuma22(v GetVMConfig200ResponseDataNuma0)`
+`func (o *UpdateVMConfigRequest) SetNuma22(v CreateVMRequestNuma0)`
 
 SetNuma22 sets Numa22 field to given value.
 
@@ -4392,20 +4444,20 @@ HasNuma22 returns a boolean if a field has been set.
 
 ### GetNuma23
 
-`func (o *UpdateVMConfigRequest) GetNuma23() GetVMConfig200ResponseDataNuma0`
+`func (o *UpdateVMConfigRequest) GetNuma23() CreateVMRequestNuma0`
 
 GetNuma23 returns the Numa23 field if non-nil, zero value otherwise.
 
 ### GetNuma23Ok
 
-`func (o *UpdateVMConfigRequest) GetNuma23Ok() (*GetVMConfig200ResponseDataNuma0, bool)`
+`func (o *UpdateVMConfigRequest) GetNuma23Ok() (*CreateVMRequestNuma0, bool)`
 
 GetNuma23Ok returns a tuple with the Numa23 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNuma23
 
-`func (o *UpdateVMConfigRequest) SetNuma23(v GetVMConfig200ResponseDataNuma0)`
+`func (o *UpdateVMConfigRequest) SetNuma23(v CreateVMRequestNuma0)`
 
 SetNuma23 sets Numa23 field to given value.
 
@@ -4417,20 +4469,20 @@ HasNuma23 returns a boolean if a field has been set.
 
 ### GetNuma24
 
-`func (o *UpdateVMConfigRequest) GetNuma24() GetVMConfig200ResponseDataNuma0`
+`func (o *UpdateVMConfigRequest) GetNuma24() CreateVMRequestNuma0`
 
 GetNuma24 returns the Numa24 field if non-nil, zero value otherwise.
 
 ### GetNuma24Ok
 
-`func (o *UpdateVMConfigRequest) GetNuma24Ok() (*GetVMConfig200ResponseDataNuma0, bool)`
+`func (o *UpdateVMConfigRequest) GetNuma24Ok() (*CreateVMRequestNuma0, bool)`
 
 GetNuma24Ok returns a tuple with the Numa24 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNuma24
 
-`func (o *UpdateVMConfigRequest) SetNuma24(v GetVMConfig200ResponseDataNuma0)`
+`func (o *UpdateVMConfigRequest) SetNuma24(v CreateVMRequestNuma0)`
 
 SetNuma24 sets Numa24 field to given value.
 
@@ -4442,20 +4494,20 @@ HasNuma24 returns a boolean if a field has been set.
 
 ### GetNuma25
 
-`func (o *UpdateVMConfigRequest) GetNuma25() GetVMConfig200ResponseDataNuma0`
+`func (o *UpdateVMConfigRequest) GetNuma25() CreateVMRequestNuma0`
 
 GetNuma25 returns the Numa25 field if non-nil, zero value otherwise.
 
 ### GetNuma25Ok
 
-`func (o *UpdateVMConfigRequest) GetNuma25Ok() (*GetVMConfig200ResponseDataNuma0, bool)`
+`func (o *UpdateVMConfigRequest) GetNuma25Ok() (*CreateVMRequestNuma0, bool)`
 
 GetNuma25Ok returns a tuple with the Numa25 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNuma25
 
-`func (o *UpdateVMConfigRequest) SetNuma25(v GetVMConfig200ResponseDataNuma0)`
+`func (o *UpdateVMConfigRequest) SetNuma25(v CreateVMRequestNuma0)`
 
 SetNuma25 sets Numa25 field to given value.
 
@@ -4467,20 +4519,20 @@ HasNuma25 returns a boolean if a field has been set.
 
 ### GetNuma26
 
-`func (o *UpdateVMConfigRequest) GetNuma26() GetVMConfig200ResponseDataNuma0`
+`func (o *UpdateVMConfigRequest) GetNuma26() CreateVMRequestNuma0`
 
 GetNuma26 returns the Numa26 field if non-nil, zero value otherwise.
 
 ### GetNuma26Ok
 
-`func (o *UpdateVMConfigRequest) GetNuma26Ok() (*GetVMConfig200ResponseDataNuma0, bool)`
+`func (o *UpdateVMConfigRequest) GetNuma26Ok() (*CreateVMRequestNuma0, bool)`
 
 GetNuma26Ok returns a tuple with the Numa26 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNuma26
 
-`func (o *UpdateVMConfigRequest) SetNuma26(v GetVMConfig200ResponseDataNuma0)`
+`func (o *UpdateVMConfigRequest) SetNuma26(v CreateVMRequestNuma0)`
 
 SetNuma26 sets Numa26 field to given value.
 
@@ -4492,20 +4544,20 @@ HasNuma26 returns a boolean if a field has been set.
 
 ### GetNuma27
 
-`func (o *UpdateVMConfigRequest) GetNuma27() GetVMConfig200ResponseDataNuma0`
+`func (o *UpdateVMConfigRequest) GetNuma27() CreateVMRequestNuma0`
 
 GetNuma27 returns the Numa27 field if non-nil, zero value otherwise.
 
 ### GetNuma27Ok
 
-`func (o *UpdateVMConfigRequest) GetNuma27Ok() (*GetVMConfig200ResponseDataNuma0, bool)`
+`func (o *UpdateVMConfigRequest) GetNuma27Ok() (*CreateVMRequestNuma0, bool)`
 
 GetNuma27Ok returns a tuple with the Numa27 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNuma27
 
-`func (o *UpdateVMConfigRequest) SetNuma27(v GetVMConfig200ResponseDataNuma0)`
+`func (o *UpdateVMConfigRequest) SetNuma27(v CreateVMRequestNuma0)`
 
 SetNuma27 sets Numa27 field to given value.
 
@@ -4517,20 +4569,20 @@ HasNuma27 returns a boolean if a field has been set.
 
 ### GetNuma28
 
-`func (o *UpdateVMConfigRequest) GetNuma28() GetVMConfig200ResponseDataNuma0`
+`func (o *UpdateVMConfigRequest) GetNuma28() CreateVMRequestNuma0`
 
 GetNuma28 returns the Numa28 field if non-nil, zero value otherwise.
 
 ### GetNuma28Ok
 
-`func (o *UpdateVMConfigRequest) GetNuma28Ok() (*GetVMConfig200ResponseDataNuma0, bool)`
+`func (o *UpdateVMConfigRequest) GetNuma28Ok() (*CreateVMRequestNuma0, bool)`
 
 GetNuma28Ok returns a tuple with the Numa28 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNuma28
 
-`func (o *UpdateVMConfigRequest) SetNuma28(v GetVMConfig200ResponseDataNuma0)`
+`func (o *UpdateVMConfigRequest) SetNuma28(v CreateVMRequestNuma0)`
 
 SetNuma28 sets Numa28 field to given value.
 
@@ -4542,20 +4594,20 @@ HasNuma28 returns a boolean if a field has been set.
 
 ### GetNuma29
 
-`func (o *UpdateVMConfigRequest) GetNuma29() GetVMConfig200ResponseDataNuma0`
+`func (o *UpdateVMConfigRequest) GetNuma29() CreateVMRequestNuma0`
 
 GetNuma29 returns the Numa29 field if non-nil, zero value otherwise.
 
 ### GetNuma29Ok
 
-`func (o *UpdateVMConfigRequest) GetNuma29Ok() (*GetVMConfig200ResponseDataNuma0, bool)`
+`func (o *UpdateVMConfigRequest) GetNuma29Ok() (*CreateVMRequestNuma0, bool)`
 
 GetNuma29Ok returns a tuple with the Numa29 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNuma29
 
-`func (o *UpdateVMConfigRequest) SetNuma29(v GetVMConfig200ResponseDataNuma0)`
+`func (o *UpdateVMConfigRequest) SetNuma29(v CreateVMRequestNuma0)`
 
 SetNuma29 sets Numa29 field to given value.
 
@@ -4792,20 +4844,20 @@ HasRevert returns a boolean if a field has been set.
 
 ### GetRng0
 
-`func (o *UpdateVMConfigRequest) GetRng0() GetVMConfig200ResponseDataRng0`
+`func (o *UpdateVMConfigRequest) GetRng0() CreateVMRequestRng0`
 
 GetRng0 returns the Rng0 field if non-nil, zero value otherwise.
 
 ### GetRng0Ok
 
-`func (o *UpdateVMConfigRequest) GetRng0Ok() (*GetVMConfig200ResponseDataRng0, bool)`
+`func (o *UpdateVMConfigRequest) GetRng0Ok() (*CreateVMRequestRng0, bool)`
 
 GetRng0Ok returns a tuple with the Rng0 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRng0
 
-`func (o *UpdateVMConfigRequest) SetRng0(v GetVMConfig200ResponseDataRng0)`
+`func (o *UpdateVMConfigRequest) SetRng0(v CreateVMRequestRng0)`
 
 SetRng0 sets Rng0 field to given value.
 
@@ -5992,20 +6044,20 @@ HasSockets returns a boolean if a field has been set.
 
 ### GetSpiceEnhancements
 
-`func (o *UpdateVMConfigRequest) GetSpiceEnhancements() GetVMConfig200ResponseDataSpiceEnhancements`
+`func (o *UpdateVMConfigRequest) GetSpiceEnhancements() CreateVMRequestSpiceEnhancements`
 
 GetSpiceEnhancements returns the SpiceEnhancements field if non-nil, zero value otherwise.
 
 ### GetSpiceEnhancementsOk
 
-`func (o *UpdateVMConfigRequest) GetSpiceEnhancementsOk() (*GetVMConfig200ResponseDataSpiceEnhancements, bool)`
+`func (o *UpdateVMConfigRequest) GetSpiceEnhancementsOk() (*CreateVMRequestSpiceEnhancements, bool)`
 
 GetSpiceEnhancementsOk returns a tuple with the SpiceEnhancements field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSpiceEnhancements
 
-`func (o *UpdateVMConfigRequest) SetSpiceEnhancements(v GetVMConfig200ResponseDataSpiceEnhancements)`
+`func (o *UpdateVMConfigRequest) SetSpiceEnhancements(v CreateVMRequestSpiceEnhancements)`
 
 SetSpiceEnhancements sets SpiceEnhancements field to given value.
 
@@ -6217,20 +6269,20 @@ HasTpmstate0 returns a boolean if a field has been set.
 
 ### GetUnused0
 
-`func (o *UpdateVMConfigRequest) GetUnused0() GetVMConfig200ResponseDataUnused0`
+`func (o *UpdateVMConfigRequest) GetUnused0() CreateVMRequestUnused0`
 
 GetUnused0 returns the Unused0 field if non-nil, zero value otherwise.
 
 ### GetUnused0Ok
 
-`func (o *UpdateVMConfigRequest) GetUnused0Ok() (*GetVMConfig200ResponseDataUnused0, bool)`
+`func (o *UpdateVMConfigRequest) GetUnused0Ok() (*CreateVMRequestUnused0, bool)`
 
 GetUnused0Ok returns a tuple with the Unused0 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnused0
 
-`func (o *UpdateVMConfigRequest) SetUnused0(v GetVMConfig200ResponseDataUnused0)`
+`func (o *UpdateVMConfigRequest) SetUnused0(v CreateVMRequestUnused0)`
 
 SetUnused0 sets Unused0 field to given value.
 
@@ -6242,20 +6294,20 @@ HasUnused0 returns a boolean if a field has been set.
 
 ### GetUnused1
 
-`func (o *UpdateVMConfigRequest) GetUnused1() GetVMConfig200ResponseDataUnused0`
+`func (o *UpdateVMConfigRequest) GetUnused1() CreateVMRequestUnused0`
 
 GetUnused1 returns the Unused1 field if non-nil, zero value otherwise.
 
 ### GetUnused1Ok
 
-`func (o *UpdateVMConfigRequest) GetUnused1Ok() (*GetVMConfig200ResponseDataUnused0, bool)`
+`func (o *UpdateVMConfigRequest) GetUnused1Ok() (*CreateVMRequestUnused0, bool)`
 
 GetUnused1Ok returns a tuple with the Unused1 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnused1
 
-`func (o *UpdateVMConfigRequest) SetUnused1(v GetVMConfig200ResponseDataUnused0)`
+`func (o *UpdateVMConfigRequest) SetUnused1(v CreateVMRequestUnused0)`
 
 SetUnused1 sets Unused1 field to given value.
 
@@ -6267,20 +6319,20 @@ HasUnused1 returns a boolean if a field has been set.
 
 ### GetUnused2
 
-`func (o *UpdateVMConfigRequest) GetUnused2() GetVMConfig200ResponseDataUnused0`
+`func (o *UpdateVMConfigRequest) GetUnused2() CreateVMRequestUnused0`
 
 GetUnused2 returns the Unused2 field if non-nil, zero value otherwise.
 
 ### GetUnused2Ok
 
-`func (o *UpdateVMConfigRequest) GetUnused2Ok() (*GetVMConfig200ResponseDataUnused0, bool)`
+`func (o *UpdateVMConfigRequest) GetUnused2Ok() (*CreateVMRequestUnused0, bool)`
 
 GetUnused2Ok returns a tuple with the Unused2 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnused2
 
-`func (o *UpdateVMConfigRequest) SetUnused2(v GetVMConfig200ResponseDataUnused0)`
+`func (o *UpdateVMConfigRequest) SetUnused2(v CreateVMRequestUnused0)`
 
 SetUnused2 sets Unused2 field to given value.
 
@@ -6292,20 +6344,20 @@ HasUnused2 returns a boolean if a field has been set.
 
 ### GetUnused3
 
-`func (o *UpdateVMConfigRequest) GetUnused3() GetVMConfig200ResponseDataUnused0`
+`func (o *UpdateVMConfigRequest) GetUnused3() CreateVMRequestUnused0`
 
 GetUnused3 returns the Unused3 field if non-nil, zero value otherwise.
 
 ### GetUnused3Ok
 
-`func (o *UpdateVMConfigRequest) GetUnused3Ok() (*GetVMConfig200ResponseDataUnused0, bool)`
+`func (o *UpdateVMConfigRequest) GetUnused3Ok() (*CreateVMRequestUnused0, bool)`
 
 GetUnused3Ok returns a tuple with the Unused3 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnused3
 
-`func (o *UpdateVMConfigRequest) SetUnused3(v GetVMConfig200ResponseDataUnused0)`
+`func (o *UpdateVMConfigRequest) SetUnused3(v CreateVMRequestUnused0)`
 
 SetUnused3 sets Unused3 field to given value.
 
@@ -6317,20 +6369,20 @@ HasUnused3 returns a boolean if a field has been set.
 
 ### GetUnused4
 
-`func (o *UpdateVMConfigRequest) GetUnused4() GetVMConfig200ResponseDataUnused0`
+`func (o *UpdateVMConfigRequest) GetUnused4() CreateVMRequestUnused0`
 
 GetUnused4 returns the Unused4 field if non-nil, zero value otherwise.
 
 ### GetUnused4Ok
 
-`func (o *UpdateVMConfigRequest) GetUnused4Ok() (*GetVMConfig200ResponseDataUnused0, bool)`
+`func (o *UpdateVMConfigRequest) GetUnused4Ok() (*CreateVMRequestUnused0, bool)`
 
 GetUnused4Ok returns a tuple with the Unused4 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnused4
 
-`func (o *UpdateVMConfigRequest) SetUnused4(v GetVMConfig200ResponseDataUnused0)`
+`func (o *UpdateVMConfigRequest) SetUnused4(v CreateVMRequestUnused0)`
 
 SetUnused4 sets Unused4 field to given value.
 
@@ -6342,20 +6394,20 @@ HasUnused4 returns a boolean if a field has been set.
 
 ### GetUnused5
 
-`func (o *UpdateVMConfigRequest) GetUnused5() GetVMConfig200ResponseDataUnused0`
+`func (o *UpdateVMConfigRequest) GetUnused5() CreateVMRequestUnused0`
 
 GetUnused5 returns the Unused5 field if non-nil, zero value otherwise.
 
 ### GetUnused5Ok
 
-`func (o *UpdateVMConfigRequest) GetUnused5Ok() (*GetVMConfig200ResponseDataUnused0, bool)`
+`func (o *UpdateVMConfigRequest) GetUnused5Ok() (*CreateVMRequestUnused0, bool)`
 
 GetUnused5Ok returns a tuple with the Unused5 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnused5
 
-`func (o *UpdateVMConfigRequest) SetUnused5(v GetVMConfig200ResponseDataUnused0)`
+`func (o *UpdateVMConfigRequest) SetUnused5(v CreateVMRequestUnused0)`
 
 SetUnused5 sets Unused5 field to given value.
 
@@ -6367,20 +6419,20 @@ HasUnused5 returns a boolean if a field has been set.
 
 ### GetUnused6
 
-`func (o *UpdateVMConfigRequest) GetUnused6() GetVMConfig200ResponseDataUnused0`
+`func (o *UpdateVMConfigRequest) GetUnused6() CreateVMRequestUnused0`
 
 GetUnused6 returns the Unused6 field if non-nil, zero value otherwise.
 
 ### GetUnused6Ok
 
-`func (o *UpdateVMConfigRequest) GetUnused6Ok() (*GetVMConfig200ResponseDataUnused0, bool)`
+`func (o *UpdateVMConfigRequest) GetUnused6Ok() (*CreateVMRequestUnused0, bool)`
 
 GetUnused6Ok returns a tuple with the Unused6 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnused6
 
-`func (o *UpdateVMConfigRequest) SetUnused6(v GetVMConfig200ResponseDataUnused0)`
+`func (o *UpdateVMConfigRequest) SetUnused6(v CreateVMRequestUnused0)`
 
 SetUnused6 sets Unused6 field to given value.
 
@@ -6392,20 +6444,20 @@ HasUnused6 returns a boolean if a field has been set.
 
 ### GetUnused7
 
-`func (o *UpdateVMConfigRequest) GetUnused7() GetVMConfig200ResponseDataUnused0`
+`func (o *UpdateVMConfigRequest) GetUnused7() CreateVMRequestUnused0`
 
 GetUnused7 returns the Unused7 field if non-nil, zero value otherwise.
 
 ### GetUnused7Ok
 
-`func (o *UpdateVMConfigRequest) GetUnused7Ok() (*GetVMConfig200ResponseDataUnused0, bool)`
+`func (o *UpdateVMConfigRequest) GetUnused7Ok() (*CreateVMRequestUnused0, bool)`
 
 GetUnused7Ok returns a tuple with the Unused7 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnused7
 
-`func (o *UpdateVMConfigRequest) SetUnused7(v GetVMConfig200ResponseDataUnused0)`
+`func (o *UpdateVMConfigRequest) SetUnused7(v CreateVMRequestUnused0)`
 
 SetUnused7 sets Unused7 field to given value.
 
@@ -6417,20 +6469,20 @@ HasUnused7 returns a boolean if a field has been set.
 
 ### GetUnused8
 
-`func (o *UpdateVMConfigRequest) GetUnused8() GetVMConfig200ResponseDataUnused0`
+`func (o *UpdateVMConfigRequest) GetUnused8() CreateVMRequestUnused0`
 
 GetUnused8 returns the Unused8 field if non-nil, zero value otherwise.
 
 ### GetUnused8Ok
 
-`func (o *UpdateVMConfigRequest) GetUnused8Ok() (*GetVMConfig200ResponseDataUnused0, bool)`
+`func (o *UpdateVMConfigRequest) GetUnused8Ok() (*CreateVMRequestUnused0, bool)`
 
 GetUnused8Ok returns a tuple with the Unused8 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnused8
 
-`func (o *UpdateVMConfigRequest) SetUnused8(v GetVMConfig200ResponseDataUnused0)`
+`func (o *UpdateVMConfigRequest) SetUnused8(v CreateVMRequestUnused0)`
 
 SetUnused8 sets Unused8 field to given value.
 
@@ -6442,20 +6494,20 @@ HasUnused8 returns a boolean if a field has been set.
 
 ### GetUnused9
 
-`func (o *UpdateVMConfigRequest) GetUnused9() GetVMConfig200ResponseDataUnused0`
+`func (o *UpdateVMConfigRequest) GetUnused9() CreateVMRequestUnused0`
 
 GetUnused9 returns the Unused9 field if non-nil, zero value otherwise.
 
 ### GetUnused9Ok
 
-`func (o *UpdateVMConfigRequest) GetUnused9Ok() (*GetVMConfig200ResponseDataUnused0, bool)`
+`func (o *UpdateVMConfigRequest) GetUnused9Ok() (*CreateVMRequestUnused0, bool)`
 
 GetUnused9Ok returns a tuple with the Unused9 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnused9
 
-`func (o *UpdateVMConfigRequest) SetUnused9(v GetVMConfig200ResponseDataUnused0)`
+`func (o *UpdateVMConfigRequest) SetUnused9(v CreateVMRequestUnused0)`
 
 SetUnused9 sets Unused9 field to given value.
 
@@ -6467,20 +6519,20 @@ HasUnused9 returns a boolean if a field has been set.
 
 ### GetUnused10
 
-`func (o *UpdateVMConfigRequest) GetUnused10() GetVMConfig200ResponseDataUnused0`
+`func (o *UpdateVMConfigRequest) GetUnused10() CreateVMRequestUnused0`
 
 GetUnused10 returns the Unused10 field if non-nil, zero value otherwise.
 
 ### GetUnused10Ok
 
-`func (o *UpdateVMConfigRequest) GetUnused10Ok() (*GetVMConfig200ResponseDataUnused0, bool)`
+`func (o *UpdateVMConfigRequest) GetUnused10Ok() (*CreateVMRequestUnused0, bool)`
 
 GetUnused10Ok returns a tuple with the Unused10 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnused10
 
-`func (o *UpdateVMConfigRequest) SetUnused10(v GetVMConfig200ResponseDataUnused0)`
+`func (o *UpdateVMConfigRequest) SetUnused10(v CreateVMRequestUnused0)`
 
 SetUnused10 sets Unused10 field to given value.
 
@@ -6492,20 +6544,20 @@ HasUnused10 returns a boolean if a field has been set.
 
 ### GetUnused11
 
-`func (o *UpdateVMConfigRequest) GetUnused11() GetVMConfig200ResponseDataUnused0`
+`func (o *UpdateVMConfigRequest) GetUnused11() CreateVMRequestUnused0`
 
 GetUnused11 returns the Unused11 field if non-nil, zero value otherwise.
 
 ### GetUnused11Ok
 
-`func (o *UpdateVMConfigRequest) GetUnused11Ok() (*GetVMConfig200ResponseDataUnused0, bool)`
+`func (o *UpdateVMConfigRequest) GetUnused11Ok() (*CreateVMRequestUnused0, bool)`
 
 GetUnused11Ok returns a tuple with the Unused11 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnused11
 
-`func (o *UpdateVMConfigRequest) SetUnused11(v GetVMConfig200ResponseDataUnused0)`
+`func (o *UpdateVMConfigRequest) SetUnused11(v CreateVMRequestUnused0)`
 
 SetUnused11 sets Unused11 field to given value.
 
@@ -6517,20 +6569,20 @@ HasUnused11 returns a boolean if a field has been set.
 
 ### GetUnused12
 
-`func (o *UpdateVMConfigRequest) GetUnused12() GetVMConfig200ResponseDataUnused0`
+`func (o *UpdateVMConfigRequest) GetUnused12() CreateVMRequestUnused0`
 
 GetUnused12 returns the Unused12 field if non-nil, zero value otherwise.
 
 ### GetUnused12Ok
 
-`func (o *UpdateVMConfigRequest) GetUnused12Ok() (*GetVMConfig200ResponseDataUnused0, bool)`
+`func (o *UpdateVMConfigRequest) GetUnused12Ok() (*CreateVMRequestUnused0, bool)`
 
 GetUnused12Ok returns a tuple with the Unused12 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnused12
 
-`func (o *UpdateVMConfigRequest) SetUnused12(v GetVMConfig200ResponseDataUnused0)`
+`func (o *UpdateVMConfigRequest) SetUnused12(v CreateVMRequestUnused0)`
 
 SetUnused12 sets Unused12 field to given value.
 
@@ -6542,20 +6594,20 @@ HasUnused12 returns a boolean if a field has been set.
 
 ### GetUnused13
 
-`func (o *UpdateVMConfigRequest) GetUnused13() GetVMConfig200ResponseDataUnused0`
+`func (o *UpdateVMConfigRequest) GetUnused13() CreateVMRequestUnused0`
 
 GetUnused13 returns the Unused13 field if non-nil, zero value otherwise.
 
 ### GetUnused13Ok
 
-`func (o *UpdateVMConfigRequest) GetUnused13Ok() (*GetVMConfig200ResponseDataUnused0, bool)`
+`func (o *UpdateVMConfigRequest) GetUnused13Ok() (*CreateVMRequestUnused0, bool)`
 
 GetUnused13Ok returns a tuple with the Unused13 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnused13
 
-`func (o *UpdateVMConfigRequest) SetUnused13(v GetVMConfig200ResponseDataUnused0)`
+`func (o *UpdateVMConfigRequest) SetUnused13(v CreateVMRequestUnused0)`
 
 SetUnused13 sets Unused13 field to given value.
 
@@ -6567,20 +6619,20 @@ HasUnused13 returns a boolean if a field has been set.
 
 ### GetUnused14
 
-`func (o *UpdateVMConfigRequest) GetUnused14() GetVMConfig200ResponseDataUnused0`
+`func (o *UpdateVMConfigRequest) GetUnused14() CreateVMRequestUnused0`
 
 GetUnused14 returns the Unused14 field if non-nil, zero value otherwise.
 
 ### GetUnused14Ok
 
-`func (o *UpdateVMConfigRequest) GetUnused14Ok() (*GetVMConfig200ResponseDataUnused0, bool)`
+`func (o *UpdateVMConfigRequest) GetUnused14Ok() (*CreateVMRequestUnused0, bool)`
 
 GetUnused14Ok returns a tuple with the Unused14 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnused14
 
-`func (o *UpdateVMConfigRequest) SetUnused14(v GetVMConfig200ResponseDataUnused0)`
+`func (o *UpdateVMConfigRequest) SetUnused14(v CreateVMRequestUnused0)`
 
 SetUnused14 sets Unused14 field to given value.
 
@@ -6592,20 +6644,20 @@ HasUnused14 returns a boolean if a field has been set.
 
 ### GetUnused15
 
-`func (o *UpdateVMConfigRequest) GetUnused15() GetVMConfig200ResponseDataUnused0`
+`func (o *UpdateVMConfigRequest) GetUnused15() CreateVMRequestUnused0`
 
 GetUnused15 returns the Unused15 field if non-nil, zero value otherwise.
 
 ### GetUnused15Ok
 
-`func (o *UpdateVMConfigRequest) GetUnused15Ok() (*GetVMConfig200ResponseDataUnused0, bool)`
+`func (o *UpdateVMConfigRequest) GetUnused15Ok() (*CreateVMRequestUnused0, bool)`
 
 GetUnused15Ok returns a tuple with the Unused15 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnused15
 
-`func (o *UpdateVMConfigRequest) SetUnused15(v GetVMConfig200ResponseDataUnused0)`
+`func (o *UpdateVMConfigRequest) SetUnused15(v CreateVMRequestUnused0)`
 
 SetUnused15 sets Unused15 field to given value.
 
@@ -6617,20 +6669,20 @@ HasUnused15 returns a boolean if a field has been set.
 
 ### GetUnused16
 
-`func (o *UpdateVMConfigRequest) GetUnused16() GetVMConfig200ResponseDataUnused0`
+`func (o *UpdateVMConfigRequest) GetUnused16() CreateVMRequestUnused0`
 
 GetUnused16 returns the Unused16 field if non-nil, zero value otherwise.
 
 ### GetUnused16Ok
 
-`func (o *UpdateVMConfigRequest) GetUnused16Ok() (*GetVMConfig200ResponseDataUnused0, bool)`
+`func (o *UpdateVMConfigRequest) GetUnused16Ok() (*CreateVMRequestUnused0, bool)`
 
 GetUnused16Ok returns a tuple with the Unused16 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnused16
 
-`func (o *UpdateVMConfigRequest) SetUnused16(v GetVMConfig200ResponseDataUnused0)`
+`func (o *UpdateVMConfigRequest) SetUnused16(v CreateVMRequestUnused0)`
 
 SetUnused16 sets Unused16 field to given value.
 
@@ -6642,20 +6694,20 @@ HasUnused16 returns a boolean if a field has been set.
 
 ### GetUnused17
 
-`func (o *UpdateVMConfigRequest) GetUnused17() GetVMConfig200ResponseDataUnused0`
+`func (o *UpdateVMConfigRequest) GetUnused17() CreateVMRequestUnused0`
 
 GetUnused17 returns the Unused17 field if non-nil, zero value otherwise.
 
 ### GetUnused17Ok
 
-`func (o *UpdateVMConfigRequest) GetUnused17Ok() (*GetVMConfig200ResponseDataUnused0, bool)`
+`func (o *UpdateVMConfigRequest) GetUnused17Ok() (*CreateVMRequestUnused0, bool)`
 
 GetUnused17Ok returns a tuple with the Unused17 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnused17
 
-`func (o *UpdateVMConfigRequest) SetUnused17(v GetVMConfig200ResponseDataUnused0)`
+`func (o *UpdateVMConfigRequest) SetUnused17(v CreateVMRequestUnused0)`
 
 SetUnused17 sets Unused17 field to given value.
 
@@ -6667,20 +6719,20 @@ HasUnused17 returns a boolean if a field has been set.
 
 ### GetUnused18
 
-`func (o *UpdateVMConfigRequest) GetUnused18() GetVMConfig200ResponseDataUnused0`
+`func (o *UpdateVMConfigRequest) GetUnused18() CreateVMRequestUnused0`
 
 GetUnused18 returns the Unused18 field if non-nil, zero value otherwise.
 
 ### GetUnused18Ok
 
-`func (o *UpdateVMConfigRequest) GetUnused18Ok() (*GetVMConfig200ResponseDataUnused0, bool)`
+`func (o *UpdateVMConfigRequest) GetUnused18Ok() (*CreateVMRequestUnused0, bool)`
 
 GetUnused18Ok returns a tuple with the Unused18 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnused18
 
-`func (o *UpdateVMConfigRequest) SetUnused18(v GetVMConfig200ResponseDataUnused0)`
+`func (o *UpdateVMConfigRequest) SetUnused18(v CreateVMRequestUnused0)`
 
 SetUnused18 sets Unused18 field to given value.
 
@@ -6692,20 +6744,20 @@ HasUnused18 returns a boolean if a field has been set.
 
 ### GetUnused19
 
-`func (o *UpdateVMConfigRequest) GetUnused19() GetVMConfig200ResponseDataUnused0`
+`func (o *UpdateVMConfigRequest) GetUnused19() CreateVMRequestUnused0`
 
 GetUnused19 returns the Unused19 field if non-nil, zero value otherwise.
 
 ### GetUnused19Ok
 
-`func (o *UpdateVMConfigRequest) GetUnused19Ok() (*GetVMConfig200ResponseDataUnused0, bool)`
+`func (o *UpdateVMConfigRequest) GetUnused19Ok() (*CreateVMRequestUnused0, bool)`
 
 GetUnused19Ok returns a tuple with the Unused19 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnused19
 
-`func (o *UpdateVMConfigRequest) SetUnused19(v GetVMConfig200ResponseDataUnused0)`
+`func (o *UpdateVMConfigRequest) SetUnused19(v CreateVMRequestUnused0)`
 
 SetUnused19 sets Unused19 field to given value.
 
@@ -6717,20 +6769,20 @@ HasUnused19 returns a boolean if a field has been set.
 
 ### GetUnused20
 
-`func (o *UpdateVMConfigRequest) GetUnused20() GetVMConfig200ResponseDataUnused0`
+`func (o *UpdateVMConfigRequest) GetUnused20() CreateVMRequestUnused0`
 
 GetUnused20 returns the Unused20 field if non-nil, zero value otherwise.
 
 ### GetUnused20Ok
 
-`func (o *UpdateVMConfigRequest) GetUnused20Ok() (*GetVMConfig200ResponseDataUnused0, bool)`
+`func (o *UpdateVMConfigRequest) GetUnused20Ok() (*CreateVMRequestUnused0, bool)`
 
 GetUnused20Ok returns a tuple with the Unused20 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnused20
 
-`func (o *UpdateVMConfigRequest) SetUnused20(v GetVMConfig200ResponseDataUnused0)`
+`func (o *UpdateVMConfigRequest) SetUnused20(v CreateVMRequestUnused0)`
 
 SetUnused20 sets Unused20 field to given value.
 
@@ -6742,20 +6794,20 @@ HasUnused20 returns a boolean if a field has been set.
 
 ### GetUnused21
 
-`func (o *UpdateVMConfigRequest) GetUnused21() GetVMConfig200ResponseDataUnused0`
+`func (o *UpdateVMConfigRequest) GetUnused21() CreateVMRequestUnused0`
 
 GetUnused21 returns the Unused21 field if non-nil, zero value otherwise.
 
 ### GetUnused21Ok
 
-`func (o *UpdateVMConfigRequest) GetUnused21Ok() (*GetVMConfig200ResponseDataUnused0, bool)`
+`func (o *UpdateVMConfigRequest) GetUnused21Ok() (*CreateVMRequestUnused0, bool)`
 
 GetUnused21Ok returns a tuple with the Unused21 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnused21
 
-`func (o *UpdateVMConfigRequest) SetUnused21(v GetVMConfig200ResponseDataUnused0)`
+`func (o *UpdateVMConfigRequest) SetUnused21(v CreateVMRequestUnused0)`
 
 SetUnused21 sets Unused21 field to given value.
 
@@ -6767,20 +6819,20 @@ HasUnused21 returns a boolean if a field has been set.
 
 ### GetUnused22
 
-`func (o *UpdateVMConfigRequest) GetUnused22() GetVMConfig200ResponseDataUnused0`
+`func (o *UpdateVMConfigRequest) GetUnused22() CreateVMRequestUnused0`
 
 GetUnused22 returns the Unused22 field if non-nil, zero value otherwise.
 
 ### GetUnused22Ok
 
-`func (o *UpdateVMConfigRequest) GetUnused22Ok() (*GetVMConfig200ResponseDataUnused0, bool)`
+`func (o *UpdateVMConfigRequest) GetUnused22Ok() (*CreateVMRequestUnused0, bool)`
 
 GetUnused22Ok returns a tuple with the Unused22 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnused22
 
-`func (o *UpdateVMConfigRequest) SetUnused22(v GetVMConfig200ResponseDataUnused0)`
+`func (o *UpdateVMConfigRequest) SetUnused22(v CreateVMRequestUnused0)`
 
 SetUnused22 sets Unused22 field to given value.
 
@@ -6792,20 +6844,20 @@ HasUnused22 returns a boolean if a field has been set.
 
 ### GetUnused23
 
-`func (o *UpdateVMConfigRequest) GetUnused23() GetVMConfig200ResponseDataUnused0`
+`func (o *UpdateVMConfigRequest) GetUnused23() CreateVMRequestUnused0`
 
 GetUnused23 returns the Unused23 field if non-nil, zero value otherwise.
 
 ### GetUnused23Ok
 
-`func (o *UpdateVMConfigRequest) GetUnused23Ok() (*GetVMConfig200ResponseDataUnused0, bool)`
+`func (o *UpdateVMConfigRequest) GetUnused23Ok() (*CreateVMRequestUnused0, bool)`
 
 GetUnused23Ok returns a tuple with the Unused23 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnused23
 
-`func (o *UpdateVMConfigRequest) SetUnused23(v GetVMConfig200ResponseDataUnused0)`
+`func (o *UpdateVMConfigRequest) SetUnused23(v CreateVMRequestUnused0)`
 
 SetUnused23 sets Unused23 field to given value.
 
@@ -6817,20 +6869,20 @@ HasUnused23 returns a boolean if a field has been set.
 
 ### GetUnused24
 
-`func (o *UpdateVMConfigRequest) GetUnused24() GetVMConfig200ResponseDataUnused0`
+`func (o *UpdateVMConfigRequest) GetUnused24() CreateVMRequestUnused0`
 
 GetUnused24 returns the Unused24 field if non-nil, zero value otherwise.
 
 ### GetUnused24Ok
 
-`func (o *UpdateVMConfigRequest) GetUnused24Ok() (*GetVMConfig200ResponseDataUnused0, bool)`
+`func (o *UpdateVMConfigRequest) GetUnused24Ok() (*CreateVMRequestUnused0, bool)`
 
 GetUnused24Ok returns a tuple with the Unused24 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnused24
 
-`func (o *UpdateVMConfigRequest) SetUnused24(v GetVMConfig200ResponseDataUnused0)`
+`func (o *UpdateVMConfigRequest) SetUnused24(v CreateVMRequestUnused0)`
 
 SetUnused24 sets Unused24 field to given value.
 
@@ -6842,20 +6894,20 @@ HasUnused24 returns a boolean if a field has been set.
 
 ### GetUnused25
 
-`func (o *UpdateVMConfigRequest) GetUnused25() GetVMConfig200ResponseDataUnused0`
+`func (o *UpdateVMConfigRequest) GetUnused25() CreateVMRequestUnused0`
 
 GetUnused25 returns the Unused25 field if non-nil, zero value otherwise.
 
 ### GetUnused25Ok
 
-`func (o *UpdateVMConfigRequest) GetUnused25Ok() (*GetVMConfig200ResponseDataUnused0, bool)`
+`func (o *UpdateVMConfigRequest) GetUnused25Ok() (*CreateVMRequestUnused0, bool)`
 
 GetUnused25Ok returns a tuple with the Unused25 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnused25
 
-`func (o *UpdateVMConfigRequest) SetUnused25(v GetVMConfig200ResponseDataUnused0)`
+`func (o *UpdateVMConfigRequest) SetUnused25(v CreateVMRequestUnused0)`
 
 SetUnused25 sets Unused25 field to given value.
 
@@ -6867,20 +6919,20 @@ HasUnused25 returns a boolean if a field has been set.
 
 ### GetUnused26
 
-`func (o *UpdateVMConfigRequest) GetUnused26() GetVMConfig200ResponseDataUnused0`
+`func (o *UpdateVMConfigRequest) GetUnused26() CreateVMRequestUnused0`
 
 GetUnused26 returns the Unused26 field if non-nil, zero value otherwise.
 
 ### GetUnused26Ok
 
-`func (o *UpdateVMConfigRequest) GetUnused26Ok() (*GetVMConfig200ResponseDataUnused0, bool)`
+`func (o *UpdateVMConfigRequest) GetUnused26Ok() (*CreateVMRequestUnused0, bool)`
 
 GetUnused26Ok returns a tuple with the Unused26 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnused26
 
-`func (o *UpdateVMConfigRequest) SetUnused26(v GetVMConfig200ResponseDataUnused0)`
+`func (o *UpdateVMConfigRequest) SetUnused26(v CreateVMRequestUnused0)`
 
 SetUnused26 sets Unused26 field to given value.
 
@@ -6892,20 +6944,20 @@ HasUnused26 returns a boolean if a field has been set.
 
 ### GetUnused27
 
-`func (o *UpdateVMConfigRequest) GetUnused27() GetVMConfig200ResponseDataUnused0`
+`func (o *UpdateVMConfigRequest) GetUnused27() CreateVMRequestUnused0`
 
 GetUnused27 returns the Unused27 field if non-nil, zero value otherwise.
 
 ### GetUnused27Ok
 
-`func (o *UpdateVMConfigRequest) GetUnused27Ok() (*GetVMConfig200ResponseDataUnused0, bool)`
+`func (o *UpdateVMConfigRequest) GetUnused27Ok() (*CreateVMRequestUnused0, bool)`
 
 GetUnused27Ok returns a tuple with the Unused27 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnused27
 
-`func (o *UpdateVMConfigRequest) SetUnused27(v GetVMConfig200ResponseDataUnused0)`
+`func (o *UpdateVMConfigRequest) SetUnused27(v CreateVMRequestUnused0)`
 
 SetUnused27 sets Unused27 field to given value.
 
@@ -6917,20 +6969,20 @@ HasUnused27 returns a boolean if a field has been set.
 
 ### GetUnused28
 
-`func (o *UpdateVMConfigRequest) GetUnused28() GetVMConfig200ResponseDataUnused0`
+`func (o *UpdateVMConfigRequest) GetUnused28() CreateVMRequestUnused0`
 
 GetUnused28 returns the Unused28 field if non-nil, zero value otherwise.
 
 ### GetUnused28Ok
 
-`func (o *UpdateVMConfigRequest) GetUnused28Ok() (*GetVMConfig200ResponseDataUnused0, bool)`
+`func (o *UpdateVMConfigRequest) GetUnused28Ok() (*CreateVMRequestUnused0, bool)`
 
 GetUnused28Ok returns a tuple with the Unused28 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnused28
 
-`func (o *UpdateVMConfigRequest) SetUnused28(v GetVMConfig200ResponseDataUnused0)`
+`func (o *UpdateVMConfigRequest) SetUnused28(v CreateVMRequestUnused0)`
 
 SetUnused28 sets Unused28 field to given value.
 
@@ -6942,20 +6994,20 @@ HasUnused28 returns a boolean if a field has been set.
 
 ### GetUnused29
 
-`func (o *UpdateVMConfigRequest) GetUnused29() GetVMConfig200ResponseDataUnused0`
+`func (o *UpdateVMConfigRequest) GetUnused29() CreateVMRequestUnused0`
 
 GetUnused29 returns the Unused29 field if non-nil, zero value otherwise.
 
 ### GetUnused29Ok
 
-`func (o *UpdateVMConfigRequest) GetUnused29Ok() (*GetVMConfig200ResponseDataUnused0, bool)`
+`func (o *UpdateVMConfigRequest) GetUnused29Ok() (*CreateVMRequestUnused0, bool)`
 
 GetUnused29Ok returns a tuple with the Unused29 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnused29
 
-`func (o *UpdateVMConfigRequest) SetUnused29(v GetVMConfig200ResponseDataUnused0)`
+`func (o *UpdateVMConfigRequest) SetUnused29(v CreateVMRequestUnused0)`
 
 SetUnused29 sets Unused29 field to given value.
 
@@ -6967,20 +7019,20 @@ HasUnused29 returns a boolean if a field has been set.
 
 ### GetUsb0
 
-`func (o *UpdateVMConfigRequest) GetUsb0() GetVMConfig200ResponseDataUsb0`
+`func (o *UpdateVMConfigRequest) GetUsb0() CreateVMRequestUsb0`
 
 GetUsb0 returns the Usb0 field if non-nil, zero value otherwise.
 
 ### GetUsb0Ok
 
-`func (o *UpdateVMConfigRequest) GetUsb0Ok() (*GetVMConfig200ResponseDataUsb0, bool)`
+`func (o *UpdateVMConfigRequest) GetUsb0Ok() (*CreateVMRequestUsb0, bool)`
 
 GetUsb0Ok returns a tuple with the Usb0 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUsb0
 
-`func (o *UpdateVMConfigRequest) SetUsb0(v GetVMConfig200ResponseDataUsb0)`
+`func (o *UpdateVMConfigRequest) SetUsb0(v CreateVMRequestUsb0)`
 
 SetUsb0 sets Usb0 field to given value.
 
@@ -6992,20 +7044,20 @@ HasUsb0 returns a boolean if a field has been set.
 
 ### GetUsb1
 
-`func (o *UpdateVMConfigRequest) GetUsb1() GetVMConfig200ResponseDataUsb0`
+`func (o *UpdateVMConfigRequest) GetUsb1() CreateVMRequestUsb0`
 
 GetUsb1 returns the Usb1 field if non-nil, zero value otherwise.
 
 ### GetUsb1Ok
 
-`func (o *UpdateVMConfigRequest) GetUsb1Ok() (*GetVMConfig200ResponseDataUsb0, bool)`
+`func (o *UpdateVMConfigRequest) GetUsb1Ok() (*CreateVMRequestUsb0, bool)`
 
 GetUsb1Ok returns a tuple with the Usb1 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUsb1
 
-`func (o *UpdateVMConfigRequest) SetUsb1(v GetVMConfig200ResponseDataUsb0)`
+`func (o *UpdateVMConfigRequest) SetUsb1(v CreateVMRequestUsb0)`
 
 SetUsb1 sets Usb1 field to given value.
 
@@ -7017,20 +7069,20 @@ HasUsb1 returns a boolean if a field has been set.
 
 ### GetUsb2
 
-`func (o *UpdateVMConfigRequest) GetUsb2() GetVMConfig200ResponseDataUsb0`
+`func (o *UpdateVMConfigRequest) GetUsb2() CreateVMRequestUsb0`
 
 GetUsb2 returns the Usb2 field if non-nil, zero value otherwise.
 
 ### GetUsb2Ok
 
-`func (o *UpdateVMConfigRequest) GetUsb2Ok() (*GetVMConfig200ResponseDataUsb0, bool)`
+`func (o *UpdateVMConfigRequest) GetUsb2Ok() (*CreateVMRequestUsb0, bool)`
 
 GetUsb2Ok returns a tuple with the Usb2 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUsb2
 
-`func (o *UpdateVMConfigRequest) SetUsb2(v GetVMConfig200ResponseDataUsb0)`
+`func (o *UpdateVMConfigRequest) SetUsb2(v CreateVMRequestUsb0)`
 
 SetUsb2 sets Usb2 field to given value.
 
@@ -7042,20 +7094,20 @@ HasUsb2 returns a boolean if a field has been set.
 
 ### GetUsb3
 
-`func (o *UpdateVMConfigRequest) GetUsb3() GetVMConfig200ResponseDataUsb0`
+`func (o *UpdateVMConfigRequest) GetUsb3() CreateVMRequestUsb0`
 
 GetUsb3 returns the Usb3 field if non-nil, zero value otherwise.
 
 ### GetUsb3Ok
 
-`func (o *UpdateVMConfigRequest) GetUsb3Ok() (*GetVMConfig200ResponseDataUsb0, bool)`
+`func (o *UpdateVMConfigRequest) GetUsb3Ok() (*CreateVMRequestUsb0, bool)`
 
 GetUsb3Ok returns a tuple with the Usb3 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUsb3
 
-`func (o *UpdateVMConfigRequest) SetUsb3(v GetVMConfig200ResponseDataUsb0)`
+`func (o *UpdateVMConfigRequest) SetUsb3(v CreateVMRequestUsb0)`
 
 SetUsb3 sets Usb3 field to given value.
 
@@ -7092,20 +7144,20 @@ HasVcpus returns a boolean if a field has been set.
 
 ### GetVga
 
-`func (o *UpdateVMConfigRequest) GetVga() GetVMConfig200ResponseDataVga`
+`func (o *UpdateVMConfigRequest) GetVga() CreateVMRequestVga`
 
 GetVga returns the Vga field if non-nil, zero value otherwise.
 
 ### GetVgaOk
 
-`func (o *UpdateVMConfigRequest) GetVgaOk() (*GetVMConfig200ResponseDataVga, bool)`
+`func (o *UpdateVMConfigRequest) GetVgaOk() (*CreateVMRequestVga, bool)`
 
 GetVgaOk returns a tuple with the Vga field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVga
 
-`func (o *UpdateVMConfigRequest) SetVga(v GetVMConfig200ResponseDataVga)`
+`func (o *UpdateVMConfigRequest) SetVga(v CreateVMRequestVga)`
 
 SetVga sets Vga field to given value.
 
@@ -7567,20 +7619,20 @@ HasVmstatestorage returns a boolean if a field has been set.
 
 ### GetWatchdog
 
-`func (o *UpdateVMConfigRequest) GetWatchdog() GetVMConfig200ResponseDataWatchdog`
+`func (o *UpdateVMConfigRequest) GetWatchdog() CreateVMRequestWatchdog`
 
 GetWatchdog returns the Watchdog field if non-nil, zero value otherwise.
 
 ### GetWatchdogOk
 
-`func (o *UpdateVMConfigRequest) GetWatchdogOk() (*GetVMConfig200ResponseDataWatchdog, bool)`
+`func (o *UpdateVMConfigRequest) GetWatchdogOk() (*CreateVMRequestWatchdog, bool)`
 
 GetWatchdogOk returns a tuple with the Watchdog field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetWatchdog
 
-`func (o *UpdateVMConfigRequest) SetWatchdog(v GetVMConfig200ResponseDataWatchdog)`
+`func (o *UpdateVMConfigRequest) SetWatchdog(v CreateVMRequestWatchdog)`
 
 SetWatchdog sets Watchdog field to given value.
 

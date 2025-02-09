@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Description** | Pointer to **string** | A textual description or comment. | [optional] 
-**Snapname** | **string** | The name of the snapshot. | 
+**Description** | Pointer to **string** |  | [optional] 
+**Snapname** | **string** |  | 
 
 ## Methods
 

@@ -3,7 +3,7 @@ ProxMox VE API
 
 ProxMox VE API
 
-API version: 8.0
+API version: 8.3
 Contact: baldur@email.de
 */
 
@@ -18,7 +18,7 @@ import (
 // checks if the CreateStorage200ResponseData type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CreateStorage200ResponseData{}
 
-// CreateStorage200ResponseData struct for CreateStorage200ResponseData
+// CreateStorage200ResponseData 
 type CreateStorage200ResponseData struct {
 	Config *CreateStorage200ResponseDataConfig `json:"config,omitempty"`
 	// The ID of the created storage.

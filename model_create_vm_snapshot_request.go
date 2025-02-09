@@ -3,7 +3,7 @@ ProxMox VE API
 
 ProxMox VE API
 
-API version: 8.0
+API version: 8.3
 Contact: baldur@email.de
 */
 
@@ -13,7 +13,6 @@ package pxapiobject
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the CreateVMSnapshotRequest type satisfies the MappedNullable interface at compile time
@@ -21,15 +20,10 @@ var _ MappedNullable = &CreateVMSnapshotRequest{}
 
 // CreateVMSnapshotRequest struct for CreateVMSnapshotRequest
 type CreateVMSnapshotRequest struct {
-	// A textual description or comment.
 	Description *string `json:"description,omitempty"`
-	// The name of the snapshot.
 	Snapname string `json:"snapname"`
-	// Save the vmstate
 	Vmstate *bool `json:"vmstate,omitempty"`
 }
-
-type _CreateVMSnapshotRequest CreateVMSnapshotRequest
 
 // NewCreateVMSnapshotRequest instantiates a new CreateVMSnapshotRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -155,41 +149,6 @@ func (o CreateVMSnapshotRequest) ToMap() (map[string]interface{}, error) {
 		toSerialize["vmstate"] = o.Vmstate
 	}
 	return toSerialize, nil
-}
-
-func (o *CreateVMSnapshotRequest) UnmarshalJSON(bytes []byte) (err error) {
-    // This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"snapname",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(bytes, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varCreateVMSnapshotRequest := _CreateVMSnapshotRequest{}
-
-	err = json.Unmarshal(bytes, &varCreateVMSnapshotRequest)
-
-	if err != nil {
-		return err
-	}
-
-	*o = CreateVMSnapshotRequest(varCreateVMSnapshotRequest)
-
-	return err
 }
 
 type NullableCreateVMSnapshotRequest struct {

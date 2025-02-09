@@ -3,7 +3,7 @@ ProxMox VE API
 
 ProxMox VE API
 
-API version: 8.0
+API version: 8.3
 Contact: baldur@email.de
 */
 
@@ -13,7 +13,6 @@ package pxapiobject
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the CreateContainerRequest type satisfies the MappedNullable interface at compile time
@@ -21,431 +20,167 @@ var _ MappedNullable = &CreateContainerRequest{}
 
 // CreateContainerRequest struct for CreateContainerRequest
 type CreateContainerRequest struct {
-	// OS architecture type.
 	Arch *string `json:"arch,omitempty"`
-	// Override I/O bandwidth limit (in KiB/s).
 	Bwlimit *float32 `json:"bwlimit,omitempty"`
-	// Console mode. By default, the console command tries to open a connection to one of the available tty devices. By setting cmode to 'console' it tries to attach to /dev/console instead. If you set cmode to 'shell', it simply invokes a shell inside the container (no login).
 	Cmode *string `json:"cmode,omitempty"`
-	// Attach a console device (/dev/console) to the container.
 	Console *bool `json:"console,omitempty"`
-	// The number of cores assigned to the container. A container can use all available cores by default.
 	Cores *int64 `json:"cores,omitempty"`
-	// Limit of CPU usage.  NOTE: If the computer has 2 CPUs, it has a total of '2' CPU time. Value '0' indicates no CPU limit.
 	Cpulimit *float32 `json:"cpulimit,omitempty"`
-	// CPU weight for a container, will be clamped to [1, 10000] in cgroup v2.
 	Cpuunits *int64 `json:"cpuunits,omitempty"`
-	// Try to be more verbose. For now this only enables debug log-level on start.
 	Debug *bool `json:"debug,omitempty"`
-	// Description for the Container. Shown in the web-interface CT's summary. This is saved as comment inside the configuration file.
 	Description *string `json:"description,omitempty"`
-	Dev0 *GetContainerConfig200ResponseDataDev0 `json:"dev0,omitempty"`
-	Dev1 *GetContainerConfig200ResponseDataDev0 `json:"dev1,omitempty"`
-	Dev2 *GetContainerConfig200ResponseDataDev0 `json:"dev2,omitempty"`
-	Dev3 *GetContainerConfig200ResponseDataDev0 `json:"dev3,omitempty"`
-	Dev4 *GetContainerConfig200ResponseDataDev0 `json:"dev4,omitempty"`
-	Dev5 *GetContainerConfig200ResponseDataDev0 `json:"dev5,omitempty"`
-	Dev6 *GetContainerConfig200ResponseDataDev0 `json:"dev6,omitempty"`
-	Dev7 *GetContainerConfig200ResponseDataDev0 `json:"dev7,omitempty"`
-	Dev8 *GetContainerConfig200ResponseDataDev0 `json:"dev8,omitempty"`
-	Dev9 *GetContainerConfig200ResponseDataDev0 `json:"dev9,omitempty"`
-	Dev10 *GetContainerConfig200ResponseDataDev0 `json:"dev10,omitempty"`
-	Dev11 *GetContainerConfig200ResponseDataDev0 `json:"dev11,omitempty"`
-	Dev12 *GetContainerConfig200ResponseDataDev0 `json:"dev12,omitempty"`
-	Dev13 *GetContainerConfig200ResponseDataDev0 `json:"dev13,omitempty"`
-	Dev14 *GetContainerConfig200ResponseDataDev0 `json:"dev14,omitempty"`
-	Dev15 *GetContainerConfig200ResponseDataDev0 `json:"dev15,omitempty"`
-	Dev16 *GetContainerConfig200ResponseDataDev0 `json:"dev16,omitempty"`
-	Dev17 *GetContainerConfig200ResponseDataDev0 `json:"dev17,omitempty"`
-	Dev18 *GetContainerConfig200ResponseDataDev0 `json:"dev18,omitempty"`
-	Dev19 *GetContainerConfig200ResponseDataDev0 `json:"dev19,omitempty"`
-	Dev20 *GetContainerConfig200ResponseDataDev0 `json:"dev20,omitempty"`
-	Dev21 *GetContainerConfig200ResponseDataDev0 `json:"dev21,omitempty"`
-	Dev22 *GetContainerConfig200ResponseDataDev0 `json:"dev22,omitempty"`
-	Dev23 *GetContainerConfig200ResponseDataDev0 `json:"dev23,omitempty"`
-	Dev24 *GetContainerConfig200ResponseDataDev0 `json:"dev24,omitempty"`
-	Dev25 *GetContainerConfig200ResponseDataDev0 `json:"dev25,omitempty"`
-	Dev26 *GetContainerConfig200ResponseDataDev0 `json:"dev26,omitempty"`
-	Dev27 *GetContainerConfig200ResponseDataDev0 `json:"dev27,omitempty"`
-	Dev28 *GetContainerConfig200ResponseDataDev0 `json:"dev28,omitempty"`
-	Dev29 *GetContainerConfig200ResponseDataDev0 `json:"dev29,omitempty"`
-	Features *GetContainerConfig200ResponseDataFeatures `json:"features,omitempty"`
-	// Allow to overwrite existing container.
+	Dev0 *CreateContainerRequestDev0 `json:"dev0,omitempty"`
+	Dev1 *CreateContainerRequestDev0 `json:"dev1,omitempty"`
+	Dev2 *CreateContainerRequestDev0 `json:"dev2,omitempty"`
+	Dev3 *CreateContainerRequestDev0 `json:"dev3,omitempty"`
+	Dev4 *CreateContainerRequestDev0 `json:"dev4,omitempty"`
+	Dev5 *CreateContainerRequestDev0 `json:"dev5,omitempty"`
+	Dev6 *CreateContainerRequestDev0 `json:"dev6,omitempty"`
+	Dev7 *CreateContainerRequestDev0 `json:"dev7,omitempty"`
+	Dev8 *CreateContainerRequestDev0 `json:"dev8,omitempty"`
+	Dev9 *CreateContainerRequestDev0 `json:"dev9,omitempty"`
+	Dev10 *CreateContainerRequestDev0 `json:"dev10,omitempty"`
+	Dev11 *CreateContainerRequestDev0 `json:"dev11,omitempty"`
+	Dev12 *CreateContainerRequestDev0 `json:"dev12,omitempty"`
+	Dev13 *CreateContainerRequestDev0 `json:"dev13,omitempty"`
+	Dev14 *CreateContainerRequestDev0 `json:"dev14,omitempty"`
+	Dev15 *CreateContainerRequestDev0 `json:"dev15,omitempty"`
+	Dev16 *CreateContainerRequestDev0 `json:"dev16,omitempty"`
+	Dev17 *CreateContainerRequestDev0 `json:"dev17,omitempty"`
+	Dev18 *CreateContainerRequestDev0 `json:"dev18,omitempty"`
+	Dev19 *CreateContainerRequestDev0 `json:"dev19,omitempty"`
+	Dev20 *CreateContainerRequestDev0 `json:"dev20,omitempty"`
+	Dev21 *CreateContainerRequestDev0 `json:"dev21,omitempty"`
+	Dev22 *CreateContainerRequestDev0 `json:"dev22,omitempty"`
+	Dev23 *CreateContainerRequestDev0 `json:"dev23,omitempty"`
+	Dev24 *CreateContainerRequestDev0 `json:"dev24,omitempty"`
+	Dev25 *CreateContainerRequestDev0 `json:"dev25,omitempty"`
+	Dev26 *CreateContainerRequestDev0 `json:"dev26,omitempty"`
+	Dev27 *CreateContainerRequestDev0 `json:"dev27,omitempty"`
+	Dev28 *CreateContainerRequestDev0 `json:"dev28,omitempty"`
+	Dev29 *CreateContainerRequestDev0 `json:"dev29,omitempty"`
+	Features *CreateContainerRequestFeatures `json:"features,omitempty"`
 	Force *bool `json:"force,omitempty"`
-	// Script that will be exectued during various steps in the containers lifetime.
 	Hookscript *string `json:"hookscript,omitempty"`
-	// Set a host name for the container.
 	Hostname *string `json:"hostname,omitempty"`
-	// Ignore errors when extracting the template.
 	IgnoreUnpackErrors *bool `json:"ignore-unpack-errors,omitempty"`
-	// Lock/unlock the container.
 	Lock *string `json:"lock,omitempty"`
-	// Amount of RAM for the container in MB.
 	Memory *int64 `json:"memory,omitempty"`
-	Mp0 *GetContainerConfig200ResponseDataMp0 `json:"mp0,omitempty"`
-	Mp1 *GetContainerConfig200ResponseDataMp0 `json:"mp1,omitempty"`
-	Mp2 *GetContainerConfig200ResponseDataMp0 `json:"mp2,omitempty"`
-	Mp3 *GetContainerConfig200ResponseDataMp0 `json:"mp3,omitempty"`
-	Mp4 *GetContainerConfig200ResponseDataMp0 `json:"mp4,omitempty"`
-	Mp5 *GetContainerConfig200ResponseDataMp0 `json:"mp5,omitempty"`
-	Mp6 *GetContainerConfig200ResponseDataMp0 `json:"mp6,omitempty"`
-	Mp7 *GetContainerConfig200ResponseDataMp0 `json:"mp7,omitempty"`
-	Mp8 *GetContainerConfig200ResponseDataMp0 `json:"mp8,omitempty"`
-	Mp9 *GetContainerConfig200ResponseDataMp0 `json:"mp9,omitempty"`
-	Mp10 *GetContainerConfig200ResponseDataMp0 `json:"mp10,omitempty"`
-	Mp11 *GetContainerConfig200ResponseDataMp0 `json:"mp11,omitempty"`
-	Mp12 *GetContainerConfig200ResponseDataMp0 `json:"mp12,omitempty"`
-	Mp13 *GetContainerConfig200ResponseDataMp0 `json:"mp13,omitempty"`
-	Mp14 *GetContainerConfig200ResponseDataMp0 `json:"mp14,omitempty"`
-	Mp15 *GetContainerConfig200ResponseDataMp0 `json:"mp15,omitempty"`
-	Mp16 *GetContainerConfig200ResponseDataMp0 `json:"mp16,omitempty"`
-	Mp17 *GetContainerConfig200ResponseDataMp0 `json:"mp17,omitempty"`
-	Mp18 *GetContainerConfig200ResponseDataMp0 `json:"mp18,omitempty"`
-	Mp19 *GetContainerConfig200ResponseDataMp0 `json:"mp19,omitempty"`
-	Mp20 *GetContainerConfig200ResponseDataMp0 `json:"mp20,omitempty"`
-	Mp21 *GetContainerConfig200ResponseDataMp0 `json:"mp21,omitempty"`
-	Mp22 *GetContainerConfig200ResponseDataMp0 `json:"mp22,omitempty"`
-	Mp23 *GetContainerConfig200ResponseDataMp0 `json:"mp23,omitempty"`
-	Mp24 *GetContainerConfig200ResponseDataMp0 `json:"mp24,omitempty"`
-	Mp25 *GetContainerConfig200ResponseDataMp0 `json:"mp25,omitempty"`
-	Mp26 *GetContainerConfig200ResponseDataMp0 `json:"mp26,omitempty"`
-	Mp27 *GetContainerConfig200ResponseDataMp0 `json:"mp27,omitempty"`
-	Mp28 *GetContainerConfig200ResponseDataMp0 `json:"mp28,omitempty"`
-	Mp29 *GetContainerConfig200ResponseDataMp0 `json:"mp29,omitempty"`
-	Mp30 *GetContainerConfig200ResponseDataMp0 `json:"mp30,omitempty"`
-	Mp31 *GetContainerConfig200ResponseDataMp0 `json:"mp31,omitempty"`
-	Mp32 *GetContainerConfig200ResponseDataMp0 `json:"mp32,omitempty"`
-	Mp33 *GetContainerConfig200ResponseDataMp0 `json:"mp33,omitempty"`
-	Mp34 *GetContainerConfig200ResponseDataMp0 `json:"mp34,omitempty"`
-	Mp35 *GetContainerConfig200ResponseDataMp0 `json:"mp35,omitempty"`
-	Mp36 *GetContainerConfig200ResponseDataMp0 `json:"mp36,omitempty"`
-	Mp37 *GetContainerConfig200ResponseDataMp0 `json:"mp37,omitempty"`
-	Mp38 *GetContainerConfig200ResponseDataMp0 `json:"mp38,omitempty"`
-	Mp39 *GetContainerConfig200ResponseDataMp0 `json:"mp39,omitempty"`
-	Mp40 *GetContainerConfig200ResponseDataMp0 `json:"mp40,omitempty"`
-	Mp41 *GetContainerConfig200ResponseDataMp0 `json:"mp41,omitempty"`
-	Mp42 *GetContainerConfig200ResponseDataMp0 `json:"mp42,omitempty"`
-	Mp43 *GetContainerConfig200ResponseDataMp0 `json:"mp43,omitempty"`
-	Mp44 *GetContainerConfig200ResponseDataMp0 `json:"mp44,omitempty"`
-	Mp45 *GetContainerConfig200ResponseDataMp0 `json:"mp45,omitempty"`
-	Mp46 *GetContainerConfig200ResponseDataMp0 `json:"mp46,omitempty"`
-	Mp47 *GetContainerConfig200ResponseDataMp0 `json:"mp47,omitempty"`
-	Mp48 *GetContainerConfig200ResponseDataMp0 `json:"mp48,omitempty"`
-	Mp49 *GetContainerConfig200ResponseDataMp0 `json:"mp49,omitempty"`
-	Mp50 *GetContainerConfig200ResponseDataMp0 `json:"mp50,omitempty"`
-	Mp51 *GetContainerConfig200ResponseDataMp0 `json:"mp51,omitempty"`
-	Mp52 *GetContainerConfig200ResponseDataMp0 `json:"mp52,omitempty"`
-	Mp53 *GetContainerConfig200ResponseDataMp0 `json:"mp53,omitempty"`
-	Mp54 *GetContainerConfig200ResponseDataMp0 `json:"mp54,omitempty"`
-	Mp55 *GetContainerConfig200ResponseDataMp0 `json:"mp55,omitempty"`
-	Mp56 *GetContainerConfig200ResponseDataMp0 `json:"mp56,omitempty"`
-	Mp57 *GetContainerConfig200ResponseDataMp0 `json:"mp57,omitempty"`
-	Mp58 *GetContainerConfig200ResponseDataMp0 `json:"mp58,omitempty"`
-	Mp59 *GetContainerConfig200ResponseDataMp0 `json:"mp59,omitempty"`
-	Mp60 *GetContainerConfig200ResponseDataMp0 `json:"mp60,omitempty"`
-	Mp61 *GetContainerConfig200ResponseDataMp0 `json:"mp61,omitempty"`
-	Mp62 *GetContainerConfig200ResponseDataMp0 `json:"mp62,omitempty"`
-	Mp63 *GetContainerConfig200ResponseDataMp0 `json:"mp63,omitempty"`
-	Mp64 *GetContainerConfig200ResponseDataMp0 `json:"mp64,omitempty"`
-	Mp65 *GetContainerConfig200ResponseDataMp0 `json:"mp65,omitempty"`
-	Mp66 *GetContainerConfig200ResponseDataMp0 `json:"mp66,omitempty"`
-	Mp67 *GetContainerConfig200ResponseDataMp0 `json:"mp67,omitempty"`
-	Mp68 *GetContainerConfig200ResponseDataMp0 `json:"mp68,omitempty"`
-	Mp69 *GetContainerConfig200ResponseDataMp0 `json:"mp69,omitempty"`
-	Mp70 *GetContainerConfig200ResponseDataMp0 `json:"mp70,omitempty"`
-	Mp71 *GetContainerConfig200ResponseDataMp0 `json:"mp71,omitempty"`
-	Mp72 *GetContainerConfig200ResponseDataMp0 `json:"mp72,omitempty"`
-	Mp73 *GetContainerConfig200ResponseDataMp0 `json:"mp73,omitempty"`
-	Mp74 *GetContainerConfig200ResponseDataMp0 `json:"mp74,omitempty"`
-	Mp75 *GetContainerConfig200ResponseDataMp0 `json:"mp75,omitempty"`
-	Mp76 *GetContainerConfig200ResponseDataMp0 `json:"mp76,omitempty"`
-	Mp77 *GetContainerConfig200ResponseDataMp0 `json:"mp77,omitempty"`
-	Mp78 *GetContainerConfig200ResponseDataMp0 `json:"mp78,omitempty"`
-	Mp79 *GetContainerConfig200ResponseDataMp0 `json:"mp79,omitempty"`
-	Mp80 *GetContainerConfig200ResponseDataMp0 `json:"mp80,omitempty"`
-	Mp81 *GetContainerConfig200ResponseDataMp0 `json:"mp81,omitempty"`
-	Mp82 *GetContainerConfig200ResponseDataMp0 `json:"mp82,omitempty"`
-	Mp83 *GetContainerConfig200ResponseDataMp0 `json:"mp83,omitempty"`
-	Mp84 *GetContainerConfig200ResponseDataMp0 `json:"mp84,omitempty"`
-	Mp85 *GetContainerConfig200ResponseDataMp0 `json:"mp85,omitempty"`
-	Mp86 *GetContainerConfig200ResponseDataMp0 `json:"mp86,omitempty"`
-	Mp87 *GetContainerConfig200ResponseDataMp0 `json:"mp87,omitempty"`
-	Mp88 *GetContainerConfig200ResponseDataMp0 `json:"mp88,omitempty"`
-	Mp89 *GetContainerConfig200ResponseDataMp0 `json:"mp89,omitempty"`
-	Mp90 *GetContainerConfig200ResponseDataMp0 `json:"mp90,omitempty"`
-	Mp91 *GetContainerConfig200ResponseDataMp0 `json:"mp91,omitempty"`
-	Mp92 *GetContainerConfig200ResponseDataMp0 `json:"mp92,omitempty"`
-	Mp93 *GetContainerConfig200ResponseDataMp0 `json:"mp93,omitempty"`
-	Mp94 *GetContainerConfig200ResponseDataMp0 `json:"mp94,omitempty"`
-	Mp95 *GetContainerConfig200ResponseDataMp0 `json:"mp95,omitempty"`
-	Mp96 *GetContainerConfig200ResponseDataMp0 `json:"mp96,omitempty"`
-	Mp97 *GetContainerConfig200ResponseDataMp0 `json:"mp97,omitempty"`
-	Mp98 *GetContainerConfig200ResponseDataMp0 `json:"mp98,omitempty"`
-	Mp99 *GetContainerConfig200ResponseDataMp0 `json:"mp99,omitempty"`
-	Mp100 *GetContainerConfig200ResponseDataMp0 `json:"mp100,omitempty"`
-	Mp101 *GetContainerConfig200ResponseDataMp0 `json:"mp101,omitempty"`
-	Mp102 *GetContainerConfig200ResponseDataMp0 `json:"mp102,omitempty"`
-	Mp103 *GetContainerConfig200ResponseDataMp0 `json:"mp103,omitempty"`
-	Mp104 *GetContainerConfig200ResponseDataMp0 `json:"mp104,omitempty"`
-	Mp105 *GetContainerConfig200ResponseDataMp0 `json:"mp105,omitempty"`
-	Mp106 *GetContainerConfig200ResponseDataMp0 `json:"mp106,omitempty"`
-	Mp107 *GetContainerConfig200ResponseDataMp0 `json:"mp107,omitempty"`
-	Mp108 *GetContainerConfig200ResponseDataMp0 `json:"mp108,omitempty"`
-	Mp109 *GetContainerConfig200ResponseDataMp0 `json:"mp109,omitempty"`
-	Mp110 *GetContainerConfig200ResponseDataMp0 `json:"mp110,omitempty"`
-	Mp111 *GetContainerConfig200ResponseDataMp0 `json:"mp111,omitempty"`
-	Mp112 *GetContainerConfig200ResponseDataMp0 `json:"mp112,omitempty"`
-	Mp113 *GetContainerConfig200ResponseDataMp0 `json:"mp113,omitempty"`
-	Mp114 *GetContainerConfig200ResponseDataMp0 `json:"mp114,omitempty"`
-	Mp115 *GetContainerConfig200ResponseDataMp0 `json:"mp115,omitempty"`
-	Mp116 *GetContainerConfig200ResponseDataMp0 `json:"mp116,omitempty"`
-	Mp117 *GetContainerConfig200ResponseDataMp0 `json:"mp117,omitempty"`
-	Mp118 *GetContainerConfig200ResponseDataMp0 `json:"mp118,omitempty"`
-	Mp119 *GetContainerConfig200ResponseDataMp0 `json:"mp119,omitempty"`
-	Mp120 *GetContainerConfig200ResponseDataMp0 `json:"mp120,omitempty"`
-	Mp121 *GetContainerConfig200ResponseDataMp0 `json:"mp121,omitempty"`
-	Mp122 *GetContainerConfig200ResponseDataMp0 `json:"mp122,omitempty"`
-	Mp123 *GetContainerConfig200ResponseDataMp0 `json:"mp123,omitempty"`
-	Mp124 *GetContainerConfig200ResponseDataMp0 `json:"mp124,omitempty"`
-	Mp125 *GetContainerConfig200ResponseDataMp0 `json:"mp125,omitempty"`
-	Mp126 *GetContainerConfig200ResponseDataMp0 `json:"mp126,omitempty"`
-	Mp127 *GetContainerConfig200ResponseDataMp0 `json:"mp127,omitempty"`
-	Mp128 *GetContainerConfig200ResponseDataMp0 `json:"mp128,omitempty"`
-	Mp129 *GetContainerConfig200ResponseDataMp0 `json:"mp129,omitempty"`
-	Mp130 *GetContainerConfig200ResponseDataMp0 `json:"mp130,omitempty"`
-	Mp131 *GetContainerConfig200ResponseDataMp0 `json:"mp131,omitempty"`
-	Mp132 *GetContainerConfig200ResponseDataMp0 `json:"mp132,omitempty"`
-	Mp133 *GetContainerConfig200ResponseDataMp0 `json:"mp133,omitempty"`
-	Mp134 *GetContainerConfig200ResponseDataMp0 `json:"mp134,omitempty"`
-	Mp135 *GetContainerConfig200ResponseDataMp0 `json:"mp135,omitempty"`
-	Mp136 *GetContainerConfig200ResponseDataMp0 `json:"mp136,omitempty"`
-	Mp137 *GetContainerConfig200ResponseDataMp0 `json:"mp137,omitempty"`
-	Mp138 *GetContainerConfig200ResponseDataMp0 `json:"mp138,omitempty"`
-	Mp139 *GetContainerConfig200ResponseDataMp0 `json:"mp139,omitempty"`
-	Mp140 *GetContainerConfig200ResponseDataMp0 `json:"mp140,omitempty"`
-	Mp141 *GetContainerConfig200ResponseDataMp0 `json:"mp141,omitempty"`
-	Mp142 *GetContainerConfig200ResponseDataMp0 `json:"mp142,omitempty"`
-	Mp143 *GetContainerConfig200ResponseDataMp0 `json:"mp143,omitempty"`
-	Mp144 *GetContainerConfig200ResponseDataMp0 `json:"mp144,omitempty"`
-	Mp145 *GetContainerConfig200ResponseDataMp0 `json:"mp145,omitempty"`
-	Mp146 *GetContainerConfig200ResponseDataMp0 `json:"mp146,omitempty"`
-	Mp147 *GetContainerConfig200ResponseDataMp0 `json:"mp147,omitempty"`
-	Mp148 *GetContainerConfig200ResponseDataMp0 `json:"mp148,omitempty"`
-	Mp149 *GetContainerConfig200ResponseDataMp0 `json:"mp149,omitempty"`
-	Mp150 *GetContainerConfig200ResponseDataMp0 `json:"mp150,omitempty"`
-	Mp151 *GetContainerConfig200ResponseDataMp0 `json:"mp151,omitempty"`
-	Mp152 *GetContainerConfig200ResponseDataMp0 `json:"mp152,omitempty"`
-	Mp153 *GetContainerConfig200ResponseDataMp0 `json:"mp153,omitempty"`
-	Mp154 *GetContainerConfig200ResponseDataMp0 `json:"mp154,omitempty"`
-	Mp155 *GetContainerConfig200ResponseDataMp0 `json:"mp155,omitempty"`
-	Mp156 *GetContainerConfig200ResponseDataMp0 `json:"mp156,omitempty"`
-	Mp157 *GetContainerConfig200ResponseDataMp0 `json:"mp157,omitempty"`
-	Mp158 *GetContainerConfig200ResponseDataMp0 `json:"mp158,omitempty"`
-	Mp159 *GetContainerConfig200ResponseDataMp0 `json:"mp159,omitempty"`
-	Mp160 *GetContainerConfig200ResponseDataMp0 `json:"mp160,omitempty"`
-	Mp161 *GetContainerConfig200ResponseDataMp0 `json:"mp161,omitempty"`
-	Mp162 *GetContainerConfig200ResponseDataMp0 `json:"mp162,omitempty"`
-	Mp163 *GetContainerConfig200ResponseDataMp0 `json:"mp163,omitempty"`
-	Mp164 *GetContainerConfig200ResponseDataMp0 `json:"mp164,omitempty"`
-	Mp165 *GetContainerConfig200ResponseDataMp0 `json:"mp165,omitempty"`
-	Mp166 *GetContainerConfig200ResponseDataMp0 `json:"mp166,omitempty"`
-	Mp167 *GetContainerConfig200ResponseDataMp0 `json:"mp167,omitempty"`
-	Mp168 *GetContainerConfig200ResponseDataMp0 `json:"mp168,omitempty"`
-	Mp169 *GetContainerConfig200ResponseDataMp0 `json:"mp169,omitempty"`
-	Mp170 *GetContainerConfig200ResponseDataMp0 `json:"mp170,omitempty"`
-	Mp171 *GetContainerConfig200ResponseDataMp0 `json:"mp171,omitempty"`
-	Mp172 *GetContainerConfig200ResponseDataMp0 `json:"mp172,omitempty"`
-	Mp173 *GetContainerConfig200ResponseDataMp0 `json:"mp173,omitempty"`
-	Mp174 *GetContainerConfig200ResponseDataMp0 `json:"mp174,omitempty"`
-	Mp175 *GetContainerConfig200ResponseDataMp0 `json:"mp175,omitempty"`
-	Mp176 *GetContainerConfig200ResponseDataMp0 `json:"mp176,omitempty"`
-	Mp177 *GetContainerConfig200ResponseDataMp0 `json:"mp177,omitempty"`
-	Mp178 *GetContainerConfig200ResponseDataMp0 `json:"mp178,omitempty"`
-	Mp179 *GetContainerConfig200ResponseDataMp0 `json:"mp179,omitempty"`
-	Mp180 *GetContainerConfig200ResponseDataMp0 `json:"mp180,omitempty"`
-	Mp181 *GetContainerConfig200ResponseDataMp0 `json:"mp181,omitempty"`
-	Mp182 *GetContainerConfig200ResponseDataMp0 `json:"mp182,omitempty"`
-	Mp183 *GetContainerConfig200ResponseDataMp0 `json:"mp183,omitempty"`
-	Mp184 *GetContainerConfig200ResponseDataMp0 `json:"mp184,omitempty"`
-	Mp185 *GetContainerConfig200ResponseDataMp0 `json:"mp185,omitempty"`
-	Mp186 *GetContainerConfig200ResponseDataMp0 `json:"mp186,omitempty"`
-	Mp187 *GetContainerConfig200ResponseDataMp0 `json:"mp187,omitempty"`
-	Mp188 *GetContainerConfig200ResponseDataMp0 `json:"mp188,omitempty"`
-	Mp189 *GetContainerConfig200ResponseDataMp0 `json:"mp189,omitempty"`
-	Mp190 *GetContainerConfig200ResponseDataMp0 `json:"mp190,omitempty"`
-	Mp191 *GetContainerConfig200ResponseDataMp0 `json:"mp191,omitempty"`
-	Mp192 *GetContainerConfig200ResponseDataMp0 `json:"mp192,omitempty"`
-	Mp193 *GetContainerConfig200ResponseDataMp0 `json:"mp193,omitempty"`
-	Mp194 *GetContainerConfig200ResponseDataMp0 `json:"mp194,omitempty"`
-	Mp195 *GetContainerConfig200ResponseDataMp0 `json:"mp195,omitempty"`
-	Mp196 *GetContainerConfig200ResponseDataMp0 `json:"mp196,omitempty"`
-	Mp197 *GetContainerConfig200ResponseDataMp0 `json:"mp197,omitempty"`
-	Mp198 *GetContainerConfig200ResponseDataMp0 `json:"mp198,omitempty"`
-	Mp199 *GetContainerConfig200ResponseDataMp0 `json:"mp199,omitempty"`
-	Mp200 *GetContainerConfig200ResponseDataMp0 `json:"mp200,omitempty"`
-	Mp201 *GetContainerConfig200ResponseDataMp0 `json:"mp201,omitempty"`
-	Mp202 *GetContainerConfig200ResponseDataMp0 `json:"mp202,omitempty"`
-	Mp203 *GetContainerConfig200ResponseDataMp0 `json:"mp203,omitempty"`
-	Mp204 *GetContainerConfig200ResponseDataMp0 `json:"mp204,omitempty"`
-	Mp205 *GetContainerConfig200ResponseDataMp0 `json:"mp205,omitempty"`
-	Mp206 *GetContainerConfig200ResponseDataMp0 `json:"mp206,omitempty"`
-	Mp207 *GetContainerConfig200ResponseDataMp0 `json:"mp207,omitempty"`
-	Mp208 *GetContainerConfig200ResponseDataMp0 `json:"mp208,omitempty"`
-	Mp209 *GetContainerConfig200ResponseDataMp0 `json:"mp209,omitempty"`
-	Mp210 *GetContainerConfig200ResponseDataMp0 `json:"mp210,omitempty"`
-	Mp211 *GetContainerConfig200ResponseDataMp0 `json:"mp211,omitempty"`
-	Mp212 *GetContainerConfig200ResponseDataMp0 `json:"mp212,omitempty"`
-	Mp213 *GetContainerConfig200ResponseDataMp0 `json:"mp213,omitempty"`
-	Mp214 *GetContainerConfig200ResponseDataMp0 `json:"mp214,omitempty"`
-	Mp215 *GetContainerConfig200ResponseDataMp0 `json:"mp215,omitempty"`
-	Mp216 *GetContainerConfig200ResponseDataMp0 `json:"mp216,omitempty"`
-	Mp217 *GetContainerConfig200ResponseDataMp0 `json:"mp217,omitempty"`
-	Mp218 *GetContainerConfig200ResponseDataMp0 `json:"mp218,omitempty"`
-	Mp219 *GetContainerConfig200ResponseDataMp0 `json:"mp219,omitempty"`
-	Mp220 *GetContainerConfig200ResponseDataMp0 `json:"mp220,omitempty"`
-	Mp221 *GetContainerConfig200ResponseDataMp0 `json:"mp221,omitempty"`
-	Mp222 *GetContainerConfig200ResponseDataMp0 `json:"mp222,omitempty"`
-	Mp223 *GetContainerConfig200ResponseDataMp0 `json:"mp223,omitempty"`
-	Mp224 *GetContainerConfig200ResponseDataMp0 `json:"mp224,omitempty"`
-	Mp225 *GetContainerConfig200ResponseDataMp0 `json:"mp225,omitempty"`
-	Mp226 *GetContainerConfig200ResponseDataMp0 `json:"mp226,omitempty"`
-	Mp227 *GetContainerConfig200ResponseDataMp0 `json:"mp227,omitempty"`
-	Mp228 *GetContainerConfig200ResponseDataMp0 `json:"mp228,omitempty"`
-	Mp229 *GetContainerConfig200ResponseDataMp0 `json:"mp229,omitempty"`
-	Mp230 *GetContainerConfig200ResponseDataMp0 `json:"mp230,omitempty"`
-	Mp231 *GetContainerConfig200ResponseDataMp0 `json:"mp231,omitempty"`
-	Mp232 *GetContainerConfig200ResponseDataMp0 `json:"mp232,omitempty"`
-	Mp233 *GetContainerConfig200ResponseDataMp0 `json:"mp233,omitempty"`
-	Mp234 *GetContainerConfig200ResponseDataMp0 `json:"mp234,omitempty"`
-	Mp235 *GetContainerConfig200ResponseDataMp0 `json:"mp235,omitempty"`
-	Mp236 *GetContainerConfig200ResponseDataMp0 `json:"mp236,omitempty"`
-	Mp237 *GetContainerConfig200ResponseDataMp0 `json:"mp237,omitempty"`
-	Mp238 *GetContainerConfig200ResponseDataMp0 `json:"mp238,omitempty"`
-	Mp239 *GetContainerConfig200ResponseDataMp0 `json:"mp239,omitempty"`
-	Mp240 *GetContainerConfig200ResponseDataMp0 `json:"mp240,omitempty"`
-	Mp241 *GetContainerConfig200ResponseDataMp0 `json:"mp241,omitempty"`
-	Mp242 *GetContainerConfig200ResponseDataMp0 `json:"mp242,omitempty"`
-	Mp243 *GetContainerConfig200ResponseDataMp0 `json:"mp243,omitempty"`
-	Mp244 *GetContainerConfig200ResponseDataMp0 `json:"mp244,omitempty"`
-	Mp245 *GetContainerConfig200ResponseDataMp0 `json:"mp245,omitempty"`
-	Mp246 *GetContainerConfig200ResponseDataMp0 `json:"mp246,omitempty"`
-	Mp247 *GetContainerConfig200ResponseDataMp0 `json:"mp247,omitempty"`
-	Mp248 *GetContainerConfig200ResponseDataMp0 `json:"mp248,omitempty"`
-	Mp249 *GetContainerConfig200ResponseDataMp0 `json:"mp249,omitempty"`
-	Mp250 *GetContainerConfig200ResponseDataMp0 `json:"mp250,omitempty"`
-	Mp251 *GetContainerConfig200ResponseDataMp0 `json:"mp251,omitempty"`
-	Mp252 *GetContainerConfig200ResponseDataMp0 `json:"mp252,omitempty"`
-	Mp253 *GetContainerConfig200ResponseDataMp0 `json:"mp253,omitempty"`
-	Mp254 *GetContainerConfig200ResponseDataMp0 `json:"mp254,omitempty"`
-	Mp255 *GetContainerConfig200ResponseDataMp0 `json:"mp255,omitempty"`
-	// Sets DNS server IP address for a container. Create will automatically use the setting from the host if you neither set searchdomain nor nameserver.
+	Mp0 *CreateContainerRequestMp0 `json:"mp0,omitempty"`
+	Mp1 *CreateContainerRequestMp0 `json:"mp1,omitempty"`
+	Mp2 *CreateContainerRequestMp0 `json:"mp2,omitempty"`
+	Mp3 *CreateContainerRequestMp0 `json:"mp3,omitempty"`
+	Mp4 *CreateContainerRequestMp0 `json:"mp4,omitempty"`
+	Mp5 *CreateContainerRequestMp0 `json:"mp5,omitempty"`
+	Mp6 *CreateContainerRequestMp0 `json:"mp6,omitempty"`
+	Mp7 *CreateContainerRequestMp0 `json:"mp7,omitempty"`
+	Mp8 *CreateContainerRequestMp0 `json:"mp8,omitempty"`
+	Mp9 *CreateContainerRequestMp0 `json:"mp9,omitempty"`
+	Mp10 *CreateContainerRequestMp0 `json:"mp10,omitempty"`
+	Mp11 *CreateContainerRequestMp0 `json:"mp11,omitempty"`
+	Mp12 *CreateContainerRequestMp0 `json:"mp12,omitempty"`
+	Mp13 *CreateContainerRequestMp0 `json:"mp13,omitempty"`
+	Mp14 *CreateContainerRequestMp0 `json:"mp14,omitempty"`
+	Mp15 *CreateContainerRequestMp0 `json:"mp15,omitempty"`
+	Mp16 *CreateContainerRequestMp0 `json:"mp16,omitempty"`
+	Mp17 *CreateContainerRequestMp0 `json:"mp17,omitempty"`
+	Mp18 *CreateContainerRequestMp0 `json:"mp18,omitempty"`
+	Mp19 *CreateContainerRequestMp0 `json:"mp19,omitempty"`
+	Mp20 *CreateContainerRequestMp0 `json:"mp20,omitempty"`
+	Mp21 *CreateContainerRequestMp0 `json:"mp21,omitempty"`
+	Mp22 *CreateContainerRequestMp0 `json:"mp22,omitempty"`
+	Mp23 *CreateContainerRequestMp0 `json:"mp23,omitempty"`
+	Mp24 *CreateContainerRequestMp0 `json:"mp24,omitempty"`
+	Mp25 *CreateContainerRequestMp0 `json:"mp25,omitempty"`
+	Mp26 *CreateContainerRequestMp0 `json:"mp26,omitempty"`
+	Mp27 *CreateContainerRequestMp0 `json:"mp27,omitempty"`
+	Mp28 *CreateContainerRequestMp0 `json:"mp28,omitempty"`
+	Mp29 *CreateContainerRequestMp0 `json:"mp29,omitempty"`
 	Nameserver *string `json:"nameserver,omitempty"`
-	Net0 *GetContainerConfig200ResponseDataNet0 `json:"net0,omitempty"`
-	Net1 *GetContainerConfig200ResponseDataNet0 `json:"net1,omitempty"`
-	Net2 *GetContainerConfig200ResponseDataNet0 `json:"net2,omitempty"`
-	Net3 *GetContainerConfig200ResponseDataNet0 `json:"net3,omitempty"`
-	Net4 *GetContainerConfig200ResponseDataNet0 `json:"net4,omitempty"`
-	Net5 *GetContainerConfig200ResponseDataNet0 `json:"net5,omitempty"`
-	Net6 *GetContainerConfig200ResponseDataNet0 `json:"net6,omitempty"`
-	Net7 *GetContainerConfig200ResponseDataNet0 `json:"net7,omitempty"`
-	Net8 *GetContainerConfig200ResponseDataNet0 `json:"net8,omitempty"`
-	Net9 *GetContainerConfig200ResponseDataNet0 `json:"net9,omitempty"`
-	Net10 *GetContainerConfig200ResponseDataNet0 `json:"net10,omitempty"`
-	Net11 *GetContainerConfig200ResponseDataNet0 `json:"net11,omitempty"`
-	Net12 *GetContainerConfig200ResponseDataNet0 `json:"net12,omitempty"`
-	Net13 *GetContainerConfig200ResponseDataNet0 `json:"net13,omitempty"`
-	Net14 *GetContainerConfig200ResponseDataNet0 `json:"net14,omitempty"`
-	Net15 *GetContainerConfig200ResponseDataNet0 `json:"net15,omitempty"`
-	Net16 *GetContainerConfig200ResponseDataNet0 `json:"net16,omitempty"`
-	Net17 *GetContainerConfig200ResponseDataNet0 `json:"net17,omitempty"`
-	Net18 *GetContainerConfig200ResponseDataNet0 `json:"net18,omitempty"`
-	Net19 *GetContainerConfig200ResponseDataNet0 `json:"net19,omitempty"`
-	Net20 *GetContainerConfig200ResponseDataNet0 `json:"net20,omitempty"`
-	Net21 *GetContainerConfig200ResponseDataNet0 `json:"net21,omitempty"`
-	Net22 *GetContainerConfig200ResponseDataNet0 `json:"net22,omitempty"`
-	Net23 *GetContainerConfig200ResponseDataNet0 `json:"net23,omitempty"`
-	Net24 *GetContainerConfig200ResponseDataNet0 `json:"net24,omitempty"`
-	Net25 *GetContainerConfig200ResponseDataNet0 `json:"net25,omitempty"`
-	Net26 *GetContainerConfig200ResponseDataNet0 `json:"net26,omitempty"`
-	Net27 *GetContainerConfig200ResponseDataNet0 `json:"net27,omitempty"`
-	Net28 *GetContainerConfig200ResponseDataNet0 `json:"net28,omitempty"`
-	Net29 *GetContainerConfig200ResponseDataNet0 `json:"net29,omitempty"`
-	Net30 *GetContainerConfig200ResponseDataNet0 `json:"net30,omitempty"`
-	Net31 *GetContainerConfig200ResponseDataNet0 `json:"net31,omitempty"`
-	// Specifies whether a container will be started during system bootup.
+	Net0 *CreateContainerRequestNet0 `json:"net0,omitempty"`
+	Net1 *CreateContainerRequestNet0 `json:"net1,omitempty"`
+	Net2 *CreateContainerRequestNet0 `json:"net2,omitempty"`
+	Net3 *CreateContainerRequestNet0 `json:"net3,omitempty"`
+	Net4 *CreateContainerRequestNet0 `json:"net4,omitempty"`
+	Net5 *CreateContainerRequestNet0 `json:"net5,omitempty"`
+	Net6 *CreateContainerRequestNet0 `json:"net6,omitempty"`
+	Net7 *CreateContainerRequestNet0 `json:"net7,omitempty"`
+	Net8 *CreateContainerRequestNet0 `json:"net8,omitempty"`
+	Net9 *CreateContainerRequestNet0 `json:"net9,omitempty"`
+	Net10 *CreateContainerRequestNet0 `json:"net10,omitempty"`
+	Net11 *CreateContainerRequestNet0 `json:"net11,omitempty"`
+	Net12 *CreateContainerRequestNet0 `json:"net12,omitempty"`
+	Net13 *CreateContainerRequestNet0 `json:"net13,omitempty"`
+	Net14 *CreateContainerRequestNet0 `json:"net14,omitempty"`
+	Net15 *CreateContainerRequestNet0 `json:"net15,omitempty"`
+	Net16 *CreateContainerRequestNet0 `json:"net16,omitempty"`
+	Net17 *CreateContainerRequestNet0 `json:"net17,omitempty"`
+	Net18 *CreateContainerRequestNet0 `json:"net18,omitempty"`
+	Net19 *CreateContainerRequestNet0 `json:"net19,omitempty"`
+	Net20 *CreateContainerRequestNet0 `json:"net20,omitempty"`
+	Net21 *CreateContainerRequestNet0 `json:"net21,omitempty"`
+	Net22 *CreateContainerRequestNet0 `json:"net22,omitempty"`
+	Net23 *CreateContainerRequestNet0 `json:"net23,omitempty"`
+	Net24 *CreateContainerRequestNet0 `json:"net24,omitempty"`
+	Net25 *CreateContainerRequestNet0 `json:"net25,omitempty"`
+	Net26 *CreateContainerRequestNet0 `json:"net26,omitempty"`
+	Net27 *CreateContainerRequestNet0 `json:"net27,omitempty"`
+	Net28 *CreateContainerRequestNet0 `json:"net28,omitempty"`
+	Net29 *CreateContainerRequestNet0 `json:"net29,omitempty"`
+	Net30 *CreateContainerRequestNet0 `json:"net30,omitempty"`
+	Net31 *CreateContainerRequestNet0 `json:"net31,omitempty"`
 	Onboot *bool `json:"onboot,omitempty"`
-	// The OS template or backup file.
 	Ostemplate string `json:"ostemplate"`
-	// OS type. This is used to setup configuration inside the container, and corresponds to lxc setup scripts in /usr/share/lxc/config/<ostype>.common.conf. Value 'unmanaged' can be used to skip and OS specific setup.
 	Ostype *string `json:"ostype,omitempty"`
-	// Sets root password inside container.
 	Password *string `json:"password,omitempty"`
-	// Add the VM to the specified pool.
 	Pool *string `json:"pool,omitempty"`
-	// Sets the protection flag of the container. This will prevent the CT or CT's disk remove/update operation.
 	Protection *bool `json:"protection,omitempty"`
-	// Mark this as restore task.
 	Restore *bool `json:"restore,omitempty"`
-	Rootfs *GetContainerConfig200ResponseDataRootfs `json:"rootfs,omitempty"`
-	// Sets DNS search domains for a container. Create will automatically use the setting from the host if you neither set searchdomain nor nameserver.
+	Rootfs *CreateContainerRequestRootfs `json:"rootfs,omitempty"`
 	Searchdomain *string `json:"searchdomain,omitempty"`
-	// Setup public SSH keys (one key per line, OpenSSH format).
 	SshPublicKeys *string `json:"ssh-public-keys,omitempty"`
-	// Start the CT after its creation finished successfully.
 	Start *bool `json:"start,omitempty"`
-	// Startup and shutdown behavior. Order is a non-negative number defining the general startup order. Shutdown in done with reverse ordering. Additionally you can set the 'up' or 'down' delay in seconds, which specifies a delay to wait before the next VM is started or stopped.
 	Startup *string `json:"startup,omitempty"`
-	// Default Storage.
 	Storage *string `json:"storage,omitempty"`
-	// Amount of SWAP for the container in MB.
 	Swap *int64 `json:"swap,omitempty"`
-	// Tags of the Container. This is only meta information.
 	Tags *string `json:"tags,omitempty"`
-	// Enable/disable Template.
 	Template *bool `json:"template,omitempty"`
-	// Time zone to use in the container. If option isn't set, then nothing will be done. Can be set to 'host' to match the host time zone, or an arbitrary time zone option from /usr/share/zoneinfo/zone.tab
 	Timezone *string `json:"timezone,omitempty"`
-	// Specify the number of tty available to the container
 	Tty *int64 `json:"tty,omitempty"`
-	// Assign a unique random ethernet address.
 	Unique *bool `json:"unique,omitempty"`
-	// Makes the container run as unprivileged user. (Should not be modified manually.)
 	Unprivileged *bool `json:"unprivileged,omitempty"`
-	Unused0 *GetContainerConfig200ResponseDataUnused0 `json:"unused0,omitempty"`
-	Unused1 *GetContainerConfig200ResponseDataUnused0 `json:"unused1,omitempty"`
-	Unused2 *GetContainerConfig200ResponseDataUnused0 `json:"unused2,omitempty"`
-	Unused3 *GetContainerConfig200ResponseDataUnused0 `json:"unused3,omitempty"`
-	Unused4 *GetContainerConfig200ResponseDataUnused0 `json:"unused4,omitempty"`
-	Unused5 *GetContainerConfig200ResponseDataUnused0 `json:"unused5,omitempty"`
-	Unused6 *GetContainerConfig200ResponseDataUnused0 `json:"unused6,omitempty"`
-	Unused7 *GetContainerConfig200ResponseDataUnused0 `json:"unused7,omitempty"`
-	Unused8 *GetContainerConfig200ResponseDataUnused0 `json:"unused8,omitempty"`
-	Unused9 *GetContainerConfig200ResponseDataUnused0 `json:"unused9,omitempty"`
-	Unused10 *GetContainerConfig200ResponseDataUnused0 `json:"unused10,omitempty"`
-	Unused11 *GetContainerConfig200ResponseDataUnused0 `json:"unused11,omitempty"`
-	Unused12 *GetContainerConfig200ResponseDataUnused0 `json:"unused12,omitempty"`
-	Unused13 *GetContainerConfig200ResponseDataUnused0 `json:"unused13,omitempty"`
-	Unused14 *GetContainerConfig200ResponseDataUnused0 `json:"unused14,omitempty"`
-	Unused15 *GetContainerConfig200ResponseDataUnused0 `json:"unused15,omitempty"`
-	Unused16 *GetContainerConfig200ResponseDataUnused0 `json:"unused16,omitempty"`
-	Unused17 *GetContainerConfig200ResponseDataUnused0 `json:"unused17,omitempty"`
-	Unused18 *GetContainerConfig200ResponseDataUnused0 `json:"unused18,omitempty"`
-	Unused19 *GetContainerConfig200ResponseDataUnused0 `json:"unused19,omitempty"`
-	Unused20 *GetContainerConfig200ResponseDataUnused0 `json:"unused20,omitempty"`
-	Unused21 *GetContainerConfig200ResponseDataUnused0 `json:"unused21,omitempty"`
-	Unused22 *GetContainerConfig200ResponseDataUnused0 `json:"unused22,omitempty"`
-	Unused23 *GetContainerConfig200ResponseDataUnused0 `json:"unused23,omitempty"`
-	Unused24 *GetContainerConfig200ResponseDataUnused0 `json:"unused24,omitempty"`
-	Unused25 *GetContainerConfig200ResponseDataUnused0 `json:"unused25,omitempty"`
-	Unused26 *GetContainerConfig200ResponseDataUnused0 `json:"unused26,omitempty"`
-	Unused27 *GetContainerConfig200ResponseDataUnused0 `json:"unused27,omitempty"`
-	Unused28 *GetContainerConfig200ResponseDataUnused0 `json:"unused28,omitempty"`
-	Unused29 *GetContainerConfig200ResponseDataUnused0 `json:"unused29,omitempty"`
-	// The (unique) ID of the VM.
+	Unused0 *CreateContainerRequestUnused0 `json:"unused0,omitempty"`
+	Unused1 *CreateContainerRequestUnused0 `json:"unused1,omitempty"`
+	Unused2 *CreateContainerRequestUnused0 `json:"unused2,omitempty"`
+	Unused3 *CreateContainerRequestUnused0 `json:"unused3,omitempty"`
+	Unused4 *CreateContainerRequestUnused0 `json:"unused4,omitempty"`
+	Unused5 *CreateContainerRequestUnused0 `json:"unused5,omitempty"`
+	Unused6 *CreateContainerRequestUnused0 `json:"unused6,omitempty"`
+	Unused7 *CreateContainerRequestUnused0 `json:"unused7,omitempty"`
+	Unused8 *CreateContainerRequestUnused0 `json:"unused8,omitempty"`
+	Unused9 *CreateContainerRequestUnused0 `json:"unused9,omitempty"`
+	Unused10 *CreateContainerRequestUnused0 `json:"unused10,omitempty"`
+	Unused11 *CreateContainerRequestUnused0 `json:"unused11,omitempty"`
+	Unused12 *CreateContainerRequestUnused0 `json:"unused12,omitempty"`
+	Unused13 *CreateContainerRequestUnused0 `json:"unused13,omitempty"`
+	Unused14 *CreateContainerRequestUnused0 `json:"unused14,omitempty"`
+	Unused15 *CreateContainerRequestUnused0 `json:"unused15,omitempty"`
+	Unused16 *CreateContainerRequestUnused0 `json:"unused16,omitempty"`
+	Unused17 *CreateContainerRequestUnused0 `json:"unused17,omitempty"`
+	Unused18 *CreateContainerRequestUnused0 `json:"unused18,omitempty"`
+	Unused19 *CreateContainerRequestUnused0 `json:"unused19,omitempty"`
+	Unused20 *CreateContainerRequestUnused0 `json:"unused20,omitempty"`
+	Unused21 *CreateContainerRequestUnused0 `json:"unused21,omitempty"`
+	Unused22 *CreateContainerRequestUnused0 `json:"unused22,omitempty"`
+	Unused23 *CreateContainerRequestUnused0 `json:"unused23,omitempty"`
+	Unused24 *CreateContainerRequestUnused0 `json:"unused24,omitempty"`
+	Unused25 *CreateContainerRequestUnused0 `json:"unused25,omitempty"`
+	Unused26 *CreateContainerRequestUnused0 `json:"unused26,omitempty"`
+	Unused27 *CreateContainerRequestUnused0 `json:"unused27,omitempty"`
+	Unused28 *CreateContainerRequestUnused0 `json:"unused28,omitempty"`
+	Unused29 *CreateContainerRequestUnused0 `json:"unused29,omitempty"`
 	Vmid int64 `json:"vmid"`
 }
-
-type _CreateContainerRequest CreateContainerRequest
 
 // NewCreateContainerRequest instantiates a new CreateContainerRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -755,9 +490,9 @@ func (o *CreateContainerRequest) SetDescription(v string) {
 }
 
 // GetDev0 returns the Dev0 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetDev0() GetContainerConfig200ResponseDataDev0 {
+func (o *CreateContainerRequest) GetDev0() CreateContainerRequestDev0 {
 	if o == nil || IsNil(o.Dev0) {
-		var ret GetContainerConfig200ResponseDataDev0
+		var ret CreateContainerRequestDev0
 		return ret
 	}
 	return *o.Dev0
@@ -765,7 +500,7 @@ func (o *CreateContainerRequest) GetDev0() GetContainerConfig200ResponseDataDev0
 
 // GetDev0Ok returns a tuple with the Dev0 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetDev0Ok() (*GetContainerConfig200ResponseDataDev0, bool) {
+func (o *CreateContainerRequest) GetDev0Ok() (*CreateContainerRequestDev0, bool) {
 	if o == nil || IsNil(o.Dev0) {
 		return nil, false
 	}
@@ -781,15 +516,15 @@ func (o *CreateContainerRequest) HasDev0() bool {
 	return false
 }
 
-// SetDev0 gets a reference to the given GetContainerConfig200ResponseDataDev0 and assigns it to the Dev0 field.
-func (o *CreateContainerRequest) SetDev0(v GetContainerConfig200ResponseDataDev0) {
+// SetDev0 gets a reference to the given CreateContainerRequestDev0 and assigns it to the Dev0 field.
+func (o *CreateContainerRequest) SetDev0(v CreateContainerRequestDev0) {
 	o.Dev0 = &v
 }
 
 // GetDev1 returns the Dev1 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetDev1() GetContainerConfig200ResponseDataDev0 {
+func (o *CreateContainerRequest) GetDev1() CreateContainerRequestDev0 {
 	if o == nil || IsNil(o.Dev1) {
-		var ret GetContainerConfig200ResponseDataDev0
+		var ret CreateContainerRequestDev0
 		return ret
 	}
 	return *o.Dev1
@@ -797,7 +532,7 @@ func (o *CreateContainerRequest) GetDev1() GetContainerConfig200ResponseDataDev0
 
 // GetDev1Ok returns a tuple with the Dev1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetDev1Ok() (*GetContainerConfig200ResponseDataDev0, bool) {
+func (o *CreateContainerRequest) GetDev1Ok() (*CreateContainerRequestDev0, bool) {
 	if o == nil || IsNil(o.Dev1) {
 		return nil, false
 	}
@@ -813,15 +548,15 @@ func (o *CreateContainerRequest) HasDev1() bool {
 	return false
 }
 
-// SetDev1 gets a reference to the given GetContainerConfig200ResponseDataDev0 and assigns it to the Dev1 field.
-func (o *CreateContainerRequest) SetDev1(v GetContainerConfig200ResponseDataDev0) {
+// SetDev1 gets a reference to the given CreateContainerRequestDev0 and assigns it to the Dev1 field.
+func (o *CreateContainerRequest) SetDev1(v CreateContainerRequestDev0) {
 	o.Dev1 = &v
 }
 
 // GetDev2 returns the Dev2 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetDev2() GetContainerConfig200ResponseDataDev0 {
+func (o *CreateContainerRequest) GetDev2() CreateContainerRequestDev0 {
 	if o == nil || IsNil(o.Dev2) {
-		var ret GetContainerConfig200ResponseDataDev0
+		var ret CreateContainerRequestDev0
 		return ret
 	}
 	return *o.Dev2
@@ -829,7 +564,7 @@ func (o *CreateContainerRequest) GetDev2() GetContainerConfig200ResponseDataDev0
 
 // GetDev2Ok returns a tuple with the Dev2 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetDev2Ok() (*GetContainerConfig200ResponseDataDev0, bool) {
+func (o *CreateContainerRequest) GetDev2Ok() (*CreateContainerRequestDev0, bool) {
 	if o == nil || IsNil(o.Dev2) {
 		return nil, false
 	}
@@ -845,15 +580,15 @@ func (o *CreateContainerRequest) HasDev2() bool {
 	return false
 }
 
-// SetDev2 gets a reference to the given GetContainerConfig200ResponseDataDev0 and assigns it to the Dev2 field.
-func (o *CreateContainerRequest) SetDev2(v GetContainerConfig200ResponseDataDev0) {
+// SetDev2 gets a reference to the given CreateContainerRequestDev0 and assigns it to the Dev2 field.
+func (o *CreateContainerRequest) SetDev2(v CreateContainerRequestDev0) {
 	o.Dev2 = &v
 }
 
 // GetDev3 returns the Dev3 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetDev3() GetContainerConfig200ResponseDataDev0 {
+func (o *CreateContainerRequest) GetDev3() CreateContainerRequestDev0 {
 	if o == nil || IsNil(o.Dev3) {
-		var ret GetContainerConfig200ResponseDataDev0
+		var ret CreateContainerRequestDev0
 		return ret
 	}
 	return *o.Dev3
@@ -861,7 +596,7 @@ func (o *CreateContainerRequest) GetDev3() GetContainerConfig200ResponseDataDev0
 
 // GetDev3Ok returns a tuple with the Dev3 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetDev3Ok() (*GetContainerConfig200ResponseDataDev0, bool) {
+func (o *CreateContainerRequest) GetDev3Ok() (*CreateContainerRequestDev0, bool) {
 	if o == nil || IsNil(o.Dev3) {
 		return nil, false
 	}
@@ -877,15 +612,15 @@ func (o *CreateContainerRequest) HasDev3() bool {
 	return false
 }
 
-// SetDev3 gets a reference to the given GetContainerConfig200ResponseDataDev0 and assigns it to the Dev3 field.
-func (o *CreateContainerRequest) SetDev3(v GetContainerConfig200ResponseDataDev0) {
+// SetDev3 gets a reference to the given CreateContainerRequestDev0 and assigns it to the Dev3 field.
+func (o *CreateContainerRequest) SetDev3(v CreateContainerRequestDev0) {
 	o.Dev3 = &v
 }
 
 // GetDev4 returns the Dev4 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetDev4() GetContainerConfig200ResponseDataDev0 {
+func (o *CreateContainerRequest) GetDev4() CreateContainerRequestDev0 {
 	if o == nil || IsNil(o.Dev4) {
-		var ret GetContainerConfig200ResponseDataDev0
+		var ret CreateContainerRequestDev0
 		return ret
 	}
 	return *o.Dev4
@@ -893,7 +628,7 @@ func (o *CreateContainerRequest) GetDev4() GetContainerConfig200ResponseDataDev0
 
 // GetDev4Ok returns a tuple with the Dev4 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetDev4Ok() (*GetContainerConfig200ResponseDataDev0, bool) {
+func (o *CreateContainerRequest) GetDev4Ok() (*CreateContainerRequestDev0, bool) {
 	if o == nil || IsNil(o.Dev4) {
 		return nil, false
 	}
@@ -909,15 +644,15 @@ func (o *CreateContainerRequest) HasDev4() bool {
 	return false
 }
 
-// SetDev4 gets a reference to the given GetContainerConfig200ResponseDataDev0 and assigns it to the Dev4 field.
-func (o *CreateContainerRequest) SetDev4(v GetContainerConfig200ResponseDataDev0) {
+// SetDev4 gets a reference to the given CreateContainerRequestDev0 and assigns it to the Dev4 field.
+func (o *CreateContainerRequest) SetDev4(v CreateContainerRequestDev0) {
 	o.Dev4 = &v
 }
 
 // GetDev5 returns the Dev5 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetDev5() GetContainerConfig200ResponseDataDev0 {
+func (o *CreateContainerRequest) GetDev5() CreateContainerRequestDev0 {
 	if o == nil || IsNil(o.Dev5) {
-		var ret GetContainerConfig200ResponseDataDev0
+		var ret CreateContainerRequestDev0
 		return ret
 	}
 	return *o.Dev5
@@ -925,7 +660,7 @@ func (o *CreateContainerRequest) GetDev5() GetContainerConfig200ResponseDataDev0
 
 // GetDev5Ok returns a tuple with the Dev5 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetDev5Ok() (*GetContainerConfig200ResponseDataDev0, bool) {
+func (o *CreateContainerRequest) GetDev5Ok() (*CreateContainerRequestDev0, bool) {
 	if o == nil || IsNil(o.Dev5) {
 		return nil, false
 	}
@@ -941,15 +676,15 @@ func (o *CreateContainerRequest) HasDev5() bool {
 	return false
 }
 
-// SetDev5 gets a reference to the given GetContainerConfig200ResponseDataDev0 and assigns it to the Dev5 field.
-func (o *CreateContainerRequest) SetDev5(v GetContainerConfig200ResponseDataDev0) {
+// SetDev5 gets a reference to the given CreateContainerRequestDev0 and assigns it to the Dev5 field.
+func (o *CreateContainerRequest) SetDev5(v CreateContainerRequestDev0) {
 	o.Dev5 = &v
 }
 
 // GetDev6 returns the Dev6 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetDev6() GetContainerConfig200ResponseDataDev0 {
+func (o *CreateContainerRequest) GetDev6() CreateContainerRequestDev0 {
 	if o == nil || IsNil(o.Dev6) {
-		var ret GetContainerConfig200ResponseDataDev0
+		var ret CreateContainerRequestDev0
 		return ret
 	}
 	return *o.Dev6
@@ -957,7 +692,7 @@ func (o *CreateContainerRequest) GetDev6() GetContainerConfig200ResponseDataDev0
 
 // GetDev6Ok returns a tuple with the Dev6 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetDev6Ok() (*GetContainerConfig200ResponseDataDev0, bool) {
+func (o *CreateContainerRequest) GetDev6Ok() (*CreateContainerRequestDev0, bool) {
 	if o == nil || IsNil(o.Dev6) {
 		return nil, false
 	}
@@ -973,15 +708,15 @@ func (o *CreateContainerRequest) HasDev6() bool {
 	return false
 }
 
-// SetDev6 gets a reference to the given GetContainerConfig200ResponseDataDev0 and assigns it to the Dev6 field.
-func (o *CreateContainerRequest) SetDev6(v GetContainerConfig200ResponseDataDev0) {
+// SetDev6 gets a reference to the given CreateContainerRequestDev0 and assigns it to the Dev6 field.
+func (o *CreateContainerRequest) SetDev6(v CreateContainerRequestDev0) {
 	o.Dev6 = &v
 }
 
 // GetDev7 returns the Dev7 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetDev7() GetContainerConfig200ResponseDataDev0 {
+func (o *CreateContainerRequest) GetDev7() CreateContainerRequestDev0 {
 	if o == nil || IsNil(o.Dev7) {
-		var ret GetContainerConfig200ResponseDataDev0
+		var ret CreateContainerRequestDev0
 		return ret
 	}
 	return *o.Dev7
@@ -989,7 +724,7 @@ func (o *CreateContainerRequest) GetDev7() GetContainerConfig200ResponseDataDev0
 
 // GetDev7Ok returns a tuple with the Dev7 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetDev7Ok() (*GetContainerConfig200ResponseDataDev0, bool) {
+func (o *CreateContainerRequest) GetDev7Ok() (*CreateContainerRequestDev0, bool) {
 	if o == nil || IsNil(o.Dev7) {
 		return nil, false
 	}
@@ -1005,15 +740,15 @@ func (o *CreateContainerRequest) HasDev7() bool {
 	return false
 }
 
-// SetDev7 gets a reference to the given GetContainerConfig200ResponseDataDev0 and assigns it to the Dev7 field.
-func (o *CreateContainerRequest) SetDev7(v GetContainerConfig200ResponseDataDev0) {
+// SetDev7 gets a reference to the given CreateContainerRequestDev0 and assigns it to the Dev7 field.
+func (o *CreateContainerRequest) SetDev7(v CreateContainerRequestDev0) {
 	o.Dev7 = &v
 }
 
 // GetDev8 returns the Dev8 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetDev8() GetContainerConfig200ResponseDataDev0 {
+func (o *CreateContainerRequest) GetDev8() CreateContainerRequestDev0 {
 	if o == nil || IsNil(o.Dev8) {
-		var ret GetContainerConfig200ResponseDataDev0
+		var ret CreateContainerRequestDev0
 		return ret
 	}
 	return *o.Dev8
@@ -1021,7 +756,7 @@ func (o *CreateContainerRequest) GetDev8() GetContainerConfig200ResponseDataDev0
 
 // GetDev8Ok returns a tuple with the Dev8 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetDev8Ok() (*GetContainerConfig200ResponseDataDev0, bool) {
+func (o *CreateContainerRequest) GetDev8Ok() (*CreateContainerRequestDev0, bool) {
 	if o == nil || IsNil(o.Dev8) {
 		return nil, false
 	}
@@ -1037,15 +772,15 @@ func (o *CreateContainerRequest) HasDev8() bool {
 	return false
 }
 
-// SetDev8 gets a reference to the given GetContainerConfig200ResponseDataDev0 and assigns it to the Dev8 field.
-func (o *CreateContainerRequest) SetDev8(v GetContainerConfig200ResponseDataDev0) {
+// SetDev8 gets a reference to the given CreateContainerRequestDev0 and assigns it to the Dev8 field.
+func (o *CreateContainerRequest) SetDev8(v CreateContainerRequestDev0) {
 	o.Dev8 = &v
 }
 
 // GetDev9 returns the Dev9 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetDev9() GetContainerConfig200ResponseDataDev0 {
+func (o *CreateContainerRequest) GetDev9() CreateContainerRequestDev0 {
 	if o == nil || IsNil(o.Dev9) {
-		var ret GetContainerConfig200ResponseDataDev0
+		var ret CreateContainerRequestDev0
 		return ret
 	}
 	return *o.Dev9
@@ -1053,7 +788,7 @@ func (o *CreateContainerRequest) GetDev9() GetContainerConfig200ResponseDataDev0
 
 // GetDev9Ok returns a tuple with the Dev9 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetDev9Ok() (*GetContainerConfig200ResponseDataDev0, bool) {
+func (o *CreateContainerRequest) GetDev9Ok() (*CreateContainerRequestDev0, bool) {
 	if o == nil || IsNil(o.Dev9) {
 		return nil, false
 	}
@@ -1069,15 +804,15 @@ func (o *CreateContainerRequest) HasDev9() bool {
 	return false
 }
 
-// SetDev9 gets a reference to the given GetContainerConfig200ResponseDataDev0 and assigns it to the Dev9 field.
-func (o *CreateContainerRequest) SetDev9(v GetContainerConfig200ResponseDataDev0) {
+// SetDev9 gets a reference to the given CreateContainerRequestDev0 and assigns it to the Dev9 field.
+func (o *CreateContainerRequest) SetDev9(v CreateContainerRequestDev0) {
 	o.Dev9 = &v
 }
 
 // GetDev10 returns the Dev10 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetDev10() GetContainerConfig200ResponseDataDev0 {
+func (o *CreateContainerRequest) GetDev10() CreateContainerRequestDev0 {
 	if o == nil || IsNil(o.Dev10) {
-		var ret GetContainerConfig200ResponseDataDev0
+		var ret CreateContainerRequestDev0
 		return ret
 	}
 	return *o.Dev10
@@ -1085,7 +820,7 @@ func (o *CreateContainerRequest) GetDev10() GetContainerConfig200ResponseDataDev
 
 // GetDev10Ok returns a tuple with the Dev10 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetDev10Ok() (*GetContainerConfig200ResponseDataDev0, bool) {
+func (o *CreateContainerRequest) GetDev10Ok() (*CreateContainerRequestDev0, bool) {
 	if o == nil || IsNil(o.Dev10) {
 		return nil, false
 	}
@@ -1101,15 +836,15 @@ func (o *CreateContainerRequest) HasDev10() bool {
 	return false
 }
 
-// SetDev10 gets a reference to the given GetContainerConfig200ResponseDataDev0 and assigns it to the Dev10 field.
-func (o *CreateContainerRequest) SetDev10(v GetContainerConfig200ResponseDataDev0) {
+// SetDev10 gets a reference to the given CreateContainerRequestDev0 and assigns it to the Dev10 field.
+func (o *CreateContainerRequest) SetDev10(v CreateContainerRequestDev0) {
 	o.Dev10 = &v
 }
 
 // GetDev11 returns the Dev11 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetDev11() GetContainerConfig200ResponseDataDev0 {
+func (o *CreateContainerRequest) GetDev11() CreateContainerRequestDev0 {
 	if o == nil || IsNil(o.Dev11) {
-		var ret GetContainerConfig200ResponseDataDev0
+		var ret CreateContainerRequestDev0
 		return ret
 	}
 	return *o.Dev11
@@ -1117,7 +852,7 @@ func (o *CreateContainerRequest) GetDev11() GetContainerConfig200ResponseDataDev
 
 // GetDev11Ok returns a tuple with the Dev11 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetDev11Ok() (*GetContainerConfig200ResponseDataDev0, bool) {
+func (o *CreateContainerRequest) GetDev11Ok() (*CreateContainerRequestDev0, bool) {
 	if o == nil || IsNil(o.Dev11) {
 		return nil, false
 	}
@@ -1133,15 +868,15 @@ func (o *CreateContainerRequest) HasDev11() bool {
 	return false
 }
 
-// SetDev11 gets a reference to the given GetContainerConfig200ResponseDataDev0 and assigns it to the Dev11 field.
-func (o *CreateContainerRequest) SetDev11(v GetContainerConfig200ResponseDataDev0) {
+// SetDev11 gets a reference to the given CreateContainerRequestDev0 and assigns it to the Dev11 field.
+func (o *CreateContainerRequest) SetDev11(v CreateContainerRequestDev0) {
 	o.Dev11 = &v
 }
 
 // GetDev12 returns the Dev12 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetDev12() GetContainerConfig200ResponseDataDev0 {
+func (o *CreateContainerRequest) GetDev12() CreateContainerRequestDev0 {
 	if o == nil || IsNil(o.Dev12) {
-		var ret GetContainerConfig200ResponseDataDev0
+		var ret CreateContainerRequestDev0
 		return ret
 	}
 	return *o.Dev12
@@ -1149,7 +884,7 @@ func (o *CreateContainerRequest) GetDev12() GetContainerConfig200ResponseDataDev
 
 // GetDev12Ok returns a tuple with the Dev12 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetDev12Ok() (*GetContainerConfig200ResponseDataDev0, bool) {
+func (o *CreateContainerRequest) GetDev12Ok() (*CreateContainerRequestDev0, bool) {
 	if o == nil || IsNil(o.Dev12) {
 		return nil, false
 	}
@@ -1165,15 +900,15 @@ func (o *CreateContainerRequest) HasDev12() bool {
 	return false
 }
 
-// SetDev12 gets a reference to the given GetContainerConfig200ResponseDataDev0 and assigns it to the Dev12 field.
-func (o *CreateContainerRequest) SetDev12(v GetContainerConfig200ResponseDataDev0) {
+// SetDev12 gets a reference to the given CreateContainerRequestDev0 and assigns it to the Dev12 field.
+func (o *CreateContainerRequest) SetDev12(v CreateContainerRequestDev0) {
 	o.Dev12 = &v
 }
 
 // GetDev13 returns the Dev13 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetDev13() GetContainerConfig200ResponseDataDev0 {
+func (o *CreateContainerRequest) GetDev13() CreateContainerRequestDev0 {
 	if o == nil || IsNil(o.Dev13) {
-		var ret GetContainerConfig200ResponseDataDev0
+		var ret CreateContainerRequestDev0
 		return ret
 	}
 	return *o.Dev13
@@ -1181,7 +916,7 @@ func (o *CreateContainerRequest) GetDev13() GetContainerConfig200ResponseDataDev
 
 // GetDev13Ok returns a tuple with the Dev13 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetDev13Ok() (*GetContainerConfig200ResponseDataDev0, bool) {
+func (o *CreateContainerRequest) GetDev13Ok() (*CreateContainerRequestDev0, bool) {
 	if o == nil || IsNil(o.Dev13) {
 		return nil, false
 	}
@@ -1197,15 +932,15 @@ func (o *CreateContainerRequest) HasDev13() bool {
 	return false
 }
 
-// SetDev13 gets a reference to the given GetContainerConfig200ResponseDataDev0 and assigns it to the Dev13 field.
-func (o *CreateContainerRequest) SetDev13(v GetContainerConfig200ResponseDataDev0) {
+// SetDev13 gets a reference to the given CreateContainerRequestDev0 and assigns it to the Dev13 field.
+func (o *CreateContainerRequest) SetDev13(v CreateContainerRequestDev0) {
 	o.Dev13 = &v
 }
 
 // GetDev14 returns the Dev14 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetDev14() GetContainerConfig200ResponseDataDev0 {
+func (o *CreateContainerRequest) GetDev14() CreateContainerRequestDev0 {
 	if o == nil || IsNil(o.Dev14) {
-		var ret GetContainerConfig200ResponseDataDev0
+		var ret CreateContainerRequestDev0
 		return ret
 	}
 	return *o.Dev14
@@ -1213,7 +948,7 @@ func (o *CreateContainerRequest) GetDev14() GetContainerConfig200ResponseDataDev
 
 // GetDev14Ok returns a tuple with the Dev14 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetDev14Ok() (*GetContainerConfig200ResponseDataDev0, bool) {
+func (o *CreateContainerRequest) GetDev14Ok() (*CreateContainerRequestDev0, bool) {
 	if o == nil || IsNil(o.Dev14) {
 		return nil, false
 	}
@@ -1229,15 +964,15 @@ func (o *CreateContainerRequest) HasDev14() bool {
 	return false
 }
 
-// SetDev14 gets a reference to the given GetContainerConfig200ResponseDataDev0 and assigns it to the Dev14 field.
-func (o *CreateContainerRequest) SetDev14(v GetContainerConfig200ResponseDataDev0) {
+// SetDev14 gets a reference to the given CreateContainerRequestDev0 and assigns it to the Dev14 field.
+func (o *CreateContainerRequest) SetDev14(v CreateContainerRequestDev0) {
 	o.Dev14 = &v
 }
 
 // GetDev15 returns the Dev15 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetDev15() GetContainerConfig200ResponseDataDev0 {
+func (o *CreateContainerRequest) GetDev15() CreateContainerRequestDev0 {
 	if o == nil || IsNil(o.Dev15) {
-		var ret GetContainerConfig200ResponseDataDev0
+		var ret CreateContainerRequestDev0
 		return ret
 	}
 	return *o.Dev15
@@ -1245,7 +980,7 @@ func (o *CreateContainerRequest) GetDev15() GetContainerConfig200ResponseDataDev
 
 // GetDev15Ok returns a tuple with the Dev15 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetDev15Ok() (*GetContainerConfig200ResponseDataDev0, bool) {
+func (o *CreateContainerRequest) GetDev15Ok() (*CreateContainerRequestDev0, bool) {
 	if o == nil || IsNil(o.Dev15) {
 		return nil, false
 	}
@@ -1261,15 +996,15 @@ func (o *CreateContainerRequest) HasDev15() bool {
 	return false
 }
 
-// SetDev15 gets a reference to the given GetContainerConfig200ResponseDataDev0 and assigns it to the Dev15 field.
-func (o *CreateContainerRequest) SetDev15(v GetContainerConfig200ResponseDataDev0) {
+// SetDev15 gets a reference to the given CreateContainerRequestDev0 and assigns it to the Dev15 field.
+func (o *CreateContainerRequest) SetDev15(v CreateContainerRequestDev0) {
 	o.Dev15 = &v
 }
 
 // GetDev16 returns the Dev16 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetDev16() GetContainerConfig200ResponseDataDev0 {
+func (o *CreateContainerRequest) GetDev16() CreateContainerRequestDev0 {
 	if o == nil || IsNil(o.Dev16) {
-		var ret GetContainerConfig200ResponseDataDev0
+		var ret CreateContainerRequestDev0
 		return ret
 	}
 	return *o.Dev16
@@ -1277,7 +1012,7 @@ func (o *CreateContainerRequest) GetDev16() GetContainerConfig200ResponseDataDev
 
 // GetDev16Ok returns a tuple with the Dev16 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetDev16Ok() (*GetContainerConfig200ResponseDataDev0, bool) {
+func (o *CreateContainerRequest) GetDev16Ok() (*CreateContainerRequestDev0, bool) {
 	if o == nil || IsNil(o.Dev16) {
 		return nil, false
 	}
@@ -1293,15 +1028,15 @@ func (o *CreateContainerRequest) HasDev16() bool {
 	return false
 }
 
-// SetDev16 gets a reference to the given GetContainerConfig200ResponseDataDev0 and assigns it to the Dev16 field.
-func (o *CreateContainerRequest) SetDev16(v GetContainerConfig200ResponseDataDev0) {
+// SetDev16 gets a reference to the given CreateContainerRequestDev0 and assigns it to the Dev16 field.
+func (o *CreateContainerRequest) SetDev16(v CreateContainerRequestDev0) {
 	o.Dev16 = &v
 }
 
 // GetDev17 returns the Dev17 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetDev17() GetContainerConfig200ResponseDataDev0 {
+func (o *CreateContainerRequest) GetDev17() CreateContainerRequestDev0 {
 	if o == nil || IsNil(o.Dev17) {
-		var ret GetContainerConfig200ResponseDataDev0
+		var ret CreateContainerRequestDev0
 		return ret
 	}
 	return *o.Dev17
@@ -1309,7 +1044,7 @@ func (o *CreateContainerRequest) GetDev17() GetContainerConfig200ResponseDataDev
 
 // GetDev17Ok returns a tuple with the Dev17 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetDev17Ok() (*GetContainerConfig200ResponseDataDev0, bool) {
+func (o *CreateContainerRequest) GetDev17Ok() (*CreateContainerRequestDev0, bool) {
 	if o == nil || IsNil(o.Dev17) {
 		return nil, false
 	}
@@ -1325,15 +1060,15 @@ func (o *CreateContainerRequest) HasDev17() bool {
 	return false
 }
 
-// SetDev17 gets a reference to the given GetContainerConfig200ResponseDataDev0 and assigns it to the Dev17 field.
-func (o *CreateContainerRequest) SetDev17(v GetContainerConfig200ResponseDataDev0) {
+// SetDev17 gets a reference to the given CreateContainerRequestDev0 and assigns it to the Dev17 field.
+func (o *CreateContainerRequest) SetDev17(v CreateContainerRequestDev0) {
 	o.Dev17 = &v
 }
 
 // GetDev18 returns the Dev18 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetDev18() GetContainerConfig200ResponseDataDev0 {
+func (o *CreateContainerRequest) GetDev18() CreateContainerRequestDev0 {
 	if o == nil || IsNil(o.Dev18) {
-		var ret GetContainerConfig200ResponseDataDev0
+		var ret CreateContainerRequestDev0
 		return ret
 	}
 	return *o.Dev18
@@ -1341,7 +1076,7 @@ func (o *CreateContainerRequest) GetDev18() GetContainerConfig200ResponseDataDev
 
 // GetDev18Ok returns a tuple with the Dev18 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetDev18Ok() (*GetContainerConfig200ResponseDataDev0, bool) {
+func (o *CreateContainerRequest) GetDev18Ok() (*CreateContainerRequestDev0, bool) {
 	if o == nil || IsNil(o.Dev18) {
 		return nil, false
 	}
@@ -1357,15 +1092,15 @@ func (o *CreateContainerRequest) HasDev18() bool {
 	return false
 }
 
-// SetDev18 gets a reference to the given GetContainerConfig200ResponseDataDev0 and assigns it to the Dev18 field.
-func (o *CreateContainerRequest) SetDev18(v GetContainerConfig200ResponseDataDev0) {
+// SetDev18 gets a reference to the given CreateContainerRequestDev0 and assigns it to the Dev18 field.
+func (o *CreateContainerRequest) SetDev18(v CreateContainerRequestDev0) {
 	o.Dev18 = &v
 }
 
 // GetDev19 returns the Dev19 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetDev19() GetContainerConfig200ResponseDataDev0 {
+func (o *CreateContainerRequest) GetDev19() CreateContainerRequestDev0 {
 	if o == nil || IsNil(o.Dev19) {
-		var ret GetContainerConfig200ResponseDataDev0
+		var ret CreateContainerRequestDev0
 		return ret
 	}
 	return *o.Dev19
@@ -1373,7 +1108,7 @@ func (o *CreateContainerRequest) GetDev19() GetContainerConfig200ResponseDataDev
 
 // GetDev19Ok returns a tuple with the Dev19 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetDev19Ok() (*GetContainerConfig200ResponseDataDev0, bool) {
+func (o *CreateContainerRequest) GetDev19Ok() (*CreateContainerRequestDev0, bool) {
 	if o == nil || IsNil(o.Dev19) {
 		return nil, false
 	}
@@ -1389,15 +1124,15 @@ func (o *CreateContainerRequest) HasDev19() bool {
 	return false
 }
 
-// SetDev19 gets a reference to the given GetContainerConfig200ResponseDataDev0 and assigns it to the Dev19 field.
-func (o *CreateContainerRequest) SetDev19(v GetContainerConfig200ResponseDataDev0) {
+// SetDev19 gets a reference to the given CreateContainerRequestDev0 and assigns it to the Dev19 field.
+func (o *CreateContainerRequest) SetDev19(v CreateContainerRequestDev0) {
 	o.Dev19 = &v
 }
 
 // GetDev20 returns the Dev20 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetDev20() GetContainerConfig200ResponseDataDev0 {
+func (o *CreateContainerRequest) GetDev20() CreateContainerRequestDev0 {
 	if o == nil || IsNil(o.Dev20) {
-		var ret GetContainerConfig200ResponseDataDev0
+		var ret CreateContainerRequestDev0
 		return ret
 	}
 	return *o.Dev20
@@ -1405,7 +1140,7 @@ func (o *CreateContainerRequest) GetDev20() GetContainerConfig200ResponseDataDev
 
 // GetDev20Ok returns a tuple with the Dev20 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetDev20Ok() (*GetContainerConfig200ResponseDataDev0, bool) {
+func (o *CreateContainerRequest) GetDev20Ok() (*CreateContainerRequestDev0, bool) {
 	if o == nil || IsNil(o.Dev20) {
 		return nil, false
 	}
@@ -1421,15 +1156,15 @@ func (o *CreateContainerRequest) HasDev20() bool {
 	return false
 }
 
-// SetDev20 gets a reference to the given GetContainerConfig200ResponseDataDev0 and assigns it to the Dev20 field.
-func (o *CreateContainerRequest) SetDev20(v GetContainerConfig200ResponseDataDev0) {
+// SetDev20 gets a reference to the given CreateContainerRequestDev0 and assigns it to the Dev20 field.
+func (o *CreateContainerRequest) SetDev20(v CreateContainerRequestDev0) {
 	o.Dev20 = &v
 }
 
 // GetDev21 returns the Dev21 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetDev21() GetContainerConfig200ResponseDataDev0 {
+func (o *CreateContainerRequest) GetDev21() CreateContainerRequestDev0 {
 	if o == nil || IsNil(o.Dev21) {
-		var ret GetContainerConfig200ResponseDataDev0
+		var ret CreateContainerRequestDev0
 		return ret
 	}
 	return *o.Dev21
@@ -1437,7 +1172,7 @@ func (o *CreateContainerRequest) GetDev21() GetContainerConfig200ResponseDataDev
 
 // GetDev21Ok returns a tuple with the Dev21 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetDev21Ok() (*GetContainerConfig200ResponseDataDev0, bool) {
+func (o *CreateContainerRequest) GetDev21Ok() (*CreateContainerRequestDev0, bool) {
 	if o == nil || IsNil(o.Dev21) {
 		return nil, false
 	}
@@ -1453,15 +1188,15 @@ func (o *CreateContainerRequest) HasDev21() bool {
 	return false
 }
 
-// SetDev21 gets a reference to the given GetContainerConfig200ResponseDataDev0 and assigns it to the Dev21 field.
-func (o *CreateContainerRequest) SetDev21(v GetContainerConfig200ResponseDataDev0) {
+// SetDev21 gets a reference to the given CreateContainerRequestDev0 and assigns it to the Dev21 field.
+func (o *CreateContainerRequest) SetDev21(v CreateContainerRequestDev0) {
 	o.Dev21 = &v
 }
 
 // GetDev22 returns the Dev22 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetDev22() GetContainerConfig200ResponseDataDev0 {
+func (o *CreateContainerRequest) GetDev22() CreateContainerRequestDev0 {
 	if o == nil || IsNil(o.Dev22) {
-		var ret GetContainerConfig200ResponseDataDev0
+		var ret CreateContainerRequestDev0
 		return ret
 	}
 	return *o.Dev22
@@ -1469,7 +1204,7 @@ func (o *CreateContainerRequest) GetDev22() GetContainerConfig200ResponseDataDev
 
 // GetDev22Ok returns a tuple with the Dev22 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetDev22Ok() (*GetContainerConfig200ResponseDataDev0, bool) {
+func (o *CreateContainerRequest) GetDev22Ok() (*CreateContainerRequestDev0, bool) {
 	if o == nil || IsNil(o.Dev22) {
 		return nil, false
 	}
@@ -1485,15 +1220,15 @@ func (o *CreateContainerRequest) HasDev22() bool {
 	return false
 }
 
-// SetDev22 gets a reference to the given GetContainerConfig200ResponseDataDev0 and assigns it to the Dev22 field.
-func (o *CreateContainerRequest) SetDev22(v GetContainerConfig200ResponseDataDev0) {
+// SetDev22 gets a reference to the given CreateContainerRequestDev0 and assigns it to the Dev22 field.
+func (o *CreateContainerRequest) SetDev22(v CreateContainerRequestDev0) {
 	o.Dev22 = &v
 }
 
 // GetDev23 returns the Dev23 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetDev23() GetContainerConfig200ResponseDataDev0 {
+func (o *CreateContainerRequest) GetDev23() CreateContainerRequestDev0 {
 	if o == nil || IsNil(o.Dev23) {
-		var ret GetContainerConfig200ResponseDataDev0
+		var ret CreateContainerRequestDev0
 		return ret
 	}
 	return *o.Dev23
@@ -1501,7 +1236,7 @@ func (o *CreateContainerRequest) GetDev23() GetContainerConfig200ResponseDataDev
 
 // GetDev23Ok returns a tuple with the Dev23 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetDev23Ok() (*GetContainerConfig200ResponseDataDev0, bool) {
+func (o *CreateContainerRequest) GetDev23Ok() (*CreateContainerRequestDev0, bool) {
 	if o == nil || IsNil(o.Dev23) {
 		return nil, false
 	}
@@ -1517,15 +1252,15 @@ func (o *CreateContainerRequest) HasDev23() bool {
 	return false
 }
 
-// SetDev23 gets a reference to the given GetContainerConfig200ResponseDataDev0 and assigns it to the Dev23 field.
-func (o *CreateContainerRequest) SetDev23(v GetContainerConfig200ResponseDataDev0) {
+// SetDev23 gets a reference to the given CreateContainerRequestDev0 and assigns it to the Dev23 field.
+func (o *CreateContainerRequest) SetDev23(v CreateContainerRequestDev0) {
 	o.Dev23 = &v
 }
 
 // GetDev24 returns the Dev24 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetDev24() GetContainerConfig200ResponseDataDev0 {
+func (o *CreateContainerRequest) GetDev24() CreateContainerRequestDev0 {
 	if o == nil || IsNil(o.Dev24) {
-		var ret GetContainerConfig200ResponseDataDev0
+		var ret CreateContainerRequestDev0
 		return ret
 	}
 	return *o.Dev24
@@ -1533,7 +1268,7 @@ func (o *CreateContainerRequest) GetDev24() GetContainerConfig200ResponseDataDev
 
 // GetDev24Ok returns a tuple with the Dev24 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetDev24Ok() (*GetContainerConfig200ResponseDataDev0, bool) {
+func (o *CreateContainerRequest) GetDev24Ok() (*CreateContainerRequestDev0, bool) {
 	if o == nil || IsNil(o.Dev24) {
 		return nil, false
 	}
@@ -1549,15 +1284,15 @@ func (o *CreateContainerRequest) HasDev24() bool {
 	return false
 }
 
-// SetDev24 gets a reference to the given GetContainerConfig200ResponseDataDev0 and assigns it to the Dev24 field.
-func (o *CreateContainerRequest) SetDev24(v GetContainerConfig200ResponseDataDev0) {
+// SetDev24 gets a reference to the given CreateContainerRequestDev0 and assigns it to the Dev24 field.
+func (o *CreateContainerRequest) SetDev24(v CreateContainerRequestDev0) {
 	o.Dev24 = &v
 }
 
 // GetDev25 returns the Dev25 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetDev25() GetContainerConfig200ResponseDataDev0 {
+func (o *CreateContainerRequest) GetDev25() CreateContainerRequestDev0 {
 	if o == nil || IsNil(o.Dev25) {
-		var ret GetContainerConfig200ResponseDataDev0
+		var ret CreateContainerRequestDev0
 		return ret
 	}
 	return *o.Dev25
@@ -1565,7 +1300,7 @@ func (o *CreateContainerRequest) GetDev25() GetContainerConfig200ResponseDataDev
 
 // GetDev25Ok returns a tuple with the Dev25 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetDev25Ok() (*GetContainerConfig200ResponseDataDev0, bool) {
+func (o *CreateContainerRequest) GetDev25Ok() (*CreateContainerRequestDev0, bool) {
 	if o == nil || IsNil(o.Dev25) {
 		return nil, false
 	}
@@ -1581,15 +1316,15 @@ func (o *CreateContainerRequest) HasDev25() bool {
 	return false
 }
 
-// SetDev25 gets a reference to the given GetContainerConfig200ResponseDataDev0 and assigns it to the Dev25 field.
-func (o *CreateContainerRequest) SetDev25(v GetContainerConfig200ResponseDataDev0) {
+// SetDev25 gets a reference to the given CreateContainerRequestDev0 and assigns it to the Dev25 field.
+func (o *CreateContainerRequest) SetDev25(v CreateContainerRequestDev0) {
 	o.Dev25 = &v
 }
 
 // GetDev26 returns the Dev26 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetDev26() GetContainerConfig200ResponseDataDev0 {
+func (o *CreateContainerRequest) GetDev26() CreateContainerRequestDev0 {
 	if o == nil || IsNil(o.Dev26) {
-		var ret GetContainerConfig200ResponseDataDev0
+		var ret CreateContainerRequestDev0
 		return ret
 	}
 	return *o.Dev26
@@ -1597,7 +1332,7 @@ func (o *CreateContainerRequest) GetDev26() GetContainerConfig200ResponseDataDev
 
 // GetDev26Ok returns a tuple with the Dev26 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetDev26Ok() (*GetContainerConfig200ResponseDataDev0, bool) {
+func (o *CreateContainerRequest) GetDev26Ok() (*CreateContainerRequestDev0, bool) {
 	if o == nil || IsNil(o.Dev26) {
 		return nil, false
 	}
@@ -1613,15 +1348,15 @@ func (o *CreateContainerRequest) HasDev26() bool {
 	return false
 }
 
-// SetDev26 gets a reference to the given GetContainerConfig200ResponseDataDev0 and assigns it to the Dev26 field.
-func (o *CreateContainerRequest) SetDev26(v GetContainerConfig200ResponseDataDev0) {
+// SetDev26 gets a reference to the given CreateContainerRequestDev0 and assigns it to the Dev26 field.
+func (o *CreateContainerRequest) SetDev26(v CreateContainerRequestDev0) {
 	o.Dev26 = &v
 }
 
 // GetDev27 returns the Dev27 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetDev27() GetContainerConfig200ResponseDataDev0 {
+func (o *CreateContainerRequest) GetDev27() CreateContainerRequestDev0 {
 	if o == nil || IsNil(o.Dev27) {
-		var ret GetContainerConfig200ResponseDataDev0
+		var ret CreateContainerRequestDev0
 		return ret
 	}
 	return *o.Dev27
@@ -1629,7 +1364,7 @@ func (o *CreateContainerRequest) GetDev27() GetContainerConfig200ResponseDataDev
 
 // GetDev27Ok returns a tuple with the Dev27 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetDev27Ok() (*GetContainerConfig200ResponseDataDev0, bool) {
+func (o *CreateContainerRequest) GetDev27Ok() (*CreateContainerRequestDev0, bool) {
 	if o == nil || IsNil(o.Dev27) {
 		return nil, false
 	}
@@ -1645,15 +1380,15 @@ func (o *CreateContainerRequest) HasDev27() bool {
 	return false
 }
 
-// SetDev27 gets a reference to the given GetContainerConfig200ResponseDataDev0 and assigns it to the Dev27 field.
-func (o *CreateContainerRequest) SetDev27(v GetContainerConfig200ResponseDataDev0) {
+// SetDev27 gets a reference to the given CreateContainerRequestDev0 and assigns it to the Dev27 field.
+func (o *CreateContainerRequest) SetDev27(v CreateContainerRequestDev0) {
 	o.Dev27 = &v
 }
 
 // GetDev28 returns the Dev28 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetDev28() GetContainerConfig200ResponseDataDev0 {
+func (o *CreateContainerRequest) GetDev28() CreateContainerRequestDev0 {
 	if o == nil || IsNil(o.Dev28) {
-		var ret GetContainerConfig200ResponseDataDev0
+		var ret CreateContainerRequestDev0
 		return ret
 	}
 	return *o.Dev28
@@ -1661,7 +1396,7 @@ func (o *CreateContainerRequest) GetDev28() GetContainerConfig200ResponseDataDev
 
 // GetDev28Ok returns a tuple with the Dev28 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetDev28Ok() (*GetContainerConfig200ResponseDataDev0, bool) {
+func (o *CreateContainerRequest) GetDev28Ok() (*CreateContainerRequestDev0, bool) {
 	if o == nil || IsNil(o.Dev28) {
 		return nil, false
 	}
@@ -1677,15 +1412,15 @@ func (o *CreateContainerRequest) HasDev28() bool {
 	return false
 }
 
-// SetDev28 gets a reference to the given GetContainerConfig200ResponseDataDev0 and assigns it to the Dev28 field.
-func (o *CreateContainerRequest) SetDev28(v GetContainerConfig200ResponseDataDev0) {
+// SetDev28 gets a reference to the given CreateContainerRequestDev0 and assigns it to the Dev28 field.
+func (o *CreateContainerRequest) SetDev28(v CreateContainerRequestDev0) {
 	o.Dev28 = &v
 }
 
 // GetDev29 returns the Dev29 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetDev29() GetContainerConfig200ResponseDataDev0 {
+func (o *CreateContainerRequest) GetDev29() CreateContainerRequestDev0 {
 	if o == nil || IsNil(o.Dev29) {
-		var ret GetContainerConfig200ResponseDataDev0
+		var ret CreateContainerRequestDev0
 		return ret
 	}
 	return *o.Dev29
@@ -1693,7 +1428,7 @@ func (o *CreateContainerRequest) GetDev29() GetContainerConfig200ResponseDataDev
 
 // GetDev29Ok returns a tuple with the Dev29 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetDev29Ok() (*GetContainerConfig200ResponseDataDev0, bool) {
+func (o *CreateContainerRequest) GetDev29Ok() (*CreateContainerRequestDev0, bool) {
 	if o == nil || IsNil(o.Dev29) {
 		return nil, false
 	}
@@ -1709,15 +1444,15 @@ func (o *CreateContainerRequest) HasDev29() bool {
 	return false
 }
 
-// SetDev29 gets a reference to the given GetContainerConfig200ResponseDataDev0 and assigns it to the Dev29 field.
-func (o *CreateContainerRequest) SetDev29(v GetContainerConfig200ResponseDataDev0) {
+// SetDev29 gets a reference to the given CreateContainerRequestDev0 and assigns it to the Dev29 field.
+func (o *CreateContainerRequest) SetDev29(v CreateContainerRequestDev0) {
 	o.Dev29 = &v
 }
 
 // GetFeatures returns the Features field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetFeatures() GetContainerConfig200ResponseDataFeatures {
+func (o *CreateContainerRequest) GetFeatures() CreateContainerRequestFeatures {
 	if o == nil || IsNil(o.Features) {
-		var ret GetContainerConfig200ResponseDataFeatures
+		var ret CreateContainerRequestFeatures
 		return ret
 	}
 	return *o.Features
@@ -1725,7 +1460,7 @@ func (o *CreateContainerRequest) GetFeatures() GetContainerConfig200ResponseData
 
 // GetFeaturesOk returns a tuple with the Features field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetFeaturesOk() (*GetContainerConfig200ResponseDataFeatures, bool) {
+func (o *CreateContainerRequest) GetFeaturesOk() (*CreateContainerRequestFeatures, bool) {
 	if o == nil || IsNil(o.Features) {
 		return nil, false
 	}
@@ -1741,8 +1476,8 @@ func (o *CreateContainerRequest) HasFeatures() bool {
 	return false
 }
 
-// SetFeatures gets a reference to the given GetContainerConfig200ResponseDataFeatures and assigns it to the Features field.
-func (o *CreateContainerRequest) SetFeatures(v GetContainerConfig200ResponseDataFeatures) {
+// SetFeatures gets a reference to the given CreateContainerRequestFeatures and assigns it to the Features field.
+func (o *CreateContainerRequest) SetFeatures(v CreateContainerRequestFeatures) {
 	o.Features = &v
 }
 
@@ -1939,9 +1674,9 @@ func (o *CreateContainerRequest) SetMemory(v int64) {
 }
 
 // GetMp0 returns the Mp0 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp0() GetContainerConfig200ResponseDataMp0 {
+func (o *CreateContainerRequest) GetMp0() CreateContainerRequestMp0 {
 	if o == nil || IsNil(o.Mp0) {
-		var ret GetContainerConfig200ResponseDataMp0
+		var ret CreateContainerRequestMp0
 		return ret
 	}
 	return *o.Mp0
@@ -1949,7 +1684,7 @@ func (o *CreateContainerRequest) GetMp0() GetContainerConfig200ResponseDataMp0 {
 
 // GetMp0Ok returns a tuple with the Mp0 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp0Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
+func (o *CreateContainerRequest) GetMp0Ok() (*CreateContainerRequestMp0, bool) {
 	if o == nil || IsNil(o.Mp0) {
 		return nil, false
 	}
@@ -1965,15 +1700,15 @@ func (o *CreateContainerRequest) HasMp0() bool {
 	return false
 }
 
-// SetMp0 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp0 field.
-func (o *CreateContainerRequest) SetMp0(v GetContainerConfig200ResponseDataMp0) {
+// SetMp0 gets a reference to the given CreateContainerRequestMp0 and assigns it to the Mp0 field.
+func (o *CreateContainerRequest) SetMp0(v CreateContainerRequestMp0) {
 	o.Mp0 = &v
 }
 
 // GetMp1 returns the Mp1 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp1() GetContainerConfig200ResponseDataMp0 {
+func (o *CreateContainerRequest) GetMp1() CreateContainerRequestMp0 {
 	if o == nil || IsNil(o.Mp1) {
-		var ret GetContainerConfig200ResponseDataMp0
+		var ret CreateContainerRequestMp0
 		return ret
 	}
 	return *o.Mp1
@@ -1981,7 +1716,7 @@ func (o *CreateContainerRequest) GetMp1() GetContainerConfig200ResponseDataMp0 {
 
 // GetMp1Ok returns a tuple with the Mp1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp1Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
+func (o *CreateContainerRequest) GetMp1Ok() (*CreateContainerRequestMp0, bool) {
 	if o == nil || IsNil(o.Mp1) {
 		return nil, false
 	}
@@ -1997,15 +1732,15 @@ func (o *CreateContainerRequest) HasMp1() bool {
 	return false
 }
 
-// SetMp1 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp1 field.
-func (o *CreateContainerRequest) SetMp1(v GetContainerConfig200ResponseDataMp0) {
+// SetMp1 gets a reference to the given CreateContainerRequestMp0 and assigns it to the Mp1 field.
+func (o *CreateContainerRequest) SetMp1(v CreateContainerRequestMp0) {
 	o.Mp1 = &v
 }
 
 // GetMp2 returns the Mp2 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp2() GetContainerConfig200ResponseDataMp0 {
+func (o *CreateContainerRequest) GetMp2() CreateContainerRequestMp0 {
 	if o == nil || IsNil(o.Mp2) {
-		var ret GetContainerConfig200ResponseDataMp0
+		var ret CreateContainerRequestMp0
 		return ret
 	}
 	return *o.Mp2
@@ -2013,7 +1748,7 @@ func (o *CreateContainerRequest) GetMp2() GetContainerConfig200ResponseDataMp0 {
 
 // GetMp2Ok returns a tuple with the Mp2 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp2Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
+func (o *CreateContainerRequest) GetMp2Ok() (*CreateContainerRequestMp0, bool) {
 	if o == nil || IsNil(o.Mp2) {
 		return nil, false
 	}
@@ -2029,15 +1764,15 @@ func (o *CreateContainerRequest) HasMp2() bool {
 	return false
 }
 
-// SetMp2 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp2 field.
-func (o *CreateContainerRequest) SetMp2(v GetContainerConfig200ResponseDataMp0) {
+// SetMp2 gets a reference to the given CreateContainerRequestMp0 and assigns it to the Mp2 field.
+func (o *CreateContainerRequest) SetMp2(v CreateContainerRequestMp0) {
 	o.Mp2 = &v
 }
 
 // GetMp3 returns the Mp3 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp3() GetContainerConfig200ResponseDataMp0 {
+func (o *CreateContainerRequest) GetMp3() CreateContainerRequestMp0 {
 	if o == nil || IsNil(o.Mp3) {
-		var ret GetContainerConfig200ResponseDataMp0
+		var ret CreateContainerRequestMp0
 		return ret
 	}
 	return *o.Mp3
@@ -2045,7 +1780,7 @@ func (o *CreateContainerRequest) GetMp3() GetContainerConfig200ResponseDataMp0 {
 
 // GetMp3Ok returns a tuple with the Mp3 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp3Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
+func (o *CreateContainerRequest) GetMp3Ok() (*CreateContainerRequestMp0, bool) {
 	if o == nil || IsNil(o.Mp3) {
 		return nil, false
 	}
@@ -2061,15 +1796,15 @@ func (o *CreateContainerRequest) HasMp3() bool {
 	return false
 }
 
-// SetMp3 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp3 field.
-func (o *CreateContainerRequest) SetMp3(v GetContainerConfig200ResponseDataMp0) {
+// SetMp3 gets a reference to the given CreateContainerRequestMp0 and assigns it to the Mp3 field.
+func (o *CreateContainerRequest) SetMp3(v CreateContainerRequestMp0) {
 	o.Mp3 = &v
 }
 
 // GetMp4 returns the Mp4 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp4() GetContainerConfig200ResponseDataMp0 {
+func (o *CreateContainerRequest) GetMp4() CreateContainerRequestMp0 {
 	if o == nil || IsNil(o.Mp4) {
-		var ret GetContainerConfig200ResponseDataMp0
+		var ret CreateContainerRequestMp0
 		return ret
 	}
 	return *o.Mp4
@@ -2077,7 +1812,7 @@ func (o *CreateContainerRequest) GetMp4() GetContainerConfig200ResponseDataMp0 {
 
 // GetMp4Ok returns a tuple with the Mp4 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp4Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
+func (o *CreateContainerRequest) GetMp4Ok() (*CreateContainerRequestMp0, bool) {
 	if o == nil || IsNil(o.Mp4) {
 		return nil, false
 	}
@@ -2093,15 +1828,15 @@ func (o *CreateContainerRequest) HasMp4() bool {
 	return false
 }
 
-// SetMp4 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp4 field.
-func (o *CreateContainerRequest) SetMp4(v GetContainerConfig200ResponseDataMp0) {
+// SetMp4 gets a reference to the given CreateContainerRequestMp0 and assigns it to the Mp4 field.
+func (o *CreateContainerRequest) SetMp4(v CreateContainerRequestMp0) {
 	o.Mp4 = &v
 }
 
 // GetMp5 returns the Mp5 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp5() GetContainerConfig200ResponseDataMp0 {
+func (o *CreateContainerRequest) GetMp5() CreateContainerRequestMp0 {
 	if o == nil || IsNil(o.Mp5) {
-		var ret GetContainerConfig200ResponseDataMp0
+		var ret CreateContainerRequestMp0
 		return ret
 	}
 	return *o.Mp5
@@ -2109,7 +1844,7 @@ func (o *CreateContainerRequest) GetMp5() GetContainerConfig200ResponseDataMp0 {
 
 // GetMp5Ok returns a tuple with the Mp5 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp5Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
+func (o *CreateContainerRequest) GetMp5Ok() (*CreateContainerRequestMp0, bool) {
 	if o == nil || IsNil(o.Mp5) {
 		return nil, false
 	}
@@ -2125,15 +1860,15 @@ func (o *CreateContainerRequest) HasMp5() bool {
 	return false
 }
 
-// SetMp5 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp5 field.
-func (o *CreateContainerRequest) SetMp5(v GetContainerConfig200ResponseDataMp0) {
+// SetMp5 gets a reference to the given CreateContainerRequestMp0 and assigns it to the Mp5 field.
+func (o *CreateContainerRequest) SetMp5(v CreateContainerRequestMp0) {
 	o.Mp5 = &v
 }
 
 // GetMp6 returns the Mp6 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp6() GetContainerConfig200ResponseDataMp0 {
+func (o *CreateContainerRequest) GetMp6() CreateContainerRequestMp0 {
 	if o == nil || IsNil(o.Mp6) {
-		var ret GetContainerConfig200ResponseDataMp0
+		var ret CreateContainerRequestMp0
 		return ret
 	}
 	return *o.Mp6
@@ -2141,7 +1876,7 @@ func (o *CreateContainerRequest) GetMp6() GetContainerConfig200ResponseDataMp0 {
 
 // GetMp6Ok returns a tuple with the Mp6 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp6Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
+func (o *CreateContainerRequest) GetMp6Ok() (*CreateContainerRequestMp0, bool) {
 	if o == nil || IsNil(o.Mp6) {
 		return nil, false
 	}
@@ -2157,15 +1892,15 @@ func (o *CreateContainerRequest) HasMp6() bool {
 	return false
 }
 
-// SetMp6 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp6 field.
-func (o *CreateContainerRequest) SetMp6(v GetContainerConfig200ResponseDataMp0) {
+// SetMp6 gets a reference to the given CreateContainerRequestMp0 and assigns it to the Mp6 field.
+func (o *CreateContainerRequest) SetMp6(v CreateContainerRequestMp0) {
 	o.Mp6 = &v
 }
 
 // GetMp7 returns the Mp7 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp7() GetContainerConfig200ResponseDataMp0 {
+func (o *CreateContainerRequest) GetMp7() CreateContainerRequestMp0 {
 	if o == nil || IsNil(o.Mp7) {
-		var ret GetContainerConfig200ResponseDataMp0
+		var ret CreateContainerRequestMp0
 		return ret
 	}
 	return *o.Mp7
@@ -2173,7 +1908,7 @@ func (o *CreateContainerRequest) GetMp7() GetContainerConfig200ResponseDataMp0 {
 
 // GetMp7Ok returns a tuple with the Mp7 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp7Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
+func (o *CreateContainerRequest) GetMp7Ok() (*CreateContainerRequestMp0, bool) {
 	if o == nil || IsNil(o.Mp7) {
 		return nil, false
 	}
@@ -2189,15 +1924,15 @@ func (o *CreateContainerRequest) HasMp7() bool {
 	return false
 }
 
-// SetMp7 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp7 field.
-func (o *CreateContainerRequest) SetMp7(v GetContainerConfig200ResponseDataMp0) {
+// SetMp7 gets a reference to the given CreateContainerRequestMp0 and assigns it to the Mp7 field.
+func (o *CreateContainerRequest) SetMp7(v CreateContainerRequestMp0) {
 	o.Mp7 = &v
 }
 
 // GetMp8 returns the Mp8 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp8() GetContainerConfig200ResponseDataMp0 {
+func (o *CreateContainerRequest) GetMp8() CreateContainerRequestMp0 {
 	if o == nil || IsNil(o.Mp8) {
-		var ret GetContainerConfig200ResponseDataMp0
+		var ret CreateContainerRequestMp0
 		return ret
 	}
 	return *o.Mp8
@@ -2205,7 +1940,7 @@ func (o *CreateContainerRequest) GetMp8() GetContainerConfig200ResponseDataMp0 {
 
 // GetMp8Ok returns a tuple with the Mp8 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp8Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
+func (o *CreateContainerRequest) GetMp8Ok() (*CreateContainerRequestMp0, bool) {
 	if o == nil || IsNil(o.Mp8) {
 		return nil, false
 	}
@@ -2221,15 +1956,15 @@ func (o *CreateContainerRequest) HasMp8() bool {
 	return false
 }
 
-// SetMp8 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp8 field.
-func (o *CreateContainerRequest) SetMp8(v GetContainerConfig200ResponseDataMp0) {
+// SetMp8 gets a reference to the given CreateContainerRequestMp0 and assigns it to the Mp8 field.
+func (o *CreateContainerRequest) SetMp8(v CreateContainerRequestMp0) {
 	o.Mp8 = &v
 }
 
 // GetMp9 returns the Mp9 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp9() GetContainerConfig200ResponseDataMp0 {
+func (o *CreateContainerRequest) GetMp9() CreateContainerRequestMp0 {
 	if o == nil || IsNil(o.Mp9) {
-		var ret GetContainerConfig200ResponseDataMp0
+		var ret CreateContainerRequestMp0
 		return ret
 	}
 	return *o.Mp9
@@ -2237,7 +1972,7 @@ func (o *CreateContainerRequest) GetMp9() GetContainerConfig200ResponseDataMp0 {
 
 // GetMp9Ok returns a tuple with the Mp9 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp9Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
+func (o *CreateContainerRequest) GetMp9Ok() (*CreateContainerRequestMp0, bool) {
 	if o == nil || IsNil(o.Mp9) {
 		return nil, false
 	}
@@ -2253,15 +1988,15 @@ func (o *CreateContainerRequest) HasMp9() bool {
 	return false
 }
 
-// SetMp9 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp9 field.
-func (o *CreateContainerRequest) SetMp9(v GetContainerConfig200ResponseDataMp0) {
+// SetMp9 gets a reference to the given CreateContainerRequestMp0 and assigns it to the Mp9 field.
+func (o *CreateContainerRequest) SetMp9(v CreateContainerRequestMp0) {
 	o.Mp9 = &v
 }
 
 // GetMp10 returns the Mp10 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp10() GetContainerConfig200ResponseDataMp0 {
+func (o *CreateContainerRequest) GetMp10() CreateContainerRequestMp0 {
 	if o == nil || IsNil(o.Mp10) {
-		var ret GetContainerConfig200ResponseDataMp0
+		var ret CreateContainerRequestMp0
 		return ret
 	}
 	return *o.Mp10
@@ -2269,7 +2004,7 @@ func (o *CreateContainerRequest) GetMp10() GetContainerConfig200ResponseDataMp0 
 
 // GetMp10Ok returns a tuple with the Mp10 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp10Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
+func (o *CreateContainerRequest) GetMp10Ok() (*CreateContainerRequestMp0, bool) {
 	if o == nil || IsNil(o.Mp10) {
 		return nil, false
 	}
@@ -2285,15 +2020,15 @@ func (o *CreateContainerRequest) HasMp10() bool {
 	return false
 }
 
-// SetMp10 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp10 field.
-func (o *CreateContainerRequest) SetMp10(v GetContainerConfig200ResponseDataMp0) {
+// SetMp10 gets a reference to the given CreateContainerRequestMp0 and assigns it to the Mp10 field.
+func (o *CreateContainerRequest) SetMp10(v CreateContainerRequestMp0) {
 	o.Mp10 = &v
 }
 
 // GetMp11 returns the Mp11 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp11() GetContainerConfig200ResponseDataMp0 {
+func (o *CreateContainerRequest) GetMp11() CreateContainerRequestMp0 {
 	if o == nil || IsNil(o.Mp11) {
-		var ret GetContainerConfig200ResponseDataMp0
+		var ret CreateContainerRequestMp0
 		return ret
 	}
 	return *o.Mp11
@@ -2301,7 +2036,7 @@ func (o *CreateContainerRequest) GetMp11() GetContainerConfig200ResponseDataMp0 
 
 // GetMp11Ok returns a tuple with the Mp11 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp11Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
+func (o *CreateContainerRequest) GetMp11Ok() (*CreateContainerRequestMp0, bool) {
 	if o == nil || IsNil(o.Mp11) {
 		return nil, false
 	}
@@ -2317,15 +2052,15 @@ func (o *CreateContainerRequest) HasMp11() bool {
 	return false
 }
 
-// SetMp11 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp11 field.
-func (o *CreateContainerRequest) SetMp11(v GetContainerConfig200ResponseDataMp0) {
+// SetMp11 gets a reference to the given CreateContainerRequestMp0 and assigns it to the Mp11 field.
+func (o *CreateContainerRequest) SetMp11(v CreateContainerRequestMp0) {
 	o.Mp11 = &v
 }
 
 // GetMp12 returns the Mp12 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp12() GetContainerConfig200ResponseDataMp0 {
+func (o *CreateContainerRequest) GetMp12() CreateContainerRequestMp0 {
 	if o == nil || IsNil(o.Mp12) {
-		var ret GetContainerConfig200ResponseDataMp0
+		var ret CreateContainerRequestMp0
 		return ret
 	}
 	return *o.Mp12
@@ -2333,7 +2068,7 @@ func (o *CreateContainerRequest) GetMp12() GetContainerConfig200ResponseDataMp0 
 
 // GetMp12Ok returns a tuple with the Mp12 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp12Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
+func (o *CreateContainerRequest) GetMp12Ok() (*CreateContainerRequestMp0, bool) {
 	if o == nil || IsNil(o.Mp12) {
 		return nil, false
 	}
@@ -2349,15 +2084,15 @@ func (o *CreateContainerRequest) HasMp12() bool {
 	return false
 }
 
-// SetMp12 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp12 field.
-func (o *CreateContainerRequest) SetMp12(v GetContainerConfig200ResponseDataMp0) {
+// SetMp12 gets a reference to the given CreateContainerRequestMp0 and assigns it to the Mp12 field.
+func (o *CreateContainerRequest) SetMp12(v CreateContainerRequestMp0) {
 	o.Mp12 = &v
 }
 
 // GetMp13 returns the Mp13 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp13() GetContainerConfig200ResponseDataMp0 {
+func (o *CreateContainerRequest) GetMp13() CreateContainerRequestMp0 {
 	if o == nil || IsNil(o.Mp13) {
-		var ret GetContainerConfig200ResponseDataMp0
+		var ret CreateContainerRequestMp0
 		return ret
 	}
 	return *o.Mp13
@@ -2365,7 +2100,7 @@ func (o *CreateContainerRequest) GetMp13() GetContainerConfig200ResponseDataMp0 
 
 // GetMp13Ok returns a tuple with the Mp13 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp13Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
+func (o *CreateContainerRequest) GetMp13Ok() (*CreateContainerRequestMp0, bool) {
 	if o == nil || IsNil(o.Mp13) {
 		return nil, false
 	}
@@ -2381,15 +2116,15 @@ func (o *CreateContainerRequest) HasMp13() bool {
 	return false
 }
 
-// SetMp13 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp13 field.
-func (o *CreateContainerRequest) SetMp13(v GetContainerConfig200ResponseDataMp0) {
+// SetMp13 gets a reference to the given CreateContainerRequestMp0 and assigns it to the Mp13 field.
+func (o *CreateContainerRequest) SetMp13(v CreateContainerRequestMp0) {
 	o.Mp13 = &v
 }
 
 // GetMp14 returns the Mp14 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp14() GetContainerConfig200ResponseDataMp0 {
+func (o *CreateContainerRequest) GetMp14() CreateContainerRequestMp0 {
 	if o == nil || IsNil(o.Mp14) {
-		var ret GetContainerConfig200ResponseDataMp0
+		var ret CreateContainerRequestMp0
 		return ret
 	}
 	return *o.Mp14
@@ -2397,7 +2132,7 @@ func (o *CreateContainerRequest) GetMp14() GetContainerConfig200ResponseDataMp0 
 
 // GetMp14Ok returns a tuple with the Mp14 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp14Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
+func (o *CreateContainerRequest) GetMp14Ok() (*CreateContainerRequestMp0, bool) {
 	if o == nil || IsNil(o.Mp14) {
 		return nil, false
 	}
@@ -2413,15 +2148,15 @@ func (o *CreateContainerRequest) HasMp14() bool {
 	return false
 }
 
-// SetMp14 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp14 field.
-func (o *CreateContainerRequest) SetMp14(v GetContainerConfig200ResponseDataMp0) {
+// SetMp14 gets a reference to the given CreateContainerRequestMp0 and assigns it to the Mp14 field.
+func (o *CreateContainerRequest) SetMp14(v CreateContainerRequestMp0) {
 	o.Mp14 = &v
 }
 
 // GetMp15 returns the Mp15 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp15() GetContainerConfig200ResponseDataMp0 {
+func (o *CreateContainerRequest) GetMp15() CreateContainerRequestMp0 {
 	if o == nil || IsNil(o.Mp15) {
-		var ret GetContainerConfig200ResponseDataMp0
+		var ret CreateContainerRequestMp0
 		return ret
 	}
 	return *o.Mp15
@@ -2429,7 +2164,7 @@ func (o *CreateContainerRequest) GetMp15() GetContainerConfig200ResponseDataMp0 
 
 // GetMp15Ok returns a tuple with the Mp15 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp15Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
+func (o *CreateContainerRequest) GetMp15Ok() (*CreateContainerRequestMp0, bool) {
 	if o == nil || IsNil(o.Mp15) {
 		return nil, false
 	}
@@ -2445,15 +2180,15 @@ func (o *CreateContainerRequest) HasMp15() bool {
 	return false
 }
 
-// SetMp15 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp15 field.
-func (o *CreateContainerRequest) SetMp15(v GetContainerConfig200ResponseDataMp0) {
+// SetMp15 gets a reference to the given CreateContainerRequestMp0 and assigns it to the Mp15 field.
+func (o *CreateContainerRequest) SetMp15(v CreateContainerRequestMp0) {
 	o.Mp15 = &v
 }
 
 // GetMp16 returns the Mp16 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp16() GetContainerConfig200ResponseDataMp0 {
+func (o *CreateContainerRequest) GetMp16() CreateContainerRequestMp0 {
 	if o == nil || IsNil(o.Mp16) {
-		var ret GetContainerConfig200ResponseDataMp0
+		var ret CreateContainerRequestMp0
 		return ret
 	}
 	return *o.Mp16
@@ -2461,7 +2196,7 @@ func (o *CreateContainerRequest) GetMp16() GetContainerConfig200ResponseDataMp0 
 
 // GetMp16Ok returns a tuple with the Mp16 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp16Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
+func (o *CreateContainerRequest) GetMp16Ok() (*CreateContainerRequestMp0, bool) {
 	if o == nil || IsNil(o.Mp16) {
 		return nil, false
 	}
@@ -2477,15 +2212,15 @@ func (o *CreateContainerRequest) HasMp16() bool {
 	return false
 }
 
-// SetMp16 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp16 field.
-func (o *CreateContainerRequest) SetMp16(v GetContainerConfig200ResponseDataMp0) {
+// SetMp16 gets a reference to the given CreateContainerRequestMp0 and assigns it to the Mp16 field.
+func (o *CreateContainerRequest) SetMp16(v CreateContainerRequestMp0) {
 	o.Mp16 = &v
 }
 
 // GetMp17 returns the Mp17 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp17() GetContainerConfig200ResponseDataMp0 {
+func (o *CreateContainerRequest) GetMp17() CreateContainerRequestMp0 {
 	if o == nil || IsNil(o.Mp17) {
-		var ret GetContainerConfig200ResponseDataMp0
+		var ret CreateContainerRequestMp0
 		return ret
 	}
 	return *o.Mp17
@@ -2493,7 +2228,7 @@ func (o *CreateContainerRequest) GetMp17() GetContainerConfig200ResponseDataMp0 
 
 // GetMp17Ok returns a tuple with the Mp17 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp17Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
+func (o *CreateContainerRequest) GetMp17Ok() (*CreateContainerRequestMp0, bool) {
 	if o == nil || IsNil(o.Mp17) {
 		return nil, false
 	}
@@ -2509,15 +2244,15 @@ func (o *CreateContainerRequest) HasMp17() bool {
 	return false
 }
 
-// SetMp17 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp17 field.
-func (o *CreateContainerRequest) SetMp17(v GetContainerConfig200ResponseDataMp0) {
+// SetMp17 gets a reference to the given CreateContainerRequestMp0 and assigns it to the Mp17 field.
+func (o *CreateContainerRequest) SetMp17(v CreateContainerRequestMp0) {
 	o.Mp17 = &v
 }
 
 // GetMp18 returns the Mp18 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp18() GetContainerConfig200ResponseDataMp0 {
+func (o *CreateContainerRequest) GetMp18() CreateContainerRequestMp0 {
 	if o == nil || IsNil(o.Mp18) {
-		var ret GetContainerConfig200ResponseDataMp0
+		var ret CreateContainerRequestMp0
 		return ret
 	}
 	return *o.Mp18
@@ -2525,7 +2260,7 @@ func (o *CreateContainerRequest) GetMp18() GetContainerConfig200ResponseDataMp0 
 
 // GetMp18Ok returns a tuple with the Mp18 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp18Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
+func (o *CreateContainerRequest) GetMp18Ok() (*CreateContainerRequestMp0, bool) {
 	if o == nil || IsNil(o.Mp18) {
 		return nil, false
 	}
@@ -2541,15 +2276,15 @@ func (o *CreateContainerRequest) HasMp18() bool {
 	return false
 }
 
-// SetMp18 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp18 field.
-func (o *CreateContainerRequest) SetMp18(v GetContainerConfig200ResponseDataMp0) {
+// SetMp18 gets a reference to the given CreateContainerRequestMp0 and assigns it to the Mp18 field.
+func (o *CreateContainerRequest) SetMp18(v CreateContainerRequestMp0) {
 	o.Mp18 = &v
 }
 
 // GetMp19 returns the Mp19 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp19() GetContainerConfig200ResponseDataMp0 {
+func (o *CreateContainerRequest) GetMp19() CreateContainerRequestMp0 {
 	if o == nil || IsNil(o.Mp19) {
-		var ret GetContainerConfig200ResponseDataMp0
+		var ret CreateContainerRequestMp0
 		return ret
 	}
 	return *o.Mp19
@@ -2557,7 +2292,7 @@ func (o *CreateContainerRequest) GetMp19() GetContainerConfig200ResponseDataMp0 
 
 // GetMp19Ok returns a tuple with the Mp19 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp19Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
+func (o *CreateContainerRequest) GetMp19Ok() (*CreateContainerRequestMp0, bool) {
 	if o == nil || IsNil(o.Mp19) {
 		return nil, false
 	}
@@ -2573,15 +2308,15 @@ func (o *CreateContainerRequest) HasMp19() bool {
 	return false
 }
 
-// SetMp19 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp19 field.
-func (o *CreateContainerRequest) SetMp19(v GetContainerConfig200ResponseDataMp0) {
+// SetMp19 gets a reference to the given CreateContainerRequestMp0 and assigns it to the Mp19 field.
+func (o *CreateContainerRequest) SetMp19(v CreateContainerRequestMp0) {
 	o.Mp19 = &v
 }
 
 // GetMp20 returns the Mp20 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp20() GetContainerConfig200ResponseDataMp0 {
+func (o *CreateContainerRequest) GetMp20() CreateContainerRequestMp0 {
 	if o == nil || IsNil(o.Mp20) {
-		var ret GetContainerConfig200ResponseDataMp0
+		var ret CreateContainerRequestMp0
 		return ret
 	}
 	return *o.Mp20
@@ -2589,7 +2324,7 @@ func (o *CreateContainerRequest) GetMp20() GetContainerConfig200ResponseDataMp0 
 
 // GetMp20Ok returns a tuple with the Mp20 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp20Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
+func (o *CreateContainerRequest) GetMp20Ok() (*CreateContainerRequestMp0, bool) {
 	if o == nil || IsNil(o.Mp20) {
 		return nil, false
 	}
@@ -2605,15 +2340,15 @@ func (o *CreateContainerRequest) HasMp20() bool {
 	return false
 }
 
-// SetMp20 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp20 field.
-func (o *CreateContainerRequest) SetMp20(v GetContainerConfig200ResponseDataMp0) {
+// SetMp20 gets a reference to the given CreateContainerRequestMp0 and assigns it to the Mp20 field.
+func (o *CreateContainerRequest) SetMp20(v CreateContainerRequestMp0) {
 	o.Mp20 = &v
 }
 
 // GetMp21 returns the Mp21 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp21() GetContainerConfig200ResponseDataMp0 {
+func (o *CreateContainerRequest) GetMp21() CreateContainerRequestMp0 {
 	if o == nil || IsNil(o.Mp21) {
-		var ret GetContainerConfig200ResponseDataMp0
+		var ret CreateContainerRequestMp0
 		return ret
 	}
 	return *o.Mp21
@@ -2621,7 +2356,7 @@ func (o *CreateContainerRequest) GetMp21() GetContainerConfig200ResponseDataMp0 
 
 // GetMp21Ok returns a tuple with the Mp21 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp21Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
+func (o *CreateContainerRequest) GetMp21Ok() (*CreateContainerRequestMp0, bool) {
 	if o == nil || IsNil(o.Mp21) {
 		return nil, false
 	}
@@ -2637,15 +2372,15 @@ func (o *CreateContainerRequest) HasMp21() bool {
 	return false
 }
 
-// SetMp21 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp21 field.
-func (o *CreateContainerRequest) SetMp21(v GetContainerConfig200ResponseDataMp0) {
+// SetMp21 gets a reference to the given CreateContainerRequestMp0 and assigns it to the Mp21 field.
+func (o *CreateContainerRequest) SetMp21(v CreateContainerRequestMp0) {
 	o.Mp21 = &v
 }
 
 // GetMp22 returns the Mp22 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp22() GetContainerConfig200ResponseDataMp0 {
+func (o *CreateContainerRequest) GetMp22() CreateContainerRequestMp0 {
 	if o == nil || IsNil(o.Mp22) {
-		var ret GetContainerConfig200ResponseDataMp0
+		var ret CreateContainerRequestMp0
 		return ret
 	}
 	return *o.Mp22
@@ -2653,7 +2388,7 @@ func (o *CreateContainerRequest) GetMp22() GetContainerConfig200ResponseDataMp0 
 
 // GetMp22Ok returns a tuple with the Mp22 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp22Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
+func (o *CreateContainerRequest) GetMp22Ok() (*CreateContainerRequestMp0, bool) {
 	if o == nil || IsNil(o.Mp22) {
 		return nil, false
 	}
@@ -2669,15 +2404,15 @@ func (o *CreateContainerRequest) HasMp22() bool {
 	return false
 }
 
-// SetMp22 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp22 field.
-func (o *CreateContainerRequest) SetMp22(v GetContainerConfig200ResponseDataMp0) {
+// SetMp22 gets a reference to the given CreateContainerRequestMp0 and assigns it to the Mp22 field.
+func (o *CreateContainerRequest) SetMp22(v CreateContainerRequestMp0) {
 	o.Mp22 = &v
 }
 
 // GetMp23 returns the Mp23 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp23() GetContainerConfig200ResponseDataMp0 {
+func (o *CreateContainerRequest) GetMp23() CreateContainerRequestMp0 {
 	if o == nil || IsNil(o.Mp23) {
-		var ret GetContainerConfig200ResponseDataMp0
+		var ret CreateContainerRequestMp0
 		return ret
 	}
 	return *o.Mp23
@@ -2685,7 +2420,7 @@ func (o *CreateContainerRequest) GetMp23() GetContainerConfig200ResponseDataMp0 
 
 // GetMp23Ok returns a tuple with the Mp23 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp23Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
+func (o *CreateContainerRequest) GetMp23Ok() (*CreateContainerRequestMp0, bool) {
 	if o == nil || IsNil(o.Mp23) {
 		return nil, false
 	}
@@ -2701,15 +2436,15 @@ func (o *CreateContainerRequest) HasMp23() bool {
 	return false
 }
 
-// SetMp23 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp23 field.
-func (o *CreateContainerRequest) SetMp23(v GetContainerConfig200ResponseDataMp0) {
+// SetMp23 gets a reference to the given CreateContainerRequestMp0 and assigns it to the Mp23 field.
+func (o *CreateContainerRequest) SetMp23(v CreateContainerRequestMp0) {
 	o.Mp23 = &v
 }
 
 // GetMp24 returns the Mp24 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp24() GetContainerConfig200ResponseDataMp0 {
+func (o *CreateContainerRequest) GetMp24() CreateContainerRequestMp0 {
 	if o == nil || IsNil(o.Mp24) {
-		var ret GetContainerConfig200ResponseDataMp0
+		var ret CreateContainerRequestMp0
 		return ret
 	}
 	return *o.Mp24
@@ -2717,7 +2452,7 @@ func (o *CreateContainerRequest) GetMp24() GetContainerConfig200ResponseDataMp0 
 
 // GetMp24Ok returns a tuple with the Mp24 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp24Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
+func (o *CreateContainerRequest) GetMp24Ok() (*CreateContainerRequestMp0, bool) {
 	if o == nil || IsNil(o.Mp24) {
 		return nil, false
 	}
@@ -2733,15 +2468,15 @@ func (o *CreateContainerRequest) HasMp24() bool {
 	return false
 }
 
-// SetMp24 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp24 field.
-func (o *CreateContainerRequest) SetMp24(v GetContainerConfig200ResponseDataMp0) {
+// SetMp24 gets a reference to the given CreateContainerRequestMp0 and assigns it to the Mp24 field.
+func (o *CreateContainerRequest) SetMp24(v CreateContainerRequestMp0) {
 	o.Mp24 = &v
 }
 
 // GetMp25 returns the Mp25 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp25() GetContainerConfig200ResponseDataMp0 {
+func (o *CreateContainerRequest) GetMp25() CreateContainerRequestMp0 {
 	if o == nil || IsNil(o.Mp25) {
-		var ret GetContainerConfig200ResponseDataMp0
+		var ret CreateContainerRequestMp0
 		return ret
 	}
 	return *o.Mp25
@@ -2749,7 +2484,7 @@ func (o *CreateContainerRequest) GetMp25() GetContainerConfig200ResponseDataMp0 
 
 // GetMp25Ok returns a tuple with the Mp25 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp25Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
+func (o *CreateContainerRequest) GetMp25Ok() (*CreateContainerRequestMp0, bool) {
 	if o == nil || IsNil(o.Mp25) {
 		return nil, false
 	}
@@ -2765,15 +2500,15 @@ func (o *CreateContainerRequest) HasMp25() bool {
 	return false
 }
 
-// SetMp25 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp25 field.
-func (o *CreateContainerRequest) SetMp25(v GetContainerConfig200ResponseDataMp0) {
+// SetMp25 gets a reference to the given CreateContainerRequestMp0 and assigns it to the Mp25 field.
+func (o *CreateContainerRequest) SetMp25(v CreateContainerRequestMp0) {
 	o.Mp25 = &v
 }
 
 // GetMp26 returns the Mp26 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp26() GetContainerConfig200ResponseDataMp0 {
+func (o *CreateContainerRequest) GetMp26() CreateContainerRequestMp0 {
 	if o == nil || IsNil(o.Mp26) {
-		var ret GetContainerConfig200ResponseDataMp0
+		var ret CreateContainerRequestMp0
 		return ret
 	}
 	return *o.Mp26
@@ -2781,7 +2516,7 @@ func (o *CreateContainerRequest) GetMp26() GetContainerConfig200ResponseDataMp0 
 
 // GetMp26Ok returns a tuple with the Mp26 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp26Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
+func (o *CreateContainerRequest) GetMp26Ok() (*CreateContainerRequestMp0, bool) {
 	if o == nil || IsNil(o.Mp26) {
 		return nil, false
 	}
@@ -2797,15 +2532,15 @@ func (o *CreateContainerRequest) HasMp26() bool {
 	return false
 }
 
-// SetMp26 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp26 field.
-func (o *CreateContainerRequest) SetMp26(v GetContainerConfig200ResponseDataMp0) {
+// SetMp26 gets a reference to the given CreateContainerRequestMp0 and assigns it to the Mp26 field.
+func (o *CreateContainerRequest) SetMp26(v CreateContainerRequestMp0) {
 	o.Mp26 = &v
 }
 
 // GetMp27 returns the Mp27 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp27() GetContainerConfig200ResponseDataMp0 {
+func (o *CreateContainerRequest) GetMp27() CreateContainerRequestMp0 {
 	if o == nil || IsNil(o.Mp27) {
-		var ret GetContainerConfig200ResponseDataMp0
+		var ret CreateContainerRequestMp0
 		return ret
 	}
 	return *o.Mp27
@@ -2813,7 +2548,7 @@ func (o *CreateContainerRequest) GetMp27() GetContainerConfig200ResponseDataMp0 
 
 // GetMp27Ok returns a tuple with the Mp27 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp27Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
+func (o *CreateContainerRequest) GetMp27Ok() (*CreateContainerRequestMp0, bool) {
 	if o == nil || IsNil(o.Mp27) {
 		return nil, false
 	}
@@ -2829,15 +2564,15 @@ func (o *CreateContainerRequest) HasMp27() bool {
 	return false
 }
 
-// SetMp27 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp27 field.
-func (o *CreateContainerRequest) SetMp27(v GetContainerConfig200ResponseDataMp0) {
+// SetMp27 gets a reference to the given CreateContainerRequestMp0 and assigns it to the Mp27 field.
+func (o *CreateContainerRequest) SetMp27(v CreateContainerRequestMp0) {
 	o.Mp27 = &v
 }
 
 // GetMp28 returns the Mp28 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp28() GetContainerConfig200ResponseDataMp0 {
+func (o *CreateContainerRequest) GetMp28() CreateContainerRequestMp0 {
 	if o == nil || IsNil(o.Mp28) {
-		var ret GetContainerConfig200ResponseDataMp0
+		var ret CreateContainerRequestMp0
 		return ret
 	}
 	return *o.Mp28
@@ -2845,7 +2580,7 @@ func (o *CreateContainerRequest) GetMp28() GetContainerConfig200ResponseDataMp0 
 
 // GetMp28Ok returns a tuple with the Mp28 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp28Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
+func (o *CreateContainerRequest) GetMp28Ok() (*CreateContainerRequestMp0, bool) {
 	if o == nil || IsNil(o.Mp28) {
 		return nil, false
 	}
@@ -2861,15 +2596,15 @@ func (o *CreateContainerRequest) HasMp28() bool {
 	return false
 }
 
-// SetMp28 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp28 field.
-func (o *CreateContainerRequest) SetMp28(v GetContainerConfig200ResponseDataMp0) {
+// SetMp28 gets a reference to the given CreateContainerRequestMp0 and assigns it to the Mp28 field.
+func (o *CreateContainerRequest) SetMp28(v CreateContainerRequestMp0) {
 	o.Mp28 = &v
 }
 
 // GetMp29 returns the Mp29 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp29() GetContainerConfig200ResponseDataMp0 {
+func (o *CreateContainerRequest) GetMp29() CreateContainerRequestMp0 {
 	if o == nil || IsNil(o.Mp29) {
-		var ret GetContainerConfig200ResponseDataMp0
+		var ret CreateContainerRequestMp0
 		return ret
 	}
 	return *o.Mp29
@@ -2877,7 +2612,7 @@ func (o *CreateContainerRequest) GetMp29() GetContainerConfig200ResponseDataMp0 
 
 // GetMp29Ok returns a tuple with the Mp29 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp29Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
+func (o *CreateContainerRequest) GetMp29Ok() (*CreateContainerRequestMp0, bool) {
 	if o == nil || IsNil(o.Mp29) {
 		return nil, false
 	}
@@ -2893,7241 +2628,9 @@ func (o *CreateContainerRequest) HasMp29() bool {
 	return false
 }
 
-// SetMp29 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp29 field.
-func (o *CreateContainerRequest) SetMp29(v GetContainerConfig200ResponseDataMp0) {
+// SetMp29 gets a reference to the given CreateContainerRequestMp0 and assigns it to the Mp29 field.
+func (o *CreateContainerRequest) SetMp29(v CreateContainerRequestMp0) {
 	o.Mp29 = &v
-}
-
-// GetMp30 returns the Mp30 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp30() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp30) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp30
-}
-
-// GetMp30Ok returns a tuple with the Mp30 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp30Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp30) {
-		return nil, false
-	}
-	return o.Mp30, true
-}
-
-// HasMp30 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp30() bool {
-	if o != nil && !IsNil(o.Mp30) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp30 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp30 field.
-func (o *CreateContainerRequest) SetMp30(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp30 = &v
-}
-
-// GetMp31 returns the Mp31 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp31() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp31) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp31
-}
-
-// GetMp31Ok returns a tuple with the Mp31 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp31Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp31) {
-		return nil, false
-	}
-	return o.Mp31, true
-}
-
-// HasMp31 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp31() bool {
-	if o != nil && !IsNil(o.Mp31) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp31 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp31 field.
-func (o *CreateContainerRequest) SetMp31(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp31 = &v
-}
-
-// GetMp32 returns the Mp32 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp32() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp32) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp32
-}
-
-// GetMp32Ok returns a tuple with the Mp32 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp32Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp32) {
-		return nil, false
-	}
-	return o.Mp32, true
-}
-
-// HasMp32 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp32() bool {
-	if o != nil && !IsNil(o.Mp32) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp32 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp32 field.
-func (o *CreateContainerRequest) SetMp32(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp32 = &v
-}
-
-// GetMp33 returns the Mp33 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp33() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp33) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp33
-}
-
-// GetMp33Ok returns a tuple with the Mp33 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp33Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp33) {
-		return nil, false
-	}
-	return o.Mp33, true
-}
-
-// HasMp33 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp33() bool {
-	if o != nil && !IsNil(o.Mp33) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp33 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp33 field.
-func (o *CreateContainerRequest) SetMp33(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp33 = &v
-}
-
-// GetMp34 returns the Mp34 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp34() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp34) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp34
-}
-
-// GetMp34Ok returns a tuple with the Mp34 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp34Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp34) {
-		return nil, false
-	}
-	return o.Mp34, true
-}
-
-// HasMp34 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp34() bool {
-	if o != nil && !IsNil(o.Mp34) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp34 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp34 field.
-func (o *CreateContainerRequest) SetMp34(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp34 = &v
-}
-
-// GetMp35 returns the Mp35 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp35() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp35) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp35
-}
-
-// GetMp35Ok returns a tuple with the Mp35 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp35Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp35) {
-		return nil, false
-	}
-	return o.Mp35, true
-}
-
-// HasMp35 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp35() bool {
-	if o != nil && !IsNil(o.Mp35) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp35 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp35 field.
-func (o *CreateContainerRequest) SetMp35(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp35 = &v
-}
-
-// GetMp36 returns the Mp36 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp36() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp36) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp36
-}
-
-// GetMp36Ok returns a tuple with the Mp36 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp36Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp36) {
-		return nil, false
-	}
-	return o.Mp36, true
-}
-
-// HasMp36 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp36() bool {
-	if o != nil && !IsNil(o.Mp36) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp36 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp36 field.
-func (o *CreateContainerRequest) SetMp36(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp36 = &v
-}
-
-// GetMp37 returns the Mp37 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp37() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp37) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp37
-}
-
-// GetMp37Ok returns a tuple with the Mp37 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp37Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp37) {
-		return nil, false
-	}
-	return o.Mp37, true
-}
-
-// HasMp37 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp37() bool {
-	if o != nil && !IsNil(o.Mp37) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp37 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp37 field.
-func (o *CreateContainerRequest) SetMp37(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp37 = &v
-}
-
-// GetMp38 returns the Mp38 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp38() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp38) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp38
-}
-
-// GetMp38Ok returns a tuple with the Mp38 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp38Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp38) {
-		return nil, false
-	}
-	return o.Mp38, true
-}
-
-// HasMp38 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp38() bool {
-	if o != nil && !IsNil(o.Mp38) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp38 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp38 field.
-func (o *CreateContainerRequest) SetMp38(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp38 = &v
-}
-
-// GetMp39 returns the Mp39 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp39() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp39) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp39
-}
-
-// GetMp39Ok returns a tuple with the Mp39 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp39Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp39) {
-		return nil, false
-	}
-	return o.Mp39, true
-}
-
-// HasMp39 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp39() bool {
-	if o != nil && !IsNil(o.Mp39) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp39 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp39 field.
-func (o *CreateContainerRequest) SetMp39(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp39 = &v
-}
-
-// GetMp40 returns the Mp40 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp40() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp40) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp40
-}
-
-// GetMp40Ok returns a tuple with the Mp40 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp40Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp40) {
-		return nil, false
-	}
-	return o.Mp40, true
-}
-
-// HasMp40 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp40() bool {
-	if o != nil && !IsNil(o.Mp40) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp40 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp40 field.
-func (o *CreateContainerRequest) SetMp40(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp40 = &v
-}
-
-// GetMp41 returns the Mp41 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp41() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp41) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp41
-}
-
-// GetMp41Ok returns a tuple with the Mp41 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp41Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp41) {
-		return nil, false
-	}
-	return o.Mp41, true
-}
-
-// HasMp41 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp41() bool {
-	if o != nil && !IsNil(o.Mp41) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp41 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp41 field.
-func (o *CreateContainerRequest) SetMp41(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp41 = &v
-}
-
-// GetMp42 returns the Mp42 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp42() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp42) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp42
-}
-
-// GetMp42Ok returns a tuple with the Mp42 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp42Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp42) {
-		return nil, false
-	}
-	return o.Mp42, true
-}
-
-// HasMp42 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp42() bool {
-	if o != nil && !IsNil(o.Mp42) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp42 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp42 field.
-func (o *CreateContainerRequest) SetMp42(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp42 = &v
-}
-
-// GetMp43 returns the Mp43 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp43() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp43) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp43
-}
-
-// GetMp43Ok returns a tuple with the Mp43 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp43Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp43) {
-		return nil, false
-	}
-	return o.Mp43, true
-}
-
-// HasMp43 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp43() bool {
-	if o != nil && !IsNil(o.Mp43) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp43 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp43 field.
-func (o *CreateContainerRequest) SetMp43(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp43 = &v
-}
-
-// GetMp44 returns the Mp44 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp44() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp44) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp44
-}
-
-// GetMp44Ok returns a tuple with the Mp44 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp44Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp44) {
-		return nil, false
-	}
-	return o.Mp44, true
-}
-
-// HasMp44 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp44() bool {
-	if o != nil && !IsNil(o.Mp44) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp44 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp44 field.
-func (o *CreateContainerRequest) SetMp44(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp44 = &v
-}
-
-// GetMp45 returns the Mp45 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp45() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp45) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp45
-}
-
-// GetMp45Ok returns a tuple with the Mp45 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp45Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp45) {
-		return nil, false
-	}
-	return o.Mp45, true
-}
-
-// HasMp45 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp45() bool {
-	if o != nil && !IsNil(o.Mp45) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp45 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp45 field.
-func (o *CreateContainerRequest) SetMp45(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp45 = &v
-}
-
-// GetMp46 returns the Mp46 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp46() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp46) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp46
-}
-
-// GetMp46Ok returns a tuple with the Mp46 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp46Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp46) {
-		return nil, false
-	}
-	return o.Mp46, true
-}
-
-// HasMp46 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp46() bool {
-	if o != nil && !IsNil(o.Mp46) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp46 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp46 field.
-func (o *CreateContainerRequest) SetMp46(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp46 = &v
-}
-
-// GetMp47 returns the Mp47 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp47() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp47) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp47
-}
-
-// GetMp47Ok returns a tuple with the Mp47 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp47Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp47) {
-		return nil, false
-	}
-	return o.Mp47, true
-}
-
-// HasMp47 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp47() bool {
-	if o != nil && !IsNil(o.Mp47) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp47 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp47 field.
-func (o *CreateContainerRequest) SetMp47(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp47 = &v
-}
-
-// GetMp48 returns the Mp48 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp48() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp48) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp48
-}
-
-// GetMp48Ok returns a tuple with the Mp48 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp48Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp48) {
-		return nil, false
-	}
-	return o.Mp48, true
-}
-
-// HasMp48 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp48() bool {
-	if o != nil && !IsNil(o.Mp48) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp48 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp48 field.
-func (o *CreateContainerRequest) SetMp48(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp48 = &v
-}
-
-// GetMp49 returns the Mp49 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp49() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp49) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp49
-}
-
-// GetMp49Ok returns a tuple with the Mp49 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp49Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp49) {
-		return nil, false
-	}
-	return o.Mp49, true
-}
-
-// HasMp49 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp49() bool {
-	if o != nil && !IsNil(o.Mp49) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp49 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp49 field.
-func (o *CreateContainerRequest) SetMp49(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp49 = &v
-}
-
-// GetMp50 returns the Mp50 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp50() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp50) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp50
-}
-
-// GetMp50Ok returns a tuple with the Mp50 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp50Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp50) {
-		return nil, false
-	}
-	return o.Mp50, true
-}
-
-// HasMp50 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp50() bool {
-	if o != nil && !IsNil(o.Mp50) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp50 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp50 field.
-func (o *CreateContainerRequest) SetMp50(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp50 = &v
-}
-
-// GetMp51 returns the Mp51 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp51() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp51) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp51
-}
-
-// GetMp51Ok returns a tuple with the Mp51 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp51Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp51) {
-		return nil, false
-	}
-	return o.Mp51, true
-}
-
-// HasMp51 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp51() bool {
-	if o != nil && !IsNil(o.Mp51) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp51 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp51 field.
-func (o *CreateContainerRequest) SetMp51(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp51 = &v
-}
-
-// GetMp52 returns the Mp52 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp52() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp52) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp52
-}
-
-// GetMp52Ok returns a tuple with the Mp52 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp52Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp52) {
-		return nil, false
-	}
-	return o.Mp52, true
-}
-
-// HasMp52 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp52() bool {
-	if o != nil && !IsNil(o.Mp52) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp52 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp52 field.
-func (o *CreateContainerRequest) SetMp52(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp52 = &v
-}
-
-// GetMp53 returns the Mp53 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp53() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp53) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp53
-}
-
-// GetMp53Ok returns a tuple with the Mp53 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp53Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp53) {
-		return nil, false
-	}
-	return o.Mp53, true
-}
-
-// HasMp53 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp53() bool {
-	if o != nil && !IsNil(o.Mp53) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp53 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp53 field.
-func (o *CreateContainerRequest) SetMp53(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp53 = &v
-}
-
-// GetMp54 returns the Mp54 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp54() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp54) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp54
-}
-
-// GetMp54Ok returns a tuple with the Mp54 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp54Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp54) {
-		return nil, false
-	}
-	return o.Mp54, true
-}
-
-// HasMp54 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp54() bool {
-	if o != nil && !IsNil(o.Mp54) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp54 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp54 field.
-func (o *CreateContainerRequest) SetMp54(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp54 = &v
-}
-
-// GetMp55 returns the Mp55 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp55() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp55) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp55
-}
-
-// GetMp55Ok returns a tuple with the Mp55 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp55Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp55) {
-		return nil, false
-	}
-	return o.Mp55, true
-}
-
-// HasMp55 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp55() bool {
-	if o != nil && !IsNil(o.Mp55) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp55 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp55 field.
-func (o *CreateContainerRequest) SetMp55(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp55 = &v
-}
-
-// GetMp56 returns the Mp56 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp56() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp56) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp56
-}
-
-// GetMp56Ok returns a tuple with the Mp56 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp56Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp56) {
-		return nil, false
-	}
-	return o.Mp56, true
-}
-
-// HasMp56 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp56() bool {
-	if o != nil && !IsNil(o.Mp56) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp56 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp56 field.
-func (o *CreateContainerRequest) SetMp56(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp56 = &v
-}
-
-// GetMp57 returns the Mp57 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp57() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp57) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp57
-}
-
-// GetMp57Ok returns a tuple with the Mp57 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp57Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp57) {
-		return nil, false
-	}
-	return o.Mp57, true
-}
-
-// HasMp57 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp57() bool {
-	if o != nil && !IsNil(o.Mp57) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp57 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp57 field.
-func (o *CreateContainerRequest) SetMp57(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp57 = &v
-}
-
-// GetMp58 returns the Mp58 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp58() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp58) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp58
-}
-
-// GetMp58Ok returns a tuple with the Mp58 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp58Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp58) {
-		return nil, false
-	}
-	return o.Mp58, true
-}
-
-// HasMp58 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp58() bool {
-	if o != nil && !IsNil(o.Mp58) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp58 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp58 field.
-func (o *CreateContainerRequest) SetMp58(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp58 = &v
-}
-
-// GetMp59 returns the Mp59 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp59() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp59) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp59
-}
-
-// GetMp59Ok returns a tuple with the Mp59 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp59Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp59) {
-		return nil, false
-	}
-	return o.Mp59, true
-}
-
-// HasMp59 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp59() bool {
-	if o != nil && !IsNil(o.Mp59) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp59 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp59 field.
-func (o *CreateContainerRequest) SetMp59(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp59 = &v
-}
-
-// GetMp60 returns the Mp60 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp60() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp60) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp60
-}
-
-// GetMp60Ok returns a tuple with the Mp60 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp60Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp60) {
-		return nil, false
-	}
-	return o.Mp60, true
-}
-
-// HasMp60 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp60() bool {
-	if o != nil && !IsNil(o.Mp60) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp60 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp60 field.
-func (o *CreateContainerRequest) SetMp60(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp60 = &v
-}
-
-// GetMp61 returns the Mp61 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp61() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp61) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp61
-}
-
-// GetMp61Ok returns a tuple with the Mp61 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp61Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp61) {
-		return nil, false
-	}
-	return o.Mp61, true
-}
-
-// HasMp61 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp61() bool {
-	if o != nil && !IsNil(o.Mp61) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp61 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp61 field.
-func (o *CreateContainerRequest) SetMp61(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp61 = &v
-}
-
-// GetMp62 returns the Mp62 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp62() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp62) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp62
-}
-
-// GetMp62Ok returns a tuple with the Mp62 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp62Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp62) {
-		return nil, false
-	}
-	return o.Mp62, true
-}
-
-// HasMp62 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp62() bool {
-	if o != nil && !IsNil(o.Mp62) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp62 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp62 field.
-func (o *CreateContainerRequest) SetMp62(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp62 = &v
-}
-
-// GetMp63 returns the Mp63 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp63() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp63) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp63
-}
-
-// GetMp63Ok returns a tuple with the Mp63 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp63Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp63) {
-		return nil, false
-	}
-	return o.Mp63, true
-}
-
-// HasMp63 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp63() bool {
-	if o != nil && !IsNil(o.Mp63) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp63 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp63 field.
-func (o *CreateContainerRequest) SetMp63(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp63 = &v
-}
-
-// GetMp64 returns the Mp64 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp64() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp64) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp64
-}
-
-// GetMp64Ok returns a tuple with the Mp64 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp64Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp64) {
-		return nil, false
-	}
-	return o.Mp64, true
-}
-
-// HasMp64 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp64() bool {
-	if o != nil && !IsNil(o.Mp64) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp64 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp64 field.
-func (o *CreateContainerRequest) SetMp64(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp64 = &v
-}
-
-// GetMp65 returns the Mp65 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp65() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp65) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp65
-}
-
-// GetMp65Ok returns a tuple with the Mp65 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp65Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp65) {
-		return nil, false
-	}
-	return o.Mp65, true
-}
-
-// HasMp65 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp65() bool {
-	if o != nil && !IsNil(o.Mp65) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp65 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp65 field.
-func (o *CreateContainerRequest) SetMp65(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp65 = &v
-}
-
-// GetMp66 returns the Mp66 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp66() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp66) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp66
-}
-
-// GetMp66Ok returns a tuple with the Mp66 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp66Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp66) {
-		return nil, false
-	}
-	return o.Mp66, true
-}
-
-// HasMp66 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp66() bool {
-	if o != nil && !IsNil(o.Mp66) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp66 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp66 field.
-func (o *CreateContainerRequest) SetMp66(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp66 = &v
-}
-
-// GetMp67 returns the Mp67 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp67() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp67) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp67
-}
-
-// GetMp67Ok returns a tuple with the Mp67 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp67Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp67) {
-		return nil, false
-	}
-	return o.Mp67, true
-}
-
-// HasMp67 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp67() bool {
-	if o != nil && !IsNil(o.Mp67) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp67 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp67 field.
-func (o *CreateContainerRequest) SetMp67(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp67 = &v
-}
-
-// GetMp68 returns the Mp68 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp68() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp68) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp68
-}
-
-// GetMp68Ok returns a tuple with the Mp68 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp68Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp68) {
-		return nil, false
-	}
-	return o.Mp68, true
-}
-
-// HasMp68 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp68() bool {
-	if o != nil && !IsNil(o.Mp68) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp68 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp68 field.
-func (o *CreateContainerRequest) SetMp68(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp68 = &v
-}
-
-// GetMp69 returns the Mp69 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp69() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp69) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp69
-}
-
-// GetMp69Ok returns a tuple with the Mp69 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp69Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp69) {
-		return nil, false
-	}
-	return o.Mp69, true
-}
-
-// HasMp69 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp69() bool {
-	if o != nil && !IsNil(o.Mp69) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp69 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp69 field.
-func (o *CreateContainerRequest) SetMp69(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp69 = &v
-}
-
-// GetMp70 returns the Mp70 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp70() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp70) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp70
-}
-
-// GetMp70Ok returns a tuple with the Mp70 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp70Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp70) {
-		return nil, false
-	}
-	return o.Mp70, true
-}
-
-// HasMp70 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp70() bool {
-	if o != nil && !IsNil(o.Mp70) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp70 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp70 field.
-func (o *CreateContainerRequest) SetMp70(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp70 = &v
-}
-
-// GetMp71 returns the Mp71 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp71() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp71) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp71
-}
-
-// GetMp71Ok returns a tuple with the Mp71 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp71Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp71) {
-		return nil, false
-	}
-	return o.Mp71, true
-}
-
-// HasMp71 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp71() bool {
-	if o != nil && !IsNil(o.Mp71) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp71 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp71 field.
-func (o *CreateContainerRequest) SetMp71(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp71 = &v
-}
-
-// GetMp72 returns the Mp72 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp72() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp72) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp72
-}
-
-// GetMp72Ok returns a tuple with the Mp72 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp72Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp72) {
-		return nil, false
-	}
-	return o.Mp72, true
-}
-
-// HasMp72 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp72() bool {
-	if o != nil && !IsNil(o.Mp72) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp72 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp72 field.
-func (o *CreateContainerRequest) SetMp72(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp72 = &v
-}
-
-// GetMp73 returns the Mp73 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp73() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp73) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp73
-}
-
-// GetMp73Ok returns a tuple with the Mp73 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp73Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp73) {
-		return nil, false
-	}
-	return o.Mp73, true
-}
-
-// HasMp73 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp73() bool {
-	if o != nil && !IsNil(o.Mp73) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp73 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp73 field.
-func (o *CreateContainerRequest) SetMp73(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp73 = &v
-}
-
-// GetMp74 returns the Mp74 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp74() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp74) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp74
-}
-
-// GetMp74Ok returns a tuple with the Mp74 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp74Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp74) {
-		return nil, false
-	}
-	return o.Mp74, true
-}
-
-// HasMp74 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp74() bool {
-	if o != nil && !IsNil(o.Mp74) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp74 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp74 field.
-func (o *CreateContainerRequest) SetMp74(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp74 = &v
-}
-
-// GetMp75 returns the Mp75 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp75() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp75) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp75
-}
-
-// GetMp75Ok returns a tuple with the Mp75 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp75Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp75) {
-		return nil, false
-	}
-	return o.Mp75, true
-}
-
-// HasMp75 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp75() bool {
-	if o != nil && !IsNil(o.Mp75) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp75 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp75 field.
-func (o *CreateContainerRequest) SetMp75(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp75 = &v
-}
-
-// GetMp76 returns the Mp76 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp76() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp76) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp76
-}
-
-// GetMp76Ok returns a tuple with the Mp76 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp76Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp76) {
-		return nil, false
-	}
-	return o.Mp76, true
-}
-
-// HasMp76 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp76() bool {
-	if o != nil && !IsNil(o.Mp76) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp76 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp76 field.
-func (o *CreateContainerRequest) SetMp76(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp76 = &v
-}
-
-// GetMp77 returns the Mp77 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp77() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp77) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp77
-}
-
-// GetMp77Ok returns a tuple with the Mp77 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp77Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp77) {
-		return nil, false
-	}
-	return o.Mp77, true
-}
-
-// HasMp77 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp77() bool {
-	if o != nil && !IsNil(o.Mp77) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp77 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp77 field.
-func (o *CreateContainerRequest) SetMp77(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp77 = &v
-}
-
-// GetMp78 returns the Mp78 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp78() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp78) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp78
-}
-
-// GetMp78Ok returns a tuple with the Mp78 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp78Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp78) {
-		return nil, false
-	}
-	return o.Mp78, true
-}
-
-// HasMp78 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp78() bool {
-	if o != nil && !IsNil(o.Mp78) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp78 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp78 field.
-func (o *CreateContainerRequest) SetMp78(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp78 = &v
-}
-
-// GetMp79 returns the Mp79 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp79() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp79) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp79
-}
-
-// GetMp79Ok returns a tuple with the Mp79 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp79Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp79) {
-		return nil, false
-	}
-	return o.Mp79, true
-}
-
-// HasMp79 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp79() bool {
-	if o != nil && !IsNil(o.Mp79) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp79 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp79 field.
-func (o *CreateContainerRequest) SetMp79(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp79 = &v
-}
-
-// GetMp80 returns the Mp80 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp80() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp80) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp80
-}
-
-// GetMp80Ok returns a tuple with the Mp80 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp80Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp80) {
-		return nil, false
-	}
-	return o.Mp80, true
-}
-
-// HasMp80 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp80() bool {
-	if o != nil && !IsNil(o.Mp80) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp80 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp80 field.
-func (o *CreateContainerRequest) SetMp80(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp80 = &v
-}
-
-// GetMp81 returns the Mp81 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp81() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp81) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp81
-}
-
-// GetMp81Ok returns a tuple with the Mp81 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp81Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp81) {
-		return nil, false
-	}
-	return o.Mp81, true
-}
-
-// HasMp81 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp81() bool {
-	if o != nil && !IsNil(o.Mp81) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp81 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp81 field.
-func (o *CreateContainerRequest) SetMp81(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp81 = &v
-}
-
-// GetMp82 returns the Mp82 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp82() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp82) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp82
-}
-
-// GetMp82Ok returns a tuple with the Mp82 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp82Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp82) {
-		return nil, false
-	}
-	return o.Mp82, true
-}
-
-// HasMp82 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp82() bool {
-	if o != nil && !IsNil(o.Mp82) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp82 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp82 field.
-func (o *CreateContainerRequest) SetMp82(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp82 = &v
-}
-
-// GetMp83 returns the Mp83 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp83() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp83) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp83
-}
-
-// GetMp83Ok returns a tuple with the Mp83 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp83Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp83) {
-		return nil, false
-	}
-	return o.Mp83, true
-}
-
-// HasMp83 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp83() bool {
-	if o != nil && !IsNil(o.Mp83) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp83 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp83 field.
-func (o *CreateContainerRequest) SetMp83(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp83 = &v
-}
-
-// GetMp84 returns the Mp84 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp84() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp84) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp84
-}
-
-// GetMp84Ok returns a tuple with the Mp84 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp84Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp84) {
-		return nil, false
-	}
-	return o.Mp84, true
-}
-
-// HasMp84 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp84() bool {
-	if o != nil && !IsNil(o.Mp84) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp84 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp84 field.
-func (o *CreateContainerRequest) SetMp84(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp84 = &v
-}
-
-// GetMp85 returns the Mp85 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp85() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp85) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp85
-}
-
-// GetMp85Ok returns a tuple with the Mp85 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp85Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp85) {
-		return nil, false
-	}
-	return o.Mp85, true
-}
-
-// HasMp85 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp85() bool {
-	if o != nil && !IsNil(o.Mp85) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp85 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp85 field.
-func (o *CreateContainerRequest) SetMp85(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp85 = &v
-}
-
-// GetMp86 returns the Mp86 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp86() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp86) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp86
-}
-
-// GetMp86Ok returns a tuple with the Mp86 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp86Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp86) {
-		return nil, false
-	}
-	return o.Mp86, true
-}
-
-// HasMp86 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp86() bool {
-	if o != nil && !IsNil(o.Mp86) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp86 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp86 field.
-func (o *CreateContainerRequest) SetMp86(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp86 = &v
-}
-
-// GetMp87 returns the Mp87 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp87() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp87) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp87
-}
-
-// GetMp87Ok returns a tuple with the Mp87 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp87Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp87) {
-		return nil, false
-	}
-	return o.Mp87, true
-}
-
-// HasMp87 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp87() bool {
-	if o != nil && !IsNil(o.Mp87) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp87 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp87 field.
-func (o *CreateContainerRequest) SetMp87(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp87 = &v
-}
-
-// GetMp88 returns the Mp88 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp88() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp88) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp88
-}
-
-// GetMp88Ok returns a tuple with the Mp88 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp88Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp88) {
-		return nil, false
-	}
-	return o.Mp88, true
-}
-
-// HasMp88 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp88() bool {
-	if o != nil && !IsNil(o.Mp88) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp88 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp88 field.
-func (o *CreateContainerRequest) SetMp88(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp88 = &v
-}
-
-// GetMp89 returns the Mp89 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp89() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp89) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp89
-}
-
-// GetMp89Ok returns a tuple with the Mp89 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp89Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp89) {
-		return nil, false
-	}
-	return o.Mp89, true
-}
-
-// HasMp89 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp89() bool {
-	if o != nil && !IsNil(o.Mp89) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp89 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp89 field.
-func (o *CreateContainerRequest) SetMp89(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp89 = &v
-}
-
-// GetMp90 returns the Mp90 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp90() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp90) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp90
-}
-
-// GetMp90Ok returns a tuple with the Mp90 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp90Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp90) {
-		return nil, false
-	}
-	return o.Mp90, true
-}
-
-// HasMp90 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp90() bool {
-	if o != nil && !IsNil(o.Mp90) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp90 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp90 field.
-func (o *CreateContainerRequest) SetMp90(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp90 = &v
-}
-
-// GetMp91 returns the Mp91 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp91() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp91) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp91
-}
-
-// GetMp91Ok returns a tuple with the Mp91 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp91Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp91) {
-		return nil, false
-	}
-	return o.Mp91, true
-}
-
-// HasMp91 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp91() bool {
-	if o != nil && !IsNil(o.Mp91) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp91 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp91 field.
-func (o *CreateContainerRequest) SetMp91(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp91 = &v
-}
-
-// GetMp92 returns the Mp92 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp92() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp92) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp92
-}
-
-// GetMp92Ok returns a tuple with the Mp92 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp92Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp92) {
-		return nil, false
-	}
-	return o.Mp92, true
-}
-
-// HasMp92 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp92() bool {
-	if o != nil && !IsNil(o.Mp92) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp92 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp92 field.
-func (o *CreateContainerRequest) SetMp92(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp92 = &v
-}
-
-// GetMp93 returns the Mp93 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp93() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp93) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp93
-}
-
-// GetMp93Ok returns a tuple with the Mp93 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp93Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp93) {
-		return nil, false
-	}
-	return o.Mp93, true
-}
-
-// HasMp93 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp93() bool {
-	if o != nil && !IsNil(o.Mp93) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp93 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp93 field.
-func (o *CreateContainerRequest) SetMp93(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp93 = &v
-}
-
-// GetMp94 returns the Mp94 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp94() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp94) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp94
-}
-
-// GetMp94Ok returns a tuple with the Mp94 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp94Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp94) {
-		return nil, false
-	}
-	return o.Mp94, true
-}
-
-// HasMp94 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp94() bool {
-	if o != nil && !IsNil(o.Mp94) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp94 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp94 field.
-func (o *CreateContainerRequest) SetMp94(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp94 = &v
-}
-
-// GetMp95 returns the Mp95 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp95() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp95) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp95
-}
-
-// GetMp95Ok returns a tuple with the Mp95 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp95Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp95) {
-		return nil, false
-	}
-	return o.Mp95, true
-}
-
-// HasMp95 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp95() bool {
-	if o != nil && !IsNil(o.Mp95) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp95 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp95 field.
-func (o *CreateContainerRequest) SetMp95(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp95 = &v
-}
-
-// GetMp96 returns the Mp96 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp96() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp96) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp96
-}
-
-// GetMp96Ok returns a tuple with the Mp96 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp96Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp96) {
-		return nil, false
-	}
-	return o.Mp96, true
-}
-
-// HasMp96 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp96() bool {
-	if o != nil && !IsNil(o.Mp96) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp96 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp96 field.
-func (o *CreateContainerRequest) SetMp96(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp96 = &v
-}
-
-// GetMp97 returns the Mp97 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp97() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp97) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp97
-}
-
-// GetMp97Ok returns a tuple with the Mp97 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp97Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp97) {
-		return nil, false
-	}
-	return o.Mp97, true
-}
-
-// HasMp97 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp97() bool {
-	if o != nil && !IsNil(o.Mp97) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp97 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp97 field.
-func (o *CreateContainerRequest) SetMp97(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp97 = &v
-}
-
-// GetMp98 returns the Mp98 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp98() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp98) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp98
-}
-
-// GetMp98Ok returns a tuple with the Mp98 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp98Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp98) {
-		return nil, false
-	}
-	return o.Mp98, true
-}
-
-// HasMp98 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp98() bool {
-	if o != nil && !IsNil(o.Mp98) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp98 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp98 field.
-func (o *CreateContainerRequest) SetMp98(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp98 = &v
-}
-
-// GetMp99 returns the Mp99 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp99() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp99) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp99
-}
-
-// GetMp99Ok returns a tuple with the Mp99 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp99Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp99) {
-		return nil, false
-	}
-	return o.Mp99, true
-}
-
-// HasMp99 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp99() bool {
-	if o != nil && !IsNil(o.Mp99) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp99 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp99 field.
-func (o *CreateContainerRequest) SetMp99(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp99 = &v
-}
-
-// GetMp100 returns the Mp100 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp100() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp100) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp100
-}
-
-// GetMp100Ok returns a tuple with the Mp100 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp100Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp100) {
-		return nil, false
-	}
-	return o.Mp100, true
-}
-
-// HasMp100 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp100() bool {
-	if o != nil && !IsNil(o.Mp100) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp100 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp100 field.
-func (o *CreateContainerRequest) SetMp100(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp100 = &v
-}
-
-// GetMp101 returns the Mp101 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp101() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp101) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp101
-}
-
-// GetMp101Ok returns a tuple with the Mp101 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp101Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp101) {
-		return nil, false
-	}
-	return o.Mp101, true
-}
-
-// HasMp101 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp101() bool {
-	if o != nil && !IsNil(o.Mp101) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp101 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp101 field.
-func (o *CreateContainerRequest) SetMp101(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp101 = &v
-}
-
-// GetMp102 returns the Mp102 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp102() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp102) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp102
-}
-
-// GetMp102Ok returns a tuple with the Mp102 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp102Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp102) {
-		return nil, false
-	}
-	return o.Mp102, true
-}
-
-// HasMp102 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp102() bool {
-	if o != nil && !IsNil(o.Mp102) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp102 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp102 field.
-func (o *CreateContainerRequest) SetMp102(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp102 = &v
-}
-
-// GetMp103 returns the Mp103 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp103() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp103) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp103
-}
-
-// GetMp103Ok returns a tuple with the Mp103 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp103Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp103) {
-		return nil, false
-	}
-	return o.Mp103, true
-}
-
-// HasMp103 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp103() bool {
-	if o != nil && !IsNil(o.Mp103) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp103 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp103 field.
-func (o *CreateContainerRequest) SetMp103(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp103 = &v
-}
-
-// GetMp104 returns the Mp104 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp104() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp104) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp104
-}
-
-// GetMp104Ok returns a tuple with the Mp104 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp104Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp104) {
-		return nil, false
-	}
-	return o.Mp104, true
-}
-
-// HasMp104 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp104() bool {
-	if o != nil && !IsNil(o.Mp104) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp104 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp104 field.
-func (o *CreateContainerRequest) SetMp104(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp104 = &v
-}
-
-// GetMp105 returns the Mp105 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp105() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp105) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp105
-}
-
-// GetMp105Ok returns a tuple with the Mp105 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp105Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp105) {
-		return nil, false
-	}
-	return o.Mp105, true
-}
-
-// HasMp105 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp105() bool {
-	if o != nil && !IsNil(o.Mp105) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp105 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp105 field.
-func (o *CreateContainerRequest) SetMp105(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp105 = &v
-}
-
-// GetMp106 returns the Mp106 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp106() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp106) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp106
-}
-
-// GetMp106Ok returns a tuple with the Mp106 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp106Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp106) {
-		return nil, false
-	}
-	return o.Mp106, true
-}
-
-// HasMp106 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp106() bool {
-	if o != nil && !IsNil(o.Mp106) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp106 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp106 field.
-func (o *CreateContainerRequest) SetMp106(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp106 = &v
-}
-
-// GetMp107 returns the Mp107 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp107() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp107) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp107
-}
-
-// GetMp107Ok returns a tuple with the Mp107 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp107Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp107) {
-		return nil, false
-	}
-	return o.Mp107, true
-}
-
-// HasMp107 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp107() bool {
-	if o != nil && !IsNil(o.Mp107) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp107 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp107 field.
-func (o *CreateContainerRequest) SetMp107(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp107 = &v
-}
-
-// GetMp108 returns the Mp108 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp108() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp108) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp108
-}
-
-// GetMp108Ok returns a tuple with the Mp108 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp108Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp108) {
-		return nil, false
-	}
-	return o.Mp108, true
-}
-
-// HasMp108 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp108() bool {
-	if o != nil && !IsNil(o.Mp108) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp108 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp108 field.
-func (o *CreateContainerRequest) SetMp108(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp108 = &v
-}
-
-// GetMp109 returns the Mp109 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp109() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp109) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp109
-}
-
-// GetMp109Ok returns a tuple with the Mp109 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp109Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp109) {
-		return nil, false
-	}
-	return o.Mp109, true
-}
-
-// HasMp109 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp109() bool {
-	if o != nil && !IsNil(o.Mp109) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp109 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp109 field.
-func (o *CreateContainerRequest) SetMp109(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp109 = &v
-}
-
-// GetMp110 returns the Mp110 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp110() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp110) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp110
-}
-
-// GetMp110Ok returns a tuple with the Mp110 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp110Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp110) {
-		return nil, false
-	}
-	return o.Mp110, true
-}
-
-// HasMp110 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp110() bool {
-	if o != nil && !IsNil(o.Mp110) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp110 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp110 field.
-func (o *CreateContainerRequest) SetMp110(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp110 = &v
-}
-
-// GetMp111 returns the Mp111 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp111() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp111) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp111
-}
-
-// GetMp111Ok returns a tuple with the Mp111 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp111Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp111) {
-		return nil, false
-	}
-	return o.Mp111, true
-}
-
-// HasMp111 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp111() bool {
-	if o != nil && !IsNil(o.Mp111) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp111 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp111 field.
-func (o *CreateContainerRequest) SetMp111(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp111 = &v
-}
-
-// GetMp112 returns the Mp112 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp112() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp112) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp112
-}
-
-// GetMp112Ok returns a tuple with the Mp112 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp112Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp112) {
-		return nil, false
-	}
-	return o.Mp112, true
-}
-
-// HasMp112 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp112() bool {
-	if o != nil && !IsNil(o.Mp112) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp112 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp112 field.
-func (o *CreateContainerRequest) SetMp112(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp112 = &v
-}
-
-// GetMp113 returns the Mp113 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp113() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp113) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp113
-}
-
-// GetMp113Ok returns a tuple with the Mp113 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp113Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp113) {
-		return nil, false
-	}
-	return o.Mp113, true
-}
-
-// HasMp113 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp113() bool {
-	if o != nil && !IsNil(o.Mp113) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp113 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp113 field.
-func (o *CreateContainerRequest) SetMp113(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp113 = &v
-}
-
-// GetMp114 returns the Mp114 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp114() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp114) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp114
-}
-
-// GetMp114Ok returns a tuple with the Mp114 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp114Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp114) {
-		return nil, false
-	}
-	return o.Mp114, true
-}
-
-// HasMp114 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp114() bool {
-	if o != nil && !IsNil(o.Mp114) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp114 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp114 field.
-func (o *CreateContainerRequest) SetMp114(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp114 = &v
-}
-
-// GetMp115 returns the Mp115 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp115() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp115) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp115
-}
-
-// GetMp115Ok returns a tuple with the Mp115 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp115Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp115) {
-		return nil, false
-	}
-	return o.Mp115, true
-}
-
-// HasMp115 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp115() bool {
-	if o != nil && !IsNil(o.Mp115) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp115 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp115 field.
-func (o *CreateContainerRequest) SetMp115(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp115 = &v
-}
-
-// GetMp116 returns the Mp116 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp116() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp116) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp116
-}
-
-// GetMp116Ok returns a tuple with the Mp116 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp116Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp116) {
-		return nil, false
-	}
-	return o.Mp116, true
-}
-
-// HasMp116 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp116() bool {
-	if o != nil && !IsNil(o.Mp116) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp116 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp116 field.
-func (o *CreateContainerRequest) SetMp116(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp116 = &v
-}
-
-// GetMp117 returns the Mp117 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp117() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp117) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp117
-}
-
-// GetMp117Ok returns a tuple with the Mp117 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp117Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp117) {
-		return nil, false
-	}
-	return o.Mp117, true
-}
-
-// HasMp117 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp117() bool {
-	if o != nil && !IsNil(o.Mp117) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp117 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp117 field.
-func (o *CreateContainerRequest) SetMp117(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp117 = &v
-}
-
-// GetMp118 returns the Mp118 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp118() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp118) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp118
-}
-
-// GetMp118Ok returns a tuple with the Mp118 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp118Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp118) {
-		return nil, false
-	}
-	return o.Mp118, true
-}
-
-// HasMp118 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp118() bool {
-	if o != nil && !IsNil(o.Mp118) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp118 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp118 field.
-func (o *CreateContainerRequest) SetMp118(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp118 = &v
-}
-
-// GetMp119 returns the Mp119 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp119() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp119) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp119
-}
-
-// GetMp119Ok returns a tuple with the Mp119 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp119Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp119) {
-		return nil, false
-	}
-	return o.Mp119, true
-}
-
-// HasMp119 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp119() bool {
-	if o != nil && !IsNil(o.Mp119) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp119 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp119 field.
-func (o *CreateContainerRequest) SetMp119(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp119 = &v
-}
-
-// GetMp120 returns the Mp120 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp120() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp120) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp120
-}
-
-// GetMp120Ok returns a tuple with the Mp120 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp120Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp120) {
-		return nil, false
-	}
-	return o.Mp120, true
-}
-
-// HasMp120 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp120() bool {
-	if o != nil && !IsNil(o.Mp120) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp120 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp120 field.
-func (o *CreateContainerRequest) SetMp120(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp120 = &v
-}
-
-// GetMp121 returns the Mp121 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp121() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp121) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp121
-}
-
-// GetMp121Ok returns a tuple with the Mp121 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp121Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp121) {
-		return nil, false
-	}
-	return o.Mp121, true
-}
-
-// HasMp121 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp121() bool {
-	if o != nil && !IsNil(o.Mp121) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp121 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp121 field.
-func (o *CreateContainerRequest) SetMp121(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp121 = &v
-}
-
-// GetMp122 returns the Mp122 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp122() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp122) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp122
-}
-
-// GetMp122Ok returns a tuple with the Mp122 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp122Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp122) {
-		return nil, false
-	}
-	return o.Mp122, true
-}
-
-// HasMp122 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp122() bool {
-	if o != nil && !IsNil(o.Mp122) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp122 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp122 field.
-func (o *CreateContainerRequest) SetMp122(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp122 = &v
-}
-
-// GetMp123 returns the Mp123 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp123() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp123) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp123
-}
-
-// GetMp123Ok returns a tuple with the Mp123 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp123Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp123) {
-		return nil, false
-	}
-	return o.Mp123, true
-}
-
-// HasMp123 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp123() bool {
-	if o != nil && !IsNil(o.Mp123) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp123 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp123 field.
-func (o *CreateContainerRequest) SetMp123(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp123 = &v
-}
-
-// GetMp124 returns the Mp124 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp124() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp124) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp124
-}
-
-// GetMp124Ok returns a tuple with the Mp124 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp124Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp124) {
-		return nil, false
-	}
-	return o.Mp124, true
-}
-
-// HasMp124 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp124() bool {
-	if o != nil && !IsNil(o.Mp124) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp124 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp124 field.
-func (o *CreateContainerRequest) SetMp124(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp124 = &v
-}
-
-// GetMp125 returns the Mp125 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp125() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp125) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp125
-}
-
-// GetMp125Ok returns a tuple with the Mp125 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp125Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp125) {
-		return nil, false
-	}
-	return o.Mp125, true
-}
-
-// HasMp125 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp125() bool {
-	if o != nil && !IsNil(o.Mp125) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp125 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp125 field.
-func (o *CreateContainerRequest) SetMp125(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp125 = &v
-}
-
-// GetMp126 returns the Mp126 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp126() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp126) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp126
-}
-
-// GetMp126Ok returns a tuple with the Mp126 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp126Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp126) {
-		return nil, false
-	}
-	return o.Mp126, true
-}
-
-// HasMp126 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp126() bool {
-	if o != nil && !IsNil(o.Mp126) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp126 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp126 field.
-func (o *CreateContainerRequest) SetMp126(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp126 = &v
-}
-
-// GetMp127 returns the Mp127 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp127() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp127) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp127
-}
-
-// GetMp127Ok returns a tuple with the Mp127 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp127Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp127) {
-		return nil, false
-	}
-	return o.Mp127, true
-}
-
-// HasMp127 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp127() bool {
-	if o != nil && !IsNil(o.Mp127) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp127 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp127 field.
-func (o *CreateContainerRequest) SetMp127(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp127 = &v
-}
-
-// GetMp128 returns the Mp128 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp128() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp128) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp128
-}
-
-// GetMp128Ok returns a tuple with the Mp128 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp128Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp128) {
-		return nil, false
-	}
-	return o.Mp128, true
-}
-
-// HasMp128 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp128() bool {
-	if o != nil && !IsNil(o.Mp128) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp128 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp128 field.
-func (o *CreateContainerRequest) SetMp128(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp128 = &v
-}
-
-// GetMp129 returns the Mp129 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp129() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp129) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp129
-}
-
-// GetMp129Ok returns a tuple with the Mp129 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp129Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp129) {
-		return nil, false
-	}
-	return o.Mp129, true
-}
-
-// HasMp129 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp129() bool {
-	if o != nil && !IsNil(o.Mp129) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp129 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp129 field.
-func (o *CreateContainerRequest) SetMp129(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp129 = &v
-}
-
-// GetMp130 returns the Mp130 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp130() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp130) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp130
-}
-
-// GetMp130Ok returns a tuple with the Mp130 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp130Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp130) {
-		return nil, false
-	}
-	return o.Mp130, true
-}
-
-// HasMp130 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp130() bool {
-	if o != nil && !IsNil(o.Mp130) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp130 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp130 field.
-func (o *CreateContainerRequest) SetMp130(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp130 = &v
-}
-
-// GetMp131 returns the Mp131 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp131() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp131) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp131
-}
-
-// GetMp131Ok returns a tuple with the Mp131 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp131Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp131) {
-		return nil, false
-	}
-	return o.Mp131, true
-}
-
-// HasMp131 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp131() bool {
-	if o != nil && !IsNil(o.Mp131) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp131 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp131 field.
-func (o *CreateContainerRequest) SetMp131(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp131 = &v
-}
-
-// GetMp132 returns the Mp132 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp132() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp132) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp132
-}
-
-// GetMp132Ok returns a tuple with the Mp132 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp132Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp132) {
-		return nil, false
-	}
-	return o.Mp132, true
-}
-
-// HasMp132 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp132() bool {
-	if o != nil && !IsNil(o.Mp132) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp132 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp132 field.
-func (o *CreateContainerRequest) SetMp132(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp132 = &v
-}
-
-// GetMp133 returns the Mp133 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp133() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp133) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp133
-}
-
-// GetMp133Ok returns a tuple with the Mp133 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp133Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp133) {
-		return nil, false
-	}
-	return o.Mp133, true
-}
-
-// HasMp133 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp133() bool {
-	if o != nil && !IsNil(o.Mp133) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp133 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp133 field.
-func (o *CreateContainerRequest) SetMp133(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp133 = &v
-}
-
-// GetMp134 returns the Mp134 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp134() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp134) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp134
-}
-
-// GetMp134Ok returns a tuple with the Mp134 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp134Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp134) {
-		return nil, false
-	}
-	return o.Mp134, true
-}
-
-// HasMp134 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp134() bool {
-	if o != nil && !IsNil(o.Mp134) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp134 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp134 field.
-func (o *CreateContainerRequest) SetMp134(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp134 = &v
-}
-
-// GetMp135 returns the Mp135 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp135() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp135) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp135
-}
-
-// GetMp135Ok returns a tuple with the Mp135 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp135Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp135) {
-		return nil, false
-	}
-	return o.Mp135, true
-}
-
-// HasMp135 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp135() bool {
-	if o != nil && !IsNil(o.Mp135) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp135 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp135 field.
-func (o *CreateContainerRequest) SetMp135(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp135 = &v
-}
-
-// GetMp136 returns the Mp136 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp136() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp136) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp136
-}
-
-// GetMp136Ok returns a tuple with the Mp136 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp136Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp136) {
-		return nil, false
-	}
-	return o.Mp136, true
-}
-
-// HasMp136 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp136() bool {
-	if o != nil && !IsNil(o.Mp136) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp136 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp136 field.
-func (o *CreateContainerRequest) SetMp136(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp136 = &v
-}
-
-// GetMp137 returns the Mp137 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp137() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp137) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp137
-}
-
-// GetMp137Ok returns a tuple with the Mp137 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp137Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp137) {
-		return nil, false
-	}
-	return o.Mp137, true
-}
-
-// HasMp137 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp137() bool {
-	if o != nil && !IsNil(o.Mp137) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp137 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp137 field.
-func (o *CreateContainerRequest) SetMp137(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp137 = &v
-}
-
-// GetMp138 returns the Mp138 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp138() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp138) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp138
-}
-
-// GetMp138Ok returns a tuple with the Mp138 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp138Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp138) {
-		return nil, false
-	}
-	return o.Mp138, true
-}
-
-// HasMp138 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp138() bool {
-	if o != nil && !IsNil(o.Mp138) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp138 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp138 field.
-func (o *CreateContainerRequest) SetMp138(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp138 = &v
-}
-
-// GetMp139 returns the Mp139 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp139() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp139) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp139
-}
-
-// GetMp139Ok returns a tuple with the Mp139 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp139Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp139) {
-		return nil, false
-	}
-	return o.Mp139, true
-}
-
-// HasMp139 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp139() bool {
-	if o != nil && !IsNil(o.Mp139) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp139 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp139 field.
-func (o *CreateContainerRequest) SetMp139(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp139 = &v
-}
-
-// GetMp140 returns the Mp140 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp140() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp140) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp140
-}
-
-// GetMp140Ok returns a tuple with the Mp140 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp140Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp140) {
-		return nil, false
-	}
-	return o.Mp140, true
-}
-
-// HasMp140 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp140() bool {
-	if o != nil && !IsNil(o.Mp140) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp140 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp140 field.
-func (o *CreateContainerRequest) SetMp140(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp140 = &v
-}
-
-// GetMp141 returns the Mp141 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp141() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp141) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp141
-}
-
-// GetMp141Ok returns a tuple with the Mp141 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp141Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp141) {
-		return nil, false
-	}
-	return o.Mp141, true
-}
-
-// HasMp141 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp141() bool {
-	if o != nil && !IsNil(o.Mp141) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp141 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp141 field.
-func (o *CreateContainerRequest) SetMp141(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp141 = &v
-}
-
-// GetMp142 returns the Mp142 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp142() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp142) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp142
-}
-
-// GetMp142Ok returns a tuple with the Mp142 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp142Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp142) {
-		return nil, false
-	}
-	return o.Mp142, true
-}
-
-// HasMp142 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp142() bool {
-	if o != nil && !IsNil(o.Mp142) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp142 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp142 field.
-func (o *CreateContainerRequest) SetMp142(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp142 = &v
-}
-
-// GetMp143 returns the Mp143 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp143() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp143) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp143
-}
-
-// GetMp143Ok returns a tuple with the Mp143 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp143Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp143) {
-		return nil, false
-	}
-	return o.Mp143, true
-}
-
-// HasMp143 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp143() bool {
-	if o != nil && !IsNil(o.Mp143) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp143 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp143 field.
-func (o *CreateContainerRequest) SetMp143(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp143 = &v
-}
-
-// GetMp144 returns the Mp144 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp144() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp144) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp144
-}
-
-// GetMp144Ok returns a tuple with the Mp144 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp144Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp144) {
-		return nil, false
-	}
-	return o.Mp144, true
-}
-
-// HasMp144 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp144() bool {
-	if o != nil && !IsNil(o.Mp144) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp144 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp144 field.
-func (o *CreateContainerRequest) SetMp144(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp144 = &v
-}
-
-// GetMp145 returns the Mp145 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp145() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp145) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp145
-}
-
-// GetMp145Ok returns a tuple with the Mp145 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp145Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp145) {
-		return nil, false
-	}
-	return o.Mp145, true
-}
-
-// HasMp145 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp145() bool {
-	if o != nil && !IsNil(o.Mp145) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp145 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp145 field.
-func (o *CreateContainerRequest) SetMp145(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp145 = &v
-}
-
-// GetMp146 returns the Mp146 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp146() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp146) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp146
-}
-
-// GetMp146Ok returns a tuple with the Mp146 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp146Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp146) {
-		return nil, false
-	}
-	return o.Mp146, true
-}
-
-// HasMp146 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp146() bool {
-	if o != nil && !IsNil(o.Mp146) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp146 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp146 field.
-func (o *CreateContainerRequest) SetMp146(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp146 = &v
-}
-
-// GetMp147 returns the Mp147 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp147() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp147) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp147
-}
-
-// GetMp147Ok returns a tuple with the Mp147 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp147Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp147) {
-		return nil, false
-	}
-	return o.Mp147, true
-}
-
-// HasMp147 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp147() bool {
-	if o != nil && !IsNil(o.Mp147) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp147 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp147 field.
-func (o *CreateContainerRequest) SetMp147(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp147 = &v
-}
-
-// GetMp148 returns the Mp148 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp148() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp148) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp148
-}
-
-// GetMp148Ok returns a tuple with the Mp148 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp148Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp148) {
-		return nil, false
-	}
-	return o.Mp148, true
-}
-
-// HasMp148 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp148() bool {
-	if o != nil && !IsNil(o.Mp148) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp148 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp148 field.
-func (o *CreateContainerRequest) SetMp148(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp148 = &v
-}
-
-// GetMp149 returns the Mp149 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp149() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp149) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp149
-}
-
-// GetMp149Ok returns a tuple with the Mp149 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp149Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp149) {
-		return nil, false
-	}
-	return o.Mp149, true
-}
-
-// HasMp149 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp149() bool {
-	if o != nil && !IsNil(o.Mp149) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp149 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp149 field.
-func (o *CreateContainerRequest) SetMp149(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp149 = &v
-}
-
-// GetMp150 returns the Mp150 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp150() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp150) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp150
-}
-
-// GetMp150Ok returns a tuple with the Mp150 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp150Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp150) {
-		return nil, false
-	}
-	return o.Mp150, true
-}
-
-// HasMp150 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp150() bool {
-	if o != nil && !IsNil(o.Mp150) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp150 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp150 field.
-func (o *CreateContainerRequest) SetMp150(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp150 = &v
-}
-
-// GetMp151 returns the Mp151 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp151() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp151) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp151
-}
-
-// GetMp151Ok returns a tuple with the Mp151 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp151Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp151) {
-		return nil, false
-	}
-	return o.Mp151, true
-}
-
-// HasMp151 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp151() bool {
-	if o != nil && !IsNil(o.Mp151) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp151 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp151 field.
-func (o *CreateContainerRequest) SetMp151(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp151 = &v
-}
-
-// GetMp152 returns the Mp152 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp152() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp152) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp152
-}
-
-// GetMp152Ok returns a tuple with the Mp152 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp152Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp152) {
-		return nil, false
-	}
-	return o.Mp152, true
-}
-
-// HasMp152 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp152() bool {
-	if o != nil && !IsNil(o.Mp152) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp152 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp152 field.
-func (o *CreateContainerRequest) SetMp152(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp152 = &v
-}
-
-// GetMp153 returns the Mp153 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp153() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp153) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp153
-}
-
-// GetMp153Ok returns a tuple with the Mp153 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp153Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp153) {
-		return nil, false
-	}
-	return o.Mp153, true
-}
-
-// HasMp153 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp153() bool {
-	if o != nil && !IsNil(o.Mp153) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp153 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp153 field.
-func (o *CreateContainerRequest) SetMp153(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp153 = &v
-}
-
-// GetMp154 returns the Mp154 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp154() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp154) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp154
-}
-
-// GetMp154Ok returns a tuple with the Mp154 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp154Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp154) {
-		return nil, false
-	}
-	return o.Mp154, true
-}
-
-// HasMp154 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp154() bool {
-	if o != nil && !IsNil(o.Mp154) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp154 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp154 field.
-func (o *CreateContainerRequest) SetMp154(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp154 = &v
-}
-
-// GetMp155 returns the Mp155 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp155() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp155) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp155
-}
-
-// GetMp155Ok returns a tuple with the Mp155 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp155Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp155) {
-		return nil, false
-	}
-	return o.Mp155, true
-}
-
-// HasMp155 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp155() bool {
-	if o != nil && !IsNil(o.Mp155) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp155 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp155 field.
-func (o *CreateContainerRequest) SetMp155(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp155 = &v
-}
-
-// GetMp156 returns the Mp156 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp156() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp156) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp156
-}
-
-// GetMp156Ok returns a tuple with the Mp156 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp156Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp156) {
-		return nil, false
-	}
-	return o.Mp156, true
-}
-
-// HasMp156 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp156() bool {
-	if o != nil && !IsNil(o.Mp156) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp156 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp156 field.
-func (o *CreateContainerRequest) SetMp156(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp156 = &v
-}
-
-// GetMp157 returns the Mp157 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp157() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp157) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp157
-}
-
-// GetMp157Ok returns a tuple with the Mp157 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp157Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp157) {
-		return nil, false
-	}
-	return o.Mp157, true
-}
-
-// HasMp157 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp157() bool {
-	if o != nil && !IsNil(o.Mp157) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp157 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp157 field.
-func (o *CreateContainerRequest) SetMp157(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp157 = &v
-}
-
-// GetMp158 returns the Mp158 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp158() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp158) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp158
-}
-
-// GetMp158Ok returns a tuple with the Mp158 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp158Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp158) {
-		return nil, false
-	}
-	return o.Mp158, true
-}
-
-// HasMp158 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp158() bool {
-	if o != nil && !IsNil(o.Mp158) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp158 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp158 field.
-func (o *CreateContainerRequest) SetMp158(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp158 = &v
-}
-
-// GetMp159 returns the Mp159 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp159() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp159) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp159
-}
-
-// GetMp159Ok returns a tuple with the Mp159 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp159Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp159) {
-		return nil, false
-	}
-	return o.Mp159, true
-}
-
-// HasMp159 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp159() bool {
-	if o != nil && !IsNil(o.Mp159) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp159 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp159 field.
-func (o *CreateContainerRequest) SetMp159(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp159 = &v
-}
-
-// GetMp160 returns the Mp160 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp160() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp160) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp160
-}
-
-// GetMp160Ok returns a tuple with the Mp160 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp160Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp160) {
-		return nil, false
-	}
-	return o.Mp160, true
-}
-
-// HasMp160 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp160() bool {
-	if o != nil && !IsNil(o.Mp160) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp160 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp160 field.
-func (o *CreateContainerRequest) SetMp160(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp160 = &v
-}
-
-// GetMp161 returns the Mp161 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp161() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp161) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp161
-}
-
-// GetMp161Ok returns a tuple with the Mp161 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp161Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp161) {
-		return nil, false
-	}
-	return o.Mp161, true
-}
-
-// HasMp161 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp161() bool {
-	if o != nil && !IsNil(o.Mp161) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp161 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp161 field.
-func (o *CreateContainerRequest) SetMp161(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp161 = &v
-}
-
-// GetMp162 returns the Mp162 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp162() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp162) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp162
-}
-
-// GetMp162Ok returns a tuple with the Mp162 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp162Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp162) {
-		return nil, false
-	}
-	return o.Mp162, true
-}
-
-// HasMp162 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp162() bool {
-	if o != nil && !IsNil(o.Mp162) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp162 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp162 field.
-func (o *CreateContainerRequest) SetMp162(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp162 = &v
-}
-
-// GetMp163 returns the Mp163 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp163() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp163) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp163
-}
-
-// GetMp163Ok returns a tuple with the Mp163 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp163Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp163) {
-		return nil, false
-	}
-	return o.Mp163, true
-}
-
-// HasMp163 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp163() bool {
-	if o != nil && !IsNil(o.Mp163) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp163 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp163 field.
-func (o *CreateContainerRequest) SetMp163(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp163 = &v
-}
-
-// GetMp164 returns the Mp164 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp164() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp164) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp164
-}
-
-// GetMp164Ok returns a tuple with the Mp164 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp164Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp164) {
-		return nil, false
-	}
-	return o.Mp164, true
-}
-
-// HasMp164 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp164() bool {
-	if o != nil && !IsNil(o.Mp164) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp164 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp164 field.
-func (o *CreateContainerRequest) SetMp164(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp164 = &v
-}
-
-// GetMp165 returns the Mp165 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp165() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp165) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp165
-}
-
-// GetMp165Ok returns a tuple with the Mp165 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp165Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp165) {
-		return nil, false
-	}
-	return o.Mp165, true
-}
-
-// HasMp165 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp165() bool {
-	if o != nil && !IsNil(o.Mp165) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp165 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp165 field.
-func (o *CreateContainerRequest) SetMp165(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp165 = &v
-}
-
-// GetMp166 returns the Mp166 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp166() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp166) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp166
-}
-
-// GetMp166Ok returns a tuple with the Mp166 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp166Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp166) {
-		return nil, false
-	}
-	return o.Mp166, true
-}
-
-// HasMp166 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp166() bool {
-	if o != nil && !IsNil(o.Mp166) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp166 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp166 field.
-func (o *CreateContainerRequest) SetMp166(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp166 = &v
-}
-
-// GetMp167 returns the Mp167 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp167() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp167) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp167
-}
-
-// GetMp167Ok returns a tuple with the Mp167 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp167Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp167) {
-		return nil, false
-	}
-	return o.Mp167, true
-}
-
-// HasMp167 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp167() bool {
-	if o != nil && !IsNil(o.Mp167) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp167 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp167 field.
-func (o *CreateContainerRequest) SetMp167(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp167 = &v
-}
-
-// GetMp168 returns the Mp168 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp168() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp168) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp168
-}
-
-// GetMp168Ok returns a tuple with the Mp168 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp168Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp168) {
-		return nil, false
-	}
-	return o.Mp168, true
-}
-
-// HasMp168 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp168() bool {
-	if o != nil && !IsNil(o.Mp168) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp168 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp168 field.
-func (o *CreateContainerRequest) SetMp168(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp168 = &v
-}
-
-// GetMp169 returns the Mp169 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp169() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp169) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp169
-}
-
-// GetMp169Ok returns a tuple with the Mp169 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp169Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp169) {
-		return nil, false
-	}
-	return o.Mp169, true
-}
-
-// HasMp169 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp169() bool {
-	if o != nil && !IsNil(o.Mp169) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp169 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp169 field.
-func (o *CreateContainerRequest) SetMp169(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp169 = &v
-}
-
-// GetMp170 returns the Mp170 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp170() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp170) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp170
-}
-
-// GetMp170Ok returns a tuple with the Mp170 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp170Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp170) {
-		return nil, false
-	}
-	return o.Mp170, true
-}
-
-// HasMp170 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp170() bool {
-	if o != nil && !IsNil(o.Mp170) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp170 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp170 field.
-func (o *CreateContainerRequest) SetMp170(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp170 = &v
-}
-
-// GetMp171 returns the Mp171 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp171() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp171) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp171
-}
-
-// GetMp171Ok returns a tuple with the Mp171 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp171Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp171) {
-		return nil, false
-	}
-	return o.Mp171, true
-}
-
-// HasMp171 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp171() bool {
-	if o != nil && !IsNil(o.Mp171) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp171 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp171 field.
-func (o *CreateContainerRequest) SetMp171(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp171 = &v
-}
-
-// GetMp172 returns the Mp172 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp172() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp172) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp172
-}
-
-// GetMp172Ok returns a tuple with the Mp172 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp172Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp172) {
-		return nil, false
-	}
-	return o.Mp172, true
-}
-
-// HasMp172 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp172() bool {
-	if o != nil && !IsNil(o.Mp172) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp172 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp172 field.
-func (o *CreateContainerRequest) SetMp172(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp172 = &v
-}
-
-// GetMp173 returns the Mp173 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp173() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp173) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp173
-}
-
-// GetMp173Ok returns a tuple with the Mp173 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp173Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp173) {
-		return nil, false
-	}
-	return o.Mp173, true
-}
-
-// HasMp173 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp173() bool {
-	if o != nil && !IsNil(o.Mp173) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp173 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp173 field.
-func (o *CreateContainerRequest) SetMp173(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp173 = &v
-}
-
-// GetMp174 returns the Mp174 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp174() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp174) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp174
-}
-
-// GetMp174Ok returns a tuple with the Mp174 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp174Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp174) {
-		return nil, false
-	}
-	return o.Mp174, true
-}
-
-// HasMp174 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp174() bool {
-	if o != nil && !IsNil(o.Mp174) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp174 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp174 field.
-func (o *CreateContainerRequest) SetMp174(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp174 = &v
-}
-
-// GetMp175 returns the Mp175 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp175() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp175) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp175
-}
-
-// GetMp175Ok returns a tuple with the Mp175 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp175Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp175) {
-		return nil, false
-	}
-	return o.Mp175, true
-}
-
-// HasMp175 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp175() bool {
-	if o != nil && !IsNil(o.Mp175) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp175 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp175 field.
-func (o *CreateContainerRequest) SetMp175(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp175 = &v
-}
-
-// GetMp176 returns the Mp176 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp176() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp176) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp176
-}
-
-// GetMp176Ok returns a tuple with the Mp176 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp176Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp176) {
-		return nil, false
-	}
-	return o.Mp176, true
-}
-
-// HasMp176 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp176() bool {
-	if o != nil && !IsNil(o.Mp176) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp176 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp176 field.
-func (o *CreateContainerRequest) SetMp176(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp176 = &v
-}
-
-// GetMp177 returns the Mp177 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp177() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp177) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp177
-}
-
-// GetMp177Ok returns a tuple with the Mp177 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp177Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp177) {
-		return nil, false
-	}
-	return o.Mp177, true
-}
-
-// HasMp177 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp177() bool {
-	if o != nil && !IsNil(o.Mp177) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp177 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp177 field.
-func (o *CreateContainerRequest) SetMp177(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp177 = &v
-}
-
-// GetMp178 returns the Mp178 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp178() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp178) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp178
-}
-
-// GetMp178Ok returns a tuple with the Mp178 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp178Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp178) {
-		return nil, false
-	}
-	return o.Mp178, true
-}
-
-// HasMp178 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp178() bool {
-	if o != nil && !IsNil(o.Mp178) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp178 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp178 field.
-func (o *CreateContainerRequest) SetMp178(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp178 = &v
-}
-
-// GetMp179 returns the Mp179 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp179() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp179) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp179
-}
-
-// GetMp179Ok returns a tuple with the Mp179 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp179Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp179) {
-		return nil, false
-	}
-	return o.Mp179, true
-}
-
-// HasMp179 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp179() bool {
-	if o != nil && !IsNil(o.Mp179) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp179 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp179 field.
-func (o *CreateContainerRequest) SetMp179(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp179 = &v
-}
-
-// GetMp180 returns the Mp180 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp180() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp180) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp180
-}
-
-// GetMp180Ok returns a tuple with the Mp180 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp180Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp180) {
-		return nil, false
-	}
-	return o.Mp180, true
-}
-
-// HasMp180 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp180() bool {
-	if o != nil && !IsNil(o.Mp180) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp180 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp180 field.
-func (o *CreateContainerRequest) SetMp180(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp180 = &v
-}
-
-// GetMp181 returns the Mp181 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp181() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp181) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp181
-}
-
-// GetMp181Ok returns a tuple with the Mp181 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp181Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp181) {
-		return nil, false
-	}
-	return o.Mp181, true
-}
-
-// HasMp181 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp181() bool {
-	if o != nil && !IsNil(o.Mp181) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp181 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp181 field.
-func (o *CreateContainerRequest) SetMp181(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp181 = &v
-}
-
-// GetMp182 returns the Mp182 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp182() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp182) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp182
-}
-
-// GetMp182Ok returns a tuple with the Mp182 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp182Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp182) {
-		return nil, false
-	}
-	return o.Mp182, true
-}
-
-// HasMp182 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp182() bool {
-	if o != nil && !IsNil(o.Mp182) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp182 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp182 field.
-func (o *CreateContainerRequest) SetMp182(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp182 = &v
-}
-
-// GetMp183 returns the Mp183 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp183() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp183) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp183
-}
-
-// GetMp183Ok returns a tuple with the Mp183 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp183Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp183) {
-		return nil, false
-	}
-	return o.Mp183, true
-}
-
-// HasMp183 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp183() bool {
-	if o != nil && !IsNil(o.Mp183) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp183 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp183 field.
-func (o *CreateContainerRequest) SetMp183(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp183 = &v
-}
-
-// GetMp184 returns the Mp184 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp184() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp184) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp184
-}
-
-// GetMp184Ok returns a tuple with the Mp184 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp184Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp184) {
-		return nil, false
-	}
-	return o.Mp184, true
-}
-
-// HasMp184 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp184() bool {
-	if o != nil && !IsNil(o.Mp184) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp184 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp184 field.
-func (o *CreateContainerRequest) SetMp184(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp184 = &v
-}
-
-// GetMp185 returns the Mp185 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp185() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp185) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp185
-}
-
-// GetMp185Ok returns a tuple with the Mp185 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp185Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp185) {
-		return nil, false
-	}
-	return o.Mp185, true
-}
-
-// HasMp185 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp185() bool {
-	if o != nil && !IsNil(o.Mp185) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp185 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp185 field.
-func (o *CreateContainerRequest) SetMp185(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp185 = &v
-}
-
-// GetMp186 returns the Mp186 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp186() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp186) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp186
-}
-
-// GetMp186Ok returns a tuple with the Mp186 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp186Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp186) {
-		return nil, false
-	}
-	return o.Mp186, true
-}
-
-// HasMp186 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp186() bool {
-	if o != nil && !IsNil(o.Mp186) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp186 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp186 field.
-func (o *CreateContainerRequest) SetMp186(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp186 = &v
-}
-
-// GetMp187 returns the Mp187 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp187() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp187) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp187
-}
-
-// GetMp187Ok returns a tuple with the Mp187 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp187Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp187) {
-		return nil, false
-	}
-	return o.Mp187, true
-}
-
-// HasMp187 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp187() bool {
-	if o != nil && !IsNil(o.Mp187) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp187 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp187 field.
-func (o *CreateContainerRequest) SetMp187(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp187 = &v
-}
-
-// GetMp188 returns the Mp188 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp188() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp188) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp188
-}
-
-// GetMp188Ok returns a tuple with the Mp188 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp188Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp188) {
-		return nil, false
-	}
-	return o.Mp188, true
-}
-
-// HasMp188 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp188() bool {
-	if o != nil && !IsNil(o.Mp188) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp188 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp188 field.
-func (o *CreateContainerRequest) SetMp188(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp188 = &v
-}
-
-// GetMp189 returns the Mp189 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp189() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp189) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp189
-}
-
-// GetMp189Ok returns a tuple with the Mp189 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp189Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp189) {
-		return nil, false
-	}
-	return o.Mp189, true
-}
-
-// HasMp189 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp189() bool {
-	if o != nil && !IsNil(o.Mp189) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp189 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp189 field.
-func (o *CreateContainerRequest) SetMp189(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp189 = &v
-}
-
-// GetMp190 returns the Mp190 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp190() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp190) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp190
-}
-
-// GetMp190Ok returns a tuple with the Mp190 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp190Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp190) {
-		return nil, false
-	}
-	return o.Mp190, true
-}
-
-// HasMp190 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp190() bool {
-	if o != nil && !IsNil(o.Mp190) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp190 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp190 field.
-func (o *CreateContainerRequest) SetMp190(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp190 = &v
-}
-
-// GetMp191 returns the Mp191 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp191() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp191) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp191
-}
-
-// GetMp191Ok returns a tuple with the Mp191 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp191Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp191) {
-		return nil, false
-	}
-	return o.Mp191, true
-}
-
-// HasMp191 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp191() bool {
-	if o != nil && !IsNil(o.Mp191) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp191 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp191 field.
-func (o *CreateContainerRequest) SetMp191(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp191 = &v
-}
-
-// GetMp192 returns the Mp192 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp192() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp192) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp192
-}
-
-// GetMp192Ok returns a tuple with the Mp192 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp192Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp192) {
-		return nil, false
-	}
-	return o.Mp192, true
-}
-
-// HasMp192 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp192() bool {
-	if o != nil && !IsNil(o.Mp192) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp192 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp192 field.
-func (o *CreateContainerRequest) SetMp192(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp192 = &v
-}
-
-// GetMp193 returns the Mp193 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp193() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp193) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp193
-}
-
-// GetMp193Ok returns a tuple with the Mp193 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp193Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp193) {
-		return nil, false
-	}
-	return o.Mp193, true
-}
-
-// HasMp193 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp193() bool {
-	if o != nil && !IsNil(o.Mp193) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp193 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp193 field.
-func (o *CreateContainerRequest) SetMp193(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp193 = &v
-}
-
-// GetMp194 returns the Mp194 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp194() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp194) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp194
-}
-
-// GetMp194Ok returns a tuple with the Mp194 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp194Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp194) {
-		return nil, false
-	}
-	return o.Mp194, true
-}
-
-// HasMp194 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp194() bool {
-	if o != nil && !IsNil(o.Mp194) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp194 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp194 field.
-func (o *CreateContainerRequest) SetMp194(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp194 = &v
-}
-
-// GetMp195 returns the Mp195 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp195() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp195) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp195
-}
-
-// GetMp195Ok returns a tuple with the Mp195 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp195Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp195) {
-		return nil, false
-	}
-	return o.Mp195, true
-}
-
-// HasMp195 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp195() bool {
-	if o != nil && !IsNil(o.Mp195) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp195 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp195 field.
-func (o *CreateContainerRequest) SetMp195(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp195 = &v
-}
-
-// GetMp196 returns the Mp196 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp196() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp196) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp196
-}
-
-// GetMp196Ok returns a tuple with the Mp196 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp196Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp196) {
-		return nil, false
-	}
-	return o.Mp196, true
-}
-
-// HasMp196 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp196() bool {
-	if o != nil && !IsNil(o.Mp196) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp196 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp196 field.
-func (o *CreateContainerRequest) SetMp196(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp196 = &v
-}
-
-// GetMp197 returns the Mp197 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp197() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp197) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp197
-}
-
-// GetMp197Ok returns a tuple with the Mp197 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp197Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp197) {
-		return nil, false
-	}
-	return o.Mp197, true
-}
-
-// HasMp197 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp197() bool {
-	if o != nil && !IsNil(o.Mp197) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp197 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp197 field.
-func (o *CreateContainerRequest) SetMp197(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp197 = &v
-}
-
-// GetMp198 returns the Mp198 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp198() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp198) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp198
-}
-
-// GetMp198Ok returns a tuple with the Mp198 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp198Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp198) {
-		return nil, false
-	}
-	return o.Mp198, true
-}
-
-// HasMp198 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp198() bool {
-	if o != nil && !IsNil(o.Mp198) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp198 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp198 field.
-func (o *CreateContainerRequest) SetMp198(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp198 = &v
-}
-
-// GetMp199 returns the Mp199 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp199() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp199) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp199
-}
-
-// GetMp199Ok returns a tuple with the Mp199 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp199Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp199) {
-		return nil, false
-	}
-	return o.Mp199, true
-}
-
-// HasMp199 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp199() bool {
-	if o != nil && !IsNil(o.Mp199) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp199 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp199 field.
-func (o *CreateContainerRequest) SetMp199(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp199 = &v
-}
-
-// GetMp200 returns the Mp200 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp200() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp200) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp200
-}
-
-// GetMp200Ok returns a tuple with the Mp200 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp200Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp200) {
-		return nil, false
-	}
-	return o.Mp200, true
-}
-
-// HasMp200 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp200() bool {
-	if o != nil && !IsNil(o.Mp200) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp200 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp200 field.
-func (o *CreateContainerRequest) SetMp200(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp200 = &v
-}
-
-// GetMp201 returns the Mp201 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp201() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp201) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp201
-}
-
-// GetMp201Ok returns a tuple with the Mp201 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp201Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp201) {
-		return nil, false
-	}
-	return o.Mp201, true
-}
-
-// HasMp201 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp201() bool {
-	if o != nil && !IsNil(o.Mp201) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp201 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp201 field.
-func (o *CreateContainerRequest) SetMp201(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp201 = &v
-}
-
-// GetMp202 returns the Mp202 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp202() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp202) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp202
-}
-
-// GetMp202Ok returns a tuple with the Mp202 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp202Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp202) {
-		return nil, false
-	}
-	return o.Mp202, true
-}
-
-// HasMp202 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp202() bool {
-	if o != nil && !IsNil(o.Mp202) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp202 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp202 field.
-func (o *CreateContainerRequest) SetMp202(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp202 = &v
-}
-
-// GetMp203 returns the Mp203 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp203() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp203) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp203
-}
-
-// GetMp203Ok returns a tuple with the Mp203 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp203Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp203) {
-		return nil, false
-	}
-	return o.Mp203, true
-}
-
-// HasMp203 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp203() bool {
-	if o != nil && !IsNil(o.Mp203) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp203 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp203 field.
-func (o *CreateContainerRequest) SetMp203(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp203 = &v
-}
-
-// GetMp204 returns the Mp204 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp204() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp204) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp204
-}
-
-// GetMp204Ok returns a tuple with the Mp204 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp204Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp204) {
-		return nil, false
-	}
-	return o.Mp204, true
-}
-
-// HasMp204 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp204() bool {
-	if o != nil && !IsNil(o.Mp204) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp204 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp204 field.
-func (o *CreateContainerRequest) SetMp204(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp204 = &v
-}
-
-// GetMp205 returns the Mp205 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp205() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp205) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp205
-}
-
-// GetMp205Ok returns a tuple with the Mp205 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp205Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp205) {
-		return nil, false
-	}
-	return o.Mp205, true
-}
-
-// HasMp205 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp205() bool {
-	if o != nil && !IsNil(o.Mp205) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp205 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp205 field.
-func (o *CreateContainerRequest) SetMp205(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp205 = &v
-}
-
-// GetMp206 returns the Mp206 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp206() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp206) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp206
-}
-
-// GetMp206Ok returns a tuple with the Mp206 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp206Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp206) {
-		return nil, false
-	}
-	return o.Mp206, true
-}
-
-// HasMp206 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp206() bool {
-	if o != nil && !IsNil(o.Mp206) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp206 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp206 field.
-func (o *CreateContainerRequest) SetMp206(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp206 = &v
-}
-
-// GetMp207 returns the Mp207 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp207() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp207) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp207
-}
-
-// GetMp207Ok returns a tuple with the Mp207 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp207Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp207) {
-		return nil, false
-	}
-	return o.Mp207, true
-}
-
-// HasMp207 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp207() bool {
-	if o != nil && !IsNil(o.Mp207) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp207 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp207 field.
-func (o *CreateContainerRequest) SetMp207(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp207 = &v
-}
-
-// GetMp208 returns the Mp208 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp208() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp208) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp208
-}
-
-// GetMp208Ok returns a tuple with the Mp208 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp208Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp208) {
-		return nil, false
-	}
-	return o.Mp208, true
-}
-
-// HasMp208 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp208() bool {
-	if o != nil && !IsNil(o.Mp208) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp208 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp208 field.
-func (o *CreateContainerRequest) SetMp208(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp208 = &v
-}
-
-// GetMp209 returns the Mp209 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp209() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp209) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp209
-}
-
-// GetMp209Ok returns a tuple with the Mp209 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp209Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp209) {
-		return nil, false
-	}
-	return o.Mp209, true
-}
-
-// HasMp209 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp209() bool {
-	if o != nil && !IsNil(o.Mp209) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp209 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp209 field.
-func (o *CreateContainerRequest) SetMp209(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp209 = &v
-}
-
-// GetMp210 returns the Mp210 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp210() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp210) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp210
-}
-
-// GetMp210Ok returns a tuple with the Mp210 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp210Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp210) {
-		return nil, false
-	}
-	return o.Mp210, true
-}
-
-// HasMp210 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp210() bool {
-	if o != nil && !IsNil(o.Mp210) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp210 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp210 field.
-func (o *CreateContainerRequest) SetMp210(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp210 = &v
-}
-
-// GetMp211 returns the Mp211 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp211() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp211) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp211
-}
-
-// GetMp211Ok returns a tuple with the Mp211 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp211Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp211) {
-		return nil, false
-	}
-	return o.Mp211, true
-}
-
-// HasMp211 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp211() bool {
-	if o != nil && !IsNil(o.Mp211) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp211 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp211 field.
-func (o *CreateContainerRequest) SetMp211(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp211 = &v
-}
-
-// GetMp212 returns the Mp212 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp212() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp212) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp212
-}
-
-// GetMp212Ok returns a tuple with the Mp212 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp212Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp212) {
-		return nil, false
-	}
-	return o.Mp212, true
-}
-
-// HasMp212 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp212() bool {
-	if o != nil && !IsNil(o.Mp212) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp212 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp212 field.
-func (o *CreateContainerRequest) SetMp212(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp212 = &v
-}
-
-// GetMp213 returns the Mp213 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp213() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp213) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp213
-}
-
-// GetMp213Ok returns a tuple with the Mp213 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp213Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp213) {
-		return nil, false
-	}
-	return o.Mp213, true
-}
-
-// HasMp213 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp213() bool {
-	if o != nil && !IsNil(o.Mp213) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp213 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp213 field.
-func (o *CreateContainerRequest) SetMp213(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp213 = &v
-}
-
-// GetMp214 returns the Mp214 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp214() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp214) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp214
-}
-
-// GetMp214Ok returns a tuple with the Mp214 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp214Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp214) {
-		return nil, false
-	}
-	return o.Mp214, true
-}
-
-// HasMp214 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp214() bool {
-	if o != nil && !IsNil(o.Mp214) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp214 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp214 field.
-func (o *CreateContainerRequest) SetMp214(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp214 = &v
-}
-
-// GetMp215 returns the Mp215 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp215() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp215) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp215
-}
-
-// GetMp215Ok returns a tuple with the Mp215 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp215Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp215) {
-		return nil, false
-	}
-	return o.Mp215, true
-}
-
-// HasMp215 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp215() bool {
-	if o != nil && !IsNil(o.Mp215) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp215 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp215 field.
-func (o *CreateContainerRequest) SetMp215(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp215 = &v
-}
-
-// GetMp216 returns the Mp216 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp216() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp216) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp216
-}
-
-// GetMp216Ok returns a tuple with the Mp216 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp216Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp216) {
-		return nil, false
-	}
-	return o.Mp216, true
-}
-
-// HasMp216 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp216() bool {
-	if o != nil && !IsNil(o.Mp216) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp216 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp216 field.
-func (o *CreateContainerRequest) SetMp216(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp216 = &v
-}
-
-// GetMp217 returns the Mp217 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp217() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp217) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp217
-}
-
-// GetMp217Ok returns a tuple with the Mp217 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp217Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp217) {
-		return nil, false
-	}
-	return o.Mp217, true
-}
-
-// HasMp217 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp217() bool {
-	if o != nil && !IsNil(o.Mp217) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp217 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp217 field.
-func (o *CreateContainerRequest) SetMp217(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp217 = &v
-}
-
-// GetMp218 returns the Mp218 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp218() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp218) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp218
-}
-
-// GetMp218Ok returns a tuple with the Mp218 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp218Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp218) {
-		return nil, false
-	}
-	return o.Mp218, true
-}
-
-// HasMp218 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp218() bool {
-	if o != nil && !IsNil(o.Mp218) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp218 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp218 field.
-func (o *CreateContainerRequest) SetMp218(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp218 = &v
-}
-
-// GetMp219 returns the Mp219 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp219() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp219) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp219
-}
-
-// GetMp219Ok returns a tuple with the Mp219 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp219Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp219) {
-		return nil, false
-	}
-	return o.Mp219, true
-}
-
-// HasMp219 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp219() bool {
-	if o != nil && !IsNil(o.Mp219) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp219 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp219 field.
-func (o *CreateContainerRequest) SetMp219(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp219 = &v
-}
-
-// GetMp220 returns the Mp220 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp220() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp220) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp220
-}
-
-// GetMp220Ok returns a tuple with the Mp220 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp220Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp220) {
-		return nil, false
-	}
-	return o.Mp220, true
-}
-
-// HasMp220 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp220() bool {
-	if o != nil && !IsNil(o.Mp220) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp220 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp220 field.
-func (o *CreateContainerRequest) SetMp220(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp220 = &v
-}
-
-// GetMp221 returns the Mp221 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp221() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp221) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp221
-}
-
-// GetMp221Ok returns a tuple with the Mp221 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp221Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp221) {
-		return nil, false
-	}
-	return o.Mp221, true
-}
-
-// HasMp221 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp221() bool {
-	if o != nil && !IsNil(o.Mp221) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp221 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp221 field.
-func (o *CreateContainerRequest) SetMp221(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp221 = &v
-}
-
-// GetMp222 returns the Mp222 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp222() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp222) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp222
-}
-
-// GetMp222Ok returns a tuple with the Mp222 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp222Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp222) {
-		return nil, false
-	}
-	return o.Mp222, true
-}
-
-// HasMp222 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp222() bool {
-	if o != nil && !IsNil(o.Mp222) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp222 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp222 field.
-func (o *CreateContainerRequest) SetMp222(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp222 = &v
-}
-
-// GetMp223 returns the Mp223 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp223() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp223) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp223
-}
-
-// GetMp223Ok returns a tuple with the Mp223 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp223Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp223) {
-		return nil, false
-	}
-	return o.Mp223, true
-}
-
-// HasMp223 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp223() bool {
-	if o != nil && !IsNil(o.Mp223) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp223 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp223 field.
-func (o *CreateContainerRequest) SetMp223(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp223 = &v
-}
-
-// GetMp224 returns the Mp224 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp224() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp224) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp224
-}
-
-// GetMp224Ok returns a tuple with the Mp224 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp224Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp224) {
-		return nil, false
-	}
-	return o.Mp224, true
-}
-
-// HasMp224 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp224() bool {
-	if o != nil && !IsNil(o.Mp224) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp224 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp224 field.
-func (o *CreateContainerRequest) SetMp224(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp224 = &v
-}
-
-// GetMp225 returns the Mp225 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp225() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp225) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp225
-}
-
-// GetMp225Ok returns a tuple with the Mp225 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp225Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp225) {
-		return nil, false
-	}
-	return o.Mp225, true
-}
-
-// HasMp225 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp225() bool {
-	if o != nil && !IsNil(o.Mp225) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp225 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp225 field.
-func (o *CreateContainerRequest) SetMp225(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp225 = &v
-}
-
-// GetMp226 returns the Mp226 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp226() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp226) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp226
-}
-
-// GetMp226Ok returns a tuple with the Mp226 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp226Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp226) {
-		return nil, false
-	}
-	return o.Mp226, true
-}
-
-// HasMp226 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp226() bool {
-	if o != nil && !IsNil(o.Mp226) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp226 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp226 field.
-func (o *CreateContainerRequest) SetMp226(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp226 = &v
-}
-
-// GetMp227 returns the Mp227 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp227() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp227) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp227
-}
-
-// GetMp227Ok returns a tuple with the Mp227 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp227Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp227) {
-		return nil, false
-	}
-	return o.Mp227, true
-}
-
-// HasMp227 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp227() bool {
-	if o != nil && !IsNil(o.Mp227) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp227 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp227 field.
-func (o *CreateContainerRequest) SetMp227(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp227 = &v
-}
-
-// GetMp228 returns the Mp228 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp228() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp228) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp228
-}
-
-// GetMp228Ok returns a tuple with the Mp228 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp228Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp228) {
-		return nil, false
-	}
-	return o.Mp228, true
-}
-
-// HasMp228 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp228() bool {
-	if o != nil && !IsNil(o.Mp228) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp228 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp228 field.
-func (o *CreateContainerRequest) SetMp228(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp228 = &v
-}
-
-// GetMp229 returns the Mp229 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp229() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp229) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp229
-}
-
-// GetMp229Ok returns a tuple with the Mp229 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp229Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp229) {
-		return nil, false
-	}
-	return o.Mp229, true
-}
-
-// HasMp229 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp229() bool {
-	if o != nil && !IsNil(o.Mp229) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp229 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp229 field.
-func (o *CreateContainerRequest) SetMp229(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp229 = &v
-}
-
-// GetMp230 returns the Mp230 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp230() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp230) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp230
-}
-
-// GetMp230Ok returns a tuple with the Mp230 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp230Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp230) {
-		return nil, false
-	}
-	return o.Mp230, true
-}
-
-// HasMp230 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp230() bool {
-	if o != nil && !IsNil(o.Mp230) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp230 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp230 field.
-func (o *CreateContainerRequest) SetMp230(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp230 = &v
-}
-
-// GetMp231 returns the Mp231 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp231() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp231) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp231
-}
-
-// GetMp231Ok returns a tuple with the Mp231 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp231Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp231) {
-		return nil, false
-	}
-	return o.Mp231, true
-}
-
-// HasMp231 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp231() bool {
-	if o != nil && !IsNil(o.Mp231) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp231 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp231 field.
-func (o *CreateContainerRequest) SetMp231(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp231 = &v
-}
-
-// GetMp232 returns the Mp232 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp232() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp232) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp232
-}
-
-// GetMp232Ok returns a tuple with the Mp232 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp232Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp232) {
-		return nil, false
-	}
-	return o.Mp232, true
-}
-
-// HasMp232 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp232() bool {
-	if o != nil && !IsNil(o.Mp232) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp232 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp232 field.
-func (o *CreateContainerRequest) SetMp232(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp232 = &v
-}
-
-// GetMp233 returns the Mp233 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp233() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp233) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp233
-}
-
-// GetMp233Ok returns a tuple with the Mp233 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp233Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp233) {
-		return nil, false
-	}
-	return o.Mp233, true
-}
-
-// HasMp233 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp233() bool {
-	if o != nil && !IsNil(o.Mp233) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp233 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp233 field.
-func (o *CreateContainerRequest) SetMp233(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp233 = &v
-}
-
-// GetMp234 returns the Mp234 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp234() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp234) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp234
-}
-
-// GetMp234Ok returns a tuple with the Mp234 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp234Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp234) {
-		return nil, false
-	}
-	return o.Mp234, true
-}
-
-// HasMp234 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp234() bool {
-	if o != nil && !IsNil(o.Mp234) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp234 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp234 field.
-func (o *CreateContainerRequest) SetMp234(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp234 = &v
-}
-
-// GetMp235 returns the Mp235 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp235() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp235) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp235
-}
-
-// GetMp235Ok returns a tuple with the Mp235 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp235Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp235) {
-		return nil, false
-	}
-	return o.Mp235, true
-}
-
-// HasMp235 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp235() bool {
-	if o != nil && !IsNil(o.Mp235) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp235 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp235 field.
-func (o *CreateContainerRequest) SetMp235(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp235 = &v
-}
-
-// GetMp236 returns the Mp236 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp236() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp236) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp236
-}
-
-// GetMp236Ok returns a tuple with the Mp236 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp236Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp236) {
-		return nil, false
-	}
-	return o.Mp236, true
-}
-
-// HasMp236 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp236() bool {
-	if o != nil && !IsNil(o.Mp236) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp236 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp236 field.
-func (o *CreateContainerRequest) SetMp236(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp236 = &v
-}
-
-// GetMp237 returns the Mp237 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp237() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp237) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp237
-}
-
-// GetMp237Ok returns a tuple with the Mp237 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp237Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp237) {
-		return nil, false
-	}
-	return o.Mp237, true
-}
-
-// HasMp237 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp237() bool {
-	if o != nil && !IsNil(o.Mp237) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp237 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp237 field.
-func (o *CreateContainerRequest) SetMp237(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp237 = &v
-}
-
-// GetMp238 returns the Mp238 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp238() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp238) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp238
-}
-
-// GetMp238Ok returns a tuple with the Mp238 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp238Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp238) {
-		return nil, false
-	}
-	return o.Mp238, true
-}
-
-// HasMp238 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp238() bool {
-	if o != nil && !IsNil(o.Mp238) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp238 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp238 field.
-func (o *CreateContainerRequest) SetMp238(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp238 = &v
-}
-
-// GetMp239 returns the Mp239 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp239() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp239) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp239
-}
-
-// GetMp239Ok returns a tuple with the Mp239 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp239Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp239) {
-		return nil, false
-	}
-	return o.Mp239, true
-}
-
-// HasMp239 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp239() bool {
-	if o != nil && !IsNil(o.Mp239) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp239 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp239 field.
-func (o *CreateContainerRequest) SetMp239(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp239 = &v
-}
-
-// GetMp240 returns the Mp240 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp240() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp240) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp240
-}
-
-// GetMp240Ok returns a tuple with the Mp240 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp240Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp240) {
-		return nil, false
-	}
-	return o.Mp240, true
-}
-
-// HasMp240 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp240() bool {
-	if o != nil && !IsNil(o.Mp240) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp240 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp240 field.
-func (o *CreateContainerRequest) SetMp240(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp240 = &v
-}
-
-// GetMp241 returns the Mp241 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp241() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp241) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp241
-}
-
-// GetMp241Ok returns a tuple with the Mp241 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp241Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp241) {
-		return nil, false
-	}
-	return o.Mp241, true
-}
-
-// HasMp241 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp241() bool {
-	if o != nil && !IsNil(o.Mp241) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp241 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp241 field.
-func (o *CreateContainerRequest) SetMp241(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp241 = &v
-}
-
-// GetMp242 returns the Mp242 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp242() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp242) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp242
-}
-
-// GetMp242Ok returns a tuple with the Mp242 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp242Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp242) {
-		return nil, false
-	}
-	return o.Mp242, true
-}
-
-// HasMp242 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp242() bool {
-	if o != nil && !IsNil(o.Mp242) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp242 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp242 field.
-func (o *CreateContainerRequest) SetMp242(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp242 = &v
-}
-
-// GetMp243 returns the Mp243 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp243() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp243) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp243
-}
-
-// GetMp243Ok returns a tuple with the Mp243 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp243Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp243) {
-		return nil, false
-	}
-	return o.Mp243, true
-}
-
-// HasMp243 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp243() bool {
-	if o != nil && !IsNil(o.Mp243) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp243 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp243 field.
-func (o *CreateContainerRequest) SetMp243(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp243 = &v
-}
-
-// GetMp244 returns the Mp244 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp244() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp244) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp244
-}
-
-// GetMp244Ok returns a tuple with the Mp244 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp244Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp244) {
-		return nil, false
-	}
-	return o.Mp244, true
-}
-
-// HasMp244 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp244() bool {
-	if o != nil && !IsNil(o.Mp244) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp244 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp244 field.
-func (o *CreateContainerRequest) SetMp244(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp244 = &v
-}
-
-// GetMp245 returns the Mp245 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp245() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp245) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp245
-}
-
-// GetMp245Ok returns a tuple with the Mp245 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp245Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp245) {
-		return nil, false
-	}
-	return o.Mp245, true
-}
-
-// HasMp245 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp245() bool {
-	if o != nil && !IsNil(o.Mp245) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp245 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp245 field.
-func (o *CreateContainerRequest) SetMp245(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp245 = &v
-}
-
-// GetMp246 returns the Mp246 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp246() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp246) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp246
-}
-
-// GetMp246Ok returns a tuple with the Mp246 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp246Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp246) {
-		return nil, false
-	}
-	return o.Mp246, true
-}
-
-// HasMp246 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp246() bool {
-	if o != nil && !IsNil(o.Mp246) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp246 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp246 field.
-func (o *CreateContainerRequest) SetMp246(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp246 = &v
-}
-
-// GetMp247 returns the Mp247 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp247() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp247) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp247
-}
-
-// GetMp247Ok returns a tuple with the Mp247 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp247Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp247) {
-		return nil, false
-	}
-	return o.Mp247, true
-}
-
-// HasMp247 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp247() bool {
-	if o != nil && !IsNil(o.Mp247) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp247 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp247 field.
-func (o *CreateContainerRequest) SetMp247(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp247 = &v
-}
-
-// GetMp248 returns the Mp248 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp248() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp248) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp248
-}
-
-// GetMp248Ok returns a tuple with the Mp248 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp248Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp248) {
-		return nil, false
-	}
-	return o.Mp248, true
-}
-
-// HasMp248 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp248() bool {
-	if o != nil && !IsNil(o.Mp248) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp248 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp248 field.
-func (o *CreateContainerRequest) SetMp248(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp248 = &v
-}
-
-// GetMp249 returns the Mp249 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp249() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp249) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp249
-}
-
-// GetMp249Ok returns a tuple with the Mp249 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp249Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp249) {
-		return nil, false
-	}
-	return o.Mp249, true
-}
-
-// HasMp249 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp249() bool {
-	if o != nil && !IsNil(o.Mp249) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp249 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp249 field.
-func (o *CreateContainerRequest) SetMp249(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp249 = &v
-}
-
-// GetMp250 returns the Mp250 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp250() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp250) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp250
-}
-
-// GetMp250Ok returns a tuple with the Mp250 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp250Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp250) {
-		return nil, false
-	}
-	return o.Mp250, true
-}
-
-// HasMp250 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp250() bool {
-	if o != nil && !IsNil(o.Mp250) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp250 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp250 field.
-func (o *CreateContainerRequest) SetMp250(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp250 = &v
-}
-
-// GetMp251 returns the Mp251 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp251() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp251) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp251
-}
-
-// GetMp251Ok returns a tuple with the Mp251 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp251Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp251) {
-		return nil, false
-	}
-	return o.Mp251, true
-}
-
-// HasMp251 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp251() bool {
-	if o != nil && !IsNil(o.Mp251) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp251 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp251 field.
-func (o *CreateContainerRequest) SetMp251(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp251 = &v
-}
-
-// GetMp252 returns the Mp252 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp252() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp252) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp252
-}
-
-// GetMp252Ok returns a tuple with the Mp252 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp252Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp252) {
-		return nil, false
-	}
-	return o.Mp252, true
-}
-
-// HasMp252 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp252() bool {
-	if o != nil && !IsNil(o.Mp252) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp252 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp252 field.
-func (o *CreateContainerRequest) SetMp252(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp252 = &v
-}
-
-// GetMp253 returns the Mp253 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp253() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp253) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp253
-}
-
-// GetMp253Ok returns a tuple with the Mp253 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp253Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp253) {
-		return nil, false
-	}
-	return o.Mp253, true
-}
-
-// HasMp253 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp253() bool {
-	if o != nil && !IsNil(o.Mp253) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp253 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp253 field.
-func (o *CreateContainerRequest) SetMp253(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp253 = &v
-}
-
-// GetMp254 returns the Mp254 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp254() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp254) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp254
-}
-
-// GetMp254Ok returns a tuple with the Mp254 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp254Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp254) {
-		return nil, false
-	}
-	return o.Mp254, true
-}
-
-// HasMp254 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp254() bool {
-	if o != nil && !IsNil(o.Mp254) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp254 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp254 field.
-func (o *CreateContainerRequest) SetMp254(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp254 = &v
-}
-
-// GetMp255 returns the Mp255 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetMp255() GetContainerConfig200ResponseDataMp0 {
-	if o == nil || IsNil(o.Mp255) {
-		var ret GetContainerConfig200ResponseDataMp0
-		return ret
-	}
-	return *o.Mp255
-}
-
-// GetMp255Ok returns a tuple with the Mp255 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetMp255Ok() (*GetContainerConfig200ResponseDataMp0, bool) {
-	if o == nil || IsNil(o.Mp255) {
-		return nil, false
-	}
-	return o.Mp255, true
-}
-
-// HasMp255 returns a boolean if a field has been set.
-func (o *CreateContainerRequest) HasMp255() bool {
-	if o != nil && !IsNil(o.Mp255) {
-		return true
-	}
-
-	return false
-}
-
-// SetMp255 gets a reference to the given GetContainerConfig200ResponseDataMp0 and assigns it to the Mp255 field.
-func (o *CreateContainerRequest) SetMp255(v GetContainerConfig200ResponseDataMp0) {
-	o.Mp255 = &v
 }
 
 // GetNameserver returns the Nameserver field value if set, zero value otherwise.
@@ -10163,9 +2666,9 @@ func (o *CreateContainerRequest) SetNameserver(v string) {
 }
 
 // GetNet0 returns the Net0 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetNet0() GetContainerConfig200ResponseDataNet0 {
+func (o *CreateContainerRequest) GetNet0() CreateContainerRequestNet0 {
 	if o == nil || IsNil(o.Net0) {
-		var ret GetContainerConfig200ResponseDataNet0
+		var ret CreateContainerRequestNet0
 		return ret
 	}
 	return *o.Net0
@@ -10173,7 +2676,7 @@ func (o *CreateContainerRequest) GetNet0() GetContainerConfig200ResponseDataNet0
 
 // GetNet0Ok returns a tuple with the Net0 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetNet0Ok() (*GetContainerConfig200ResponseDataNet0, bool) {
+func (o *CreateContainerRequest) GetNet0Ok() (*CreateContainerRequestNet0, bool) {
 	if o == nil || IsNil(o.Net0) {
 		return nil, false
 	}
@@ -10189,15 +2692,15 @@ func (o *CreateContainerRequest) HasNet0() bool {
 	return false
 }
 
-// SetNet0 gets a reference to the given GetContainerConfig200ResponseDataNet0 and assigns it to the Net0 field.
-func (o *CreateContainerRequest) SetNet0(v GetContainerConfig200ResponseDataNet0) {
+// SetNet0 gets a reference to the given CreateContainerRequestNet0 and assigns it to the Net0 field.
+func (o *CreateContainerRequest) SetNet0(v CreateContainerRequestNet0) {
 	o.Net0 = &v
 }
 
 // GetNet1 returns the Net1 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetNet1() GetContainerConfig200ResponseDataNet0 {
+func (o *CreateContainerRequest) GetNet1() CreateContainerRequestNet0 {
 	if o == nil || IsNil(o.Net1) {
-		var ret GetContainerConfig200ResponseDataNet0
+		var ret CreateContainerRequestNet0
 		return ret
 	}
 	return *o.Net1
@@ -10205,7 +2708,7 @@ func (o *CreateContainerRequest) GetNet1() GetContainerConfig200ResponseDataNet0
 
 // GetNet1Ok returns a tuple with the Net1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetNet1Ok() (*GetContainerConfig200ResponseDataNet0, bool) {
+func (o *CreateContainerRequest) GetNet1Ok() (*CreateContainerRequestNet0, bool) {
 	if o == nil || IsNil(o.Net1) {
 		return nil, false
 	}
@@ -10221,15 +2724,15 @@ func (o *CreateContainerRequest) HasNet1() bool {
 	return false
 }
 
-// SetNet1 gets a reference to the given GetContainerConfig200ResponseDataNet0 and assigns it to the Net1 field.
-func (o *CreateContainerRequest) SetNet1(v GetContainerConfig200ResponseDataNet0) {
+// SetNet1 gets a reference to the given CreateContainerRequestNet0 and assigns it to the Net1 field.
+func (o *CreateContainerRequest) SetNet1(v CreateContainerRequestNet0) {
 	o.Net1 = &v
 }
 
 // GetNet2 returns the Net2 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetNet2() GetContainerConfig200ResponseDataNet0 {
+func (o *CreateContainerRequest) GetNet2() CreateContainerRequestNet0 {
 	if o == nil || IsNil(o.Net2) {
-		var ret GetContainerConfig200ResponseDataNet0
+		var ret CreateContainerRequestNet0
 		return ret
 	}
 	return *o.Net2
@@ -10237,7 +2740,7 @@ func (o *CreateContainerRequest) GetNet2() GetContainerConfig200ResponseDataNet0
 
 // GetNet2Ok returns a tuple with the Net2 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetNet2Ok() (*GetContainerConfig200ResponseDataNet0, bool) {
+func (o *CreateContainerRequest) GetNet2Ok() (*CreateContainerRequestNet0, bool) {
 	if o == nil || IsNil(o.Net2) {
 		return nil, false
 	}
@@ -10253,15 +2756,15 @@ func (o *CreateContainerRequest) HasNet2() bool {
 	return false
 }
 
-// SetNet2 gets a reference to the given GetContainerConfig200ResponseDataNet0 and assigns it to the Net2 field.
-func (o *CreateContainerRequest) SetNet2(v GetContainerConfig200ResponseDataNet0) {
+// SetNet2 gets a reference to the given CreateContainerRequestNet0 and assigns it to the Net2 field.
+func (o *CreateContainerRequest) SetNet2(v CreateContainerRequestNet0) {
 	o.Net2 = &v
 }
 
 // GetNet3 returns the Net3 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetNet3() GetContainerConfig200ResponseDataNet0 {
+func (o *CreateContainerRequest) GetNet3() CreateContainerRequestNet0 {
 	if o == nil || IsNil(o.Net3) {
-		var ret GetContainerConfig200ResponseDataNet0
+		var ret CreateContainerRequestNet0
 		return ret
 	}
 	return *o.Net3
@@ -10269,7 +2772,7 @@ func (o *CreateContainerRequest) GetNet3() GetContainerConfig200ResponseDataNet0
 
 // GetNet3Ok returns a tuple with the Net3 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetNet3Ok() (*GetContainerConfig200ResponseDataNet0, bool) {
+func (o *CreateContainerRequest) GetNet3Ok() (*CreateContainerRequestNet0, bool) {
 	if o == nil || IsNil(o.Net3) {
 		return nil, false
 	}
@@ -10285,15 +2788,15 @@ func (o *CreateContainerRequest) HasNet3() bool {
 	return false
 }
 
-// SetNet3 gets a reference to the given GetContainerConfig200ResponseDataNet0 and assigns it to the Net3 field.
-func (o *CreateContainerRequest) SetNet3(v GetContainerConfig200ResponseDataNet0) {
+// SetNet3 gets a reference to the given CreateContainerRequestNet0 and assigns it to the Net3 field.
+func (o *CreateContainerRequest) SetNet3(v CreateContainerRequestNet0) {
 	o.Net3 = &v
 }
 
 // GetNet4 returns the Net4 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetNet4() GetContainerConfig200ResponseDataNet0 {
+func (o *CreateContainerRequest) GetNet4() CreateContainerRequestNet0 {
 	if o == nil || IsNil(o.Net4) {
-		var ret GetContainerConfig200ResponseDataNet0
+		var ret CreateContainerRequestNet0
 		return ret
 	}
 	return *o.Net4
@@ -10301,7 +2804,7 @@ func (o *CreateContainerRequest) GetNet4() GetContainerConfig200ResponseDataNet0
 
 // GetNet4Ok returns a tuple with the Net4 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetNet4Ok() (*GetContainerConfig200ResponseDataNet0, bool) {
+func (o *CreateContainerRequest) GetNet4Ok() (*CreateContainerRequestNet0, bool) {
 	if o == nil || IsNil(o.Net4) {
 		return nil, false
 	}
@@ -10317,15 +2820,15 @@ func (o *CreateContainerRequest) HasNet4() bool {
 	return false
 }
 
-// SetNet4 gets a reference to the given GetContainerConfig200ResponseDataNet0 and assigns it to the Net4 field.
-func (o *CreateContainerRequest) SetNet4(v GetContainerConfig200ResponseDataNet0) {
+// SetNet4 gets a reference to the given CreateContainerRequestNet0 and assigns it to the Net4 field.
+func (o *CreateContainerRequest) SetNet4(v CreateContainerRequestNet0) {
 	o.Net4 = &v
 }
 
 // GetNet5 returns the Net5 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetNet5() GetContainerConfig200ResponseDataNet0 {
+func (o *CreateContainerRequest) GetNet5() CreateContainerRequestNet0 {
 	if o == nil || IsNil(o.Net5) {
-		var ret GetContainerConfig200ResponseDataNet0
+		var ret CreateContainerRequestNet0
 		return ret
 	}
 	return *o.Net5
@@ -10333,7 +2836,7 @@ func (o *CreateContainerRequest) GetNet5() GetContainerConfig200ResponseDataNet0
 
 // GetNet5Ok returns a tuple with the Net5 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetNet5Ok() (*GetContainerConfig200ResponseDataNet0, bool) {
+func (o *CreateContainerRequest) GetNet5Ok() (*CreateContainerRequestNet0, bool) {
 	if o == nil || IsNil(o.Net5) {
 		return nil, false
 	}
@@ -10349,15 +2852,15 @@ func (o *CreateContainerRequest) HasNet5() bool {
 	return false
 }
 
-// SetNet5 gets a reference to the given GetContainerConfig200ResponseDataNet0 and assigns it to the Net5 field.
-func (o *CreateContainerRequest) SetNet5(v GetContainerConfig200ResponseDataNet0) {
+// SetNet5 gets a reference to the given CreateContainerRequestNet0 and assigns it to the Net5 field.
+func (o *CreateContainerRequest) SetNet5(v CreateContainerRequestNet0) {
 	o.Net5 = &v
 }
 
 // GetNet6 returns the Net6 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetNet6() GetContainerConfig200ResponseDataNet0 {
+func (o *CreateContainerRequest) GetNet6() CreateContainerRequestNet0 {
 	if o == nil || IsNil(o.Net6) {
-		var ret GetContainerConfig200ResponseDataNet0
+		var ret CreateContainerRequestNet0
 		return ret
 	}
 	return *o.Net6
@@ -10365,7 +2868,7 @@ func (o *CreateContainerRequest) GetNet6() GetContainerConfig200ResponseDataNet0
 
 // GetNet6Ok returns a tuple with the Net6 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetNet6Ok() (*GetContainerConfig200ResponseDataNet0, bool) {
+func (o *CreateContainerRequest) GetNet6Ok() (*CreateContainerRequestNet0, bool) {
 	if o == nil || IsNil(o.Net6) {
 		return nil, false
 	}
@@ -10381,15 +2884,15 @@ func (o *CreateContainerRequest) HasNet6() bool {
 	return false
 }
 
-// SetNet6 gets a reference to the given GetContainerConfig200ResponseDataNet0 and assigns it to the Net6 field.
-func (o *CreateContainerRequest) SetNet6(v GetContainerConfig200ResponseDataNet0) {
+// SetNet6 gets a reference to the given CreateContainerRequestNet0 and assigns it to the Net6 field.
+func (o *CreateContainerRequest) SetNet6(v CreateContainerRequestNet0) {
 	o.Net6 = &v
 }
 
 // GetNet7 returns the Net7 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetNet7() GetContainerConfig200ResponseDataNet0 {
+func (o *CreateContainerRequest) GetNet7() CreateContainerRequestNet0 {
 	if o == nil || IsNil(o.Net7) {
-		var ret GetContainerConfig200ResponseDataNet0
+		var ret CreateContainerRequestNet0
 		return ret
 	}
 	return *o.Net7
@@ -10397,7 +2900,7 @@ func (o *CreateContainerRequest) GetNet7() GetContainerConfig200ResponseDataNet0
 
 // GetNet7Ok returns a tuple with the Net7 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetNet7Ok() (*GetContainerConfig200ResponseDataNet0, bool) {
+func (o *CreateContainerRequest) GetNet7Ok() (*CreateContainerRequestNet0, bool) {
 	if o == nil || IsNil(o.Net7) {
 		return nil, false
 	}
@@ -10413,15 +2916,15 @@ func (o *CreateContainerRequest) HasNet7() bool {
 	return false
 }
 
-// SetNet7 gets a reference to the given GetContainerConfig200ResponseDataNet0 and assigns it to the Net7 field.
-func (o *CreateContainerRequest) SetNet7(v GetContainerConfig200ResponseDataNet0) {
+// SetNet7 gets a reference to the given CreateContainerRequestNet0 and assigns it to the Net7 field.
+func (o *CreateContainerRequest) SetNet7(v CreateContainerRequestNet0) {
 	o.Net7 = &v
 }
 
 // GetNet8 returns the Net8 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetNet8() GetContainerConfig200ResponseDataNet0 {
+func (o *CreateContainerRequest) GetNet8() CreateContainerRequestNet0 {
 	if o == nil || IsNil(o.Net8) {
-		var ret GetContainerConfig200ResponseDataNet0
+		var ret CreateContainerRequestNet0
 		return ret
 	}
 	return *o.Net8
@@ -10429,7 +2932,7 @@ func (o *CreateContainerRequest) GetNet8() GetContainerConfig200ResponseDataNet0
 
 // GetNet8Ok returns a tuple with the Net8 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetNet8Ok() (*GetContainerConfig200ResponseDataNet0, bool) {
+func (o *CreateContainerRequest) GetNet8Ok() (*CreateContainerRequestNet0, bool) {
 	if o == nil || IsNil(o.Net8) {
 		return nil, false
 	}
@@ -10445,15 +2948,15 @@ func (o *CreateContainerRequest) HasNet8() bool {
 	return false
 }
 
-// SetNet8 gets a reference to the given GetContainerConfig200ResponseDataNet0 and assigns it to the Net8 field.
-func (o *CreateContainerRequest) SetNet8(v GetContainerConfig200ResponseDataNet0) {
+// SetNet8 gets a reference to the given CreateContainerRequestNet0 and assigns it to the Net8 field.
+func (o *CreateContainerRequest) SetNet8(v CreateContainerRequestNet0) {
 	o.Net8 = &v
 }
 
 // GetNet9 returns the Net9 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetNet9() GetContainerConfig200ResponseDataNet0 {
+func (o *CreateContainerRequest) GetNet9() CreateContainerRequestNet0 {
 	if o == nil || IsNil(o.Net9) {
-		var ret GetContainerConfig200ResponseDataNet0
+		var ret CreateContainerRequestNet0
 		return ret
 	}
 	return *o.Net9
@@ -10461,7 +2964,7 @@ func (o *CreateContainerRequest) GetNet9() GetContainerConfig200ResponseDataNet0
 
 // GetNet9Ok returns a tuple with the Net9 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetNet9Ok() (*GetContainerConfig200ResponseDataNet0, bool) {
+func (o *CreateContainerRequest) GetNet9Ok() (*CreateContainerRequestNet0, bool) {
 	if o == nil || IsNil(o.Net9) {
 		return nil, false
 	}
@@ -10477,15 +2980,15 @@ func (o *CreateContainerRequest) HasNet9() bool {
 	return false
 }
 
-// SetNet9 gets a reference to the given GetContainerConfig200ResponseDataNet0 and assigns it to the Net9 field.
-func (o *CreateContainerRequest) SetNet9(v GetContainerConfig200ResponseDataNet0) {
+// SetNet9 gets a reference to the given CreateContainerRequestNet0 and assigns it to the Net9 field.
+func (o *CreateContainerRequest) SetNet9(v CreateContainerRequestNet0) {
 	o.Net9 = &v
 }
 
 // GetNet10 returns the Net10 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetNet10() GetContainerConfig200ResponseDataNet0 {
+func (o *CreateContainerRequest) GetNet10() CreateContainerRequestNet0 {
 	if o == nil || IsNil(o.Net10) {
-		var ret GetContainerConfig200ResponseDataNet0
+		var ret CreateContainerRequestNet0
 		return ret
 	}
 	return *o.Net10
@@ -10493,7 +2996,7 @@ func (o *CreateContainerRequest) GetNet10() GetContainerConfig200ResponseDataNet
 
 // GetNet10Ok returns a tuple with the Net10 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetNet10Ok() (*GetContainerConfig200ResponseDataNet0, bool) {
+func (o *CreateContainerRequest) GetNet10Ok() (*CreateContainerRequestNet0, bool) {
 	if o == nil || IsNil(o.Net10) {
 		return nil, false
 	}
@@ -10509,15 +3012,15 @@ func (o *CreateContainerRequest) HasNet10() bool {
 	return false
 }
 
-// SetNet10 gets a reference to the given GetContainerConfig200ResponseDataNet0 and assigns it to the Net10 field.
-func (o *CreateContainerRequest) SetNet10(v GetContainerConfig200ResponseDataNet0) {
+// SetNet10 gets a reference to the given CreateContainerRequestNet0 and assigns it to the Net10 field.
+func (o *CreateContainerRequest) SetNet10(v CreateContainerRequestNet0) {
 	o.Net10 = &v
 }
 
 // GetNet11 returns the Net11 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetNet11() GetContainerConfig200ResponseDataNet0 {
+func (o *CreateContainerRequest) GetNet11() CreateContainerRequestNet0 {
 	if o == nil || IsNil(o.Net11) {
-		var ret GetContainerConfig200ResponseDataNet0
+		var ret CreateContainerRequestNet0
 		return ret
 	}
 	return *o.Net11
@@ -10525,7 +3028,7 @@ func (o *CreateContainerRequest) GetNet11() GetContainerConfig200ResponseDataNet
 
 // GetNet11Ok returns a tuple with the Net11 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetNet11Ok() (*GetContainerConfig200ResponseDataNet0, bool) {
+func (o *CreateContainerRequest) GetNet11Ok() (*CreateContainerRequestNet0, bool) {
 	if o == nil || IsNil(o.Net11) {
 		return nil, false
 	}
@@ -10541,15 +3044,15 @@ func (o *CreateContainerRequest) HasNet11() bool {
 	return false
 }
 
-// SetNet11 gets a reference to the given GetContainerConfig200ResponseDataNet0 and assigns it to the Net11 field.
-func (o *CreateContainerRequest) SetNet11(v GetContainerConfig200ResponseDataNet0) {
+// SetNet11 gets a reference to the given CreateContainerRequestNet0 and assigns it to the Net11 field.
+func (o *CreateContainerRequest) SetNet11(v CreateContainerRequestNet0) {
 	o.Net11 = &v
 }
 
 // GetNet12 returns the Net12 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetNet12() GetContainerConfig200ResponseDataNet0 {
+func (o *CreateContainerRequest) GetNet12() CreateContainerRequestNet0 {
 	if o == nil || IsNil(o.Net12) {
-		var ret GetContainerConfig200ResponseDataNet0
+		var ret CreateContainerRequestNet0
 		return ret
 	}
 	return *o.Net12
@@ -10557,7 +3060,7 @@ func (o *CreateContainerRequest) GetNet12() GetContainerConfig200ResponseDataNet
 
 // GetNet12Ok returns a tuple with the Net12 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetNet12Ok() (*GetContainerConfig200ResponseDataNet0, bool) {
+func (o *CreateContainerRequest) GetNet12Ok() (*CreateContainerRequestNet0, bool) {
 	if o == nil || IsNil(o.Net12) {
 		return nil, false
 	}
@@ -10573,15 +3076,15 @@ func (o *CreateContainerRequest) HasNet12() bool {
 	return false
 }
 
-// SetNet12 gets a reference to the given GetContainerConfig200ResponseDataNet0 and assigns it to the Net12 field.
-func (o *CreateContainerRequest) SetNet12(v GetContainerConfig200ResponseDataNet0) {
+// SetNet12 gets a reference to the given CreateContainerRequestNet0 and assigns it to the Net12 field.
+func (o *CreateContainerRequest) SetNet12(v CreateContainerRequestNet0) {
 	o.Net12 = &v
 }
 
 // GetNet13 returns the Net13 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetNet13() GetContainerConfig200ResponseDataNet0 {
+func (o *CreateContainerRequest) GetNet13() CreateContainerRequestNet0 {
 	if o == nil || IsNil(o.Net13) {
-		var ret GetContainerConfig200ResponseDataNet0
+		var ret CreateContainerRequestNet0
 		return ret
 	}
 	return *o.Net13
@@ -10589,7 +3092,7 @@ func (o *CreateContainerRequest) GetNet13() GetContainerConfig200ResponseDataNet
 
 // GetNet13Ok returns a tuple with the Net13 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetNet13Ok() (*GetContainerConfig200ResponseDataNet0, bool) {
+func (o *CreateContainerRequest) GetNet13Ok() (*CreateContainerRequestNet0, bool) {
 	if o == nil || IsNil(o.Net13) {
 		return nil, false
 	}
@@ -10605,15 +3108,15 @@ func (o *CreateContainerRequest) HasNet13() bool {
 	return false
 }
 
-// SetNet13 gets a reference to the given GetContainerConfig200ResponseDataNet0 and assigns it to the Net13 field.
-func (o *CreateContainerRequest) SetNet13(v GetContainerConfig200ResponseDataNet0) {
+// SetNet13 gets a reference to the given CreateContainerRequestNet0 and assigns it to the Net13 field.
+func (o *CreateContainerRequest) SetNet13(v CreateContainerRequestNet0) {
 	o.Net13 = &v
 }
 
 // GetNet14 returns the Net14 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetNet14() GetContainerConfig200ResponseDataNet0 {
+func (o *CreateContainerRequest) GetNet14() CreateContainerRequestNet0 {
 	if o == nil || IsNil(o.Net14) {
-		var ret GetContainerConfig200ResponseDataNet0
+		var ret CreateContainerRequestNet0
 		return ret
 	}
 	return *o.Net14
@@ -10621,7 +3124,7 @@ func (o *CreateContainerRequest) GetNet14() GetContainerConfig200ResponseDataNet
 
 // GetNet14Ok returns a tuple with the Net14 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetNet14Ok() (*GetContainerConfig200ResponseDataNet0, bool) {
+func (o *CreateContainerRequest) GetNet14Ok() (*CreateContainerRequestNet0, bool) {
 	if o == nil || IsNil(o.Net14) {
 		return nil, false
 	}
@@ -10637,15 +3140,15 @@ func (o *CreateContainerRequest) HasNet14() bool {
 	return false
 }
 
-// SetNet14 gets a reference to the given GetContainerConfig200ResponseDataNet0 and assigns it to the Net14 field.
-func (o *CreateContainerRequest) SetNet14(v GetContainerConfig200ResponseDataNet0) {
+// SetNet14 gets a reference to the given CreateContainerRequestNet0 and assigns it to the Net14 field.
+func (o *CreateContainerRequest) SetNet14(v CreateContainerRequestNet0) {
 	o.Net14 = &v
 }
 
 // GetNet15 returns the Net15 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetNet15() GetContainerConfig200ResponseDataNet0 {
+func (o *CreateContainerRequest) GetNet15() CreateContainerRequestNet0 {
 	if o == nil || IsNil(o.Net15) {
-		var ret GetContainerConfig200ResponseDataNet0
+		var ret CreateContainerRequestNet0
 		return ret
 	}
 	return *o.Net15
@@ -10653,7 +3156,7 @@ func (o *CreateContainerRequest) GetNet15() GetContainerConfig200ResponseDataNet
 
 // GetNet15Ok returns a tuple with the Net15 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetNet15Ok() (*GetContainerConfig200ResponseDataNet0, bool) {
+func (o *CreateContainerRequest) GetNet15Ok() (*CreateContainerRequestNet0, bool) {
 	if o == nil || IsNil(o.Net15) {
 		return nil, false
 	}
@@ -10669,15 +3172,15 @@ func (o *CreateContainerRequest) HasNet15() bool {
 	return false
 }
 
-// SetNet15 gets a reference to the given GetContainerConfig200ResponseDataNet0 and assigns it to the Net15 field.
-func (o *CreateContainerRequest) SetNet15(v GetContainerConfig200ResponseDataNet0) {
+// SetNet15 gets a reference to the given CreateContainerRequestNet0 and assigns it to the Net15 field.
+func (o *CreateContainerRequest) SetNet15(v CreateContainerRequestNet0) {
 	o.Net15 = &v
 }
 
 // GetNet16 returns the Net16 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetNet16() GetContainerConfig200ResponseDataNet0 {
+func (o *CreateContainerRequest) GetNet16() CreateContainerRequestNet0 {
 	if o == nil || IsNil(o.Net16) {
-		var ret GetContainerConfig200ResponseDataNet0
+		var ret CreateContainerRequestNet0
 		return ret
 	}
 	return *o.Net16
@@ -10685,7 +3188,7 @@ func (o *CreateContainerRequest) GetNet16() GetContainerConfig200ResponseDataNet
 
 // GetNet16Ok returns a tuple with the Net16 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetNet16Ok() (*GetContainerConfig200ResponseDataNet0, bool) {
+func (o *CreateContainerRequest) GetNet16Ok() (*CreateContainerRequestNet0, bool) {
 	if o == nil || IsNil(o.Net16) {
 		return nil, false
 	}
@@ -10701,15 +3204,15 @@ func (o *CreateContainerRequest) HasNet16() bool {
 	return false
 }
 
-// SetNet16 gets a reference to the given GetContainerConfig200ResponseDataNet0 and assigns it to the Net16 field.
-func (o *CreateContainerRequest) SetNet16(v GetContainerConfig200ResponseDataNet0) {
+// SetNet16 gets a reference to the given CreateContainerRequestNet0 and assigns it to the Net16 field.
+func (o *CreateContainerRequest) SetNet16(v CreateContainerRequestNet0) {
 	o.Net16 = &v
 }
 
 // GetNet17 returns the Net17 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetNet17() GetContainerConfig200ResponseDataNet0 {
+func (o *CreateContainerRequest) GetNet17() CreateContainerRequestNet0 {
 	if o == nil || IsNil(o.Net17) {
-		var ret GetContainerConfig200ResponseDataNet0
+		var ret CreateContainerRequestNet0
 		return ret
 	}
 	return *o.Net17
@@ -10717,7 +3220,7 @@ func (o *CreateContainerRequest) GetNet17() GetContainerConfig200ResponseDataNet
 
 // GetNet17Ok returns a tuple with the Net17 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetNet17Ok() (*GetContainerConfig200ResponseDataNet0, bool) {
+func (o *CreateContainerRequest) GetNet17Ok() (*CreateContainerRequestNet0, bool) {
 	if o == nil || IsNil(o.Net17) {
 		return nil, false
 	}
@@ -10733,15 +3236,15 @@ func (o *CreateContainerRequest) HasNet17() bool {
 	return false
 }
 
-// SetNet17 gets a reference to the given GetContainerConfig200ResponseDataNet0 and assigns it to the Net17 field.
-func (o *CreateContainerRequest) SetNet17(v GetContainerConfig200ResponseDataNet0) {
+// SetNet17 gets a reference to the given CreateContainerRequestNet0 and assigns it to the Net17 field.
+func (o *CreateContainerRequest) SetNet17(v CreateContainerRequestNet0) {
 	o.Net17 = &v
 }
 
 // GetNet18 returns the Net18 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetNet18() GetContainerConfig200ResponseDataNet0 {
+func (o *CreateContainerRequest) GetNet18() CreateContainerRequestNet0 {
 	if o == nil || IsNil(o.Net18) {
-		var ret GetContainerConfig200ResponseDataNet0
+		var ret CreateContainerRequestNet0
 		return ret
 	}
 	return *o.Net18
@@ -10749,7 +3252,7 @@ func (o *CreateContainerRequest) GetNet18() GetContainerConfig200ResponseDataNet
 
 // GetNet18Ok returns a tuple with the Net18 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetNet18Ok() (*GetContainerConfig200ResponseDataNet0, bool) {
+func (o *CreateContainerRequest) GetNet18Ok() (*CreateContainerRequestNet0, bool) {
 	if o == nil || IsNil(o.Net18) {
 		return nil, false
 	}
@@ -10765,15 +3268,15 @@ func (o *CreateContainerRequest) HasNet18() bool {
 	return false
 }
 
-// SetNet18 gets a reference to the given GetContainerConfig200ResponseDataNet0 and assigns it to the Net18 field.
-func (o *CreateContainerRequest) SetNet18(v GetContainerConfig200ResponseDataNet0) {
+// SetNet18 gets a reference to the given CreateContainerRequestNet0 and assigns it to the Net18 field.
+func (o *CreateContainerRequest) SetNet18(v CreateContainerRequestNet0) {
 	o.Net18 = &v
 }
 
 // GetNet19 returns the Net19 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetNet19() GetContainerConfig200ResponseDataNet0 {
+func (o *CreateContainerRequest) GetNet19() CreateContainerRequestNet0 {
 	if o == nil || IsNil(o.Net19) {
-		var ret GetContainerConfig200ResponseDataNet0
+		var ret CreateContainerRequestNet0
 		return ret
 	}
 	return *o.Net19
@@ -10781,7 +3284,7 @@ func (o *CreateContainerRequest) GetNet19() GetContainerConfig200ResponseDataNet
 
 // GetNet19Ok returns a tuple with the Net19 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetNet19Ok() (*GetContainerConfig200ResponseDataNet0, bool) {
+func (o *CreateContainerRequest) GetNet19Ok() (*CreateContainerRequestNet0, bool) {
 	if o == nil || IsNil(o.Net19) {
 		return nil, false
 	}
@@ -10797,15 +3300,15 @@ func (o *CreateContainerRequest) HasNet19() bool {
 	return false
 }
 
-// SetNet19 gets a reference to the given GetContainerConfig200ResponseDataNet0 and assigns it to the Net19 field.
-func (o *CreateContainerRequest) SetNet19(v GetContainerConfig200ResponseDataNet0) {
+// SetNet19 gets a reference to the given CreateContainerRequestNet0 and assigns it to the Net19 field.
+func (o *CreateContainerRequest) SetNet19(v CreateContainerRequestNet0) {
 	o.Net19 = &v
 }
 
 // GetNet20 returns the Net20 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetNet20() GetContainerConfig200ResponseDataNet0 {
+func (o *CreateContainerRequest) GetNet20() CreateContainerRequestNet0 {
 	if o == nil || IsNil(o.Net20) {
-		var ret GetContainerConfig200ResponseDataNet0
+		var ret CreateContainerRequestNet0
 		return ret
 	}
 	return *o.Net20
@@ -10813,7 +3316,7 @@ func (o *CreateContainerRequest) GetNet20() GetContainerConfig200ResponseDataNet
 
 // GetNet20Ok returns a tuple with the Net20 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetNet20Ok() (*GetContainerConfig200ResponseDataNet0, bool) {
+func (o *CreateContainerRequest) GetNet20Ok() (*CreateContainerRequestNet0, bool) {
 	if o == nil || IsNil(o.Net20) {
 		return nil, false
 	}
@@ -10829,15 +3332,15 @@ func (o *CreateContainerRequest) HasNet20() bool {
 	return false
 }
 
-// SetNet20 gets a reference to the given GetContainerConfig200ResponseDataNet0 and assigns it to the Net20 field.
-func (o *CreateContainerRequest) SetNet20(v GetContainerConfig200ResponseDataNet0) {
+// SetNet20 gets a reference to the given CreateContainerRequestNet0 and assigns it to the Net20 field.
+func (o *CreateContainerRequest) SetNet20(v CreateContainerRequestNet0) {
 	o.Net20 = &v
 }
 
 // GetNet21 returns the Net21 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetNet21() GetContainerConfig200ResponseDataNet0 {
+func (o *CreateContainerRequest) GetNet21() CreateContainerRequestNet0 {
 	if o == nil || IsNil(o.Net21) {
-		var ret GetContainerConfig200ResponseDataNet0
+		var ret CreateContainerRequestNet0
 		return ret
 	}
 	return *o.Net21
@@ -10845,7 +3348,7 @@ func (o *CreateContainerRequest) GetNet21() GetContainerConfig200ResponseDataNet
 
 // GetNet21Ok returns a tuple with the Net21 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetNet21Ok() (*GetContainerConfig200ResponseDataNet0, bool) {
+func (o *CreateContainerRequest) GetNet21Ok() (*CreateContainerRequestNet0, bool) {
 	if o == nil || IsNil(o.Net21) {
 		return nil, false
 	}
@@ -10861,15 +3364,15 @@ func (o *CreateContainerRequest) HasNet21() bool {
 	return false
 }
 
-// SetNet21 gets a reference to the given GetContainerConfig200ResponseDataNet0 and assigns it to the Net21 field.
-func (o *CreateContainerRequest) SetNet21(v GetContainerConfig200ResponseDataNet0) {
+// SetNet21 gets a reference to the given CreateContainerRequestNet0 and assigns it to the Net21 field.
+func (o *CreateContainerRequest) SetNet21(v CreateContainerRequestNet0) {
 	o.Net21 = &v
 }
 
 // GetNet22 returns the Net22 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetNet22() GetContainerConfig200ResponseDataNet0 {
+func (o *CreateContainerRequest) GetNet22() CreateContainerRequestNet0 {
 	if o == nil || IsNil(o.Net22) {
-		var ret GetContainerConfig200ResponseDataNet0
+		var ret CreateContainerRequestNet0
 		return ret
 	}
 	return *o.Net22
@@ -10877,7 +3380,7 @@ func (o *CreateContainerRequest) GetNet22() GetContainerConfig200ResponseDataNet
 
 // GetNet22Ok returns a tuple with the Net22 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetNet22Ok() (*GetContainerConfig200ResponseDataNet0, bool) {
+func (o *CreateContainerRequest) GetNet22Ok() (*CreateContainerRequestNet0, bool) {
 	if o == nil || IsNil(o.Net22) {
 		return nil, false
 	}
@@ -10893,15 +3396,15 @@ func (o *CreateContainerRequest) HasNet22() bool {
 	return false
 }
 
-// SetNet22 gets a reference to the given GetContainerConfig200ResponseDataNet0 and assigns it to the Net22 field.
-func (o *CreateContainerRequest) SetNet22(v GetContainerConfig200ResponseDataNet0) {
+// SetNet22 gets a reference to the given CreateContainerRequestNet0 and assigns it to the Net22 field.
+func (o *CreateContainerRequest) SetNet22(v CreateContainerRequestNet0) {
 	o.Net22 = &v
 }
 
 // GetNet23 returns the Net23 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetNet23() GetContainerConfig200ResponseDataNet0 {
+func (o *CreateContainerRequest) GetNet23() CreateContainerRequestNet0 {
 	if o == nil || IsNil(o.Net23) {
-		var ret GetContainerConfig200ResponseDataNet0
+		var ret CreateContainerRequestNet0
 		return ret
 	}
 	return *o.Net23
@@ -10909,7 +3412,7 @@ func (o *CreateContainerRequest) GetNet23() GetContainerConfig200ResponseDataNet
 
 // GetNet23Ok returns a tuple with the Net23 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetNet23Ok() (*GetContainerConfig200ResponseDataNet0, bool) {
+func (o *CreateContainerRequest) GetNet23Ok() (*CreateContainerRequestNet0, bool) {
 	if o == nil || IsNil(o.Net23) {
 		return nil, false
 	}
@@ -10925,15 +3428,15 @@ func (o *CreateContainerRequest) HasNet23() bool {
 	return false
 }
 
-// SetNet23 gets a reference to the given GetContainerConfig200ResponseDataNet0 and assigns it to the Net23 field.
-func (o *CreateContainerRequest) SetNet23(v GetContainerConfig200ResponseDataNet0) {
+// SetNet23 gets a reference to the given CreateContainerRequestNet0 and assigns it to the Net23 field.
+func (o *CreateContainerRequest) SetNet23(v CreateContainerRequestNet0) {
 	o.Net23 = &v
 }
 
 // GetNet24 returns the Net24 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetNet24() GetContainerConfig200ResponseDataNet0 {
+func (o *CreateContainerRequest) GetNet24() CreateContainerRequestNet0 {
 	if o == nil || IsNil(o.Net24) {
-		var ret GetContainerConfig200ResponseDataNet0
+		var ret CreateContainerRequestNet0
 		return ret
 	}
 	return *o.Net24
@@ -10941,7 +3444,7 @@ func (o *CreateContainerRequest) GetNet24() GetContainerConfig200ResponseDataNet
 
 // GetNet24Ok returns a tuple with the Net24 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetNet24Ok() (*GetContainerConfig200ResponseDataNet0, bool) {
+func (o *CreateContainerRequest) GetNet24Ok() (*CreateContainerRequestNet0, bool) {
 	if o == nil || IsNil(o.Net24) {
 		return nil, false
 	}
@@ -10957,15 +3460,15 @@ func (o *CreateContainerRequest) HasNet24() bool {
 	return false
 }
 
-// SetNet24 gets a reference to the given GetContainerConfig200ResponseDataNet0 and assigns it to the Net24 field.
-func (o *CreateContainerRequest) SetNet24(v GetContainerConfig200ResponseDataNet0) {
+// SetNet24 gets a reference to the given CreateContainerRequestNet0 and assigns it to the Net24 field.
+func (o *CreateContainerRequest) SetNet24(v CreateContainerRequestNet0) {
 	o.Net24 = &v
 }
 
 // GetNet25 returns the Net25 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetNet25() GetContainerConfig200ResponseDataNet0 {
+func (o *CreateContainerRequest) GetNet25() CreateContainerRequestNet0 {
 	if o == nil || IsNil(o.Net25) {
-		var ret GetContainerConfig200ResponseDataNet0
+		var ret CreateContainerRequestNet0
 		return ret
 	}
 	return *o.Net25
@@ -10973,7 +3476,7 @@ func (o *CreateContainerRequest) GetNet25() GetContainerConfig200ResponseDataNet
 
 // GetNet25Ok returns a tuple with the Net25 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetNet25Ok() (*GetContainerConfig200ResponseDataNet0, bool) {
+func (o *CreateContainerRequest) GetNet25Ok() (*CreateContainerRequestNet0, bool) {
 	if o == nil || IsNil(o.Net25) {
 		return nil, false
 	}
@@ -10989,15 +3492,15 @@ func (o *CreateContainerRequest) HasNet25() bool {
 	return false
 }
 
-// SetNet25 gets a reference to the given GetContainerConfig200ResponseDataNet0 and assigns it to the Net25 field.
-func (o *CreateContainerRequest) SetNet25(v GetContainerConfig200ResponseDataNet0) {
+// SetNet25 gets a reference to the given CreateContainerRequestNet0 and assigns it to the Net25 field.
+func (o *CreateContainerRequest) SetNet25(v CreateContainerRequestNet0) {
 	o.Net25 = &v
 }
 
 // GetNet26 returns the Net26 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetNet26() GetContainerConfig200ResponseDataNet0 {
+func (o *CreateContainerRequest) GetNet26() CreateContainerRequestNet0 {
 	if o == nil || IsNil(o.Net26) {
-		var ret GetContainerConfig200ResponseDataNet0
+		var ret CreateContainerRequestNet0
 		return ret
 	}
 	return *o.Net26
@@ -11005,7 +3508,7 @@ func (o *CreateContainerRequest) GetNet26() GetContainerConfig200ResponseDataNet
 
 // GetNet26Ok returns a tuple with the Net26 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetNet26Ok() (*GetContainerConfig200ResponseDataNet0, bool) {
+func (o *CreateContainerRequest) GetNet26Ok() (*CreateContainerRequestNet0, bool) {
 	if o == nil || IsNil(o.Net26) {
 		return nil, false
 	}
@@ -11021,15 +3524,15 @@ func (o *CreateContainerRequest) HasNet26() bool {
 	return false
 }
 
-// SetNet26 gets a reference to the given GetContainerConfig200ResponseDataNet0 and assigns it to the Net26 field.
-func (o *CreateContainerRequest) SetNet26(v GetContainerConfig200ResponseDataNet0) {
+// SetNet26 gets a reference to the given CreateContainerRequestNet0 and assigns it to the Net26 field.
+func (o *CreateContainerRequest) SetNet26(v CreateContainerRequestNet0) {
 	o.Net26 = &v
 }
 
 // GetNet27 returns the Net27 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetNet27() GetContainerConfig200ResponseDataNet0 {
+func (o *CreateContainerRequest) GetNet27() CreateContainerRequestNet0 {
 	if o == nil || IsNil(o.Net27) {
-		var ret GetContainerConfig200ResponseDataNet0
+		var ret CreateContainerRequestNet0
 		return ret
 	}
 	return *o.Net27
@@ -11037,7 +3540,7 @@ func (o *CreateContainerRequest) GetNet27() GetContainerConfig200ResponseDataNet
 
 // GetNet27Ok returns a tuple with the Net27 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetNet27Ok() (*GetContainerConfig200ResponseDataNet0, bool) {
+func (o *CreateContainerRequest) GetNet27Ok() (*CreateContainerRequestNet0, bool) {
 	if o == nil || IsNil(o.Net27) {
 		return nil, false
 	}
@@ -11053,15 +3556,15 @@ func (o *CreateContainerRequest) HasNet27() bool {
 	return false
 }
 
-// SetNet27 gets a reference to the given GetContainerConfig200ResponseDataNet0 and assigns it to the Net27 field.
-func (o *CreateContainerRequest) SetNet27(v GetContainerConfig200ResponseDataNet0) {
+// SetNet27 gets a reference to the given CreateContainerRequestNet0 and assigns it to the Net27 field.
+func (o *CreateContainerRequest) SetNet27(v CreateContainerRequestNet0) {
 	o.Net27 = &v
 }
 
 // GetNet28 returns the Net28 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetNet28() GetContainerConfig200ResponseDataNet0 {
+func (o *CreateContainerRequest) GetNet28() CreateContainerRequestNet0 {
 	if o == nil || IsNil(o.Net28) {
-		var ret GetContainerConfig200ResponseDataNet0
+		var ret CreateContainerRequestNet0
 		return ret
 	}
 	return *o.Net28
@@ -11069,7 +3572,7 @@ func (o *CreateContainerRequest) GetNet28() GetContainerConfig200ResponseDataNet
 
 // GetNet28Ok returns a tuple with the Net28 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetNet28Ok() (*GetContainerConfig200ResponseDataNet0, bool) {
+func (o *CreateContainerRequest) GetNet28Ok() (*CreateContainerRequestNet0, bool) {
 	if o == nil || IsNil(o.Net28) {
 		return nil, false
 	}
@@ -11085,15 +3588,15 @@ func (o *CreateContainerRequest) HasNet28() bool {
 	return false
 }
 
-// SetNet28 gets a reference to the given GetContainerConfig200ResponseDataNet0 and assigns it to the Net28 field.
-func (o *CreateContainerRequest) SetNet28(v GetContainerConfig200ResponseDataNet0) {
+// SetNet28 gets a reference to the given CreateContainerRequestNet0 and assigns it to the Net28 field.
+func (o *CreateContainerRequest) SetNet28(v CreateContainerRequestNet0) {
 	o.Net28 = &v
 }
 
 // GetNet29 returns the Net29 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetNet29() GetContainerConfig200ResponseDataNet0 {
+func (o *CreateContainerRequest) GetNet29() CreateContainerRequestNet0 {
 	if o == nil || IsNil(o.Net29) {
-		var ret GetContainerConfig200ResponseDataNet0
+		var ret CreateContainerRequestNet0
 		return ret
 	}
 	return *o.Net29
@@ -11101,7 +3604,7 @@ func (o *CreateContainerRequest) GetNet29() GetContainerConfig200ResponseDataNet
 
 // GetNet29Ok returns a tuple with the Net29 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetNet29Ok() (*GetContainerConfig200ResponseDataNet0, bool) {
+func (o *CreateContainerRequest) GetNet29Ok() (*CreateContainerRequestNet0, bool) {
 	if o == nil || IsNil(o.Net29) {
 		return nil, false
 	}
@@ -11117,15 +3620,15 @@ func (o *CreateContainerRequest) HasNet29() bool {
 	return false
 }
 
-// SetNet29 gets a reference to the given GetContainerConfig200ResponseDataNet0 and assigns it to the Net29 field.
-func (o *CreateContainerRequest) SetNet29(v GetContainerConfig200ResponseDataNet0) {
+// SetNet29 gets a reference to the given CreateContainerRequestNet0 and assigns it to the Net29 field.
+func (o *CreateContainerRequest) SetNet29(v CreateContainerRequestNet0) {
 	o.Net29 = &v
 }
 
 // GetNet30 returns the Net30 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetNet30() GetContainerConfig200ResponseDataNet0 {
+func (o *CreateContainerRequest) GetNet30() CreateContainerRequestNet0 {
 	if o == nil || IsNil(o.Net30) {
-		var ret GetContainerConfig200ResponseDataNet0
+		var ret CreateContainerRequestNet0
 		return ret
 	}
 	return *o.Net30
@@ -11133,7 +3636,7 @@ func (o *CreateContainerRequest) GetNet30() GetContainerConfig200ResponseDataNet
 
 // GetNet30Ok returns a tuple with the Net30 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetNet30Ok() (*GetContainerConfig200ResponseDataNet0, bool) {
+func (o *CreateContainerRequest) GetNet30Ok() (*CreateContainerRequestNet0, bool) {
 	if o == nil || IsNil(o.Net30) {
 		return nil, false
 	}
@@ -11149,15 +3652,15 @@ func (o *CreateContainerRequest) HasNet30() bool {
 	return false
 }
 
-// SetNet30 gets a reference to the given GetContainerConfig200ResponseDataNet0 and assigns it to the Net30 field.
-func (o *CreateContainerRequest) SetNet30(v GetContainerConfig200ResponseDataNet0) {
+// SetNet30 gets a reference to the given CreateContainerRequestNet0 and assigns it to the Net30 field.
+func (o *CreateContainerRequest) SetNet30(v CreateContainerRequestNet0) {
 	o.Net30 = &v
 }
 
 // GetNet31 returns the Net31 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetNet31() GetContainerConfig200ResponseDataNet0 {
+func (o *CreateContainerRequest) GetNet31() CreateContainerRequestNet0 {
 	if o == nil || IsNil(o.Net31) {
-		var ret GetContainerConfig200ResponseDataNet0
+		var ret CreateContainerRequestNet0
 		return ret
 	}
 	return *o.Net31
@@ -11165,7 +3668,7 @@ func (o *CreateContainerRequest) GetNet31() GetContainerConfig200ResponseDataNet
 
 // GetNet31Ok returns a tuple with the Net31 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetNet31Ok() (*GetContainerConfig200ResponseDataNet0, bool) {
+func (o *CreateContainerRequest) GetNet31Ok() (*CreateContainerRequestNet0, bool) {
 	if o == nil || IsNil(o.Net31) {
 		return nil, false
 	}
@@ -11181,8 +3684,8 @@ func (o *CreateContainerRequest) HasNet31() bool {
 	return false
 }
 
-// SetNet31 gets a reference to the given GetContainerConfig200ResponseDataNet0 and assigns it to the Net31 field.
-func (o *CreateContainerRequest) SetNet31(v GetContainerConfig200ResponseDataNet0) {
+// SetNet31 gets a reference to the given CreateContainerRequestNet0 and assigns it to the Net31 field.
+func (o *CreateContainerRequest) SetNet31(v CreateContainerRequestNet0) {
 	o.Net31 = &v
 }
 
@@ -11403,9 +3906,9 @@ func (o *CreateContainerRequest) SetRestore(v bool) {
 }
 
 // GetRootfs returns the Rootfs field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetRootfs() GetContainerConfig200ResponseDataRootfs {
+func (o *CreateContainerRequest) GetRootfs() CreateContainerRequestRootfs {
 	if o == nil || IsNil(o.Rootfs) {
-		var ret GetContainerConfig200ResponseDataRootfs
+		var ret CreateContainerRequestRootfs
 		return ret
 	}
 	return *o.Rootfs
@@ -11413,7 +3916,7 @@ func (o *CreateContainerRequest) GetRootfs() GetContainerConfig200ResponseDataRo
 
 // GetRootfsOk returns a tuple with the Rootfs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetRootfsOk() (*GetContainerConfig200ResponseDataRootfs, bool) {
+func (o *CreateContainerRequest) GetRootfsOk() (*CreateContainerRequestRootfs, bool) {
 	if o == nil || IsNil(o.Rootfs) {
 		return nil, false
 	}
@@ -11429,8 +3932,8 @@ func (o *CreateContainerRequest) HasRootfs() bool {
 	return false
 }
 
-// SetRootfs gets a reference to the given GetContainerConfig200ResponseDataRootfs and assigns it to the Rootfs field.
-func (o *CreateContainerRequest) SetRootfs(v GetContainerConfig200ResponseDataRootfs) {
+// SetRootfs gets a reference to the given CreateContainerRequestRootfs and assigns it to the Rootfs field.
+func (o *CreateContainerRequest) SetRootfs(v CreateContainerRequestRootfs) {
 	o.Rootfs = &v
 }
 
@@ -11819,9 +4322,9 @@ func (o *CreateContainerRequest) SetUnprivileged(v bool) {
 }
 
 // GetUnused0 returns the Unused0 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetUnused0() GetContainerConfig200ResponseDataUnused0 {
+func (o *CreateContainerRequest) GetUnused0() CreateContainerRequestUnused0 {
 	if o == nil || IsNil(o.Unused0) {
-		var ret GetContainerConfig200ResponseDataUnused0
+		var ret CreateContainerRequestUnused0
 		return ret
 	}
 	return *o.Unused0
@@ -11829,7 +4332,7 @@ func (o *CreateContainerRequest) GetUnused0() GetContainerConfig200ResponseDataU
 
 // GetUnused0Ok returns a tuple with the Unused0 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetUnused0Ok() (*GetContainerConfig200ResponseDataUnused0, bool) {
+func (o *CreateContainerRequest) GetUnused0Ok() (*CreateContainerRequestUnused0, bool) {
 	if o == nil || IsNil(o.Unused0) {
 		return nil, false
 	}
@@ -11845,15 +4348,15 @@ func (o *CreateContainerRequest) HasUnused0() bool {
 	return false
 }
 
-// SetUnused0 gets a reference to the given GetContainerConfig200ResponseDataUnused0 and assigns it to the Unused0 field.
-func (o *CreateContainerRequest) SetUnused0(v GetContainerConfig200ResponseDataUnused0) {
+// SetUnused0 gets a reference to the given CreateContainerRequestUnused0 and assigns it to the Unused0 field.
+func (o *CreateContainerRequest) SetUnused0(v CreateContainerRequestUnused0) {
 	o.Unused0 = &v
 }
 
 // GetUnused1 returns the Unused1 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetUnused1() GetContainerConfig200ResponseDataUnused0 {
+func (o *CreateContainerRequest) GetUnused1() CreateContainerRequestUnused0 {
 	if o == nil || IsNil(o.Unused1) {
-		var ret GetContainerConfig200ResponseDataUnused0
+		var ret CreateContainerRequestUnused0
 		return ret
 	}
 	return *o.Unused1
@@ -11861,7 +4364,7 @@ func (o *CreateContainerRequest) GetUnused1() GetContainerConfig200ResponseDataU
 
 // GetUnused1Ok returns a tuple with the Unused1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetUnused1Ok() (*GetContainerConfig200ResponseDataUnused0, bool) {
+func (o *CreateContainerRequest) GetUnused1Ok() (*CreateContainerRequestUnused0, bool) {
 	if o == nil || IsNil(o.Unused1) {
 		return nil, false
 	}
@@ -11877,15 +4380,15 @@ func (o *CreateContainerRequest) HasUnused1() bool {
 	return false
 }
 
-// SetUnused1 gets a reference to the given GetContainerConfig200ResponseDataUnused0 and assigns it to the Unused1 field.
-func (o *CreateContainerRequest) SetUnused1(v GetContainerConfig200ResponseDataUnused0) {
+// SetUnused1 gets a reference to the given CreateContainerRequestUnused0 and assigns it to the Unused1 field.
+func (o *CreateContainerRequest) SetUnused1(v CreateContainerRequestUnused0) {
 	o.Unused1 = &v
 }
 
 // GetUnused2 returns the Unused2 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetUnused2() GetContainerConfig200ResponseDataUnused0 {
+func (o *CreateContainerRequest) GetUnused2() CreateContainerRequestUnused0 {
 	if o == nil || IsNil(o.Unused2) {
-		var ret GetContainerConfig200ResponseDataUnused0
+		var ret CreateContainerRequestUnused0
 		return ret
 	}
 	return *o.Unused2
@@ -11893,7 +4396,7 @@ func (o *CreateContainerRequest) GetUnused2() GetContainerConfig200ResponseDataU
 
 // GetUnused2Ok returns a tuple with the Unused2 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetUnused2Ok() (*GetContainerConfig200ResponseDataUnused0, bool) {
+func (o *CreateContainerRequest) GetUnused2Ok() (*CreateContainerRequestUnused0, bool) {
 	if o == nil || IsNil(o.Unused2) {
 		return nil, false
 	}
@@ -11909,15 +4412,15 @@ func (o *CreateContainerRequest) HasUnused2() bool {
 	return false
 }
 
-// SetUnused2 gets a reference to the given GetContainerConfig200ResponseDataUnused0 and assigns it to the Unused2 field.
-func (o *CreateContainerRequest) SetUnused2(v GetContainerConfig200ResponseDataUnused0) {
+// SetUnused2 gets a reference to the given CreateContainerRequestUnused0 and assigns it to the Unused2 field.
+func (o *CreateContainerRequest) SetUnused2(v CreateContainerRequestUnused0) {
 	o.Unused2 = &v
 }
 
 // GetUnused3 returns the Unused3 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetUnused3() GetContainerConfig200ResponseDataUnused0 {
+func (o *CreateContainerRequest) GetUnused3() CreateContainerRequestUnused0 {
 	if o == nil || IsNil(o.Unused3) {
-		var ret GetContainerConfig200ResponseDataUnused0
+		var ret CreateContainerRequestUnused0
 		return ret
 	}
 	return *o.Unused3
@@ -11925,7 +4428,7 @@ func (o *CreateContainerRequest) GetUnused3() GetContainerConfig200ResponseDataU
 
 // GetUnused3Ok returns a tuple with the Unused3 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetUnused3Ok() (*GetContainerConfig200ResponseDataUnused0, bool) {
+func (o *CreateContainerRequest) GetUnused3Ok() (*CreateContainerRequestUnused0, bool) {
 	if o == nil || IsNil(o.Unused3) {
 		return nil, false
 	}
@@ -11941,15 +4444,15 @@ func (o *CreateContainerRequest) HasUnused3() bool {
 	return false
 }
 
-// SetUnused3 gets a reference to the given GetContainerConfig200ResponseDataUnused0 and assigns it to the Unused3 field.
-func (o *CreateContainerRequest) SetUnused3(v GetContainerConfig200ResponseDataUnused0) {
+// SetUnused3 gets a reference to the given CreateContainerRequestUnused0 and assigns it to the Unused3 field.
+func (o *CreateContainerRequest) SetUnused3(v CreateContainerRequestUnused0) {
 	o.Unused3 = &v
 }
 
 // GetUnused4 returns the Unused4 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetUnused4() GetContainerConfig200ResponseDataUnused0 {
+func (o *CreateContainerRequest) GetUnused4() CreateContainerRequestUnused0 {
 	if o == nil || IsNil(o.Unused4) {
-		var ret GetContainerConfig200ResponseDataUnused0
+		var ret CreateContainerRequestUnused0
 		return ret
 	}
 	return *o.Unused4
@@ -11957,7 +4460,7 @@ func (o *CreateContainerRequest) GetUnused4() GetContainerConfig200ResponseDataU
 
 // GetUnused4Ok returns a tuple with the Unused4 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetUnused4Ok() (*GetContainerConfig200ResponseDataUnused0, bool) {
+func (o *CreateContainerRequest) GetUnused4Ok() (*CreateContainerRequestUnused0, bool) {
 	if o == nil || IsNil(o.Unused4) {
 		return nil, false
 	}
@@ -11973,15 +4476,15 @@ func (o *CreateContainerRequest) HasUnused4() bool {
 	return false
 }
 
-// SetUnused4 gets a reference to the given GetContainerConfig200ResponseDataUnused0 and assigns it to the Unused4 field.
-func (o *CreateContainerRequest) SetUnused4(v GetContainerConfig200ResponseDataUnused0) {
+// SetUnused4 gets a reference to the given CreateContainerRequestUnused0 and assigns it to the Unused4 field.
+func (o *CreateContainerRequest) SetUnused4(v CreateContainerRequestUnused0) {
 	o.Unused4 = &v
 }
 
 // GetUnused5 returns the Unused5 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetUnused5() GetContainerConfig200ResponseDataUnused0 {
+func (o *CreateContainerRequest) GetUnused5() CreateContainerRequestUnused0 {
 	if o == nil || IsNil(o.Unused5) {
-		var ret GetContainerConfig200ResponseDataUnused0
+		var ret CreateContainerRequestUnused0
 		return ret
 	}
 	return *o.Unused5
@@ -11989,7 +4492,7 @@ func (o *CreateContainerRequest) GetUnused5() GetContainerConfig200ResponseDataU
 
 // GetUnused5Ok returns a tuple with the Unused5 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetUnused5Ok() (*GetContainerConfig200ResponseDataUnused0, bool) {
+func (o *CreateContainerRequest) GetUnused5Ok() (*CreateContainerRequestUnused0, bool) {
 	if o == nil || IsNil(o.Unused5) {
 		return nil, false
 	}
@@ -12005,15 +4508,15 @@ func (o *CreateContainerRequest) HasUnused5() bool {
 	return false
 }
 
-// SetUnused5 gets a reference to the given GetContainerConfig200ResponseDataUnused0 and assigns it to the Unused5 field.
-func (o *CreateContainerRequest) SetUnused5(v GetContainerConfig200ResponseDataUnused0) {
+// SetUnused5 gets a reference to the given CreateContainerRequestUnused0 and assigns it to the Unused5 field.
+func (o *CreateContainerRequest) SetUnused5(v CreateContainerRequestUnused0) {
 	o.Unused5 = &v
 }
 
 // GetUnused6 returns the Unused6 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetUnused6() GetContainerConfig200ResponseDataUnused0 {
+func (o *CreateContainerRequest) GetUnused6() CreateContainerRequestUnused0 {
 	if o == nil || IsNil(o.Unused6) {
-		var ret GetContainerConfig200ResponseDataUnused0
+		var ret CreateContainerRequestUnused0
 		return ret
 	}
 	return *o.Unused6
@@ -12021,7 +4524,7 @@ func (o *CreateContainerRequest) GetUnused6() GetContainerConfig200ResponseDataU
 
 // GetUnused6Ok returns a tuple with the Unused6 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetUnused6Ok() (*GetContainerConfig200ResponseDataUnused0, bool) {
+func (o *CreateContainerRequest) GetUnused6Ok() (*CreateContainerRequestUnused0, bool) {
 	if o == nil || IsNil(o.Unused6) {
 		return nil, false
 	}
@@ -12037,15 +4540,15 @@ func (o *CreateContainerRequest) HasUnused6() bool {
 	return false
 }
 
-// SetUnused6 gets a reference to the given GetContainerConfig200ResponseDataUnused0 and assigns it to the Unused6 field.
-func (o *CreateContainerRequest) SetUnused6(v GetContainerConfig200ResponseDataUnused0) {
+// SetUnused6 gets a reference to the given CreateContainerRequestUnused0 and assigns it to the Unused6 field.
+func (o *CreateContainerRequest) SetUnused6(v CreateContainerRequestUnused0) {
 	o.Unused6 = &v
 }
 
 // GetUnused7 returns the Unused7 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetUnused7() GetContainerConfig200ResponseDataUnused0 {
+func (o *CreateContainerRequest) GetUnused7() CreateContainerRequestUnused0 {
 	if o == nil || IsNil(o.Unused7) {
-		var ret GetContainerConfig200ResponseDataUnused0
+		var ret CreateContainerRequestUnused0
 		return ret
 	}
 	return *o.Unused7
@@ -12053,7 +4556,7 @@ func (o *CreateContainerRequest) GetUnused7() GetContainerConfig200ResponseDataU
 
 // GetUnused7Ok returns a tuple with the Unused7 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetUnused7Ok() (*GetContainerConfig200ResponseDataUnused0, bool) {
+func (o *CreateContainerRequest) GetUnused7Ok() (*CreateContainerRequestUnused0, bool) {
 	if o == nil || IsNil(o.Unused7) {
 		return nil, false
 	}
@@ -12069,15 +4572,15 @@ func (o *CreateContainerRequest) HasUnused7() bool {
 	return false
 }
 
-// SetUnused7 gets a reference to the given GetContainerConfig200ResponseDataUnused0 and assigns it to the Unused7 field.
-func (o *CreateContainerRequest) SetUnused7(v GetContainerConfig200ResponseDataUnused0) {
+// SetUnused7 gets a reference to the given CreateContainerRequestUnused0 and assigns it to the Unused7 field.
+func (o *CreateContainerRequest) SetUnused7(v CreateContainerRequestUnused0) {
 	o.Unused7 = &v
 }
 
 // GetUnused8 returns the Unused8 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetUnused8() GetContainerConfig200ResponseDataUnused0 {
+func (o *CreateContainerRequest) GetUnused8() CreateContainerRequestUnused0 {
 	if o == nil || IsNil(o.Unused8) {
-		var ret GetContainerConfig200ResponseDataUnused0
+		var ret CreateContainerRequestUnused0
 		return ret
 	}
 	return *o.Unused8
@@ -12085,7 +4588,7 @@ func (o *CreateContainerRequest) GetUnused8() GetContainerConfig200ResponseDataU
 
 // GetUnused8Ok returns a tuple with the Unused8 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetUnused8Ok() (*GetContainerConfig200ResponseDataUnused0, bool) {
+func (o *CreateContainerRequest) GetUnused8Ok() (*CreateContainerRequestUnused0, bool) {
 	if o == nil || IsNil(o.Unused8) {
 		return nil, false
 	}
@@ -12101,15 +4604,15 @@ func (o *CreateContainerRequest) HasUnused8() bool {
 	return false
 }
 
-// SetUnused8 gets a reference to the given GetContainerConfig200ResponseDataUnused0 and assigns it to the Unused8 field.
-func (o *CreateContainerRequest) SetUnused8(v GetContainerConfig200ResponseDataUnused0) {
+// SetUnused8 gets a reference to the given CreateContainerRequestUnused0 and assigns it to the Unused8 field.
+func (o *CreateContainerRequest) SetUnused8(v CreateContainerRequestUnused0) {
 	o.Unused8 = &v
 }
 
 // GetUnused9 returns the Unused9 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetUnused9() GetContainerConfig200ResponseDataUnused0 {
+func (o *CreateContainerRequest) GetUnused9() CreateContainerRequestUnused0 {
 	if o == nil || IsNil(o.Unused9) {
-		var ret GetContainerConfig200ResponseDataUnused0
+		var ret CreateContainerRequestUnused0
 		return ret
 	}
 	return *o.Unused9
@@ -12117,7 +4620,7 @@ func (o *CreateContainerRequest) GetUnused9() GetContainerConfig200ResponseDataU
 
 // GetUnused9Ok returns a tuple with the Unused9 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetUnused9Ok() (*GetContainerConfig200ResponseDataUnused0, bool) {
+func (o *CreateContainerRequest) GetUnused9Ok() (*CreateContainerRequestUnused0, bool) {
 	if o == nil || IsNil(o.Unused9) {
 		return nil, false
 	}
@@ -12133,15 +4636,15 @@ func (o *CreateContainerRequest) HasUnused9() bool {
 	return false
 }
 
-// SetUnused9 gets a reference to the given GetContainerConfig200ResponseDataUnused0 and assigns it to the Unused9 field.
-func (o *CreateContainerRequest) SetUnused9(v GetContainerConfig200ResponseDataUnused0) {
+// SetUnused9 gets a reference to the given CreateContainerRequestUnused0 and assigns it to the Unused9 field.
+func (o *CreateContainerRequest) SetUnused9(v CreateContainerRequestUnused0) {
 	o.Unused9 = &v
 }
 
 // GetUnused10 returns the Unused10 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetUnused10() GetContainerConfig200ResponseDataUnused0 {
+func (o *CreateContainerRequest) GetUnused10() CreateContainerRequestUnused0 {
 	if o == nil || IsNil(o.Unused10) {
-		var ret GetContainerConfig200ResponseDataUnused0
+		var ret CreateContainerRequestUnused0
 		return ret
 	}
 	return *o.Unused10
@@ -12149,7 +4652,7 @@ func (o *CreateContainerRequest) GetUnused10() GetContainerConfig200ResponseData
 
 // GetUnused10Ok returns a tuple with the Unused10 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetUnused10Ok() (*GetContainerConfig200ResponseDataUnused0, bool) {
+func (o *CreateContainerRequest) GetUnused10Ok() (*CreateContainerRequestUnused0, bool) {
 	if o == nil || IsNil(o.Unused10) {
 		return nil, false
 	}
@@ -12165,15 +4668,15 @@ func (o *CreateContainerRequest) HasUnused10() bool {
 	return false
 }
 
-// SetUnused10 gets a reference to the given GetContainerConfig200ResponseDataUnused0 and assigns it to the Unused10 field.
-func (o *CreateContainerRequest) SetUnused10(v GetContainerConfig200ResponseDataUnused0) {
+// SetUnused10 gets a reference to the given CreateContainerRequestUnused0 and assigns it to the Unused10 field.
+func (o *CreateContainerRequest) SetUnused10(v CreateContainerRequestUnused0) {
 	o.Unused10 = &v
 }
 
 // GetUnused11 returns the Unused11 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetUnused11() GetContainerConfig200ResponseDataUnused0 {
+func (o *CreateContainerRequest) GetUnused11() CreateContainerRequestUnused0 {
 	if o == nil || IsNil(o.Unused11) {
-		var ret GetContainerConfig200ResponseDataUnused0
+		var ret CreateContainerRequestUnused0
 		return ret
 	}
 	return *o.Unused11
@@ -12181,7 +4684,7 @@ func (o *CreateContainerRequest) GetUnused11() GetContainerConfig200ResponseData
 
 // GetUnused11Ok returns a tuple with the Unused11 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetUnused11Ok() (*GetContainerConfig200ResponseDataUnused0, bool) {
+func (o *CreateContainerRequest) GetUnused11Ok() (*CreateContainerRequestUnused0, bool) {
 	if o == nil || IsNil(o.Unused11) {
 		return nil, false
 	}
@@ -12197,15 +4700,15 @@ func (o *CreateContainerRequest) HasUnused11() bool {
 	return false
 }
 
-// SetUnused11 gets a reference to the given GetContainerConfig200ResponseDataUnused0 and assigns it to the Unused11 field.
-func (o *CreateContainerRequest) SetUnused11(v GetContainerConfig200ResponseDataUnused0) {
+// SetUnused11 gets a reference to the given CreateContainerRequestUnused0 and assigns it to the Unused11 field.
+func (o *CreateContainerRequest) SetUnused11(v CreateContainerRequestUnused0) {
 	o.Unused11 = &v
 }
 
 // GetUnused12 returns the Unused12 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetUnused12() GetContainerConfig200ResponseDataUnused0 {
+func (o *CreateContainerRequest) GetUnused12() CreateContainerRequestUnused0 {
 	if o == nil || IsNil(o.Unused12) {
-		var ret GetContainerConfig200ResponseDataUnused0
+		var ret CreateContainerRequestUnused0
 		return ret
 	}
 	return *o.Unused12
@@ -12213,7 +4716,7 @@ func (o *CreateContainerRequest) GetUnused12() GetContainerConfig200ResponseData
 
 // GetUnused12Ok returns a tuple with the Unused12 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetUnused12Ok() (*GetContainerConfig200ResponseDataUnused0, bool) {
+func (o *CreateContainerRequest) GetUnused12Ok() (*CreateContainerRequestUnused0, bool) {
 	if o == nil || IsNil(o.Unused12) {
 		return nil, false
 	}
@@ -12229,15 +4732,15 @@ func (o *CreateContainerRequest) HasUnused12() bool {
 	return false
 }
 
-// SetUnused12 gets a reference to the given GetContainerConfig200ResponseDataUnused0 and assigns it to the Unused12 field.
-func (o *CreateContainerRequest) SetUnused12(v GetContainerConfig200ResponseDataUnused0) {
+// SetUnused12 gets a reference to the given CreateContainerRequestUnused0 and assigns it to the Unused12 field.
+func (o *CreateContainerRequest) SetUnused12(v CreateContainerRequestUnused0) {
 	o.Unused12 = &v
 }
 
 // GetUnused13 returns the Unused13 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetUnused13() GetContainerConfig200ResponseDataUnused0 {
+func (o *CreateContainerRequest) GetUnused13() CreateContainerRequestUnused0 {
 	if o == nil || IsNil(o.Unused13) {
-		var ret GetContainerConfig200ResponseDataUnused0
+		var ret CreateContainerRequestUnused0
 		return ret
 	}
 	return *o.Unused13
@@ -12245,7 +4748,7 @@ func (o *CreateContainerRequest) GetUnused13() GetContainerConfig200ResponseData
 
 // GetUnused13Ok returns a tuple with the Unused13 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetUnused13Ok() (*GetContainerConfig200ResponseDataUnused0, bool) {
+func (o *CreateContainerRequest) GetUnused13Ok() (*CreateContainerRequestUnused0, bool) {
 	if o == nil || IsNil(o.Unused13) {
 		return nil, false
 	}
@@ -12261,15 +4764,15 @@ func (o *CreateContainerRequest) HasUnused13() bool {
 	return false
 }
 
-// SetUnused13 gets a reference to the given GetContainerConfig200ResponseDataUnused0 and assigns it to the Unused13 field.
-func (o *CreateContainerRequest) SetUnused13(v GetContainerConfig200ResponseDataUnused0) {
+// SetUnused13 gets a reference to the given CreateContainerRequestUnused0 and assigns it to the Unused13 field.
+func (o *CreateContainerRequest) SetUnused13(v CreateContainerRequestUnused0) {
 	o.Unused13 = &v
 }
 
 // GetUnused14 returns the Unused14 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetUnused14() GetContainerConfig200ResponseDataUnused0 {
+func (o *CreateContainerRequest) GetUnused14() CreateContainerRequestUnused0 {
 	if o == nil || IsNil(o.Unused14) {
-		var ret GetContainerConfig200ResponseDataUnused0
+		var ret CreateContainerRequestUnused0
 		return ret
 	}
 	return *o.Unused14
@@ -12277,7 +4780,7 @@ func (o *CreateContainerRequest) GetUnused14() GetContainerConfig200ResponseData
 
 // GetUnused14Ok returns a tuple with the Unused14 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetUnused14Ok() (*GetContainerConfig200ResponseDataUnused0, bool) {
+func (o *CreateContainerRequest) GetUnused14Ok() (*CreateContainerRequestUnused0, bool) {
 	if o == nil || IsNil(o.Unused14) {
 		return nil, false
 	}
@@ -12293,15 +4796,15 @@ func (o *CreateContainerRequest) HasUnused14() bool {
 	return false
 }
 
-// SetUnused14 gets a reference to the given GetContainerConfig200ResponseDataUnused0 and assigns it to the Unused14 field.
-func (o *CreateContainerRequest) SetUnused14(v GetContainerConfig200ResponseDataUnused0) {
+// SetUnused14 gets a reference to the given CreateContainerRequestUnused0 and assigns it to the Unused14 field.
+func (o *CreateContainerRequest) SetUnused14(v CreateContainerRequestUnused0) {
 	o.Unused14 = &v
 }
 
 // GetUnused15 returns the Unused15 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetUnused15() GetContainerConfig200ResponseDataUnused0 {
+func (o *CreateContainerRequest) GetUnused15() CreateContainerRequestUnused0 {
 	if o == nil || IsNil(o.Unused15) {
-		var ret GetContainerConfig200ResponseDataUnused0
+		var ret CreateContainerRequestUnused0
 		return ret
 	}
 	return *o.Unused15
@@ -12309,7 +4812,7 @@ func (o *CreateContainerRequest) GetUnused15() GetContainerConfig200ResponseData
 
 // GetUnused15Ok returns a tuple with the Unused15 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetUnused15Ok() (*GetContainerConfig200ResponseDataUnused0, bool) {
+func (o *CreateContainerRequest) GetUnused15Ok() (*CreateContainerRequestUnused0, bool) {
 	if o == nil || IsNil(o.Unused15) {
 		return nil, false
 	}
@@ -12325,15 +4828,15 @@ func (o *CreateContainerRequest) HasUnused15() bool {
 	return false
 }
 
-// SetUnused15 gets a reference to the given GetContainerConfig200ResponseDataUnused0 and assigns it to the Unused15 field.
-func (o *CreateContainerRequest) SetUnused15(v GetContainerConfig200ResponseDataUnused0) {
+// SetUnused15 gets a reference to the given CreateContainerRequestUnused0 and assigns it to the Unused15 field.
+func (o *CreateContainerRequest) SetUnused15(v CreateContainerRequestUnused0) {
 	o.Unused15 = &v
 }
 
 // GetUnused16 returns the Unused16 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetUnused16() GetContainerConfig200ResponseDataUnused0 {
+func (o *CreateContainerRequest) GetUnused16() CreateContainerRequestUnused0 {
 	if o == nil || IsNil(o.Unused16) {
-		var ret GetContainerConfig200ResponseDataUnused0
+		var ret CreateContainerRequestUnused0
 		return ret
 	}
 	return *o.Unused16
@@ -12341,7 +4844,7 @@ func (o *CreateContainerRequest) GetUnused16() GetContainerConfig200ResponseData
 
 // GetUnused16Ok returns a tuple with the Unused16 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetUnused16Ok() (*GetContainerConfig200ResponseDataUnused0, bool) {
+func (o *CreateContainerRequest) GetUnused16Ok() (*CreateContainerRequestUnused0, bool) {
 	if o == nil || IsNil(o.Unused16) {
 		return nil, false
 	}
@@ -12357,15 +4860,15 @@ func (o *CreateContainerRequest) HasUnused16() bool {
 	return false
 }
 
-// SetUnused16 gets a reference to the given GetContainerConfig200ResponseDataUnused0 and assigns it to the Unused16 field.
-func (o *CreateContainerRequest) SetUnused16(v GetContainerConfig200ResponseDataUnused0) {
+// SetUnused16 gets a reference to the given CreateContainerRequestUnused0 and assigns it to the Unused16 field.
+func (o *CreateContainerRequest) SetUnused16(v CreateContainerRequestUnused0) {
 	o.Unused16 = &v
 }
 
 // GetUnused17 returns the Unused17 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetUnused17() GetContainerConfig200ResponseDataUnused0 {
+func (o *CreateContainerRequest) GetUnused17() CreateContainerRequestUnused0 {
 	if o == nil || IsNil(o.Unused17) {
-		var ret GetContainerConfig200ResponseDataUnused0
+		var ret CreateContainerRequestUnused0
 		return ret
 	}
 	return *o.Unused17
@@ -12373,7 +4876,7 @@ func (o *CreateContainerRequest) GetUnused17() GetContainerConfig200ResponseData
 
 // GetUnused17Ok returns a tuple with the Unused17 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetUnused17Ok() (*GetContainerConfig200ResponseDataUnused0, bool) {
+func (o *CreateContainerRequest) GetUnused17Ok() (*CreateContainerRequestUnused0, bool) {
 	if o == nil || IsNil(o.Unused17) {
 		return nil, false
 	}
@@ -12389,15 +4892,15 @@ func (o *CreateContainerRequest) HasUnused17() bool {
 	return false
 }
 
-// SetUnused17 gets a reference to the given GetContainerConfig200ResponseDataUnused0 and assigns it to the Unused17 field.
-func (o *CreateContainerRequest) SetUnused17(v GetContainerConfig200ResponseDataUnused0) {
+// SetUnused17 gets a reference to the given CreateContainerRequestUnused0 and assigns it to the Unused17 field.
+func (o *CreateContainerRequest) SetUnused17(v CreateContainerRequestUnused0) {
 	o.Unused17 = &v
 }
 
 // GetUnused18 returns the Unused18 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetUnused18() GetContainerConfig200ResponseDataUnused0 {
+func (o *CreateContainerRequest) GetUnused18() CreateContainerRequestUnused0 {
 	if o == nil || IsNil(o.Unused18) {
-		var ret GetContainerConfig200ResponseDataUnused0
+		var ret CreateContainerRequestUnused0
 		return ret
 	}
 	return *o.Unused18
@@ -12405,7 +4908,7 @@ func (o *CreateContainerRequest) GetUnused18() GetContainerConfig200ResponseData
 
 // GetUnused18Ok returns a tuple with the Unused18 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetUnused18Ok() (*GetContainerConfig200ResponseDataUnused0, bool) {
+func (o *CreateContainerRequest) GetUnused18Ok() (*CreateContainerRequestUnused0, bool) {
 	if o == nil || IsNil(o.Unused18) {
 		return nil, false
 	}
@@ -12421,15 +4924,15 @@ func (o *CreateContainerRequest) HasUnused18() bool {
 	return false
 }
 
-// SetUnused18 gets a reference to the given GetContainerConfig200ResponseDataUnused0 and assigns it to the Unused18 field.
-func (o *CreateContainerRequest) SetUnused18(v GetContainerConfig200ResponseDataUnused0) {
+// SetUnused18 gets a reference to the given CreateContainerRequestUnused0 and assigns it to the Unused18 field.
+func (o *CreateContainerRequest) SetUnused18(v CreateContainerRequestUnused0) {
 	o.Unused18 = &v
 }
 
 // GetUnused19 returns the Unused19 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetUnused19() GetContainerConfig200ResponseDataUnused0 {
+func (o *CreateContainerRequest) GetUnused19() CreateContainerRequestUnused0 {
 	if o == nil || IsNil(o.Unused19) {
-		var ret GetContainerConfig200ResponseDataUnused0
+		var ret CreateContainerRequestUnused0
 		return ret
 	}
 	return *o.Unused19
@@ -12437,7 +4940,7 @@ func (o *CreateContainerRequest) GetUnused19() GetContainerConfig200ResponseData
 
 // GetUnused19Ok returns a tuple with the Unused19 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetUnused19Ok() (*GetContainerConfig200ResponseDataUnused0, bool) {
+func (o *CreateContainerRequest) GetUnused19Ok() (*CreateContainerRequestUnused0, bool) {
 	if o == nil || IsNil(o.Unused19) {
 		return nil, false
 	}
@@ -12453,15 +4956,15 @@ func (o *CreateContainerRequest) HasUnused19() bool {
 	return false
 }
 
-// SetUnused19 gets a reference to the given GetContainerConfig200ResponseDataUnused0 and assigns it to the Unused19 field.
-func (o *CreateContainerRequest) SetUnused19(v GetContainerConfig200ResponseDataUnused0) {
+// SetUnused19 gets a reference to the given CreateContainerRequestUnused0 and assigns it to the Unused19 field.
+func (o *CreateContainerRequest) SetUnused19(v CreateContainerRequestUnused0) {
 	o.Unused19 = &v
 }
 
 // GetUnused20 returns the Unused20 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetUnused20() GetContainerConfig200ResponseDataUnused0 {
+func (o *CreateContainerRequest) GetUnused20() CreateContainerRequestUnused0 {
 	if o == nil || IsNil(o.Unused20) {
-		var ret GetContainerConfig200ResponseDataUnused0
+		var ret CreateContainerRequestUnused0
 		return ret
 	}
 	return *o.Unused20
@@ -12469,7 +4972,7 @@ func (o *CreateContainerRequest) GetUnused20() GetContainerConfig200ResponseData
 
 // GetUnused20Ok returns a tuple with the Unused20 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetUnused20Ok() (*GetContainerConfig200ResponseDataUnused0, bool) {
+func (o *CreateContainerRequest) GetUnused20Ok() (*CreateContainerRequestUnused0, bool) {
 	if o == nil || IsNil(o.Unused20) {
 		return nil, false
 	}
@@ -12485,15 +4988,15 @@ func (o *CreateContainerRequest) HasUnused20() bool {
 	return false
 }
 
-// SetUnused20 gets a reference to the given GetContainerConfig200ResponseDataUnused0 and assigns it to the Unused20 field.
-func (o *CreateContainerRequest) SetUnused20(v GetContainerConfig200ResponseDataUnused0) {
+// SetUnused20 gets a reference to the given CreateContainerRequestUnused0 and assigns it to the Unused20 field.
+func (o *CreateContainerRequest) SetUnused20(v CreateContainerRequestUnused0) {
 	o.Unused20 = &v
 }
 
 // GetUnused21 returns the Unused21 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetUnused21() GetContainerConfig200ResponseDataUnused0 {
+func (o *CreateContainerRequest) GetUnused21() CreateContainerRequestUnused0 {
 	if o == nil || IsNil(o.Unused21) {
-		var ret GetContainerConfig200ResponseDataUnused0
+		var ret CreateContainerRequestUnused0
 		return ret
 	}
 	return *o.Unused21
@@ -12501,7 +5004,7 @@ func (o *CreateContainerRequest) GetUnused21() GetContainerConfig200ResponseData
 
 // GetUnused21Ok returns a tuple with the Unused21 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetUnused21Ok() (*GetContainerConfig200ResponseDataUnused0, bool) {
+func (o *CreateContainerRequest) GetUnused21Ok() (*CreateContainerRequestUnused0, bool) {
 	if o == nil || IsNil(o.Unused21) {
 		return nil, false
 	}
@@ -12517,15 +5020,15 @@ func (o *CreateContainerRequest) HasUnused21() bool {
 	return false
 }
 
-// SetUnused21 gets a reference to the given GetContainerConfig200ResponseDataUnused0 and assigns it to the Unused21 field.
-func (o *CreateContainerRequest) SetUnused21(v GetContainerConfig200ResponseDataUnused0) {
+// SetUnused21 gets a reference to the given CreateContainerRequestUnused0 and assigns it to the Unused21 field.
+func (o *CreateContainerRequest) SetUnused21(v CreateContainerRequestUnused0) {
 	o.Unused21 = &v
 }
 
 // GetUnused22 returns the Unused22 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetUnused22() GetContainerConfig200ResponseDataUnused0 {
+func (o *CreateContainerRequest) GetUnused22() CreateContainerRequestUnused0 {
 	if o == nil || IsNil(o.Unused22) {
-		var ret GetContainerConfig200ResponseDataUnused0
+		var ret CreateContainerRequestUnused0
 		return ret
 	}
 	return *o.Unused22
@@ -12533,7 +5036,7 @@ func (o *CreateContainerRequest) GetUnused22() GetContainerConfig200ResponseData
 
 // GetUnused22Ok returns a tuple with the Unused22 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetUnused22Ok() (*GetContainerConfig200ResponseDataUnused0, bool) {
+func (o *CreateContainerRequest) GetUnused22Ok() (*CreateContainerRequestUnused0, bool) {
 	if o == nil || IsNil(o.Unused22) {
 		return nil, false
 	}
@@ -12549,15 +5052,15 @@ func (o *CreateContainerRequest) HasUnused22() bool {
 	return false
 }
 
-// SetUnused22 gets a reference to the given GetContainerConfig200ResponseDataUnused0 and assigns it to the Unused22 field.
-func (o *CreateContainerRequest) SetUnused22(v GetContainerConfig200ResponseDataUnused0) {
+// SetUnused22 gets a reference to the given CreateContainerRequestUnused0 and assigns it to the Unused22 field.
+func (o *CreateContainerRequest) SetUnused22(v CreateContainerRequestUnused0) {
 	o.Unused22 = &v
 }
 
 // GetUnused23 returns the Unused23 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetUnused23() GetContainerConfig200ResponseDataUnused0 {
+func (o *CreateContainerRequest) GetUnused23() CreateContainerRequestUnused0 {
 	if o == nil || IsNil(o.Unused23) {
-		var ret GetContainerConfig200ResponseDataUnused0
+		var ret CreateContainerRequestUnused0
 		return ret
 	}
 	return *o.Unused23
@@ -12565,7 +5068,7 @@ func (o *CreateContainerRequest) GetUnused23() GetContainerConfig200ResponseData
 
 // GetUnused23Ok returns a tuple with the Unused23 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetUnused23Ok() (*GetContainerConfig200ResponseDataUnused0, bool) {
+func (o *CreateContainerRequest) GetUnused23Ok() (*CreateContainerRequestUnused0, bool) {
 	if o == nil || IsNil(o.Unused23) {
 		return nil, false
 	}
@@ -12581,15 +5084,15 @@ func (o *CreateContainerRequest) HasUnused23() bool {
 	return false
 }
 
-// SetUnused23 gets a reference to the given GetContainerConfig200ResponseDataUnused0 and assigns it to the Unused23 field.
-func (o *CreateContainerRequest) SetUnused23(v GetContainerConfig200ResponseDataUnused0) {
+// SetUnused23 gets a reference to the given CreateContainerRequestUnused0 and assigns it to the Unused23 field.
+func (o *CreateContainerRequest) SetUnused23(v CreateContainerRequestUnused0) {
 	o.Unused23 = &v
 }
 
 // GetUnused24 returns the Unused24 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetUnused24() GetContainerConfig200ResponseDataUnused0 {
+func (o *CreateContainerRequest) GetUnused24() CreateContainerRequestUnused0 {
 	if o == nil || IsNil(o.Unused24) {
-		var ret GetContainerConfig200ResponseDataUnused0
+		var ret CreateContainerRequestUnused0
 		return ret
 	}
 	return *o.Unused24
@@ -12597,7 +5100,7 @@ func (o *CreateContainerRequest) GetUnused24() GetContainerConfig200ResponseData
 
 // GetUnused24Ok returns a tuple with the Unused24 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetUnused24Ok() (*GetContainerConfig200ResponseDataUnused0, bool) {
+func (o *CreateContainerRequest) GetUnused24Ok() (*CreateContainerRequestUnused0, bool) {
 	if o == nil || IsNil(o.Unused24) {
 		return nil, false
 	}
@@ -12613,15 +5116,15 @@ func (o *CreateContainerRequest) HasUnused24() bool {
 	return false
 }
 
-// SetUnused24 gets a reference to the given GetContainerConfig200ResponseDataUnused0 and assigns it to the Unused24 field.
-func (o *CreateContainerRequest) SetUnused24(v GetContainerConfig200ResponseDataUnused0) {
+// SetUnused24 gets a reference to the given CreateContainerRequestUnused0 and assigns it to the Unused24 field.
+func (o *CreateContainerRequest) SetUnused24(v CreateContainerRequestUnused0) {
 	o.Unused24 = &v
 }
 
 // GetUnused25 returns the Unused25 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetUnused25() GetContainerConfig200ResponseDataUnused0 {
+func (o *CreateContainerRequest) GetUnused25() CreateContainerRequestUnused0 {
 	if o == nil || IsNil(o.Unused25) {
-		var ret GetContainerConfig200ResponseDataUnused0
+		var ret CreateContainerRequestUnused0
 		return ret
 	}
 	return *o.Unused25
@@ -12629,7 +5132,7 @@ func (o *CreateContainerRequest) GetUnused25() GetContainerConfig200ResponseData
 
 // GetUnused25Ok returns a tuple with the Unused25 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetUnused25Ok() (*GetContainerConfig200ResponseDataUnused0, bool) {
+func (o *CreateContainerRequest) GetUnused25Ok() (*CreateContainerRequestUnused0, bool) {
 	if o == nil || IsNil(o.Unused25) {
 		return nil, false
 	}
@@ -12645,15 +5148,15 @@ func (o *CreateContainerRequest) HasUnused25() bool {
 	return false
 }
 
-// SetUnused25 gets a reference to the given GetContainerConfig200ResponseDataUnused0 and assigns it to the Unused25 field.
-func (o *CreateContainerRequest) SetUnused25(v GetContainerConfig200ResponseDataUnused0) {
+// SetUnused25 gets a reference to the given CreateContainerRequestUnused0 and assigns it to the Unused25 field.
+func (o *CreateContainerRequest) SetUnused25(v CreateContainerRequestUnused0) {
 	o.Unused25 = &v
 }
 
 // GetUnused26 returns the Unused26 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetUnused26() GetContainerConfig200ResponseDataUnused0 {
+func (o *CreateContainerRequest) GetUnused26() CreateContainerRequestUnused0 {
 	if o == nil || IsNil(o.Unused26) {
-		var ret GetContainerConfig200ResponseDataUnused0
+		var ret CreateContainerRequestUnused0
 		return ret
 	}
 	return *o.Unused26
@@ -12661,7 +5164,7 @@ func (o *CreateContainerRequest) GetUnused26() GetContainerConfig200ResponseData
 
 // GetUnused26Ok returns a tuple with the Unused26 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetUnused26Ok() (*GetContainerConfig200ResponseDataUnused0, bool) {
+func (o *CreateContainerRequest) GetUnused26Ok() (*CreateContainerRequestUnused0, bool) {
 	if o == nil || IsNil(o.Unused26) {
 		return nil, false
 	}
@@ -12677,15 +5180,15 @@ func (o *CreateContainerRequest) HasUnused26() bool {
 	return false
 }
 
-// SetUnused26 gets a reference to the given GetContainerConfig200ResponseDataUnused0 and assigns it to the Unused26 field.
-func (o *CreateContainerRequest) SetUnused26(v GetContainerConfig200ResponseDataUnused0) {
+// SetUnused26 gets a reference to the given CreateContainerRequestUnused0 and assigns it to the Unused26 field.
+func (o *CreateContainerRequest) SetUnused26(v CreateContainerRequestUnused0) {
 	o.Unused26 = &v
 }
 
 // GetUnused27 returns the Unused27 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetUnused27() GetContainerConfig200ResponseDataUnused0 {
+func (o *CreateContainerRequest) GetUnused27() CreateContainerRequestUnused0 {
 	if o == nil || IsNil(o.Unused27) {
-		var ret GetContainerConfig200ResponseDataUnused0
+		var ret CreateContainerRequestUnused0
 		return ret
 	}
 	return *o.Unused27
@@ -12693,7 +5196,7 @@ func (o *CreateContainerRequest) GetUnused27() GetContainerConfig200ResponseData
 
 // GetUnused27Ok returns a tuple with the Unused27 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetUnused27Ok() (*GetContainerConfig200ResponseDataUnused0, bool) {
+func (o *CreateContainerRequest) GetUnused27Ok() (*CreateContainerRequestUnused0, bool) {
 	if o == nil || IsNil(o.Unused27) {
 		return nil, false
 	}
@@ -12709,15 +5212,15 @@ func (o *CreateContainerRequest) HasUnused27() bool {
 	return false
 }
 
-// SetUnused27 gets a reference to the given GetContainerConfig200ResponseDataUnused0 and assigns it to the Unused27 field.
-func (o *CreateContainerRequest) SetUnused27(v GetContainerConfig200ResponseDataUnused0) {
+// SetUnused27 gets a reference to the given CreateContainerRequestUnused0 and assigns it to the Unused27 field.
+func (o *CreateContainerRequest) SetUnused27(v CreateContainerRequestUnused0) {
 	o.Unused27 = &v
 }
 
 // GetUnused28 returns the Unused28 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetUnused28() GetContainerConfig200ResponseDataUnused0 {
+func (o *CreateContainerRequest) GetUnused28() CreateContainerRequestUnused0 {
 	if o == nil || IsNil(o.Unused28) {
-		var ret GetContainerConfig200ResponseDataUnused0
+		var ret CreateContainerRequestUnused0
 		return ret
 	}
 	return *o.Unused28
@@ -12725,7 +5228,7 @@ func (o *CreateContainerRequest) GetUnused28() GetContainerConfig200ResponseData
 
 // GetUnused28Ok returns a tuple with the Unused28 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetUnused28Ok() (*GetContainerConfig200ResponseDataUnused0, bool) {
+func (o *CreateContainerRequest) GetUnused28Ok() (*CreateContainerRequestUnused0, bool) {
 	if o == nil || IsNil(o.Unused28) {
 		return nil, false
 	}
@@ -12741,15 +5244,15 @@ func (o *CreateContainerRequest) HasUnused28() bool {
 	return false
 }
 
-// SetUnused28 gets a reference to the given GetContainerConfig200ResponseDataUnused0 and assigns it to the Unused28 field.
-func (o *CreateContainerRequest) SetUnused28(v GetContainerConfig200ResponseDataUnused0) {
+// SetUnused28 gets a reference to the given CreateContainerRequestUnused0 and assigns it to the Unused28 field.
+func (o *CreateContainerRequest) SetUnused28(v CreateContainerRequestUnused0) {
 	o.Unused28 = &v
 }
 
 // GetUnused29 returns the Unused29 field value if set, zero value otherwise.
-func (o *CreateContainerRequest) GetUnused29() GetContainerConfig200ResponseDataUnused0 {
+func (o *CreateContainerRequest) GetUnused29() CreateContainerRequestUnused0 {
 	if o == nil || IsNil(o.Unused29) {
-		var ret GetContainerConfig200ResponseDataUnused0
+		var ret CreateContainerRequestUnused0
 		return ret
 	}
 	return *o.Unused29
@@ -12757,7 +5260,7 @@ func (o *CreateContainerRequest) GetUnused29() GetContainerConfig200ResponseData
 
 // GetUnused29Ok returns a tuple with the Unused29 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateContainerRequest) GetUnused29Ok() (*GetContainerConfig200ResponseDataUnused0, bool) {
+func (o *CreateContainerRequest) GetUnused29Ok() (*CreateContainerRequestUnused0, bool) {
 	if o == nil || IsNil(o.Unused29) {
 		return nil, false
 	}
@@ -12773,8 +5276,8 @@ func (o *CreateContainerRequest) HasUnused29() bool {
 	return false
 }
 
-// SetUnused29 gets a reference to the given GetContainerConfig200ResponseDataUnused0 and assigns it to the Unused29 field.
-func (o *CreateContainerRequest) SetUnused29(v GetContainerConfig200ResponseDataUnused0) {
+// SetUnused29 gets a reference to the given CreateContainerRequestUnused0 and assigns it to the Unused29 field.
+func (o *CreateContainerRequest) SetUnused29(v CreateContainerRequestUnused0) {
 	o.Unused29 = &v
 }
 
@@ -13040,684 +5543,6 @@ func (o CreateContainerRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Mp29) {
 		toSerialize["mp29"] = o.Mp29
 	}
-	if !IsNil(o.Mp30) {
-		toSerialize["mp30"] = o.Mp30
-	}
-	if !IsNil(o.Mp31) {
-		toSerialize["mp31"] = o.Mp31
-	}
-	if !IsNil(o.Mp32) {
-		toSerialize["mp32"] = o.Mp32
-	}
-	if !IsNil(o.Mp33) {
-		toSerialize["mp33"] = o.Mp33
-	}
-	if !IsNil(o.Mp34) {
-		toSerialize["mp34"] = o.Mp34
-	}
-	if !IsNil(o.Mp35) {
-		toSerialize["mp35"] = o.Mp35
-	}
-	if !IsNil(o.Mp36) {
-		toSerialize["mp36"] = o.Mp36
-	}
-	if !IsNil(o.Mp37) {
-		toSerialize["mp37"] = o.Mp37
-	}
-	if !IsNil(o.Mp38) {
-		toSerialize["mp38"] = o.Mp38
-	}
-	if !IsNil(o.Mp39) {
-		toSerialize["mp39"] = o.Mp39
-	}
-	if !IsNil(o.Mp40) {
-		toSerialize["mp40"] = o.Mp40
-	}
-	if !IsNil(o.Mp41) {
-		toSerialize["mp41"] = o.Mp41
-	}
-	if !IsNil(o.Mp42) {
-		toSerialize["mp42"] = o.Mp42
-	}
-	if !IsNil(o.Mp43) {
-		toSerialize["mp43"] = o.Mp43
-	}
-	if !IsNil(o.Mp44) {
-		toSerialize["mp44"] = o.Mp44
-	}
-	if !IsNil(o.Mp45) {
-		toSerialize["mp45"] = o.Mp45
-	}
-	if !IsNil(o.Mp46) {
-		toSerialize["mp46"] = o.Mp46
-	}
-	if !IsNil(o.Mp47) {
-		toSerialize["mp47"] = o.Mp47
-	}
-	if !IsNil(o.Mp48) {
-		toSerialize["mp48"] = o.Mp48
-	}
-	if !IsNil(o.Mp49) {
-		toSerialize["mp49"] = o.Mp49
-	}
-	if !IsNil(o.Mp50) {
-		toSerialize["mp50"] = o.Mp50
-	}
-	if !IsNil(o.Mp51) {
-		toSerialize["mp51"] = o.Mp51
-	}
-	if !IsNil(o.Mp52) {
-		toSerialize["mp52"] = o.Mp52
-	}
-	if !IsNil(o.Mp53) {
-		toSerialize["mp53"] = o.Mp53
-	}
-	if !IsNil(o.Mp54) {
-		toSerialize["mp54"] = o.Mp54
-	}
-	if !IsNil(o.Mp55) {
-		toSerialize["mp55"] = o.Mp55
-	}
-	if !IsNil(o.Mp56) {
-		toSerialize["mp56"] = o.Mp56
-	}
-	if !IsNil(o.Mp57) {
-		toSerialize["mp57"] = o.Mp57
-	}
-	if !IsNil(o.Mp58) {
-		toSerialize["mp58"] = o.Mp58
-	}
-	if !IsNil(o.Mp59) {
-		toSerialize["mp59"] = o.Mp59
-	}
-	if !IsNil(o.Mp60) {
-		toSerialize["mp60"] = o.Mp60
-	}
-	if !IsNil(o.Mp61) {
-		toSerialize["mp61"] = o.Mp61
-	}
-	if !IsNil(o.Mp62) {
-		toSerialize["mp62"] = o.Mp62
-	}
-	if !IsNil(o.Mp63) {
-		toSerialize["mp63"] = o.Mp63
-	}
-	if !IsNil(o.Mp64) {
-		toSerialize["mp64"] = o.Mp64
-	}
-	if !IsNil(o.Mp65) {
-		toSerialize["mp65"] = o.Mp65
-	}
-	if !IsNil(o.Mp66) {
-		toSerialize["mp66"] = o.Mp66
-	}
-	if !IsNil(o.Mp67) {
-		toSerialize["mp67"] = o.Mp67
-	}
-	if !IsNil(o.Mp68) {
-		toSerialize["mp68"] = o.Mp68
-	}
-	if !IsNil(o.Mp69) {
-		toSerialize["mp69"] = o.Mp69
-	}
-	if !IsNil(o.Mp70) {
-		toSerialize["mp70"] = o.Mp70
-	}
-	if !IsNil(o.Mp71) {
-		toSerialize["mp71"] = o.Mp71
-	}
-	if !IsNil(o.Mp72) {
-		toSerialize["mp72"] = o.Mp72
-	}
-	if !IsNil(o.Mp73) {
-		toSerialize["mp73"] = o.Mp73
-	}
-	if !IsNil(o.Mp74) {
-		toSerialize["mp74"] = o.Mp74
-	}
-	if !IsNil(o.Mp75) {
-		toSerialize["mp75"] = o.Mp75
-	}
-	if !IsNil(o.Mp76) {
-		toSerialize["mp76"] = o.Mp76
-	}
-	if !IsNil(o.Mp77) {
-		toSerialize["mp77"] = o.Mp77
-	}
-	if !IsNil(o.Mp78) {
-		toSerialize["mp78"] = o.Mp78
-	}
-	if !IsNil(o.Mp79) {
-		toSerialize["mp79"] = o.Mp79
-	}
-	if !IsNil(o.Mp80) {
-		toSerialize["mp80"] = o.Mp80
-	}
-	if !IsNil(o.Mp81) {
-		toSerialize["mp81"] = o.Mp81
-	}
-	if !IsNil(o.Mp82) {
-		toSerialize["mp82"] = o.Mp82
-	}
-	if !IsNil(o.Mp83) {
-		toSerialize["mp83"] = o.Mp83
-	}
-	if !IsNil(o.Mp84) {
-		toSerialize["mp84"] = o.Mp84
-	}
-	if !IsNil(o.Mp85) {
-		toSerialize["mp85"] = o.Mp85
-	}
-	if !IsNil(o.Mp86) {
-		toSerialize["mp86"] = o.Mp86
-	}
-	if !IsNil(o.Mp87) {
-		toSerialize["mp87"] = o.Mp87
-	}
-	if !IsNil(o.Mp88) {
-		toSerialize["mp88"] = o.Mp88
-	}
-	if !IsNil(o.Mp89) {
-		toSerialize["mp89"] = o.Mp89
-	}
-	if !IsNil(o.Mp90) {
-		toSerialize["mp90"] = o.Mp90
-	}
-	if !IsNil(o.Mp91) {
-		toSerialize["mp91"] = o.Mp91
-	}
-	if !IsNil(o.Mp92) {
-		toSerialize["mp92"] = o.Mp92
-	}
-	if !IsNil(o.Mp93) {
-		toSerialize["mp93"] = o.Mp93
-	}
-	if !IsNil(o.Mp94) {
-		toSerialize["mp94"] = o.Mp94
-	}
-	if !IsNil(o.Mp95) {
-		toSerialize["mp95"] = o.Mp95
-	}
-	if !IsNil(o.Mp96) {
-		toSerialize["mp96"] = o.Mp96
-	}
-	if !IsNil(o.Mp97) {
-		toSerialize["mp97"] = o.Mp97
-	}
-	if !IsNil(o.Mp98) {
-		toSerialize["mp98"] = o.Mp98
-	}
-	if !IsNil(o.Mp99) {
-		toSerialize["mp99"] = o.Mp99
-	}
-	if !IsNil(o.Mp100) {
-		toSerialize["mp100"] = o.Mp100
-	}
-	if !IsNil(o.Mp101) {
-		toSerialize["mp101"] = o.Mp101
-	}
-	if !IsNil(o.Mp102) {
-		toSerialize["mp102"] = o.Mp102
-	}
-	if !IsNil(o.Mp103) {
-		toSerialize["mp103"] = o.Mp103
-	}
-	if !IsNil(o.Mp104) {
-		toSerialize["mp104"] = o.Mp104
-	}
-	if !IsNil(o.Mp105) {
-		toSerialize["mp105"] = o.Mp105
-	}
-	if !IsNil(o.Mp106) {
-		toSerialize["mp106"] = o.Mp106
-	}
-	if !IsNil(o.Mp107) {
-		toSerialize["mp107"] = o.Mp107
-	}
-	if !IsNil(o.Mp108) {
-		toSerialize["mp108"] = o.Mp108
-	}
-	if !IsNil(o.Mp109) {
-		toSerialize["mp109"] = o.Mp109
-	}
-	if !IsNil(o.Mp110) {
-		toSerialize["mp110"] = o.Mp110
-	}
-	if !IsNil(o.Mp111) {
-		toSerialize["mp111"] = o.Mp111
-	}
-	if !IsNil(o.Mp112) {
-		toSerialize["mp112"] = o.Mp112
-	}
-	if !IsNil(o.Mp113) {
-		toSerialize["mp113"] = o.Mp113
-	}
-	if !IsNil(o.Mp114) {
-		toSerialize["mp114"] = o.Mp114
-	}
-	if !IsNil(o.Mp115) {
-		toSerialize["mp115"] = o.Mp115
-	}
-	if !IsNil(o.Mp116) {
-		toSerialize["mp116"] = o.Mp116
-	}
-	if !IsNil(o.Mp117) {
-		toSerialize["mp117"] = o.Mp117
-	}
-	if !IsNil(o.Mp118) {
-		toSerialize["mp118"] = o.Mp118
-	}
-	if !IsNil(o.Mp119) {
-		toSerialize["mp119"] = o.Mp119
-	}
-	if !IsNil(o.Mp120) {
-		toSerialize["mp120"] = o.Mp120
-	}
-	if !IsNil(o.Mp121) {
-		toSerialize["mp121"] = o.Mp121
-	}
-	if !IsNil(o.Mp122) {
-		toSerialize["mp122"] = o.Mp122
-	}
-	if !IsNil(o.Mp123) {
-		toSerialize["mp123"] = o.Mp123
-	}
-	if !IsNil(o.Mp124) {
-		toSerialize["mp124"] = o.Mp124
-	}
-	if !IsNil(o.Mp125) {
-		toSerialize["mp125"] = o.Mp125
-	}
-	if !IsNil(o.Mp126) {
-		toSerialize["mp126"] = o.Mp126
-	}
-	if !IsNil(o.Mp127) {
-		toSerialize["mp127"] = o.Mp127
-	}
-	if !IsNil(o.Mp128) {
-		toSerialize["mp128"] = o.Mp128
-	}
-	if !IsNil(o.Mp129) {
-		toSerialize["mp129"] = o.Mp129
-	}
-	if !IsNil(o.Mp130) {
-		toSerialize["mp130"] = o.Mp130
-	}
-	if !IsNil(o.Mp131) {
-		toSerialize["mp131"] = o.Mp131
-	}
-	if !IsNil(o.Mp132) {
-		toSerialize["mp132"] = o.Mp132
-	}
-	if !IsNil(o.Mp133) {
-		toSerialize["mp133"] = o.Mp133
-	}
-	if !IsNil(o.Mp134) {
-		toSerialize["mp134"] = o.Mp134
-	}
-	if !IsNil(o.Mp135) {
-		toSerialize["mp135"] = o.Mp135
-	}
-	if !IsNil(o.Mp136) {
-		toSerialize["mp136"] = o.Mp136
-	}
-	if !IsNil(o.Mp137) {
-		toSerialize["mp137"] = o.Mp137
-	}
-	if !IsNil(o.Mp138) {
-		toSerialize["mp138"] = o.Mp138
-	}
-	if !IsNil(o.Mp139) {
-		toSerialize["mp139"] = o.Mp139
-	}
-	if !IsNil(o.Mp140) {
-		toSerialize["mp140"] = o.Mp140
-	}
-	if !IsNil(o.Mp141) {
-		toSerialize["mp141"] = o.Mp141
-	}
-	if !IsNil(o.Mp142) {
-		toSerialize["mp142"] = o.Mp142
-	}
-	if !IsNil(o.Mp143) {
-		toSerialize["mp143"] = o.Mp143
-	}
-	if !IsNil(o.Mp144) {
-		toSerialize["mp144"] = o.Mp144
-	}
-	if !IsNil(o.Mp145) {
-		toSerialize["mp145"] = o.Mp145
-	}
-	if !IsNil(o.Mp146) {
-		toSerialize["mp146"] = o.Mp146
-	}
-	if !IsNil(o.Mp147) {
-		toSerialize["mp147"] = o.Mp147
-	}
-	if !IsNil(o.Mp148) {
-		toSerialize["mp148"] = o.Mp148
-	}
-	if !IsNil(o.Mp149) {
-		toSerialize["mp149"] = o.Mp149
-	}
-	if !IsNil(o.Mp150) {
-		toSerialize["mp150"] = o.Mp150
-	}
-	if !IsNil(o.Mp151) {
-		toSerialize["mp151"] = o.Mp151
-	}
-	if !IsNil(o.Mp152) {
-		toSerialize["mp152"] = o.Mp152
-	}
-	if !IsNil(o.Mp153) {
-		toSerialize["mp153"] = o.Mp153
-	}
-	if !IsNil(o.Mp154) {
-		toSerialize["mp154"] = o.Mp154
-	}
-	if !IsNil(o.Mp155) {
-		toSerialize["mp155"] = o.Mp155
-	}
-	if !IsNil(o.Mp156) {
-		toSerialize["mp156"] = o.Mp156
-	}
-	if !IsNil(o.Mp157) {
-		toSerialize["mp157"] = o.Mp157
-	}
-	if !IsNil(o.Mp158) {
-		toSerialize["mp158"] = o.Mp158
-	}
-	if !IsNil(o.Mp159) {
-		toSerialize["mp159"] = o.Mp159
-	}
-	if !IsNil(o.Mp160) {
-		toSerialize["mp160"] = o.Mp160
-	}
-	if !IsNil(o.Mp161) {
-		toSerialize["mp161"] = o.Mp161
-	}
-	if !IsNil(o.Mp162) {
-		toSerialize["mp162"] = o.Mp162
-	}
-	if !IsNil(o.Mp163) {
-		toSerialize["mp163"] = o.Mp163
-	}
-	if !IsNil(o.Mp164) {
-		toSerialize["mp164"] = o.Mp164
-	}
-	if !IsNil(o.Mp165) {
-		toSerialize["mp165"] = o.Mp165
-	}
-	if !IsNil(o.Mp166) {
-		toSerialize["mp166"] = o.Mp166
-	}
-	if !IsNil(o.Mp167) {
-		toSerialize["mp167"] = o.Mp167
-	}
-	if !IsNil(o.Mp168) {
-		toSerialize["mp168"] = o.Mp168
-	}
-	if !IsNil(o.Mp169) {
-		toSerialize["mp169"] = o.Mp169
-	}
-	if !IsNil(o.Mp170) {
-		toSerialize["mp170"] = o.Mp170
-	}
-	if !IsNil(o.Mp171) {
-		toSerialize["mp171"] = o.Mp171
-	}
-	if !IsNil(o.Mp172) {
-		toSerialize["mp172"] = o.Mp172
-	}
-	if !IsNil(o.Mp173) {
-		toSerialize["mp173"] = o.Mp173
-	}
-	if !IsNil(o.Mp174) {
-		toSerialize["mp174"] = o.Mp174
-	}
-	if !IsNil(o.Mp175) {
-		toSerialize["mp175"] = o.Mp175
-	}
-	if !IsNil(o.Mp176) {
-		toSerialize["mp176"] = o.Mp176
-	}
-	if !IsNil(o.Mp177) {
-		toSerialize["mp177"] = o.Mp177
-	}
-	if !IsNil(o.Mp178) {
-		toSerialize["mp178"] = o.Mp178
-	}
-	if !IsNil(o.Mp179) {
-		toSerialize["mp179"] = o.Mp179
-	}
-	if !IsNil(o.Mp180) {
-		toSerialize["mp180"] = o.Mp180
-	}
-	if !IsNil(o.Mp181) {
-		toSerialize["mp181"] = o.Mp181
-	}
-	if !IsNil(o.Mp182) {
-		toSerialize["mp182"] = o.Mp182
-	}
-	if !IsNil(o.Mp183) {
-		toSerialize["mp183"] = o.Mp183
-	}
-	if !IsNil(o.Mp184) {
-		toSerialize["mp184"] = o.Mp184
-	}
-	if !IsNil(o.Mp185) {
-		toSerialize["mp185"] = o.Mp185
-	}
-	if !IsNil(o.Mp186) {
-		toSerialize["mp186"] = o.Mp186
-	}
-	if !IsNil(o.Mp187) {
-		toSerialize["mp187"] = o.Mp187
-	}
-	if !IsNil(o.Mp188) {
-		toSerialize["mp188"] = o.Mp188
-	}
-	if !IsNil(o.Mp189) {
-		toSerialize["mp189"] = o.Mp189
-	}
-	if !IsNil(o.Mp190) {
-		toSerialize["mp190"] = o.Mp190
-	}
-	if !IsNil(o.Mp191) {
-		toSerialize["mp191"] = o.Mp191
-	}
-	if !IsNil(o.Mp192) {
-		toSerialize["mp192"] = o.Mp192
-	}
-	if !IsNil(o.Mp193) {
-		toSerialize["mp193"] = o.Mp193
-	}
-	if !IsNil(o.Mp194) {
-		toSerialize["mp194"] = o.Mp194
-	}
-	if !IsNil(o.Mp195) {
-		toSerialize["mp195"] = o.Mp195
-	}
-	if !IsNil(o.Mp196) {
-		toSerialize["mp196"] = o.Mp196
-	}
-	if !IsNil(o.Mp197) {
-		toSerialize["mp197"] = o.Mp197
-	}
-	if !IsNil(o.Mp198) {
-		toSerialize["mp198"] = o.Mp198
-	}
-	if !IsNil(o.Mp199) {
-		toSerialize["mp199"] = o.Mp199
-	}
-	if !IsNil(o.Mp200) {
-		toSerialize["mp200"] = o.Mp200
-	}
-	if !IsNil(o.Mp201) {
-		toSerialize["mp201"] = o.Mp201
-	}
-	if !IsNil(o.Mp202) {
-		toSerialize["mp202"] = o.Mp202
-	}
-	if !IsNil(o.Mp203) {
-		toSerialize["mp203"] = o.Mp203
-	}
-	if !IsNil(o.Mp204) {
-		toSerialize["mp204"] = o.Mp204
-	}
-	if !IsNil(o.Mp205) {
-		toSerialize["mp205"] = o.Mp205
-	}
-	if !IsNil(o.Mp206) {
-		toSerialize["mp206"] = o.Mp206
-	}
-	if !IsNil(o.Mp207) {
-		toSerialize["mp207"] = o.Mp207
-	}
-	if !IsNil(o.Mp208) {
-		toSerialize["mp208"] = o.Mp208
-	}
-	if !IsNil(o.Mp209) {
-		toSerialize["mp209"] = o.Mp209
-	}
-	if !IsNil(o.Mp210) {
-		toSerialize["mp210"] = o.Mp210
-	}
-	if !IsNil(o.Mp211) {
-		toSerialize["mp211"] = o.Mp211
-	}
-	if !IsNil(o.Mp212) {
-		toSerialize["mp212"] = o.Mp212
-	}
-	if !IsNil(o.Mp213) {
-		toSerialize["mp213"] = o.Mp213
-	}
-	if !IsNil(o.Mp214) {
-		toSerialize["mp214"] = o.Mp214
-	}
-	if !IsNil(o.Mp215) {
-		toSerialize["mp215"] = o.Mp215
-	}
-	if !IsNil(o.Mp216) {
-		toSerialize["mp216"] = o.Mp216
-	}
-	if !IsNil(o.Mp217) {
-		toSerialize["mp217"] = o.Mp217
-	}
-	if !IsNil(o.Mp218) {
-		toSerialize["mp218"] = o.Mp218
-	}
-	if !IsNil(o.Mp219) {
-		toSerialize["mp219"] = o.Mp219
-	}
-	if !IsNil(o.Mp220) {
-		toSerialize["mp220"] = o.Mp220
-	}
-	if !IsNil(o.Mp221) {
-		toSerialize["mp221"] = o.Mp221
-	}
-	if !IsNil(o.Mp222) {
-		toSerialize["mp222"] = o.Mp222
-	}
-	if !IsNil(o.Mp223) {
-		toSerialize["mp223"] = o.Mp223
-	}
-	if !IsNil(o.Mp224) {
-		toSerialize["mp224"] = o.Mp224
-	}
-	if !IsNil(o.Mp225) {
-		toSerialize["mp225"] = o.Mp225
-	}
-	if !IsNil(o.Mp226) {
-		toSerialize["mp226"] = o.Mp226
-	}
-	if !IsNil(o.Mp227) {
-		toSerialize["mp227"] = o.Mp227
-	}
-	if !IsNil(o.Mp228) {
-		toSerialize["mp228"] = o.Mp228
-	}
-	if !IsNil(o.Mp229) {
-		toSerialize["mp229"] = o.Mp229
-	}
-	if !IsNil(o.Mp230) {
-		toSerialize["mp230"] = o.Mp230
-	}
-	if !IsNil(o.Mp231) {
-		toSerialize["mp231"] = o.Mp231
-	}
-	if !IsNil(o.Mp232) {
-		toSerialize["mp232"] = o.Mp232
-	}
-	if !IsNil(o.Mp233) {
-		toSerialize["mp233"] = o.Mp233
-	}
-	if !IsNil(o.Mp234) {
-		toSerialize["mp234"] = o.Mp234
-	}
-	if !IsNil(o.Mp235) {
-		toSerialize["mp235"] = o.Mp235
-	}
-	if !IsNil(o.Mp236) {
-		toSerialize["mp236"] = o.Mp236
-	}
-	if !IsNil(o.Mp237) {
-		toSerialize["mp237"] = o.Mp237
-	}
-	if !IsNil(o.Mp238) {
-		toSerialize["mp238"] = o.Mp238
-	}
-	if !IsNil(o.Mp239) {
-		toSerialize["mp239"] = o.Mp239
-	}
-	if !IsNil(o.Mp240) {
-		toSerialize["mp240"] = o.Mp240
-	}
-	if !IsNil(o.Mp241) {
-		toSerialize["mp241"] = o.Mp241
-	}
-	if !IsNil(o.Mp242) {
-		toSerialize["mp242"] = o.Mp242
-	}
-	if !IsNil(o.Mp243) {
-		toSerialize["mp243"] = o.Mp243
-	}
-	if !IsNil(o.Mp244) {
-		toSerialize["mp244"] = o.Mp244
-	}
-	if !IsNil(o.Mp245) {
-		toSerialize["mp245"] = o.Mp245
-	}
-	if !IsNil(o.Mp246) {
-		toSerialize["mp246"] = o.Mp246
-	}
-	if !IsNil(o.Mp247) {
-		toSerialize["mp247"] = o.Mp247
-	}
-	if !IsNil(o.Mp248) {
-		toSerialize["mp248"] = o.Mp248
-	}
-	if !IsNil(o.Mp249) {
-		toSerialize["mp249"] = o.Mp249
-	}
-	if !IsNil(o.Mp250) {
-		toSerialize["mp250"] = o.Mp250
-	}
-	if !IsNil(o.Mp251) {
-		toSerialize["mp251"] = o.Mp251
-	}
-	if !IsNil(o.Mp252) {
-		toSerialize["mp252"] = o.Mp252
-	}
-	if !IsNil(o.Mp253) {
-		toSerialize["mp253"] = o.Mp253
-	}
-	if !IsNil(o.Mp254) {
-		toSerialize["mp254"] = o.Mp254
-	}
-	if !IsNil(o.Mp255) {
-		toSerialize["mp255"] = o.Mp255
-	}
 	if !IsNil(o.Nameserver) {
 		toSerialize["nameserver"] = o.Nameserver
 	}
@@ -13967,42 +5792,6 @@ func (o CreateContainerRequest) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["vmid"] = o.Vmid
 	return toSerialize, nil
-}
-
-func (o *CreateContainerRequest) UnmarshalJSON(bytes []byte) (err error) {
-    // This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"ostemplate",
-		"vmid",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(bytes, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varCreateContainerRequest := _CreateContainerRequest{}
-
-	err = json.Unmarshal(bytes, &varCreateContainerRequest)
-
-	if err != nil {
-		return err
-	}
-
-	*o = CreateContainerRequest(varCreateContainerRequest)
-
-	return err
 }
 
 type NullableCreateContainerRequest struct {

@@ -3,7 +3,7 @@ ProxMox VE API
 
 ProxMox VE API
 
-API version: 8.0
+API version: 8.3
 Contact: baldur@email.de
 */
 
@@ -13,7 +13,6 @@ package pxapiobject
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the CreateAccessTicketRequest type satisfies the MappedNullable interface at compile time
@@ -21,25 +20,15 @@ var _ MappedNullable = &CreateAccessTicketRequest{}
 
 // CreateAccessTicketRequest struct for CreateAccessTicketRequest
 type CreateAccessTicketRequest struct {
-	// This parameter is now ignored and assumed to be 1.
 	NewFormat *bool `json:"new-format,omitempty"`
-	// One-time password for Two-factor authentication.
 	Otp *string `json:"otp,omitempty"`
-	// The secret password. This can also be a valid ticket.
 	Password string `json:"password"`
-	// Verify ticket, and check if user have access 'privs' on 'path'
 	Path *string `json:"path,omitempty"`
-	// Verify ticket, and check if user have access 'privs' on 'path'
 	Privs *string `json:"privs,omitempty"`
-	// You can optionally pass the realm using this parameter. Normally the realm is simply added to the username <username>@<relam>.
 	Realm *string `json:"realm,omitempty"`
-	// The signed TFA challenge string the user wants to respond to.
 	TfaChallenge *string `json:"tfa-challenge,omitempty"`
-	// User name
 	Username string `json:"username"`
 }
-
-type _CreateAccessTicketRequest CreateAccessTicketRequest
 
 // NewCreateAccessTicketRequest instantiates a new CreateAccessTicketRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -331,42 +320,6 @@ func (o CreateAccessTicketRequest) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["username"] = o.Username
 	return toSerialize, nil
-}
-
-func (o *CreateAccessTicketRequest) UnmarshalJSON(bytes []byte) (err error) {
-    // This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"password",
-		"username",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(bytes, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varCreateAccessTicketRequest := _CreateAccessTicketRequest{}
-
-	err = json.Unmarshal(bytes, &varCreateAccessTicketRequest)
-
-	if err != nil {
-		return err
-	}
-
-	*o = CreateAccessTicketRequest(varCreateAccessTicketRequest)
-
-	return err
 }
 
 type NullableCreateAccessTicketRequest struct {

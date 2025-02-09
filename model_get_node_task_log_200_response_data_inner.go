@@ -3,7 +3,7 @@ ProxMox VE API
 
 ProxMox VE API
 
-API version: 8.0
+API version: 8.3
 Contact: baldur@email.de
 */
 
@@ -18,7 +18,7 @@ import (
 // checks if the GetNodeTaskLog200ResponseDataInner type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &GetNodeTaskLog200ResponseDataInner{}
 
-// GetNodeTaskLog200ResponseDataInner struct for GetNodeTaskLog200ResponseDataInner
+// GetNodeTaskLog200ResponseDataInner 
 type GetNodeTaskLog200ResponseDataInner struct {
 	// Line number
 	N *int64 `json:"n,omitempty"`

@@ -1,7 +1,7 @@
 /*
 ProxMox VE API
 
-Testing AccessAPIService
+Testing AccessApiService
 
 */
 
@@ -14,19 +14,19 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/DirkTheDaring/px-api-client-internal-go"
+	openapiclient "github.com/DirkTheDaring/proxmox-openapi-go"
 )
 
-func Test_pxapiobject_AccessAPIService(t *testing.T) {
+func Test_pxapiobject_AccessApiService(t *testing.T) {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test AccessAPIService CreateAccessTicket", func(t *testing.T) {
+	t.Run("Test AccessApiService CreateAccessTicket", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.AccessAPI.CreateAccessTicket(context.Background()).Execute()
+		resp, httpRes, err := apiClient.AccessApi.CreateAccessTicket(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -34,11 +34,11 @@ func Test_pxapiobject_AccessAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test AccessAPIService GetAccessTicket", func(t *testing.T) {
+	t.Run("Test AccessApiService GetAccessTicket", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.AccessAPI.GetAccessTicket(context.Background()).Execute()
+		resp, httpRes, err := apiClient.AccessApi.GetAccessTicket(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

@@ -3,7 +3,7 @@ ProxMox VE API
 
 ProxMox VE API
 
-API version: 8.0
+API version: 8.3
 Contact: baldur@email.de
 */
 
@@ -20,6 +20,7 @@ var _ MappedNullable = &CreateVM200Response{}
 
 // CreateVM200Response struct for CreateVM200Response
 type CreateVM200Response struct {
+	// 
 	Data *string `json:"data,omitempty"`
 	Errors []string `json:"errors,omitempty"`
 }

@@ -4,10 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**KeepActive** | Pointer to **bool** | Do not deactivate storage volumes. | [optional] 
-**Migratedfrom** | Pointer to **string** | The cluster node name. | [optional] 
-**Skiplock** | Pointer to **bool** | Ignore locks - only root is allowed to use this option. | [optional] 
-**Timeout** | Pointer to **int64** | Wait maximal timeout seconds. | [optional] 
+**KeepActive** | Pointer to **bool** |  | [optional] 
+**Migratedfrom** | Pointer to **string** |  | [optional] 
+**OverruleShutdown** | Pointer to **bool** |  | [optional] 
+**Skiplock** | Pointer to **bool** |  | [optional] 
+**Timeout** | Pointer to **int64** |  | [optional] 
 
 ## Methods
 
@@ -77,6 +78,31 @@ SetMigratedfrom sets Migratedfrom field to given value.
 `func (o *StopVMRequest) HasMigratedfrom() bool`
 
 HasMigratedfrom returns a boolean if a field has been set.
+
+### GetOverruleShutdown
+
+`func (o *StopVMRequest) GetOverruleShutdown() bool`
+
+GetOverruleShutdown returns the OverruleShutdown field if non-nil, zero value otherwise.
+
+### GetOverruleShutdownOk
+
+`func (o *StopVMRequest) GetOverruleShutdownOk() (*bool, bool)`
+
+GetOverruleShutdownOk returns a tuple with the OverruleShutdown field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOverruleShutdown
+
+`func (o *StopVMRequest) SetOverruleShutdown(v bool)`
+
+SetOverruleShutdown sets OverruleShutdown field to given value.
+
+### HasOverruleShutdown
+
+`func (o *StopVMRequest) HasOverruleShutdown() bool`
+
+HasOverruleShutdown returns a boolean if a field has been set.
 
 ### GetSkiplock
 

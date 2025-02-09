@@ -3,7 +3,7 @@ ProxMox VE API
 
 ProxMox VE API
 
-API version: 8.0
+API version: 8.3
 Contact: baldur@email.de
 */
 
@@ -20,15 +20,10 @@ var _ MappedNullable = &CreateStorageRequestBwlimit{}
 
 // CreateStorageRequestBwlimit struct for CreateStorageRequestBwlimit
 type CreateStorageRequestBwlimit struct {
-	// bandwidth limit in KiB/s for cloning disks
 	Clone *float32 `json:"clone,omitempty"`
-	// default bandwidth limit in KiB/s
 	Default *float32 `json:"default,omitempty"`
-	// bandwidth limit in KiB/s for migrating guests (including moving local disks)
 	Migration *float32 `json:"migration,omitempty"`
-	// bandwidth limit in KiB/s for moving disks
 	Move *float32 `json:"move,omitempty"`
-	// bandwidth limit in KiB/s for restoring guests from backups
 	Restore *float32 `json:"restore,omitempty"`
 }
 

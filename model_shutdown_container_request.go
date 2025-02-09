@@ -3,7 +3,7 @@ ProxMox VE API
 
 ProxMox VE API
 
-API version: 8.0
+API version: 8.3
 Contact: baldur@email.de
 */
 
@@ -20,9 +20,7 @@ var _ MappedNullable = &ShutdownContainerRequest{}
 
 // ShutdownContainerRequest struct for ShutdownContainerRequest
 type ShutdownContainerRequest struct {
-	// Make sure the Container stops.
 	ForceStop *bool `json:"forceStop,omitempty"`
-	// Wait maximal timeout seconds.
 	Timeout *int64 `json:"timeout,omitempty"`
 }
 

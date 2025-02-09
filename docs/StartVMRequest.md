@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ForceCpu** | Pointer to **string** | Override QEMU&#39;s -cpu argument with the given string. | [optional] 
-**Machine** | Pointer to **string** | Specifies the QEMU machine type. | [optional] 
-**Migratedfrom** | Pointer to **string** | The cluster node name. | [optional] 
-**MigrationNetwork** | Pointer to **string** | CIDR of the (sub) network that is used for migration. | [optional] 
-**MigrationType** | Pointer to **string** | Migration traffic is encrypted using an SSH tunnel by default. On secure, completely private networks this can be disabled to increase performance. | [optional] 
-**Skiplock** | Pointer to **bool** | Ignore locks - only root is allowed to use this option. | [optional] 
-**Stateuri** | Pointer to **string** | Some command save/restore state from this location. | [optional] 
-**Targetstorage** | Pointer to **string** | Mapping from source to target storages. Providing only a single storage ID maps all source storages to that storage. Providing the special value &#39;1&#39; will map each source storage to itself. | [optional] 
-**Timeout** | Pointer to **int64** | Wait maximal timeout seconds. | [optional] 
+**ForceCpu** | Pointer to **string** |  | [optional] 
+**Machine** | Pointer to [**CreateVMRequestMachine**](CreateVMRequestMachine.md) |  | [optional] 
+**Migratedfrom** | Pointer to **string** |  | [optional] 
+**MigrationNetwork** | Pointer to **string** |  | [optional] 
+**MigrationType** | Pointer to **string** |  | [optional] 
+**Skiplock** | Pointer to **bool** |  | [optional] 
+**Stateuri** | Pointer to **string** |  | [optional] 
+**Targetstorage** | Pointer to **string** |  | [optional] 
+**Timeout** | Pointer to **int64** |  | [optional] 
 
 ## Methods
 
@@ -60,20 +60,20 @@ HasForceCpu returns a boolean if a field has been set.
 
 ### GetMachine
 
-`func (o *StartVMRequest) GetMachine() string`
+`func (o *StartVMRequest) GetMachine() CreateVMRequestMachine`
 
 GetMachine returns the Machine field if non-nil, zero value otherwise.
 
 ### GetMachineOk
 
-`func (o *StartVMRequest) GetMachineOk() (*string, bool)`
+`func (o *StartVMRequest) GetMachineOk() (*CreateVMRequestMachine, bool)`
 
 GetMachineOk returns a tuple with the Machine field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMachine
 
-`func (o *StartVMRequest) SetMachine(v string)`
+`func (o *StartVMRequest) SetMachine(v CreateVMRequestMachine)`
 
 SetMachine sets Machine field to given value.
 
