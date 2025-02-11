@@ -39,7 +39,6 @@ docs/CreateVMRequestIde0.md
 docs/CreateVMRequestIpconfig0.md
 docs/CreateVMRequestIvshmem.md
 docs/CreateVMRequestMachine.md
-docs/CreateVMRequestMemory.md
 docs/CreateVMRequestNet0.md
 docs/CreateVMRequestNuma0.md
 docs/CreateVMRequestRng0.md
@@ -150,7 +149,6 @@ model_create_vm_request_ide0.go
 model_create_vm_request_ipconfig0.go
 model_create_vm_request_ivshmem.go
 model_create_vm_request_machine.go
-model_create_vm_request_memory.go
 model_create_vm_request_net0.go
 model_create_vm_request_numa0.go
 model_create_vm_request_rng0.go
