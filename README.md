@@ -171,7 +171,6 @@ Class | Method | HTTP request | Description
  - [CreateVMRequestIpconfig0](docs/CreateVMRequestIpconfig0.md)
  - [CreateVMRequestIvshmem](docs/CreateVMRequestIvshmem.md)
  - [CreateVMRequestMachine](docs/CreateVMRequestMachine.md)
- - [CreateVMRequestMemory](docs/CreateVMRequestMemory.md)
  - [CreateVMRequestNet0](docs/CreateVMRequestNet0.md)
  - [CreateVMRequestNuma0](docs/CreateVMRequestNuma0.md)
  - [CreateVMRequestRng0](docs/CreateVMRequestRng0.md)

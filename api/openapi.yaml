@@ -4764,8 +4764,7 @@ components:
           iops_rd_max_length: ""
           snapshot: true
           trans: trans
-        memory:
-          current: ""
+        memory: ""
         hostpci23: hostpci23
         scsi1:
           mbps_wr: 9.965781217890562
@@ -6337,7 +6336,8 @@ components:
         machine:
           $ref: '#/components/schemas/CreateVMRequest_machine'
         memory:
-          $ref: '#/components/schemas/CreateVMRequest_memory'
+          description: Memory properties.
+          type: int64
         migrate_downtime:
           description: "Set maximum tolerated downtime (in seconds) for migrations.\
             \ Should the migration not be able to converge in the very end, because\
@@ -9029,8 +9029,7 @@ components:
           snapshot: true
           trans: trans
         skiplock: true
-        memory:
-          current: ""
+        memory: ""
         hostpci23: hostpci23
         scsi1:
           mbps_wr: 9.965781217890562
@@ -10602,7 +10601,8 @@ components:
         machine:
           $ref: '#/components/schemas/CreateVMRequest_machine'
         memory:
-          $ref: '#/components/schemas/CreateVMRequest_memory'
+          description: Memory properties.
+          type: int64
         migrate_downtime:
           description: "Set maximum tolerated downtime (in seconds) for migrations.\
             \ Should the migration not be able to converge in the very end, because\
@@ -13281,8 +13281,7 @@ components:
           snapshot: true
           trans: trans
         skiplock: true
-        memory:
-          current: ""
+        memory: ""
         hostpci23: hostpci23
         scsi1:
           mbps_wr: 9.965781217890562
@@ -14845,7 +14844,8 @@ components:
         machine:
           $ref: '#/components/schemas/CreateVMRequest_machine'
         memory:
-          $ref: '#/components/schemas/CreateVMRequest_memory'
+          description: Memory properties.
+          type: int64
         migrate_downtime:
           description: "Set maximum tolerated downtime (in seconds) for migrations.\
             \ Should the migration not be able to converge in the very end, because\
@@ -23466,15 +23466,6 @@ components:
           type: string
         viommu:
           type: string
-      type: object
-    CreateVMRequest_memory:
-      example:
-        current: ""
-      properties:
-        current:
-          type: int64
-      required:
-      - current
       type: object
     CreateVMRequest_net0:
       example:
