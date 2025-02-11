@@ -20,6 +20,7 @@ var _ MappedNullable = &RebootVMRequest{}
 
 // RebootVMRequest struct for RebootVMRequest
 type RebootVMRequest struct {
+	// Wait maximal timeout seconds for the shutdown.
 	Timeout *int64 `json:"timeout,omitempty"`
 }
 

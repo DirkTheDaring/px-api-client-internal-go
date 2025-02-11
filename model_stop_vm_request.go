@@ -20,10 +20,15 @@ var _ MappedNullable = &StopVMRequest{}
 
 // StopVMRequest struct for StopVMRequest
 type StopVMRequest struct {
+	// Do not deactivate storage volumes.
 	KeepActive *bool `json:"keepActive,omitempty"`
+	// The cluster node name.
 	Migratedfrom *string `json:"migratedfrom,omitempty"`
+	// Try to abort active 'qmshutdown' tasks before stopping.
 	OverruleShutdown *bool `json:"overrule-shutdown,omitempty"`
+	// Ignore locks - only root is allowed to use this option.
 	Skiplock *bool `json:"skiplock,omitempty"`
+	// Wait maximal timeout seconds.
 	Timeout *int64 `json:"timeout,omitempty"`
 }
 

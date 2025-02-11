@@ -20,8 +20,8 @@ var _ MappedNullable = &GetContainerConfig200Response{}
 
 // GetContainerConfig200Response struct for GetContainerConfig200Response
 type GetContainerConfig200Response struct {
-	Data *GetContainerConfig200ResponseData `json:"data,omitempty"`
 	Errors []string `json:"errors,omitempty"`
+	Data *GetContainerConfig200ResponseData `json:"data,omitempty"`
 }
 
 // NewGetContainerConfig200Response instantiates a new GetContainerConfig200Response object
@@ -39,38 +39,6 @@ func NewGetContainerConfig200Response() *GetContainerConfig200Response {
 func NewGetContainerConfig200ResponseWithDefaults() *GetContainerConfig200Response {
 	this := GetContainerConfig200Response{}
 	return &this
-}
-
-// GetData returns the Data field value if set, zero value otherwise.
-func (o *GetContainerConfig200Response) GetData() GetContainerConfig200ResponseData {
-	if o == nil || IsNil(o.Data) {
-		var ret GetContainerConfig200ResponseData
-		return ret
-	}
-	return *o.Data
-}
-
-// GetDataOk returns a tuple with the Data field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *GetContainerConfig200Response) GetDataOk() (*GetContainerConfig200ResponseData, bool) {
-	if o == nil || IsNil(o.Data) {
-		return nil, false
-	}
-	return o.Data, true
-}
-
-// HasData returns a boolean if a field has been set.
-func (o *GetContainerConfig200Response) HasData() bool {
-	if o != nil && !IsNil(o.Data) {
-		return true
-	}
-
-	return false
-}
-
-// SetData gets a reference to the given GetContainerConfig200ResponseData and assigns it to the Data field.
-func (o *GetContainerConfig200Response) SetData(v GetContainerConfig200ResponseData) {
-	o.Data = &v
 }
 
 // GetErrors returns the Errors field value if set, zero value otherwise.
@@ -105,6 +73,38 @@ func (o *GetContainerConfig200Response) SetErrors(v []string) {
 	o.Errors = v
 }
 
+// GetData returns the Data field value if set, zero value otherwise.
+func (o *GetContainerConfig200Response) GetData() GetContainerConfig200ResponseData {
+	if o == nil || IsNil(o.Data) {
+		var ret GetContainerConfig200ResponseData
+		return ret
+	}
+	return *o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetContainerConfig200Response) GetDataOk() (*GetContainerConfig200ResponseData, bool) {
+	if o == nil || IsNil(o.Data) {
+		return nil, false
+	}
+	return o.Data, true
+}
+
+// HasData returns a boolean if a field has been set.
+func (o *GetContainerConfig200Response) HasData() bool {
+	if o != nil && !IsNil(o.Data) {
+		return true
+	}
+
+	return false
+}
+
+// SetData gets a reference to the given GetContainerConfig200ResponseData and assigns it to the Data field.
+func (o *GetContainerConfig200Response) SetData(v GetContainerConfig200ResponseData) {
+	o.Data = &v
+}
+
 func (o GetContainerConfig200Response) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -115,11 +115,11 @@ func (o GetContainerConfig200Response) MarshalJSON() ([]byte, error) {
 
 func (o GetContainerConfig200Response) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Data) {
-		toSerialize["data"] = o.Data
-	}
 	if !IsNil(o.Errors) {
 		toSerialize["errors"] = o.Errors
+	}
+	if !IsNil(o.Data) {
+		toSerialize["data"] = o.Data
 	}
 	return toSerialize, nil
 }

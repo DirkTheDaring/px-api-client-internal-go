@@ -20,9 +20,9 @@ var _ MappedNullable = &GetVM200Response{}
 
 // GetVM200Response struct for GetVM200Response
 type GetVM200Response struct {
+	Errors []string `json:"errors,omitempty"`
 	// 
 	Data []GetVM200ResponseDataInner `json:"data,omitempty"`
-	Errors []string `json:"errors,omitempty"`
 }
 
 // NewGetVM200Response instantiates a new GetVM200Response object
@@ -40,38 +40,6 @@ func NewGetVM200Response() *GetVM200Response {
 func NewGetVM200ResponseWithDefaults() *GetVM200Response {
 	this := GetVM200Response{}
 	return &this
-}
-
-// GetData returns the Data field value if set, zero value otherwise.
-func (o *GetVM200Response) GetData() []GetVM200ResponseDataInner {
-	if o == nil || IsNil(o.Data) {
-		var ret []GetVM200ResponseDataInner
-		return ret
-	}
-	return o.Data
-}
-
-// GetDataOk returns a tuple with the Data field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *GetVM200Response) GetDataOk() ([]GetVM200ResponseDataInner, bool) {
-	if o == nil || IsNil(o.Data) {
-		return nil, false
-	}
-	return o.Data, true
-}
-
-// HasData returns a boolean if a field has been set.
-func (o *GetVM200Response) HasData() bool {
-	if o != nil && !IsNil(o.Data) {
-		return true
-	}
-
-	return false
-}
-
-// SetData gets a reference to the given []GetVM200ResponseDataInner and assigns it to the Data field.
-func (o *GetVM200Response) SetData(v []GetVM200ResponseDataInner) {
-	o.Data = v
 }
 
 // GetErrors returns the Errors field value if set, zero value otherwise.
@@ -106,6 +74,38 @@ func (o *GetVM200Response) SetErrors(v []string) {
 	o.Errors = v
 }
 
+// GetData returns the Data field value if set, zero value otherwise.
+func (o *GetVM200Response) GetData() []GetVM200ResponseDataInner {
+	if o == nil || IsNil(o.Data) {
+		var ret []GetVM200ResponseDataInner
+		return ret
+	}
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetVM200Response) GetDataOk() ([]GetVM200ResponseDataInner, bool) {
+	if o == nil || IsNil(o.Data) {
+		return nil, false
+	}
+	return o.Data, true
+}
+
+// HasData returns a boolean if a field has been set.
+func (o *GetVM200Response) HasData() bool {
+	if o != nil && !IsNil(o.Data) {
+		return true
+	}
+
+	return false
+}
+
+// SetData gets a reference to the given []GetVM200ResponseDataInner and assigns it to the Data field.
+func (o *GetVM200Response) SetData(v []GetVM200ResponseDataInner) {
+	o.Data = v
+}
+
 func (o GetVM200Response) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -116,11 +116,11 @@ func (o GetVM200Response) MarshalJSON() ([]byte, error) {
 
 func (o GetVM200Response) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Data) {
-		toSerialize["data"] = o.Data
-	}
 	if !IsNil(o.Errors) {
 		toSerialize["errors"] = o.Errors
+	}
+	if !IsNil(o.Data) {
+		toSerialize["data"] = o.Data
 	}
 	return toSerialize, nil
 }

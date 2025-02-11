@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ForceStop** | Pointer to **bool** |  | [optional] 
-**Timeout** | Pointer to **int64** |  | [optional] 
+**ForceStop** | Pointer to **bool** | Make sure the Container stops. | [optional] 
+**Timeout** | Pointer to **int64** | Wait maximal timeout seconds. | [optional] 
 
 ## Methods
 

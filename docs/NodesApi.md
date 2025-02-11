@@ -4091,11 +4091,11 @@ import (
 func main() {
     node := "node_example" // string | node
     storage := "storage_example" // string | storage
-    content := "content_example" // string | 
+    content := "content_example" // string | Content type.
     filename := os.NewFile(1234, "some_file") // *os.File | 
-    checksum := "checksum_example" // string |  (optional)
-    checksumAlgorithm := "checksumAlgorithm_example" // string |  (optional)
-    tmpfilename := "tmpfilename_example" // string |  (optional)
+    checksum := "checksum_example" // string | The expected checksum of the file. (optional)
+    checksumAlgorithm := "checksumAlgorithm_example" // string | The algorithm to calculate the checksum of the file. (optional)
+    tmpfilename := "tmpfilename_example" // string | The source file name. This parameter is usually set by the REST handler. You can only overwrite it when connecting to the trusted port on localhost. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -4127,11 +4127,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **content** | **string** |  | 
+ **content** | **string** | Content type. | 
  **filename** | ***os.File** |  | 
- **checksum** | **string** |  | 
- **checksumAlgorithm** | **string** |  | 
- **tmpfilename** | **string** |  | 
+ **checksum** | **string** | The expected checksum of the file. | 
+ **checksumAlgorithm** | **string** | The algorithm to calculate the checksum of the file. | 
+ **tmpfilename** | **string** | The source file name. This parameter is usually set by the REST handler. You can only overwrite it when connecting to the trusted port on localhost. | 
 
 ### Return type
 

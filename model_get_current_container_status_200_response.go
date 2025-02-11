@@ -20,8 +20,8 @@ var _ MappedNullable = &GetCurrentContainerStatus200Response{}
 
 // GetCurrentContainerStatus200Response struct for GetCurrentContainerStatus200Response
 type GetCurrentContainerStatus200Response struct {
-	Data *GetCurrentContainerStatus200ResponseData `json:"data,omitempty"`
 	Errors []string `json:"errors,omitempty"`
+	Data *GetCurrentContainerStatus200ResponseData `json:"data,omitempty"`
 }
 
 // NewGetCurrentContainerStatus200Response instantiates a new GetCurrentContainerStatus200Response object
@@ -39,38 +39,6 @@ func NewGetCurrentContainerStatus200Response() *GetCurrentContainerStatus200Resp
 func NewGetCurrentContainerStatus200ResponseWithDefaults() *GetCurrentContainerStatus200Response {
 	this := GetCurrentContainerStatus200Response{}
 	return &this
-}
-
-// GetData returns the Data field value if set, zero value otherwise.
-func (o *GetCurrentContainerStatus200Response) GetData() GetCurrentContainerStatus200ResponseData {
-	if o == nil || IsNil(o.Data) {
-		var ret GetCurrentContainerStatus200ResponseData
-		return ret
-	}
-	return *o.Data
-}
-
-// GetDataOk returns a tuple with the Data field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *GetCurrentContainerStatus200Response) GetDataOk() (*GetCurrentContainerStatus200ResponseData, bool) {
-	if o == nil || IsNil(o.Data) {
-		return nil, false
-	}
-	return o.Data, true
-}
-
-// HasData returns a boolean if a field has been set.
-func (o *GetCurrentContainerStatus200Response) HasData() bool {
-	if o != nil && !IsNil(o.Data) {
-		return true
-	}
-
-	return false
-}
-
-// SetData gets a reference to the given GetCurrentContainerStatus200ResponseData and assigns it to the Data field.
-func (o *GetCurrentContainerStatus200Response) SetData(v GetCurrentContainerStatus200ResponseData) {
-	o.Data = &v
 }
 
 // GetErrors returns the Errors field value if set, zero value otherwise.
@@ -105,6 +73,38 @@ func (o *GetCurrentContainerStatus200Response) SetErrors(v []string) {
 	o.Errors = v
 }
 
+// GetData returns the Data field value if set, zero value otherwise.
+func (o *GetCurrentContainerStatus200Response) GetData() GetCurrentContainerStatus200ResponseData {
+	if o == nil || IsNil(o.Data) {
+		var ret GetCurrentContainerStatus200ResponseData
+		return ret
+	}
+	return *o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetCurrentContainerStatus200Response) GetDataOk() (*GetCurrentContainerStatus200ResponseData, bool) {
+	if o == nil || IsNil(o.Data) {
+		return nil, false
+	}
+	return o.Data, true
+}
+
+// HasData returns a boolean if a field has been set.
+func (o *GetCurrentContainerStatus200Response) HasData() bool {
+	if o != nil && !IsNil(o.Data) {
+		return true
+	}
+
+	return false
+}
+
+// SetData gets a reference to the given GetCurrentContainerStatus200ResponseData and assigns it to the Data field.
+func (o *GetCurrentContainerStatus200Response) SetData(v GetCurrentContainerStatus200ResponseData) {
+	o.Data = &v
+}
+
 func (o GetCurrentContainerStatus200Response) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -115,11 +115,11 @@ func (o GetCurrentContainerStatus200Response) MarshalJSON() ([]byte, error) {
 
 func (o GetCurrentContainerStatus200Response) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Data) {
-		toSerialize["data"] = o.Data
-	}
 	if !IsNil(o.Errors) {
 		toSerialize["errors"] = o.Errors
+	}
+	if !IsNil(o.Data) {
+		toSerialize["data"] = o.Data
 	}
 	return toSerialize, nil
 }

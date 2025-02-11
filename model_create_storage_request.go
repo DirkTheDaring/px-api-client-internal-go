@@ -20,67 +20,128 @@ var _ MappedNullable = &CreateStorageRequest{}
 
 // CreateStorageRequest struct for CreateStorageRequest
 type CreateStorageRequest struct {
+	// Authsupported.
 	Authsupported *string `json:"authsupported,omitempty"`
+	// Base volume. This volume is automatically activated.
 	Base *string `json:"base,omitempty"`
+	// block size
 	Blocksize *string `json:"blocksize,omitempty"`
 	Bwlimit *CreateStorageRequestBwlimit `json:"bwlimit,omitempty"`
+	// host group for comstar views
 	ComstarHg *string `json:"comstar_hg,omitempty"`
+	// target group for comstar views
 	ComstarTg *string `json:"comstar_tg,omitempty"`
+	// Allowed content types.  NOTE: the value 'rootdir' is used for Containers, and value 'images' for VMs. 
 	Content *string `json:"content,omitempty"`
+	// Overrides for default content type directories.
 	ContentDirs *string `json:"content-dirs,omitempty"`
+	// Create the base directory if it doesn't exist.
 	CreateBasePath *bool `json:"create-base-path,omitempty"`
+	// Populate the directory with the default structure.
 	CreateSubdirs *bool `json:"create-subdirs,omitempty"`
+	// Data Pool (for erasure coding only)
 	DataPool *string `json:"data-pool,omitempty"`
+	// Proxmox Backup Server datastore name.
 	Datastore *string `json:"datastore,omitempty"`
+	// Flag to disable the storage.
 	Disable *bool `json:"disable,omitempty"`
+	// CIFS domain.
 	Domain *string `json:"domain,omitempty"`
+	// Encryption key. Use 'autogen' to generate one automatically without passphrase.
 	EncryptionKey *string `json:"encryption-key,omitempty"`
+	// NFS export path.
 	Export *string `json:"export,omitempty"`
+	// Certificate SHA 256 fingerprint.
 	Fingerprint *string `json:"fingerprint,omitempty"`
+	// Default image format.
 	Format *string `json:"format,omitempty"`
+	// The Ceph filesystem name.
 	FsName *string `json:"fs-name,omitempty"`
+	// Mount CephFS through FUSE.
 	Fuse *bool `json:"fuse,omitempty"`
+	// Assume the given path is an externally managed mountpoint and consider the storage offline if it is not mounted. Using a boolean (yes/no) value serves as a shortcut to using the target path in this field.
 	IsMountpoint *string `json:"is_mountpoint,omitempty"`
+	// iscsi provider
 	Iscsiprovider *string `json:"iscsiprovider,omitempty"`
+	// Client keyring contents (for external clusters).
 	Keyring *string `json:"keyring,omitempty"`
+	// Always access rbd through krbd kernel module.
 	Krbd *bool `json:"krbd,omitempty"`
+	// target portal group for Linux LIO targets
 	LioTpg *string `json:"lio_tpg,omitempty"`
+	// Base64-encoded, PEM-formatted public RSA key. Used to encrypt a copy of the encryption-key which will be added to each encrypted backup.
 	MasterPubkey *string `json:"master-pubkey,omitempty"`
+	// Maximal number of protected backups per guest. Use '-1' for unlimited.
 	MaxProtectedBackups *int64 `json:"max-protected-backups,omitempty"`
+	// Deprecated: use 'prune-backups' instead. Maximal number of backup files per VM. Use '0' for unlimited.
 	Maxfiles *int64 `json:"maxfiles,omitempty"`
+	// Create the directory if it doesn't exist and populate it with default sub-dirs. NOTE: Deprecated, use the 'create-base-path' and 'create-subdirs' options instead.
 	Mkdir *bool `json:"mkdir,omitempty"`
+	// IP addresses of monitors (for external clusters).
 	Monhost *string `json:"monhost,omitempty"`
+	// mount point
 	Mountpoint *string `json:"mountpoint,omitempty"`
+	// Namespace.
 	Namespace *string `json:"namespace,omitempty"`
+	// Set the NOCOW flag on files. Disables data checksumming and causes data errors to be unrecoverable from while allowing direct I/O. Only use this if data does not need to be any more safe than on a single ext4 formatted disk with no underlying raid system.
 	Nocow *bool `json:"nocow,omitempty"`
+	// List of nodes for which the storage configuration applies.
 	Nodes *string `json:"nodes,omitempty"`
+	// disable write caching on the target
 	Nowritecache *bool `json:"nowritecache,omitempty"`
+	// NFS/CIFS mount options (see 'man nfs' or 'man mount.cifs')
 	Options *string `json:"options,omitempty"`
+	// Password for accessing the share/datastore.
 	Password *string `json:"password,omitempty"`
+	// File system path.
 	Path *string `json:"path,omitempty"`
+	// Pool.
 	Pool *string `json:"pool,omitempty"`
+	// Use this port to connect to the storage instead of the default one (for example, with PBS or ESXi). For NFS and CIFS, use the 'options' option to configure the port via the mount options.
 	Port *int64 `json:"port,omitempty"`
+	// iSCSI portal (IP or DNS name with optional port).
 	Portal *string `json:"portal,omitempty"`
+	// Preallocation mode for raw and qcow2 images. Using 'metadata' on raw images results in preallocation=off.
 	Preallocation *string `json:"preallocation,omitempty"`
+	// The retention options with shorter intervals are processed first with --keep-last being the very first one. Each option covers a specific period of time. We say that backups within this period are covered by this option. The next option does not take care of already covered backups and only considers older backups.
 	PruneBackups *string `json:"prune-backups,omitempty"`
+	// Zero-out data when removing LVs.
 	Saferemove *bool `json:"saferemove,omitempty"`
+	// Wipe throughput (cstream -t parameter value).
 	SaferemoveThroughput *string `json:"saferemove_throughput,omitempty"`
+	// Server IP or DNS name.
 	Server *string `json:"server,omitempty"`
+	// Backup volfile server IP or DNS name.
 	Server2 *string `json:"server2,omitempty"`
+	// CIFS share.
 	Share *string `json:"share,omitempty"`
+	// Indicate that this is a single storage with the same contents on all nodes (or all listed in the 'nodes' option). It will not make the contents of a local storage automatically accessible to other nodes, it just marks an already shared storage as such!
 	Shared *bool `json:"shared,omitempty"`
+	// Disable TLS certificate verification, only enable on fully trusted networks!
 	SkipCertVerification *bool `json:"skip-cert-verification,omitempty"`
+	// SMB protocol version. 'default' if not set, negotiates the highest SMB2+ version supported by both the client and server.
 	Smbversion *string `json:"smbversion,omitempty"`
+	// use sparse volumes
 	Sparse *bool `json:"sparse,omitempty"`
+	// The storage identifier.
 	Storage string `json:"storage"`
+	// Subdir to mount.
 	Subdir *string `json:"subdir,omitempty"`
+	// Only use logical volumes tagged with 'pve-vm-ID'.
 	TaggedOnly *bool `json:"tagged_only,omitempty"`
+	// iSCSI target.
 	Target *string `json:"target,omitempty"`
+	// LVM thin pool LV name.
 	Thinpool *string `json:"thinpool,omitempty"`
+	// Gluster transport: tcp or rdma
 	Transport *string `json:"transport,omitempty"`
+	// Storage type.
 	Type string `json:"type"`
+	// RBD Id.
 	Username *string `json:"username,omitempty"`
+	// Volume group name.
 	Vgname *string `json:"vgname,omitempty"`
+	// Glusterfs Volume.
 	Volume *string `json:"volume,omitempty"`
 }
 

@@ -21,6 +21,7 @@ var _ MappedNullable = &ResumeVMRequest{}
 // ResumeVMRequest struct for ResumeVMRequest
 type ResumeVMRequest struct {
 	Nocheck *bool `json:"nocheck,omitempty"`
+	// Ignore locks - only root is allowed to use this option.
 	Skiplock *bool `json:"skiplock,omitempty"`
 }
 

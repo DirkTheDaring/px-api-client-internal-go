@@ -20,7 +20,9 @@ var _ MappedNullable = &StopContainerRequest{}
 
 // StopContainerRequest struct for StopContainerRequest
 type StopContainerRequest struct {
+	// Try to abort active 'vzshutdown' tasks before stopping.
 	OverruleShutdown *bool `json:"overrule-shutdown,omitempty"`
+	// Ignore locks - only root is allowed to use this option.
 	Skiplock *bool `json:"skiplock,omitempty"`
 }
 

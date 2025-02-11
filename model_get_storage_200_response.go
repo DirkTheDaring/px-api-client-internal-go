@@ -20,9 +20,9 @@ var _ MappedNullable = &GetStorage200Response{}
 
 // GetStorage200Response struct for GetStorage200Response
 type GetStorage200Response struct {
+	Errors []string `json:"errors,omitempty"`
 	// 
 	Data []GetStorage200ResponseDataInner `json:"data,omitempty"`
-	Errors []string `json:"errors,omitempty"`
 }
 
 // NewGetStorage200Response instantiates a new GetStorage200Response object
@@ -40,38 +40,6 @@ func NewGetStorage200Response() *GetStorage200Response {
 func NewGetStorage200ResponseWithDefaults() *GetStorage200Response {
 	this := GetStorage200Response{}
 	return &this
-}
-
-// GetData returns the Data field value if set, zero value otherwise.
-func (o *GetStorage200Response) GetData() []GetStorage200ResponseDataInner {
-	if o == nil || IsNil(o.Data) {
-		var ret []GetStorage200ResponseDataInner
-		return ret
-	}
-	return o.Data
-}
-
-// GetDataOk returns a tuple with the Data field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *GetStorage200Response) GetDataOk() ([]GetStorage200ResponseDataInner, bool) {
-	if o == nil || IsNil(o.Data) {
-		return nil, false
-	}
-	return o.Data, true
-}
-
-// HasData returns a boolean if a field has been set.
-func (o *GetStorage200Response) HasData() bool {
-	if o != nil && !IsNil(o.Data) {
-		return true
-	}
-
-	return false
-}
-
-// SetData gets a reference to the given []GetStorage200ResponseDataInner and assigns it to the Data field.
-func (o *GetStorage200Response) SetData(v []GetStorage200ResponseDataInner) {
-	o.Data = v
 }
 
 // GetErrors returns the Errors field value if set, zero value otherwise.
@@ -106,6 +74,38 @@ func (o *GetStorage200Response) SetErrors(v []string) {
 	o.Errors = v
 }
 
+// GetData returns the Data field value if set, zero value otherwise.
+func (o *GetStorage200Response) GetData() []GetStorage200ResponseDataInner {
+	if o == nil || IsNil(o.Data) {
+		var ret []GetStorage200ResponseDataInner
+		return ret
+	}
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetStorage200Response) GetDataOk() ([]GetStorage200ResponseDataInner, bool) {
+	if o == nil || IsNil(o.Data) {
+		return nil, false
+	}
+	return o.Data, true
+}
+
+// HasData returns a boolean if a field has been set.
+func (o *GetStorage200Response) HasData() bool {
+	if o != nil && !IsNil(o.Data) {
+		return true
+	}
+
+	return false
+}
+
+// SetData gets a reference to the given []GetStorage200ResponseDataInner and assigns it to the Data field.
+func (o *GetStorage200Response) SetData(v []GetStorage200ResponseDataInner) {
+	o.Data = v
+}
+
 func (o GetStorage200Response) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -116,11 +116,11 @@ func (o GetStorage200Response) MarshalJSON() ([]byte, error) {
 
 func (o GetStorage200Response) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Data) {
-		toSerialize["data"] = o.Data
-	}
 	if !IsNil(o.Errors) {
 		toSerialize["errors"] = o.Errors
+	}
+	if !IsNil(o.Data) {
+		toSerialize["data"] = o.Data
 	}
 	return toSerialize, nil
 }

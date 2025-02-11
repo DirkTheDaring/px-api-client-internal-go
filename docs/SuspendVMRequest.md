@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Skiplock** | Pointer to **bool** |  | [optional] 
-**Statestorage** | Pointer to **string** |  | [optional] 
-**Todisk** | Pointer to **bool** |  | [optional] 
+**Skiplock** | Pointer to **bool** | Ignore locks - only root is allowed to use this option. | [optional] 
+**Statestorage** | Pointer to **string** | The storage for the VM state | [optional] 
+**Todisk** | Pointer to **bool** | If set, suspends the VM to disk. Will be resumed on next VM start. | [optional] 
 
 ## Methods
 

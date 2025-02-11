@@ -20,7 +20,9 @@ var _ MappedNullable = &StartContainerRequest{}
 
 // StartContainerRequest struct for StartContainerRequest
 type StartContainerRequest struct {
+	// If set, enables very verbose debug log-level on start.
 	Debug *bool `json:"debug,omitempty"`
+	// Ignore locks - only root is allowed to use this option.
 	Skiplock *bool `json:"skiplock,omitempty"`
 }
 

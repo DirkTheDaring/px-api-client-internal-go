@@ -20,9 +20,13 @@ var _ MappedNullable = &ResizeVMDiskRequest{}
 
 // ResizeVMDiskRequest struct for ResizeVMDiskRequest
 type ResizeVMDiskRequest struct {
+	// Prevent changes if current configuration file has different SHA1 digest. This can be used to prevent concurrent modifications.
 	Digest *string `json:"digest,omitempty"`
+	// The disk you want to resize.
 	Disk string `json:"disk"`
+	// The new size. With the `+` sign the value is added to the actual size of the volume and without it, the value is taken as an absolute one. Shrinking disk size is not supported.
 	Size string `json:"size"`
+	// Ignore locks - only root is allowed to use this option.
 	Skiplock *bool `json:"skiplock,omitempty"`
 }
 

@@ -23,7 +23,9 @@ var _ MappedNullable = &CreateNodesSingleStorageSingleContentRequest{}
 type CreateNodesSingleStorageSingleContentRequest struct {
 	Filename *os.File `json:"filename"`
 	Format *string `json:"format,omitempty"`
+	// Size in kilobyte (1024 bytes). Optional suffixes 'M' (megabyte, 1024K) and 'G' (gigabyte, 1024M)
 	Size string `json:"size"`
+	// Specify owner VM
 	Vmid int64 `json:"vmid"`
 }
 

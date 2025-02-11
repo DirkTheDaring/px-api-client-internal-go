@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Start** | Pointer to **bool** |  | [optional] 
+**Start** | Pointer to **bool** | Whether the container should get started after rolling back successfully | [optional] 
 
 ## Methods
 

@@ -20,9 +20,9 @@ var _ MappedNullable = &GetNodeTaskLog200Response{}
 
 // GetNodeTaskLog200Response struct for GetNodeTaskLog200Response
 type GetNodeTaskLog200Response struct {
+	Errors []string `json:"errors,omitempty"`
 	// 
 	Data []GetNodeTaskLog200ResponseDataInner `json:"data,omitempty"`
-	Errors []string `json:"errors,omitempty"`
 }
 
 // NewGetNodeTaskLog200Response instantiates a new GetNodeTaskLog200Response object
@@ -40,38 +40,6 @@ func NewGetNodeTaskLog200Response() *GetNodeTaskLog200Response {
 func NewGetNodeTaskLog200ResponseWithDefaults() *GetNodeTaskLog200Response {
 	this := GetNodeTaskLog200Response{}
 	return &this
-}
-
-// GetData returns the Data field value if set, zero value otherwise.
-func (o *GetNodeTaskLog200Response) GetData() []GetNodeTaskLog200ResponseDataInner {
-	if o == nil || IsNil(o.Data) {
-		var ret []GetNodeTaskLog200ResponseDataInner
-		return ret
-	}
-	return o.Data
-}
-
-// GetDataOk returns a tuple with the Data field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *GetNodeTaskLog200Response) GetDataOk() ([]GetNodeTaskLog200ResponseDataInner, bool) {
-	if o == nil || IsNil(o.Data) {
-		return nil, false
-	}
-	return o.Data, true
-}
-
-// HasData returns a boolean if a field has been set.
-func (o *GetNodeTaskLog200Response) HasData() bool {
-	if o != nil && !IsNil(o.Data) {
-		return true
-	}
-
-	return false
-}
-
-// SetData gets a reference to the given []GetNodeTaskLog200ResponseDataInner and assigns it to the Data field.
-func (o *GetNodeTaskLog200Response) SetData(v []GetNodeTaskLog200ResponseDataInner) {
-	o.Data = v
 }
 
 // GetErrors returns the Errors field value if set, zero value otherwise.
@@ -106,6 +74,38 @@ func (o *GetNodeTaskLog200Response) SetErrors(v []string) {
 	o.Errors = v
 }
 
+// GetData returns the Data field value if set, zero value otherwise.
+func (o *GetNodeTaskLog200Response) GetData() []GetNodeTaskLog200ResponseDataInner {
+	if o == nil || IsNil(o.Data) {
+		var ret []GetNodeTaskLog200ResponseDataInner
+		return ret
+	}
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetNodeTaskLog200Response) GetDataOk() ([]GetNodeTaskLog200ResponseDataInner, bool) {
+	if o == nil || IsNil(o.Data) {
+		return nil, false
+	}
+	return o.Data, true
+}
+
+// HasData returns a boolean if a field has been set.
+func (o *GetNodeTaskLog200Response) HasData() bool {
+	if o != nil && !IsNil(o.Data) {
+		return true
+	}
+
+	return false
+}
+
+// SetData gets a reference to the given []GetNodeTaskLog200ResponseDataInner and assigns it to the Data field.
+func (o *GetNodeTaskLog200Response) SetData(v []GetNodeTaskLog200ResponseDataInner) {
+	o.Data = v
+}
+
 func (o GetNodeTaskLog200Response) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -116,11 +116,11 @@ func (o GetNodeTaskLog200Response) MarshalJSON() ([]byte, error) {
 
 func (o GetNodeTaskLog200Response) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Data) {
-		toSerialize["data"] = o.Data
-	}
 	if !IsNil(o.Errors) {
 		toSerialize["errors"] = o.Errors
+	}
+	if !IsNil(o.Data) {
+		toSerialize["data"] = o.Data
 	}
 	return toSerialize, nil
 }

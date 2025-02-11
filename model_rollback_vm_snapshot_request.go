@@ -20,6 +20,7 @@ var _ MappedNullable = &RollbackVMSnapshotRequest{}
 
 // RollbackVMSnapshotRequest struct for RollbackVMSnapshotRequest
 type RollbackVMSnapshotRequest struct {
+	// Whether the VM should get started after rolling back successfully. (Note: VMs will be automatically started if the snapshot includes RAM.)
 	Start *bool `json:"start,omitempty"`
 }
 

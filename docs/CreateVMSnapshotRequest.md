@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Description** | Pointer to **string** |  | [optional] 
-**Snapname** | **string** |  | 
-**Vmstate** | Pointer to **bool** |  | [optional] 
+**Description** | Pointer to **string** | A textual description or comment. | [optional] 
+**Snapname** | **string** | The name of the snapshot. | 
+**Vmstate** | Pointer to **bool** | Save the vmstate | [optional] 
 
 ## Methods
 

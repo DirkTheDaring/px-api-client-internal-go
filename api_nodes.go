@@ -8438,6 +8438,7 @@ type ApiUploadFileRequest struct {
 	tmpfilename *string
 }
 
+// Content type.
 func (r ApiUploadFileRequest) Content(content string) ApiUploadFileRequest {
 	r.content = &content
 	return r
@@ -8448,16 +8449,19 @@ func (r ApiUploadFileRequest) Filename(filename *os.File) ApiUploadFileRequest {
 	return r
 }
 
+// The expected checksum of the file.
 func (r ApiUploadFileRequest) Checksum(checksum string) ApiUploadFileRequest {
 	r.checksum = &checksum
 	return r
 }
 
+// The algorithm to calculate the checksum of the file.
 func (r ApiUploadFileRequest) ChecksumAlgorithm(checksumAlgorithm string) ApiUploadFileRequest {
 	r.checksumAlgorithm = &checksumAlgorithm
 	return r
 }
 
+// The source file name. This parameter is usually set by the REST handler. You can only overwrite it when connecting to the trusted port on localhost.
 func (r ApiUploadFileRequest) Tmpfilename(tmpfilename string) ApiUploadFileRequest {
 	r.tmpfilename = &tmpfilename
 	return r

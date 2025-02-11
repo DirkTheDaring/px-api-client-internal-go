@@ -20,71 +20,129 @@ var _ MappedNullable = &CreateVMRequest{}
 
 // CreateVMRequest struct for CreateVMRequest
 type CreateVMRequest struct {
+	// Enable/disable ACPI.
 	Acpi *bool `json:"acpi,omitempty"`
+	// List of host cores used to execute guest processes, for example: 0,5,8-11
 	Affinity *string `json:"affinity,omitempty"`
 	Agent *CreateVMRequestAgent `json:"agent,omitempty"`
+	// Secure Encrypted Virtualization (SEV) features by AMD CPUs
 	AmdSev *string `json:"amd-sev,omitempty"`
+	// Virtual processor architecture. Defaults to the host.
 	Arch *string `json:"arch,omitempty"`
+	// The backup archive. Either the file system path to a .tar or .vma file (use '-' to pipe data from stdin) or a proxmox storage backup volume identifier.
 	Archive *string `json:"archive,omitempty"`
+	// Arbitrary arguments passed to kvm.
 	Args *string `json:"args,omitempty"`
 	Audio0 *CreateVMRequestAudio0 `json:"audio0,omitempty"`
+	// Automatic restart after crash (currently ignored).
 	Autostart *bool `json:"autostart,omitempty"`
+	// Amount of target RAM for the VM in MiB. Using zero disables the ballon driver.
 	Balloon *int64 `json:"balloon,omitempty"`
+	// Select BIOS implementation.
 	Bios *string `json:"bios,omitempty"`
 	Boot *CreateVMRequestBoot `json:"boot,omitempty"`
+	// Enable booting from specified disk. Deprecated: Use 'boot: order=foo;bar' instead.
 	Bootdisk *string `json:"bootdisk,omitempty"`
+	// Override I/O bandwidth limit (in KiB/s).
 	Bwlimit *int64 `json:"bwlimit,omitempty"`
+	// This is an alias for option -ide2
 	Cdrom *string `json:"cdrom,omitempty"`
+	// cloud-init: Specify custom files to replace the automatically generated ones at start.
 	Cicustom *string `json:"cicustom,omitempty"`
+	// cloud-init: Password to assign the user. Using this is generally not recommended. Use ssh keys instead. Also note that older cloud-init versions do not support hashed passwords.
 	Cipassword *string `json:"cipassword,omitempty"`
+	// Specifies the cloud-init configuration format. The default depends on the configured operating system type (`ostype`. We use the `nocloud` format for Linux, and `configdrive2` for windows.
 	Citype *string `json:"citype,omitempty"`
+	// cloud-init: do an automatic package upgrade after the first boot.
 	Ciupgrade *bool `json:"ciupgrade,omitempty"`
+	// cloud-init: User name to change ssh keys and password for instead of the image's configured default user.
 	Ciuser *string `json:"ciuser,omitempty"`
+	// The number of cores per socket.
 	Cores *int64 `json:"cores,omitempty"`
+	// Emulated CPU type.
 	Cpu *string `json:"cpu,omitempty"`
+	// Limit of CPU usage.
 	Cpulimit *float32 `json:"cpulimit,omitempty"`
+	// CPU weight for a VM, will be clamped to [1, 10000] in cgroup v2.
 	Cpuunits *int64 `json:"cpuunits,omitempty"`
+	// Description for the VM. Shown in the web-interface VM's summary. This is saved as comment inside the configuration file.
 	Description *string `json:"description,omitempty"`
 	Efidisk0 *CreateVMRequestEfidisk0 `json:"efidisk0,omitempty"`
+	// Allow to overwrite existing VM.
 	Force *bool `json:"force,omitempty"`
+	// Freeze CPU at startup (use 'c' monitor command to start execution).
 	Freeze *bool `json:"freeze,omitempty"`
+	// Script that will be executed during various steps in the vms lifetime.
 	Hookscript *string `json:"hookscript,omitempty"`
+	// Map host PCI devices into guest.
 	Hostpci0 *string `json:"hostpci0,omitempty"`
+	// Map host PCI devices into guest.
 	Hostpci1 *string `json:"hostpci1,omitempty"`
+	// Map host PCI devices into guest.
 	Hostpci2 *string `json:"hostpci2,omitempty"`
+	// Map host PCI devices into guest.
 	Hostpci3 *string `json:"hostpci3,omitempty"`
+	// Map host PCI devices into guest.
 	Hostpci4 *string `json:"hostpci4,omitempty"`
+	// Map host PCI devices into guest.
 	Hostpci5 *string `json:"hostpci5,omitempty"`
+	// Map host PCI devices into guest.
 	Hostpci6 *string `json:"hostpci6,omitempty"`
+	// Map host PCI devices into guest.
 	Hostpci7 *string `json:"hostpci7,omitempty"`
+	// Map host PCI devices into guest.
 	Hostpci8 *string `json:"hostpci8,omitempty"`
+	// Map host PCI devices into guest.
 	Hostpci9 *string `json:"hostpci9,omitempty"`
+	// Map host PCI devices into guest.
 	Hostpci10 *string `json:"hostpci10,omitempty"`
+	// Map host PCI devices into guest.
 	Hostpci11 *string `json:"hostpci11,omitempty"`
+	// Map host PCI devices into guest.
 	Hostpci12 *string `json:"hostpci12,omitempty"`
+	// Map host PCI devices into guest.
 	Hostpci13 *string `json:"hostpci13,omitempty"`
+	// Map host PCI devices into guest.
 	Hostpci14 *string `json:"hostpci14,omitempty"`
+	// Map host PCI devices into guest.
 	Hostpci15 *string `json:"hostpci15,omitempty"`
+	// Map host PCI devices into guest.
 	Hostpci16 *string `json:"hostpci16,omitempty"`
+	// Map host PCI devices into guest.
 	Hostpci17 *string `json:"hostpci17,omitempty"`
+	// Map host PCI devices into guest.
 	Hostpci18 *string `json:"hostpci18,omitempty"`
+	// Map host PCI devices into guest.
 	Hostpci19 *string `json:"hostpci19,omitempty"`
+	// Map host PCI devices into guest.
 	Hostpci20 *string `json:"hostpci20,omitempty"`
+	// Map host PCI devices into guest.
 	Hostpci21 *string `json:"hostpci21,omitempty"`
+	// Map host PCI devices into guest.
 	Hostpci22 *string `json:"hostpci22,omitempty"`
+	// Map host PCI devices into guest.
 	Hostpci23 *string `json:"hostpci23,omitempty"`
+	// Map host PCI devices into guest.
 	Hostpci24 *string `json:"hostpci24,omitempty"`
+	// Map host PCI devices into guest.
 	Hostpci25 *string `json:"hostpci25,omitempty"`
+	// Map host PCI devices into guest.
 	Hostpci26 *string `json:"hostpci26,omitempty"`
+	// Map host PCI devices into guest.
 	Hostpci27 *string `json:"hostpci27,omitempty"`
+	// Map host PCI devices into guest.
 	Hostpci28 *string `json:"hostpci28,omitempty"`
+	// Map host PCI devices into guest.
 	Hostpci29 *string `json:"hostpci29,omitempty"`
+	// Selectively enable hotplug features. This is a comma separated list of hotplug features: 'network', 'disk', 'cpu', 'memory', 'usb' and 'cloudinit'. Use '0' to disable hotplug completely. Using '1' as value is an alias for the default `network,disk,usb`. USB hotplugging is possible for guests with machine version >= 7.1 and ostype l26 or windows > 7.
 	Hotplug *string `json:"hotplug,omitempty"`
+	// Enable/disable hugepages memory.
 	Hugepages *string `json:"hugepages,omitempty"`
 	Ide0 *CreateVMRequestIde0 `json:"ide0,omitempty"`
 	Ide1 *CreateVMRequestIde0 `json:"ide1,omitempty"`
 	Ide2 *CreateVMRequestIde0 `json:"ide2,omitempty"`
 	Ide3 *CreateVMRequestIde0 `json:"ide3,omitempty"`
+	// A file-based storage with 'images' content-type enabled, which is used as an intermediary extraction storage during import. Defaults to the source storage.
 	ImportWorkingStorage *string `json:"import-working-storage,omitempty"`
 	Ipconfig0 *CreateVMRequestIpconfig0 `json:"ipconfig0,omitempty"`
 	Ipconfig1 *CreateVMRequestIpconfig0 `json:"ipconfig1,omitempty"`
@@ -117,17 +175,27 @@ type CreateVMRequest struct {
 	Ipconfig28 *CreateVMRequestIpconfig0 `json:"ipconfig28,omitempty"`
 	Ipconfig29 *CreateVMRequestIpconfig0 `json:"ipconfig29,omitempty"`
 	Ivshmem *CreateVMRequestIvshmem `json:"ivshmem,omitempty"`
+	// Use together with hugepages. If enabled, hugepages will not not be deleted after VM shutdown and can be used for subsequent starts.
 	Keephugepages *bool `json:"keephugepages,omitempty"`
+	// Keyboard layout for VNC server. This option is generally not required and is often better handled from within the guest OS.
 	Keyboard *string `json:"keyboard,omitempty"`
+	// Enable/disable KVM hardware virtualization.
 	Kvm *bool `json:"kvm,omitempty"`
+	// Start the VM immediately while importing or restoring in the background.
 	LiveRestore *bool `json:"live-restore,omitempty"`
+	// Set the real time clock (RTC) to local time. This is enabled by default if the `ostype` indicates a Microsoft Windows OS.
 	Localtime *bool `json:"localtime,omitempty"`
+	// Lock/unlock the VM.
 	Lock *string `json:"lock,omitempty"`
 	Machine *CreateVMRequestMachine `json:"machine,omitempty"`
 	Memory *CreateVMRequestMemory `json:"memory,omitempty"`
+	// Set maximum tolerated downtime (in seconds) for migrations. Should the migration not be able to converge in the very end, because too much newly dirtied RAM needs to be transferred, the limit will be increased automatically step-by-step until migration can converge.
 	MigrateDowntime *float32 `json:"migrate_downtime,omitempty"`
+	// Set maximum speed (in MB/s) for migrations. Value 0 is no limit.
 	MigrateSpeed *int64 `json:"migrate_speed,omitempty"`
+	// Set a name for the VM. Only used on the configuration web interface.
 	Name *string `json:"name,omitempty"`
+	// cloud-init: Sets DNS server IP address for a container. Create will automatically use the setting from the host if neither searchdomain nor nameserver are set.
 	Nameserver *string `json:"nameserver,omitempty"`
 	Net0 *CreateVMRequestNet0 `json:"net0,omitempty"`
 	Net1 *CreateVMRequestNet0 `json:"net1,omitempty"`
@@ -161,6 +229,7 @@ type CreateVMRequest struct {
 	Net29 *CreateVMRequestNet0 `json:"net29,omitempty"`
 	Net30 *CreateVMRequestNet0 `json:"net30,omitempty"`
 	Net31 *CreateVMRequestNet0 `json:"net31,omitempty"`
+	// Enable/disable NUMA.
 	Numa *bool `json:"numa,omitempty"`
 	Numa0 *CreateVMRequestNuma0 `json:"numa0,omitempty"`
 	Numa1 *CreateVMRequestNuma0 `json:"numa1,omitempty"`
@@ -192,14 +261,23 @@ type CreateVMRequest struct {
 	Numa27 *CreateVMRequestNuma0 `json:"numa27,omitempty"`
 	Numa28 *CreateVMRequestNuma0 `json:"numa28,omitempty"`
 	Numa29 *CreateVMRequestNuma0 `json:"numa29,omitempty"`
+	// Specifies whether a VM will be started during system bootup.
 	Onboot *bool `json:"onboot,omitempty"`
+	// Specify guest operating system.
 	Ostype *string `json:"ostype,omitempty"`
+	// Map host parallel devices (n is 0 to 2).
 	Parallel0 *string `json:"parallel0,omitempty"`
+	// Map host parallel devices (n is 0 to 2).
 	Parallel1 *string `json:"parallel1,omitempty"`
+	// Map host parallel devices (n is 0 to 2).
 	Parallel2 *string `json:"parallel2,omitempty"`
+	// Map host parallel devices (n is 0 to 2).
 	Parallel3 *string `json:"parallel3,omitempty"`
+	// Add the VM to the specified pool.
 	Pool *string `json:"pool,omitempty"`
+	// Sets the protection flag of the VM. This will disable the remove VM and remove disk operations.
 	Protection *bool `json:"protection,omitempty"`
+	// Allow reboot. If set to '0' the VM exit on reboot.
 	Reboot *bool `json:"reboot,omitempty"`
 	Rng0 *CreateVMRequestRng0 `json:"rng0,omitempty"`
 	Sata0 *CreateVMRequestSata0 `json:"sata0,omitempty"`
@@ -238,27 +316,47 @@ type CreateVMRequest struct {
 	Scsi27 *CreateVMRequestScsi0 `json:"scsi27,omitempty"`
 	Scsi28 *CreateVMRequestScsi0 `json:"scsi28,omitempty"`
 	Scsi29 *CreateVMRequestScsi0 `json:"scsi29,omitempty"`
+	// SCSI controller model
 	Scsihw *string `json:"scsihw,omitempty"`
+	// cloud-init: Sets DNS search domains for a container. Create will automatically use the setting from the host if neither searchdomain nor nameserver are set.
 	Searchdomain *string `json:"searchdomain,omitempty"`
+	// Create a serial device inside the VM (n is 0 to 3)
 	Serial0 *string `json:"serial0,omitempty"`
+	// Create a serial device inside the VM (n is 0 to 3)
 	Serial1 *string `json:"serial1,omitempty"`
+	// Create a serial device inside the VM (n is 0 to 3)
 	Serial2 *string `json:"serial2,omitempty"`
+	// Create a serial device inside the VM (n is 0 to 3)
 	Serial3 *string `json:"serial3,omitempty"`
+	// Amount of memory shares for auto-ballooning. The larger the number is, the more memory this VM gets. Number is relative to weights of all other running VMs. Using zero disables auto-ballooning. Auto-ballooning is done by pvestatd.
 	Shares *int64 `json:"shares,omitempty"`
+	// Specify SMBIOS type 1 fields.
 	Smbios1 *string `json:"smbios1,omitempty"`
+	// The number of CPUs. Please use option -sockets instead.
 	Smp *int64 `json:"smp,omitempty"`
+	// The number of CPU sockets.
 	Sockets *int64 `json:"sockets,omitempty"`
 	SpiceEnhancements *CreateVMRequestSpiceEnhancements `json:"spice_enhancements,omitempty"`
+	// cloud-init: Setup public SSH keys (one key per line, OpenSSH format).
 	Sshkeys *string `json:"sshkeys,omitempty"`
+	// Start VM after it was created successfully.
 	Start *bool `json:"start,omitempty"`
+	// Set the initial date of the real time clock. Valid format for date are:'now' or '2006-06-17T16:01:21' or '2006-06-17'.
 	Startdate *string `json:"startdate,omitempty"`
+	// Startup and shutdown behavior. Order is a non-negative number defining the general startup order. Shutdown in done with reverse ordering. Additionally you can set the 'up' or 'down' delay in seconds, which specifies a delay to wait before the next VM is started or stopped.
 	Startup *string `json:"startup,omitempty"`
+	// Default storage.
 	Storage *string `json:"storage,omitempty"`
+	// Enable/disable the USB tablet device.
 	Tablet *bool `json:"tablet,omitempty"`
+	// Tags of the VM. This is only meta information.
 	Tags *string `json:"tags,omitempty"`
+	// Enable/disable time drift fix.
 	Tdf *bool `json:"tdf,omitempty"`
+	// Enable/disable Template.
 	Template *bool `json:"template,omitempty"`
 	Tpmstate0 *CreateVMRequestTpmstate0 `json:"tpmstate0,omitempty"`
+	// Assign a unique random ethernet address.
 	Unique *bool `json:"unique,omitempty"`
 	Unused0 *CreateVMRequestUnused0 `json:"unused0,omitempty"`
 	Unused1 *CreateVMRequestUnused0 `json:"unused1,omitempty"`
@@ -294,6 +392,7 @@ type CreateVMRequest struct {
 	Usb1 *CreateVMRequestUsb0 `json:"usb1,omitempty"`
 	Usb2 *CreateVMRequestUsb0 `json:"usb2,omitempty"`
 	Usb3 *CreateVMRequestUsb0 `json:"usb3,omitempty"`
+	// Number of hotplugged vcpus.
 	Vcpus *int64 `json:"vcpus,omitempty"`
 	Vga *CreateVMRequestVga `json:"vga,omitempty"`
 	Virtio0 *CreateVMRequestVirtio0 `json:"virtio0,omitempty"`
@@ -312,8 +411,11 @@ type CreateVMRequest struct {
 	Virtio13 *CreateVMRequestVirtio0 `json:"virtio13,omitempty"`
 	Virtio14 *CreateVMRequestVirtio0 `json:"virtio14,omitempty"`
 	Virtio15 *CreateVMRequestVirtio0 `json:"virtio15,omitempty"`
+	// Set VM Generation ID. Use '1' to autogenerate on create or update, pass '0' to disable explicitly.
 	Vmgenid *string `json:"vmgenid,omitempty"`
+	// The (unique) ID of the VM.
 	Vmid int64 `json:"vmid"`
+	// Default storage for VM state volumes/files.
 	Vmstatestorage *string `json:"vmstatestorage,omitempty"`
 	Watchdog *CreateVMRequestWatchdog `json:"watchdog,omitempty"`
 }

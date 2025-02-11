@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Digest** | Pointer to **string** |  | [optional] 
-**Disk** | **string** |  | 
-**Size** | **string** |  | 
-**Skiplock** | Pointer to **bool** |  | [optional] 
+**Digest** | Pointer to **string** | Prevent changes if current configuration file has different SHA1 digest. This can be used to prevent concurrent modifications. | [optional] 
+**Disk** | **string** | The disk you want to resize. | 
+**Size** | **string** | The new size. With the &#x60;+&#x60; sign the value is added to the actual size of the volume and without it, the value is taken as an absolute one. Shrinking disk size is not supported. | 
+**Skiplock** | Pointer to **bool** | Ignore locks - only root is allowed to use this option. | [optional] 
 
 ## Methods
 

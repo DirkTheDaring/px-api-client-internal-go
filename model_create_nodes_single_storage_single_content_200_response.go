@@ -20,9 +20,9 @@ var _ MappedNullable = &CreateNodesSingleStorageSingleContent200Response{}
 
 // CreateNodesSingleStorageSingleContent200Response struct for CreateNodesSingleStorageSingleContent200Response
 type CreateNodesSingleStorageSingleContent200Response struct {
+	Errors []string `json:"errors,omitempty"`
 	// Volume identifier
 	Data *string `json:"data,omitempty"`
-	Errors []string `json:"errors,omitempty"`
 }
 
 // NewCreateNodesSingleStorageSingleContent200Response instantiates a new CreateNodesSingleStorageSingleContent200Response object
@@ -40,38 +40,6 @@ func NewCreateNodesSingleStorageSingleContent200Response() *CreateNodesSingleSto
 func NewCreateNodesSingleStorageSingleContent200ResponseWithDefaults() *CreateNodesSingleStorageSingleContent200Response {
 	this := CreateNodesSingleStorageSingleContent200Response{}
 	return &this
-}
-
-// GetData returns the Data field value if set, zero value otherwise.
-func (o *CreateNodesSingleStorageSingleContent200Response) GetData() string {
-	if o == nil || IsNil(o.Data) {
-		var ret string
-		return ret
-	}
-	return *o.Data
-}
-
-// GetDataOk returns a tuple with the Data field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateNodesSingleStorageSingleContent200Response) GetDataOk() (*string, bool) {
-	if o == nil || IsNil(o.Data) {
-		return nil, false
-	}
-	return o.Data, true
-}
-
-// HasData returns a boolean if a field has been set.
-func (o *CreateNodesSingleStorageSingleContent200Response) HasData() bool {
-	if o != nil && !IsNil(o.Data) {
-		return true
-	}
-
-	return false
-}
-
-// SetData gets a reference to the given string and assigns it to the Data field.
-func (o *CreateNodesSingleStorageSingleContent200Response) SetData(v string) {
-	o.Data = &v
 }
 
 // GetErrors returns the Errors field value if set, zero value otherwise.
@@ -106,6 +74,38 @@ func (o *CreateNodesSingleStorageSingleContent200Response) SetErrors(v []string)
 	o.Errors = v
 }
 
+// GetData returns the Data field value if set, zero value otherwise.
+func (o *CreateNodesSingleStorageSingleContent200Response) GetData() string {
+	if o == nil || IsNil(o.Data) {
+		var ret string
+		return ret
+	}
+	return *o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateNodesSingleStorageSingleContent200Response) GetDataOk() (*string, bool) {
+	if o == nil || IsNil(o.Data) {
+		return nil, false
+	}
+	return o.Data, true
+}
+
+// HasData returns a boolean if a field has been set.
+func (o *CreateNodesSingleStorageSingleContent200Response) HasData() bool {
+	if o != nil && !IsNil(o.Data) {
+		return true
+	}
+
+	return false
+}
+
+// SetData gets a reference to the given string and assigns it to the Data field.
+func (o *CreateNodesSingleStorageSingleContent200Response) SetData(v string) {
+	o.Data = &v
+}
+
 func (o CreateNodesSingleStorageSingleContent200Response) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -116,11 +116,11 @@ func (o CreateNodesSingleStorageSingleContent200Response) MarshalJSON() ([]byte,
 
 func (o CreateNodesSingleStorageSingleContent200Response) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Data) {
-		toSerialize["data"] = o.Data
-	}
 	if !IsNil(o.Errors) {
 		toSerialize["errors"] = o.Errors
+	}
+	if !IsNil(o.Data) {
+		toSerialize["data"] = o.Data
 	}
 	return toSerialize, nil
 }

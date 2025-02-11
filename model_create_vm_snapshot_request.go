@@ -20,8 +20,11 @@ var _ MappedNullable = &CreateVMSnapshotRequest{}
 
 // CreateVMSnapshotRequest struct for CreateVMSnapshotRequest
 type CreateVMSnapshotRequest struct {
+	// A textual description or comment.
 	Description *string `json:"description,omitempty"`
+	// The name of the snapshot.
 	Snapname string `json:"snapname"`
+	// Save the vmstate
 	Vmstate *bool `json:"vmstate,omitempty"`
 }
 

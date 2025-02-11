@@ -20,9 +20,9 @@ var _ MappedNullable = &GetClusterConfigNodes200Response{}
 
 // GetClusterConfigNodes200Response struct for GetClusterConfigNodes200Response
 type GetClusterConfigNodes200Response struct {
+	Errors []string `json:"errors,omitempty"`
 	// 
 	Data []GetClusterConfigNodes200ResponseDataInner `json:"data,omitempty"`
-	Errors []string `json:"errors,omitempty"`
 }
 
 // NewGetClusterConfigNodes200Response instantiates a new GetClusterConfigNodes200Response object
@@ -40,38 +40,6 @@ func NewGetClusterConfigNodes200Response() *GetClusterConfigNodes200Response {
 func NewGetClusterConfigNodes200ResponseWithDefaults() *GetClusterConfigNodes200Response {
 	this := GetClusterConfigNodes200Response{}
 	return &this
-}
-
-// GetData returns the Data field value if set, zero value otherwise.
-func (o *GetClusterConfigNodes200Response) GetData() []GetClusterConfigNodes200ResponseDataInner {
-	if o == nil || IsNil(o.Data) {
-		var ret []GetClusterConfigNodes200ResponseDataInner
-		return ret
-	}
-	return o.Data
-}
-
-// GetDataOk returns a tuple with the Data field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *GetClusterConfigNodes200Response) GetDataOk() ([]GetClusterConfigNodes200ResponseDataInner, bool) {
-	if o == nil || IsNil(o.Data) {
-		return nil, false
-	}
-	return o.Data, true
-}
-
-// HasData returns a boolean if a field has been set.
-func (o *GetClusterConfigNodes200Response) HasData() bool {
-	if o != nil && !IsNil(o.Data) {
-		return true
-	}
-
-	return false
-}
-
-// SetData gets a reference to the given []GetClusterConfigNodes200ResponseDataInner and assigns it to the Data field.
-func (o *GetClusterConfigNodes200Response) SetData(v []GetClusterConfigNodes200ResponseDataInner) {
-	o.Data = v
 }
 
 // GetErrors returns the Errors field value if set, zero value otherwise.
@@ -106,6 +74,38 @@ func (o *GetClusterConfigNodes200Response) SetErrors(v []string) {
 	o.Errors = v
 }
 
+// GetData returns the Data field value if set, zero value otherwise.
+func (o *GetClusterConfigNodes200Response) GetData() []GetClusterConfigNodes200ResponseDataInner {
+	if o == nil || IsNil(o.Data) {
+		var ret []GetClusterConfigNodes200ResponseDataInner
+		return ret
+	}
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetClusterConfigNodes200Response) GetDataOk() ([]GetClusterConfigNodes200ResponseDataInner, bool) {
+	if o == nil || IsNil(o.Data) {
+		return nil, false
+	}
+	return o.Data, true
+}
+
+// HasData returns a boolean if a field has been set.
+func (o *GetClusterConfigNodes200Response) HasData() bool {
+	if o != nil && !IsNil(o.Data) {
+		return true
+	}
+
+	return false
+}
+
+// SetData gets a reference to the given []GetClusterConfigNodes200ResponseDataInner and assigns it to the Data field.
+func (o *GetClusterConfigNodes200Response) SetData(v []GetClusterConfigNodes200ResponseDataInner) {
+	o.Data = v
+}
+
 func (o GetClusterConfigNodes200Response) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -116,11 +116,11 @@ func (o GetClusterConfigNodes200Response) MarshalJSON() ([]byte, error) {
 
 func (o GetClusterConfigNodes200Response) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Data) {
-		toSerialize["data"] = o.Data
-	}
 	if !IsNil(o.Errors) {
 		toSerialize["errors"] = o.Errors
+	}
+	if !IsNil(o.Data) {
+		toSerialize["data"] = o.Data
 	}
 	return toSerialize, nil
 }

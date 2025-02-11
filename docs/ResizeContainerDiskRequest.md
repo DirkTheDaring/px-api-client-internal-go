@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Digest** | Pointer to **string** |  | [optional] 
-**Disk** | **string** |  | 
-**Size** | **string** |  | 
+**Digest** | Pointer to **string** | Prevent changes if current configuration file has different SHA1 digest. This can be used to prevent concurrent modifications. | [optional] 
+**Disk** | **string** | The disk you want to resize. | 
+**Size** | **string** | The new size. With the &#39;+&#39; sign the value is added to the actual size of the volume and without it, the value is taken as an absolute one. Shrinking disk size is not supported. | 
 
 ## Methods
 

@@ -20,6 +20,7 @@ var _ MappedNullable = &UpdateVMSnapshotConfigRequest{}
 
 // UpdateVMSnapshotConfigRequest struct for UpdateVMSnapshotConfigRequest
 type UpdateVMSnapshotConfigRequest struct {
+	// A textual description or comment.
 	Description *string `json:"description,omitempty"`
 }
 

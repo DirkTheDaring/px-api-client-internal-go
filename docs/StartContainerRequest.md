@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Debug** | Pointer to **bool** |  | [optional] 
-**Skiplock** | Pointer to **bool** |  | [optional] 
+**Debug** | Pointer to **bool** | If set, enables very verbose debug log-level on start. | [optional] 
+**Skiplock** | Pointer to **bool** | Ignore locks - only root is allowed to use this option. | [optional] 
 
 ## Methods
 

@@ -20,13 +20,21 @@ var _ MappedNullable = &CreateAccessTicketRequest{}
 
 // CreateAccessTicketRequest struct for CreateAccessTicketRequest
 type CreateAccessTicketRequest struct {
+	// This parameter is now ignored and assumed to be 1.
 	NewFormat *bool `json:"new-format,omitempty"`
+	// One-time password for Two-factor authentication.
 	Otp *string `json:"otp,omitempty"`
+	// The secret password. This can also be a valid ticket.
 	Password string `json:"password"`
+	// Verify ticket, and check if user have access 'privs' on 'path'
 	Path *string `json:"path,omitempty"`
+	// Verify ticket, and check if user have access 'privs' on 'path'
 	Privs *string `json:"privs,omitempty"`
+	// You can optionally pass the realm using this parameter. Normally the realm is simply added to the username <username>@<relam>.
 	Realm *string `json:"realm,omitempty"`
+	// The signed TFA challenge string the user wants to respond to.
 	TfaChallenge *string `json:"tfa-challenge,omitempty"`
+	// User name
 	Username string `json:"username"`
 }
 

@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**KeepActive** | Pointer to **bool** |  | [optional] 
-**Migratedfrom** | Pointer to **string** |  | [optional] 
-**OverruleShutdown** | Pointer to **bool** |  | [optional] 
-**Skiplock** | Pointer to **bool** |  | [optional] 
-**Timeout** | Pointer to **int64** |  | [optional] 
+**KeepActive** | Pointer to **bool** | Do not deactivate storage volumes. | [optional] 
+**Migratedfrom** | Pointer to **string** | The cluster node name. | [optional] 
+**OverruleShutdown** | Pointer to **bool** | Try to abort active &#39;qmshutdown&#39; tasks before stopping. | [optional] 
+**Skiplock** | Pointer to **bool** | Ignore locks - only root is allowed to use this option. | [optional] 
+**Timeout** | Pointer to **int64** | Wait maximal timeout seconds. | [optional] 
 
 ## Methods
 

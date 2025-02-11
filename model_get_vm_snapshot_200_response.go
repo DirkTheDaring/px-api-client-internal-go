@@ -20,9 +20,9 @@ var _ MappedNullable = &GetVMSnapshot200Response{}
 
 // GetVMSnapshot200Response struct for GetVMSnapshot200Response
 type GetVMSnapshot200Response struct {
+	Errors []string `json:"errors,omitempty"`
 	// 
 	Data []map[string]interface{} `json:"data,omitempty"`
-	Errors []string `json:"errors,omitempty"`
 }
 
 // NewGetVMSnapshot200Response instantiates a new GetVMSnapshot200Response object
@@ -40,38 +40,6 @@ func NewGetVMSnapshot200Response() *GetVMSnapshot200Response {
 func NewGetVMSnapshot200ResponseWithDefaults() *GetVMSnapshot200Response {
 	this := GetVMSnapshot200Response{}
 	return &this
-}
-
-// GetData returns the Data field value if set, zero value otherwise.
-func (o *GetVMSnapshot200Response) GetData() []map[string]interface{} {
-	if o == nil || IsNil(o.Data) {
-		var ret []map[string]interface{}
-		return ret
-	}
-	return o.Data
-}
-
-// GetDataOk returns a tuple with the Data field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *GetVMSnapshot200Response) GetDataOk() ([]map[string]interface{}, bool) {
-	if o == nil || IsNil(o.Data) {
-		return nil, false
-	}
-	return o.Data, true
-}
-
-// HasData returns a boolean if a field has been set.
-func (o *GetVMSnapshot200Response) HasData() bool {
-	if o != nil && !IsNil(o.Data) {
-		return true
-	}
-
-	return false
-}
-
-// SetData gets a reference to the given []map[string]interface{} and assigns it to the Data field.
-func (o *GetVMSnapshot200Response) SetData(v []map[string]interface{}) {
-	o.Data = v
 }
 
 // GetErrors returns the Errors field value if set, zero value otherwise.
@@ -106,6 +74,38 @@ func (o *GetVMSnapshot200Response) SetErrors(v []string) {
 	o.Errors = v
 }
 
+// GetData returns the Data field value if set, zero value otherwise.
+func (o *GetVMSnapshot200Response) GetData() []map[string]interface{} {
+	if o == nil || IsNil(o.Data) {
+		var ret []map[string]interface{}
+		return ret
+	}
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetVMSnapshot200Response) GetDataOk() ([]map[string]interface{}, bool) {
+	if o == nil || IsNil(o.Data) {
+		return nil, false
+	}
+	return o.Data, true
+}
+
+// HasData returns a boolean if a field has been set.
+func (o *GetVMSnapshot200Response) HasData() bool {
+	if o != nil && !IsNil(o.Data) {
+		return true
+	}
+
+	return false
+}
+
+// SetData gets a reference to the given []map[string]interface{} and assigns it to the Data field.
+func (o *GetVMSnapshot200Response) SetData(v []map[string]interface{}) {
+	o.Data = v
+}
+
 func (o GetVMSnapshot200Response) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -116,11 +116,11 @@ func (o GetVMSnapshot200Response) MarshalJSON() ([]byte, error) {
 
 func (o GetVMSnapshot200Response) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Data) {
-		toSerialize["data"] = o.Data
-	}
 	if !IsNil(o.Errors) {
 		toSerialize["errors"] = o.Errors
+	}
+	if !IsNil(o.Data) {
+		toSerialize["data"] = o.Data
 	}
 	return toSerialize, nil
 }

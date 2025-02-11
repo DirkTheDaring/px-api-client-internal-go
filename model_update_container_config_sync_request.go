@@ -20,14 +20,23 @@ var _ MappedNullable = &UpdateContainerConfigSyncRequest{}
 
 // UpdateContainerConfigSyncRequest struct for UpdateContainerConfigSyncRequest
 type UpdateContainerConfigSyncRequest struct {
+	// OS architecture type.
 	Arch *string `json:"arch,omitempty"`
+	// Console mode. By default, the console command tries to open a connection to one of the available tty devices. By setting cmode to 'console' it tries to attach to /dev/console instead. If you set cmode to 'shell', it simply invokes a shell inside the container (no login).
 	Cmode *string `json:"cmode,omitempty"`
+	// Attach a console device (/dev/console) to the container.
 	Console *bool `json:"console,omitempty"`
+	// The number of cores assigned to the container. A container can use all available cores by default.
 	Cores *int64 `json:"cores,omitempty"`
+	// Limit of CPU usage.  NOTE: If the computer has 2 CPUs, it has a total of '2' CPU time. Value '0' indicates no CPU limit.
 	Cpulimit *float32 `json:"cpulimit,omitempty"`
+	// CPU weight for a container, will be clamped to [1, 10000] in cgroup v2.
 	Cpuunits *int64 `json:"cpuunits,omitempty"`
+	// Try to be more verbose. For now this only enables debug log-level on start.
 	Debug *bool `json:"debug,omitempty"`
+	// A list of settings you want to delete.
 	Delete *string `json:"delete,omitempty"`
+	// Description for the Container. Shown in the web-interface CT's summary. This is saved as comment inside the configuration file.
 	Description *string `json:"description,omitempty"`
 	Dev0 *CreateContainerRequestDev0 `json:"dev0,omitempty"`
 	Dev1 *CreateContainerRequestDev0 `json:"dev1,omitempty"`
@@ -59,11 +68,16 @@ type UpdateContainerConfigSyncRequest struct {
 	Dev27 *CreateContainerRequestDev0 `json:"dev27,omitempty"`
 	Dev28 *CreateContainerRequestDev0 `json:"dev28,omitempty"`
 	Dev29 *CreateContainerRequestDev0 `json:"dev29,omitempty"`
+	// Prevent changes if current configuration file has different SHA1 digest. This can be used to prevent concurrent modifications.
 	Digest *string `json:"digest,omitempty"`
 	Features *CreateContainerRequestFeatures `json:"features,omitempty"`
+	// Script that will be executed during various steps in the containers lifetime.
 	Hookscript *string `json:"hookscript,omitempty"`
+	// Set a host name for the container.
 	Hostname *string `json:"hostname,omitempty"`
+	// Lock/unlock the container.
 	Lock *string `json:"lock,omitempty"`
+	// Amount of RAM for the container in MB.
 	Memory *int64 `json:"memory,omitempty"`
 	Mp0 *CreateContainerRequestMp0 `json:"mp0,omitempty"`
 	Mp1 *CreateContainerRequestMp0 `json:"mp1,omitempty"`
@@ -95,6 +109,7 @@ type UpdateContainerConfigSyncRequest struct {
 	Mp27 *CreateContainerRequestMp0 `json:"mp27,omitempty"`
 	Mp28 *CreateContainerRequestMp0 `json:"mp28,omitempty"`
 	Mp29 *CreateContainerRequestMp0 `json:"mp29,omitempty"`
+	// Sets DNS server IP address for a container. Create will automatically use the setting from the host if you neither set searchdomain nor nameserver.
 	Nameserver *string `json:"nameserver,omitempty"`
 	Net0 *CreateContainerRequestNet0 `json:"net0,omitempty"`
 	Net1 *CreateContainerRequestNet0 `json:"net1,omitempty"`
@@ -128,18 +143,30 @@ type UpdateContainerConfigSyncRequest struct {
 	Net29 *CreateContainerRequestNet0 `json:"net29,omitempty"`
 	Net30 *CreateContainerRequestNet0 `json:"net30,omitempty"`
 	Net31 *CreateContainerRequestNet0 `json:"net31,omitempty"`
+	// Specifies whether a container will be started during system bootup.
 	Onboot *bool `json:"onboot,omitempty"`
+	// OS type. This is used to setup configuration inside the container, and corresponds to lxc setup scripts in /usr/share/lxc/config/<ostype>.common.conf. Value 'unmanaged' can be used to skip and OS specific setup.
 	Ostype *string `json:"ostype,omitempty"`
+	// Sets the protection flag of the container. This will prevent the CT or CT's disk remove/update operation.
 	Protection *bool `json:"protection,omitempty"`
+	// Revert a pending change.
 	Revert *string `json:"revert,omitempty"`
 	Rootfs *CreateContainerRequestRootfs `json:"rootfs,omitempty"`
+	// Sets DNS search domains for a container. Create will automatically use the setting from the host if you neither set searchdomain nor nameserver.
 	Searchdomain *string `json:"searchdomain,omitempty"`
+	// Startup and shutdown behavior. Order is a non-negative number defining the general startup order. Shutdown in done with reverse ordering. Additionally you can set the 'up' or 'down' delay in seconds, which specifies a delay to wait before the next VM is started or stopped.
 	Startup *string `json:"startup,omitempty"`
+	// Amount of SWAP for the container in MB.
 	Swap *int64 `json:"swap,omitempty"`
+	// Tags of the Container. This is only meta information.
 	Tags *string `json:"tags,omitempty"`
+	// Enable/disable Template.
 	Template *bool `json:"template,omitempty"`
+	// Time zone to use in the container. If option isn't set, then nothing will be done. Can be set to 'host' to match the host time zone, or an arbitrary time zone option from /usr/share/zoneinfo/zone.tab
 	Timezone *string `json:"timezone,omitempty"`
+	// Specify the number of tty available to the container
 	Tty *int64 `json:"tty,omitempty"`
+	// Makes the container run as unprivileged user. (Should not be modified manually.)
 	Unprivileged *bool `json:"unprivileged,omitempty"`
 	Unused0 *CreateContainerRequestUnused0 `json:"unused0,omitempty"`
 	Unused1 *CreateContainerRequestUnused0 `json:"unused1,omitempty"`

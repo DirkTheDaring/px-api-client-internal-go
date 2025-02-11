@@ -20,6 +20,7 @@ var _ MappedNullable = &UpdateContainerSnapshotConfigRequest{}
 
 // UpdateContainerSnapshotConfigRequest struct for UpdateContainerSnapshotConfigRequest
 type UpdateContainerSnapshotConfigRequest struct {
+	// A textual description or comment.
 	Description *string `json:"description,omitempty"`
 }
 

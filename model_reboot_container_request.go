@@ -20,6 +20,7 @@ var _ MappedNullable = &RebootContainerRequest{}
 
 // RebootContainerRequest struct for RebootContainerRequest
 type RebootContainerRequest struct {
+	// Wait maximal timeout seconds for the shutdown.
 	Timeout *int64 `json:"timeout,omitempty"`
 }
 

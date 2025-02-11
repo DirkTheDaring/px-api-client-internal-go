@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**OverruleShutdown** | Pointer to **bool** |  | [optional] 
-**Skiplock** | Pointer to **bool** |  | [optional] 
+**OverruleShutdown** | Pointer to **bool** | Try to abort active &#39;vzshutdown&#39; tasks before stopping. | [optional] 
+**Skiplock** | Pointer to **bool** | Ignore locks - only root is allowed to use this option. | [optional] 
 
 ## Methods
 

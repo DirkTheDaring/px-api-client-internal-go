@@ -6039,126 +6039,203 @@ components:
         tdf: true
       properties:
         acpi:
+          description: Enable/disable ACPI.
           type: boolean
         affinity:
+          description: "List of host cores used to execute guest processes, for example:\
+            \ 0,5,8-11"
           type: string
         agent:
           $ref: '#/components/schemas/CreateVMRequest_agent'
         amd-sev:
+          description: Secure Encrypted Virtualization (SEV) features by AMD CPUs
           type: string
         arch:
+          description: Virtual processor architecture. Defaults to the host.
           type: string
         archive:
+          description: The backup archive. Either the file system path to a .tar or
+            .vma file (use '-' to pipe data from stdin) or a proxmox storage backup
+            volume identifier.
           type: string
         args:
+          description: Arbitrary arguments passed to kvm.
           type: string
         audio0:
           $ref: '#/components/schemas/CreateVMRequest_audio0'
         autostart:
+          description: Automatic restart after crash (currently ignored).
           type: boolean
         balloon:
+          description: Amount of target RAM for the VM in MiB. Using zero disables
+            the ballon driver.
           type: int64
         bios:
+          description: Select BIOS implementation.
           type: string
         boot:
           $ref: '#/components/schemas/CreateVMRequest_boot'
         bootdisk:
+          description: "Enable booting from specified disk. Deprecated: Use 'boot:\
+            \ order=foo;bar' instead."
           type: string
         bwlimit:
+          description: Override I/O bandwidth limit (in KiB/s).
           type: int64
         cdrom:
+          description: This is an alias for option -ide2
           type: string
         cicustom:
+          description: "cloud-init: Specify custom files to replace the automatically\
+            \ generated ones at start."
           type: string
         cipassword:
+          description: "cloud-init: Password to assign the user. Using this is generally\
+            \ not recommended. Use ssh keys instead. Also note that older cloud-init\
+            \ versions do not support hashed passwords."
           type: string
         citype:
+          description: "Specifies the cloud-init configuration format. The default\
+            \ depends on the configured operating system type (`ostype`. We use the\
+            \ `nocloud` format for Linux, and `configdrive2` for windows."
           type: string
         ciupgrade:
+          description: "cloud-init: do an automatic package upgrade after the first\
+            \ boot."
           type: boolean
         ciuser:
+          description: "cloud-init: User name to change ssh keys and password for\
+            \ instead of the image's configured default user."
           type: string
         cores:
+          description: The number of cores per socket.
           type: int64
         cpu:
+          description: Emulated CPU type.
           type: string
         cpulimit:
+          description: Limit of CPU usage.
           type: number
         cpuunits:
+          description: "CPU weight for a VM, will be clamped to [1, 10000] in cgroup\
+            \ v2."
           type: int64
         description:
+          description: Description for the VM. Shown in the web-interface VM's summary.
+            This is saved as comment inside the configuration file.
           type: string
         efidisk0:
           $ref: '#/components/schemas/CreateVMRequest_efidisk0'
         force:
+          description: Allow to overwrite existing VM.
           type: boolean
         freeze:
+          description: Freeze CPU at startup (use 'c' monitor command to start execution).
           type: boolean
         hookscript:
+          description: Script that will be executed during various steps in the vms
+            lifetime.
           type: string
         hostpci0:
+          description: Map host PCI devices into guest.
           type: string
         hostpci1:
+          description: Map host PCI devices into guest.
           type: string
         hostpci2:
+          description: Map host PCI devices into guest.
           type: string
         hostpci3:
+          description: Map host PCI devices into guest.
           type: string
         hostpci4:
+          description: Map host PCI devices into guest.
           type: string
         hostpci5:
+          description: Map host PCI devices into guest.
           type: string
         hostpci6:
+          description: Map host PCI devices into guest.
           type: string
         hostpci7:
+          description: Map host PCI devices into guest.
           type: string
         hostpci8:
+          description: Map host PCI devices into guest.
           type: string
         hostpci9:
+          description: Map host PCI devices into guest.
           type: string
         hostpci10:
+          description: Map host PCI devices into guest.
           type: string
         hostpci11:
+          description: Map host PCI devices into guest.
           type: string
         hostpci12:
+          description: Map host PCI devices into guest.
           type: string
         hostpci13:
+          description: Map host PCI devices into guest.
           type: string
         hostpci14:
+          description: Map host PCI devices into guest.
           type: string
         hostpci15:
+          description: Map host PCI devices into guest.
           type: string
         hostpci16:
+          description: Map host PCI devices into guest.
           type: string
         hostpci17:
+          description: Map host PCI devices into guest.
           type: string
         hostpci18:
+          description: Map host PCI devices into guest.
           type: string
         hostpci19:
+          description: Map host PCI devices into guest.
           type: string
         hostpci20:
+          description: Map host PCI devices into guest.
           type: string
         hostpci21:
+          description: Map host PCI devices into guest.
           type: string
         hostpci22:
+          description: Map host PCI devices into guest.
           type: string
         hostpci23:
+          description: Map host PCI devices into guest.
           type: string
         hostpci24:
+          description: Map host PCI devices into guest.
           type: string
         hostpci25:
+          description: Map host PCI devices into guest.
           type: string
         hostpci26:
+          description: Map host PCI devices into guest.
           type: string
         hostpci27:
+          description: Map host PCI devices into guest.
           type: string
         hostpci28:
+          description: Map host PCI devices into guest.
           type: string
         hostpci29:
+          description: Map host PCI devices into guest.
           type: string
         hotplug:
+          description: "Selectively enable hotplug features. This is a comma separated\
+            \ list of hotplug features: 'network', 'disk', 'cpu', 'memory', 'usb'\
+            \ and 'cloudinit'. Use '0' to disable hotplug completely. Using '1' as\
+            \ value is an alias for the default `network,disk,usb`. USB hotplugging\
+            \ is possible for guests with machine version >= 7.1 and ostype l26 or\
+            \ windows > 7."
           type: string
         hugepages:
+          description: Enable/disable hugepages memory.
           type: string
         ide0:
           $ref: '#/components/schemas/CreateVMRequest_ide0'
@@ -6169,6 +6246,9 @@ components:
         ide3:
           $ref: '#/components/schemas/CreateVMRequest_ide0'
         import-working-storage:
+          description: "A file-based storage with 'images' content-type enabled, which\
+            \ is used as an intermediary extraction storage during import. Defaults\
+            \ to the source storage."
           type: string
         ipconfig0:
           $ref: '#/components/schemas/CreateVMRequest_ipconfig0'
@@ -6233,28 +6313,47 @@ components:
         ivshmem:
           $ref: '#/components/schemas/CreateVMRequest_ivshmem'
         keephugepages:
+          description: "Use together with hugepages. If enabled, hugepages will not\
+            \ not be deleted after VM shutdown and can be used for subsequent starts."
           type: boolean
         keyboard:
+          description: Keyboard layout for VNC server. This option is generally not
+            required and is often better handled from within the guest OS.
           type: string
         kvm:
+          description: Enable/disable KVM hardware virtualization.
           type: boolean
         live-restore:
+          description: Start the VM immediately while importing or restoring in the
+            background.
           type: boolean
         localtime:
+          description: Set the real time clock (RTC) to local time. This is enabled
+            by default if the `ostype` indicates a Microsoft Windows OS.
           type: boolean
         lock:
+          description: Lock/unlock the VM.
           type: string
         machine:
           $ref: '#/components/schemas/CreateVMRequest_machine'
         memory:
           $ref: '#/components/schemas/CreateVMRequest_memory'
         migrate_downtime:
+          description: "Set maximum tolerated downtime (in seconds) for migrations.\
+            \ Should the migration not be able to converge in the very end, because\
+            \ too much newly dirtied RAM needs to be transferred, the limit will be\
+            \ increased automatically step-by-step until migration can converge."
           type: number
         migrate_speed:
+          description: Set maximum speed (in MB/s) for migrations. Value 0 is no limit.
           type: int64
         name:
+          description: Set a name for the VM. Only used on the configuration web interface.
           type: string
         nameserver:
+          description: "cloud-init: Sets DNS server IP address for a container. Create\
+            \ will automatically use the setting from the host if neither searchdomain\
+            \ nor nameserver are set."
           type: string
         net0:
           $ref: '#/components/schemas/CreateVMRequest_net0'
@@ -6321,6 +6420,7 @@ components:
         net31:
           $ref: '#/components/schemas/CreateVMRequest_net0'
         numa:
+          description: Enable/disable NUMA.
           type: boolean
         numa0:
           $ref: '#/components/schemas/CreateVMRequest_numa0'
@@ -6383,22 +6483,32 @@ components:
         numa29:
           $ref: '#/components/schemas/CreateVMRequest_numa0'
         onboot:
+          description: Specifies whether a VM will be started during system bootup.
           type: boolean
         ostype:
+          description: Specify guest operating system.
           type: string
         parallel0:
+          description: Map host parallel devices (n is 0 to 2).
           type: string
         parallel1:
+          description: Map host parallel devices (n is 0 to 2).
           type: string
         parallel2:
+          description: Map host parallel devices (n is 0 to 2).
           type: string
         parallel3:
+          description: Map host parallel devices (n is 0 to 2).
           type: string
         pool:
+          description: Add the VM to the specified pool.
           type: string
         protection:
+          description: Sets the protection flag of the VM. This will disable the remove
+            VM and remove disk operations.
           type: boolean
         reboot:
+          description: Allow reboot. If set to '0' the VM exit on reboot.
           type: boolean
         rng0:
           $ref: '#/components/schemas/CreateVMRequest_rng0'
@@ -6475,48 +6585,78 @@ components:
         scsi29:
           $ref: '#/components/schemas/CreateVMRequest_scsi0'
         scsihw:
+          description: SCSI controller model
           type: string
         searchdomain:
+          description: "cloud-init: Sets DNS search domains for a container. Create\
+            \ will automatically use the setting from the host if neither searchdomain\
+            \ nor nameserver are set."
           type: string
         serial0:
+          description: Create a serial device inside the VM (n is 0 to 3)
           type: string
         serial1:
+          description: Create a serial device inside the VM (n is 0 to 3)
           type: string
         serial2:
+          description: Create a serial device inside the VM (n is 0 to 3)
           type: string
         serial3:
+          description: Create a serial device inside the VM (n is 0 to 3)
           type: string
         shares:
+          description: "Amount of memory shares for auto-ballooning. The larger the\
+            \ number is, the more memory this VM gets. Number is relative to weights\
+            \ of all other running VMs. Using zero disables auto-ballooning. Auto-ballooning\
+            \ is done by pvestatd."
           type: int64
         smbios1:
+          description: Specify SMBIOS type 1 fields.
           type: string
         smp:
+          description: The number of CPUs. Please use option -sockets instead.
           type: int64
         sockets:
+          description: The number of CPU sockets.
           type: int64
         spice_enhancements:
           $ref: '#/components/schemas/CreateVMRequest_spice_enhancements'
         sshkeys:
+          description: "cloud-init: Setup public SSH keys (one key per line, OpenSSH\
+            \ format)."
           type: string
         start:
+          description: Start VM after it was created successfully.
           type: boolean
         startdate:
+          description: Set the initial date of the real time clock. Valid format for
+            date are:'now' or '2006-06-17T16:01:21' or '2006-06-17'.
           type: string
         startup:
+          description: "Startup and shutdown behavior. Order is a non-negative number\
+            \ defining the general startup order. Shutdown in done with reverse ordering.\
+            \ Additionally you can set the 'up' or 'down' delay in seconds, which\
+            \ specifies a delay to wait before the next VM is started or stopped."
           type: string
         storage:
+          description: Default storage.
           type: string
         tablet:
+          description: Enable/disable the USB tablet device.
           type: boolean
         tags:
+          description: Tags of the VM. This is only meta information.
           type: string
         tdf:
+          description: Enable/disable time drift fix.
           type: boolean
         template:
+          description: Enable/disable Template.
           type: boolean
         tpmstate0:
           $ref: '#/components/schemas/CreateVMRequest_tpmstate0'
         unique:
+          description: Assign a unique random ethernet address.
           type: boolean
         unused0:
           $ref: '#/components/schemas/CreateVMRequest_unused0'
@@ -6587,6 +6727,7 @@ components:
         usb3:
           $ref: '#/components/schemas/CreateVMRequest_usb0'
         vcpus:
+          description: Number of hotplugged vcpus.
           type: int64
         vga:
           $ref: '#/components/schemas/CreateVMRequest_vga'
@@ -6623,10 +6764,14 @@ components:
         virtio15:
           $ref: '#/components/schemas/CreateVMRequest_virtio0'
         vmgenid:
+          description: "Set VM Generation ID. Use '1' to autogenerate on create or\
+            \ update, pass '0' to disable explicitly."
           type: string
         vmid:
+          description: The (unique) ID of the VM.
           type: int64
         vmstatestorage:
+          description: Default storage for VM state volumes/files.
           type: string
         watchdog:
           $ref: '#/components/schemas/CreateVMRequest_watchdog'
@@ -10157,128 +10302,209 @@ components:
         tdf: true
       properties:
         acpi:
+          description: Enable/disable ACPI.
           type: boolean
         affinity:
+          description: "List of host cores used to execute guest processes, for example:\
+            \ 0,5,8-11"
           type: string
         agent:
           $ref: '#/components/schemas/CreateVMRequest_agent'
         amd-sev:
+          description: Secure Encrypted Virtualization (SEV) features by AMD CPUs
           type: string
         arch:
+          description: Virtual processor architecture. Defaults to the host.
           type: string
         args:
+          description: Arbitrary arguments passed to kvm.
           type: string
         audio0:
           $ref: '#/components/schemas/CreateVMRequest_audio0'
         autostart:
+          description: Automatic restart after crash (currently ignored).
           type: boolean
         background_delay:
+          description: Time to wait for the task to finish. We return 'null' if the
+            task finish within that time.
           type: int64
         balloon:
+          description: Amount of target RAM for the VM in MiB. Using zero disables
+            the ballon driver.
           type: int64
         bios:
+          description: Select BIOS implementation.
           type: string
         boot:
           $ref: '#/components/schemas/CreateVMRequest_boot'
         bootdisk:
+          description: "Enable booting from specified disk. Deprecated: Use 'boot:\
+            \ order=foo;bar' instead."
           type: string
         cdrom:
+          description: This is an alias for option -ide2
           type: string
         cicustom:
+          description: "cloud-init: Specify custom files to replace the automatically\
+            \ generated ones at start."
           type: string
         cipassword:
+          description: "cloud-init: Password to assign the user. Using this is generally\
+            \ not recommended. Use ssh keys instead. Also note that older cloud-init\
+            \ versions do not support hashed passwords."
           type: string
         citype:
+          description: "Specifies the cloud-init configuration format. The default\
+            \ depends on the configured operating system type (`ostype`. We use the\
+            \ `nocloud` format for Linux, and `configdrive2` for windows."
           type: string
         ciupgrade:
+          description: "cloud-init: do an automatic package upgrade after the first\
+            \ boot."
           type: boolean
         ciuser:
+          description: "cloud-init: User name to change ssh keys and password for\
+            \ instead of the image's configured default user."
           type: string
         cores:
+          description: The number of cores per socket.
           type: int64
         cpu:
+          description: Emulated CPU type.
           type: string
         cpulimit:
+          description: Limit of CPU usage.
           type: number
         cpuunits:
+          description: "CPU weight for a VM, will be clamped to [1, 10000] in cgroup\
+            \ v2."
           type: int64
         delete:
+          description: A list of settings you want to delete.
           type: string
         description:
+          description: Description for the VM. Shown in the web-interface VM's summary.
+            This is saved as comment inside the configuration file.
           type: string
         digest:
+          description: Prevent changes if current configuration file has different
+            SHA1 digest. This can be used to prevent concurrent modifications.
           type: string
         efidisk0:
           $ref: '#/components/schemas/CreateVMRequest_efidisk0'
         force:
+          description: "Force physical removal. Without this, we simple remove the\
+            \ disk from the config file and create an additional configuration entry\
+            \ called 'unused[n]', which contains the volume ID. Unlink of unused[n]\
+            \ always cause physical removal."
           type: boolean
         freeze:
+          description: Freeze CPU at startup (use 'c' monitor command to start execution).
           type: boolean
         hookscript:
+          description: Script that will be executed during various steps in the vms
+            lifetime.
           type: string
         hostpci0:
+          description: Map host PCI devices into guest.
           type: string
         hostpci1:
+          description: Map host PCI devices into guest.
           type: string
         hostpci2:
+          description: Map host PCI devices into guest.
           type: string
         hostpci3:
+          description: Map host PCI devices into guest.
           type: string
         hostpci4:
+          description: Map host PCI devices into guest.
           type: string
         hostpci5:
+          description: Map host PCI devices into guest.
           type: string
         hostpci6:
+          description: Map host PCI devices into guest.
           type: string
         hostpci7:
+          description: Map host PCI devices into guest.
           type: string
         hostpci8:
+          description: Map host PCI devices into guest.
           type: string
         hostpci9:
+          description: Map host PCI devices into guest.
           type: string
         hostpci10:
+          description: Map host PCI devices into guest.
           type: string
         hostpci11:
+          description: Map host PCI devices into guest.
           type: string
         hostpci12:
+          description: Map host PCI devices into guest.
           type: string
         hostpci13:
+          description: Map host PCI devices into guest.
           type: string
         hostpci14:
+          description: Map host PCI devices into guest.
           type: string
         hostpci15:
+          description: Map host PCI devices into guest.
           type: string
         hostpci16:
+          description: Map host PCI devices into guest.
           type: string
         hostpci17:
+          description: Map host PCI devices into guest.
           type: string
         hostpci18:
+          description: Map host PCI devices into guest.
           type: string
         hostpci19:
+          description: Map host PCI devices into guest.
           type: string
         hostpci20:
+          description: Map host PCI devices into guest.
           type: string
         hostpci21:
+          description: Map host PCI devices into guest.
           type: string
         hostpci22:
+          description: Map host PCI devices into guest.
           type: string
         hostpci23:
+          description: Map host PCI devices into guest.
           type: string
         hostpci24:
+          description: Map host PCI devices into guest.
           type: string
         hostpci25:
+          description: Map host PCI devices into guest.
           type: string
         hostpci26:
+          description: Map host PCI devices into guest.
           type: string
         hostpci27:
+          description: Map host PCI devices into guest.
           type: string
         hostpci28:
+          description: Map host PCI devices into guest.
           type: string
         hostpci29:
+          description: Map host PCI devices into guest.
           type: string
         hotplug:
+          description: "Selectively enable hotplug features. This is a comma separated\
+            \ list of hotplug features: 'network', 'disk', 'cpu', 'memory', 'usb'\
+            \ and 'cloudinit'. Use '0' to disable hotplug completely. Using '1' as\
+            \ value is an alias for the default `network,disk,usb`. USB hotplugging\
+            \ is possible for guests with machine version >= 7.1 and ostype l26 or\
+            \ windows > 7."
           type: string
         hugepages:
+          description: Enable/disable hugepages memory.
           type: string
         ide0:
           $ref: '#/components/schemas/CreateVMRequest_ide0'
@@ -10289,6 +10515,9 @@ components:
         ide3:
           $ref: '#/components/schemas/CreateVMRequest_ide0'
         import-working-storage:
+          description: "A file-based storage with 'images' content-type enabled, which\
+            \ is used as an intermediary extraction storage during import. Defaults\
+            \ to the source storage."
           type: string
         ipconfig0:
           $ref: '#/components/schemas/CreateVMRequest_ipconfig0'
@@ -10353,26 +10582,43 @@ components:
         ivshmem:
           $ref: '#/components/schemas/CreateVMRequest_ivshmem'
         keephugepages:
+          description: "Use together with hugepages. If enabled, hugepages will not\
+            \ not be deleted after VM shutdown and can be used for subsequent starts."
           type: boolean
         keyboard:
+          description: Keyboard layout for VNC server. This option is generally not
+            required and is often better handled from within the guest OS.
           type: string
         kvm:
+          description: Enable/disable KVM hardware virtualization.
           type: boolean
         localtime:
+          description: Set the real time clock (RTC) to local time. This is enabled
+            by default if the `ostype` indicates a Microsoft Windows OS.
           type: boolean
         lock:
+          description: Lock/unlock the VM.
           type: string
         machine:
           $ref: '#/components/schemas/CreateVMRequest_machine'
         memory:
           $ref: '#/components/schemas/CreateVMRequest_memory'
         migrate_downtime:
+          description: "Set maximum tolerated downtime (in seconds) for migrations.\
+            \ Should the migration not be able to converge in the very end, because\
+            \ too much newly dirtied RAM needs to be transferred, the limit will be\
+            \ increased automatically step-by-step until migration can converge."
           type: number
         migrate_speed:
+          description: Set maximum speed (in MB/s) for migrations. Value 0 is no limit.
           type: int64
         name:
+          description: Set a name for the VM. Only used on the configuration web interface.
           type: string
         nameserver:
+          description: "cloud-init: Sets DNS server IP address for a container. Create\
+            \ will automatically use the setting from the host if neither searchdomain\
+            \ nor nameserver are set."
           type: string
         net0:
           $ref: '#/components/schemas/CreateVMRequest_net0'
@@ -10439,6 +10685,7 @@ components:
         net31:
           $ref: '#/components/schemas/CreateVMRequest_net0'
         numa:
+          description: Enable/disable NUMA.
           type: boolean
         numa0:
           $ref: '#/components/schemas/CreateVMRequest_numa0'
@@ -10501,22 +10748,32 @@ components:
         numa29:
           $ref: '#/components/schemas/CreateVMRequest_numa0'
         onboot:
+          description: Specifies whether a VM will be started during system bootup.
           type: boolean
         ostype:
+          description: Specify guest operating system.
           type: string
         parallel0:
+          description: Map host parallel devices (n is 0 to 2).
           type: string
         parallel1:
+          description: Map host parallel devices (n is 0 to 2).
           type: string
         parallel2:
+          description: Map host parallel devices (n is 0 to 2).
           type: string
         parallel3:
+          description: Map host parallel devices (n is 0 to 2).
           type: string
         protection:
+          description: Sets the protection flag of the VM. This will disable the remove
+            VM and remove disk operations.
           type: boolean
         reboot:
+          description: Allow reboot. If set to '0' the VM exit on reboot.
           type: boolean
         revert:
+          description: Revert a pending change.
           type: string
         rng0:
           $ref: '#/components/schemas/CreateVMRequest_rng0'
@@ -10593,42 +10850,70 @@ components:
         scsi29:
           $ref: '#/components/schemas/CreateVMRequest_scsi0'
         scsihw:
+          description: SCSI controller model
           type: string
         searchdomain:
+          description: "cloud-init: Sets DNS search domains for a container. Create\
+            \ will automatically use the setting from the host if neither searchdomain\
+            \ nor nameserver are set."
           type: string
         serial0:
+          description: Create a serial device inside the VM (n is 0 to 3)
           type: string
         serial1:
+          description: Create a serial device inside the VM (n is 0 to 3)
           type: string
         serial2:
+          description: Create a serial device inside the VM (n is 0 to 3)
           type: string
         serial3:
+          description: Create a serial device inside the VM (n is 0 to 3)
           type: string
         shares:
+          description: "Amount of memory shares for auto-ballooning. The larger the\
+            \ number is, the more memory this VM gets. Number is relative to weights\
+            \ of all other running VMs. Using zero disables auto-ballooning. Auto-ballooning\
+            \ is done by pvestatd."
           type: int64
         skiplock:
+          description: Ignore locks - only root is allowed to use this option.
           type: boolean
         smbios1:
+          description: Specify SMBIOS type 1 fields.
           type: string
         smp:
+          description: The number of CPUs. Please use option -sockets instead.
           type: int64
         sockets:
+          description: The number of CPU sockets.
           type: int64
         spice_enhancements:
           $ref: '#/components/schemas/CreateVMRequest_spice_enhancements'
         sshkeys:
+          description: "cloud-init: Setup public SSH keys (one key per line, OpenSSH\
+            \ format)."
           type: string
         startdate:
+          description: Set the initial date of the real time clock. Valid format for
+            date are:'now' or '2006-06-17T16:01:21' or '2006-06-17'.
           type: string
         startup:
+          description: "Startup and shutdown behavior. Order is a non-negative number\
+            \ defining the general startup order. Shutdown in done with reverse ordering.\
+            \ Additionally you can set the 'up' or 'down' delay in seconds, which\
+            \ specifies a delay to wait before the next VM is started or stopped."
           type: string
         tablet:
+          description: Enable/disable the USB tablet device.
           type: boolean
         tags:
+          description: Tags of the VM. This is only meta information.
           type: string
         tdf:
+          description: Enable/disable time drift fix.
           type: boolean
         template:
+          description: Enable/disable Template.
           type: boolean
         tpmstate0:
           $ref: '#/components/schemas/CreateVMRequest_tpmstate0'
@@ -10701,6 +10986,7 @@ components:
         usb3:
           $ref: '#/components/schemas/CreateVMRequest_usb0'
         vcpus:
+          description: Number of hotplugged vcpus.
           type: int64
         vga:
           $ref: '#/components/schemas/CreateVMRequest_vga'
@@ -10737,8 +11023,11 @@ components:
         virtio15:
           $ref: '#/components/schemas/CreateVMRequest_virtio0'
         vmgenid:
+          description: "Set VM Generation ID. Use '1' to autogenerate on create or\
+            \ update, pass '0' to disable explicitly."
           type: string
         vmstatestorage:
+          description: Default storage for VM state volumes/files.
           type: string
         watchdog:
           $ref: '#/components/schemas/CreateVMRequest_watchdog'
@@ -14265,126 +14554,205 @@ components:
         tdf: true
       properties:
         acpi:
+          description: Enable/disable ACPI.
           type: boolean
         affinity:
+          description: "List of host cores used to execute guest processes, for example:\
+            \ 0,5,8-11"
           type: string
         agent:
           $ref: '#/components/schemas/CreateVMRequest_agent'
         amd-sev:
+          description: Secure Encrypted Virtualization (SEV) features by AMD CPUs
           type: string
         arch:
+          description: Virtual processor architecture. Defaults to the host.
           type: string
         args:
+          description: Arbitrary arguments passed to kvm.
           type: string
         audio0:
           $ref: '#/components/schemas/CreateVMRequest_audio0'
         autostart:
+          description: Automatic restart after crash (currently ignored).
           type: boolean
         balloon:
+          description: Amount of target RAM for the VM in MiB. Using zero disables
+            the ballon driver.
           type: int64
         bios:
+          description: Select BIOS implementation.
           type: string
         boot:
           $ref: '#/components/schemas/CreateVMRequest_boot'
         bootdisk:
+          description: "Enable booting from specified disk. Deprecated: Use 'boot:\
+            \ order=foo;bar' instead."
           type: string
         cdrom:
+          description: This is an alias for option -ide2
           type: string
         cicustom:
+          description: "cloud-init: Specify custom files to replace the automatically\
+            \ generated ones at start."
           type: string
         cipassword:
+          description: "cloud-init: Password to assign the user. Using this is generally\
+            \ not recommended. Use ssh keys instead. Also note that older cloud-init\
+            \ versions do not support hashed passwords."
           type: string
         citype:
+          description: "Specifies the cloud-init configuration format. The default\
+            \ depends on the configured operating system type (`ostype`. We use the\
+            \ `nocloud` format for Linux, and `configdrive2` for windows."
           type: string
         ciupgrade:
+          description: "cloud-init: do an automatic package upgrade after the first\
+            \ boot."
           type: boolean
         ciuser:
+          description: "cloud-init: User name to change ssh keys and password for\
+            \ instead of the image's configured default user."
           type: string
         cores:
+          description: The number of cores per socket.
           type: int64
         cpu:
+          description: Emulated CPU type.
           type: string
         cpulimit:
+          description: Limit of CPU usage.
           type: number
         cpuunits:
+          description: "CPU weight for a VM, will be clamped to [1, 10000] in cgroup\
+            \ v2."
           type: int64
         delete:
+          description: A list of settings you want to delete.
           type: string
         description:
+          description: Description for the VM. Shown in the web-interface VM's summary.
+            This is saved as comment inside the configuration file.
           type: string
         digest:
+          description: Prevent changes if current configuration file has different
+            SHA1 digest. This can be used to prevent concurrent modifications.
           type: string
         efidisk0:
           $ref: '#/components/schemas/CreateVMRequest_efidisk0'
         force:
+          description: "Force physical removal. Without this, we simple remove the\
+            \ disk from the config file and create an additional configuration entry\
+            \ called 'unused[n]', which contains the volume ID. Unlink of unused[n]\
+            \ always cause physical removal."
           type: boolean
         freeze:
+          description: Freeze CPU at startup (use 'c' monitor command to start execution).
           type: boolean
         hookscript:
+          description: Script that will be executed during various steps in the vms
+            lifetime.
           type: string
         hostpci0:
+          description: Map host PCI devices into guest.
           type: string
         hostpci1:
+          description: Map host PCI devices into guest.
           type: string
         hostpci2:
+          description: Map host PCI devices into guest.
           type: string
         hostpci3:
+          description: Map host PCI devices into guest.
           type: string
         hostpci4:
+          description: Map host PCI devices into guest.
           type: string
         hostpci5:
+          description: Map host PCI devices into guest.
           type: string
         hostpci6:
+          description: Map host PCI devices into guest.
           type: string
         hostpci7:
+          description: Map host PCI devices into guest.
           type: string
         hostpci8:
+          description: Map host PCI devices into guest.
           type: string
         hostpci9:
+          description: Map host PCI devices into guest.
           type: string
         hostpci10:
+          description: Map host PCI devices into guest.
           type: string
         hostpci11:
+          description: Map host PCI devices into guest.
           type: string
         hostpci12:
+          description: Map host PCI devices into guest.
           type: string
         hostpci13:
+          description: Map host PCI devices into guest.
           type: string
         hostpci14:
+          description: Map host PCI devices into guest.
           type: string
         hostpci15:
+          description: Map host PCI devices into guest.
           type: string
         hostpci16:
+          description: Map host PCI devices into guest.
           type: string
         hostpci17:
+          description: Map host PCI devices into guest.
           type: string
         hostpci18:
+          description: Map host PCI devices into guest.
           type: string
         hostpci19:
+          description: Map host PCI devices into guest.
           type: string
         hostpci20:
+          description: Map host PCI devices into guest.
           type: string
         hostpci21:
+          description: Map host PCI devices into guest.
           type: string
         hostpci22:
+          description: Map host PCI devices into guest.
           type: string
         hostpci23:
+          description: Map host PCI devices into guest.
           type: string
         hostpci24:
+          description: Map host PCI devices into guest.
           type: string
         hostpci25:
+          description: Map host PCI devices into guest.
           type: string
         hostpci26:
+          description: Map host PCI devices into guest.
           type: string
         hostpci27:
+          description: Map host PCI devices into guest.
           type: string
         hostpci28:
+          description: Map host PCI devices into guest.
           type: string
         hostpci29:
+          description: Map host PCI devices into guest.
           type: string
         hotplug:
+          description: "Selectively enable hotplug features. This is a comma separated\
+            \ list of hotplug features: 'network', 'disk', 'cpu', 'memory', 'usb'\
+            \ and 'cloudinit'. Use '0' to disable hotplug completely. Using '1' as\
+            \ value is an alias for the default `network,disk,usb`. USB hotplugging\
+            \ is possible for guests with machine version >= 7.1 and ostype l26 or\
+            \ windows > 7."
           type: string
         hugepages:
+          description: Enable/disable hugepages memory.
           type: string
         ide0:
           $ref: '#/components/schemas/CreateVMRequest_ide0'
@@ -14457,26 +14825,43 @@ components:
         ivshmem:
           $ref: '#/components/schemas/CreateVMRequest_ivshmem'
         keephugepages:
+          description: "Use together with hugepages. If enabled, hugepages will not\
+            \ not be deleted after VM shutdown and can be used for subsequent starts."
           type: boolean
         keyboard:
+          description: Keyboard layout for VNC server. This option is generally not
+            required and is often better handled from within the guest OS.
           type: string
         kvm:
+          description: Enable/disable KVM hardware virtualization.
           type: boolean
         localtime:
+          description: Set the real time clock (RTC) to local time. This is enabled
+            by default if the `ostype` indicates a Microsoft Windows OS.
           type: boolean
         lock:
+          description: Lock/unlock the VM.
           type: string
         machine:
           $ref: '#/components/schemas/CreateVMRequest_machine'
         memory:
           $ref: '#/components/schemas/CreateVMRequest_memory'
         migrate_downtime:
+          description: "Set maximum tolerated downtime (in seconds) for migrations.\
+            \ Should the migration not be able to converge in the very end, because\
+            \ too much newly dirtied RAM needs to be transferred, the limit will be\
+            \ increased automatically step-by-step until migration can converge."
           type: number
         migrate_speed:
+          description: Set maximum speed (in MB/s) for migrations. Value 0 is no limit.
           type: int64
         name:
+          description: Set a name for the VM. Only used on the configuration web interface.
           type: string
         nameserver:
+          description: "cloud-init: Sets DNS server IP address for a container. Create\
+            \ will automatically use the setting from the host if neither searchdomain\
+            \ nor nameserver are set."
           type: string
         net0:
           $ref: '#/components/schemas/CreateVMRequest_net0'
@@ -14543,6 +14928,7 @@ components:
         net31:
           $ref: '#/components/schemas/CreateVMRequest_net0'
         numa:
+          description: Enable/disable NUMA.
           type: boolean
         numa0:
           $ref: '#/components/schemas/CreateVMRequest_numa0'
@@ -14605,22 +14991,32 @@ components:
         numa29:
           $ref: '#/components/schemas/CreateVMRequest_numa0'
         onboot:
+          description: Specifies whether a VM will be started during system bootup.
           type: boolean
         ostype:
+          description: Specify guest operating system.
           type: string
         parallel0:
+          description: Map host parallel devices (n is 0 to 2).
           type: string
         parallel1:
+          description: Map host parallel devices (n is 0 to 2).
           type: string
         parallel2:
+          description: Map host parallel devices (n is 0 to 2).
           type: string
         parallel3:
+          description: Map host parallel devices (n is 0 to 2).
           type: string
         protection:
+          description: Sets the protection flag of the VM. This will disable the remove
+            VM and remove disk operations.
           type: boolean
         reboot:
+          description: Allow reboot. If set to '0' the VM exit on reboot.
           type: boolean
         revert:
+          description: Revert a pending change.
           type: string
         rng0:
           $ref: '#/components/schemas/CreateVMRequest_rng0'
@@ -14697,42 +15093,70 @@ components:
         scsi29:
           $ref: '#/components/schemas/CreateVMRequest_scsi0'
         scsihw:
+          description: SCSI controller model
           type: string
         searchdomain:
+          description: "cloud-init: Sets DNS search domains for a container. Create\
+            \ will automatically use the setting from the host if neither searchdomain\
+            \ nor nameserver are set."
           type: string
         serial0:
+          description: Create a serial device inside the VM (n is 0 to 3)
           type: string
         serial1:
+          description: Create a serial device inside the VM (n is 0 to 3)
           type: string
         serial2:
+          description: Create a serial device inside the VM (n is 0 to 3)
           type: string
         serial3:
+          description: Create a serial device inside the VM (n is 0 to 3)
           type: string
         shares:
+          description: "Amount of memory shares for auto-ballooning. The larger the\
+            \ number is, the more memory this VM gets. Number is relative to weights\
+            \ of all other running VMs. Using zero disables auto-ballooning. Auto-ballooning\
+            \ is done by pvestatd."
           type: int64
         skiplock:
+          description: Ignore locks - only root is allowed to use this option.
           type: boolean
         smbios1:
+          description: Specify SMBIOS type 1 fields.
           type: string
         smp:
+          description: The number of CPUs. Please use option -sockets instead.
           type: int64
         sockets:
+          description: The number of CPU sockets.
           type: int64
         spice_enhancements:
           $ref: '#/components/schemas/CreateVMRequest_spice_enhancements'
         sshkeys:
+          description: "cloud-init: Setup public SSH keys (one key per line, OpenSSH\
+            \ format)."
           type: string
         startdate:
+          description: Set the initial date of the real time clock. Valid format for
+            date are:'now' or '2006-06-17T16:01:21' or '2006-06-17'.
           type: string
         startup:
+          description: "Startup and shutdown behavior. Order is a non-negative number\
+            \ defining the general startup order. Shutdown in done with reverse ordering.\
+            \ Additionally you can set the 'up' or 'down' delay in seconds, which\
+            \ specifies a delay to wait before the next VM is started or stopped."
           type: string
         tablet:
+          description: Enable/disable the USB tablet device.
           type: boolean
         tags:
+          description: Tags of the VM. This is only meta information.
           type: string
         tdf:
+          description: Enable/disable time drift fix.
           type: boolean
         template:
+          description: Enable/disable Template.
           type: boolean
         tpmstate0:
           $ref: '#/components/schemas/CreateVMRequest_tpmstate0'
@@ -14805,6 +15229,7 @@ components:
         usb3:
           $ref: '#/components/schemas/CreateVMRequest_usb0'
         vcpus:
+          description: Number of hotplugged vcpus.
           type: int64
         vga:
           $ref: '#/components/schemas/CreateVMRequest_vga'
@@ -14841,8 +15266,11 @@ components:
         virtio15:
           $ref: '#/components/schemas/CreateVMRequest_virtio0'
         vmgenid:
+          description: "Set VM Generation ID. Use '1' to autogenerate on create or\
+            \ update, pass '0' to disable explicitly."
           type: string
         vmstatestorage:
+          description: Default storage for VM state volumes/files.
           type: string
         watchdog:
           $ref: '#/components/schemas/CreateVMRequest_watchdog'
@@ -14863,22 +15291,34 @@ components:
         timeout: ""
       properties:
         force-cpu:
+          description: Override QEMU's -cpu argument with the given string.
           type: string
         machine:
           $ref: '#/components/schemas/CreateVMRequest_machine'
         migratedfrom:
+          description: The cluster node name.
           type: string
         migration_network:
+          description: CIDR of the (sub) network that is used for migration.
           type: string
         migration_type:
+          description: "Migration traffic is encrypted using an SSH tunnel by default.\
+            \ On secure, completely private networks this can be disabled to increase\
+            \ performance."
           type: string
         skiplock:
+          description: Ignore locks - only root is allowed to use this option.
           type: boolean
         stateuri:
+          description: Some command save/restore state from this location.
           type: string
         targetstorage:
+          description: Mapping from source to target storages. Providing only a single
+            storage ID maps all source storages to that storage. Providing the special
+            value '1' will map each source storage to itself.
           type: string
         timeout:
+          description: Wait maximal timeout seconds.
           type: int64
       title: StartVMRequest
       type: object
@@ -14891,14 +15331,19 @@ components:
         timeout: ""
       properties:
         keepActive:
+          description: Do not deactivate storage volumes.
           type: boolean
         migratedfrom:
+          description: The cluster node name.
           type: string
         overrule-shutdown:
+          description: Try to abort active 'qmshutdown' tasks before stopping.
           type: boolean
         skiplock:
+          description: Ignore locks - only root is allowed to use this option.
           type: boolean
         timeout:
+          description: Wait maximal timeout seconds.
           type: int64
       title: StopVMRequest
       type: object
@@ -14910,12 +15355,16 @@ components:
         timeout: ""
       properties:
         forceStop:
+          description: Make sure the VM stops.
           type: boolean
         keepActive:
+          description: Do not deactivate storage volumes.
           type: boolean
         skiplock:
+          description: Ignore locks - only root is allowed to use this option.
           type: boolean
         timeout:
+          description: Wait maximal timeout seconds.
           type: int64
       title: ShutdownVMRequest
       type: object
@@ -14924,6 +15373,7 @@ components:
         timeout: ""
       properties:
         timeout:
+          description: Wait maximal timeout seconds for the shutdown.
           type: int64
       title: RebootVMRequest
       type: object
@@ -14934,10 +15384,14 @@ components:
         todisk: true
       properties:
         skiplock:
+          description: Ignore locks - only root is allowed to use this option.
           type: boolean
         statestorage:
+          description: The storage for the VM state
           type: string
         todisk:
+          description: "If set, suspends the VM to disk. Will be resumed on next VM\
+            \ start."
           type: boolean
       title: SuspendVMRequest
       type: object
@@ -14949,6 +15403,7 @@ components:
         nocheck:
           type: boolean
         skiplock:
+          description: Ignore locks - only root is allowed to use this option.
           type: boolean
       title: ResumeVMRequest
       type: object
@@ -14960,12 +15415,19 @@ components:
         digest: digest
       properties:
         digest:
+          description: Prevent changes if current configuration file has different
+            SHA1 digest. This can be used to prevent concurrent modifications.
           type: string
         disk:
+          description: The disk you want to resize.
           type: string
         size:
+          description: "The new size. With the `+` sign the value is added to the\
+            \ actual size of the volume and without it, the value is taken as an absolute\
+            \ one. Shrinking disk size is not supported."
           type: string
         skiplock:
+          description: Ignore locks - only root is allowed to use this option.
           type: boolean
       required:
       - disk
@@ -14979,10 +15441,13 @@ components:
         snapname: snapname
       properties:
         description:
+          description: A textual description or comment.
           type: string
         snapname:
+          description: The name of the snapshot.
           type: string
         vmstate:
+          description: Save the vmstate
           type: boolean
       required:
       - snapname
@@ -14993,6 +15458,7 @@ components:
         description: description
       properties:
         description:
+          description: A textual description or comment.
           type: string
       title: UpdateVMSnapshotConfigRequest
       type: object
@@ -15001,6 +15467,8 @@ components:
         start: true
       properties:
         start:
+          description: "Whether the VM should get started after rolling back successfully.\
+            \ (Note: VMs will be automatically started if the snapshot includes RAM.)"
           type: boolean
       title: RollbackVMSnapshotRequest
       type: object
@@ -16110,22 +16578,41 @@ components:
         tty: ""
       properties:
         arch:
+          description: OS architecture type.
           type: string
         bwlimit:
+          description: Override I/O bandwidth limit (in KiB/s).
           type: number
         cmode:
+          description: "Console mode. By default, the console command tries to open\
+            \ a connection to one of the available tty devices. By setting cmode to\
+            \ 'console' it tries to attach to /dev/console instead. If you set cmode\
+            \ to 'shell', it simply invokes a shell inside the container (no login)."
           type: string
         console:
+          description: Attach a console device (/dev/console) to the container.
           type: boolean
         cores:
+          description: The number of cores assigned to the container. A container
+            can use all available cores by default.
           type: int64
         cpulimit:
+          description: |-
+            Limit of CPU usage.
+
+            NOTE: If the computer has 2 CPUs, it has a total of '2' CPU time. Value '0' indicates no CPU limit.
           type: number
         cpuunits:
+          description: "CPU weight for a container, will be clamped to [1, 10000]\
+            \ in cgroup v2."
           type: int64
         debug:
+          description: Try to be more verbose. For now this only enables debug log-level
+            on start.
           type: boolean
         description:
+          description: Description for the Container. Shown in the web-interface CT's
+            summary. This is saved as comment inside the configuration file.
           type: string
         dev0:
           $ref: '#/components/schemas/CreateContainerRequest_dev0'
@@ -16190,16 +16677,23 @@ components:
         features:
           $ref: '#/components/schemas/CreateContainerRequest_features'
         force:
+          description: Allow to overwrite existing container.
           type: boolean
         hookscript:
+          description: Script that will be executed during various steps in the containers
+            lifetime.
           type: string
         hostname:
+          description: Set a host name for the container.
           type: string
         ignore-unpack-errors:
+          description: Ignore errors when extracting the template.
           type: boolean
         lock:
+          description: Lock/unlock the container.
           type: string
         memory:
+          description: Amount of RAM for the container in MB.
           type: int64
         mp0:
           $ref: '#/components/schemas/CreateContainerRequest_mp0'
@@ -16262,6 +16756,8 @@ components:
         mp29:
           $ref: '#/components/schemas/CreateContainerRequest_mp0'
         nameserver:
+          description: Sets DNS server IP address for a container. Create will automatically
+            use the setting from the host if you neither set searchdomain nor nameserver.
           type: string
         net0:
           $ref: '#/components/schemas/CreateContainerRequest_net0'
@@ -16328,44 +16824,74 @@ components:
         net31:
           $ref: '#/components/schemas/CreateContainerRequest_net0'
         onboot:
+          description: Specifies whether a container will be started during system
+            bootup.
           type: boolean
         ostemplate:
+          description: The OS template or backup file.
           type: string
         ostype:
+          description: "OS type. This is used to setup configuration inside the container,\
+            \ and corresponds to lxc setup scripts in /usr/share/lxc/config/<ostype>.common.conf.\
+            \ Value 'unmanaged' can be used to skip and OS specific setup."
           type: string
         password:
+          description: Sets root password inside container.
           type: string
         pool:
+          description: Add the VM to the specified pool.
           type: string
         protection:
+          description: Sets the protection flag of the container. This will prevent
+            the CT or CT's disk remove/update operation.
           type: boolean
         restore:
+          description: Mark this as restore task.
           type: boolean
         rootfs:
           $ref: '#/components/schemas/CreateContainerRequest_rootfs'
         searchdomain:
+          description: Sets DNS search domains for a container. Create will automatically
+            use the setting from the host if you neither set searchdomain nor nameserver.
           type: string
         ssh-public-keys:
+          description: "Setup public SSH keys (one key per line, OpenSSH format)."
           type: string
         start:
+          description: Start the CT after its creation finished successfully.
           type: boolean
         startup:
+          description: "Startup and shutdown behavior. Order is a non-negative number\
+            \ defining the general startup order. Shutdown in done with reverse ordering.\
+            \ Additionally you can set the 'up' or 'down' delay in seconds, which\
+            \ specifies a delay to wait before the next VM is started or stopped."
           type: string
         storage:
+          description: Default Storage.
           type: string
         swap:
+          description: Amount of SWAP for the container in MB.
           type: int64
         tags:
+          description: Tags of the Container. This is only meta information.
           type: string
         template:
+          description: Enable/disable Template.
           type: boolean
         timezone:
+          description: "Time zone to use in the container. If option isn't set, then\
+            \ nothing will be done. Can be set to 'host' to match the host time zone,\
+            \ or an arbitrary time zone option from /usr/share/zoneinfo/zone.tab"
           type: string
         tty:
+          description: Specify the number of tty available to the container
           type: int64
         unique:
+          description: Assign a unique random ethernet address.
           type: boolean
         unprivileged:
+          description: Makes the container run as unprivileged user. (Should not be
+            modified manually.)
           type: boolean
         unused0:
           $ref: '#/components/schemas/CreateContainerRequest_unused0'
@@ -16428,6 +16954,7 @@ components:
         unused29:
           $ref: '#/components/schemas/CreateContainerRequest_unused0'
         vmid:
+          description: The (unique) ID of the VM.
           type: int64
       required:
       - ostemplate
@@ -17531,22 +18058,41 @@ components:
         tty: ""
       properties:
         arch:
+          description: OS architecture type.
           type: string
         cmode:
+          description: "Console mode. By default, the console command tries to open\
+            \ a connection to one of the available tty devices. By setting cmode to\
+            \ 'console' it tries to attach to /dev/console instead. If you set cmode\
+            \ to 'shell', it simply invokes a shell inside the container (no login)."
           type: string
         console:
+          description: Attach a console device (/dev/console) to the container.
           type: boolean
         cores:
+          description: The number of cores assigned to the container. A container
+            can use all available cores by default.
           type: int64
         cpulimit:
+          description: |-
+            Limit of CPU usage.
+
+            NOTE: If the computer has 2 CPUs, it has a total of '2' CPU time. Value '0' indicates no CPU limit.
           type: number
         cpuunits:
+          description: "CPU weight for a container, will be clamped to [1, 10000]\
+            \ in cgroup v2."
           type: int64
         debug:
+          description: Try to be more verbose. For now this only enables debug log-level
+            on start.
           type: boolean
         delete:
+          description: A list of settings you want to delete.
           type: string
         description:
+          description: Description for the Container. Shown in the web-interface CT's
+            summary. This is saved as comment inside the configuration file.
           type: string
         dev0:
           $ref: '#/components/schemas/CreateContainerRequest_dev0'
@@ -17609,16 +18155,23 @@ components:
         dev29:
           $ref: '#/components/schemas/CreateContainerRequest_dev0'
         digest:
+          description: Prevent changes if current configuration file has different
+            SHA1 digest. This can be used to prevent concurrent modifications.
           type: string
         features:
           $ref: '#/components/schemas/CreateContainerRequest_features'
         hookscript:
+          description: Script that will be executed during various steps in the containers
+            lifetime.
           type: string
         hostname:
+          description: Set a host name for the container.
           type: string
         lock:
+          description: Lock/unlock the container.
           type: string
         memory:
+          description: Amount of RAM for the container in MB.
           type: int64
         mp0:
           $ref: '#/components/schemas/CreateContainerRequest_mp0'
@@ -17681,6 +18234,8 @@ components:
         mp29:
           $ref: '#/components/schemas/CreateContainerRequest_mp0'
         nameserver:
+          description: Sets DNS server IP address for a container. Create will automatically
+            use the setting from the host if you neither set searchdomain nor nameserver.
           type: string
         net0:
           $ref: '#/components/schemas/CreateContainerRequest_net0'
@@ -17747,30 +18302,53 @@ components:
         net31:
           $ref: '#/components/schemas/CreateContainerRequest_net0'
         onboot:
+          description: Specifies whether a container will be started during system
+            bootup.
           type: boolean
         ostype:
+          description: "OS type. This is used to setup configuration inside the container,\
+            \ and corresponds to lxc setup scripts in /usr/share/lxc/config/<ostype>.common.conf.\
+            \ Value 'unmanaged' can be used to skip and OS specific setup."
           type: string
         protection:
+          description: Sets the protection flag of the container. This will prevent
+            the CT or CT's disk remove/update operation.
           type: boolean
         revert:
+          description: Revert a pending change.
           type: string
         rootfs:
           $ref: '#/components/schemas/CreateContainerRequest_rootfs'
         searchdomain:
+          description: Sets DNS search domains for a container. Create will automatically
+            use the setting from the host if you neither set searchdomain nor nameserver.
           type: string
         startup:
+          description: "Startup and shutdown behavior. Order is a non-negative number\
+            \ defining the general startup order. Shutdown in done with reverse ordering.\
+            \ Additionally you can set the 'up' or 'down' delay in seconds, which\
+            \ specifies a delay to wait before the next VM is started or stopped."
           type: string
         swap:
+          description: Amount of SWAP for the container in MB.
           type: int64
         tags:
+          description: Tags of the Container. This is only meta information.
           type: string
         template:
+          description: Enable/disable Template.
           type: boolean
         timezone:
+          description: "Time zone to use in the container. If option isn't set, then\
+            \ nothing will be done. Can be set to 'host' to match the host time zone,\
+            \ or an arbitrary time zone option from /usr/share/zoneinfo/zone.tab"
           type: string
         tty:
+          description: Specify the number of tty available to the container
           type: int64
         unprivileged:
+          description: Makes the container run as unprivileged user. (Should not be
+            modified manually.)
           type: boolean
         unused0:
           $ref: '#/components/schemas/CreateContainerRequest_unused0'
@@ -17840,8 +18418,10 @@ components:
         debug: true
       properties:
         debug:
+          description: "If set, enables very verbose debug log-level on start."
           type: boolean
         skiplock:
+          description: Ignore locks - only root is allowed to use this option.
           type: boolean
       title: StartContainerRequest
       type: object
@@ -17851,8 +18431,10 @@ components:
         overrule-shutdown: true
       properties:
         overrule-shutdown:
+          description: Try to abort active 'vzshutdown' tasks before stopping.
           type: boolean
         skiplock:
+          description: Ignore locks - only root is allowed to use this option.
           type: boolean
       title: StopContainerRequest
       type: object
@@ -17862,8 +18444,10 @@ components:
         timeout: ""
       properties:
         forceStop:
+          description: Make sure the Container stops.
           type: boolean
         timeout:
+          description: Wait maximal timeout seconds.
           type: int64
       title: ShutdownContainerRequest
       type: object
@@ -17880,6 +18464,7 @@ components:
         timeout: ""
       properties:
         timeout:
+          description: Wait maximal timeout seconds for the shutdown.
           type: int64
       title: RebootContainerRequest
       type: object
@@ -17889,8 +18474,10 @@ components:
         snapname: snapname
       properties:
         description:
+          description: A textual description or comment.
           type: string
         snapname:
+          description: The name of the snapshot.
           type: string
       required:
       - snapname
@@ -17901,6 +18488,8 @@ components:
         start: true
       properties:
         start:
+          description: Whether the container should get started after rolling back
+            successfully
           type: boolean
       title: RollbackContainerSnapshotRequest
       type: object
@@ -17909,6 +18498,7 @@ components:
         description: description
       properties:
         description:
+          description: A textual description or comment.
           type: string
       title: UpdateContainerSnapshotConfigRequest
       type: object
@@ -17919,10 +18509,16 @@ components:
         digest: digest
       properties:
         digest:
+          description: Prevent changes if current configuration file has different
+            SHA1 digest. This can be used to prevent concurrent modifications.
           type: string
         disk:
+          description: The disk you want to resize.
           type: string
         size:
+          description: "The new size. With the '+' sign the value is added to the\
+            \ actual size of the volume and without it, the value is taken as an absolute\
+            \ one. Shrinking disk size is not supported."
           type: string
       required:
       - disk
@@ -17942,8 +18538,11 @@ components:
         format:
           type: string
         size:
+          description: "Size in kilobyte (1024 bytes). Optional suffixes 'M' (megabyte,\
+            \ 1024K) and 'G' (gigabyte, 1024M)"
           type: string
         vmid:
+          description: Specify owner VM
           type: int64
       required:
       - filename
@@ -17954,15 +18553,21 @@ components:
     UploadFileRequest:
       properties:
         checksum:
+          description: The expected checksum of the file.
           type: string
         checksum-algorithm:
+          description: The algorithm to calculate the checksum of the file.
           type: string
         content:
+          description: Content type.
           type: string
         filename:
           format: binary
           type: string
         tmpfilename:
+          description: The source file name. This parameter is usually set by the
+            REST handler. You can only overwrite it when connecting to the trusted
+            port on localhost.
           type: string
       required:
       - content
@@ -18040,128 +18645,215 @@ components:
         username: username
       properties:
         authsupported:
+          description: Authsupported.
           type: string
         base:
+          description: Base volume. This volume is automatically activated.
           type: string
         blocksize:
+          description: block size
           type: string
         bwlimit:
           $ref: '#/components/schemas/CreateStorageRequest_bwlimit'
         comstar_hg:
+          description: host group for comstar views
           type: string
         comstar_tg:
+          description: target group for comstar views
           type: string
         content:
+          description: |
+            Allowed content types.
+
+            NOTE: the value 'rootdir' is used for Containers, and value 'images' for VMs.
           type: string
         content-dirs:
+          description: Overrides for default content type directories.
           type: string
         create-base-path:
+          description: Create the base directory if it doesn't exist.
           type: boolean
         create-subdirs:
+          description: Populate the directory with the default structure.
           type: boolean
         data-pool:
+          description: Data Pool (for erasure coding only)
           type: string
         datastore:
+          description: Proxmox Backup Server datastore name.
           type: string
         disable:
+          description: Flag to disable the storage.
           type: boolean
         domain:
+          description: CIFS domain.
           type: string
         encryption-key:
+          description: Encryption key. Use 'autogen' to generate one automatically
+            without passphrase.
           type: string
         export:
+          description: NFS export path.
           type: string
         fingerprint:
+          description: Certificate SHA 256 fingerprint.
           type: string
         format:
+          description: Default image format.
           type: string
         fs-name:
+          description: The Ceph filesystem name.
           type: string
         fuse:
+          description: Mount CephFS through FUSE.
           type: boolean
         is_mountpoint:
+          description: Assume the given path is an externally managed mountpoint and
+            consider the storage offline if it is not mounted. Using a boolean (yes/no)
+            value serves as a shortcut to using the target path in this field.
           type: string
         iscsiprovider:
+          description: iscsi provider
           type: string
         keyring:
+          description: Client keyring contents (for external clusters).
           type: string
         krbd:
+          description: Always access rbd through krbd kernel module.
           type: boolean
         lio_tpg:
+          description: target portal group for Linux LIO targets
           type: string
         master-pubkey:
+          description: "Base64-encoded, PEM-formatted public RSA key. Used to encrypt\
+            \ a copy of the encryption-key which will be added to each encrypted backup."
           type: string
         max-protected-backups:
+          description: Maximal number of protected backups per guest. Use '-1' for
+            unlimited.
           type: int64
         maxfiles:
+          description: "Deprecated: use 'prune-backups' instead. Maximal number of\
+            \ backup files per VM. Use '0' for unlimited."
           type: int64
         mkdir:
+          description: "Create the directory if it doesn't exist and populate it with\
+            \ default sub-dirs. NOTE: Deprecated, use the 'create-base-path' and 'create-subdirs'\
+            \ options instead."
           type: boolean
         monhost:
+          description: IP addresses of monitors (for external clusters).
           type: string
         mountpoint:
+          description: mount point
           type: string
         namespace:
+          description: Namespace.
           type: string
         nocow:
+          description: Set the NOCOW flag on files. Disables data checksumming and
+            causes data errors to be unrecoverable from while allowing direct I/O.
+            Only use this if data does not need to be any more safe than on a single
+            ext4 formatted disk with no underlying raid system.
           type: boolean
         nodes:
+          description: List of nodes for which the storage configuration applies.
           type: string
         nowritecache:
+          description: disable write caching on the target
           type: boolean
         options:
+          description: NFS/CIFS mount options (see 'man nfs' or 'man mount.cifs')
           type: string
         password:
+          description: Password for accessing the share/datastore.
           type: string
         path:
+          description: File system path.
           type: string
         pool:
+          description: Pool.
           type: string
         port:
+          description: "Use this port to connect to the storage instead of the default\
+            \ one (for example, with PBS or ESXi). For NFS and CIFS, use the 'options'\
+            \ option to configure the port via the mount options."
           type: int64
         portal:
+          description: iSCSI portal (IP or DNS name with optional port).
           type: string
         preallocation:
+          description: Preallocation mode for raw and qcow2 images. Using 'metadata'
+            on raw images results in preallocation=off.
           type: string
         prune-backups:
+          description: The retention options with shorter intervals are processed
+            first with --keep-last being the very first one. Each option covers a
+            specific period of time. We say that backups within this period are covered
+            by this option. The next option does not take care of already covered
+            backups and only considers older backups.
           type: string
         saferemove:
+          description: Zero-out data when removing LVs.
           type: boolean
         saferemove_throughput:
+          description: Wipe throughput (cstream -t parameter value).
           type: string
         server:
+          description: Server IP or DNS name.
           type: string
         server2:
+          description: Backup volfile server IP or DNS name.
           type: string
         share:
+          description: CIFS share.
           type: string
         shared:
+          description: "Indicate that this is a single storage with the same contents\
+            \ on all nodes (or all listed in the 'nodes' option). It will not make\
+            \ the contents of a local storage automatically accessible to other nodes,\
+            \ it just marks an already shared storage as such!"
           type: boolean
         skip-cert-verification:
+          description: "Disable TLS certificate verification, only enable on fully\
+            \ trusted networks!"
           type: boolean
         smbversion:
+          description: "SMB protocol version. 'default' if not set, negotiates the\
+            \ highest SMB2+ version supported by both the client and server."
           type: string
         sparse:
+          description: use sparse volumes
           type: boolean
         storage:
+          description: The storage identifier.
           type: string
         subdir:
+          description: Subdir to mount.
           type: string
         tagged_only:
+          description: Only use logical volumes tagged with 'pve-vm-ID'.
           type: boolean
         target:
+          description: iSCSI target.
           type: string
         thinpool:
+          description: LVM thin pool LV name.
           type: string
         transport:
+          description: "Gluster transport: tcp or rdma"
           type: string
         type:
+          description: Storage type.
           type: string
         username:
+          description: RBD Id.
           type: string
         vgname:
+          description: Volume group name.
           type: string
         volume:
+          description: Glusterfs Volume.
           type: string
       required:
       - storage
@@ -18180,20 +18872,29 @@ components:
         username: username
       properties:
         new-format:
+          description: This parameter is now ignored and assumed to be 1.
           type: boolean
         otp:
+          description: One-time password for Two-factor authentication.
           type: string
         password:
+          description: The secret password. This can also be a valid ticket.
           type: string
         path:
+          description: "Verify ticket, and check if user have access 'privs' on 'path'"
           type: string
         privs:
+          description: "Verify ticket, and check if user have access 'privs' on 'path'"
           type: string
         realm:
+          description: You can optionally pass the realm using this parameter. Normally
+            the realm is simply added to the username <username>@<relam>.
           type: string
         tfa-challenge:
+          description: The signed TFA challenge string the user wants to respond to.
           type: string
         username:
+          description: User name
           type: string
       required:
       - password
@@ -18218,14 +18919,14 @@ components:
         - errors
         - errors
       properties:
+        errors:
+          items:
+            type: string
+          type: array
         data:
           description: ""
           items:
             $ref: '#/components/schemas/getClusterConfigNodes_200_response_data_inner'
-          type: array
-        errors:
-          items:
-            type: string
           type: array
       type: object
     getClusterResources_200_response_data_inner:
@@ -18414,14 +19115,14 @@ components:
         - errors
         - errors
       properties:
+        errors:
+          items:
+            type: string
+          type: array
         data:
           description: ""
           items:
             $ref: '#/components/schemas/getClusterResources_200_response_data_inner'
-          type: array
-        errors:
-          items:
-            type: string
           type: array
       type: object
     getClusterNextid_200_response:
@@ -18431,13 +19132,13 @@ components:
         - errors
         - errors
       properties:
-        data:
-          description: The next free VMID.
-          type: string
         errors:
           items:
             type: string
           type: array
+        data:
+          description: The next free VMID.
+          type: string
       type: object
     getVMs_200_response_data_inner:
       description: ""
@@ -18565,14 +19266,14 @@ components:
         - errors
         - errors
       properties:
+        errors:
+          items:
+            type: string
+          type: array
         data:
           description: ""
           items:
             $ref: '#/components/schemas/getVMs_200_response_data_inner'
-          type: array
-        errors:
-          items:
-            type: string
           type: array
       type: object
     createVM_200_response:
@@ -18582,13 +19283,13 @@ components:
         - errors
         - errors
       properties:
-        data:
-          description: ""
-          type: string
         errors:
           items:
             type: string
           type: array
+        data:
+          description: ""
+          type: string
       type: object
     getVM_200_response_data_inner:
       description: ""
@@ -18608,14 +19309,14 @@ components:
         - errors
         - errors
       properties:
+        errors:
+          items:
+            type: string
+          type: array
         data:
           description: ""
           items:
             $ref: '#/components/schemas/getVM_200_response_data_inner'
-          type: array
-        errors:
-          items:
-            type: string
           type: array
       type: object
     getVMConfig_200_response_data:
@@ -18752,7 +19453,7 @@ components:
         virtio1: virtio1
         net16: net16
         virtio2: virtio2
-        memory: memory
+        memory: ""
         hostpci23: hostpci23
         scsi1: scsi1
         description: description
@@ -19566,7 +20267,7 @@ components:
           type: string
         memory:
           description: Memory properties.
-          type: string
+          type: int64
         migrate_downtime:
           description: "Set maximum tolerated downtime (in seconds) for migrations.\
             \ Should the migration not be able to converge in the very end, because\
@@ -20312,7 +21013,7 @@ components:
           virtio1: virtio1
           net16: net16
           virtio2: virtio2
-          memory: memory
+          memory: ""
           hostpci23: hostpci23
           scsi1: scsi1
           description: description
@@ -20472,12 +21173,12 @@ components:
         - errors
         - errors
       properties:
-        data:
-          $ref: '#/components/schemas/getVMConfig_200_response_data'
         errors:
           items:
             type: string
           type: array
+        data:
+          $ref: '#/components/schemas/getVMConfig_200_response_data'
       type: object
     getVMConfigPending_200_response_data_inner_oneOf:
       description: ""
@@ -20526,14 +21227,14 @@ components:
         - errors
         - errors
       properties:
+        errors:
+          items:
+            type: string
+          type: array
         data:
           description: ""
           items:
             $ref: '#/components/schemas/getVMConfigPending_200_response_data_inner'
-          type: array
-        errors:
-          items:
-            type: string
           type: array
       type: object
     getCurrentVMStatus_200_response_data:
@@ -20665,12 +21366,12 @@ components:
         - errors
         - errors
       properties:
-        data:
-          $ref: '#/components/schemas/getCurrentVMStatus_200_response_data'
         errors:
           items:
             type: string
           type: array
+        data:
+          $ref: '#/components/schemas/getCurrentVMStatus_200_response_data'
       type: object
     TaskStartResponse:
       example:
@@ -20679,13 +21380,13 @@ components:
         - errors
         - errors
       properties:
-        data:
-          description: the task ID.
-          type: string
         errors:
           items:
             type: string
           type: array
+        data:
+          description: the task ID.
+          type: string
       type: object
     getVMSnapshots_200_response_data_inner:
       description: ""
@@ -20730,14 +21431,14 @@ components:
         - errors
         - errors
       properties:
+        errors:
+          items:
+            type: string
+          type: array
         data:
           description: ""
           items:
             $ref: '#/components/schemas/getVMSnapshots_200_response_data_inner'
-          type: array
-        errors:
-          items:
-            type: string
           type: array
       type: object
     getVMSnapshot_200_response:
@@ -20749,16 +21450,16 @@ components:
         - errors
         - errors
       properties:
+        errors:
+          items:
+            type: string
+          type: array
         data:
           description: ""
           items:
             description: ""
             properties: {}
             type: object
-          type: array
-        errors:
-          items:
-            type: string
           type: array
       type: object
     getVMSnapshotConfig_200_response:
@@ -20768,13 +21469,13 @@ components:
         - errors
         - errors
       properties:
-        data:
-          description: ""
-          type: object
         errors:
           items:
             type: string
           type: array
+        data:
+          description: ""
+          type: object
       type: object
     getContainers_200_response_data_inner:
       description: ""
@@ -20890,14 +21591,14 @@ components:
         - errors
         - errors
       properties:
+        errors:
+          items:
+            type: string
+          type: array
         data:
           description: ""
           items:
             $ref: '#/components/schemas/getContainers_200_response_data_inner'
-          type: array
-        errors:
-          items:
-            type: string
           type: array
       type: object
     getContainerConfig_200_response_data:
@@ -21761,12 +22462,12 @@ components:
         - errors
         - errors
       properties:
-        data:
-          $ref: '#/components/schemas/getContainerConfig_200_response_data'
         errors:
           items:
             type: string
           type: array
+        data:
+          $ref: '#/components/schemas/getContainerConfig_200_response_data'
       type: object
     getCurrentContainerStatus_200_response_data:
       description: ""
@@ -21871,12 +22572,12 @@ components:
         - errors
         - errors
       properties:
-        data:
-          $ref: '#/components/schemas/getCurrentContainerStatus_200_response_data'
         errors:
           items:
             type: string
           type: array
+        data:
+          $ref: '#/components/schemas/getCurrentContainerStatus_200_response_data'
       type: object
     getContainerSnapshots_200_response_data_inner:
       description: ""
@@ -21915,14 +22616,14 @@ components:
         - errors
         - errors
       properties:
+        errors:
+          items:
+            type: string
+          type: array
         data:
           description: ""
           items:
             $ref: '#/components/schemas/getContainerSnapshots_200_response_data_inner'
-          type: array
-        errors:
-          items:
-            type: string
           type: array
       type: object
     getContainerConfigPending_200_response_data_inner:
@@ -21961,14 +22662,14 @@ components:
         - errors
         - errors
       properties:
+        errors:
+          items:
+            type: string
+          type: array
         data:
           description: ""
           items:
             $ref: '#/components/schemas/getContainerConfigPending_200_response_data_inner'
-          type: array
-        errors:
-          items:
-            type: string
           type: array
       type: object
     getNodeTasks_200_response_data_inner:
@@ -22043,14 +22744,14 @@ components:
         - errors
         - errors
       properties:
+        errors:
+          items:
+            type: string
+          type: array
         data:
           description: ""
           items:
             $ref: '#/components/schemas/getNodeTasks_200_response_data_inner'
-          type: array
-        errors:
-          items:
-            type: string
           type: array
       type: object
     getNodeTaskLog_200_response_data_inner:
@@ -22077,14 +22778,14 @@ components:
         - errors
         - errors
       properties:
+        errors:
+          items:
+            type: string
+          type: array
         data:
           description: ""
           items:
             $ref: '#/components/schemas/getNodeTaskLog_200_response_data_inner'
-          type: array
-        errors:
-          items:
-            type: string
           type: array
       type: object
     getNodeTaskStatus_200_response_data:
@@ -22149,12 +22850,12 @@ components:
         - errors
         - errors
       properties:
-        data:
-          $ref: '#/components/schemas/getNodeTaskStatus_200_response_data'
         errors:
           items:
             type: string
           type: array
+        data:
+          $ref: '#/components/schemas/getNodeTaskStatus_200_response_data'
       type: object
     getStorages_200_response_data_inner:
       description: ""
@@ -22228,14 +22929,14 @@ components:
         - errors
         - errors
       properties:
+        errors:
+          items:
+            type: string
+          type: array
         data:
           description: ""
           items:
             $ref: '#/components/schemas/getStorages_200_response_data_inner'
-          type: array
-        errors:
-          items:
-            type: string
           type: array
       type: object
     getStorageContent_200_response_data_inner_verification:
@@ -22339,14 +23040,14 @@ components:
         - errors
         - errors
       properties:
+        errors:
+          items:
+            type: string
+          type: array
         data:
           description: ""
           items:
             $ref: '#/components/schemas/getStorageContent_200_response_data_inner'
-          type: array
-        errors:
-          items:
-            type: string
           type: array
       type: object
     createNodesSingleStorageSingleContent_200_response:
@@ -22356,13 +23057,13 @@ components:
         - errors
         - errors
       properties:
-        data:
-          description: Volume identifier
-          type: string
         errors:
           items:
             type: string
           type: array
+        data:
+          description: Volume identifier
+          type: string
       type: object
     getStorage_200_response_data_inner:
       description: ""
@@ -22436,14 +23137,14 @@ components:
         - errors
         - errors
       properties:
+        errors:
+          items:
+            type: string
+          type: array
         data:
           description: ""
           items:
             $ref: '#/components/schemas/getStorage_200_response_data_inner'
-          type: array
-        errors:
-          items:
-            type: string
           type: array
       type: object
     createStorage_200_response_data_config:
@@ -22483,12 +23184,12 @@ components:
         - errors
         - errors
       properties:
-        data:
-          $ref: '#/components/schemas/createStorage_200_response_data'
         errors:
           items:
             type: string
           type: array
+        data:
+          $ref: '#/components/schemas/createStorage_200_response_data'
       type: object
     createAccessTicket_200_response_data:
       description: ""
@@ -22522,12 +23223,12 @@ components:
         - errors
         - errors
       properties:
-        data:
-          $ref: '#/components/schemas/createAccessTicket_200_response_data'
         errors:
           items:
             type: string
           type: array
+        data:
+          $ref: '#/components/schemas/createAccessTicket_200_response_data'
       type: object
     CreateVMRequest_agent:
       example:

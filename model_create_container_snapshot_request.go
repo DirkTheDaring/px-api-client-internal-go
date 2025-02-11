@@ -20,7 +20,9 @@ var _ MappedNullable = &CreateContainerSnapshotRequest{}
 
 // CreateContainerSnapshotRequest struct for CreateContainerSnapshotRequest
 type CreateContainerSnapshotRequest struct {
+	// A textual description or comment.
 	Description *string `json:"description,omitempty"`
+	// The name of the snapshot.
 	Snapname string `json:"snapname"`
 }
 

@@ -20,9 +20,9 @@ var _ MappedNullable = &TaskStartResponse{}
 
 // TaskStartResponse struct for TaskStartResponse
 type TaskStartResponse struct {
+	Errors []string `json:"errors,omitempty"`
 	// the task ID.
 	Data *string `json:"data,omitempty"`
-	Errors []string `json:"errors,omitempty"`
 }
 
 // NewTaskStartResponse instantiates a new TaskStartResponse object
@@ -40,38 +40,6 @@ func NewTaskStartResponse() *TaskStartResponse {
 func NewTaskStartResponseWithDefaults() *TaskStartResponse {
 	this := TaskStartResponse{}
 	return &this
-}
-
-// GetData returns the Data field value if set, zero value otherwise.
-func (o *TaskStartResponse) GetData() string {
-	if o == nil || IsNil(o.Data) {
-		var ret string
-		return ret
-	}
-	return *o.Data
-}
-
-// GetDataOk returns a tuple with the Data field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *TaskStartResponse) GetDataOk() (*string, bool) {
-	if o == nil || IsNil(o.Data) {
-		return nil, false
-	}
-	return o.Data, true
-}
-
-// HasData returns a boolean if a field has been set.
-func (o *TaskStartResponse) HasData() bool {
-	if o != nil && !IsNil(o.Data) {
-		return true
-	}
-
-	return false
-}
-
-// SetData gets a reference to the given string and assigns it to the Data field.
-func (o *TaskStartResponse) SetData(v string) {
-	o.Data = &v
 }
 
 // GetErrors returns the Errors field value if set, zero value otherwise.
@@ -106,6 +74,38 @@ func (o *TaskStartResponse) SetErrors(v []string) {
 	o.Errors = v
 }
 
+// GetData returns the Data field value if set, zero value otherwise.
+func (o *TaskStartResponse) GetData() string {
+	if o == nil || IsNil(o.Data) {
+		var ret string
+		return ret
+	}
+	return *o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TaskStartResponse) GetDataOk() (*string, bool) {
+	if o == nil || IsNil(o.Data) {
+		return nil, false
+	}
+	return o.Data, true
+}
+
+// HasData returns a boolean if a field has been set.
+func (o *TaskStartResponse) HasData() bool {
+	if o != nil && !IsNil(o.Data) {
+		return true
+	}
+
+	return false
+}
+
+// SetData gets a reference to the given string and assigns it to the Data field.
+func (o *TaskStartResponse) SetData(v string) {
+	o.Data = &v
+}
+
 func (o TaskStartResponse) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -116,11 +116,11 @@ func (o TaskStartResponse) MarshalJSON() ([]byte, error) {
 
 func (o TaskStartResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Data) {
-		toSerialize["data"] = o.Data
-	}
 	if !IsNil(o.Errors) {
 		toSerialize["errors"] = o.Errors
+	}
+	if !IsNil(o.Data) {
+		toSerialize["data"] = o.Data
 	}
 	return toSerialize, nil
 }

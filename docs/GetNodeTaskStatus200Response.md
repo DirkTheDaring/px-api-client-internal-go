@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Data** | Pointer to [**GetNodeTaskStatus200ResponseData**](GetNodeTaskStatus200ResponseData.md) |  | [optional] 
 **Errors** | Pointer to **[]string** |  | [optional] 
+**Data** | Pointer to [**GetNodeTaskStatus200ResponseData**](GetNodeTaskStatus200ResponseData.md) |  | [optional] 
 
 ## Methods
 
@@ -25,31 +25,6 @@ will change when the set of required properties is changed
 NewGetNodeTaskStatus200ResponseWithDefaults instantiates a new GetNodeTaskStatus200Response object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetData
-
-`func (o *GetNodeTaskStatus200Response) GetData() GetNodeTaskStatus200ResponseData`
-
-GetData returns the Data field if non-nil, zero value otherwise.
-
-### GetDataOk
-
-`func (o *GetNodeTaskStatus200Response) GetDataOk() (*GetNodeTaskStatus200ResponseData, bool)`
-
-GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetData
-
-`func (o *GetNodeTaskStatus200Response) SetData(v GetNodeTaskStatus200ResponseData)`
-
-SetData sets Data field to given value.
-
-### HasData
-
-`func (o *GetNodeTaskStatus200Response) HasData() bool`
-
-HasData returns a boolean if a field has been set.
 
 ### GetErrors
 
@@ -75,6 +50,31 @@ SetErrors sets Errors field to given value.
 `func (o *GetNodeTaskStatus200Response) HasErrors() bool`
 
 HasErrors returns a boolean if a field has been set.
+
+### GetData
+
+`func (o *GetNodeTaskStatus200Response) GetData() GetNodeTaskStatus200ResponseData`
+
+GetData returns the Data field if non-nil, zero value otherwise.
+
+### GetDataOk
+
+`func (o *GetNodeTaskStatus200Response) GetDataOk() (*GetNodeTaskStatus200ResponseData, bool)`
+
+GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetData
+
+`func (o *GetNodeTaskStatus200Response) SetData(v GetNodeTaskStatus200ResponseData)`
+
+SetData sets Data field to given value.
+
+### HasData
+
+`func (o *GetNodeTaskStatus200Response) HasData() bool`
+
+HasData returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
