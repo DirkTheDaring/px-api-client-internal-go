@@ -104,7 +104,7 @@ Name | Type | Description | Notes
 **Localtime** | Pointer to **int32** | Set the real time clock (RTC) to local time. This is enabled by default if the &#x60;ostype&#x60; indicates a Microsoft Windows OS. | [optional] 
 **Lock** | Pointer to **string** | Lock/unlock the VM. | [optional] 
 **Machine** | Pointer to **string** | Specify the QEMU machine. | [optional] 
-**Memory** | Pointer to **int64** | Memory properties. | [optional] 
+**Memory** | Pointer to **string** | Memory properties. | [optional] 
 **MigrateDowntime** | Pointer to **float32** | Set maximum tolerated downtime (in seconds) for migrations. Should the migration not be able to converge in the very end, because too much newly dirtied RAM needs to be transferred, the limit will be increased automatically step-by-step until migration can converge. | [optional] 
 **MigrateSpeed** | Pointer to **int64** | Set maximum speed (in MB/s) for migrations. Value 0 is no limit. | [optional] 
 **Name** | Pointer to **string** | Set a name for the VM. Only used on the configuration web interface. | [optional] 
@@ -2813,20 +2813,20 @@ HasMachine returns a boolean if a field has been set.
 
 ### GetMemory
 
-`func (o *GetVMConfig200ResponseData) GetMemory() int64`
+`func (o *GetVMConfig200ResponseData) GetMemory() string`
 
 GetMemory returns the Memory field if non-nil, zero value otherwise.
 
 ### GetMemoryOk
 
-`func (o *GetVMConfig200ResponseData) GetMemoryOk() (*int64, bool)`
+`func (o *GetVMConfig200ResponseData) GetMemoryOk() (*string, bool)`
 
 GetMemoryOk returns a tuple with the Memory field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMemory
 
-`func (o *GetVMConfig200ResponseData) SetMemory(v int64)`
+`func (o *GetVMConfig200ResponseData) SetMemory(v string)`
 
 SetMemory sets Memory field to given value.
 

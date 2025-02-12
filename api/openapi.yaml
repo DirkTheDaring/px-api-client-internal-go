@@ -4764,7 +4764,7 @@ components:
           iops_rd_max_length: ""
           snapshot: true
           trans: trans
-        memory: ""
+        memory: memory
         hostpci23: hostpci23
         scsi1:
           mbps_wr: 9.965781217890562
@@ -6337,7 +6337,7 @@ components:
           $ref: '#/components/schemas/CreateVMRequest_machine'
         memory:
           description: Memory properties.
-          type: int64
+          type: string
         migrate_downtime:
           description: "Set maximum tolerated downtime (in seconds) for migrations.\
             \ Should the migration not be able to converge in the very end, because\
@@ -9029,7 +9029,7 @@ components:
           snapshot: true
           trans: trans
         skiplock: true
-        memory: ""
+        memory: memory
         hostpci23: hostpci23
         scsi1:
           mbps_wr: 9.965781217890562
@@ -10602,7 +10602,7 @@ components:
           $ref: '#/components/schemas/CreateVMRequest_machine'
         memory:
           description: Memory properties.
-          type: int64
+          type: string
         migrate_downtime:
           description: "Set maximum tolerated downtime (in seconds) for migrations.\
             \ Should the migration not be able to converge in the very end, because\
@@ -13281,7 +13281,7 @@ components:
           snapshot: true
           trans: trans
         skiplock: true
-        memory: ""
+        memory: memory
         hostpci23: hostpci23
         scsi1:
           mbps_wr: 9.965781217890562
@@ -14845,7 +14845,7 @@ components:
           $ref: '#/components/schemas/CreateVMRequest_machine'
         memory:
           description: Memory properties.
-          type: int64
+          type: string
         migrate_downtime:
           description: "Set maximum tolerated downtime (in seconds) for migrations.\
             \ Should the migration not be able to converge in the very end, because\
@@ -19453,7 +19453,7 @@ components:
         virtio1: virtio1
         net16: net16
         virtio2: virtio2
-        memory: ""
+        memory: memory
         hostpci23: hostpci23
         scsi1: scsi1
         description: description
@@ -20267,7 +20267,7 @@ components:
           type: string
         memory:
           description: Memory properties.
-          type: int64
+          type: string
         migrate_downtime:
           description: "Set maximum tolerated downtime (in seconds) for migrations.\
             \ Should the migration not be able to converge in the very end, because\
@@ -21013,7 +21013,7 @@ components:
           virtio1: virtio1
           net16: net16
           virtio2: virtio2
-          memory: ""
+          memory: memory
           hostpci23: hostpci23
           scsi1: scsi1
           description: description
